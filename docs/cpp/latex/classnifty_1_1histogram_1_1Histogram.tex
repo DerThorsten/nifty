@@ -1,4 +1,4 @@
-\hypertarget{classnifty_1_1histogram_1_1Histogram}{}\section{nifty\+:\+:histogram\+:\+:Histogram$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$ Class Template Reference}
+\hypertarget{classnifty_1_1histogram_1_1Histogram}{}\section{nifty\+:\+:histogram\+:\+:Histogram$<$ T, B\+I\+N\+C\+O\+U\+NT $>$ Class Template Reference}
 \label{classnifty_1_1histogram_1_1Histogram}\index{nifty\+::histogram\+::\+Histogram$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$@{nifty\+::histogram\+::\+Histogram$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$}}
 
 
@@ -7,127 +7,163 @@
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef B\+I\+N\+C\+O\+U\+N\+T \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type}
+typedef B\+I\+N\+C\+O\+U\+NT \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classnifty_1_1histogram_1_1Histogram_a66ae2c8827268b369f932ac2b8abfd37}{Histogram} (const T min\+Val, const T max\+Val, const size\+\_\+t bincount)
+\hyperlink{classnifty_1_1histogram_1_1Histogram_ad7b503ee095f0bbe52f473f7bd8b6d63}{Histogram} (const T min\+Val=0, const T max\+Val=1, const size\+\_\+t bincount=40)
 \item 
-{\footnotesize template$<$class I\+T\+E\+R $>$ }\\void \hyperlink{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}{clear\+Set\+Min\+Max\+And\+Fill\+From} (I\+T\+E\+R begin, I\+T\+E\+R end)
+void \hyperlink{classnifty_1_1histogram_1_1Histogram_a5ced1f86011745189e73d686f65aad0a}{assign} (const T min\+Val=0, const T max\+Val=1, const size\+\_\+t bincount=40)
+\item 
+{\footnotesize template$<$class I\+T\+ER $>$ }\\void \hyperlink{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}{clear\+Set\+Min\+Max\+And\+Fill\+From} (I\+T\+ER begin, I\+T\+ER end)
 \item 
 void \hyperlink{classnifty_1_1histogram_1_1Histogram_ac4790791017587f3ec614c00abd6c68f}{set\+Min\+Max} (const T min\+Val, const T max\+Val)
 \item 
-const \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \& \hyperlink{classnifty_1_1histogram_1_1Histogram_a68470922ab80a3e2f7250a544bc148dc}{operator\mbox{[}$\,$\mbox{]}} (const size\+\_\+t i) const 
+const \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \& \hyperlink{classnifty_1_1histogram_1_1Histogram_a262b175b7093919f1ca5817679237091}{operator\mbox{[}$\,$\mbox{]}} (const size\+\_\+t i) const
 \item 
-size\+\_\+t \hyperlink{classnifty_1_1histogram_1_1Histogram_aaef02f76aa244f4aab008ce6f28f351f}{number\+Of\+Bins} () const 
+size\+\_\+t \hyperlink{classnifty_1_1histogram_1_1Histogram_a81f5001934bce97d1b852bda5d4daf99}{number\+Of\+Bins} () const
 \item 
-\hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \hyperlink{classnifty_1_1histogram_1_1Histogram_a3626b040c3fc0e7de787ac762040e182}{sum} () const 
+\hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \hyperlink{classnifty_1_1histogram_1_1Histogram_a22a3d01d66aff92a661228846f9f726e}{sum} () const
 \item 
 void \hyperlink{classnifty_1_1histogram_1_1Histogram_a4b344ea118713a965a4a3e6f3936cb20}{insert} (const T \&value, const double w=1.\+0)
 \item 
-void \hyperlink{classnifty_1_1histogram_1_1Histogram_a5a4e9b1acdfe1f9feee59e2d8c2abac8}{normalize} ()
+void \hyperlink{classnifty_1_1histogram_1_1Histogram_ac4ff991c8e2418d66643052ff69e4afa}{normalize} (const \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \&target\+Sum)
 \item 
 void \hyperlink{classnifty_1_1histogram_1_1Histogram_a6b8a4dfdc710c8c56b3afebe3990dd33}{clear} ()
 \item 
-double \hyperlink{classnifty_1_1histogram_1_1Histogram_a66445ecaa58cfcc3ecfd6073c252924b}{bin\+To\+Value} (const double fbin) const 
+void \hyperlink{classnifty_1_1histogram_1_1Histogram_ac6771f36d3c23a030650e55ff5bda1bf}{clear\+Counts} ()
 \item 
-float \hyperlink{classnifty_1_1histogram_1_1Histogram_a44378e19a3ee17afa45b650e81c42c2e}{bin\+Width} () const 
+double \hyperlink{classnifty_1_1histogram_1_1Histogram_af888c1e37c7beb39c2512ffd3887a515}{bin\+To\+Value} (const double fbin) const
+\item 
+float \hyperlink{classnifty_1_1histogram_1_1Histogram_afe04b4100d8c023a1e77343eb0d302e9}{bin\+Width} () const
+\item 
+void \hyperlink{classnifty_1_1histogram_1_1Histogram_a6bf410b81f98ac6bdc2e07be83153a8d}{merge} (const \hyperlink{classnifty_1_1histogram_1_1Histogram}{Histogram} \&other)
+\item 
+double \hyperlink{classnifty_1_1histogram_1_1Histogram_a65a3d7833caebf1dc0d93b497fc35b9b}{rank} (const double q) const
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Typedef Documentation}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!Bincount\+Type@{Bincount\+Type}}
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}\label{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!Bincount\+Type@{Bincount\+Type}}
 \index{Bincount\+Type@{Bincount\+Type}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{Bincount\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ typedef B\+I\+N\+C\+O\+U\+N\+T {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::{\bf Bincount\+Type}}\label{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}
+\subsubsection{\texorpdfstring{Bincount\+Type}{BincountType}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+typedef B\+I\+N\+C\+O\+U\+NT \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::\hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type}}
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a66ae2c8827268b369f932ac2b8abfd37}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!Histogram@{Histogram}}
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_ad7b503ee095f0bbe52f473f7bd8b6d63}\label{classnifty_1_1histogram_1_1Histogram_ad7b503ee095f0bbe52f473f7bd8b6d63}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!Histogram@{Histogram}}
 \index{Histogram@{Histogram}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{Histogram(const T min\+Val, const T max\+Val, const size\+\_\+t bincount)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::{\bf Histogram} (
-\begin{DoxyParamCaption}
-\item[{const T}]{min\+Val, }
-\item[{const T}]{max\+Val, }
-\item[{const size\+\_\+t}]{bincount}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a66ae2c8827268b369f932ac2b8abfd37}
+\subsubsection{\texorpdfstring{Histogram()}{Histogram()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+\hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::\hyperlink{classnifty_1_1histogram_1_1Histogram}{Histogram} (\begin{DoxyParamCaption}\item[{const T}]{min\+Val = {\ttfamily 0},  }\item[{const T}]{max\+Val = {\ttfamily 1},  }\item[{const size\+\_\+t}]{bincount = {\ttfamily 40} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a66445ecaa58cfcc3ecfd6073c252924b}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!bin\+To\+Value@{bin\+To\+Value}}
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a5ced1f86011745189e73d686f65aad0a}\label{classnifty_1_1histogram_1_1Histogram_a5ced1f86011745189e73d686f65aad0a}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!assign@{assign}}
+\index{assign@{assign}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
+\subsubsection{\texorpdfstring{assign()}{assign()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::assign (\begin{DoxyParamCaption}\item[{const T}]{min\+Val = {\ttfamily 0},  }\item[{const T}]{max\+Val = {\ttfamily 1},  }\item[{const size\+\_\+t}]{bincount = {\ttfamily 40} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_af888c1e37c7beb39c2512ffd3887a515}\label{classnifty_1_1histogram_1_1Histogram_af888c1e37c7beb39c2512ffd3887a515}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!bin\+To\+Value@{bin\+To\+Value}}
 \index{bin\+To\+Value@{bin\+To\+Value}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{bin\+To\+Value(const double fbin) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ double {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::bin\+To\+Value (
-\begin{DoxyParamCaption}
-\item[{const double}]{fbin}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a66445ecaa58cfcc3ecfd6073c252924b}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a44378e19a3ee17afa45b650e81c42c2e}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!bin\+Width@{bin\+Width}}
+\subsubsection{\texorpdfstring{bin\+To\+Value()}{binToValue()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+double \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::bin\+To\+Value (\begin{DoxyParamCaption}\item[{const double}]{fbin }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_afe04b4100d8c023a1e77343eb0d302e9}\label{classnifty_1_1histogram_1_1Histogram_afe04b4100d8c023a1e77343eb0d302e9}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!bin\+Width@{bin\+Width}}
 \index{bin\+Width@{bin\+Width}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{bin\+Width() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ float {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::bin\+Width (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a44378e19a3ee17afa45b650e81c42c2e}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a6b8a4dfdc710c8c56b3afebe3990dd33}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!clear@{clear}}
+\subsubsection{\texorpdfstring{bin\+Width()}{binWidth()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+float \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::bin\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a6b8a4dfdc710c8c56b3afebe3990dd33}\label{classnifty_1_1histogram_1_1Histogram_a6b8a4dfdc710c8c56b3afebe3990dd33}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!clear@{clear}}
 \index{clear@{clear}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ void {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::clear (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a6b8a4dfdc710c8c56b3afebe3990dd33}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!clear\+Set\+Min\+Max\+And\+Fill\+From@{clear\+Set\+Min\+Max\+And\+Fill\+From}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_ac6771f36d3c23a030650e55ff5bda1bf}\label{classnifty_1_1histogram_1_1Histogram_ac6771f36d3c23a030650e55ff5bda1bf}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!clear\+Counts@{clear\+Counts}}
+\index{clear\+Counts@{clear\+Counts}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
+\subsubsection{\texorpdfstring{clear\+Counts()}{clearCounts()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::clear\+Counts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}\label{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!clear\+Set\+Min\+Max\+And\+Fill\+From@{clear\+Set\+Min\+Max\+And\+Fill\+From}}
 \index{clear\+Set\+Min\+Max\+And\+Fill\+From@{clear\+Set\+Min\+Max\+And\+Fill\+From}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{clear\+Set\+Min\+Max\+And\+Fill\+From(\+I\+T\+E\+R begin, I\+T\+E\+R end)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ template$<$class I\+T\+E\+R $>$ void {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::clear\+Set\+Min\+Max\+And\+Fill\+From (
-\begin{DoxyParamCaption}
-\item[{I\+T\+E\+R}]{begin, }
-\item[{I\+T\+E\+R}]{end}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a6dc9984784d563f8201c95a2c95bbc45}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a4b344ea118713a965a4a3e6f3936cb20}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!insert@{insert}}
+\subsubsection{\texorpdfstring{clear\+Set\+Min\+Max\+And\+Fill\+From()}{clearSetMinMaxAndFillFrom()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+template$<$class I\+T\+ER $>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::clear\+Set\+Min\+Max\+And\+Fill\+From (\begin{DoxyParamCaption}\item[{I\+T\+ER}]{begin,  }\item[{I\+T\+ER}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a4b344ea118713a965a4a3e6f3936cb20}\label{classnifty_1_1histogram_1_1Histogram_a4b344ea118713a965a4a3e6f3936cb20}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!insert@{insert}}
 \index{insert@{insert}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{insert(const T \&value, const double w=1.\+0)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ void {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::insert (
-\begin{DoxyParamCaption}
-\item[{const T \&}]{value, }
-\item[{const double}]{w = {\ttfamily 1.0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a4b344ea118713a965a4a3e6f3936cb20}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a5a4e9b1acdfe1f9feee59e2d8c2abac8}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!normalize@{normalize}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::insert (\begin{DoxyParamCaption}\item[{const T \&}]{value,  }\item[{const double}]{w = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a6bf410b81f98ac6bdc2e07be83153a8d}\label{classnifty_1_1histogram_1_1Histogram_a6bf410b81f98ac6bdc2e07be83153a8d}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!merge@{merge}}
+\index{merge@{merge}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::merge (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1histogram_1_1Histogram}{Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_ac4ff991c8e2418d66643052ff69e4afa}\label{classnifty_1_1histogram_1_1Histogram_ac4ff991c8e2418d66643052ff69e4afa}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!normalize@{normalize}}
 \index{normalize@{normalize}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{normalize()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ void {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::normalize (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a5a4e9b1acdfe1f9feee59e2d8c2abac8}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_aaef02f76aa244f4aab008ce6f28f351f}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!number\+Of\+Bins@{number\+Of\+Bins}}
+\subsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::normalize (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \&}]{target\+Sum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a81f5001934bce97d1b852bda5d4daf99}\label{classnifty_1_1histogram_1_1Histogram_a81f5001934bce97d1b852bda5d4daf99}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!number\+Of\+Bins@{number\+Of\+Bins}}
 \index{number\+Of\+Bins@{number\+Of\+Bins}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{number\+Of\+Bins() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ size\+\_\+t {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::number\+Of\+Bins (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_aaef02f76aa244f4aab008ce6f28f351f}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a68470922ab80a3e2f7250a544bc148dc}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
-\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{operator[](const size\+\_\+t i) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ const {\bf Bincount\+Type}\& {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::operator\mbox{[}$\,$\mbox{]} (
-\begin{DoxyParamCaption}
-\item[{const size\+\_\+t}]{i}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a68470922ab80a3e2f7250a544bc148dc}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_ac4790791017587f3ec614c00abd6c68f}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!set\+Min\+Max@{set\+Min\+Max}}
+\subsubsection{\texorpdfstring{number\+Of\+Bins()}{numberOfBins()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+size\+\_\+t \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::number\+Of\+Bins (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a262b175b7093919f1ca5817679237091}\label{classnifty_1_1histogram_1_1Histogram_a262b175b7093919f1ca5817679237091}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+const \hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type}\& \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a65a3d7833caebf1dc0d93b497fc35b9b}\label{classnifty_1_1histogram_1_1Histogram_a65a3d7833caebf1dc0d93b497fc35b9b}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!rank@{rank}}
+\index{rank@{rank}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
+\subsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+double \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::rank (\begin{DoxyParamCaption}\item[{const double}]{q }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_ac4790791017587f3ec614c00abd6c68f}\label{classnifty_1_1histogram_1_1Histogram_ac4790791017587f3ec614c00abd6c68f}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!set\+Min\+Max@{set\+Min\+Max}}
 \index{set\+Min\+Max@{set\+Min\+Max}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{set\+Min\+Max(const T min\+Val, const T max\+Val)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ void {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::set\+Min\+Max (
-\begin{DoxyParamCaption}
-\item[{const T}]{min\+Val, }
-\item[{const T}]{max\+Val}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_ac4790791017587f3ec614c00abd6c68f}
-\hypertarget{classnifty_1_1histogram_1_1Histogram_a3626b040c3fc0e7de787ac762040e182}{}\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!sum@{sum}}
+\subsubsection{\texorpdfstring{set\+Min\+Max()}{setMinMax()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+void \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::set\+Min\+Max (\begin{DoxyParamCaption}\item[{const T}]{min\+Val,  }\item[{const T}]{max\+Val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1histogram_1_1Histogram_a22a3d01d66aff92a661228846f9f726e}\label{classnifty_1_1histogram_1_1Histogram_a22a3d01d66aff92a661228846f9f726e}} 
+\index{nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}!sum@{sum}}
 \index{sum@{sum}!nifty\+::histogram\+::\+Histogram@{nifty\+::histogram\+::\+Histogram}}
-\subsubsection[{sum() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class B\+I\+N\+C\+O\+U\+N\+T  = float$>$ {\bf Bincount\+Type} {\bf nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+N\+T $>$\+::sum (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1histogram_1_1Histogram_a3626b040c3fc0e7de787ac762040e182}
+\subsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily template$<$class T , class B\+I\+N\+C\+O\+U\+NT  = float$>$ \\
+\hyperlink{classnifty_1_1histogram_1_1Histogram_a19ad5e06bce1f70819a7ac9cdb708cf3}{Bincount\+Type} \hyperlink{classnifty_1_1histogram_1_1Histogram}{nifty\+::histogram\+::\+Histogram}$<$ T, B\+I\+N\+C\+O\+U\+NT $>$\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

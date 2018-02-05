@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::mincut::PyMincutBase</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" prot="public" virt="non-virtual">nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="py__mincut__base_8hxx" local="no">py_mincut_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ad5ee76481f2aeb8544717a69b2760a6b" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ab39a6b86f6807f6d1cc2325567bfff6f" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1graph_1_1opt_1_1mincut_1af5f9546254de453f964641e936ad8ba3" kindref="member">MincutVisitorBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MincutVisitorBase&lt;OBJECTIVE&gt; nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a2d5ad5e3ada1a7a4264ad3a20575a5a7" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" kindref="compound">MincutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ad5ee76481f2aeb8544717a69b2760a6b" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef MincutBase&lt;ObjectiveType&gt; nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::McBase</definition>
+        <argsstring></argsstring>
+        <name>McBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a8af93d1298541076bf3ca413fd200979" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a54c8146f750e7085a430228c3082a0cf" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">McBase::NodeLabelsType</ref></type>
+        <definition>typedef McBase::NodeLabelsType nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a20e6b88e3ff713ad4bf7787d2b26dcaa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a54c8146f750e7085a430228c3082a0cf" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ab39a6b86f6807f6d1cc2325567bfff6f" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="29" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1afeed3e6753137062c86be81b20d442fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a54c8146f750e7085a430228c3082a0cf" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>const NodeLabelsType&amp; nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="38" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a81f6fb9ecd228513e61e180cc7faf28e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155">currentBestEnergy</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="46" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a9eb51467ec7c3ca43c2df86237030deb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ad5ee76481f2aeb8544717a69b2760a6b" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const</argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="54" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a0c9a8b12b5a09262a007ae964fb04b04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="62" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="905">
+        <label>nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase"/>
+        <childnode refid="906" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="907">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="906">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="907" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="908">
+        <label>nifty::graph::opt::mincut::PyMincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase"/>
+        <childnode refid="909" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="910">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="909">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="910" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_base.hxx" bodystart="16" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a81f6fb9ecd228513e61e180cc7faf28e" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1afeed3e6753137062c86be81b20d442fa" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a8af93d1298541076bf3ca413fd200979" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a2d5ad5e3ada1a7a4264ad3a20575a5a7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>McBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a0c9a8b12b5a09262a007ae964fb04b04" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a54c8146f750e7085a430228c3082a0cf" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a9eb51467ec7c3ca43c2df86237030deb" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ad5ee76481f2aeb8544717a69b2760a6b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a20e6b88e3ff713ad4bf7787d2b26dcaa" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::mincut::MincutBase::"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1ab39a6b86f6807f6d1cc2325567bfff6f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::PyMincutBase</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

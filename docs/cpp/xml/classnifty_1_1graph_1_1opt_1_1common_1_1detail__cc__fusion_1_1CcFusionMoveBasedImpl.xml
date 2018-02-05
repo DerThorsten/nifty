@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SOLVER_BASE</basecompoundref>
+    <includes refid="cc__fusion__move__based__impl_8hxx" local="no">cc_fusion_move_based_impl.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" prot="public">nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>SOLVER_BASE</declname>
+        <defname>SOLVER_BASE</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>FUSION_MOVE</declname>
+        <defname>FUSION_MOVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3c69077e20bf0feb768a8d7719eb6999" prot="public" static="no">
+        <type>SOLVER_BASE</type>
+        <definition>typedef SOLVER_BASE nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0e280bf72fa47d1419abb10566e5f67e" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0a1c77f29d556ed955a81473884e0d82" prot="public" static="no">
+        <type>BaseType::VisitorBaseType</type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" prot="public" static="no">
+        <type>BaseType::VisitorProxyType</type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" prot="public" static="no">
+        <type>BaseType::NodeLabelsType</type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa8157e2e3df72161d3b767c119b57575" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" kindref="compound">nifty::graph::opt::common::ProposalGeneratorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::ProposalGeneratorBase&lt;ObjectiveType&gt; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::ProposalGeneratorBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5b8c102a697bde14691f87816956af00" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorFactoryBase" kindref="compound">nifty::graph::opt::common::ProposalGeneratorFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::ProposalGeneratorFactoryBase&lt;ObjectiveType&gt; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::ProposalGeneratorFactoryBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorFactoryBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a41372581f5da38f5c56723d508a67cac" prot="private" static="no">
+        <type>FUSION_MOVE</type>
+        <definition>typedef FUSION_MOVE nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::FusionMoveType</definition>
+        <argsstring></argsstring>
+        <name>FusionMoveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a104c3fc64d8abfd1d32ee7efe50fb51c" prot="private" static="no">
+        <type>FusionMoveType::SettingsType</type>
+        <definition>typedef FusionMoveType::SettingsType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::FusionMoveSettingsType</definition>
+        <argsstring></argsstring>
+        <name>FusionMoveSettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af02e957a512f357f0e203ce1854f3a43" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3f9a78556f1351d9468e25a37c362400" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7757b2c9f7f38663662441f297084b86" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0e280bf72fa47d1419abb10566e5f67e" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ab0246e5518e69c80a1b9174dc8c9a68f" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3a7a757effa23fa1c3c33bab4906e6c8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::currentBestEnergy_</definition>
+        <argsstring></argsstring>
+        <name>currentBestEnergy_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3d5febf4fd13afec435ac0a88ddf4a7f" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">nifty::parallel::ParallelOptions</ref></type>
+        <definition>nifty::parallel::ParallelOptions nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::parallelOptions_</definition>
+        <argsstring></argsstring>
+        <name>parallelOptions_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa2554c8774033469183d157e44b55899" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">nifty::parallel::ThreadPool</ref></type>
+        <definition>nifty::parallel::ThreadPool nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::threadPool_</definition>
+        <argsstring></argsstring>
+        <name>threadPool_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a773358c10816138694de95cfb02519" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa8157e2e3df72161d3b767c119b57575" kindref="member">ProposalGeneratorBaseType</ref> *</type>
+        <definition>ProposalGeneratorBaseType* nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::proposalGenerator_</definition>
+        <argsstring></argsstring>
+        <name>proposalGenerator_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a069403dd8b4f19afb984a13c8a80f899" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; FusionMoveType * &gt;</type>
+        <definition>std::vector&lt;FusionMoveType *&gt; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::fusionMoves_</definition>
+        <argsstring></argsstring>
+        <name>fusionMoves_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a8ba4fc640ffa2c3899f71f0bcd28a2d0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref> * &gt;</type>
+        <definition>std::vector&lt;NodeLabelsType *&gt; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::solBufferIn_</definition>
+        <argsstring></argsstring>
+        <name>solBufferIn_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="112" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a83fcbdf67c552d5d3a2548d5c80442b8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref> * &gt;</type>
+        <definition>std::vector&lt;NodeLabelsType *&gt; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::solBufferOut_</definition>
+        <argsstring></argsstring>
+        <name>solBufferOut_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a017995a1591959b12b4bb4a8cbf57557" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::~CcFusionMoveBasedImpl</definition>
+        <argsstring>()</argsstring>
+        <name>~CcFusionMoveBasedImpl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="164" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::CcFusionMoveBasedImpl</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>CcFusionMoveBasedImpl</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="119" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7e5468a6297e5a7a3e859181a9897da5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0a1c77f29d556ed955a81473884e0d82" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="83" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="179" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::ObjectiveType &amp; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::objective</definition>
+        <argsstring>() const</argsstring>
+        <name>objective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="381" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a9998c1989b7fce1069b9dcbe843af8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="87" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a9459a4f6ad993df8433782ce671801e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="91" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ab95957eb5b6753c9d34e5ce77f18ed3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::optimizeSingleThread</definition>
+        <argsstring>(VisitorProxyType &amp;visitorProxy)</argsstring>
+        <name>optimizeSingleThread</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" kindref="member">VisitorProxyType</ref> &amp;</type>
+          <declname>visitorProxy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="206" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad9646f0f380558060e97b920c874b9a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;::optimizeMultiThread</definition>
+        <argsstring>(VisitorProxyType &amp;visitorProxy)</argsstring>
+        <name>optimizeMultiThread</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" kindref="member">VisitorProxyType</ref> &amp;</type>
+          <declname>visitorProxy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="249" bodyend="376"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="123">
+        <label>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl"/>
+        <childnode refid="124" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="124">
+        <label>SOLVER_BASE</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="125">
+        <label>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl&lt; OBJECTIVE, SOLVER_BASE, FUSION_MOVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl"/>
+        <childnode refid="126" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="126">
+        <label>SOLVER_BASE</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx" bodystart="43" bodyend="114"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3c69077e20bf0feb768a8d7719eb6999" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>CcFusionMoveBasedImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ab0246e5518e69c80a1b9174dc8c9a68f" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3a7a757effa23fa1c3c33bab4906e6c8" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>currentBestEnergy_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a9998c1989b7fce1069b9dcbe843af8" prot="public" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a069403dd8b4f19afb984a13c8a80f899" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>fusionMoves_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a104c3fc64d8abfd1d32ee7efe50fb51c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>FusionMoveSettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a41372581f5da38f5c56723d508a67cac" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>FusionMoveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7757b2c9f7f38663662441f297084b86" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0e280bf72fa47d1419abb10566e5f67e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a9459a4f6ad993df8433782ce671801e0" prot="public" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" prot="public" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af02e957a512f357f0e203ce1854f3a43" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7e5468a6297e5a7a3e859181a9897da5" prot="public" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad9646f0f380558060e97b920c874b9a5" prot="private" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>optimizeMultiThread</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ab95957eb5b6753c9d34e5ce77f18ed3c" prot="private" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>optimizeSingleThread</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3d5febf4fd13afec435ac0a88ddf4a7f" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>parallelOptions_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a773358c10816138694de95cfb02519" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>proposalGenerator_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa8157e2e3df72161d3b767c119b57575" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>ProposalGeneratorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5b8c102a697bde14691f87816956af00" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>ProposalGeneratorFactoryBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3f9a78556f1351d9468e25a37c362400" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a8ba4fc640ffa2c3899f71f0bcd28a2d0" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>solBufferIn_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a83fcbdf67c552d5d3a2548d5c80442b8" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>solBufferOut_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa2554c8774033469183d157e44b55899" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>threadPool_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0a1c77f29d556ed955a81473884e0d82" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a017995a1591959b12b4bb4a8cbf57557" prot="public" virt="virtual"><scope>nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</scope><name>~CcFusionMoveBasedImpl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

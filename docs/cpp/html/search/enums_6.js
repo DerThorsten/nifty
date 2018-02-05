@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['seedingstrategie',['SeedingStrategie',['../structnifty_1_1graph_1_1optimization_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType.html#a786cca58f307f93acb43d427201599b4',1,'nifty::graph::optimization::common::GreedyAdditiveMulticutProposals::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1optimization_1_1common_1_1WatershedProposalGenerator_1_1SettingsType.html#a84c0b4d1de8e24d987a774aee87c3e97',1,'nifty::graph::optimization::common::WatershedProposalGenerator::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType.html#aa5d0c216a42e941831b7277240a7ab31',1,'nifty::graph::optimization::lifted_multicut::WatershedProposalGenerator::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1optimization_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType.html#a69d9ed79db5124704e966cf7cd6374ff',1,'nifty::graph::optimization::mincut::RandomProposalGenerator::SettingsType::SeedingStrategie()']]],
-  ['stringstyle',['StringStyle',['../namespaceandres.html#a69f07c437d156c7028c7d619e566281f',1,'andres']]]
+  ['presolver',['PreSolver',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#ad16c71cc049dcb37c07f2abdda69dab4',1,'nifty::ilp_backend::IlpBackendSettings']]]
 ];

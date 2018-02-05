@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="flat__set_8hxx" kind="file" language="C++">
     <compoundname>flat_set.hxx</compoundname>
     <includes local="no">cstddef</includes>
@@ -10,331 +10,401 @@
     <includedby refid="graph_2edge__contraction__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</includedby>
     <includedby refid="graph_2undirected__list__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</includedby>
     <incdepgraph>
-      <node id="6871">
+      <node id="531">
         <label>functional</label>
       </node>
-      <node id="6867">
+      <node id="527">
         <label>/home/tbeier/src/nifty/include/nifty/container/flat_set.hxx</label>
-        <link refid="flat_set.hxx"/>
-        <childnode refid="6868" relation="include">
+        <link refid="flat__set_8hxx"/>
+        <childnode refid="528" relation="include">
         </childnode>
-        <childnode refid="6869" relation="include">
+        <childnode refid="529" relation="include">
         </childnode>
-        <childnode refid="6870" relation="include">
+        <childnode refid="530" relation="include">
         </childnode>
-        <childnode refid="6871" relation="include">
+        <childnode refid="531" relation="include">
         </childnode>
-        <childnode refid="6872" relation="include">
+        <childnode refid="532" relation="include">
         </childnode>
       </node>
-      <node id="6869">
+      <node id="529">
         <label>vector</label>
       </node>
-      <node id="6872">
+      <node id="532">
         <label>utility</label>
       </node>
-      <node id="6868">
+      <node id="528">
         <label>cstddef</label>
       </node>
-      <node id="6870">
+      <node id="530">
         <label>algorithm</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="6880">
+      <node id="586">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_long_range_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__long__range__grid__graph_8hxx"/>
+      </node>
+      <node id="557">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="553" relation="include">
+        </childnode>
+      </node>
+      <node id="545">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/node_and_edge_weighted_cluster_policy.hxx</label>
         <link refid="node__and__edge__weighted__cluster__policy_8hxx"/>
       </node>
-      <node id="6912">
+      <node id="581">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
         <link refid="grid__rag__hdf5_8hxx"/>
       </node>
-      <node id="6883">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
-        <link refid="cc__fusion__move__based_8hxx"/>
+      <node id="569">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="570" relation="include">
+        </childnode>
+        <childnode refid="557" relation="include">
+        </childnode>
+        <childnode refid="552" relation="include">
+        </childnode>
+        <childnode refid="571" relation="include">
+        </childnode>
+        <childnode refid="572" relation="include">
+        </childnode>
+        <childnode refid="573" relation="include">
+        </childnode>
       </node>
-      <node id="6913">
+      <node id="559">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.hxx</label>
+        <link refid="cgc_8hxx"/>
+      </node>
+      <node id="563">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move_based.hxx</label>
+        <link refid="multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="582">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
         <link refid="grid__rag__stacked__2d_8hxx"/>
-        <childnode refid="6914" relation="include">
+        <childnode refid="583" relation="include">
         </childnode>
       </node>
-      <node id="6884">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
+      <node id="550">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
         <link refid="lifted__twocut__kernighan__lin_8hxx"/>
-        <childnode refid="6885" relation="include">
+        <childnode refid="551" relation="include">
         </childnode>
       </node>
-      <node id="6892">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_greedy_additive.hxx</label>
+      <node id="558">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx</label>
         <link refid="mincut__greedy__additive_8hxx"/>
       </node>
-      <node id="6905">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
-        <link refid="export__lifted__multicut__solver_8hxx"/>
-      </node>
-      <node id="6894">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</label>
-        <link refid="multicut__greedy__additive_8hxx"/>
-        <childnode refid="6895" relation="include">
-        </childnode>
-        <childnode refid="6896" relation="include">
-        </childnode>
-        <childnode refid="6898" relation="include">
+      <node id="551">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="552" relation="include">
         </childnode>
       </node>
-      <node id="6874">
+      <node id="534">
         <label>/home/tbeier/src/nifty/include/nifty/graph/edge_contraction_graph.hxx</label>
         <link refid="graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="6875" relation="include">
+        <childnode refid="535" relation="include">
         </childnode>
-        <childnode refid="6876" relation="include">
+        <childnode refid="536" relation="include">
         </childnode>
-        <childnode refid="6878" relation="include">
+        <childnode refid="537" relation="include">
         </childnode>
-        <childnode refid="6879" relation="include">
+        <childnode refid="538" relation="include">
         </childnode>
-        <childnode refid="6880" relation="include">
+        <childnode refid="539" relation="include">
         </childnode>
-        <childnode refid="6881" relation="include">
+        <childnode refid="540" relation="include">
         </childnode>
-        <childnode refid="6884" relation="include">
+        <childnode refid="542" relation="include">
         </childnode>
-        <childnode refid="6887" relation="include">
+        <childnode refid="543" relation="include">
         </childnode>
-        <childnode refid="6888" relation="include">
+        <childnode refid="544" relation="include">
         </childnode>
-        <childnode refid="6889" relation="include">
+        <childnode refid="545" relation="include">
         </childnode>
-        <childnode refid="6890" relation="include">
+        <childnode refid="546" relation="include">
         </childnode>
-        <childnode refid="6885" relation="include">
+        <childnode refid="547" relation="include">
         </childnode>
-        <childnode refid="6892" relation="include">
+        <childnode refid="550" relation="include">
         </childnode>
-        <childnode refid="6893" relation="include">
+        <childnode refid="553" relation="include">
         </childnode>
-        <childnode refid="6894" relation="include">
+        <childnode refid="554" relation="include">
         </childnode>
-        <childnode refid="6899" relation="include">
+        <childnode refid="555" relation="include">
+        </childnode>
+        <childnode refid="556" relation="include">
+        </childnode>
+        <childnode refid="551" relation="include">
+        </childnode>
+        <childnode refid="558" relation="include">
+        </childnode>
+        <childnode refid="559" relation="include">
+        </childnode>
+        <childnode refid="560" relation="include">
+        </childnode>
+        <childnode refid="565" relation="include">
         </childnode>
       </node>
-      <node id="6875">
+      <node id="536">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx</label>
         <link refid="edge__weighted__cluster__policy_8hxx"/>
       </node>
-      <node id="6891">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
-        <link refid="lifted__multicut_2fusion__move_8hxx"/>
-        <childnode refid="6887" relation="include">
+      <node id="560">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_greedy_additive.hxx</label>
+        <link refid="multicut__greedy__additive_8hxx"/>
+        <childnode refid="561" relation="include">
+        </childnode>
+        <childnode refid="562" relation="include">
+        </childnode>
+        <childnode refid="564" relation="include">
         </childnode>
       </node>
-      <node id="6889">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</label>
-        <link refid="lifted__multicut__andres__kernighan__lin_8hxx"/>
-      </node>
-      <node id="6893">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
-        <link refid="cgc_8hxx"/>
-      </node>
-      <node id="6881">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
-        <link refid="cc__fusion__move__based__impl_8hxx"/>
-        <childnode refid="6882" relation="include">
-        </childnode>
-        <childnode refid="6883" relation="include">
+      <node id="575">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="548" relation="include">
         </childnode>
       </node>
-      <node id="6896">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
-        <link refid="multicut_2fusion__move_8hxx"/>
-        <childnode refid="6883" relation="include">
-        </childnode>
-        <childnode refid="6897" relation="include">
-        </childnode>
+      <node id="539">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx</label>
+        <link refid="lifted__edge__weighted__cluster__policy2_8hxx"/>
       </node>
-      <node id="6902">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</label>
-        <link refid="cc__fusion__move__impl_8hxx"/>
-      </node>
-      <node id="6897">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
-        <link refid="multicut_2fusion__move__based_8hxx"/>
-      </node>
-      <node id="6886">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
-        <link refid="lifted__multicut__mp_8hxx"/>
-      </node>
-      <node id="6914">
+      <node id="583">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
         <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
       </node>
-      <node id="6882">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
-        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      <node id="576">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_decomposer.hxx</label>
+        <link refid="multicut__decomposer_8hxx"/>
       </node>
-      <node id="6890">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_greedy_additive.hxx</label>
-        <link refid="lifted__multicut__greedy__additive_8hxx"/>
-        <childnode refid="6891" relation="include">
-        </childnode>
-        <childnode refid="6886" relation="include">
-        </childnode>
+      <node id="541">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_graph_features.hxx</label>
+        <link refid="lifted__graph__features_8hxx"/>
       </node>
-      <node id="6898">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/greedy_additive_proposals.hxx</label>
-        <link refid="greedy__additive__proposals_8hxx"/>
-      </node>
-      <node id="6911">
+      <node id="580">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
         <link refid="grid__rag__features_8hxx"/>
       </node>
-      <node id="6916">
+      <node id="587">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</label>
         <link refid="python_2graph_2undirected__list__graph_8hxx"/>
-        <childnode refid="6917" relation="include">
+        <childnode refid="588" relation="include">
         </childnode>
-        <childnode refid="6900" relation="include">
+        <childnode refid="566" relation="include">
         </childnode>
       </node>
-      <node id="6878">
+      <node id="542">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx</label>
         <link refid="mala__cluster__policy_8hxx"/>
       </node>
-      <node id="6907">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
-        <link refid="multicut__decomposer_8hxx"/>
+      <node id="549">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
       </node>
-      <node id="6917">
+      <node id="588">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
         <link refid="export__agglomerative__clustering_8hxx"/>
       </node>
-      <node id="6899">
+      <node id="565">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx</label>
         <link refid="python_2graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="6900" relation="include">
+        <childnode refid="566" relation="include">
         </childnode>
       </node>
-      <node id="6908">
+      <node id="573">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="574" relation="include">
+        </childnode>
+      </node>
+      <node id="577">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
         <link refid="compute__grid__rag_8hxx"/>
-        <childnode refid="6909" relation="include">
+        <childnode refid="578" relation="include">
         </childnode>
       </node>
-      <node id="6910">
+      <node id="556">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__greedy__additive_8hxx"/>
+        <childnode refid="557" relation="include">
+        </childnode>
+        <childnode refid="552" relation="include">
+        </childnode>
+      </node>
+      <node id="579">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
         <link refid="grid__rag__accumulate_8hxx"/>
       </node>
-      <node id="6873">
+      <node id="533">
         <label>/home/tbeier/src/nifty/include/nifty/container/flat_set.hxx</label>
-        <link refid="flat_set.hxx"/>
-        <childnode refid="6874" relation="include">
+        <link refid="flat__set_8hxx"/>
+        <childnode refid="534" relation="include">
         </childnode>
-        <childnode refid="6901" relation="include">
-        </childnode>
-      </node>
-      <node id="6887">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
-        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
-      </node>
-      <node id="6906">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
-        <link refid="mincut__cc__fusion__move_8hxx"/>
-        <childnode refid="6882" relation="include">
+        <childnode refid="567" relation="include">
         </childnode>
       </node>
-      <node id="6876">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
-        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
-        <childnode refid="6877" relation="include">
-        </childnode>
+      <node id="571">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx</label>
+        <link refid="pixel__wise_8hxx"/>
       </node>
-      <node id="6909">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
-        <link refid="grid__rag_8hxx"/>
-        <childnode refid="6910" relation="include">
-        </childnode>
-        <childnode refid="6911" relation="include">
-        </childnode>
-        <childnode refid="6912" relation="include">
-        </childnode>
-        <childnode refid="6913" relation="include">
-        </childnode>
+      <node id="544">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx</label>
+        <link refid="new__policy_8hxx"/>
       </node>
-      <node id="6900">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+      <node id="552">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
+      <node id="566">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/export_solver_factory.hxx</label>
         <link refid="export__solver__factory_8hxx"/>
       </node>
-      <node id="6888">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</label>
-        <link refid="lifted__multicut__andres__greedy__additive_8hxx"/>
-      </node>
-      <node id="6903">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
-        <link refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
-        <childnode refid="6891" relation="include">
-        </childnode>
-        <childnode refid="6886" relation="include">
-        </childnode>
-        <childnode refid="6904" relation="include">
+      <node id="540">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
+        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
+        <childnode refid="541" relation="include">
         </childnode>
       </node>
-      <node id="6885">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
-        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
-        <childnode refid="6886" relation="include">
+      <node id="578">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="579" relation="include">
+        </childnode>
+        <childnode refid="580" relation="include">
+        </childnode>
+        <childnode refid="581" relation="include">
+        </childnode>
+        <childnode refid="582" relation="include">
         </childnode>
       </node>
-      <node id="6901">
+      <node id="568">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_impl.hxx</label>
+        <link refid="cc__fusion__move__impl_8hxx"/>
+      </node>
+      <node id="535">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx</label>
+        <link refid="dual__cluster__policy_8hxx"/>
+      </node>
+      <node id="537">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/fixation_cluster_policy.hxx</label>
+        <link refid="fixation__cluster__policy_8hxx"/>
+      </node>
+      <node id="570">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx</label>
+        <link refid="lifted__multicut_2chained__solvers_8hxx"/>
+      </node>
+      <node id="546">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/probabilistic_lifted_cluster_policy.hxx</label>
+        <link refid="probabilistic__lifted__cluster__policy_8hxx"/>
+      </node>
+      <node id="572">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx</label>
+        <link refid="pixel__wise__q_8hxx"/>
+      </node>
+      <node id="567">
         <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</label>
         <link refid="graph_2undirected__list__graph_8hxx"/>
-        <childnode refid="6902" relation="include">
+        <childnode refid="568" relation="include">
         </childnode>
-        <childnode refid="6891" relation="include">
+        <childnode refid="557" relation="include">
         </childnode>
-        <childnode refid="6903" relation="include">
+        <childnode refid="569" relation="include">
         </childnode>
-        <childnode refid="6906" relation="include">
+        <childnode refid="571" relation="include">
         </childnode>
-        <childnode refid="6893" relation="include">
+        <childnode refid="572" relation="include">
         </childnode>
-        <childnode refid="6896" relation="include">
+        <childnode refid="575" relation="include">
         </childnode>
-        <childnode refid="6907" relation="include">
+        <childnode refid="559" relation="include">
         </childnode>
-        <childnode refid="6908" relation="include">
+        <childnode refid="562" relation="include">
         </childnode>
-        <childnode refid="6915" relation="include">
+        <childnode refid="576" relation="include">
         </childnode>
-        <childnode refid="6909" relation="include">
+        <childnode refid="577" relation="include">
         </childnode>
-        <childnode refid="6916" relation="include">
+        <childnode refid="584" relation="include">
+        </childnode>
+        <childnode refid="578" relation="include">
+        </childnode>
+        <childnode refid="585" relation="include">
+        </childnode>
+        <childnode refid="587" relation="include">
         </childnode>
       </node>
-      <node id="6915">
+      <node id="564">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/proposal_generators/greedy_additive_proposals.hxx</label>
+        <link refid="greedy__additive__proposals_8hxx"/>
+      </node>
+      <node id="547">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="548" relation="include">
+        </childnode>
+        <childnode refid="549" relation="include">
+        </childnode>
+      </node>
+      <node id="584">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
         <link refid="compute__grid__rag__hdf5_8hxx"/>
-        <childnode refid="6912" relation="include">
+        <childnode refid="581" relation="include">
         </childnode>
-        <childnode refid="6914" relation="include">
+        <childnode refid="583" relation="include">
         </childnode>
       </node>
-      <node id="6879">
+      <node id="553">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="585">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx</label>
+        <link refid="graph_2undirected__long__range__grid__graph_8hxx"/>
+        <childnode refid="586" relation="include">
+        </childnode>
+      </node>
+      <node id="543">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx</label>
         <link refid="minimum__node__size__cluster__policy_8hxx"/>
       </node>
-      <node id="6877">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</label>
-        <link refid="lifted__graph__features_8hxx"/>
+      <node id="554">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_greedy_additive.hxx</label>
+        <link refid="lifted__multicut__andres__greedy__additive_8hxx"/>
       </node>
-      <node id="6895">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
+      <node id="555">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__andres__kernighan__lin_8hxx"/>
+      </node>
+      <node id="574">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="548">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="561">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
         <link refid="greedy__additive__multicut__proposal__generator_8hxx"/>
       </node>
-      <node id="6904">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
-        <childnode refid="6905" relation="include">
+      <node id="538">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_agglo_cluster_policy.hxx</label>
+        <link refid="lifted__agglo__cluster__policy_8hxx"/>
+      </node>
+      <node id="562">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="549" relation="include">
+        </childnode>
+        <childnode refid="563" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -391,24 +461,24 @@
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a8fdc9c4a6bf11be6e7be0d81d450ae47" kindref="member">FlatSet</ref>(Iterator,<sp/>Iterator,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Comparison&amp;<sp/>=<sp/>Comparison(),<sp/></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Allocator&amp;<sp/>=<sp/>Allocator());</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>value_type&amp;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a01349d2536d03ca7a225c74030efd75b" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>size_type)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>value_type&amp;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ab27d508690712397b377227cfd8341fc" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>size_type)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ae9e0bfe8ce64b877afc7755d13d2d960" kindref="member">begin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aa0c9edc7e64d64c4a80afe12836ad59f" kindref="member">end</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ae9e0bfe8ce64b877afc7755d13d2d960" kindref="member">begin</ref>();</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aa0c9edc7e64d64c4a80afe12836ad59f" kindref="member">end</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a08126138beb50522a6ff9e16f242c08e" kindref="member">begin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a08126138beb50522a6ff9e16f242c08e" kindref="member">begin</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>();</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a6c42e14878b4b19f2ead27ecb0be52d0" kindref="member">rbegin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a3cd35f340cbccbf98a7c375f663b5aaa" kindref="member">rend</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a6c42e14878b4b19f2ead27ecb0be52d0" kindref="member">rbegin</ref>();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a3cd35f340cbccbf98a7c375f663b5aaa" kindref="member">rend</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a612b58eb7cf9c93424ead2af4ec1b8be" kindref="member">rbegin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1adad37eee25033eb4210619e61808229f" kindref="member">rend</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a612b58eb7cf9c93424ead2af4ec1b8be" kindref="member">rbegin</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1adad37eee25033eb4210619e61808229f" kindref="member">rend</ref>();</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aca8ba8181a7cf4e25f345fdf4f89b23c" kindref="member">find</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aca8ba8181a7cf4e25f345fdf4f89b23c" kindref="member">find</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">find</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">find</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1af750b2be0c7c50855f00cff3a81d94b4" kindref="member">empty</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a2acd3b3f657818e1e1f72d6b8b4c9aee" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a232488c53074629e55716092b3c4b052" kindref="member">max_size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a543bb831ef2dd97b6906aabc34d606ac" kindref="member">empty</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a6d265f3f83e18a1342a172acaf57a15c" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9f76cdc060ea18e60d7aceb506e5eece" kindref="member">max_size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;const_iterator,<sp/>bool&gt;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a3e59cfe8b3d5eb53750ef761cce7b652" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>value_type&amp;);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Iterator&gt;</highlight></codeline>
@@ -420,17 +490,17 @@
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aaccabadd6ed0c654095a2c0b03f0a9f3" kindref="member">erase</ref>(iterator,<sp/>iterator);<sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a8ff66c7635048e4e14dd70253fd1620b" kindref="member">clear</ref>();</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a603f7236eeb5ae9ff0aed1549a4270a2" kindref="member">count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>key_compare<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a4c06bb9e42b79de033729ee5c51d013c" kindref="member">key_comp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>value_compare<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a44d733818cc17354ddf3429663da8a17" kindref="member">value_comp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aa2765a252ba34d9403d625e38fac8d39" kindref="member">lower_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a24a2ea880e091cadf42459203fa1b933" kindref="member">upper_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aa2765a252ba34d9403d625e38fac8d39" kindref="member">lower_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a24a2ea880e091cadf42459203fa1b933" kindref="member">upper_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;const_iterator,<sp/>const_iterator&gt;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a93b713a32fc6dd6e1fbf69b34849b314" kindref="member">equal_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;iterator,<sp/>iterator&gt;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a93b713a32fc6dd6e1fbf69b34849b314" kindref="member">equal_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ac7e6cc8196c095c0416ee27873ccc665" kindref="member">count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>key_compare<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ae598feab5426ef294dee226d89a40672" kindref="member">key_comp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>value_compare<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aebece9a30a7237adb9b8f95ad4442e91" kindref="member">value_comp</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">lower_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0ac07324feb622244c7f91bcf153af87" kindref="member">upper_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">lower_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0ac07324feb622244c7f91bcf153af87" kindref="member">upper_bound</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;const_iterator,<sp/>const_iterator&gt;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a1ab96837744fc952be75365c00c815e0" kindref="member">equal_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;iterator,<sp/>iterator&gt;<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a1ab96837744fc952be75365c00c815e0" kindref="member">equal_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;);</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>allocator_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a2c4f4a7a77965f3c272231b6970d385f" kindref="member">get_allocator</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>allocator_type<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a1e302c2990cee7d044e0793fdb0dcf7f" kindref="member">get_allocator</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>implement<sp/>C++11<sp/>member<sp/>functions<sp/>&apos;emplace&apos;<sp/>and<sp/>&apos;emplace_hint&apos;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
@@ -482,7 +552,7 @@
 <codeline lineno="134"><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a2366c665ec49d585ff8a77362468d82d" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_type</ref>&amp;</highlight></codeline>
-<codeline lineno="137" refid="classnifty_1_1container_1_1FlatSet_1a01349d2536d03ca7a225c74030efd75b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a01349d2536d03ca7a225c74030efd75b" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::operator[]</ref>(</highlight></codeline>
+<codeline lineno="137" refid="classnifty_1_1container_1_1FlatSet_1ab27d508690712397b377227cfd8341fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ab27d508690712397b377227cfd8341fc" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::operator[]</ref>(</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a06ddeba4c1be37279497ed698dfeb812" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size_type</ref><sp/><sp/>index</highlight></codeline>
 <codeline lineno="139"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_[index];</highlight></codeline>
@@ -490,67 +560,67 @@
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref></highlight></codeline>
-<codeline lineno="145" refid="classnifty_1_1container_1_1FlatSet_1ae9e0bfe8ce64b877afc7755d13d2d960" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ae9e0bfe8ce64b877afc7755d13d2d960" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="145" refid="classnifty_1_1container_1_1FlatSet_1a08126138beb50522a6ff9e16f242c08e" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a08126138beb50522a6ff9e16f242c08e" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.begin();</highlight></codeline>
 <codeline lineno="147"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref></highlight></codeline>
-<codeline lineno="151" refid="classnifty_1_1container_1_1FlatSet_1aa0c9edc7e64d64c4a80afe12836ad59f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aa0c9edc7e64d64c4a80afe12836ad59f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="151" refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.end();</highlight></codeline>
 <codeline lineno="153"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ab7858d2e6eeeb311e21988d9b4a5b802" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_reverse_iterator</ref></highlight></codeline>
-<codeline lineno="157" refid="classnifty_1_1container_1_1FlatSet_1a6c42e14878b4b19f2ead27ecb0be52d0" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a6c42e14878b4b19f2ead27ecb0be52d0" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157" refid="classnifty_1_1container_1_1FlatSet_1a612b58eb7cf9c93424ead2af4ec1b8be" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a612b58eb7cf9c93424ead2af4ec1b8be" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.rbegin();</highlight></codeline>
 <codeline lineno="159"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ab7858d2e6eeeb311e21988d9b4a5b802" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_reverse_iterator</ref></highlight></codeline>
-<codeline lineno="163" refid="classnifty_1_1container_1_1FlatSet_1a3cd35f340cbccbf98a7c375f663b5aaa" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a3cd35f340cbccbf98a7c375f663b5aaa" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163" refid="classnifty_1_1container_1_1FlatSet_1adad37eee25033eb4210619e61808229f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1adad37eee25033eb4210619e61808229f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.rend();</highlight></codeline>
 <codeline lineno="165"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref></highlight></codeline>
-<codeline lineno="169" refid="classnifty_1_1container_1_1FlatSet_1a2965a5b139947cf36bb90d594d3cb6c1" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ae9e0bfe8ce64b877afc7755d13d2d960" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::begin</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="169" refid="classnifty_1_1container_1_1FlatSet_1a2965a5b139947cf36bb90d594d3cb6c1" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a08126138beb50522a6ff9e16f242c08e" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::begin</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.begin();</highlight></codeline>
 <codeline lineno="171"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
 <codeline lineno="173"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref></highlight></codeline>
-<codeline lineno="175" refid="classnifty_1_1container_1_1FlatSet_1a93ce7a3126ef6e45f1d82cd71c335741" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aa0c9edc7e64d64c4a80afe12836ad59f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::end</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="175" refid="classnifty_1_1container_1_1FlatSet_1a93ce7a3126ef6e45f1d82cd71c335741" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::end</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.end();</highlight></codeline>
 <codeline lineno="177"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"></highlight></codeline>
 <codeline lineno="179"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a5ad537835e3b8911ac1beed1a95d3ac2" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::reverse_iterator</ref></highlight></codeline>
-<codeline lineno="181" refid="classnifty_1_1container_1_1FlatSet_1a82523673d9285f43e73e90b37b00d105" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a6c42e14878b4b19f2ead27ecb0be52d0" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rbegin</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="181" refid="classnifty_1_1container_1_1FlatSet_1a82523673d9285f43e73e90b37b00d105" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a612b58eb7cf9c93424ead2af4ec1b8be" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rbegin</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.rbegin();</highlight></codeline>
 <codeline lineno="183"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"></highlight></codeline>
 <codeline lineno="185"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a5ad537835e3b8911ac1beed1a95d3ac2" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::reverse_iterator</ref></highlight></codeline>
-<codeline lineno="187" refid="classnifty_1_1container_1_1FlatSet_1ae40f27aa1a23e148de77b596825cb205" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a3cd35f340cbccbf98a7c375f663b5aaa" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rend</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="187" refid="classnifty_1_1container_1_1FlatSet_1ae40f27aa1a23e148de77b596825cb205" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1adad37eee25033eb4210619e61808229f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::rend</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.rend();</highlight></codeline>
 <codeline lineno="189"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"></highlight></codeline>
 <codeline lineno="191"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="193" refid="classnifty_1_1container_1_1FlatSet_1af750b2be0c7c50855f00cff3a81d94b4" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1af750b2be0c7c50855f00cff3a81d94b4" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::empty</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="193" refid="classnifty_1_1container_1_1FlatSet_1a543bb831ef2dd97b6906aabc34d606ac" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a543bb831ef2dd97b6906aabc34d606ac" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::empty</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.empty();</highlight></codeline>
 <codeline lineno="195"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="196"><highlight class="normal"></highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="198"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a06ddeba4c1be37279497ed698dfeb812" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size_type</ref></highlight></codeline>
-<codeline lineno="199" refid="classnifty_1_1container_1_1FlatSet_1a2acd3b3f657818e1e1f72d6b8b4c9aee" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a2acd3b3f657818e1e1f72d6b8b4c9aee" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="199" refid="classnifty_1_1container_1_1FlatSet_1a6d265f3f83e18a1342a172acaf57a15c" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a6d265f3f83e18a1342a172acaf57a15c" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.size();</highlight></codeline>
 <codeline lineno="201"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="202"><highlight class="normal"></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a06ddeba4c1be37279497ed698dfeb812" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size_type</ref></highlight></codeline>
-<codeline lineno="205" refid="classnifty_1_1container_1_1FlatSet_1a232488c53074629e55716092b3c4b052" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a232488c53074629e55716092b3c4b052" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::max_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="205" refid="classnifty_1_1container_1_1FlatSet_1a9f76cdc060ea18e60d7aceb506e5eece" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a9f76cdc060ea18e60d7aceb506e5eece" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::max_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.max_size();</highlight></codeline>
 <codeline lineno="207"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"></highlight></codeline>
@@ -560,8 +630,8 @@
 <codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a2366c665ec49d585ff8a77362468d82d" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_type</ref>&amp;<sp/>value</highlight></codeline>
 <codeline lineno="213"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>found(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i(lower_bound(static_cast&lt;Key&gt;(value)));</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>==<sp/>end()<sp/>||<sp/>compare_(static_cast&lt;Key&gt;(value),<sp/>*i))<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i(<ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">lower_bound</ref>(static_cast&lt;Key&gt;(value)));</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>==<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>()<sp/>||<sp/>compare_(static_cast&lt;Key&gt;(value),<sp/>*i))<sp/>{</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>vector_.insert(i,<sp/>static_cast&lt;Key&gt;(value));</highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>found<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -576,7 +646,7 @@
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>Iterator<sp/>last</highlight></codeline>
 <codeline lineno="229"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(;<sp/>first<sp/>!=<sp/>last;<sp/>++first)<sp/>{</highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>insert(*first);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a3e59cfe8b3d5eb53750ef761cce7b652" kindref="member">insert</ref>(*first);</highlight></codeline>
 <codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="233"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="234"><highlight class="normal"></highlight></codeline>
@@ -592,26 +662,26 @@
 <codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a2366c665ec49d585ff8a77362468d82d" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_type</ref>&amp;<sp/>value</highlight></codeline>
 <codeline lineno="245"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;const_iterator,<sp/>bool&gt;<sp/>ret;</highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>insert(value);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a3e59cfe8b3d5eb53750ef761cce7b652" kindref="member">insert</ref>(value);</highlight></codeline>
 <codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret.first;</highlight></codeline>
 <codeline lineno="249"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"></highlight></codeline>
 <codeline lineno="251"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="252"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="253"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aaccabadd6ed0c654095a2c0b03f0a9f3" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::erase</ref>(</highlight></codeline>
-<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FlatSet&lt;Key,<sp/>Comparison,<sp/>Allocator&gt;::iterator<sp/>position</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref><sp/>position</highlight></codeline>
 <codeline lineno="255"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>vector_.erase(position);</highlight></codeline>
 <codeline lineno="257"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="258"><highlight class="normal"></highlight></codeline>
 <codeline lineno="259"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FlatSet&lt;Key,<sp/>Comparison,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a06ddeba4c1be37279497ed698dfeb812" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size_type</ref></highlight></codeline>
 <codeline lineno="261" refid="classnifty_1_1container_1_1FlatSet_1af6e5ab750891cff2f2accc1b2b5f075e" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aaccabadd6ed0c654095a2c0b03f0a9f3" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::erase</ref>(</highlight></codeline>
 <codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>x</highlight></codeline>
 <codeline lineno="263"><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i<sp/>=<sp/>find(x);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i<sp/>=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">find</ref>(x);</highlight></codeline>
 <codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/>vector_.end())<sp/>{</highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>erase(i);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aaccabadd6ed0c654095a2c0b03f0a9f3" kindref="member">erase</ref>(i);</highlight></codeline>
 <codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
 <codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
@@ -634,46 +704,46 @@
 <codeline lineno="286"><highlight class="normal"></highlight></codeline>
 <codeline lineno="287"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1ab88802e81d77a08a7a74e8ba9d2083c7" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::key_compare</ref></highlight></codeline>
-<codeline lineno="289" refid="classnifty_1_1container_1_1FlatSet_1a4c06bb9e42b79de033729ee5c51d013c" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a4c06bb9e42b79de033729ee5c51d013c" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::key_comp</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="289" refid="classnifty_1_1container_1_1FlatSet_1ae598feab5426ef294dee226d89a40672" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ae598feab5426ef294dee226d89a40672" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::key_comp</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>compare_;</highlight></codeline>
 <codeline lineno="291"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="292"><highlight class="normal"></highlight></codeline>
 <codeline lineno="293"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="294"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a4ec0fabbb2d2f25b985c12581c576384" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_compare</ref></highlight></codeline>
-<codeline lineno="295" refid="classnifty_1_1container_1_1FlatSet_1a44d733818cc17354ddf3429663da8a17" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a44d733818cc17354ddf3429663da8a17" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_comp</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="295" refid="classnifty_1_1container_1_1FlatSet_1aebece9a30a7237adb9b8f95ad4442e91" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aebece9a30a7237adb9b8f95ad4442e91" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::value_comp</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>compare_;</highlight></codeline>
 <codeline lineno="297"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="298"><highlight class="normal"></highlight></codeline>
 <codeline lineno="299"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref></highlight></codeline>
-<codeline lineno="301" refid="classnifty_1_1container_1_1FlatSet_1aca8ba8181a7cf4e25f345fdf4f89b23c" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aca8ba8181a7cf4e25f345fdf4f89b23c" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::find</ref>(</highlight></codeline>
+<codeline lineno="301" refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::find</ref>(</highlight></codeline>
 <codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="303"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>i(lower_bound(value));</highlight></codeline>
-<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/>end()<sp/>&amp;&amp;<sp/>compare_(value,<sp/>*i))<sp/>{</highlight></codeline>
-<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>end();</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>i(<ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">lower_bound</ref>(value));</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>()<sp/>&amp;&amp;<sp/>compare_(value,<sp/>*i))<sp/>{</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>();</highlight></codeline>
 <codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
 <codeline lineno="309"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="310"><highlight class="normal"></highlight></codeline>
 <codeline lineno="311"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="312"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref></highlight></codeline>
-<codeline lineno="313" refid="classnifty_1_1container_1_1FlatSet_1ac78650ca9a84bc0a8324a9aa03f626d4" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aca8ba8181a7cf4e25f345fdf4f89b23c" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::find</ref>(</highlight></codeline>
+<codeline lineno="313" refid="classnifty_1_1container_1_1FlatSet_1ac78650ca9a84bc0a8324a9aa03f626d4" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::find</ref>(</highlight></codeline>
 <codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="315"><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i(lower_bound(value));</highlight></codeline>
-<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/>end()<sp/>&amp;&amp;<sp/>compare_(value,<sp/>*i))<sp/>{</highlight></codeline>
-<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>end();</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>i(<ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">lower_bound</ref>(value));</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>()<sp/>&amp;&amp;<sp/>compare_(value,<sp/>*i))<sp/>{</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>();</highlight></codeline>
 <codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
 <codeline lineno="321"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="322"><highlight class="normal"></highlight></codeline>
 <codeline lineno="323"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="324"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a06ddeba4c1be37279497ed698dfeb812" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::size_type</ref></highlight></codeline>
-<codeline lineno="325" refid="classnifty_1_1container_1_1FlatSet_1a603f7236eeb5ae9ff0aed1549a4270a2" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a603f7236eeb5ae9ff0aed1549a4270a2" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::count</ref>(</highlight></codeline>
+<codeline lineno="325" refid="classnifty_1_1container_1_1FlatSet_1ac7e6cc8196c095c0416ee27873ccc665" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1ac7e6cc8196c095c0416ee27873ccc665" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::count</ref>(</highlight></codeline>
 <codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/><sp/>value</highlight></codeline>
 <codeline lineno="327"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(find(value)<sp/>==<sp/>end())<sp/>{</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classnifty_1_1container_1_1FlatSet_1ad12a5bbeb3a6a3c29ab173fb0f9572c9" kindref="member">find</ref>(value)<sp/>==<sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aecdce54d4d18b3b7bfc4605aa9486883" kindref="member">end</ref>())<sp/>{</highlight></codeline>
 <codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
@@ -683,7 +753,7 @@
 <codeline lineno="335"><highlight class="normal"></highlight></codeline>
 <codeline lineno="336"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="337"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref></highlight></codeline>
-<codeline lineno="338" refid="classnifty_1_1container_1_1FlatSet_1aa2765a252ba34d9403d625e38fac8d39" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aa2765a252ba34d9403d625e38fac8d39" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::lower_bound</ref>(</highlight></codeline>
+<codeline lineno="338" refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::lower_bound</ref>(</highlight></codeline>
 <codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="340"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::lower_bound(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -691,7 +761,7 @@
 <codeline lineno="343"><highlight class="normal"></highlight></codeline>
 <codeline lineno="344"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="345"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref></highlight></codeline>
-<codeline lineno="346" refid="classnifty_1_1container_1_1FlatSet_1a824de5a2d87a1d938af264a8e06c4a2a" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1aa2765a252ba34d9403d625e38fac8d39" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::lower_bound</ref>(</highlight></codeline>
+<codeline lineno="346" refid="classnifty_1_1container_1_1FlatSet_1a824de5a2d87a1d938af264a8e06c4a2a" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a19bd4a6c2a0f0de6dca31cf5a62331cb" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::lower_bound</ref>(</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="348"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::lower_bound(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -699,7 +769,7 @@
 <codeline lineno="351"><highlight class="normal"></highlight></codeline>
 <codeline lineno="352"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="353"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref></highlight></codeline>
-<codeline lineno="354" refid="classnifty_1_1container_1_1FlatSet_1a24a2ea880e091cadf42459203fa1b933" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a24a2ea880e091cadf42459203fa1b933" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::upper_bound</ref>(</highlight></codeline>
+<codeline lineno="354" refid="classnifty_1_1container_1_1FlatSet_1a0ac07324feb622244c7f91bcf153af87" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a0ac07324feb622244c7f91bcf153af87" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::upper_bound</ref>(</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="356"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::upper_bound(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -707,7 +777,7 @@
 <codeline lineno="359"><highlight class="normal"></highlight></codeline>
 <codeline lineno="360"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="361"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref></highlight></codeline>
-<codeline lineno="362" refid="classnifty_1_1container_1_1FlatSet_1ad29a9db87f15925db9d5569482720b5b" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a24a2ea880e091cadf42459203fa1b933" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::upper_bound</ref>(</highlight></codeline>
+<codeline lineno="362" refid="classnifty_1_1container_1_1FlatSet_1ad29a9db87f15925db9d5569482720b5b" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a0ac07324feb622244c7f91bcf153af87" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::upper_bound</ref>(</highlight></codeline>
 <codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="364"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::upper_bound(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -715,7 +785,7 @@
 <codeline lineno="367"><highlight class="normal"></highlight></codeline>
 <codeline lineno="368"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="369"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::pair&lt;typename<sp/>FlatSet&lt;Key,<sp/>Comparison,<sp/>Allocator&gt;::const_iterator,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::const_iterator</ref>&gt;</highlight></codeline>
-<codeline lineno="370" refid="classnifty_1_1container_1_1FlatSet_1a93b713a32fc6dd6e1fbf69b34849b314" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a93b713a32fc6dd6e1fbf69b34849b314" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::equal_range</ref>(</highlight></codeline>
+<codeline lineno="370" refid="classnifty_1_1container_1_1FlatSet_1a1ab96837744fc952be75365c00c815e0" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a1ab96837744fc952be75365c00c815e0" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::equal_range</ref>(</highlight></codeline>
 <codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="372"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::equal_range(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -723,7 +793,7 @@
 <codeline lineno="375"><highlight class="normal"></highlight></codeline>
 <codeline lineno="376"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="377"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::pair&lt;typename<sp/>FlatSet&lt;Key,<sp/>Comparison,<sp/>Allocator&gt;::iterator,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1a9c7fd20cd6b1878ccb8a7e068072c795" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::iterator</ref>&gt;</highlight></codeline>
-<codeline lineno="378" refid="classnifty_1_1container_1_1FlatSet_1a777b777d0e79a499a72661e62fabc903" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a93b713a32fc6dd6e1fbf69b34849b314" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::equal_range</ref>(</highlight></codeline>
+<codeline lineno="378" refid="classnifty_1_1container_1_1FlatSet_1a777b777d0e79a499a72661e62fabc903" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a1ab96837744fc952be75365c00c815e0" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::equal_range</ref>(</highlight></codeline>
 <codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>key_type&amp;<sp/>value</highlight></codeline>
 <codeline lineno="380"><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::equal_range(vector_.begin(),<sp/>vector_.end(),<sp/>value,<sp/>compare_);</highlight></codeline>
@@ -731,7 +801,7 @@
 <codeline lineno="383"><highlight class="normal"></highlight></codeline>
 <codeline lineno="384"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Key,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Comparison,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Allocator&gt;</highlight></codeline>
 <codeline lineno="385"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1container_1_1FlatSet_1aafc00d7d957c81f01ee8cd5dcabb4c78" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::allocator_type</ref></highlight></codeline>
-<codeline lineno="386" refid="classnifty_1_1container_1_1FlatSet_1a2c4f4a7a77965f3c272231b6970d385f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a2c4f4a7a77965f3c272231b6970d385f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::get_allocator</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="386" refid="classnifty_1_1container_1_1FlatSet_1a1e302c2990cee7d044e0793fdb0dcf7f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1container_1_1FlatSet_1a1e302c2990cee7d044e0793fdb0dcf7f" kindref="member">FlatSet&lt;Key, Comparison, Allocator&gt;::get_allocator</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector_.get_allocator();</highlight></codeline>
 <codeline lineno="388"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="389"><highlight class="normal"></highlight></codeline>

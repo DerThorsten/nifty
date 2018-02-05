@@ -1,10 +1,19 @@
 var searchData=
 [
   ['bidirectionalbreadthfirstsearch',['BidirectionalBreadthFirstSearch',['../classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch.html',1,'nifty::graph']]],
-  ['bidirectionalbreadthfirstsearch_3c_20graph_20_3e',['BidirectionalBreadthFirstSearch&lt; Graph &gt;',['../classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch.html',1,'nifty::graph']]],
+  ['bidirectionalbreadthfirstsearch_3c_20graphtype_20_3e',['BidirectionalBreadthFirstSearch&lt; GraphType &gt;',['../classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch.html',1,'nifty::graph']]],
+  ['binary_5fspecialized',['binary_specialized',['../structhalf__float_1_1detail_1_1binary__specialized.html',1,'half_float::detail']]],
+  ['binary_5fspecialized_3c_20half_2c_20half_20_3e',['binary_specialized&lt; half, half &gt;',['../structhalf__float_1_1detail_1_1binary__specialized_3_01half_00_01half_01_4.html',1,'half_float::detail']]],
+  ['binary_5ft',['binary_t',['../structhalf__float_1_1detail_1_1binary__t.html',1,'half_float::detail']]],
+  ['bits',['bits',['../structhalf__float_1_1detail_1_1bits.html',1,'half_float::detail']]],
+  ['bits_3c_20const_20t_20_3e',['bits&lt; const T &gt;',['../structhalf__float_1_1detail_1_1bits_3_01const_01T_01_4.html',1,'half_float::detail']]],
+  ['bits_3c_20const_20volatile_20t_20_3e',['bits&lt; const volatile T &gt;',['../structhalf__float_1_1detail_1_1bits_3_01const_01volatile_01T_01_4.html',1,'half_float::detail']]],
+  ['bits_3c_20double_20_3e',['bits&lt; double &gt;',['../structhalf__float_1_1detail_1_1bits_3_01double_01_4.html',1,'half_float::detail']]],
+  ['bits_3c_20float_20_3e',['bits&lt; float &gt;',['../structhalf__float_1_1detail_1_1bits_3_01float_01_4.html',1,'half_float::detail']]],
+  ['bits_3c_20volatile_20t_20_3e',['bits&lt; volatile T &gt;',['../structhalf__float_1_1detail_1_1bits_3_01volatile_01T_01_4.html',1,'half_float::detail']]],
   ['block',['Block',['../classnifty_1_1tools_1_1Block.html',1,'nifty::tools']]],
   ['blocking',['Blocking',['../classnifty_1_1tools_1_1Blocking.html',1,'nifty::tools']]],
-  ['blockmulticut',['BlockMulticut',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1BlockMulticut.html',1,'nifty::graph::optimization::multicut']]],
+  ['blockmulticut',['BlockMulticut',['../classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut.html',1,'nifty::graph::opt::multicut']]],
   ['blockstorage',['BlockStorage',['../classnifty_1_1tools_1_1BlockStorage.html',1,'nifty::tools']]],
   ['blockstorageselector',['BlockStorageSelector',['../structnifty_1_1tools_1_1BlockStorageSelector.html',1,'nifty::tools']]],
   ['blockstorageselector_3c_20hdf5_3a_3ahdf5array_3c_20t_20_3e_20_3e',['BlockStorageSelector&lt; hdf5::Hdf5Array&lt; T &gt; &gt;',['../structnifty_1_1tools_1_1BlockStorageSelector_3_01hdf5_1_1Hdf5Array_3_01T_01_4_01_4.html',1,'nifty::tools']]],
@@ -13,6 +22,7 @@ var searchData=
   ['blockstorageselector_3c_20marray_3a_3aview_3c_20t_2c_20c_2c_20a_20_3e_20_3e',['BlockStorageSelector&lt; marray::View&lt; T, C, A &gt; &gt;',['../structnifty_1_1tools_1_1BlockStorageSelector_3_01marray_1_1View_3_01T_00_01C_00_01A_01_4_01_4.html',1,'nifty::tools']]],
   ['blockview',['BlockView',['../classnifty_1_1tools_1_1BlockView.html',1,'nifty::tools']]],
   ['blockwithhalo',['BlockWithHalo',['../classnifty_1_1tools_1_1BlockWithHalo.html',1,'nifty::tools']]],
+  ['bool_5ftype',['bool_type',['../structhalf__float_1_1detail_1_1bool__type.html',1,'half_float::detail']]],
   ['bounds',['Bounds',['../classnifty_1_1cgp_1_1Bounds.html',1,'nifty::cgp']]],
   ['bounds_3c_202_20_3e',['Bounds&lt; 2 &gt;',['../classnifty_1_1cgp_1_1Bounds_3_012_01_4.html',1,'nifty::cgp']]]
 ];

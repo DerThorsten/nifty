@@ -1,0 +1,618 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::DualClusterPolicy</compoundname>
+    <includes refid="dual__cluster__policy_8hxx" local="no">dual_cluster_policy.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType" prot="public">nifty::graph::agglo::DualClusterPolicy::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class ACC_0</type>
+      </param>
+      <param>
+        <type>class ACC_1</type>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>ENABLE_UCM</declname>
+        <defname>ENABLE_UCM</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a590b6990b1d76d791c93e97a062eb0d2" prot="private" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy" kindref="compound">DualClusterPolicy</ref>&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;</type>
+        <definition>typedef DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::SelfType</definition>
+        <argsstring></argsstring>
+        <name>SelfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a79e6332f19250e87a30a741132b0e1e9" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; uint8_t &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;uint8_t&gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::UInt8EdgeMap</definition>
+        <argsstring></argsstring>
+        <name>UInt8EdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad2aca087a4c1555440c6cb4a127bc32f" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;double&gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::FloatEdgeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatEdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac3a9b4f11074bddd30f4bb0c845dab8e" prot="private" static="no">
+        <type>GRAPH::template NodeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template NodeMap&lt;double&gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::FloatNodeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatNodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1af20a3142b6a264fc4f47fa2925d71013" prot="private" static="no">
+        <type>ACC_0</type>
+        <definition>typedef ACC_0 nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::Acc0Type</definition>
+        <argsstring></argsstring>
+        <name>Acc0Type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7a0a8ffbd248fc6b3c19f6d035505305" prot="private" static="no">
+        <type>ACC_1</type>
+        <definition>typedef ACC_1 nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::Acc1Type</definition>
+        <argsstring></argsstring>
+        <name>Acc1Type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a3fb4529d1dda91b92ac277b760852b40" prot="private" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">nifty::tools::ChangeablePriorityQueue</ref>&lt; double, std::greater&lt; double &gt; &gt;</type>
+        <definition>typedef nifty::tools::ChangeablePriorityQueue&lt; double , std::greater&lt;double&gt; &gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::QueueType</definition>
+        <argsstring></argsstring>
+        <name>QueueType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac8d246f0a0387bf78fcf9d823496e515" prot="public" static="no">
+        <type>Acc0Type::SettingsType</type>
+        <definition>typedef Acc0Type::SettingsType nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::Acc0SettingsType</definition>
+        <argsstring></argsstring>
+        <name>Acc0SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a9e9443784c4c09926fd8c97608547779" prot="public" static="no">
+        <type>Acc1Type::SettingsType</type>
+        <definition>typedef Acc1Type::SettingsType nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::Acc1SettingsType</definition>
+        <argsstring></argsstring>
+        <name>Acc1SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad8e19fe87ad08f4187fdb79c1367389a" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a54d7666f80620939d704938530b7564a" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::EdgePrioType</definition>
+        <argsstring></argsstring>
+        <name>EdgePrioType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7687a1027ad05abe1b32b034cc383003" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::EdgeSizesType</definition>
+        <argsstring></argsstring>
+        <name>EdgeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a03e7d4c024b17e4fa6647058bac773dc" prot="public" static="no">
+        <type>FloatNodeMap</type>
+        <definition>typedef FloatNodeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::NodeSizesType</definition>
+        <argsstring></argsstring>
+        <name>NodeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a50412f31fd3dc355ef0804cb8d753c05" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad8e19fe87ad08f4187fdb79c1367389a" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy" kindref="compound">SelfType</ref> &gt;</type>
+        <definition>typedef EdgeContractionGraph&lt;GraphType, SelfType&gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::EdgeContractionGraphType</definition>
+        <argsstring></argsstring>
+        <name>EdgeContractionGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</definition>
+        <argsstring></argsstring>
+        <name>EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a24714d69c92f2fec7b0247f9cc98ea9d" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad8e19fe87ad08f4187fdb79c1367389a" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a3f2d6b097ab183fb8e7c31a41fbc3305" prot="private" static="no" mutable="no">
+        <type>ACC_0</type>
+        <definition>ACC_0 nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::acc0_</definition>
+        <argsstring></argsstring>
+        <name>acc0_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ae8de8e5a8521b611a7c065c80dd052c0" prot="private" static="no" mutable="no">
+        <type>ACC_1</type>
+        <definition>ACC_1 nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::acc1_</definition>
+        <argsstring></argsstring>
+        <name>acc1_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a81d32cd7de1637e9f820c59e5e6dcaee" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::isLocalEdge_</definition>
+        <argsstring></argsstring>
+        <name>isLocalEdge_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ae7dc39460828a2ec3db1502de80d9dd5" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::isPureLocal_</definition>
+        <argsstring></argsstring>
+        <name>isPureLocal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1af43170bb0d609ff26972b3981b296da0" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::isPureLifted_</definition>
+        <argsstring></argsstring>
+        <name>isPureLifted_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ab496f940c0ba8464da9713ef4bce2654" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="120" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a4facfd0ed1c255a9d1a5b27302b0affc" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a50412f31fd3dc355ef0804cb8d753c05" kindref="member">EdgeContractionGraphType</ref></type>
+        <definition>EdgeContractionGraphType nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::edgeContractionGraph_</definition>
+        <argsstring></argsstring>
+        <name>edgeContractionGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a9db23eee8f48617583b69a14b03fe43c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">QueueType</ref></type>
+        <definition>QueueType nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::pq_</definition>
+        <argsstring></argsstring>
+        <name>pq_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a315330b58c24bd7721696d4873571571" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::edgeToContractNext_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNext_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="126" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a6baf471314a737bddf207ebcafdad266" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::edgeToContractNextMergePrio_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNextMergePrio_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="127" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac52bf8e25834241e96fe1637579ffc1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class MERGE_PRIOS</type>
+          </param>
+          <param>
+            <type>class NOT_MERGE_PRIOS</type>
+          </param>
+          <param>
+            <type>class IS_LOCAL_EDGE</type>
+          </param>
+          <param>
+            <type>class EDGE_SIZES</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::DualClusterPolicy</definition>
+        <argsstring>(const GraphType &amp;, const MERGE_PRIOS &amp;, const NOT_MERGE_PRIOS &amp;, const IS_LOCAL_EDGE &amp;, const EDGE_SIZES &amp;, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>DualClusterPolicy</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad8e19fe87ad08f4187fdb79c1367389a" kindref="member">GraphType</ref> &amp;</type>
+          <defname>graph</defname>
+        </param>
+        <param>
+          <type>const MERGE_PRIOS &amp;</type>
+          <defname>mergePrios</defname>
+        </param>
+        <param>
+          <type>const NOT_MERGE_PRIOS &amp;</type>
+          <defname>notMergePrios</defname>
+        </param>
+        <param>
+          <type>const IS_LOCAL_EDGE &amp;</type>
+          <defname>isLocalEdge</defname>
+        </param>
+        <param>
+          <type>const EDGE_SIZES &amp;</type>
+          <defname>edgeSizes</defname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="72" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="134" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a71302b486964ff3d8f4c1b73cfbd7eae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; uint64_t, double &gt;</type>
+        <definition>std::pair&lt; uint64_t, double &gt; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::edgeToContractNext</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeToContractNext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="80" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="174" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a055733fe4b1a2883fc157be44ca116d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::isDone</definition>
+        <argsstring>()</argsstring>
+        <name>isDone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="180" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1aa08bdfd6a8112f736978ff2025d8d395" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a50412f31fd3dc355ef0804cb8d753c05" kindref="member">EdgeContractionGraphType</ref> &amp;</type>
+        <definition>DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::EdgeContractionGraphType &amp; nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::edgeContractionGraph</definition>
+        <argsstring>()</argsstring>
+        <name>edgeContractionGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="209" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7e137da249efd061a846fb73a4d642ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::contractEdge</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="200" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a8c7aa0c86c9ec848a46dbe547f4a36d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::mergeNodes</definition>
+        <argsstring>(const uint64_t aliveNode, const uint64_t deadNode)</argsstring>
+        <name>mergeNodes</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveNode</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="93" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="216" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a0f986a69135f3b76cf1ffd5852b8d7a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::mergeEdges</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>mergeEdges</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="225" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1aa151dd026d3773ff06b1f97c54681e15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::contractEdgeDone</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdgeDone</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="95" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="267" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac4ede299befaa57d313f0ffe9b27ac16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::isMergeAllowed</definition>
+        <argsstring>(const uint64_t edge)</argsstring>
+        <name>isMergeAllowed</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="97" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a4939267d5d70eeb62560eb2d6b1aed0c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::DualClusterPolicy&lt; GRAPH, ACC_0, ACC_1, ENABLE_UCM &gt;::pqMergePrio</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>pqMergePrio</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="189" bodyend="195"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx" bodystart="22" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a3f2d6b097ab183fb8e7c31a41fbc3305" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>acc0_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac8d246f0a0387bf78fcf9d823496e515" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>Acc0SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1af20a3142b6a264fc4f47fa2925d71013" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>Acc0Type</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ae8de8e5a8521b611a7c065c80dd052c0" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>acc1_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a9e9443784c4c09926fd8c97608547779" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>Acc1SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7a0a8ffbd248fc6b3c19f6d035505305" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>Acc1Type</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7e137da249efd061a846fb73a4d642ab" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>contractEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1aa151dd026d3773ff06b1f97c54681e15" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>contractEdgeDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac52bf8e25834241e96fe1637579ffc1b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>DualClusterPolicy</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1aa08bdfd6a8112f736978ff2025d8d395" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>edgeContractionGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a4facfd0ed1c255a9d1a5b27302b0affc" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>edgeContractionGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a50412f31fd3dc355ef0804cb8d753c05" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>EdgeContractionGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a54d7666f80620939d704938530b7564a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>EdgePrioType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a7687a1027ad05abe1b32b034cc383003" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>EdgeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a71302b486964ff3d8f4c1b73cfbd7eae" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>edgeToContractNext</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a315330b58c24bd7721696d4873571571" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>edgeToContractNext_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a6baf471314a737bddf207ebcafdad266" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>edgeToContractNextMergePrio_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad2aca087a4c1555440c6cb4a127bc32f" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>FloatEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac3a9b4f11074bddd30f4bb0c845dab8e" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>FloatNodeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a24714d69c92f2fec7b0247f9cc98ea9d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ad8e19fe87ad08f4187fdb79c1367389a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a055733fe4b1a2883fc157be44ca116d2" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a81d32cd7de1637e9f820c59e5e6dcaee" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>isLocalEdge_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ac4ede299befaa57d313f0ffe9b27ac16" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>isMergeAllowed</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1af43170bb0d609ff26972b3981b296da0" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>isPureLifted_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ae7dc39460828a2ec3db1502de80d9dd5" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>isPureLocal_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a0f986a69135f3b76cf1ffd5852b8d7a0" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>mergeEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a8c7aa0c86c9ec848a46dbe547f4a36d1" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>mergeNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a03e7d4c024b17e4fa6647058bac773dc" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>NodeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a9db23eee8f48617583b69a14b03fe43c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>pq_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a4939267d5d70eeb62560eb2d6b1aed0c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>pqMergePrio</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a3fb4529d1dda91b92ac277b760852b40" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>QueueType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a590b6990b1d76d791c93e97a062eb0d2" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1ab496f940c0ba8464da9713ef4bce2654" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1a79e6332f19250e87a30a741132b0e1e9" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DualClusterPolicy</scope><name>UInt8EdgeMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

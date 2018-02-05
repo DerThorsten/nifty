@@ -1,4 +1,4 @@
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase}{}\section{nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+I\+M $>$ Class Template Reference}
+\hypertarget{classnifty_1_1array_1_1StaticArrayBase}{}\section{nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+IM $>$ Class Template Reference}
 \label{classnifty_1_1array_1_1StaticArrayBase}\index{nifty\+::array\+::\+Static\+Array\+Base$<$ T, D\+I\+M $>$@{nifty\+::array\+::\+Static\+Array\+Base$<$ T, D\+I\+M $>$}}
 
 
@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+I\+M $>$\+:\nopagebreak
+Inheritance diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+IM $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+I\+M 
 \end{figure}
 
 
-Collaboration diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+I\+M $>$\+:\nopagebreak
+Collaboration diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+IM $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,7 +27,7 @@ Collaboration diagram for nifty\+:\+:array\+:\+:Static\+Array\+Base$<$ T, D\+I\+
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef std\+::array$<$ T, D\+I\+M $>$ \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type}
+typedef std\+::array$<$ T, D\+IM $>$ \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -34,59 +36,74 @@ typedef std\+::array$<$ T, D\+I\+M $>$ \hyperlink{classnifty_1_1array_1_1StaticA
 \item 
 \hyperlink{classnifty_1_1array_1_1StaticArrayBase_aa798253fef388d6c0d0fd3d436784e79}{Static\+Array\+Base} (const T \&value)
 \item 
-{\footnotesize template$<$class I\+N\+I\+T\+\_\+\+T $>$ }\\\hyperlink{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}{Static\+Array\+Base} (const std\+::initializer\+\_\+list$<$ I\+N\+I\+T\+\_\+\+T $>$ \&list)
+{\footnotesize template$<$class I\+N\+I\+T\+\_\+T $>$ }\\\hyperlink{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}{Static\+Array\+Base} (const std\+::initializer\+\_\+list$<$ I\+N\+I\+T\+\_\+T $>$ \&list)
 \item 
-const \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type} \& \hyperlink{classnifty_1_1array_1_1StaticArrayBase_ad4a33e73ab03d344489c81af7108773d}{as\+Std\+Array} () const 
+const \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type} \& \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a88a05591be79803231598c1c32025ac3}{as\+Std\+Array} () const
 \item 
 \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type} \& \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a205328f2e3ad922e007afe0f9f3e819b}{as\+Std\+Array} ()
+\item 
+{\footnotesize template$<$class S\+H\+A\+PE $>$ }\\bool \hyperlink{classnifty_1_1array_1_1StaticArrayBase_ae9258cc672d2873aadc346d7c0cc0911}{all\+Inside\+Shape} (const S\+H\+A\+PE \&shape) const
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Typedef Documentation}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Base\+Type@{Base\+Type}}
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}\label{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Base\+Type@{Base\+Type}}
 \index{Base\+Type@{Base\+Type}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{Base\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ typedef std\+::array$<$T,D\+I\+M$>$ {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::{\bf Base\+Type}}\label{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+typedef std\+::array$<$T,D\+IM$>$ \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::\hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type}}
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_ab15a9b2d0259a54795ffc5aac8d62e50}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_ab15a9b2d0259a54795ffc5aac8d62e50}\label{classnifty_1_1array_1_1StaticArrayBase_ab15a9b2d0259a54795ffc5aac8d62e50}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
 \index{Static\+Array\+Base@{Static\+Array\+Base}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{Static\+Array\+Base()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::{\bf Static\+Array\+Base} (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1array_1_1StaticArrayBase_ab15a9b2d0259a54795ffc5aac8d62e50}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_aa798253fef388d6c0d0fd3d436784e79}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
+\subsubsection{\texorpdfstring{Static\+Array\+Base()}{StaticArrayBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{Static\+Array\+Base} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_aa798253fef388d6c0d0fd3d436784e79}\label{classnifty_1_1array_1_1StaticArrayBase_aa798253fef388d6c0d0fd3d436784e79}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
 \index{Static\+Array\+Base@{Static\+Array\+Base}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{Static\+Array\+Base(const T \&value)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::{\bf Static\+Array\+Base} (
-\begin{DoxyParamCaption}
-\item[{const T \&}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1array_1_1StaticArrayBase_aa798253fef388d6c0d0fd3d436784e79}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
+\subsubsection{\texorpdfstring{Static\+Array\+Base()}{StaticArrayBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{Static\+Array\+Base} (\begin{DoxyParamCaption}\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}\label{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!Static\+Array\+Base@{Static\+Array\+Base}}
 \index{Static\+Array\+Base@{Static\+Array\+Base}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{Static\+Array\+Base(const std\+::initializer\+\_\+list$<$ I\+N\+I\+T\+\_\+\+T $>$ \&list)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ template$<$class I\+N\+I\+T\+\_\+\+T $>$ {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::{\bf Static\+Array\+Base} (
-\begin{DoxyParamCaption}
-\item[{const std\+::initializer\+\_\+list$<$ I\+N\+I\+T\+\_\+\+T $>$ \&}]{list}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1array_1_1StaticArrayBase_a6d8d83f91ab1ba26d94d9a5915f98bb0}
+\subsubsection{\texorpdfstring{Static\+Array\+Base()}{StaticArrayBase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+template$<$class I\+N\+I\+T\+\_\+T $>$ \\
+\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::\hyperlink{classnifty_1_1array_1_1StaticArrayBase}{Static\+Array\+Base} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ I\+N\+I\+T\+\_\+T $>$ \&}]{list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_ad4a33e73ab03d344489c81af7108773d}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!as\+Std\+Array@{as\+Std\+Array}}
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_ae9258cc672d2873aadc346d7c0cc0911}\label{classnifty_1_1array_1_1StaticArrayBase_ae9258cc672d2873aadc346d7c0cc0911}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!all\+Inside\+Shape@{all\+Inside\+Shape}}
+\index{all\+Inside\+Shape@{all\+Inside\+Shape}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
+\subsubsection{\texorpdfstring{all\+Inside\+Shape()}{allInsideShape()}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+template$<$class S\+H\+A\+PE $>$ \\
+bool \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::all\+Inside\+Shape (\begin{DoxyParamCaption}\item[{const S\+H\+A\+PE \&}]{shape }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_a88a05591be79803231598c1c32025ac3}\label{classnifty_1_1array_1_1StaticArrayBase_a88a05591be79803231598c1c32025ac3}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!as\+Std\+Array@{as\+Std\+Array}}
 \index{as\+Std\+Array@{as\+Std\+Array}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{as\+Std\+Array() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ const {\bf Base\+Type}\& {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::as\+Std\+Array (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1array_1_1StaticArrayBase_ad4a33e73ab03d344489c81af7108773d}
-\hypertarget{classnifty_1_1array_1_1StaticArrayBase_a205328f2e3ad922e007afe0f9f3e819b}{}\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!as\+Std\+Array@{as\+Std\+Array}}
+\subsubsection{\texorpdfstring{as\+Std\+Array()}{asStdArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+const \hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type}\& \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::as\+Std\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1array_1_1StaticArrayBase_a205328f2e3ad922e007afe0f9f3e819b}\label{classnifty_1_1array_1_1StaticArrayBase_a205328f2e3ad922e007afe0f9f3e819b}} 
+\index{nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}!as\+Std\+Array@{as\+Std\+Array}}
 \index{as\+Std\+Array@{as\+Std\+Array}!nifty\+::array\+::\+Static\+Array\+Base@{nifty\+::array\+::\+Static\+Array\+Base}}
-\subsubsection[{as\+Std\+Array()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , size\+\_\+t D\+I\+M$>$ {\bf Base\+Type}\& {\bf nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+I\+M $>$\+::as\+Std\+Array (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1array_1_1StaticArrayBase_a205328f2e3ad922e007afe0f9f3e819b}
+\subsubsection{\texorpdfstring{as\+Std\+Array()}{asStdArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T , size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1array_1_1StaticArrayBase_a3f376d2a24fad3a47021c36657494759}{Base\+Type}\& \hyperlink{classnifty_1_1array_1_1StaticArrayBase}{nifty\+::array\+::\+Static\+Array\+Base}$<$ T, D\+IM $>$\+::as\+Std\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

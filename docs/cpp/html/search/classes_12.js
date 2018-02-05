@@ -1,8 +1,10 @@
 var searchData=
 [
   ['ufd',['Ufd',['../classnifty_1_1ufd_1_1Ufd.html',1,'nifty::ufd']]],
-  ['ufd_3c_20_20_3e',['Ufd&lt;  &gt;',['../classnifty_1_1ufd_1_1Ufd.html',1,'nifty::ufd']]],
+  ['ufd_3c_20_3e',['Ufd&lt; &gt;',['../classnifty_1_1ufd_1_1Ufd.html',1,'nifty::ufd']]],
   ['ufd_3c_20uint64_5ft_20_3e',['Ufd&lt; uint64_t &gt;',['../classnifty_1_1ufd_1_1Ufd.html',1,'nifty::ufd']]],
+  ['unary_5fspecialized',['unary_specialized',['../structhalf__float_1_1detail_1_1unary__specialized.html',1,'half_float::detail']]],
+  ['unary_5fspecialized_3c_20expr_20_3e',['unary_specialized&lt; expr &gt;',['../structhalf__float_1_1detail_1_1unary__specialized_3_01expr_01_4.html',1,'half_float::detail']]],
   ['unaryfunction',['UnaryFunction',['../structnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter_1_1UnaryFunction.html',1,'nifty::graph::detail_graph::UndirectedGridGraphIter']]],
   ['undirectedgraph',['UndirectedGraph',['../classnifty_1_1graph_1_1UndirectedGraph.html',1,'nifty::graph']]],
   ['undirectedgraph_3c_3e',['UndirectedGraph&lt;&gt;',['../classnifty_1_1graph_1_1UndirectedGraph.html',1,'nifty::graph']]],
@@ -15,5 +17,6 @@ var searchData=
   ['undirectedgridgraph',['UndirectedGridGraph',['../classnifty_1_1graph_1_1UndirectedGridGraph.html',1,'nifty::graph']]],
   ['undirectedgridgraph_3c_20dim_2c_20true_20_3e',['UndirectedGridGraph&lt; DIM, true &gt;',['../classnifty_1_1graph_1_1UndirectedGridGraph_3_01DIM_00_01true_01_4.html',1,'nifty::graph']]],
   ['undirectedgridgraphiter',['UndirectedGridGraphIter',['../classnifty_1_1graph_1_1detail__graph_1_1UndirectedGridGraphIter.html',1,'nifty::graph::detail_graph']]],
+  ['undirectedlongrangegridgraph',['UndirectedLongRangeGridGraph',['../classnifty_1_1graph_1_1UndirectedLongRangeGridGraph.html',1,'nifty::graph']]],
   ['unsortedtag',['UnsortedTag',['../structnifty_1_1graph_1_1UnsortedTag.html',1,'nifty::graph']]]
 ];

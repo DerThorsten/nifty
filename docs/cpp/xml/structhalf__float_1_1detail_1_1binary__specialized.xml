@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1binary__specialized" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::binary_specialized</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename U</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1binary__specialized_1afb9ec4bebd2df86f570d20a6e7c6392f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::binary_specialized&lt; T, U &gt;::fmin</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>fmin</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Minimum implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>minimum value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2008" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2008" bodyend="2019"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1binary__specialized_1a3d46871722c0a117f1921cc11bf47a89" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::binary_specialized&lt; T, U &gt;::fmax</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>fmax</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>maximum value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2025" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2025" bodyend="2036"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Wrapper for binary half-precision functions needing specialization for individual argument types. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument type </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument type </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1050" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1050" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1binary__specialized_1a3d46871722c0a117f1921cc11bf47a89" prot="public" virt="non-virtual"><scope>half_float::detail::binary_specialized</scope><name>fmax</name></member>
+      <member refid="structhalf__float_1_1detail_1_1binary__specialized_1afb9ec4bebd2df86f570d20a6e7c6392f" prot="public" virt="non-virtual"><scope>half_float::detail::binary_specialized</scope><name>fmin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

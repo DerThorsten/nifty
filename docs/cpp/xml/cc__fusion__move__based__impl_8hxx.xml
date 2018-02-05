@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="cc__fusion__move__based__impl_8hxx" kind="file" language="C++">
     <compoundname>cc_fusion_move_based_impl.hxx</compoundname>
     <includes local="no">mutex</includes>
@@ -12,480 +12,486 @@
     <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
     <includes refid="ufd_8hxx" local="yes">nifty/ufd/ufd.hxx</includes>
     <includes refid="adjacency_8hxx" local="yes">nifty/graph/detail/adjacency.hxx</includes>
-    <includes refid="mincut__base_8hxx" local="yes">nifty/graph/optimization/mincut/mincut_base.hxx</includes>
+    <includes refid="mincut__base_8hxx" local="yes">nifty/graph/opt/mincut/mincut_base.hxx</includes>
     <includes refid="graph_2edge__contraction__graph_8hxx" local="yes">nifty/graph/edge_contraction_graph.hxx</includes>
     <includes refid="components_8hxx" local="yes">nifty/graph/components.hxx</includes>
     <includes refid="threadpool_8hxx" local="yes">nifty/parallel/threadpool.hxx</includes>
-    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</includes>
-    <includes refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" local="yes">nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</includes>
-    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</includedby>
-    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</includedby>
+    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</includes>
+    <includes refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" local="yes">nifty/graph/opt/common/proposal_generators/proposal_generator_factory_base.hxx</includes>
+    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</includedby>
+    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</includedby>
     <incdepgraph>
-      <node id="7829">
-        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</label>
-        <link refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
-        <childnode refid="7812" relation="include">
-        </childnode>
-        <childnode refid="7828" relation="include">
-        </childnode>
-      </node>
-      <node id="7824">
+      <node id="1838">
         <label>atomic</label>
       </node>
-      <node id="7814">
+      <node id="1828">
         <label>nifty/tools/const_iterator_range.hxx</label>
         <link refid="const__iterator__range_8hxx"/>
       </node>
-      <node id="7799">
+      <node id="1812">
         <label>functional</label>
       </node>
-      <node id="7770">
+      <node id="1783">
         <label>iomanip</label>
       </node>
-      <node id="7776">
+      <node id="1843">
+        <label>nifty/graph/opt/common/proposal_generators/proposal_generator_factory_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
+        <childnode refid="1826" relation="include">
+        </childnode>
+        <childnode refid="1842" relation="include">
+        </childnode>
+      </node>
+      <node id="1789">
         <label>queue</label>
       </node>
-      <node id="7781">
+      <node id="1794">
         <label>limits</label>
       </node>
-      <node id="7810">
+      <node id="1824">
         <label>iterator</label>
       </node>
-      <node id="7817">
+      <node id="1831">
         <label>nifty/graph/components.hxx</label>
         <link refid="components_8hxx"/>
-        <childnode refid="7818" relation="include">
+        <childnode refid="1832" relation="include">
         </childnode>
-        <childnode refid="7819" relation="include">
+        <childnode refid="1833" relation="include">
         </childnode>
-        <childnode refid="7820" relation="include">
+        <childnode refid="1834" relation="include">
         </childnode>
-        <childnode refid="7783" relation="include">
+        <childnode refid="1796" relation="include">
         </childnode>
       </node>
-      <node id="7778">
+      <node id="1791">
         <label>cstdint</label>
       </node>
-      <node id="7796">
+      <node id="1809">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="7788" relation="include">
+        <childnode refid="1801" relation="include">
         </childnode>
       </node>
-      <node id="7798">
+      <node id="1811">
         <label>nifty/graph/edge_contraction_graph.hxx</label>
         <link refid="graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="7799" relation="include">
+        <childnode refid="1812" relation="include">
         </childnode>
-        <childnode refid="7800" relation="include">
+        <childnode refid="1813" relation="include">
         </childnode>
-        <childnode refid="7801" relation="include">
+        <childnode refid="1814" relation="include">
         </childnode>
-        <childnode refid="7802" relation="include">
+        <childnode refid="1816" relation="include">
         </childnode>
-        <childnode refid="7815" relation="include">
+        <childnode refid="1829" relation="include">
         </childnode>
-        <childnode refid="7777" relation="include">
+        <childnode refid="1790" relation="include">
         </childnode>
-        <childnode refid="7783" relation="include">
+        <childnode refid="1796" relation="include">
         </childnode>
-        <childnode refid="7786" relation="include">
-        </childnode>
-      </node>
-      <node id="7768">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
-        <link refid="cc_fusion_move_based_impl.hxx"/>
-        <childnode refid="7769" relation="include">
-        </childnode>
-        <childnode refid="7770" relation="include">
-        </childnode>
-        <childnode refid="7771" relation="include">
-        </childnode>
-        <childnode refid="7772" relation="include">
-        </childnode>
-        <childnode refid="7773" relation="include">
-        </childnode>
-        <childnode refid="7774" relation="include">
-        </childnode>
-        <childnode refid="7775" relation="include">
-        </childnode>
-        <childnode refid="7777" relation="include">
-        </childnode>
-        <childnode refid="7783" relation="include">
-        </childnode>
-        <childnode refid="7786" relation="include">
-        </childnode>
-        <childnode refid="7787" relation="include">
-        </childnode>
-        <childnode refid="7798" relation="include">
-        </childnode>
-        <childnode refid="7817" relation="include">
-        </childnode>
-        <childnode refid="7822" relation="include">
-        </childnode>
-        <childnode refid="7828" relation="include">
-        </childnode>
-        <childnode refid="7829" relation="include">
+        <childnode refid="1799" relation="include">
         </childnode>
       </node>
-      <node id="7782">
+      <node id="1795">
         <label>cmath</label>
       </node>
-      <node id="7808">
+      <node id="1822">
         <label>cassert</label>
       </node>
-      <node id="7803">
+      <node id="1817">
         <label>boost/iterator/transform_iterator.hpp</label>
       </node>
-      <node id="7779">
+      <node id="1792">
         <label>stdexcept</label>
       </node>
-      <node id="7813">
+      <node id="1827">
         <label>numeric</label>
       </node>
-      <node id="7802">
+      <node id="1816">
         <label>nifty/graph/undirected_graph_base.hxx</label>
         <link refid="undirected__graph__base_8hxx"/>
-        <childnode refid="7803" relation="include">
+        <childnode refid="1817" relation="include">
         </childnode>
-        <childnode refid="7804" relation="include">
+        <childnode refid="1818" relation="include">
         </childnode>
-        <childnode refid="7805" relation="include">
+        <childnode refid="1819" relation="include">
         </childnode>
-        <childnode refid="7814" relation="include">
+        <childnode refid="1828" relation="include">
         </childnode>
       </node>
-      <node id="7786">
+      <node id="1799">
         <label>nifty/graph/detail/adjacency.hxx</label>
         <link refid="adjacency_8hxx"/>
       </node>
-      <node id="7790">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="7788" relation="include">
-        </childnode>
-        <childnode refid="7789" relation="include">
-        </childnode>
-        <childnode refid="7780" relation="include">
-        </childnode>
-        <childnode refid="7779" relation="include">
-        </childnode>
-        <childnode refid="7791" relation="include">
-        </childnode>
-        <childnode refid="7790" relation="include">
-        </childnode>
-        <childnode refid="7792" relation="include">
-        </childnode>
-      </node>
-      <node id="7820">
+      <node id="1834">
         <label>nifty/graph/breadth_first_search.hxx</label>
         <link refid="breadth__first__search_8hxx"/>
-        <childnode refid="7819" relation="include">
+        <childnode refid="1833" relation="include">
         </childnode>
-        <childnode refid="7821" relation="include">
+        <childnode refid="1835" relation="include">
         </childnode>
       </node>
-      <node id="7788">
+      <node id="1801">
         <label>string</label>
       </node>
-      <node id="7827">
+      <node id="1841">
         <label>boost/iterator/counting_iterator.hpp</label>
       </node>
-      <node id="7791">
+      <node id="1804">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="7779" relation="include">
+        <childnode refid="1792" relation="include">
         </childnode>
       </node>
-      <node id="7785">
+      <node id="1798">
         <label>map</label>
       </node>
-      <node id="7772">
+      <node id="1785">
         <label>unordered_set</label>
       </node>
-      <node id="7797">
-        <label>mincut_visitor_base.hxx</label>
-        <link refid="mincut__visitor__base_8hxx"/>
-        <childnode refid="7788" relation="include">
-        </childnode>
-        <childnode refid="7789" relation="include">
-        </childnode>
-        <childnode refid="7780" relation="include">
-        </childnode>
-        <childnode refid="7792" relation="include">
-        </childnode>
-      </node>
-      <node id="7795">
+      <node id="1808">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="7780" relation="include">
+        <childnode refid="1793" relation="include">
         </childnode>
-        <childnode refid="7794" relation="include">
+        <childnode refid="1807" relation="include">
         </childnode>
-        <childnode refid="7788" relation="include">
+        <childnode refid="1801" relation="include">
         </childnode>
       </node>
-      <node id="7819">
+      <node id="1833">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="7787">
-        <label>nifty/graph/optimization/mincut/mincut_base.hxx</label>
+      <node id="1800">
+        <label>nifty/graph/opt/mincut/mincut_base.hxx</label>
         <link refid="mincut__base_8hxx"/>
-        <childnode refid="7788" relation="include">
+        <childnode refid="1801" relation="include">
         </childnode>
-        <childnode refid="7789" relation="include">
+        <childnode refid="1802" relation="include">
         </childnode>
-        <childnode refid="7780" relation="include">
+        <childnode refid="1793" relation="include">
         </childnode>
-        <childnode refid="7790" relation="include">
+        <childnode refid="1803" relation="include">
         </childnode>
-        <childnode refid="7797" relation="include">
+        <childnode refid="1810" relation="include">
         </childnode>
       </node>
-      <node id="7807">
+      <node id="1821">
         <label>nifty/marray/andres/marray.hxx</label>
         <link refid="andres_2marray_8hxx"/>
-        <childnode refid="7808" relation="include">
+        <childnode refid="1822" relation="include">
         </childnode>
-        <childnode refid="7784" relation="include">
+        <childnode refid="1797" relation="include">
         </childnode>
-        <childnode refid="7779" relation="include">
+        <childnode refid="1792" relation="include">
         </childnode>
-        <childnode refid="7781" relation="include">
+        <childnode refid="1794" relation="include">
         </childnode>
-        <childnode refid="7788" relation="include">
+        <childnode refid="1801" relation="include">
         </childnode>
-        <childnode refid="7780" relation="include">
+        <childnode refid="1793" relation="include">
         </childnode>
-        <childnode refid="7809" relation="include">
+        <childnode refid="1823" relation="include">
         </childnode>
-        <childnode refid="7810" relation="include">
+        <childnode refid="1824" relation="include">
         </childnode>
-        <childnode refid="7773" relation="include">
+        <childnode refid="1786" relation="include">
         </childnode>
-        <childnode refid="7811" relation="include">
+        <childnode refid="1825" relation="include">
         </childnode>
-        <childnode refid="7793" relation="include">
+        <childnode refid="1806" relation="include">
         </childnode>
-        <childnode refid="7812" relation="include">
+        <childnode refid="1826" relation="include">
         </childnode>
-        <childnode refid="7813" relation="include">
+        <childnode refid="1827" relation="include">
         </childnode>
-        <childnode refid="7799" relation="include">
+        <childnode refid="1812" relation="include">
         </childnode>
       </node>
-      <node id="7826">
+      <node id="1842">
+        <label>nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
+      </node>
+      <node id="1840">
         <label>condition_variable</label>
       </node>
-      <node id="7783">
+      <node id="1796">
         <label>nifty/ufd/ufd.hxx</label>
         <link refid="ufd_8hxx"/>
-        <childnode refid="7784" relation="include">
+        <childnode refid="1797" relation="include">
         </childnode>
-        <childnode refid="7773" relation="include">
+        <childnode refid="1786" relation="include">
         </childnode>
-        <childnode refid="7785" relation="include">
+        <childnode refid="1798" relation="include">
         </childnode>
       </node>
-      <node id="7801">
+      <node id="1815">
         <label>boost/container/flat_set.hpp</label>
       </node>
-      <node id="7825">
+      <node id="1839">
         <label>future</label>
       </node>
-      <node id="7815">
+      <node id="1829">
         <label>nifty/container/flat_set.hxx</label>
         <link refid="flat__set_8hxx"/>
-        <childnode refid="7784" relation="include">
+        <childnode refid="1797" relation="include">
         </childnode>
-        <childnode refid="7773" relation="include">
+        <childnode refid="1786" relation="include">
         </childnode>
-        <childnode refid="7771" relation="include">
+        <childnode refid="1784" relation="include">
         </childnode>
-        <childnode refid="7799" relation="include">
+        <childnode refid="1812" relation="include">
         </childnode>
-        <childnode refid="7816" relation="include">
+        <childnode refid="1830" relation="include">
         </childnode>
       </node>
-      <node id="7775">
+      <node id="1788">
         <label>nifty/tools/changable_priority_queue.hxx</label>
         <link refid="changable__priority__queue_8hxx"/>
-        <childnode refid="7776" relation="include">
+        <childnode refid="1789" relation="include">
         </childnode>
       </node>
-      <node id="7774">
+      <node id="1787">
         <label>stack</label>
       </node>
-      <node id="7773">
+      <node id="1786">
         <label>vector</label>
       </node>
-      <node id="7804">
+      <node id="1818">
         <label>nifty/graph/graph_tags.hxx</label>
         <link refid="graph__tags_8hxx"/>
       </node>
-      <node id="7792">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="7784" relation="include">
-        </childnode>
-        <childnode refid="7788" relation="include">
-        </childnode>
-        <childnode refid="7789" relation="include">
-        </childnode>
-        <childnode refid="7780" relation="include">
-        </childnode>
-        <childnode refid="7793" relation="include">
-        </childnode>
-        <childnode refid="7794" relation="include">
-        </childnode>
-        <childnode refid="7795" relation="include">
-        </childnode>
-        <childnode refid="7796" relation="include">
+      <node id="1814">
+        <label>nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost__flat__set_8hxx"/>
+        <childnode refid="1815" relation="include">
         </childnode>
       </node>
-      <node id="7816">
+      <node id="1830">
         <label>utility</label>
       </node>
-      <node id="7780">
+      <node id="1793">
         <label>sstream</label>
       </node>
-      <node id="7777">
+      <node id="1790">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="7778" relation="include">
+        <childnode refid="1791" relation="include">
         </childnode>
-        <childnode refid="7779" relation="include">
+        <childnode refid="1792" relation="include">
         </childnode>
-        <childnode refid="7780" relation="include">
+        <childnode refid="1793" relation="include">
         </childnode>
-        <childnode refid="7773" relation="include">
+        <childnode refid="1786" relation="include">
         </childnode>
-        <childnode refid="7781" relation="include">
+        <childnode refid="1794" relation="include">
         </childnode>
-        <childnode refid="7782" relation="include">
+        <childnode refid="1795" relation="include">
         </childnode>
       </node>
-      <node id="7821">
+      <node id="1835">
         <label>nifty/graph/detail/search_impl.hxx</label>
         <link refid="search__impl_8hxx"/>
-        <childnode refid="7776" relation="include">
+        <childnode refid="1789" relation="include">
         </childnode>
-        <childnode refid="7774" relation="include">
+        <childnode refid="1787" relation="include">
         </childnode>
-        <childnode refid="7819" relation="include">
+        <childnode refid="1833" relation="include">
         </childnode>
       </node>
-      <node id="7805">
+      <node id="1803">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="1801" relation="include">
+        </childnode>
+        <childnode refid="1802" relation="include">
+        </childnode>
+        <childnode refid="1793" relation="include">
+        </childnode>
+        <childnode refid="1792" relation="include">
+        </childnode>
+        <childnode refid="1804" relation="include">
+        </childnode>
+        <childnode refid="1803" relation="include">
+        </childnode>
+        <childnode refid="1805" relation="include">
+        </childnode>
+      </node>
+      <node id="1819">
         <label>nifty/graph/graph_maps.hxx</label>
         <link refid="graph__maps_8hxx"/>
-        <childnode refid="7806" relation="include">
+        <childnode refid="1820" relation="include">
         </childnode>
       </node>
-      <node id="7793">
+      <node id="1806">
         <label>iostream</label>
       </node>
-      <node id="7784">
+      <node id="1797">
         <label>cstddef</label>
       </node>
-      <node id="7818">
+      <node id="1832">
         <label>unordered_map</label>
       </node>
-      <node id="7822">
+      <node id="1836">
         <label>nifty/parallel/threadpool.hxx</label>
         <link refid="threadpool_8hxx"/>
-        <childnode refid="7799" relation="include">
+        <childnode refid="1812" relation="include">
         </childnode>
-        <childnode refid="7823" relation="include">
+        <childnode refid="1837" relation="include">
         </childnode>
-        <childnode refid="7824" relation="include">
+        <childnode refid="1838" relation="include">
         </childnode>
-        <childnode refid="7773" relation="include">
+        <childnode refid="1786" relation="include">
         </childnode>
-        <childnode refid="7825" relation="include">
+        <childnode refid="1839" relation="include">
         </childnode>
-        <childnode refid="7769" relation="include">
+        <childnode refid="1782" relation="include">
         </childnode>
-        <childnode refid="7776" relation="include">
+        <childnode refid="1789" relation="include">
         </childnode>
-        <childnode refid="7826" relation="include">
+        <childnode refid="1840" relation="include">
         </childnode>
-        <childnode refid="7779" relation="include">
+        <childnode refid="1792" relation="include">
         </childnode>
-        <childnode refid="7782" relation="include">
+        <childnode refid="1795" relation="include">
         </childnode>
-        <childnode refid="7803" relation="include">
+        <childnode refid="1817" relation="include">
         </childnode>
-        <childnode refid="7827" relation="include">
+        <childnode refid="1841" relation="include">
         </childnode>
-        <childnode refid="7777" relation="include">
+        <childnode refid="1790" relation="include">
         </childnode>
       </node>
-      <node id="7769">
+      <node id="1782">
         <label>mutex</label>
       </node>
-      <node id="7794">
+      <node id="1807">
         <label>chrono</label>
       </node>
-      <node id="7806">
+      <node id="1820">
         <label>nifty/marray/marray.hxx</label>
         <link refid="marray_8hxx"/>
-        <childnode refid="7807" relation="include">
+        <childnode refid="1821" relation="include">
         </childnode>
-        <childnode refid="7777" relation="include">
+        <childnode refid="1790" relation="include">
         </childnode>
       </node>
-      <node id="7823">
+      <node id="1781">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="1782" relation="include">
+        </childnode>
+        <childnode refid="1783" relation="include">
+        </childnode>
+        <childnode refid="1784" relation="include">
+        </childnode>
+        <childnode refid="1785" relation="include">
+        </childnode>
+        <childnode refid="1786" relation="include">
+        </childnode>
+        <childnode refid="1787" relation="include">
+        </childnode>
+        <childnode refid="1788" relation="include">
+        </childnode>
+        <childnode refid="1790" relation="include">
+        </childnode>
+        <childnode refid="1796" relation="include">
+        </childnode>
+        <childnode refid="1799" relation="include">
+        </childnode>
+        <childnode refid="1800" relation="include">
+        </childnode>
+        <childnode refid="1811" relation="include">
+        </childnode>
+        <childnode refid="1831" relation="include">
+        </childnode>
+        <childnode refid="1836" relation="include">
+        </childnode>
+        <childnode refid="1842" relation="include">
+        </childnode>
+        <childnode refid="1843" relation="include">
+        </childnode>
+      </node>
+      <node id="1837">
         <label>thread</label>
       </node>
-      <node id="7828">
-        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</label>
-        <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
-      </node>
-      <node id="7800">
+      <node id="1813">
         <label>type_traits</label>
       </node>
-      <node id="7811">
+      <node id="1805">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="1797" relation="include">
+        </childnode>
+        <childnode refid="1801" relation="include">
+        </childnode>
+        <childnode refid="1802" relation="include">
+        </childnode>
+        <childnode refid="1793" relation="include">
+        </childnode>
+        <childnode refid="1806" relation="include">
+        </childnode>
+        <childnode refid="1807" relation="include">
+        </childnode>
+        <childnode refid="1808" relation="include">
+        </childnode>
+        <childnode refid="1809" relation="include">
+        </childnode>
+      </node>
+      <node id="1825">
         <label>set</label>
       </node>
-      <node id="7771">
+      <node id="1784">
         <label>algorithm</label>
       </node>
-      <node id="7809">
+      <node id="1810">
+        <label>mincut_visitor_base.hxx</label>
+        <link refid="mincut__visitor__base_8hxx"/>
+        <childnode refid="1801" relation="include">
+        </childnode>
+        <childnode refid="1802" relation="include">
+        </childnode>
+        <childnode refid="1793" relation="include">
+        </childnode>
+        <childnode refid="1805" relation="include">
+        </childnode>
+      </node>
+      <node id="1823">
         <label>cstring</label>
       </node>
-      <node id="7812">
+      <node id="1826">
         <label>memory</label>
       </node>
-      <node id="7789">
+      <node id="1802">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7832">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
+      <node id="1846">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
         <link refid="cc__fusion__move__based_8hxx"/>
       </node>
-      <node id="7830">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
-        <link refid="cc_fusion_move_based_impl.hxx"/>
-        <childnode refid="7831" relation="include">
+      <node id="1844">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="1845" relation="include">
         </childnode>
-        <childnode refid="7832" relation="include">
+        <childnode refid="1846" relation="include">
         </childnode>
       </node>
-      <node id="7831">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
+      <node id="1845">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
         <link refid="mincut__cc__fusion__move__based_8hxx"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" prot="public">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" prot="public">nifty::graph::optimization::common::detail_cc_fusion::CcFusionMoveBasedImpl::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" prot="public">nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" prot="public">nifty::graph::opt::common::detail_cc_fusion::CcFusionMoveBasedImpl::SettingsType</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion">nifty::graph::optimization::common::detail_cc_fusion</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common">nifty::graph::opt::common</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion">nifty::graph::opt::common::detail_cc_fusion</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -507,20 +513,20 @@
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ufd_8hxx" kindref="compound">nifty/ufd/ufd.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adjacency_8hxx" kindref="compound">nifty/graph/detail/adjacency.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mincut__base_8hxx" kindref="compound">nifty/graph/optimization/mincut/mincut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mincut__base_8hxx" kindref="compound">nifty/graph/opt/mincut/mincut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2edge__contraction__graph_8hxx" kindref="compound">nifty/graph/edge_contraction_graph.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="components_8hxx" kindref="compound">nifty/graph/components.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="threadpool_8hxx" kindref="compound">nifty/parallel/threadpool.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" kindref="compound">nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" kindref="compound">nifty/graph/opt/common/proposal_generators/proposal_generator_factory_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="28" refid="namespacenifty_1_1graph_1_1optimization" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
-<codeline lineno="29" refid="namespacenifty_1_1graph_1_1optimization_1_1common" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
-<codeline lineno="30" refid="namespacenifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">detail_cc_fusion{</highlight></codeline>
+<codeline lineno="28" refid="namespacenifty_1_1graph_1_1opt" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
+<codeline lineno="29" refid="namespacenifty_1_1graph_1_1opt_1_1common" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
+<codeline lineno="30" refid="namespacenifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">detail_cc_fusion{</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
@@ -533,23 +539,23 @@
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">SOLVER_BASE,<sp/></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">FUSION_MOVE</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;</highlight></codeline>
-<codeline lineno="43" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SOLVER_BASE</highlight></codeline>
+<codeline lineno="43" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SOLVER_BASE</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:<sp/></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a963bf8b5310665f1aa1d3521d6f766a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a963bf8b5310665f1aa1d3521d6f766a0" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="48" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa164d1fa9a818334d0134bc2421f3736" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER_BASE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa164d1fa9a818334d0134bc2421f3736" kindref="member">BaseType</ref>;</highlight></codeline>
-<codeline lineno="49" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a76c88a1976ccfa02b9361f428ce30bc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a76c88a1976ccfa02b9361f428ce30bc5" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="47" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="48" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3c69077e20bf0feb768a8d7719eb6999" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER_BASE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a3c69077e20bf0feb768a8d7719eb6999" kindref="member">BaseType</ref>;</highlight></codeline>
+<codeline lineno="49" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0e280bf72fa47d1419abb10566e5f67e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0e280bf72fa47d1419abb10566e5f67e" kindref="member">GraphType</ref>;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="52" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1afbc19ace9c1055cf28b15a6d6dd050e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::VisitorBaseType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1afbc19ace9c1055cf28b15a6d6dd050e7" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="53" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7316953ca74bcfbbc177b560775e7327" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::VisitorProxyType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7316953ca74bcfbbc177b560775e7327" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
-<codeline lineno="54" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a707b7d8fc7c52c9092337ba7910ea484" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::NodeLabelsType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a707b7d8fc7c52c9092337ba7910ea484" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="52" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0a1c77f29d556ed955a81473884e0d82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::VisitorBaseType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a0a1c77f29d556ed955a81473884e0d82" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="53" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::VisitorProxyType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad095e84770fba24fc09427dc862b4fe7" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
+<codeline lineno="54" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>BaseType::NodeLabelsType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a4bcaf3e64809f68b1713161641e66c64" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ac65b1dd4783322f1fd38e42e10272f44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" kindref="compound">nifty::graph::optimization::common::ProposalGeneratorBase&lt;ObjectiveType&gt;</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ac65b1dd4783322f1fd38e42e10272f44" kindref="member">ProposalGeneratorBaseType</ref>;</highlight></codeline>
-<codeline lineno="59" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a947607cc31008070837e3889069f9f94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorFactoryBase" kindref="compound">nifty::graph::optimization::common::ProposalGeneratorFactoryBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a947607cc31008070837e3889069f9f94" kindref="member">ProposalGeneratorFactoryBaseType</ref>;</highlight></codeline>
+<codeline lineno="58" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa8157e2e3df72161d3b767c119b57575" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" kindref="compound">nifty::graph::opt::common::ProposalGeneratorBase&lt;ObjectiveType&gt;</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa8157e2e3df72161d3b767c119b57575" kindref="member">ProposalGeneratorBaseType</ref>;</highlight></codeline>
+<codeline lineno="59" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5b8c102a697bde14691f87816956af00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorFactoryBase" kindref="compound">nifty::graph::opt::common::ProposalGeneratorFactoryBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5b8c102a697bde14691f87816956af00" kindref="member">ProposalGeneratorFactoryBaseType</ref>;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -560,28 +566,28 @@
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
-<codeline lineno="71" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1aa5e7446cecc94c3e73445bf8617843f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;ProposalGeneratorFactoryBaseType&gt;<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1aa5e7446cecc94c3e73445bf8617843f1" kindref="member">proposalGeneratorFactory</ref>;</highlight></codeline>
-<codeline lineno="72" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a6a0362a5a2227b3560e087825a861d10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a6a0362a5a2227b3560e087825a861d10" kindref="member">numberOfIterations</ref>{1000};</highlight></codeline>
-<codeline lineno="73" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ae4ca7c414154e28735a59e86531f532f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ae4ca7c414154e28735a59e86531f532f" kindref="member">stopIfNoImprovement</ref>{10};</highlight></codeline>
-<codeline lineno="74" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a129c74645b2ca70fd7f72325297bc0cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a129c74645b2ca70fd7f72325297bc0cf" kindref="member">numberOfThreads</ref>{1};</highlight></codeline>
-<codeline lineno="75" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ac762f365dd3f33fc472b4a781d6adb4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ac762f365dd3f33fc472b4a781d6adb4b" kindref="member">numberOfParallelProposals</ref>{-1};</highlight></codeline>
-<codeline lineno="76" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a239f8b806d3fac77af2c5ef744b21f54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FusionMoveSettingsType<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a239f8b806d3fac77af2c5ef744b21f54" kindref="member">fusionMoveSettings</ref>;</highlight></codeline>
+<codeline lineno="70" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="71" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a279c363e73398244cc65a1becb2f1896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;ProposalGeneratorFactoryBaseType&gt;<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a279c363e73398244cc65a1becb2f1896" kindref="member">proposalGeneratorFactory</ref>;</highlight></codeline>
+<codeline lineno="72" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a95798899ad88d91dcaa5810c6a783962" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a95798899ad88d91dcaa5810c6a783962" kindref="member">numberOfIterations</ref>{1000};</highlight></codeline>
+<codeline lineno="73" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1af0466c3e3f184877959cf3b83f19ed7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1af0466c3e3f184877959cf3b83f19ed7d" kindref="member">stopIfNoImprovement</ref>{10};</highlight></codeline>
+<codeline lineno="74" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a32caa02ed79c6b188aaba9a686e97e74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a32caa02ed79c6b188aaba9a686e97e74" kindref="member">numberOfThreads</ref>{1};</highlight></codeline>
+<codeline lineno="75" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1afc7aab82f9d40ecbf2c4f183c6fc5722" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1afc7aab82f9d40ecbf2c4f183c6fc5722" kindref="member">numberOfParallelProposals</ref>{-1};</highlight></codeline>
+<codeline lineno="76" refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a974219c028df2a7e862529369c9f23fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FusionMoveSettingsType<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a974219c028df2a7e862529369c9f23fc" kindref="member">fusionMoveSettings</ref>;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad3cd22f5e95477f63869a12fdf40a535" kindref="member">~CcFusionMoveBasedImpl</ref>();</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad4cbdc9b91af1d53236989e3daf22a5e" kindref="member">CcFusionMoveBasedImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad97005b4bf8bd030c06759e90ca8bbd3" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a48cc97f580fea578c5eedd207c988186" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad97005b4bf8bd030c06759e90ca8bbd3" kindref="member">objective</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a017995a1591959b12b4bb4a8cbf57557" kindref="member">~CcFusionMoveBasedImpl</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" kindref="member">CcFusionMoveBasedImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7e5468a6297e5a7a3e859181a9897da5" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" kindref="member">objective</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a098e2711dc757cbfa16ac78a4a780dd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a098e2711dc757cbfa16ac78a4a780dd7" kindref="member">currentBestNodeLabels</ref>(<sp/>){</highlight></codeline>
+<codeline lineno="87" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a9998c1989b7fce1069b9dcbe843af8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a5a9998c1989b7fce1069b9dcbe843af8" kindref="member">currentBestNodeLabels</ref>(<sp/>){</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*currentBest_;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a00261e92c8118b4d83dafa09a17339b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a00261e92c8118b4d83dafa09a17339b7" kindref="member">name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a9459a4f6ad993df8433782ce671801e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a9459a4f6ad993df8433782ce671801e0" kindref="member">name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;CcFusionMoveBasedImpl&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
@@ -608,35 +614,35 @@
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad4cbdc9b91af1d53236989e3daf22a5e" kindref="member">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
-<codeline lineno="119" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad4cbdc9b91af1d53236989e3daf22a5e" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad4cbdc9b91af1d53236989e3daf22a5e" kindref="member">    CcFusionMoveBasedImpl</ref>(</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" kindref="member">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="119" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a30678d68bd90de395d875e500a075df7" kindref="member">    CcFusionMoveBasedImpl</ref>(</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" kindref="member">objective</ref>,<sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>graph_(objective.graph()),</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentBest_(nullptr),</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentBestEnergy_(0),</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parallelOptions_(settings.numberOfThreads),</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parallelOptions_(settings.<ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a32caa02ed79c6b188aaba9a686e97e74" kindref="member">numberOfThreads</ref>),</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadPool_(parallelOptions_),</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fusionMoves_()</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1aa5e7446cecc94c3e73445bf8617843f1" kindref="member">proposalGeneratorFactory</ref>)){</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(settings_.proposalGeneratorFactory)){</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;proposalGeneratorFactory<sp/>shall<sp/>not<sp/>be<sp/>empty!&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>auto<sp/>pgenSettings<sp/><sp/>=<sp/>typename<sp/>DefaultProposalGeneratorType::SettingsType();</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>settings_.proposalGeneratorFactory<sp/>=<sp/><sp/>std::make_shared&lt;DefaultProposalGeneratorFactoryType&gt;(pgenSettings);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
 <codeline lineno="138"><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>numberOfThreads<sp/>=<sp/>parallelOptions_.<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" kindref="member">getActualNumThreads</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>numberOfThreads<sp/>=<sp/>parallelOptions_.getActualNumThreads();</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ac762f365dd3f33fc472b4a781d6adb4b" kindref="member">numberOfParallelProposals</ref>&lt;0){</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1ac762f365dd3f33fc472b4a781d6adb4b" kindref="member">numberOfParallelProposals</ref><sp/>=<sp/>numberOfThreads;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.numberOfParallelProposals&lt;0){</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_.numberOfParallelProposals<sp/>=<sp/>numberOfThreads;</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>proposal<sp/>generators</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proposalGenerator_<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1aa5e7446cecc94c3e73445bf8617843f1" kindref="member">proposalGeneratorFactory</ref>-&gt;create(objective_,<sp/>numberOfThreads);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proposalGenerator_<sp/>=<sp/>settings_.proposalGeneratorFactory-&gt;create(objective_,<sp/>numberOfThreads);</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"></highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>fusion<sp/>moves</highlight><highlight class="normal"></highlight></codeline>
@@ -644,8 +650,8 @@
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solBufferIn_.resize(numberOfThreads);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"></highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel::parallel_foreach</ref>(threadPool_,<sp/>numberOfThreads,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tid,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i){</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fusionMoves_[i]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FusionMoveType(objective_,<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType_1a239f8b806d3fac77af2c5ef744b21f54" kindref="member">fusionMoveSettings</ref>);</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solBufferIn_[i]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a707b7d8fc7c52c9092337ba7910ea484" kindref="member">NodeLabelsType</ref>(graph_);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fusionMoves_[i]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FusionMoveType(objective_,<sp/>settings_.fusionMoveSettings);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solBufferIn_[i]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>NodeLabelsType(graph_);</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight></codeline>
@@ -653,8 +659,8 @@
 <codeline lineno="160"><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad3cd22f5e95477f63869a12fdf40a535" kindref="member">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
-<codeline lineno="164" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad3cd22f5e95477f63869a12fdf40a535" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad3cd22f5e95477f63869a12fdf40a535" kindref="member">    ~CcFusionMoveBasedImpl</ref>(){</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="164" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a017995a1591959b12b4bb4a8cbf57557" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    ~CcFusionMoveBasedImpl</ref>(){</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"></highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>delete<sp/>proposal<sp/>generator</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>proposalGenerator_;</highlight></codeline>
@@ -668,8 +674,8 @@
 <codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"></highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a48cc97f580fea578c5eedd207c988186" kindref="member">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
-<codeline lineno="179" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a48cc97f580fea578c5eedd207c988186" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a48cc97f580fea578c5eedd207c988186" kindref="member">    optimize</ref>(</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="179" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1a7e5468a6297e5a7a3e859181a9897da5" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    optimize</ref>(</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/><sp/>VisitorBaseType<sp/>*<sp/>visitor</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -695,8 +701,8 @@
 <codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight></codeline>
 <codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
-<codeline lineno="206"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    optimizeSingleThread</ref>(</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    optimizeSingleThread</ref>(</highlight></codeline>
 <codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorProxyType<sp/>&amp;<sp/>visitorProxy</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>proposal(graph_);</highlight></codeline>
@@ -738,8 +744,8 @@
 <codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="246"><highlight class="normal"></highlight></codeline>
 <codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CcFusionMoveBasedImpl&lt;OBJECTIVE,<sp/>SOLVER_BASE,<sp/>FUSION_MOVE&gt;::</highlight></codeline>
-<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>optimizeMultiThread(</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    optimizeMultiThread</ref>(</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorProxyType<sp/>&amp;<sp/>visitorProxy</highlight></codeline>
 <codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NIFTY_CHECK(false,<sp/>&quot;currently<sp/>only<sp/>single<sp/>thread<sp/>is<sp/>implemented&quot;);</highlight><highlight class="normal"></highlight></codeline>
@@ -869,21 +875,21 @@
 <codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="377"><highlight class="normal"></highlight></codeline>
 <codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>FUSION_MOVE&gt;</highlight></codeline>
-<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>CcFusionMoveBasedImpl&lt;OBJECTIVE,<sp/>SOLVER_BASE,<sp/>FUSION_MOVE&gt;::ObjectiveType<sp/>&amp;</highlight></codeline>
-<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/>CcFusionMoveBasedImpl&lt;OBJECTIVE,<sp/>SOLVER_BASE,<sp/>FUSION_MOVE&gt;::</highlight></codeline>
-<codeline lineno="381" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1ad97005b4bf8bd030c06759e90ca8bbd3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>objective()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1aa9866b5feaad59ab66248cbefc28e6c0" kindref="member">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::ObjectiveType</ref><sp/>&amp;</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">CcFusionMoveBasedImpl&lt;OBJECTIVE, SOLVER_BASE, FUSION_MOVE&gt;::</ref></highlight></codeline>
+<codeline lineno="381" refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1af9355be55bd8497b059a2e5b1842a20b" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl" kindref="compound">    objective</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_;</highlight></codeline>
 <codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="384"><highlight class="normal"></highlight></codeline>
 <codeline lineno="385"><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="386"><highlight class="normal"></highlight></codeline>
-<codeline lineno="387"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common::detail_cc_fusion</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="388"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="389"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common::detail_cc_fusion</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="389"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="390"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="391"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="392"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx"/>
   </compounddef>
 </doxygen>

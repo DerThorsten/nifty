@@ -1,182 +1,182 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="multicut__andres_8hxx" kind="file" language="C++">
     <compoundname>multicut_andres.hxx</compoundname>
-    <includes refid="multicut__base_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_base.hxx</includes>
+    <includes refid="multicut_2multicut__base_8hxx" local="yes">nifty/graph/opt/multicut/multicut_base.hxx</includes>
     <includes refid="ufd_8hxx" local="yes">nifty/ufd/ufd.hxx</includes>
     <includes local="yes">andres/graph/graph.hxx</includes>
     <includes local="yes">andres/graph/multicut/kernighan-lin.hxx</includes>
     <includes local="yes">andres/graph/multicut/greedy-additive.hxx</includes>
-    <includedby refid="multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</includedby>
+    <includedby refid="multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_mp.hxx</includedby>
     <incdepgraph>
-      <node id="9715">
+      <node id="4125">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_andres.hxx</label>
+        <link refid="multicut__andres_8hxx"/>
+        <childnode refid="4126" relation="include">
+        </childnode>
+        <childnode refid="4140" relation="include">
+        </childnode>
+        <childnode refid="4143" relation="include">
+        </childnode>
+        <childnode refid="4144" relation="include">
+        </childnode>
+        <childnode refid="4145" relation="include">
+        </childnode>
+      </node>
+      <node id="4144">
         <label>andres/graph/multicut/kernighan-lin.hxx</label>
       </node>
-      <node id="9709">
+      <node id="4138">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="9698" relation="include">
+        <childnode refid="4127" relation="include">
         </childnode>
       </node>
-      <node id="9697">
-        <label>nifty/graph/optimization/multicut/multicut_base.hxx</label>
-        <link refid="multicut__base_8hxx"/>
-        <childnode refid="9698" relation="include">
+      <node id="4139">
+        <label>nifty/graph/opt/multicut/multicut_visitor_base.hxx</label>
+        <link refid="multicut__visitor__base_8hxx"/>
+        <childnode refid="4127" relation="include">
         </childnode>
-        <childnode refid="9699" relation="include">
+        <childnode refid="4128" relation="include">
         </childnode>
-        <childnode refid="9700" relation="include">
+        <childnode refid="4129" relation="include">
         </childnode>
-        <childnode refid="9701" relation="include">
-        </childnode>
-        <childnode refid="9710" relation="include">
+        <childnode refid="4133" relation="include">
         </childnode>
       </node>
-      <node id="9702">
+      <node id="4131">
         <label>stdexcept</label>
       </node>
-      <node id="9701">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="9698" relation="include">
-        </childnode>
-        <childnode refid="9699" relation="include">
-        </childnode>
-        <childnode refid="9700" relation="include">
-        </childnode>
-        <childnode refid="9702" relation="include">
-        </childnode>
-        <childnode refid="9703" relation="include">
-        </childnode>
-        <childnode refid="9701" relation="include">
-        </childnode>
-        <childnode refid="9704" relation="include">
-        </childnode>
-      </node>
-      <node id="9698">
+      <node id="4127">
         <label>string</label>
       </node>
-      <node id="9703">
+      <node id="4132">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="9702" relation="include">
+        <childnode refid="4131" relation="include">
         </childnode>
       </node>
-      <node id="9713">
+      <node id="4142">
         <label>map</label>
       </node>
-      <node id="9716">
+      <node id="4145">
         <label>andres/graph/multicut/greedy-additive.hxx</label>
       </node>
-      <node id="9708">
+      <node id="4137">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="9700" relation="include">
+        <childnode refid="4129" relation="include">
         </childnode>
-        <childnode refid="9707" relation="include">
+        <childnode refid="4136" relation="include">
         </childnode>
-        <childnode refid="9698" relation="include">
+        <childnode refid="4127" relation="include">
         </childnode>
       </node>
-      <node id="9714">
+      <node id="4126">
+        <label>nifty/graph/opt/multicut/multicut_base.hxx</label>
+        <link refid="multicut_2multicut__base_8hxx"/>
+        <childnode refid="4127" relation="include">
+        </childnode>
+        <childnode refid="4128" relation="include">
+        </childnode>
+        <childnode refid="4129" relation="include">
+        </childnode>
+        <childnode refid="4130" relation="include">
+        </childnode>
+        <childnode refid="4139" relation="include">
+        </childnode>
+      </node>
+      <node id="4143">
         <label>andres/graph/graph.hxx</label>
       </node>
-      <node id="9696">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx</label>
-        <link refid="multicut_andres.hxx"/>
-        <childnode refid="9697" relation="include">
-        </childnode>
-        <childnode refid="9711" relation="include">
-        </childnode>
-        <childnode refid="9714" relation="include">
-        </childnode>
-        <childnode refid="9715" relation="include">
-        </childnode>
-        <childnode refid="9716" relation="include">
-        </childnode>
-      </node>
-      <node id="9711">
+      <node id="4140">
         <label>nifty/ufd/ufd.hxx</label>
         <link refid="ufd_8hxx"/>
-        <childnode refid="9705" relation="include">
+        <childnode refid="4134" relation="include">
         </childnode>
-        <childnode refid="9712" relation="include">
+        <childnode refid="4141" relation="include">
         </childnode>
-        <childnode refid="9713" relation="include">
+        <childnode refid="4142" relation="include">
         </childnode>
       </node>
-      <node id="9712">
+      <node id="4141">
         <label>vector</label>
       </node>
-      <node id="9704">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="9705" relation="include">
-        </childnode>
-        <childnode refid="9698" relation="include">
-        </childnode>
-        <childnode refid="9699" relation="include">
-        </childnode>
-        <childnode refid="9700" relation="include">
-        </childnode>
-        <childnode refid="9706" relation="include">
-        </childnode>
-        <childnode refid="9707" relation="include">
-        </childnode>
-        <childnode refid="9708" relation="include">
-        </childnode>
-        <childnode refid="9709" relation="include">
-        </childnode>
-      </node>
-      <node id="9700">
+      <node id="4129">
         <label>sstream</label>
       </node>
-      <node id="9706">
+      <node id="4130">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="4127" relation="include">
+        </childnode>
+        <childnode refid="4128" relation="include">
+        </childnode>
+        <childnode refid="4129" relation="include">
+        </childnode>
+        <childnode refid="4131" relation="include">
+        </childnode>
+        <childnode refid="4132" relation="include">
+        </childnode>
+        <childnode refid="4130" relation="include">
+        </childnode>
+        <childnode refid="4133" relation="include">
+        </childnode>
+      </node>
+      <node id="4135">
         <label>iostream</label>
       </node>
-      <node id="9705">
+      <node id="4134">
         <label>cstddef</label>
       </node>
-      <node id="9707">
+      <node id="4136">
         <label>chrono</label>
       </node>
-      <node id="9710">
-        <label>nifty/graph/optimization/multicut/multicut_visitor_base.hxx</label>
-        <link refid="multicut__visitor__base_8hxx"/>
-        <childnode refid="9698" relation="include">
+      <node id="4133">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="4134" relation="include">
         </childnode>
-        <childnode refid="9699" relation="include">
+        <childnode refid="4127" relation="include">
         </childnode>
-        <childnode refid="9700" relation="include">
+        <childnode refid="4128" relation="include">
         </childnode>
-        <childnode refid="9704" relation="include">
+        <childnode refid="4129" relation="include">
+        </childnode>
+        <childnode refid="4135" relation="include">
+        </childnode>
+        <childnode refid="4136" relation="include">
+        </childnode>
+        <childnode refid="4137" relation="include">
+        </childnode>
+        <childnode refid="4138" relation="include">
         </childnode>
       </node>
-      <node id="9699">
+      <node id="4128">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="9718">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</label>
-        <link refid="multicut__mp_8hxx"/>
-      </node>
-      <node id="9717">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx</label>
-        <link refid="multicut_andres.hxx"/>
-        <childnode refid="9718" relation="include">
+      <node id="4146">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_andres.hxx</label>
+        <link refid="multicut__andres_8hxx"/>
+        <childnode refid="4147" relation="include">
         </childnode>
       </node>
+      <node id="4147">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_mp.hxx</label>
+        <link refid="multicut__mp_8hxx"/>
+      </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" prot="public">nifty::graph::optimization::multicut::MulticutAndres</innerclass>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive" prot="public">nifty::graph::optimization::multicut::MulticutAndresGreedyAdditive</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" prot="public">nifty::graph::optimization::multicut::MulticutAndresGreedyAdditive::SettingsType</innerclass>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin" prot="public">nifty::graph::optimization::multicut::MulticutAndresKernighanLin</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" prot="public">nifty::graph::optimization::multicut::MulticutAndresKernighanLin::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" prot="public">nifty::graph::opt::multicut::MulticutAndres</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive" prot="public">nifty::graph::opt::multicut::MulticutAndresGreedyAdditive</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" prot="public">nifty::graph::opt::multicut::MulticutAndresGreedyAdditive::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin" prot="public">nifty::graph::opt::multicut::MulticutAndresKernighanLin</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" prot="public">nifty::graph::opt::multicut::MulticutAndresKernighanLin::SettingsType</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1multicut">nifty::graph::optimization::multicut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1multicut">nifty::graph::opt::multicut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -184,7 +184,7 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__base_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut_2multicut__base_8hxx" kindref="compound">nifty/graph/opt/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ufd_8hxx" kindref="compound">nifty/ufd/ufd.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>andres::graph<sp/>includes</highlight><highlight class="normal"></highlight></codeline>
@@ -194,195 +194,196 @@
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">multicut{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="17" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="17" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:<sp/></highlight></codeline>
-<codeline lineno="20" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" kindref="member">Objective</ref>;</highlight></codeline>
-<codeline lineno="21" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a075b7a01930fbfb2fa2834157c78bf89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a075b7a01930fbfb2fa2834157c78bf89" kindref="member">BaseType</ref>;</highlight></codeline>
-<codeline lineno="22" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a2d78bb58be29b7d46e9c653489a6d1de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">BaseType::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a2d78bb58be29b7d46e9c653489a6d1de" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="23" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aa9bb57168c3d0c6cba6610d6a27f5b4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy" kindref="compound">BaseType::VisitorProxyType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aa9bb57168c3d0c6cba6610d6a27f5b4e" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
-<codeline lineno="24" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">BaseType::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
-<codeline lineno="25" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a975ce8ae05d1ef2a988656c5906616bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>andres::graph::Graph&lt;&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a975ce8ae05d1ef2a988656c5906616bb" kindref="member">Graph</ref>;</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ae6d72673d50afe1faa2c3dc99ba92210" kindref="member">MulticutAndres</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" kindref="member">objective</ref>);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a476f4451db459f72c3f007387a65da8f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a476f4451db459f72c3f007387a65da8f" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodelabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor){}</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_;}</highlight></codeline>
-<codeline lineno="32" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac5ff8ecc2f1b750d063b1deee34db9be" kindref="member">currentBest_</ref>;}</highlight></codeline>
-<codeline lineno="33" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1abb278afaf07df93712033694ca13f846" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1abb278afaf07df93712033694ca13f846" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndres&quot;</highlight><highlight class="normal">;}</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1acb3a9d513a465e8109b4700d4465086c" kindref="member">nodeLabelsToEdgeLabels</ref>(std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels);</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a8a7666fececb09d893acac9975713b25" kindref="member">edgeLabelsToNodeLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels);</highlight></codeline>
-<codeline lineno="38" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac5ff8ecc2f1b750d063b1deee34db9be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac5ff8ecc2f1b750d063b1deee34db9be" kindref="member">currentBest_</ref>;</highlight></codeline>
-<codeline lineno="39" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a80f20b9e88a4d6460729ca5b16bd2a0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Graph<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a80f20b9e88a4d6460729ca5b16bd2a0a" kindref="member">graph_</ref>;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initGraph();</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective_;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">ufd::Ufd&lt;uint64_t&gt;</ref><sp/>ufd_;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aed60c2f4ed9c6c6b97e8b513d7a48e86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aed60c2f4ed9c6c6b97e8b513d7a48e86" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="21" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adb1adbc514b266aaffc1f7219682966e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adb1adbc514b266aaffc1f7219682966e" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad9aa4942dd45186f3a2ebb38d42876e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad9aa4942dd45186f3a2ebb38d42876e5" kindref="member">BaseType</ref>;</highlight></codeline>
+<codeline lineno="23" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">BaseType::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a898fcb16a25facde8ba763b27a331bda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">BaseType::VisitorProxyType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a898fcb16a25facde8ba763b27a331bda" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
+<codeline lineno="25" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">BaseType::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a0d2a06934455d278149370b1dbcb3953" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>andres::graph::Graph&lt;&gt;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a0d2a06934455d278149370b1dbcb3953" kindref="member">AGraphType</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a0995daba89398a444065df5227737ac6" kindref="member">MulticutAndres</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">objective</ref>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aa938eb1da7b3af5e0e5935e7bd818c61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aa938eb1da7b3af5e0e5935e7bd818c61" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodelabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor){}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_;}</highlight></codeline>
+<codeline lineno="33" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad49ef5b1f23c054abb4521445871b9b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad49ef5b1f23c054abb4521445871b9b4" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">currentBest_</ref>;}</highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ac7a32dbee9103beb72ba2cf6fcd6ecee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ac7a32dbee9103beb72ba2cf6fcd6ecee" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndres&quot;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1abce35dff7d396cade66f8f7611e141f4" kindref="member">nodeLabelsToEdgeLabels</ref>(std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ae9d13d3f75cc738cb1b5fbe69f98fcaa" kindref="member">edgeLabelsToNodeLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels);</highlight></codeline>
+<codeline lineno="39" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">currentBest_</ref>;</highlight></codeline>
+<codeline lineno="40" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AGraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initGraph();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective_;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">ufd::Ufd&lt;uint64_t&gt;</ref><sp/>ufd_;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="49" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ae6d72673d50afe1faa2c3dc99ba92210" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ae6d72673d50afe1faa2c3dc99ba92210" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::MulticutAndres</ref>(</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1ac2d2044ef4dc45dbacdb3f34b001760f" kindref="member">Objective</ref><sp/>&amp;<sp/>objective</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:<sp/>currentBest_(nullptr),</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>graph_(objective.graph().numberOfNodes()),</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objective_(objective),</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_(graph_.numberOfVertices())</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initGraph();</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="50" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a0995daba89398a444065df5227737ac6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a0995daba89398a444065df5227737ac6" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::MulticutAndres</ref>(</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aed60c2f4ed9c6c6b97e8b513d7a48e86" kindref="member">ObjectiveType</ref><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">objective</ref></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">currentBest_</ref>(nullptr),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>(objective.graph().numberOfNodes()),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objective_(objective),</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.numberOfVertices())</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initGraph();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;::initGraph</ref>(){</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>objGraph<sp/>=<sp/>objective_.graph();</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>e<sp/>:<sp/>objGraph.edges()){</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>uv<sp/>=<sp/>objGraph.uv(e);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>graph_.insertEdge(uv.first,<sp/>uv.second);</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;::initGraph</ref>(){</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>objGraph<sp/>=<sp/>objective_.graph();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>e<sp/>:<sp/>objGraph.edges()){</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>uv<sp/>=<sp/>objGraph.uv(e);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.insertEdge(uv.first,<sp/>uv.second);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="71" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1acb3a9d513a465e8109b4700d4465086c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1acb3a9d513a465e8109b4700d4465086c" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::nodeLabelsToEdgeLabels</ref>(std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels)<sp/>{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>nodeLabels<sp/>=<sp/>*currentBest_;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeId<sp/>=<sp/>0;<sp/>edgeId<sp/>&lt;<sp/><sp/>graph_.numberOfEdges();<sp/>++edgeId)<sp/>{</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>graph_.vertexOfEdge(edgeId,0);<sp/></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>graph_.vertexOfEdge(edgeId,1);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edgeLabels[edgeId]<sp/>=<sp/>nodeLabels[u]<sp/>!=<sp/>nodeLabels[v];</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="72" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1abce35dff7d396cade66f8f7611e141f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1abce35dff7d396cade66f8f7611e141f4" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::nodeLabelsToEdgeLabels</ref>(std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>nodeLabels<sp/>=<sp/>*<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">currentBest_</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeId<sp/>=<sp/>0;<sp/>edgeId<sp/>&lt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.numberOfEdges();<sp/>++edgeId)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.vertexOfEdge(edgeId,0);<sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>v<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.vertexOfEdge(edgeId,1);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edgeLabels[edgeId]<sp/>=<sp/>nodeLabels[u]<sp/>!=<sp/>nodeLabels[v];</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="82" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a8a7666fececb09d893acac9975713b25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a8a7666fececb09d893acac9975713b25" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::edgeLabelsToNodeLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels)<sp/>{</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeId<sp/>=<sp/>0;<sp/>edgeId<sp/>&lt;<sp/><sp/>graph_.numberOfEdges();<sp/>++edgeId)<sp/>{</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!edgeLabels[edgeId]){</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_.merge(<sp/>graph_.vertexOfEdge(edgeId,0),<sp/>graph_.vertexOfEdge(edgeId,1)<sp/>);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_.elementLabeling(currentBest_-&gt;begin());</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="83" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ae9d13d3f75cc738cb1b5fbe69f98fcaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ae9d13d3f75cc738cb1b5fbe69f98fcaa" kindref="member">MulticutAndres&lt;OBJECTIVE&gt;::edgeLabelsToNodeLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;char&gt;<sp/>&amp;<sp/>edgeLabels)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeId<sp/>=<sp/>0;<sp/>edgeId<sp/>&lt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.numberOfEdges();<sp/>++edgeId)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!edgeLabels[edgeId]){</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_.<ref refid="classnifty_1_1ufd_1_1Ufd_1aeb49fa316c1956ce636e68e96e003d2f" kindref="member">merge</ref>(<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.vertexOfEdge(edgeId,0),<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">graph_</ref>.vertexOfEdge(edgeId,1)<sp/>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ufd_.<ref refid="classnifty_1_1ufd_1_1Ufd_1ad2010b31862f3d11756e0a5a510499f4" kindref="member">elementLabeling</ref>(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">currentBest_</ref>-&gt;begin());</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="94" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive" kindref="compound">MulticutAndresGreedyAdditive</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="98" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ad1fbec1803b1b6a0772f979f79e3d9a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ad1fbec1803b1b6a0772f979f79e3d9a4" kindref="member">Objective</ref>;</highlight></codeline>
-<codeline lineno="99" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a06faae616e7402904fc9d2e3c0087a4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a06faae616e7402904fc9d2e3c0087a4a" kindref="member">Base</ref>;</highlight></codeline>
-<codeline lineno="100" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac5012ef8d279e1f927b616d718290b5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac5012ef8d279e1f927b616d718290b5b" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
-<codeline lineno="101" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a79fcfac650a48f7707522182b21d4f9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">Base::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a79fcfac650a48f7707522182b21d4f9e" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="103" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>{};</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ab1596c53c67462eaafed9e44aa455a1f" kindref="member">MulticutAndresGreedyAdditive</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a0ee62e21648900255e50b34155bf9443" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac7fe8288460dba66d9f570edb47dc82d" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
-<codeline lineno="107" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a0ee62e21648900255e50b34155bf9443" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1a0ee62e21648900255e50b34155bf9443" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" kindref="member">Base::objective</ref>();}</highlight></codeline>
-<codeline lineno="108" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1af04a57e6d7ede3bcaaffe8c44fb8d0e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1af04a57e6d7ede3bcaaffe8c44fb8d0e5" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" kindref="member">Base::currentBestNodeLabels</ref>();}</highlight></codeline>
-<codeline lineno="109" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1aa65b043b96d8a11cdd7ac5e83a6cc0aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1aa65b043b96d8a11cdd7ac5e83a6cc0aa" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndresGreedyAdditive&quot;</highlight><highlight class="normal">;}</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ab1596c53c67462eaafed9e44aa455a1f" kindref="member">MulticutAndresGreedyAdditive&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="115" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ab1596c53c67462eaafed9e44aa455a1f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ab1596c53c67462eaafed9e44aa455a1f" kindref="member">    MulticutAndresGreedyAdditive</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;)</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>Base(objective)</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="120" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac7fe8288460dba66d9f570edb47dc82d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresGreedyAdditive_1ac7fe8288460dba66d9f570edb47dc82d" kindref="member">MulticutAndresGreedyAdditive&lt;OBJECTIVE&gt;::optimize</ref>(</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/><sp/>VisitorBaseType<sp/>*<sp/>visitor</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>){<sp/><sp/></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//VisitorProxyType<sp/>visitorProxy(visitor);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::currentBest_<sp/>=<sp/>&amp;nodeLabels;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(Base::graph_.numberOfEdges()&gt;0){</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;char&gt;<sp/>edgeLabels(<sp/>Base::graph_.numberOfEdges()<sp/>);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::nodeLabelsToEdgeLabels(edgeLabels);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::greedyAdditiveEdgeContraction(Base::graph_,<sp/>objective().weights(),<sp/>edgeLabels);</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::edgeLabelsToNodeLabels(edgeLabels);</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="95" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive" kindref="compound">MulticutAndresGreedyAdditive</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a014aadbb36e8b1b92e079cd09d636263" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a014aadbb36e8b1b92e079cd09d636263" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="100" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a2c186374cb769da99f59cf4072527c6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a2c186374cb769da99f59cf4072527c6d" kindref="member">Base</ref>;</highlight></codeline>
+<codeline lineno="101" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a69eb808caafaf219ce18389947649f8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a69eb808caafaf219ce18389947649f8a" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="102" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1af1be6ff56464cd74e98490c64176aee8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" kindref="member">Base::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1af1be6ff56464cd74e98490c64176aee8" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>{};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive" kindref="compound">MulticutAndresGreedyAdditive</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aa938eb1da7b3af5e0e5935e7bd818c61" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
+<codeline lineno="108" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Base::objective();}</highlight></codeline>
+<codeline lineno="109" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1aed65f0ad0252b0cf069a969633271757" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1aed65f0ad0252b0cf069a969633271757" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Base::currentBestNodeLabels();}</highlight></codeline>
+<codeline lineno="110" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a2e3775af34622f15e57c60986e2d15d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a2e3775af34622f15e57c60986e2d15d4" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndresGreedyAdditive&quot;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a44ba4889e29b27ef8dbf1825e8bde667" kindref="member">MulticutAndresGreedyAdditive&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="116" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a44ba4889e29b27ef8dbf1825e8bde667" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a44ba4889e29b27ef8dbf1825e8bde667" kindref="member">    MulticutAndresGreedyAdditive</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aed60c2f4ed9c6c6b97e8b513d7a48e86" kindref="member">ObjectiveType</ref><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">Base</ref>(objective)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="121" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a174b41a0f08004dbfe35be189f287446" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a174b41a0f08004dbfe35be189f287446" kindref="member">MulticutAndresGreedyAdditive&lt;OBJECTIVE&gt;::optimize</ref>(</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" kindref="member">NodeLabelsType</ref><sp/>&amp;<sp/>nodeLabels,<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" kindref="member">VisitorBaseType</ref><sp/>*<sp/>visitor</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>){<sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//VisitorProxyType<sp/>visitorProxy(visitor);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">Base::currentBest_</ref><sp/>=<sp/>&amp;nodeLabels;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>.numberOfEdges()&gt;0){</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;char&gt;<sp/>edgeLabels(<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>.numberOfEdges()<sp/>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1abce35dff7d396cade66f8f7611e141f4" kindref="member">Base::nodeLabelsToEdgeLabels</ref>(edgeLabels);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::greedyAdditiveEdgeContraction(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>,<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586" kindref="member">objective</ref>().weights(),<sp/>edgeLabels);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ae9d13d3f75cc738cb1b5fbe69f98fcaa" kindref="member">Base::edgeLabelsToNodeLabels</ref>(edgeLabels);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="136" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin" kindref="compound">MulticutAndresKernighanLin</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="140" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a97f5dee93f006373748000f85e918824" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a97f5dee93f006373748000f85e918824" kindref="member">Objective</ref>;</highlight></codeline>
-<codeline lineno="141" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad3d54ded77e917607cbf101324298e36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad3d54ded77e917607cbf101324298e36" kindref="member">Base</ref>;</highlight></codeline>
-<codeline lineno="142" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a2c143d6b6e06a70388ba8a74d6b8d2ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1aebe9bae6ca2760f72e19ec62504de209" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a2c143d6b6e06a70388ba8a74d6b8d2ca" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
-<codeline lineno="143" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1aa9ff2451667fafb8a65092737bf63610" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">Base::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1aa9ff2451667fafb8a65092737bf63610" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ae78ffe96f141f7086d4efb20ff12ff55" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>andres::graph::multicut::KernighanLinSettings<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ae78ffe96f141f7086d4efb20ff12ff55" kindref="member">KlSettings</ref>;</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>{</highlight></codeline>
-<codeline lineno="148" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a7f8372e73c3efb9307299428cc546128" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a7f8372e73c3efb9307299428cc546128" kindref="member">numberOfInnerIterations</ref><sp/>{<sp/>std::numeric_limits&lt;size_t&gt;::max()<sp/>};</highlight></codeline>
-<codeline lineno="149" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a04fd536ef01d3902d2f1c362ed34e6b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a04fd536ef01d3902d2f1c362ed34e6b2" kindref="member">numberOfOuterIterations</ref><sp/>{<sp/>100<sp/>};</highlight></codeline>
-<codeline lineno="150" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a1a055189e7d6171a35312506c3b53386" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a1a055189e7d6171a35312506c3b53386" kindref="member">epsilon</ref><sp/>{<sp/>1e-6<sp/>};</highlight></codeline>
-<codeline lineno="151" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1acec3bd5b7686a64cef0b24d403ad2b8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1acec3bd5b7686a64cef0b24d403ad2b8a" kindref="member">verbose</ref><sp/>{<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>};</highlight></codeline>
-<codeline lineno="152" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a2043a045913c6e562308c0bff179f86c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a2043a045913c6e562308c0bff179f86c" kindref="member">greedyWarmstart</ref>{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a09ef61a0f8898cc0184b23f30cc0e79d" kindref="member">MulticutAndresKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a8ffe27b83b0561e7765ad435dd44aa56" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/>SettingsType());</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5ae9a56d69e579953b0e5e209694a46" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
-<codeline lineno="158" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a8ffe27b83b0561e7765ad435dd44aa56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a8ffe27b83b0561e7765ad435dd44aa56" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a7498ff1c88845f4f181e2fd558b6ce50" kindref="member">Base::objective</ref>();}</highlight></codeline>
-<codeline lineno="159" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a30e3c0ccfb14a5c01514cc6ca90078c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a30e3c0ccfb14a5c01514cc6ca90078c8" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndres_1a61b22d0ac4f49d902d0be6ef63d25228" kindref="member">Base::currentBestNodeLabels</ref>();}</highlight></codeline>
-<codeline lineno="160" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5fe999b7c1cad0c2ed964941944190d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5fe999b7c1cad0c2ed964941944190d" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndresKernighanLin&quot;</highlight><highlight class="normal">;}</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"></highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KlSettings<sp/>klSettings_;</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a09ef61a0f8898cc0184b23f30cc0e79d" kindref="member">MulticutAndresKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="169" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a09ef61a0f8898cc0184b23f30cc0e79d" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1a09ef61a0f8898cc0184b23f30cc0e79d" kindref="member">    MulticutAndresKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings)</highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>Base(objective),</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_()</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.numberOfInnerIterations<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a7f8372e73c3efb9307299428cc546128" kindref="member">numberOfInnerIterations</ref>;</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.numberOfOuterIterations<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a04fd536ef01d3902d2f1c362ed34e6b2" kindref="member">numberOfOuterIterations</ref>;</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.epsilon<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a1a055189e7d6171a35312506c3b53386" kindref="member">epsilon</ref>;</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.verbose<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1acec3bd5b7686a64cef0b24d403ad2b8a" kindref="member">verbose</ref>;</highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="181" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5ae9a56d69e579953b0e5e209694a46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutAndresKernighanLin_1ad5ae9a56d69e579953b0e5e209694a46" kindref="member">MulticutAndresKernighanLin&lt;OBJECTIVE&gt;::optimize</ref>(</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/><sp/>VisitorBaseType<sp/>*<sp/>visitor</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>){<sp/><sp/></highlight></codeline>
-<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//VisitorProxyType<sp/>visitorProxy(visitor);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::currentBest_<sp/>=<sp/>&amp;nodeLabels;</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(Base::graph_.numberOfEdges()&gt;0){</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;char&gt;<sp/>edgeLabels(<sp/>Base::graph_.numberOfEdges()<sp/>);</highlight></codeline>
-<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::nodeLabelsToEdgeLabels(edgeLabels);</highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.greedyWarmstart){</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::greedyAdditiveEdgeContraction(Base::graph_,<sp/>objective().weights(),<sp/>edgeLabels);</highlight></codeline>
-<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::kernighanLin(Base::graph_,<sp/>objective().weights(),<sp/>edgeLabels,<sp/>edgeLabels,<sp/>klSettings_);</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Base::edgeLabelsToNodeLabels(edgeLabels);</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="197"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::multicut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="198"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="137" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin" kindref="compound">MulticutAndresKernighanLin</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a8ddf8ec911eea2346aa0b04455bb2fde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a8ddf8ec911eea2346aa0b04455bb2fde" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="142" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ab78f50b4aea673a5906827b7edae099f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">MulticutAndres&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ab78f50b4aea673a5906827b7edae099f" kindref="member">Base</ref>;</highlight></codeline>
+<codeline lineno="143" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a130051fae5c39b5ff6e52b363b07e70b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a130051fae5c39b5ff6e52b363b07e70b" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="144" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a02ab5ea089da407c3a0100510b58d644" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" kindref="member">Base::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1a02ab5ea089da407c3a0100510b58d644" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aed67f0394e2e8a7b91440a52ce2a105f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>andres::graph::multicut::KernighanLinSettings<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aed67f0394e2e8a7b91440a52ce2a105f" kindref="member">KlSettings</ref>;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>{</highlight></codeline>
+<codeline lineno="149" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a9c9cc17176564cb02ea05d0973564342" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfInnerIterations<sp/>{<sp/>std::numeric_limits&lt;size_t&gt;::max()<sp/>};</highlight></codeline>
+<codeline lineno="150" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a89795373789b533bdf9fd0282e0de45e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfOuterIterations<sp/>{<sp/>100<sp/>};</highlight></codeline>
+<codeline lineno="151" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1aa62f466bdffff390631782fdc5932bdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epsilon<sp/>{<sp/>1e-6<sp/>};</highlight></codeline>
+<codeline lineno="152" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a94b73e79e1469137c3b5b0109d9aff77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>verbose<sp/>{<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="153" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a43281ae01e3e10d69b51176723721eff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>greedyWarmstart{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin" kindref="compound">MulticutAndresKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a174b41a0f08004dbfe35be189f287446" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
+<codeline lineno="159" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aaf7fb543729a5be9211a8dd5400b404a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aaf7fb543729a5be9211a8dd5400b404a" kindref="member">objective</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f" kindref="member">Base::objective</ref>();}</highlight></codeline>
+<codeline lineno="160" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ab06bb2d0f90c255f35453aad5b06eea3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ab06bb2d0f90c255f35453aad5b06eea3" kindref="member">currentBestNodeLabels</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad49ef5b1f23c054abb4521445871b9b4" kindref="member">Base::currentBestNodeLabels</ref>();}</highlight></codeline>
+<codeline lineno="161" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ac4b9f02bd36b35faf2ace3e87a224dcc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ac4b9f02bd36b35faf2ace3e87a224dcc" kindref="member">name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;MulticutAndresKernighanLin&quot;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>settings_;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KlSettings<sp/>klSettings_;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ae6f8a37ea05219cd63ae259f0dcede5b" kindref="member">MulticutAndresKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="170" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ae6f8a37ea05219cd63ae259f0dcede5b" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ae6f8a37ea05219cd63ae259f0dcede5b" kindref="member">    MulticutAndresKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1aed60c2f4ed9c6c6b97e8b513d7a48e86" kindref="member">ObjectiveType</ref><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" kindref="compound">Base</ref>(objective),</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_()</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.numberOfInnerIterations<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a9c9cc17176564cb02ea05d0973564342" kindref="member">numberOfInnerIterations</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.numberOfOuterIterations<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a89795373789b533bdf9fd0282e0de45e" kindref="member">numberOfOuterIterations</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.epsilon<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1aa62f466bdffff390631782fdc5932bdf" kindref="member">epsilon</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>klSettings_.verbose<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a94b73e79e1469137c3b5b0109d9aff77" kindref="member">verbose</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="182" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1af4f27f04beb50edb810b4e750bbc8b46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1af4f27f04beb50edb810b4e750bbc8b46" kindref="member">MulticutAndresKernighanLin&lt;OBJECTIVE&gt;::optimize</ref>(</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a6cd9d64abc4a98aa9745ce1ef0d4ecfe" kindref="member">NodeLabelsType</ref><sp/>&amp;<sp/>nodeLabels,<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a295da342b6ebe8a8720cadd1dcce2e57" kindref="member">VisitorBaseType</ref><sp/>*<sp/>visitor</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>){<sp/><sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//VisitorProxyType<sp/>visitorProxy(visitor);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1adaecc32ca442b03bf2a2f31ba7e14005" kindref="member">Base::currentBest_</ref><sp/>=<sp/>&amp;nodeLabels;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>.numberOfEdges()&gt;0){</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;char&gt;<sp/>edgeLabels(<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>.numberOfEdges()<sp/>);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1abce35dff7d396cade66f8f7611e141f4" kindref="member">Base::nodeLabelsToEdgeLabels</ref>(edgeLabels);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1_1SettingsType_1a43281ae01e3e10d69b51176723721eff" kindref="member">greedyWarmstart</ref>){</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::greedyAdditiveEdgeContraction(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>,<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aaf7fb543729a5be9211a8dd5400b404a" kindref="member">objective</ref>().weights(),<sp/>edgeLabels);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>andres::graph::multicut::kernighanLin(<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a49623d993a1fdb16d8d0ba35f974c35a" kindref="member">Base::graph_</ref>,<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aaf7fb543729a5be9211a8dd5400b404a" kindref="member">objective</ref>().weights(),<sp/>edgeLabels,<sp/>edgeLabels,<sp/>klSettings_);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ae9d13d3f75cc738cb1b5fbe69f98fcaa" kindref="member">Base::edgeLabelsToNodeLabels</ref>(edgeLabels);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::multicut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_andres.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_andres.hxx"/>
   </compounddef>
 </doxygen>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['info',['INFO',['../namespacenifty_1_1logging.html#a3385625f9a0dbb17f70c47d3fca2f64da551b723eafd6a31d444fcb2f5920fbd3',1,'nifty::logging']]]
+  ['generalized_5fmean',['GENERALIZED_MEAN',['../structnifty_1_1graph_1_1agglo_1_1NewPolicy_1_1SettingsType.html#accfaea9de6fc67aab372340c1982edcda2bbcc33cf0052f0d9dcf29bb93a804b0',1,'nifty::graph::agglo::NewPolicy::SettingsType']]]
 ];

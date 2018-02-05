@@ -1,132 +1,145 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="solver__factory__base_8hxx" kind="file" language="C++">
     <compoundname>solver_factory_base.hxx</compoundname>
-    <includedby refid="solver__factory_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory.hxx</includedby>
-    <includedby refid="chained__solvers_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/chained_solvers.hxx</includedby>
-    <includedby refid="multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</includedby>
-    <includedby refid="py__solver__factory__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_factory_base.hxx</includedby>
+    <includedby refid="solver__factory_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_factory.hxx</includedby>
+    <includedby refid="lifted__multicut_2chained__solvers_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx</includedby>
+    <includedby refid="multicut_2chained__solvers_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/chained_solvers.hxx</includedby>
+    <includedby refid="multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_mp.hxx</includedby>
+    <includedby refid="py__solver__factory__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/py_solver_factory_base.hxx</includedby>
     <invincdepgraph>
-      <node id="8210">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_solver_factory_base.hxx</label>
-        <link refid="py__solver__factory__base_8hxx"/>
-        <childnode refid="8211" relation="include">
-        </childnode>
-      </node>
-      <node id="8204">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_mp.hxx</label>
-        <link refid="multicut__mp_8hxx"/>
-      </node>
-      <node id="8205">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</label>
-        <link refid="perturb__and__map_8hxx"/>
-      </node>
-      <node id="8201">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
-        <link refid="cc__fusion__move__based_8hxx"/>
-      </node>
-      <node id="8206">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
-        <link refid="export__lifted__multicut__solver_8hxx"/>
-      </node>
-      <node id="8195">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
+      <node id="2219">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move.hxx</label>
         <link refid="lifted__multicut_2fusion__move_8hxx"/>
-        <childnode refid="8196" relation="include">
+        <childnode refid="2220" relation="include">
         </childnode>
       </node>
-      <node id="8199">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
+      <node id="2223">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.hxx</label>
         <link refid="cgc_8hxx"/>
       </node>
-      <node id="8200">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
-        <link refid="multicut_2fusion__move_8hxx"/>
-        <childnode refid="8201" relation="include">
-        </childnode>
-        <childnode refid="8202" relation="include">
-        </childnode>
-      </node>
-      <node id="8202">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
+      <node id="2226">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move_based.hxx</label>
         <link refid="multicut_2fusion__move__based_8hxx"/>
       </node>
-      <node id="8207">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx</label>
-        <link refid="export__mincut__solver_8hxx"/>
-      </node>
-      <node id="8193">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx</label>
-        <link refid="solver_factory_base.hxx"/>
-        <childnode refid="8194" relation="include">
-        </childnode>
-        <childnode refid="8209" relation="include">
-        </childnode>
-        <childnode refid="8204" relation="include">
-        </childnode>
-        <childnode refid="8210" relation="include">
-        </childnode>
-      </node>
-      <node id="8198">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
-        <link refid="mincut__cc__fusion__move__based_8hxx"/>
-      </node>
-      <node id="8194">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory.hxx</label>
+      <node id="2218">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_factory.hxx</label>
         <link refid="solver__factory_8hxx"/>
-        <childnode refid="8195" relation="include">
+        <childnode refid="2219" relation="include">
         </childnode>
-        <childnode refid="8197" relation="include">
+        <childnode refid="2221" relation="include">
         </childnode>
-        <childnode refid="8199" relation="include">
+        <childnode refid="2223" relation="include">
         </childnode>
-        <childnode refid="8200" relation="include">
+        <childnode refid="2224" relation="include">
         </childnode>
-        <childnode refid="8203" relation="include">
+        <childnode refid="2227" relation="include">
         </childnode>
-        <childnode refid="8204" relation="include">
+        <childnode refid="2228" relation="include">
         </childnode>
-        <childnode refid="8205" relation="include">
+        <childnode refid="2229" relation="include">
         </childnode>
-        <childnode refid="8206" relation="include">
+        <childnode refid="2230" relation="include">
         </childnode>
-        <childnode refid="8207" relation="include">
+        <childnode refid="2231" relation="include">
         </childnode>
-        <childnode refid="8208" relation="include">
+        <childnode refid="2232" relation="include">
+        </childnode>
+        <childnode refid="2233" relation="include">
         </childnode>
       </node>
-      <node id="8203">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
+      <node id="2221">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="2222" relation="include">
+        </childnode>
+      </node>
+      <node id="2217">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_factory_base.hxx</label>
+        <link refid="solver__factory__base_8hxx"/>
+        <childnode refid="2218" relation="include">
+        </childnode>
+        <childnode refid="2234" relation="include">
+        </childnode>
+        <childnode refid="2235" relation="include">
+        </childnode>
+        <childnode refid="2228" relation="include">
+        </childnode>
+        <childnode refid="2236" relation="include">
+        </childnode>
+      </node>
+      <node id="2227">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_decomposer.hxx</label>
         <link refid="multicut__decomposer_8hxx"/>
       </node>
-      <node id="8209">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/chained_solvers.hxx</label>
-        <link refid="chained__solvers_8hxx"/>
+      <node id="2232">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/export_minstcut_solver.hxx</label>
+        <link refid="export__minstcut__solver_8hxx"/>
       </node>
-      <node id="8196">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
-        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      <node id="2235">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/chained_solvers.hxx</label>
+        <link refid="multicut_2chained__solvers_8hxx"/>
       </node>
-      <node id="8197">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
-        <link refid="mincut__cc__fusion__move_8hxx"/>
-        <childnode refid="8198" relation="include">
-        </childnode>
+      <node id="2225">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
       </node>
-      <node id="8211">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+      <node id="2237">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/export_solver_factory.hxx</label>
         <link refid="export__solver__factory_8hxx"/>
       </node>
-      <node id="8208">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export_multicut_solver.hxx</label>
+      <node id="2236">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/py_solver_factory_base.hxx</label>
+        <link refid="py__solver__factory__base_8hxx"/>
+        <childnode refid="2237" relation="include">
+        </childnode>
+      </node>
+      <node id="2233">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/export_multicut_solver.hxx</label>
         <link refid="export__multicut__solver_8hxx"/>
       </node>
+      <node id="2234">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx</label>
+        <link refid="lifted__multicut_2chained__solvers_8hxx"/>
+      </node>
+      <node id="2228">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_mp.hxx</label>
+        <link refid="multicut__mp_8hxx"/>
+      </node>
+      <node id="2220">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="2231">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/export_mincut_solver.hxx</label>
+        <link refid="export__mincut__solver_8hxx"/>
+      </node>
+      <node id="2229">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/perturb_and_map.hxx</label>
+        <link refid="perturb__and__map_8hxx"/>
+      </node>
+      <node id="2230">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="2222">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="2224">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="2225" relation="include">
+        </childnode>
+        <childnode refid="2226" relation="include">
+        </childnode>
+      </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" prot="public">nifty::graph::optimization::common::SolverFactoryBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" prot="public">nifty::graph::opt::common::SolverFactoryBase</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common">nifty::graph::opt::common</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -136,31 +149,31 @@
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER_BASE&gt;</highlight></codeline>
-<codeline lineno="12" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase" kindref="compound">SolverFactoryBase</ref>{</highlight></codeline>
+<codeline lineno="12" refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" kindref="compound">SolverFactoryBase</ref>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="15" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER_BASE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a32303ac07d31050bd56939ba09332a8c" kindref="member">SolverBaseType</ref>;</highlight></codeline>
-<codeline lineno="16" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>SolverBaseType::ObjectiveType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1addf5fe831de3b6d9e3473eee67490a5c" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="17" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a939801ccfeb621ed967a5638ad726719" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a939801ccfeb621ed967a5638ad726719" kindref="member">~SolverFactoryBase</ref>(){}</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SolverBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1ad8946541bdc12fcd340c3049662d8f59" kindref="member">createShared</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>SolverBaseType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactoryBase_1a192c772512ac9da7e4164d9ca5cc5d95" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15" refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1a83f347591f4cffa7afb13c8f495dcce2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER_BASE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1a83f347591f4cffa7afb13c8f495dcce2" kindref="member">SolverBaseType</ref>;</highlight></codeline>
+<codeline lineno="16" refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1ab71d93640cf3fbc0bc980450d5db6e45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>SolverBaseType::ObjectiveType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1ab71d93640cf3fbc0bc980450d5db6e45" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="17" refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1ad25f0290b6bbc006dd2bf604a4dc94f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1ad25f0290b6bbc006dd2bf604a4dc94f4" kindref="member">~SolverFactoryBase</ref>(){}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SolverBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1a95a2e4e53959b7fb168d8ab707b3d4a7" kindref="member">createShared</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>SolverBaseType<sp/>*<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase_1a590dfdc8643a663d8c8adca6164de8f7" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective)<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/solver_factory_base.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_factory_base.hxx"/>
   </compounddef>
 </doxygen>

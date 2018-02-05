@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1half__caster" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::half_caster</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename U</type>
+      </param>
+      <param>
+        <type>std::float_round_style</type>
+        <declname>R</declname>
+        <defname>R</defname>
+        <defval>(std::float_round_style)(<ref refid="half_8hpp_1af470ed60568b3e7f4fde6092d22abbde" kindref="member">HALF_ROUND_STYLE</ref>)</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Helper class for half casts. This class template has to be specialized for all valid cast argument to define an appropriate static <computeroutput>cast</computeroutput> member function and a corresponding <computeroutput>type</computeroutput> member denoting its return type. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>destination type </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>source type </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rounding mode to use </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1051" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1051" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

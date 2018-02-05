@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1expr" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::expr</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structhalf__float_1_1detail_1_1expr_1a527df312b16ea1d0d0faff4aca0b048c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float half_float::detail::expr::value_</definition>
+        <argsstring></argsstring>
+        <name>value_</name>
+        <briefdescription>
+<para>Internal expression value stored in single-precision. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="364" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1expr_1a2a66f42f413a59b38a8d2cef269ea446" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type><ref refid="half_8hpp_1ace3116a3e2cd66dd15780b92060987c7" kindref="member">HALF_CONSTEXPR</ref></type>
+        <definition>HALF_CONSTEXPR half_float::detail::expr::expr</definition>
+        <argsstring>(float f) HALF_NOEXCEPT</argsstring>
+        <name>expr</name>
+        <param>
+          <type>float</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion constructor. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to convert </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="356" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="356" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1expr_1acf4d1ca1eb867d11b0529e73b2e8e9dd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="half_8hpp_1ace3116a3e2cd66dd15780b92060987c7" kindref="member">HALF_CONSTEXPR</ref></type>
+        <definition>HALF_CONSTEXPR half_float::detail::expr::operator float</definition>
+        <argsstring>() const HALF_NOEXCEPT</argsstring>
+        <name>operator float</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion to single-precision. <simplesect kind="return"><para>single precision value representing expression value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="360" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="360" bodyend="360"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Temporary half-precision expression. This class represents a half-precision expression which just stores a single-precision value internally. </para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="353" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="352" bodyend="365"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1expr_1a2a66f42f413a59b38a8d2cef269ea446" prot="public" virt="non-virtual"><scope>half_float::detail::expr</scope><name>expr</name></member>
+      <member refid="structhalf__float_1_1detail_1_1expr_1acf4d1ca1eb867d11b0529e73b2e8e9dd" prot="public" virt="non-virtual"><scope>half_float::detail::expr</scope><name>operator float</name></member>
+      <member refid="structhalf__float_1_1detail_1_1expr_1a527df312b16ea1d0d0faff4aca0b048c" prot="private" virt="non-virtual"><scope>half_float::detail::expr</scope><name>value_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

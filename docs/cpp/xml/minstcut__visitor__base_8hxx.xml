@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="minstcut__visitor__base_8hxx" kind="file" language="C++">
+    <compoundname>minstcut_visitor_base.hxx</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">initializer_list</includes>
+    <includes local="no">sstream</includes>
+    <includes refid="visitor__base_8hxx" local="yes">nifty/graph/opt/common/visitor_base.hxx</includes>
+    <includedby refid="minstcut__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_base.hxx</includedby>
+    <incdepgraph>
+      <node id="3901">
+        <label>nifty/tools/logging.hxx</label>
+        <link refid="logging_8hxx"/>
+        <childnode refid="3893" relation="include">
+        </childnode>
+      </node>
+      <node id="3893">
+        <label>string</label>
+      </node>
+      <node id="3900">
+        <label>nifty/tools/timer.hxx</label>
+        <link refid="timer_8hxx"/>
+        <childnode refid="3895" relation="include">
+        </childnode>
+        <childnode refid="3899" relation="include">
+        </childnode>
+        <childnode refid="3893" relation="include">
+        </childnode>
+      </node>
+      <node id="3895">
+        <label>sstream</label>
+      </node>
+      <node id="3898">
+        <label>iostream</label>
+      </node>
+      <node id="3897">
+        <label>cstddef</label>
+      </node>
+      <node id="3892">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx</label>
+        <link refid="minstcut__visitor__base_8hxx"/>
+        <childnode refid="3893" relation="include">
+        </childnode>
+        <childnode refid="3894" relation="include">
+        </childnode>
+        <childnode refid="3895" relation="include">
+        </childnode>
+        <childnode refid="3896" relation="include">
+        </childnode>
+      </node>
+      <node id="3899">
+        <label>chrono</label>
+      </node>
+      <node id="3896">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="3897" relation="include">
+        </childnode>
+        <childnode refid="3893" relation="include">
+        </childnode>
+        <childnode refid="3894" relation="include">
+        </childnode>
+        <childnode refid="3895" relation="include">
+        </childnode>
+        <childnode refid="3898" relation="include">
+        </childnode>
+        <childnode refid="3899" relation="include">
+        </childnode>
+        <childnode refid="3900" relation="include">
+        </childnode>
+        <childnode refid="3901" relation="include">
+        </childnode>
+      </node>
+      <node id="3894">
+        <label>initializer_list</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3904">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_maxflow.hxx</label>
+        <link refid="minstcut__maxflow_8hxx"/>
+      </node>
+      <node id="3907">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/py_minstcut_visitor_base.hxx</label>
+        <link refid="py__minstcut__visitor__base_8hxx"/>
+      </node>
+      <node id="3903">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_base.hxx</label>
+        <link refid="minstcut__base_8hxx"/>
+        <childnode refid="3904" relation="include">
+        </childnode>
+        <childnode refid="3905" relation="include">
+        </childnode>
+        <childnode refid="3907" relation="include">
+        </childnode>
+      </node>
+      <node id="3906">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/export_minstcut_solver.hxx</label>
+        <link refid="export__minstcut__solver_8hxx"/>
+      </node>
+      <node id="3905">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/py_minstcut_base.hxx</label>
+        <link refid="py__minstcut__base_8hxx"/>
+        <childnode refid="3906" relation="include">
+        </childnode>
+      </node>
+      <node id="3902">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx</label>
+        <link refid="minstcut__visitor__base_8hxx"/>
+        <childnode refid="3903" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" prot="public">nifty::graph::opt::minstcut::MinstcutBase</innerclass>
+    <innernamespace refid="namespacenifty">nifty</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1minstcut">nifty::graph::opt::minstcut</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;initializer_list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="visitor__base_8hxx" kindref="compound">nifty/graph/opt/common/visitor_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">minstcut{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">MinstcutBase;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="19" refid="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a42d7fa14edf7c8f367a49541f392e5aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">MinstcutVisitorBase</ref><sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">nifty::graph::opt::common::VisitorBase&lt; MinstcutBase&lt;OBJECTIVE&gt;</ref><sp/>&gt;;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="22" refid="namespacenifty_1_1graph_1_1opt_1_1minstcut_1aa168742d4d2935e1348ea4b866f3ae09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kindref="compound">MinstcutVerboseVisitor</ref><sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::opt::common::VerboseVisitor&lt; MinstcutBase&lt;OBJECTIVE&gt;</ref><sp/>&gt;;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="25" refid="namespacenifty_1_1graph_1_1opt_1_1minstcut_1abf938a3f241189100b5df0217faaddfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" kindref="compound">MinstcutEmptyVisitor</ref><sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" kindref="compound">nifty::graph::opt::common::EmptyVisitor&lt; MinstcutBase&lt;OBJECTIVE&gt;</ref><sp/>&gt;;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="28" refid="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a50858becd7b1ba218be1797c92e3a947" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">MinstcutVisitorProxy</ref><sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">nifty::graph::opt::common::VisitorProxy&lt; MinstcutBase&lt;OBJECTIVE&gt;</ref><sp/>&gt;;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::minstcut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx"/>
+  </compounddef>
+</doxygen>

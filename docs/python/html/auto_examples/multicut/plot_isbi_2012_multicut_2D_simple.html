@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>ISBI 2012 Simple 2D Multicut Pipeline &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>ISBI 2012 Simple 2D Multicut Pipeline &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="FAQ (Frequently Asked Questions)" href="../../sections/faq.html" />
     <link rel="prev" title="Union-Find Data Structure" href="../misc/plot_ufd.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +44,7 @@
         <li class="right" >
           <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
@@ -132,7 +129,7 @@ with the dataset and precomputed results from <a class="reference internal" href
 <span class="kn">import</span> <span class="nn">nifty.filters</span>
 <span class="kn">import</span> <span class="nn">nifty.graph.rag</span>
 <span class="kn">import</span> <span class="nn">nifty.ground_truth</span>
-<span class="kn">import</span> <span class="nn">nifty.graph.optimization.multicut</span>
+<span class="kn">import</span> <span class="nn">nifty.graph.opt.multicut</span>
 </pre></div>
 </div>
 </div>
@@ -187,7 +184,7 @@ and the ground-truth for the train set</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">computeFeatures</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">pmap</span><span class="p">,</span> <span class="n">rag</span><span class="p">):</span>
 
     <span class="n">uv</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">uvIds</span><span class="p">()</span>
-    <span class="n">nrag</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.rag.html#nifty.graph.rag" title="View documentation for nifty.graph.rag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span></a>
+    <span class="n">nrag</span> <span class="o">=</span> <a href="../../sections/gen_modules/nifty.graph.rag.html#module-nifty.graph.rag" title="View documentation for nifty.graph.rag"><span class="n">nifty</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">rag</span></a>
 
     <span class="c1"># list of all edge features we fill</span>
     <span class="n">feats</span> <span class="o">=</span> <span class="p">[]</span>
@@ -198,8 +195,8 @@ and the ground-truth for the train set</p>
         <span class="n">uF</span> <span class="o">=</span> <span class="n">nodeFeatures</span><span class="p">[</span><span class="n">uv</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
         <span class="n">vF</span> <span class="o">=</span> <span class="n">nodeFeatures</span><span class="p">[</span><span class="n">uv</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
         <span class="n">feats</span> <span class="o">=</span> <span class="p">[</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">uF</span><span class="o">-</span><span class="n">vF</span><span class="p">),</span> <span class="n">uF</span> <span class="o">+</span> <span class="n">vF</span><span class="p">,</span> <span class="n">uF</span> <span class="o">*</span>  <span class="n">vF</span><span class="p">,</span>
-                 <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.minimum.html#numpy.minimum" title="View documentation for numpy.minimum"><span class="n">numpy</span><span class="o">.</span><span class="n">minimum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.maximum.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">numpy</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">)]</span>
-        <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                 <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.minimum" title="View documentation for numpy.minimum"><span class="n">numpy</span><span class="o">.</span><span class="n">minimum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">),</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.maximum" title="View documentation for numpy.maximum"><span class="n">numpy</span><span class="o">.</span><span class="n">maximum</span></a><span class="p">(</span><span class="n">uF</span><span class="p">,</span><span class="n">vF</span><span class="p">)]</span>
+        <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
     <span class="c1"># accumulate features from raw data</span>
@@ -222,7 +219,7 @@ and the ground-truth for the train set</p>
     <span class="n">fGeoNode</span> <span class="o">=</span> <span class="n">nrag</span><span class="o">.</span><span class="n">accumulateGeometricNodeFeatures</span><span class="p">(</span><span class="n">rag</span><span class="o">=</span><span class="n">rag</span><span class="p">,</span> <span class="n">numberOfThreads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nodeToEdgeFeat</span><span class="p">(</span><span class="n">fGeoNode</span><span class="p">))</span>
 
-    <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -366,16 +363,16 @@ and the ground-truth for the train set</p>
 
         <span class="c1"># we use only edges which have</span>
         <span class="c1"># a high certainty</span>
-        <span class="n">where1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">where0</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.where.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">where1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">where0</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.where" title="View documentation for numpy.where"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><span class="n">edgeGt</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">where0</span><span class="p">,:])</span>
         <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">where1</span><span class="p">,:])</span>
-        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.zeros.html#numpy.zeros" title="View documentation for numpy.zeros"><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where0</span><span class="p">)))</span>
-        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.ones.html#numpy.ones" title="View documentation for numpy.ones"><span class="n">numpy</span><span class="o">.</span><span class="n">ones</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where1</span><span class="p">)))</span>
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.zeros" title="View documentation for numpy.zeros"><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where0</span><span class="p">)))</span>
+        <span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.ones" title="View documentation for numpy.ones"><span class="n">numpy</span><span class="o">.</span><span class="n">ones</span></a><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">where1</span><span class="p">)))</span>
 
-<span class="n">features</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">labels</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.concatenate.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">features</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.concatenate" title="View documentation for numpy.concatenate"><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span></a><span class="p">(</span><span class="n">trainingSet</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -387,7 +384,7 @@ and the ground-truth for the train set</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">OOB</span> <span class="n">SCORE</span> <span class="mf">0.981714045505</span>
+<div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">OOB</span> <span class="n">SCORE</span> <span class="mf">0.981860916662</span>
 </pre></div>
 </div>
 </div>
@@ -424,8 +421,8 @@ with an ILP solver (if available).</p>
         <span class="n">MulticutObjective</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">MulticutObjective</span>
 
         <span class="n">eps</span> <span class="o">=</span>  <span class="mf">0.00001</span>
-        <span class="n">p1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.clip.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">numpy</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">eps</span><span class="p">)</span>
-        <span class="n">weights</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.log.html#numpy.log" title="View documentation for numpy.log"><span class="n">numpy</span><span class="o">.</span><span class="n">log</span></a><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">/</span><span class="n">p1</span><span class="p">)</span>
+        <span class="n">p1</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.clip" title="View documentation for numpy.clip"><span class="n">numpy</span><span class="o">.</span><span class="n">clip</span></a><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">eps</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.log" title="View documentation for numpy.log"><span class="n">numpy</span><span class="o">.</span><span class="n">log</span></a><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">/</span><span class="n">p1</span><span class="p">)</span>
 
 
 
@@ -433,14 +430,12 @@ with an ILP solver (if available).</p>
         <span class="n">objective</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="p">(</span><span class="n">rag</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
         <span class="c1"># do multicut obtimization</span>
-        <span class="k">if</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_CPLEX" title="View documentation for nifty.Configuration.WITH_CPLEX"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span></a><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_CPLEX</span><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpCplexFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">elif</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GUROBI</span><span class="p">:</span>
             <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGurobiFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">elif</span> <a href="../../sections/gen_modules/nifty.html#nifty.Configuration.WITH_GLPK" title="View documentation for nifty.Configuration.WITH_GLPK"><span class="n">nifty</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">WITH_GLPK</span></a><span class="p">:</span>
-            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">multicutIlpGlpkFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">fusionMoveBasedFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">MulticutObjective</span><span class="o">.</span><span class="n">ccFusionMoveBasedFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
 
 
         <span class="n">arg</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">visitor</span><span class="o">=</span><span class="n">MulticutObjective</span><span class="o">.</span><span class="n">verboseVisitor</span><span class="p">())</span>
@@ -488,14 +483,14 @@ with an ILP solver (if available).</p>
 <li><a class="first reference internal image-reference" href="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png"><img alt="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" src="../../_images/sphx_glr_plot_isbi_2012_multicut_2D_simple_006.png" style="width: 869.5px; height: 493.5px;" /></a>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  44.179 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 2 minutes  15.624 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_isbi_2012_multicut_2D_simple.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_isbi_2012_multicut_2D_simple.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_isbi_2012_multicut_2D_simple.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_isbi_2012_multicut_2D_simple.ipynb</span></code></a></div>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -519,13 +514,13 @@ with an ILP solver (if available).</p>
         <li class="right" >
           <a href="../misc/plot_ufd.html" title="Union-Find Data Structure"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>

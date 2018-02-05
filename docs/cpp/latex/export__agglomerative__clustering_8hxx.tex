@@ -1,11 +1,16 @@
 \hypertarget{export__agglomerative__clustering_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export\+\_\+agglomerative\+\_\+clustering.hxx File Reference}
 \label{export__agglomerative__clustering_8hxx}\index{/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export\+\_\+agglomerative\+\_\+clustering.\+hxx@{/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export\+\_\+agglomerative\+\_\+clustering.\+hxx}}
-{\ttfamily \#include $<$pybind11/pybind11.\+h$>$}\\*
-{\ttfamily \#include $<$pybind11/numpy.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/python/converter.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/python/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/agglo/agglomerative\+\_\+clustering.\+hxx\char`\"{}}\\*
-Include dependency graph for export\+\_\+agglomerative\+\_\+clustering.\+hxx\+:\nopagebreak
+{\ttfamily \#include $<$pybind11/pybind11.\+h$>$}\newline
+{\ttfamily \#include $<$pybind11/numpy.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/python/converter.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/python/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/agglo/agglomerative\+\_\+clustering.\+hxx\char`\"{}}\newline
+{\ttfamily \#include $<$xtensor/xtensor.\+hpp$>$}\newline
+{\ttfamily \#include $<$xtensor/xlayout.\+hpp$>$}\newline
+{\ttfamily \#include $<$xtensor-\/python/pyarray.\+hpp$>$}\newline
+{\ttfamily \#include $<$xtensor-\/python/pytensor.\+hpp$>$}\newline
+Include dependency graph for export\+\_\+agglomerative\+\_\+clustering.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,5 +36,7 @@ struct \hyperlink{structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_0
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}{nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+T\+Cluster\+Policy} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name)
+{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY , class P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_a4f7f64daedf9d50119ccf491a948f309}{nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+Visitors} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name, P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS \&agglo\+Cls)
+\item 
+{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}{nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+T\+Cluster\+Policy} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name)
 \end{DoxyCompactItemize}

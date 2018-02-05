@@ -1,68 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="three__cycles_8hxx" kind="file" language="C++">
     <compoundname>three_cycles.hxx</compoundname>
     <includes local="no">algorithm</includes>
     <includes local="no">set</includes>
     <includes refid="subgraph__mask_8hxx" local="yes">nifty/graph/subgraph_mask.hxx</includes>
     <includes refid="search__impl_8hxx" local="yes">nifty/graph/detail/search_impl.hxx</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
-    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</includedby>
     <incdepgraph>
-      <node id="10857">
+      <node id="5276">
         <label>queue</label>
       </node>
-      <node id="10855">
+      <node id="5274">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="10858">
+      <node id="5277">
         <label>stack</label>
       </node>
-      <node id="10856">
+      <node id="5275">
         <label>nifty/graph/detail/search_impl.hxx</label>
         <link refid="search__impl_8hxx"/>
-        <childnode refid="10857" relation="include">
+        <childnode refid="5276" relation="include">
         </childnode>
-        <childnode refid="10858" relation="include">
+        <childnode refid="5277" relation="include">
         </childnode>
-        <childnode refid="10855" relation="include">
+        <childnode refid="5274" relation="include">
         </childnode>
       </node>
-      <node id="10854">
+      <node id="5273">
         <label>set</label>
       </node>
-      <node id="10853">
+      <node id="5272">
         <label>algorithm</label>
       </node>
-      <node id="10852">
+      <node id="5271">
         <label>/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx</label>
-        <link refid="three_cycles.hxx"/>
-        <childnode refid="10853" relation="include">
+        <link refid="three__cycles_8hxx"/>
+        <childnode refid="5272" relation="include">
         </childnode>
-        <childnode refid="10854" relation="include">
+        <childnode refid="5273" relation="include">
         </childnode>
-        <childnode refid="10855" relation="include">
+        <childnode refid="5274" relation="include">
         </childnode>
-        <childnode refid="10856" relation="include">
+        <childnode refid="5275" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="10861">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+      <node id="5280">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</label>
         <link refid="multicut__ilp_8hxx"/>
       </node>
-      <node id="10860">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+      <node id="5279">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
         <link refid="lifted__multicut__ilp_8hxx"/>
       </node>
-      <node id="10859">
+      <node id="5278">
         <label>/home/tbeier/src/nifty/include/nifty/graph/three_cycles.hxx</label>
-        <link refid="three_cycles.hxx"/>
-        <childnode refid="10860" relation="include">
+        <link refid="three__cycles_8hxx"/>
+        <childnode refid="5279" relation="include">
         </childnode>
-        <childnode refid="10861" relation="include">
+        <childnode refid="5280" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

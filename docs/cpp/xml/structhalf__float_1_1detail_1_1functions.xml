@@ -1,0 +1,2447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1functions" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::functions</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a00e552f89df586b355b7aaa3668bdfa1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::plus</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>plus</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Addition implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision sum stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1211" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1211" bodyend="1211"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ad2d876e13910f4e95ea64161dc69d581" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::minus</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>minus</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtraction implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision difference stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1217" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1217" bodyend="1217"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a3d2a59f7891825142a62f7663bdefd73" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::multiplies</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>multiplies</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplication implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision product stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1223" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1223" bodyend="1223"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ac9dfde49f70098d39e83d1123574c60a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::divides</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>divides</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Division implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision quotient stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1229" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1229" bodyend="1229"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a240e518b170e2c43df73fe28c3be7ed3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename charT</type>
+          </param>
+          <param>
+            <type>typename traits</type>
+          </param>
+        </templateparamlist>
+        <type>std::basic_ostream&lt; charT, traits &gt; &amp;</type>
+        <definition>static std::basic_ostream&lt;charT,traits&gt;&amp; half_float::detail::functions::write</definition>
+        <argsstring>(std::basic_ostream&lt; charT, traits &gt; &amp;out, float arg)</argsstring>
+        <name>write</name>
+        <param>
+          <type>std::basic_ostream&lt; charT, traits &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>stream to write to </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to write </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to stream </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1235" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1235" bodyend="1235"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a11c9c85a160dab9b3569d1e051bf6ba5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename charT</type>
+          </param>
+          <param>
+            <type>typename traits</type>
+          </param>
+        </templateparamlist>
+        <type>std::basic_istream&lt; charT, traits &gt; &amp;</type>
+        <definition>static std::basic_istream&lt;charT,traits&gt;&amp; half_float::detail::functions::read</definition>
+        <argsstring>(std::basic_istream&lt; charT, traits &gt; &amp;in, half &amp;arg)</argsstring>
+        <name>read</name>
+        <param>
+          <type>std::basic_istream&lt; charT, traits &gt; &amp;</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Input implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>stream to read from </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half to read into </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to stream </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1241" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1241" bodyend="1247"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ab738d01b18f68f9a1472490d1f20ffd0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::fmod</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>fmod</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Modulo implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision division remainder stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1253" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1253" bodyend="1253"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae50ef512e0b117a0de654f54f31c6862" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::remainder</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>remainder</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Remainder implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision division remainder stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1259" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1259" bodyend="1283"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a9d78bde132fdf1cddf832f17cf86ffec" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::remquo</definition>
+        <argsstring>(float x, float y, int *quo)</argsstring>
+        <name>remquo</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>quo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Remainder implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>address to store quotient bits at </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Half-precision division remainder stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1290" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1290" bodyend="1330"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a9850489a627096344f41d3e18976eaff" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::fdim</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>fdim</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Positive difference implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Positive difference stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1336" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1336" bodyend="1343"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ac35e47ff8b9b77d1dc0a64f575477517" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::fma</definition>
+        <argsstring>(float x, float y, float z)</argsstring>
+        <name>fma</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fused multiply-add implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>third operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><emphasis>x</emphasis> * <emphasis>y</emphasis> + <emphasis>z</emphasis> stored in single-precision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1350" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1350" bodyend="1357"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a1195cacfc5295c6baa4763ca0bb4ccc0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::nanh</definition>
+        <argsstring>()</argsstring>
+        <name>nanh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get NaN. <simplesect kind="return"><para>Half-precision quiet NaN </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1361" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1361" bodyend="1361"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae615d0479597521f69a3da7ae543c03b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::exp</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>exp</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exponential implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1366" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1366" bodyend="1366"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1af188a99ac370d4c183b83a59cc733036" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::expm1</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>expm1</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exponential implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1371" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1371" bodyend="1378"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a4e43ae021698940af0aee27ae9026818" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::exp2</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>exp2</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Binary exponential implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1383" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1383" bodyend="1390"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a587c13df1bce45e25cac92e44fe58602" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::log</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>log</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Logarithm implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1395" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1395" bodyend="1395"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a7cf0027f88e319725aaa3da81c21ac1d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::log10</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>log10</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Common logarithm implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1400" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1400" bodyend="1400"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a27ae5cf1c13b9d98f943e9cd968db554" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::log1p</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>log1p</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Logarithm implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1405" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1405" bodyend="1412"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae4a595c90b4fa280bf5dd1e96a6b3207" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::log2</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>log2</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Binary logarithm implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1417" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1417" bodyend="1424"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1af8d54d1d78867f658f35306e0588a7fd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::sqrt</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>sqrt</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Square root implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1429" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1429" bodyend="1429"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ab756ef470ed99e39b670e08dd1126331" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::cbrt</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>cbrt</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cubic root implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1434" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1434" bodyend="1444"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a1ea6c3b5f49e742b82828c69c755210c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::hypot</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>hypot</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hypotenuse implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1450" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1450" bodyend="1458"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ad5ed7e96d8e10cef742e385262e311b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::pow</definition>
+        <argsstring>(float base, float exp)</argsstring>
+        <name>pow</name>
+        <param>
+          <type>float</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>exp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to exponentiate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>power to expontiate to </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1464" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1464" bodyend="1464"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a8735008b48f7638a344b6cf0da48063d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::sin</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>sin</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1469" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1469" bodyend="1469"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ab300defee608b0fa52aca095babd495c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::cos</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>cos</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cosine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1474" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1474" bodyend="1474"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a420e4d5c94115d9229b726ea76f26cb3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::tan</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>tan</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Tan implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1479" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1479" bodyend="1479"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1affe61d343c1d3a6b647290fe7c2f1b34" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::asin</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>asin</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arc sine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1484" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1484" bodyend="1484"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a89ec536194900bba8dd56271458f2083" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::acos</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>acos</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arc cosine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1489" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1489" bodyend="1489"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a3f0cae3135e53b5d5197f667da683879" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::atan</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>atan</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arc tangent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1494" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1494" bodyend="1494"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1af8ac17386217cf681433dff7d176af32" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::atan2</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>atan2</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arc tangent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1500" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1500" bodyend="1500"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a2fb1e87f5a6c136bd7ffd0d6c4400a7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::sinh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>sinh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic sine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1505" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1505" bodyend="1505"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a662fccaf35128b6a0349f52f04ec8625" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::cosh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>cosh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic cosine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1510" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1510" bodyend="1510"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a186af458d15802461dfa73b5a8f7e44b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::tanh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>tanh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic tangent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1515" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1515" bodyend="1515"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a33affc06820efb1dbbbf2f4d3f221c43" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::asinh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>asinh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic area sine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1520" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1520" bodyend="1527"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a973c481a675e66cc1bed66b4de291242" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::acosh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>acosh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic area cosine implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1532" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1532" bodyend="1539"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a86b85df92954c684bfe4e1b462f67dea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::atanh</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>atanh</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hyperbolic area tangent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1544" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1544" bodyend="1551"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1aa6292fbc82ddddce2ed9853506a51af4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::erf</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>erf</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Error function implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1556" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1556" bodyend="1563"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a874b7a9f50954f082a3928db716943c5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::erfc</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>erfc</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Complementary implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1568" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1568" bodyend="1575"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a84d46a2a632e0c48ceaca75c9afa6654" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::lgamma</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>lgamma</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gamma logarithm implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1580" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1580" bodyend="1597"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a2e732684ac8c44f7a546010a299136bb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+        <definition>static expr half_float::detail::functions::tgamma</definition>
+        <argsstring>(float arg)</argsstring>
+        <name>tgamma</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gamma implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function value stored in single-preicision </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1602" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1602" bodyend="1621"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ac468426b43557f8afbdcb60b94b5a8a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::floor</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>floor</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Floor implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1626" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1626" bodyend="1626"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a9ba7383bbc00cd9d4ff2a3c3649f501a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::ceil</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>ceil</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Ceiling implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1631" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1631" bodyend="1631"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae57908c6ec13fb42daf326811f99038b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::trunc</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>trunc</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Truncation implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1636" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1636" bodyend="1636"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a2f34968b39ed058747382fad81b81d4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::round</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>round</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nearest integer implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1641" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1641" bodyend="1641"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a6b10452ed4a7cc29eb30cce0c449eab0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>static long half_float::detail::functions::lround</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>lround</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nearest integer implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1646" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1646" bodyend="1646"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a0c63e4465b7a27da2d139e3089316cc3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::rint</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>rint</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nearest integer implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1651" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1651" bodyend="1651"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a5446ed91e4b33637d20a2a46fc03a97b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>static long half_float::detail::functions::lrint</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>lrint</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nearest integer implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to round </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rounded value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1656" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1656" bodyend="1656"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a891b725664bb1c2127db9d4dbc31671f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::frexp</definition>
+        <argsstring>(half arg, int *exp)</argsstring>
+        <name>frexp</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>exp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Decompression implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to decompress </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>address to store exponent at </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>normalized significant </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1674" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1674" bodyend="1681"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a542863ae1da47122fa56b3665f7654f7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::modf</definition>
+        <argsstring>(half arg, half *iptr)</argsstring>
+        <name>modf</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> *</type>
+          <declname>iptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Decompression implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to decompress </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>address to store integer part at </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>fractional part </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1687" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1687" bodyend="1701"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1adb515e8e2f5a4dd8fde43e5a6700525f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::scalbln</definition>
+        <argsstring>(half arg, long exp)</argsstring>
+        <name>scalbln</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>exp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Scaling implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to scale </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>power of two to scale by </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>scaled number </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1707" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1707" bodyend="1749"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a06cd09aa623a569dd547c143bc19b972" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int half_float::detail::functions::ilogb</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>ilogb</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exponent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to query </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>floating point exponent </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1754" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1754" bodyend="1769"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a859445458e098d648a09ac603790abd9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::logb</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>logb</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exponent implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to query </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>floating point exponent </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1774" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1774" bodyend="1796"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1afad03c7ead9b0e39825852f274c72c5c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::nextafter</definition>
+        <argsstring>(half from, half to)</argsstring>
+        <name>nextafter</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enumeration implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to increase/decrease </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>direction to enumerate into </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>next representable number </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1802" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1802" bodyend="1814"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a5d2061cb44af36a55953d764442236de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::nexttoward</definition>
+        <argsstring>(half from, long double to)</argsstring>
+        <name>nexttoward</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>long double</type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enumeration implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to increase/decrease </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>direction to enumerate into </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>next representable number </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1820" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1820" bodyend="1830"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1acd23a9057b257a6871f5599ee98a61df" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::functions::copysign</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>copysign</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sign implementation <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>composed value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1836" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1836" bodyend="1836"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ac62c77ee38c3a83cd91c1edb84f2ce56" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int half_float::detail::functions::fpclassify</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>fpclassify</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Classification implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to classify </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if infinite number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1842" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1842" bodyend="1846"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a421895ad95c77e9cbd559e520ea882af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isfinite</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>isfinite</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Classification implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to classify </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if finite number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1852" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1852" bodyend="1852"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a02f00e5d24c969fc7791ada42a310bf9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isinf</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>isinf</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Classification implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to classify </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if infinite number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1858" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1858" bodyend="1858"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae049e1078647aa584d44f6a7d1d68c57" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isnan</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Classification implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to classify </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if not a number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1864" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1864" bodyend="1864"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a8f289f8c2b013d8106ba944e5b9ba220" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isnormal</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>isnormal</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Classification implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to classify </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if normal number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1870" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1870" bodyend="1870"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a4683543fc6459fc07d915cdef863b98e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::signbit</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>signbit</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sign bit implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to check </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if signed </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if unsigned </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1876" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1876" bodyend="1876"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a4d42677ed5a1de4fb5a7f7930bcb0914" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isequal</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isequal</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if operands equal </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1883" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1883" bodyend="1883"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a074b4b55f735a8ae1ef6ba8ce8f22c23" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isnotequal</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isnotequal</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if operands not equal </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1890" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1890" bodyend="1890"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1aaa71c321d72a6ffee8d99747741bb9a9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isgreater</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isgreater</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if <emphasis>x</emphasis> &gt; <emphasis>y</emphasis> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1897" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1897" bodyend="1901"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1afc22391d30212aca4e6a5ce8f526a919" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isgreaterequal</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isgreaterequal</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if <emphasis>x</emphasis> &gt;= <emphasis>y</emphasis> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1908" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1908" bodyend="1912"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae7fa55cb15f5de0e0a1969073c95100e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isless</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isless</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if <emphasis>x</emphasis> &lt; <emphasis>y</emphasis> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1919" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1919" bodyend="1923"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a9cde13ebf697e76dffbda455b547a793" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::islessequal</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>islessequal</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if <emphasis>x</emphasis> &lt;= <emphasis>y</emphasis> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1930" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1930" bodyend="1934"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1ae7d37c5ba8779f25fdc9c4097bc2cd6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::islessgreater</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>islessgreater</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if either <emphasis>x</emphasis> &gt; <emphasis>y</emphasis> nor <emphasis>x</emphasis> &lt; <emphasis>y</emphasis> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1941" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1941" bodyend="1948"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a8e7eeb1db635d626702613bf61cd629f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool half_float::detail::functions::isunordered</definition>
+        <argsstring>(half x, half y)</argsstring>
+        <name>isunordered</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Comparison implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first operand </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second operand </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if operand unordered </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>else </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1955" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1955" bodyend="1955"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a3aee2ec08542b12c6958cce63a007f82" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double half_float::detail::functions::erf</definition>
+        <argsstring>(double arg)</argsstring>
+        <name>erf</name>
+        <param>
+          <type>double</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1958" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1958" bodyend="1964"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1functions_1a724dacc43bee6e0082079fb3ad37d236" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double half_float::detail::functions::lgamma</definition>
+        <argsstring>(double arg)</argsstring>
+        <name>lgamma</name>
+        <param>
+          <type>double</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1966" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1966" bodyend="1976"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Wrapper implementing unspecialized half-precision functions. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1206" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1205" bodyend="1977"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a89ec536194900bba8dd56271458f2083" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>acos</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a973c481a675e66cc1bed66b4de291242" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>acosh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1affe61d343c1d3a6b647290fe7c2f1b34" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>asin</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a33affc06820efb1dbbbf2f4d3f221c43" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>asinh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a3f0cae3135e53b5d5197f667da683879" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>atan</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1af8ac17386217cf681433dff7d176af32" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>atan2</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a86b85df92954c684bfe4e1b462f67dea" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>atanh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ab756ef470ed99e39b670e08dd1126331" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>cbrt</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a9ba7383bbc00cd9d4ff2a3c3649f501a" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>ceil</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1acd23a9057b257a6871f5599ee98a61df" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>copysign</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ab300defee608b0fa52aca095babd495c" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>cos</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a662fccaf35128b6a0349f52f04ec8625" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>cosh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ac9dfde49f70098d39e83d1123574c60a" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>divides</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1aa6292fbc82ddddce2ed9853506a51af4" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>erf</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a3aee2ec08542b12c6958cce63a007f82" prot="private" virt="non-virtual"><scope>half_float::detail::functions</scope><name>erf</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a874b7a9f50954f082a3928db716943c5" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>erfc</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae615d0479597521f69a3da7ae543c03b" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>exp</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a4e43ae021698940af0aee27ae9026818" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>exp2</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1af188a99ac370d4c183b83a59cc733036" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>expm1</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a9850489a627096344f41d3e18976eaff" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>fdim</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ac468426b43557f8afbdcb60b94b5a8a1" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>floor</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ac35e47ff8b9b77d1dc0a64f575477517" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>fma</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ab738d01b18f68f9a1472490d1f20ffd0" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>fmod</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ac62c77ee38c3a83cd91c1edb84f2ce56" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>fpclassify</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a891b725664bb1c2127db9d4dbc31671f" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>frexp</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a1ea6c3b5f49e742b82828c69c755210c" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>hypot</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a06cd09aa623a569dd547c143bc19b972" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>ilogb</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a4d42677ed5a1de4fb5a7f7930bcb0914" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isequal</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a421895ad95c77e9cbd559e520ea882af" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isfinite</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1aaa71c321d72a6ffee8d99747741bb9a9" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isgreater</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1afc22391d30212aca4e6a5ce8f526a919" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isgreaterequal</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a02f00e5d24c969fc7791ada42a310bf9" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isinf</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae7fa55cb15f5de0e0a1969073c95100e" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isless</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a9cde13ebf697e76dffbda455b547a793" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>islessequal</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae7d37c5ba8779f25fdc9c4097bc2cd6b" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>islessgreater</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae049e1078647aa584d44f6a7d1d68c57" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isnan</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a8f289f8c2b013d8106ba944e5b9ba220" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isnormal</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a074b4b55f735a8ae1ef6ba8ce8f22c23" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isnotequal</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a8e7eeb1db635d626702613bf61cd629f" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>isunordered</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a84d46a2a632e0c48ceaca75c9afa6654" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>lgamma</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a724dacc43bee6e0082079fb3ad37d236" prot="private" virt="non-virtual"><scope>half_float::detail::functions</scope><name>lgamma</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a587c13df1bce45e25cac92e44fe58602" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>log</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a7cf0027f88e319725aaa3da81c21ac1d" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>log10</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a27ae5cf1c13b9d98f943e9cd968db554" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>log1p</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae4a595c90b4fa280bf5dd1e96a6b3207" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>log2</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a859445458e098d648a09ac603790abd9" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>logb</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a5446ed91e4b33637d20a2a46fc03a97b" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>lrint</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a6b10452ed4a7cc29eb30cce0c449eab0" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>lround</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ad2d876e13910f4e95ea64161dc69d581" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>minus</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a542863ae1da47122fa56b3665f7654f7" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>modf</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a3d2a59f7891825142a62f7663bdefd73" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>multiplies</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a1195cacfc5295c6baa4763ca0bb4ccc0" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>nanh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1afad03c7ead9b0e39825852f274c72c5c" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>nextafter</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a5d2061cb44af36a55953d764442236de" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>nexttoward</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a00e552f89df586b355b7aaa3668bdfa1" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>plus</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ad5ed7e96d8e10cef742e385262e311b3" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>pow</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a11c9c85a160dab9b3569d1e051bf6ba5" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>read</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae50ef512e0b117a0de654f54f31c6862" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>remainder</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a9d78bde132fdf1cddf832f17cf86ffec" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>remquo</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a0c63e4465b7a27da2d139e3089316cc3" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>rint</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a2f34968b39ed058747382fad81b81d4e" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>round</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1adb515e8e2f5a4dd8fde43e5a6700525f" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>scalbln</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a4683543fc6459fc07d915cdef863b98e" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>signbit</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a8735008b48f7638a344b6cf0da48063d" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>sin</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a2fb1e87f5a6c136bd7ffd0d6c4400a7e" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>sinh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1af8d54d1d78867f658f35306e0588a7fd" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>sqrt</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a420e4d5c94115d9229b726ea76f26cb3" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>tan</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a186af458d15802461dfa73b5a8f7e44b" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>tanh</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a2e732684ac8c44f7a546010a299136bb" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>tgamma</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1ae57908c6ec13fb42daf326811f99038b" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>trunc</name></member>
+      <member refid="structhalf__float_1_1detail_1_1functions_1a240e518b170e2c43df73fe28c3be7ed3" prot="public" virt="non-virtual"><scope>half_float::detail::functions</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

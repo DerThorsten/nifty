@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyProposalGeneratorFactoryBase" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::PyProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="lifted__multicut_2proposal__generators_2proposal__generator__factory__base_8hxx" local="no">proposal_generator_factory_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a1986f0a3868e76ba5613f49ca4fc7dc6" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab201fe6397370621b50977e67ae55ace" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a1986f0a3868e76ba5613f49ca4fc7dc6" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef ProposalGeneratorBase&lt;ObjectiveType&gt; nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;::ProposalGeneratorBaseType</definition>
+        <argsstring></argsstring>
+        <name>ProposalGeneratorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ae4b5c6c7a0e2fcb95979931ef63937ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;::~ProposalGeneratorFactoryBase</definition>
+        <argsstring>()</argsstring>
+        <name>~ProposalGeneratorFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a8e4754d1fcb3bf3df9f6543daa88d50b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab201fe6397370621b50977e67ae55ace" kindref="member">ProposalGeneratorBaseType</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;ProposalGeneratorBaseType&gt; nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;::createShared</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads)=0</argsstring>
+        <name>createShared</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyProposalGeneratorFactoryBase_1a1a74cc625dc38c80bf2bf64593a13346">createShared</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a1986f0a3868e76ba5613f49ca4fc7dc6" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="23" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab8e4ade9126be9f4c4b7f64277a43b29" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab201fe6397370621b50977e67ae55ace" kindref="member">ProposalGeneratorBaseType</ref> *</type>
+        <definition>virtual ProposalGeneratorBaseType* nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;::create</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads)=0</argsstring>
+        <name>create</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyProposalGeneratorFactoryBase_1aa3041cdd0edf7e91144644a302f991bb">create</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a1986f0a3868e76ba5613f49ca4fc7dc6" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="24" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="879">
+        <label>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase"/>
+      </node>
+      <node id="880">
+        <label>nifty::graph::opt::lifted_multicut::PyProposalGeneratorFactoryBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyProposalGeneratorFactoryBase"/>
+        <childnode refid="879" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory_base.hxx" bodystart="17" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab8e4ade9126be9f4c4b7f64277a43b29" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</scope><name>create</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a8e4754d1fcb3bf3df9f6543daa88d50b" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</scope><name>createShared</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1a1986f0a3868e76ba5613f49ca4fc7dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ab201fe6397370621b50977e67ae55ace" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</scope><name>ProposalGeneratorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase_1ae4b5c6c7a0e2fcb95979931ef63937ed" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ProposalGeneratorFactoryBase</scope><name>~ProposalGeneratorFactoryBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

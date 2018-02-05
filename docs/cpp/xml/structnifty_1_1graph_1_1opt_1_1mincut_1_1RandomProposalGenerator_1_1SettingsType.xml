@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</compoundname>
+    <includes refid="random__proposal__generator_8hxx" local="no">random_proposal_generator.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1e" prot="public" static="no">
+        <name>SeedingStrategie</name>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ea4bde75d47884af322ee601dc12bf90e7" prot="public">
+          <name>SEED_FROM_LIFTED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ea2516565b11f5e1944f305ba7598e113a" prot="public">
+          <name>SEED_FROM_LOCAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ead8f87239cc943646edd57fb10112f0d5" prot="public">
+          <name>SEED_FROM_BOTH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" bodystart="34" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1aa59689137cb575420357136e424393bc" prot="public" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1e" kindref="member">SeedingStrategie</ref></type>
+        <definition>SeedingStrategie nifty::graph::opt::mincut::RandomProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::seedingStrategie</definition>
+        <argsstring></argsstring>
+        <name>seedingStrategie</name>
+        <initializer>{<ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ea4bde75d47884af322ee601dc12bf90e7" kindref="member">SEED_FROM_LIFTED</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1a949050fd4426f0b54dc1add474eda7b7" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::mincut::RandomProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1a575ff60807f8f957e80526b7a6cf3e14" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::mincut::RandomProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::numberOfSeeds</definition>
+        <argsstring></argsstring>
+        <name>numberOfSeeds</name>
+        <initializer>{0.1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/proposal_generators/random_proposal_generator.hxx" bodystart="31" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1a575ff60807f8f957e80526b7a6cf3e14" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>numberOfSeeds</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ead8f87239cc943646edd57fb10112f0d5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>SEED_FROM_BOTH</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ea4bde75d47884af322ee601dc12bf90e7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>SEED_FROM_LIFTED</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1ea2516565b11f5e1944f305ba7598e113a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>SEED_FROM_LOCAL</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1aa59689137cb575420357136e424393bc" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>seedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1ae768919b1348c58e3c8c77b25fee1d1e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>SeedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType_1a949050fd4426f0b54dc1add474eda7b7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType</scope><name>sigma</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

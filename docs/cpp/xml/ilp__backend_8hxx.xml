@@ -1,58 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="ilp__backend_8hxx" kind="file" language="C++">
     <compoundname>ilp_backend.hxx</compoundname>
     <includes local="no">limits</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
-    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</includedby>
     <includedby refid="cplex_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx</includedby>
     <includedby refid="glpk_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</includedby>
     <includedby refid="gurobi_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</includedby>
     <incdepgraph>
-      <node id="11344">
+      <node id="5888">
         <label>limits</label>
       </node>
-      <node id="11343">
+      <node id="5887">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx</label>
-        <link refid="ilp_backend.hxx"/>
-        <childnode refid="11344" relation="include">
+        <link refid="ilp__backend_8hxx"/>
+        <childnode refid="5888" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11350">
+      <node id="5891">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</label>
+        <link refid="multicut__ilp_8hxx"/>
+      </node>
+      <node id="5894">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</label>
         <link refid="gurobi_8hxx"/>
       </node>
-      <node id="11347">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
-        <link refid="multicut__ilp_8hxx"/>
-      </node>
-      <node id="11346">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
-        <link refid="lifted__multicut__ilp_8hxx"/>
-      </node>
-      <node id="11349">
+      <node id="5893">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</label>
         <link refid="glpk_8hxx"/>
       </node>
-      <node id="11348">
+      <node id="5892">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx</label>
         <link refid="cplex_8hxx"/>
       </node>
-      <node id="11345">
+      <node id="5889">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/ilp_backend.hxx</label>
-        <link refid="ilp_backend.hxx"/>
-        <childnode refid="11346" relation="include">
+        <link refid="ilp__backend_8hxx"/>
+        <childnode refid="5890" relation="include">
         </childnode>
-        <childnode refid="11347" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
-        <childnode refid="11348" relation="include">
+        <childnode refid="5892" relation="include">
         </childnode>
-        <childnode refid="11349" relation="include">
+        <childnode refid="5893" relation="include">
         </childnode>
-        <childnode refid="11350" relation="include">
+        <childnode refid="5894" relation="include">
         </childnode>
+      </node>
+      <node id="5890">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
+        <link refid="lifted__multicut__ilp_8hxx"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structnifty_1_1ilp__backend_1_1IlpBackendSettings" prot="public">nifty::ilp_backend::IlpBackendSettings</innerclass>

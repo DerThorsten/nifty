@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="lifted__multicut__andres__kernighan__lin_8hxx" local="no">lifted_multicut_andres_kernighan_lin.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1_1SettingsType" prot="public">nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1af7916e019d2d26a408f8802b4f381c41" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a0554f7c914a8ee2889c43a103be35397" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="50" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a09196b4e626fa7d810bb8a62f6b4b3cb" prot="public" static="no">
+        <type>ObjectiveType::LiftedGraphType</type>
+        <definition>typedef ObjectiveType::LiftedGraphType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::LiftedGraphType</definition>
+        <argsstring></argsstring>
+        <name>LiftedGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1abce2decf7c7b89756c9acdfd70b8dc22" prot="public" static="no">
+        <type>BaseType::VisitorBaseType</type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aebeb302942c88e4dfb381c4e4b71e8eb" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" kindref="member">BaseType::VisitorProxyType</ref></type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::VisitorProxy</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a93990ac2b7ec99743b4765134a76ffe0" prot="public" static="no">
+        <type>BaseType::NodeLabelsType</type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aea1a53ac10b4b8900c653606aa9e3985" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a1f28ba9fb31405b955e2d044babed6c0" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1adb3078984bb62d88bacf0c3e26763bf7" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a0554f7c914a8ee2889c43a103be35397" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a2b841d3622b6d4431c632e02b65dfb01" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a09196b4e626fa7d810bb8a62f6b4b3cb" kindref="member">LiftedGraphType</ref> &amp;</type>
+        <definition>const LiftedGraphType&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::liftedGraph_</definition>
+        <argsstring></argsstring>
+        <name>liftedGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a6d5d6d1af2d71412cf6c0226ad11aae9" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a93990ac2b7ec99743b4765134a76ffe0" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a951034ec82936952c04f6ebbb0a9d529" prot="private" static="no" mutable="no">
+        <type>andres::graph::Graph</type>
+        <definition>andres::graph::Graph nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::aGraph_</definition>
+        <argsstring></argsstring>
+        <name>aGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aaff75d6c23b7068b9847749be5a76f59" prot="private" static="no" mutable="no">
+        <type>andres::graph::Graph</type>
+        <definition>andres::graph::Graph nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::aLiftedGraph_</definition>
+        <argsstring></argsstring>
+        <name>aLiftedGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1abdf88271750f0540319049bdb602bdf0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::edgeCosts_</definition>
+        <argsstring></argsstring>
+        <name>edgeCosts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a987ec2f95d1c8833e2a32c20f59091c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::~LiftedMulticutAndresKernighanLin</definition>
+        <argsstring>()</argsstring>
+        <name>~LiftedMulticutAndresKernighanLin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a8c9e5c90d0e26e11a8d020c80624ddad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::LiftedMulticutAndresKernighanLin</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>LiftedMulticutAndresKernighanLin</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="115" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1ad5c474165f5364bce7f461f83894a100" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a93990ac2b7ec99743b4765134a76ffe0" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1abce2decf7c7b89756c9acdfd70b8dc22" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="144" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a7e315a8fb58cfb031cd17acadfe09bfe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::ObjectiveType &amp; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const</argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="78" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="226" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1acd9b1de8aceaf4565c768303987e3c08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a93990ac2b7ec99743b4765134a76ffe0" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="87" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a4ee4df60823384b6e1515a77f4ee2329" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="91" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="551">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="550">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="551" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="549">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin"/>
+        <childnode refid="550" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="554">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="553">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="554" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="552">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin"/>
+        <childnode refid="553" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_andres_kernighan_lin.hxx" bodystart="44" bodyend="110"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a951034ec82936952c04f6ebbb0a9d529" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>aGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aaff75d6c23b7068b9847749be5a76f59" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>aLiftedGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1af7916e019d2d26a408f8802b4f381c41" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a6d5d6d1af2d71412cf6c0226ad11aae9" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1acd9b1de8aceaf4565c768303987e3c08" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1abdf88271750f0540319049bdb602bdf0" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>edgeCosts_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1adb3078984bb62d88bacf0c3e26763bf7" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a0554f7c914a8ee2889c43a103be35397" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a2b841d3622b6d4431c632e02b65dfb01" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>liftedGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a09196b4e626fa7d810bb8a62f6b4b3cb" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>LiftedGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a8c9e5c90d0e26e11a8d020c80624ddad" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>LiftedMulticutAndresKernighanLin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a4ee4df60823384b6e1515a77f4ee2329" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a93990ac2b7ec99743b4765134a76ffe0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a7e315a8fb58cfb031cd17acadfe09bfe" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aea1a53ac10b4b8900c653606aa9e3985" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a31b45ec18fa430d4f6231a60395b4b14" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1ad5c474165f5364bce7f461f83894a100" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::lifted_multicut::LiftedMulticutBase::"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a1f28ba9fb31405b955e2d044babed6c0" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1abce2decf7c7b89756c9acdfd70b8dc22" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1aebeb302942c88e4dfb381c4e4b71e8eb" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>VisitorProxy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a987ec2f95d1c8833e2a32c20f59091c2" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>~LiftedMulticutAndresKernighanLin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

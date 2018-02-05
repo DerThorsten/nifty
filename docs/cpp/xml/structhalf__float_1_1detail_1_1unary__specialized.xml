@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1unary__specialized" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::unary_specialized</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1unary__specialized_1a6b8b9de170c31ccbcc6ef56ed9c488a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="half_8hpp_1ace3116a3e2cd66dd15780b92060987c7" kindref="member">HALF_CONSTEXPR</ref> <ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static HALF_CONSTEXPR half half_float::detail::unary_specialized&lt; T &gt;::negate</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>negate</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Negation implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to negate </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>negated value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1986" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1986" bodyend="1986"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1unary__specialized_1a9f98cb43656e90319b63016c7dbadfc0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::unary_specialized&lt; T &gt;::fabs</definition>
+        <argsstring>(half arg)</argsstring>
+        <name>fabs</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Absolute value implementation. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function argument </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>absolute value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1991" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1991" bodyend="1991"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Wrapper for unary half-precision functions needing specialization for individual argument types. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument type </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1049" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1049" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1unary__specialized_1a9f98cb43656e90319b63016c7dbadfc0" prot="public" virt="non-virtual"><scope>half_float::detail::unary_specialized</scope><name>fabs</name></member>
+      <member refid="structhalf__float_1_1detail_1_1unary__specialized_1a6b8b9de170c31ccbcc6ef56ed9c488a1" prot="public" virt="non-virtual"><scope>half_float::detail::unary_specialized</scope><name>negate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

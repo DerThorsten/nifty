@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="namespacenifty_1_1graph" kind="namespace" language="C++">
     <compoundname>nifty::graph</compoundname>
     <innerclass refid="structnifty_1_1graph_1_1AccOptions" prot="public">nifty::graph::AccOptions</innerclass>
@@ -23,6 +23,7 @@
     <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01PyContractionGraph_3_01BASE__GRAPH_01_4_01_4" prot="public">nifty::graph::GraphName&lt; PyContractionGraph&lt; BASE_GRAPH &gt; &gt;</innerclass>
     <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4" prot="public">nifty::graph::GraphName&lt; PyUndirectedGraph &gt;</innerclass>
     <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01UndirectedGridGraph_3_01DIM_00_01SIMPLE__NH_01_4_01_4" prot="public">nifty::graph::GraphName&lt; UndirectedGridGraph&lt; DIM, SIMPLE_NH &gt; &gt;</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1GraphName_3_01UndirectedLongRangeGridGraph_3_01DIM_01_4_01_4" prot="public">nifty::graph::GraphName&lt; UndirectedLongRangeGridGraph&lt; DIM &gt; &gt;</innerclass>
     <innerclass refid="classnifty_1_1graph_1_1GridRag" prot="public">nifty::graph::GridRag</innerclass>
     <innerclass refid="classnifty_1_1graph_1_1GridRag3DStacked2D" prot="public">nifty::graph::GridRag3DStacked2D</innerclass>
     <innerclass refid="classnifty_1_1graph_1_1GridRagStacked2D" prot="public">nifty::graph::GridRagStacked2D</innerclass>
@@ -39,11 +40,12 @@
     <innerclass refid="classnifty_1_1graph_1_1UndirectedGraphBase" prot="public">nifty::graph::UndirectedGraphBase</innerclass>
     <innerclass refid="classnifty_1_1graph_1_1UndirectedGridGraph" prot="public">nifty::graph::UndirectedGridGraph</innerclass>
     <innerclass refid="classnifty_1_1graph_1_1UndirectedGridGraph_3_01DIM_00_01true_01_4" prot="public">nifty::graph::UndirectedGridGraph&lt; DIM, true &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph" prot="public">nifty::graph::UndirectedLongRangeGridGraph</innerclass>
     <innerclass refid="structnifty_1_1graph_1_1UnsortedTag" prot="public">nifty::graph::UnsortedTag</innerclass>
     <innernamespace refid="namespacenifty_1_1graph_1_1agglo">nifty::graph::agglo</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph_1_1detail__graph">nifty::graph::detail_graph</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph_1_1graph__maps">nifty::graph::graph_maps</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph_1_1subgraph__masks">nifty::graph::subgraph_masks</innernamespace>
       <sectiondef kind="typedef">
       <memberdef kind="typedef" id="namespacenifty_1_1graph_1a5cdea7eb940a178738d5f7ba11b92a15" prot="public" static="no">
@@ -546,6 +548,42 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/paths.hxx" bodystart="71" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacenifty_1_1graph_1a694051530c47e632c37d39ba5d8b0f04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class GRAPH</type>
+          </param>
+          <param>
+            <type>class CUT_PROBS</type>
+          </param>
+          <param>
+            <type>class CUT_PROBS_OUT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::edgeWeightedWatershedsSegmentationImpl</definition>
+        <argsstring>(const GRAPH &amp;g, const CUT_PROBS &amp;cutProbs, CUT_PROBS_OUT &amp;cutProbsOut,)</argsstring>
+        <name>edgeWeightedWatershedsSegmentationImpl</name>
+        <param>
+          <type>const GRAPH &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const CUT_PROBS &amp;</type>
+          <declname>cutProbs</declname>
+        </param>
+        <param>
+          <type>CUT_PROBS_OUT &amp;</type>
+          <declname>cutProbsOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/probabilistic_diffusion.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/probabilistic_diffusion.hxx" bodystart="21" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="namespacenifty_1_1graph_1aca62625e3c61b810e2f6cda338de2c26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>

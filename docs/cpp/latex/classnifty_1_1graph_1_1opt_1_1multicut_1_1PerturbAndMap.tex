@@ -1,0 +1,195 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:multicut\+:\+:Perturb\+And\+Map$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$perturb\+\_\+and\+\_\+map.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36}{Noise\+Type} \{ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a6dd934268a793988a24fdda02c6f95b7}{U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE}, 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a167bd4d4cc3446bd22903643b58d4869}{N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE}, 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a10b1d26f9917ba18269afe7848c352d2}{M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN}
+ \}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective}{Multicut\+Objective}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type}, double $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}{Internal\+Objective}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae56fa211a119f05363d2037cda512061}{Multicut\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}{Internal\+Objective} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}{Iternal\+Multicut\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}{Iternal\+Multicut\+Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}{Internal\+Mc\+Factory\+Base}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}{Node\+Labels}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ double $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}{Internal\+Mc\+Factory\+Base} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac2849f0d5d528fb07bf62f213bee8551}{Factory\+Smart\+Ptr}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a20299dc0f4de9c1dafe0db8f510ba52a}{Perturb\+And\+Map} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type} \&\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a00e3f702037149e758472f3ddd7a45b1}{objective}, const \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_1_1SettingsType}{Settings\+Type} settings=\hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_1_1SettingsType}{Settings\+Type}())
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7732d789858c6f4c1f31f5da7f5525e5}{$\sim$\+Perturb\+And\+Map} ()
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a00e3f702037149e758472f3ddd7a45b1}{objective} () const
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac92f78f62353114a15c9b5069b82d9ed}{graph} () const
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_afeb721d1af08fa11cee43463b949e911}{optimize} (\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State} \&edge\+State)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ad5d4f689b41b573677862a2ed0764d40}{optimize} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}{Node\+Labels} \&starting\+Point, \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State} \&edge\+State)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Edge\+State@{Edge\+State}}
+\index{Edge\+State@{Edge\+State}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Edge\+State}{EdgeState}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$double$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac2849f0d5d528fb07bf62f213bee8551}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac2849f0d5d528fb07bf62f213bee8551}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Factory\+Smart\+Ptr@{Factory\+Smart\+Ptr}}
+\index{Factory\+Smart\+Ptr@{Factory\+Smart\+Ptr}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Factory\+Smart\+Ptr}{FactorySmartPtr}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef std\+::shared\+\_\+ptr$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}{Internal\+Mc\+Factory\+Base}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac2849f0d5d528fb07bf62f213bee8551}{Factory\+Smart\+Ptr}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Internal\+Mc\+Factory\+Base@{Internal\+Mc\+Factory\+Base}}
+\index{Internal\+Mc\+Factory\+Base@{Internal\+Mc\+Factory\+Base}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Internal\+Mc\+Factory\+Base}{InternalMcFactoryBase}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}{Iternal\+Multicut\+Base\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae247bf7bd80c2621db557e828198b4f0}{Internal\+Mc\+Factory\+Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Internal\+Objective@{Internal\+Objective}}
+\index{Internal\+Objective@{Internal\+Objective}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Internal\+Objective}{InternalObjective}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective}{Multicut\+Objective}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type}, double$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}{Internal\+Objective}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Iternal\+Multicut\+Base\+Type@{Iternal\+Multicut\+Base\+Type}}
+\index{Iternal\+Multicut\+Base\+Type@{Iternal\+Multicut\+Base\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Iternal\+Multicut\+Base\+Type}{IternalMulticutBaseType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_abf4a3ad796a3a06f4e488880cadc7fc9}{Internal\+Objective}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a42bd629f5bdb2d60985e551861c70a4f}{Iternal\+Multicut\+Base\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae56fa211a119f05363d2037cda512061}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae56fa211a119f05363d2037cda512061}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Multicut\+Base\+Type@{Multicut\+Base\+Type}}
+\index{Multicut\+Base\+Type@{Multicut\+Base\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Multicut\+Base\+Type}{MulticutBaseType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ae56fa211a119f05363d2037cda512061}{Multicut\+Base\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Node\+Labels@{Node\+Labels}}
+\index{Node\+Labels@{Node\+Labels}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Node\+Labels}{NodeLabels}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}{Node\+Labels}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type}}
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Noise\+Type@{Noise\+Type}}
+\index{Noise\+Type@{Noise\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Noise\+Type}{NoiseType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$ \\
+enum \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map\+::\+Noise\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE@{U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE@{U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE}}}\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a6dd934268a793988a24fdda02c6f95b7}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a6dd934268a793988a24fdda02c6f95b7}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+N\+O\+I\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE@{N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE@{N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE}}}\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a167bd4d4cc3446bd22903643b58d4869}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a167bd4d4cc3446bd22903643b58d4869}} 
+N\+O\+R\+M\+A\+L\+\_\+\+N\+O\+I\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN@{M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN@{M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN}}}\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a10b1d26f9917ba18269afe7848c352d2}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4bd929ae1c1786dc7f8bcdf9afd06a36a10b1d26f9917ba18269afe7848c352d2}} 
+M\+A\+K\+E\+\_\+\+L\+E\+S\+S\+\_\+\+C\+E\+R\+T\+A\+IN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a20299dc0f4de9c1dafe0db8f510ba52a}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a20299dc0f4de9c1dafe0db8f510ba52a}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!Perturb\+And\+Map@{Perturb\+And\+Map}}
+\index{Perturb\+And\+Map@{Perturb\+And\+Map}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{Perturb\+And\+Map()}{PerturbAndMap()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{Perturb\+And\+Map} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type} \&}]{objective,  }\item[{const \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_1_1SettingsType}{Settings\+Type}}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7732d789858c6f4c1f31f5da7f5525e5}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7732d789858c6f4c1f31f5da7f5525e5}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!````~Perturb\+And\+Map@{$\sim$\+Perturb\+And\+Map}}
+\index{````~Perturb\+And\+Map@{$\sim$\+Perturb\+And\+Map}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{$\sim$\+Perturb\+And\+Map()}{~PerturbAndMap()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::$\sim$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{Perturb\+And\+Map} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac92f78f62353114a15c9b5069b82d9ed}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac92f78f62353114a15c9b5069b82d9ed}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!graph@{graph}}
+\index{graph@{graph}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{graph()}{graph()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a4284b4d29c3e770b0e107fa794b3d32e}{Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a00e3f702037149e758472f3ddd7a45b1}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a00e3f702037149e758472f3ddd7a45b1}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{objective()}{objective()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ac76585ed44501350bf31fbcc2d02078e}{Objective\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::objective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_afeb721d1af08fa11cee43463b949e911}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_afeb721d1af08fa11cee43463b949e911}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::optimize (\begin{DoxyParamCaption}\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State} \&}]{edge\+State }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ad5d4f689b41b573677862a2ed0764d40}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_ad5d4f689b41b573677862a2ed0764d40}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map@{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap}{nifty\+::graph\+::opt\+::multicut\+::\+Perturb\+And\+Map}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::optimize (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a7ea0921a7e9ee7c29772d615a1f0de89}{Node\+Labels} \&}]{starting\+Point,  }\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap_a82a5b6a74aac0c8bc47d5ccfbd06aaf2}{Edge\+State} \&}]{edge\+State }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/\hyperlink{perturb__and__map_8hxx}{perturb\+\_\+and\+\_\+map.\+hxx}\end{DoxyCompactItemize}

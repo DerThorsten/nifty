@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase" prot="public" virt="non-virtual">nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</basecompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutMp" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::PyLiftedMulticutBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="lifted__multicut__base_8hxx" local="no">lifted_multicut_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="556">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="562">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutIlp&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="561">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutGreedyAdditive&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="559">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresGreedyAdditive&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="558">
+        <label>nifty::graph::opt::lifted_multicut::FusionMoveBased&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="557">
+        <label>nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="564">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutMp&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutMp"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="555">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="556" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="560">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutAndresKernighanLin&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="563">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutKernighanLin&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="565">
+        <label>nifty::graph::opt::lifted_multicut::PyLiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="567">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, LiftedMulticutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="566">
+        <label>nifty::graph::opt::lifted_multicut::LiftedMulticutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase"/>
+        <childnode refid="567" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx" bodystart="20" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abd7237c59d5ba5bf2d4c9c0eca8a248b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aac4861a6201ba3df7ef66ad5af0c65bd" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutBase</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

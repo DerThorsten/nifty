@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</compoundname>
+    <includes refid="graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx" local="no">lifted_multicut_objective.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>CHILD_OBJECTIVE</declname>
+        <defname>CHILD_OBJECTIVE</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>GRAPH</declname>
+        <defname>GRAPH</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>LIFTED_GRAPH</declname>
+        <defname>LIFTED_GRAPH</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>WEIGHT_TYPE</declname>
+        <defname>WEIGHT_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a9528ca24d93bf9dc7fd156993588d9fc" prot="public" static="no">
+        <type>CHILD_OBJECTIVE</type>
+        <definition>typedef CHILD_OBJECTIVE nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::ChildObjective</definition>
+        <argsstring></argsstring>
+        <name>ChildObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a415ea8a76d9a7c8a6ba833e8fa1a7d78" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase" kindref="compound">LiftedMulticutObjectiveBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a9528ca24d93bf9dc7fd156993588d9fc" kindref="member">ChildObjective</ref>, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;</type>
+        <definition>typedef LiftedMulticutObjectiveBase&lt;ChildObjective, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE&gt; nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::Self</definition>
+        <argsstring></argsstring>
+        <name>Self</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a04477c5ef3569c1b4123a28fb35013b0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>WEIGHT_TYPE</type>
+        <definition>WEIGHT_TYPE nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::evalNodeLabels</definition>
+        <argsstring>(const NODE_LABELS &amp;nodeLabels) const</argsstring>
+        <name>evalNodeLabels</name>
+        <param>
+          <type>const NODE_LABELS &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="36" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a160eb5442bde1db8baf76698ede37947" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::numberOfLiftedEdges</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfLiftedEdges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="52" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a4c6b5097209ac52d3d35cb360ae20d6f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a9528ca24d93bf9dc7fd156993588d9fc" kindref="member">ChildObjective</ref> &amp;</type>
+        <definition>ChildObjective&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::_child</definition>
+        <argsstring>()</argsstring>
+        <name>_child</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a18711ee3b1c060b10526b54fd8ca8d9c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a9528ca24d93bf9dc7fd156993588d9fc" kindref="member">ChildObjective</ref> &amp;</type>
+        <definition>const ChildObjective&amp; nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase&lt; CHILD_OBJECTIVE, GRAPH, LIFTED_GRAPH, WEIGHT_TYPE &gt;::_child</definition>
+        <argsstring>() const</argsstring>
+        <name>_child</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="61" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx" bodystart="28" bodyend="65"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a4c6b5097209ac52d3d35cb360ae20d6f" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>_child</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a18711ee3b1c060b10526b54fd8ca8d9c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>_child</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a9528ca24d93bf9dc7fd156993588d9fc" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>ChildObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a04477c5ef3569c1b4123a28fb35013b0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>evalNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a160eb5442bde1db8baf76698ede37947" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>numberOfLiftedEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjectiveBase_1a415ea8a76d9a7c8a6ba833e8fa1a7d78" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::LiftedMulticutObjectiveBase</scope><name>Self</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

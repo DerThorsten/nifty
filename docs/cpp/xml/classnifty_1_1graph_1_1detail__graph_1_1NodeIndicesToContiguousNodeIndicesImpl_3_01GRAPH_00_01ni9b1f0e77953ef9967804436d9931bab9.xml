@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</compoundname>
     <includes refid="contiguous__indices_8hxx" local="no">contiguous_indices.hxx</includes>
@@ -9,11 +9,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a5bfb9d22b775eeea19c32af5dfcd482f" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a644e5cb356a5733b0593f554c8062d2f" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,13 +24,13 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a4247b773e3c6b878a30246a45c935d75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a3146e51054d737889e68ae124afd2961" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;::NodeIndicesToContiguousNodeIndicesImpl</definition>
-        <argsstring>(const Graph &amp;graph)</argsstring>
+        <argsstring>(const GraphType &amp;graph)</argsstring>
         <name>NodeIndicesToContiguousNodeIndicesImpl</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a5bfb9d22b775eeea19c32af5dfcd482f" kindref="member">Graph</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a644e5cb356a5733b0593f554c8062d2f" kindref="member">GraphType</ref> &amp;</type>
           <declname>graph</declname>
         </param>
         <briefdescription>
@@ -41,10 +41,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" bodystart="82" bodyend="83"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a30191e2b4ecf6f075fe69e53480b9ae0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1aec972c786a4d57d8e9a92b318a124205" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;::operator[]</definition>
-        <argsstring>(const int64_t node) const </argsstring>
+        <argsstring>(const int64_t node) const</argsstring>
         <name>operator[]</name>
         <param>
           <type>const int64_t</type>
@@ -65,9 +65,9 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" bodystart="79" bodyend="88"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a5bfb9d22b775eeea19c32af5dfcd482f" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>Graph</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a4247b773e3c6b878a30246a45c935d75" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>NodeIndicesToContiguousNodeIndicesImpl</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a30191e2b4ecf6f075fe69e53480b9ae0" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a644e5cb356a5733b0593f554c8062d2f" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1a3146e51054d737889e68ae124afd2961" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>NodeIndicesToContiguousNodeIndicesImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndicesImpl_3_01GRAPH_00_01ni9b1f0e77953ef9967804436d9931bab9_1aec972c786a4d57d8e9a92b318a124205" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::NodeIndicesToContiguousNodeIndicesImpl&lt; GRAPH, nifty::graph::ContiguousTag &gt;</scope><name>operator[]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

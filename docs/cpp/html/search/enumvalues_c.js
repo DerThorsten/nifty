@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['uniform_5fnoise',['UNIFORM_NOISE',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap.html#a88d773cee3d185e28aecdc2c2707b744a181e4a0a98b06f50587b3cf7f1b28c59',1,'nifty::graph::optimization::multicut::PerturbAndMap']]]
+  ['tablestyle',['TableStyle',['../namespaceandres.html#a69f07c437d156c7028c7d619e566281fa162a419d5299010966e7cc6a74e7b014',1,'andres']]],
+  ['trace',['TRACE',['../namespacenifty_1_1logging.html#a3385625f9a0dbb17f70c47d3fca2f64da2d3e4144aa384b18849ab9a8abad74d6',1,'nifty::logging']]]
 ];

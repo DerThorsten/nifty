@@ -1,36 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="node__labels__to__edge__labels__iterator_8hxx" kind="file" language="C++">
     <compoundname>node_labels_to_edge_labels_iterator.hxx</compoundname>
     <includes local="no">boost/iterator/transform_iterator.hpp</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
-    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</includedby>
     <incdepgraph>
-      <node id="7425">
+      <node id="1399">
         <label>boost/iterator/transform_iterator.hpp</label>
       </node>
-      <node id="7424">
+      <node id="1398">
         <label>/home/tbeier/src/nifty/include/nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx</label>
-        <link refid="node_labels_to_edge_labels_iterator.hxx"/>
-        <childnode refid="7425" relation="include">
+        <link refid="node__labels__to__edge__labels__iterator_8hxx"/>
+        <childnode refid="1399" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7428">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+      <node id="1402">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</label>
         <link refid="multicut__ilp_8hxx"/>
       </node>
-      <node id="7426">
+      <node id="1400">
         <label>/home/tbeier/src/nifty/include/nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx</label>
-        <link refid="node_labels_to_edge_labels_iterator.hxx"/>
-        <childnode refid="7427" relation="include">
+        <link refid="node__labels__to__edge__labels__iterator_8hxx"/>
+        <childnode refid="1401" relation="include">
         </childnode>
-        <childnode refid="7428" relation="include">
+        <childnode refid="1402" relation="include">
         </childnode>
       </node>
-      <node id="7427">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+      <node id="1401">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
         <link refid="lifted__multicut__ilp_8hxx"/>
       </node>
     </invincdepgraph>
@@ -73,7 +73,7 @@
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nodeLabels_(other.nodeLabels_){</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction_1abdc5a66fc34a0e0b8323e12362452036" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction_1abdc5a66fc34a0e0b8323e12362452036" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edgeId)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31" refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction_1a0e986e012abec9583a858ac3d3c882d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction_1a0e986e012abec9583a858ac3d3c882d7" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>edgeId)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/>graph_.uv(edgeId);</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>valBuffer_<sp/>=<sp/><sp/>nodeLabels_[uv.first]<sp/>!=<sp/>nodeLabels_[uv.second]<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>valBuffer_;</highlight></codeline>
@@ -87,7 +87,7 @@
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_MAP&gt;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>boost::transform_iterator&lt;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsToEdgeLabelsUnaryFunction&lt;GRAPH,<sp/>NODE_MAP&gt;<sp/>,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::EdgeIter,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>&amp;<sp/>,<sp/>uint8_t</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeLabelsToEdgeLabelsUnaryFunction" kindref="compound">NodeLabelsToEdgeLabelsUnaryFunction&lt;GRAPH, NODE_MAP&gt;</ref><sp/>,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GRAPH::EdgeIter,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>&amp;<sp/>,<sp/>uint8_t</highlight></codeline>
 <codeline lineno="46" refid="namespacenifty_1_1graph_1_1detail__graph_1abfe97acf5c16e1fbb32f1eb7fef344b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;<sp/><ref refid="namespacenifty_1_1graph_1_1detail__graph_1abfe97acf5c16e1fbb32f1eb7fef344b1" kindref="member">nodeLabelsToEdgeLabelsIterBegin</ref>(</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GRAPH<sp/>&amp;<sp/>graph,</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NODE_MAP<sp/>&amp;<sp/>nodeLabels</highlight></codeline>

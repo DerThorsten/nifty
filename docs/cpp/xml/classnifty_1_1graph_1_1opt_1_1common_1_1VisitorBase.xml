@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::opt::common::VisitorBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" prot="public" virt="non-virtual">nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor" prot="public" virt="non-virtual">nifty::graph::opt::common::LoggingVisitor&lt; SOLVER &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" prot="public" virt="non-virtual">nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::mincut::PyMincutVisitorBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutVisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::minstcut::PyMinstcutVisitorBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="visitor__base_8hxx" local="no">visitor_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class SOLVER</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" prot="public" static="no">
+        <type>SOLVER</type>
+        <definition>typedef SOLVER nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::SolverType</definition>
+        <argsstring></argsstring>
+        <name>SolverType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a8c4462a0cd838b0082f7157ad4b2d770" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::begin</definition>
+        <argsstring>(SolverType *solver)=0</argsstring>
+        <name>begin</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a5ab79ee5e4afe5e7af570c64b1678dbc">begin</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a94bdc19115ed1cedceb2811654983293">begin</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a5f9827674a0f59ada6b10a468efe85e8">begin</reimplementedby>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="27" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aaeef625f11705918d3fdd05f2550a879" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::visit</definition>
+        <argsstring>(SolverType *solver)=0</argsstring>
+        <name>visit</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a0079f597f09fae363906092f00df126b">visit</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1afa21c42d9fa10fe8be09d55c4a51c49e">visit</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a709039dcb9c0d178ba45a7182c58388d">visit</reimplementedby>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="28" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aab59ead6ecef2fcaf3da5a96d0ec4c51" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::end</definition>
+        <argsstring>(SolverType *solver)=0</argsstring>
+        <name>end</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a8597af1625d5499fa13c1890d92052a0">end</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ab903991aacf3d9569949c0cce466e3d8">end</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a08d9fee2b6eb515bbec2c2ff46d2d0f4">end</reimplementedby>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="29" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a9ac54577b1a0378834ffe2029a321744" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::clearLogNames</definition>
+        <argsstring>()</argsstring>
+        <name>clearLogNames</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a84dd33facd4e7b509e5d311f2e94df1a">clearLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a0df0016f1f72819de000a57538426969">clearLogNames</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="32" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1acc4f1b419303965b0313ca83c6a7a420" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::addLogNames</definition>
+        <argsstring>(std::initializer_list&lt; std::string &gt; logNames)</argsstring>
+        <name>addLogNames</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase_1a6b6922de3a94d5c872ecfff2a845a03b">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutVisitorBase_1a561220ee0991f93b6069a455fa84f130">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a99c335cf50430f381e66e826f6805e5b">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase_1a6b6922de3a94d5c872ecfff2a845a03b">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ad7e8835d70def796b71cff0caa79c596">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a19ea135ecf8fbc92a8a7792164c4fd44">addLogNames</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a7ce06c6374afec8ecf6e5ceca4669682">addLogNames</reimplementedby>
+        <param>
+          <type>std::initializer_list&lt; std::string &gt;</type>
+          <declname>logNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a41efc013731cca97176a61be58db0094" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::setLogValue</definition>
+        <argsstring>(const std::size_t logIndex, double logValue)</argsstring>
+        <name>setLogValue</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase_1a7235408f664ec8fdc9e80f56b83424c4">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutVisitorBase_1a32ac765a4f9124c178450d5d5c865b49">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a3c2aa40745b7853704fee9a77625dc8d">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase_1a7235408f664ec8fdc9e80f56b83424c4">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a3b6820cf08c0cda2cd72fd5627ea8faa">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a2e4db3bf347a0f6eae52d2b66c341935">setLogValue</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4f01ae337ac5fedf5ad178c883cd0153">setLogValue</reimplementedby>
+        <param>
+          <type>const std::size_t</type>
+          <declname>logIndex</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>logValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1ad9092d8387ff327b254df08ef97363a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;::printLog</definition>
+        <argsstring>(const nifty::logging::LogLevel logLevel, const std::string &amp;logString)</argsstring>
+        <name>printLog</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a516caf5c8a5c5378ef5d5d62d920142c">printLog</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1abfb4175c92ce0c98eb3c214882cde62a">printLog</reimplementedby>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref></type>
+          <declname>logLevel</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>logString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="42" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1208">
+        <label>nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+      <node id="1209">
+        <label>nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1215">
+        <label>nifty::graph::opt::multicut::PyMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1214">
+        <label>nifty::graph::opt::minstcut::PyMinstcutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutVisitorBase"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1210">
+        <label>nifty::graph::opt::common::LoggingVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1212">
+        <label>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1213">
+        <label>nifty::graph::opt::mincut::PyMincutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1211">
+        <label>nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor"/>
+        <childnode refid="1208" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="21" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1acc4f1b419303965b0313ca83c6a7a420" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>addLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a8c4462a0cd838b0082f7157ad4b2d770" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a9ac54577b1a0378834ffe2029a321744" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>clearLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aab59ead6ecef2fcaf3da5a96d0ec4c51" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1ad9092d8387ff327b254df08ef97363a3" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>printLog</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a41efc013731cca97176a61be58db0094" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>setLogValue</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>SolverType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aaeef625f11705918d3fdd05f2550a879" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::VisitorBase</scope><name>visit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

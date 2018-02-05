@@ -1,0 +1,138 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:merge\+\_\+rules\+:\+:Min\+Edge\+Map$<$ G, T $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map$<$ G, T $>$@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map$<$ G, T $>$}}
+
+
+{\ttfamily \#include $<$merge\+\_\+rules.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ T $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ab5ce11aa4046c0cdd9d99e934db91fac}{Min\+Edge\+Map\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ \hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t} $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae785a9cf684a3c819ab624171d364a96}{Size\+Edge\+Map\+Type}
+\item 
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinSettings}{Min\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad97848095253d6de2285a2bdec08314c}{name} () const
+\item 
+{\footnotesize template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a33bca71988a8f653bcdd7a484108739c}{Min\+Edge\+Map} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}{Graph\+Type} \&g, const V\+A\+L\+U\+ES \&values, const W\+E\+I\+G\+H\+TS \&weights, const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type} \&settings=\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ac1b3149beed05cf3510f4ae4ea8273f5}{merge} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a3840a1134b682940c11b1c0229afbe4b}{set\+Value\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a964ddf7c1b16cabda988958bbaef0b35}{set\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a619da5b29058e8ebf8ade3d5f40529fc}{set} (const uint64\+\_\+t target\+Edge, const T \&value, const T \&weight)
+\item 
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae7d43e009a1c11a8ffae7753a2313a0a}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t edge) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae6b23b925f683793291244d61c8aac3a}{static\+Name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ab5ce11aa4046c0cdd9d99e934db91fac}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ab5ce11aa4046c0cdd9d99e934db91fac}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!Min\+Edge\+Map\+Type@{Min\+Edge\+Map\+Type}}
+\index{Min\+Edge\+Map\+Type@{Min\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Min\+Edge\+Map\+Type}{MinEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$T$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ab5ce11aa4046c0cdd9d99e934db91fac}{Min\+Edge\+Map\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!Settings\+Type@{Settings\+Type}}
+\index{Settings\+Type@{Settings\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Settings\+Type}{SettingsType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinSettings}{Min\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae785a9cf684a3c819ab624171d364a96}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae785a9cf684a3c819ab624171d364a96}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}}
+\index{Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Size\+Edge\+Map\+Type}{SizeEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$\hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t}$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae785a9cf684a3c819ab624171d364a96}{Size\+Edge\+Map\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a33bca71988a8f653bcdd7a484108739c}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a33bca71988a8f653bcdd7a484108739c}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!Min\+Edge\+Map@{Min\+Edge\+Map}}
+\index{Min\+Edge\+Map@{Min\+Edge\+Map}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Min\+Edge\+Map()}{MinEdgeMap()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{Min\+Edge\+Map} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_aad794908266d5bf105eea1c117ffb70f}{Graph\+Type} \&}]{g,  }\item[{const V\+A\+L\+U\+ES \&}]{values,  }\item[{const W\+E\+I\+G\+H\+TS \&}]{weights,  }\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad0dd446b81440917b4dd852bd6bf1dac}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ac1b3149beed05cf3510f4ae4ea8273f5}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ac1b3149beed05cf3510f4ae4ea8273f5}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!merge@{merge}}
+\index{merge@{merge}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::merge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad97848095253d6de2285a2bdec08314c}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ad97848095253d6de2285a2bdec08314c}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae7d43e009a1c11a8ffae7753a2313a0a}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae7d43e009a1c11a8ffae7753a2313a0a}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a619da5b29058e8ebf8ade3d5f40529fc}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a619da5b29058e8ebf8ade3d5f40529fc}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!set@{set}}
+\index{set@{set}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::set (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const T \&}]{value,  }\item[{const T \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a964ddf7c1b16cabda988958bbaef0b35}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a964ddf7c1b16cabda988958bbaef0b35}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!set\+From@{set\+From}}
+\index{set\+From@{set\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+From()}{setFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::set\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a3840a1134b682940c11b1c0229afbe4b}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_a3840a1134b682940c11b1c0229afbe4b}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!set\+Value\+From@{set\+Value\+From}}
+\index{set\+Value\+From@{set\+Value\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+Value\+From()}{setValueFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::set\+Value\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae6b23b925f683793291244d61c8aac3a}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap_ae6b23b925f683793291244d61c8aac3a}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}!static\+Name@{static\+Name}}
+\index{static\+Name@{static\+Name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}}
+\subsubsection{\texorpdfstring{static\+Name()}{staticName()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MinEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Min\+Edge\+Map}$<$ G, T $>$\+::static\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/detail/\hyperlink{merge__rules_8hxx}{merge\+\_\+rules.\+hxx}\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::half_caster&lt; T, expr, R &gt;</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>std::float_round_style</type>
+        <declname>R</declname>
+        <defname>R</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1a8952ef178ea8fcc5faa71b7d6571dcd2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T half_float::detail::half_caster&lt; T, expr, R &gt;::cast</definition>
+        <argsstring>(expr arg)</argsstring>
+        <name>cast</name>
+        <param>
+          <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">expr</ref></type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2097" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2097" bodyend="2097"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1adb7bf3baf657408260dd141a6028dd39" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T half_float::detail::half_caster&lt; T, expr, R &gt;::cast_impl</definition>
+        <argsstring>(float arg, true_type)</argsstring>
+        <name>cast_impl</name>
+        <param>
+          <type>float</type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehalf__float_1_1detail_1a5e245748a3cc20e348dd92383d99d03c" kindref="member">true_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2100" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2100" bodyend="2100"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1ab0e91757a59d7040825ecea77f4a01a0" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T half_float::detail::half_caster&lt; T, expr, R &gt;::cast_impl</definition>
+        <argsstring>(half arg, false_type)</argsstring>
+        <name>cast_impl</name>
+        <param>
+          <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehalf__float_1_1detail_1a04d0449ab22bc6d1cfb2f31a8271945c" kindref="member">false_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2101" bodyend="2101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2092" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2091" bodyend="2102"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1a8952ef178ea8fcc5faa71b7d6571dcd2" prot="public" virt="non-virtual"><scope>half_float::detail::half_caster&lt; T, expr, R &gt;</scope><name>cast</name></member>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1adb7bf3baf657408260dd141a6028dd39" prot="private" virt="non-virtual"><scope>half_float::detail::half_caster&lt; T, expr, R &gt;</scope><name>cast_impl</name></member>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01T_00_01expr_00_01R_01_4_1ab0e91757a59d7040825ecea77f4a01a0" prot="private" virt="non-virtual"><scope>half_float::detail::half_caster&lt; T, expr, R &gt;</scope><name>cast_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

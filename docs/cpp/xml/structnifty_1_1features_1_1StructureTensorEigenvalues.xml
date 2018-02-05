@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="structnifty_1_1features_1_1StructureTensorEigenvalues" kind="struct" language="C++" prot="public">
     <compoundname>nifty::features::StructureTensorEigenvalues</compoundname>
     <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
@@ -33,12 +33,12 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="241" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="241" bodyend="242"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1ab54e8f7c4d7105c12a4c3ae65123bc61" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a514f1f20f7535404e91ed6ddad56dffe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void nifty::features::StructureTensorEigenvalues::operator()</definition>
-        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const</argsstring>
         <name>operator()</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a17c77d36dd765c5ec0b163102428656c">operator()</reimplements>
         <param>
           <type>const fastfilters_array2d_t &amp;</type>
           <declname>ff</declname>
@@ -59,12 +59,12 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="244" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="244" bodyend="266"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a3bd67a952442dd5bd961e82e4f120c20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1a18437b6743a641b081b6053115305bad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void nifty::features::StructureTensorEigenvalues::operator()</definition>
-        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const</argsstring>
         <name>operator()</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1abbef4e9c260026926e0021aa0cc11c81">operator()</reimplements>
         <param>
           <type>const fastfilters_array3d_t &amp;</type>
           <declname>ff</declname>
@@ -85,12 +85,12 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="268" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="268" bodyend="297"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1aa5167e0e2271ab52102d4afcb11d6634" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1StructureTensorEigenvalues_1aca7d1180adccc1ddbd657bfce7d349ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
         <definition>bool nifty::features::StructureTensorEigenvalues::isMultiChannel</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>isMultiChannel</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a1c278e2b6ef0cb2a5bba2f758c6855e2">isMultiChannel</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -122,25 +122,25 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1825">
+      <node id="1119">
         <label>nifty::features::StructureTensorEigenvalues</label>
         <link refid="structnifty_1_1features_1_1StructureTensorEigenvalues"/>
-        <childnode refid="1826" relation="public-inheritance">
+        <childnode refid="1120" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1826">
+      <node id="1120">
         <label>nifty::features::FilterBase</label>
         <link refid="structnifty_1_1features_1_1FilterBase"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1827">
+      <node id="1121">
         <label>nifty::features::StructureTensorEigenvalues</label>
         <link refid="structnifty_1_1features_1_1StructureTensorEigenvalues"/>
-        <childnode refid="1828" relation="public-inheritance">
+        <childnode refid="1122" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1828">
+      <node id="1122">
         <label>nifty::features::FilterBase</label>
         <link refid="structnifty_1_1features_1_1FilterBase"/>
       </node>
@@ -148,9 +148,9 @@
     <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="239" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="239" bodyend="310"/>
     <listofallmembers>
       <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>FilterBase</name></member>
-      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1aa5167e0e2271ab52102d4afcb11d6634" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>isMultiChannel</name></member>
-      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1ab54e8f7c4d7105c12a4c3ae65123bc61" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
-      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a3bd67a952442dd5bd961e82e4f120c20" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1aca7d1180adccc1ddbd657bfce7d349ac" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a514f1f20f7535404e91ed6ddad56dffe" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a18437b6743a641b081b6053115305bad" prot="public" virt="virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>operator()</name></member>
       <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>opt_</name></member>
       <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>set_window_ratio</name></member>
       <member refid="structnifty_1_1features_1_1StructureTensorEigenvalues_1a55717fa81aee4a1faa8538be206a572f" prot="public" virt="non-virtual"><scope>nifty::features::StructureTensorEigenvalues</scope><name>setOuterScale</name></member>

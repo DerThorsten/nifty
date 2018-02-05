@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::mincut::MincutQpbo</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" prot="public" virt="non-virtual">nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="mincut__qpbo_8hxx" local="no">mincut_qpbo.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1_1SettingsType" prot="public">nifty::graph::opt::mincut::MincutQpbo::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac598cbbe660ac111ee5af88095d4b6e7" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8f71e6bc2cd81bc7ccaa80b78d492ecb" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" kindref="compound">MincutBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MincutBase&lt;OBJECTIVE&gt; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a1233aed5d95f3549018cabfb2f5c51c3" prot="public" static="no">
+        <type>BaseType::VisitorBaseType</type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a66f72c74bd6db213eedc34a6736ac9a8" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" kindref="member">BaseType::VisitorProxyType</ref></type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" prot="public" static="no">
+        <type>BaseType::NodeLabelsType</type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a695840218c3b4e342c798aba785c302b" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a5364f3a884a17dea04046c2f717d36bf" prot="private" static="no">
+        <type>float</type>
+        <definition>typedef float nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::QpboValueType</definition>
+        <argsstring></argsstring>
+        <name>QpboValueType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ad24108ec5d71454144e5ee45562030c8" prot="private" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" kindref="compound">detail_graph::NodeIndicesToContiguousNodeIndices</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a695840218c3b4e342c798aba785c302b" kindref="member">GraphType</ref> &gt;</type>
+        <definition>typedef detail_graph::NodeIndicesToContiguousNodeIndices&lt;GraphType&gt; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::DenseIds</definition>
+        <argsstring></argsstring>
+        <name>DenseIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8b9ff3919b7d973d4d59a780f7a65153" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac598cbbe660ac111ee5af88095d4b6e7" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a54ebade55f69cd2fd40668a3cb1e0e6d" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a695840218c3b4e342c798aba785c302b" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="80" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ab55a2c655c72676adbb85925ce4d9c19" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1NodeIndicesToContiguousNodeIndices" kindref="compound">DenseIds</ref></type>
+        <definition>DenseIds nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::denseNodeIds_</definition>
+        <argsstring></argsstring>
+        <name>denseNodeIds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0b1a214a4b30dbbc30b078762912bd33" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac16c7f98b7f660fbd2a44703023186b3" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a9ceeac0a4fb3f50d31c9b7530d9ea861" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::currentBestEnergy_</definition>
+        <argsstring></argsstring>
+        <name>currentBestEnergy_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ab6af9f47af9015771e5be5292b1bdad8" prot="private" static="no" mutable="no">
+        <type>QPBO&lt; QpboValueType &gt;</type>
+        <definition>QPBO&lt;QpboValueType&gt; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::qpbo_</definition>
+        <argsstring></argsstring>
+        <name>qpbo_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a668a60d0a8e392aed0165b5ca9ab92a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::~MincutQpbo</definition>
+        <argsstring>()</argsstring>
+        <name>~MincutQpbo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0abee9db61e9ef5acf4c1a5e2cc51515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::MincutQpbo</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>MincutQpbo</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac598cbbe660ac111ee5af88095d4b6e7" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="94" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a04f877bddd6095ec3f9db4f21db14274" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a1233aed5d95f3549018cabfb2f5c51c3" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="114" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1af607a7941ed3d4976129bf81bfbf5f8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac598cbbe660ac111ee5af88095d4b6e7" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const MincutQpbo&lt; OBJECTIVE &gt;::ObjectiveType &amp; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const</argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="50" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="173" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8cec66d517bc70ed0065b60174d01ce4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a5ec74bde057ce6892451d3c08042945e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155">currentBestEnergy</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a4bcea4c5573610d9b656a06772d97353" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="59" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1acab46ec306e4b604eff21549a4366d39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::weightsChanged</definition>
+        <argsstring>()</argsstring>
+        <name>weightsChanged</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff">weightsChanged</reimplements>
+        <briefdescription>
+<para>Inform solver about a change of weights. </para>        </briefdescription>
+        <detaileddescription>
+<para>Inform solver that all weights could have changed. If a particular solver does not overload this function, an WeightsChangedNotSupported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="63" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ad91123811d8f5def1cd4316cfd54380c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::initializeQpbo</definition>
+        <argsstring>()</argsstring>
+        <name>initializeQpbo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="180" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0c7c91b79b715640aa1577df5e125e99" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::repairSolution</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels)</argsstring>
+        <name>repairSolution</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1aa7263441fbc038447cc6691191397731" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::addCycleInequalities</definition>
+        <argsstring>()</argsstring>
+        <name>addCycleInequalities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac3c4d3927cdc90f0ea6bc6a1fdf291fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;::addThreeCyclesConstraintsExplicitly</definition>
+        <argsstring>()</argsstring>
+        <name>addThreeCyclesConstraintsExplicitly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="77" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="659">
+        <label>nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo"/>
+        <childnode refid="660" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="661">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="660">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="661" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="662">
+        <label>nifty::graph::opt::mincut::MincutQpbo&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo"/>
+        <childnode refid="663" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="664">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="663">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="664" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx" bodystart="19" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1aa7263441fbc038447cc6691191397731" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>addCycleInequalities</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac3c4d3927cdc90f0ea6bc6a1fdf291fd" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>addThreeCyclesConstraintsExplicitly</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8f71e6bc2cd81bc7ccaa80b78d492ecb" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac16c7f98b7f660fbd2a44703023186b3" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a5ec74bde057ce6892451d3c08042945e" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a9ceeac0a4fb3f50d31c9b7530d9ea861" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>currentBestEnergy_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8cec66d517bc70ed0065b60174d01ce4" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ad24108ec5d71454144e5ee45562030c8" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>DenseIds</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ab55a2c655c72676adbb85925ce4d9c19" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>denseNodeIds_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a54ebade55f69cd2fd40668a3cb1e0e6d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a695840218c3b4e342c798aba785c302b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ad91123811d8f5def1cd4316cfd54380c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>initializeQpbo</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0abee9db61e9ef5acf4c1a5e2cc51515" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>MincutQpbo</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a4bcea4c5573610d9b656a06772d97353" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac4034e26807b6dd2ec740c8716f89ad8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1af607a7941ed3d4976129bf81bfbf5f8f" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8b9ff3919b7d973d4d59a780f7a65153" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ac598cbbe660ac111ee5af88095d4b6e7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a04f877bddd6095ec3f9db4f21db14274" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::mincut::MincutBase::"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1ab6af9f47af9015771e5be5292b1bdad8" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>qpbo_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a5364f3a884a17dea04046c2f717d36bf" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>QpboValueType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0c7c91b79b715640aa1577df5e125e99" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>repairSolution</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a0b1a214a4b30dbbc30b078762912bd33" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a1233aed5d95f3549018cabfb2f5c51c3" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a66f72c74bd6db213eedc34a6736ac9a8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1acab46ec306e4b604eff21549a4366d39" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a668a60d0a8e392aed0165b5ca9ab92a8" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>~MincutQpbo</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutQpbo</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

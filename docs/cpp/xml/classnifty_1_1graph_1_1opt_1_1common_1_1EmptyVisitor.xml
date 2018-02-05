@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::EmptyVisitor</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</basecompoundref>
+    <includes refid="visitor__base_8hxx" local="no">visitor_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>SOLVER</declname>
+        <defname>SOLVER</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1ab26fb53154e7dab11e8768c7f7cd7eea" prot="public" static="no">
+        <type>SOLVER</type>
+        <definition>typedef SOLVER nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;::SolverType</definition>
+        <argsstring></argsstring>
+        <name>SolverType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="264" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a5f9827674a0f59ada6b10a468efe85e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;::begin</definition>
+        <argsstring>(SolverType *solver)</argsstring>
+        <name>begin</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a8c4462a0cd838b0082f7157ad4b2d770">begin</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="266" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a709039dcb9c0d178ba45a7182c58388d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;::visit</definition>
+        <argsstring>(SolverType *solver)</argsstring>
+        <name>visit</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aaeef625f11705918d3fdd05f2550a879">visit</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="267" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="267" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a08d9fee2b6eb515bbec2c2ff46d2d0f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;::end</definition>
+        <argsstring>(SolverType *solver)</argsstring>
+        <name>end</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aab59ead6ecef2fcaf3da5a96d0ec4c51">end</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="268" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="268" bodyend="268"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="291">
+        <label>nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+      <node id="290">
+        <label>nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor"/>
+        <childnode refid="291" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="293">
+        <label>nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+      <node id="292">
+        <label>nifty::graph::opt::common::EmptyVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor"/>
+        <childnode refid="293" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="262" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="262" bodyend="270"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1acc4f1b419303965b0313ca83c6a7a420" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>addLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a5f9827674a0f59ada6b10a468efe85e8" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a9ac54577b1a0378834ffe2029a321744" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>clearLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a08d9fee2b6eb515bbec2c2ff46d2d0f4" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1ad9092d8387ff327b254df08ef97363a3" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>printLog</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a41efc013731cca97176a61be58db0094" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>setLogValue</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1ab26fb53154e7dab11e8768c7f7cd7eea" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>SolverType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor_1a709039dcb9c0d178ba45a7182c58388d" prot="public" virt="virtual"><scope>nifty::graph::opt::common::EmptyVisitor</scope><name>visit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

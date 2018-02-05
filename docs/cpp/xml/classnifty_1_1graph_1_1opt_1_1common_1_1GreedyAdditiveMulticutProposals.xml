@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="greedy__additive__multicut__proposal__generator_8hxx" local="no">greedy_additive_multicut_proposal_generator.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType" prot="public">nifty::graph::opt::common::GreedyAdditiveMulticutProposals::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a3e3e6166f8860e862acf00a9d134af54" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a9130fd4fe68ba06febed6f9472e16b2d" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1af4cc9116e5172d0f8b95d1d059bf437d" prot="public" static="no">
+        <type>nifty::graph::opt::MulticutBase&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a3e3e6166f8860e862acf00a9d134af54" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::MulticutBase&lt;ObjectiveType&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::Base</definition>
+        <argsstring></argsstring>
+        <name>Base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ad034fe9ab2c958d276ff06aeb2c39122" prot="public" static="no">
+        <type>MulticutGreedyAdditive&lt; Objective &gt;</type>
+        <definition>typedef MulticutGreedyAdditive&lt;Objective&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::Solver</definition>
+        <argsstring></argsstring>
+        <name>Solver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a41bd612b5b820441e0e2bbb3c2675511" prot="public" static="no">
+        <type>Solver::SettingsType</type>
+        <definition>typedef Solver::SettingsType nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::SolverSettings</definition>
+        <argsstring></argsstring>
+        <name>SolverSettings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a09e4cb8aea3e3aae593a050b1c55430e" prot="public" static="no">
+        <type>Base::EdgeLabels</type>
+        <definition>typedef Base::EdgeLabels nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::EdgeLabels</definition>
+        <argsstring></argsstring>
+        <name>EdgeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a9efc518b323ff1019cb348d568557291" prot="public" static="no">
+        <type>Base::NodeLabels</type>
+        <definition>typedef Base::NodeLabels nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::NodeLabels</definition>
+        <argsstring></argsstring>
+        <name>NodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a1a51f12b52812e4a7942bcfaa2d35d05" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::ProposalType</definition>
+        <argsstring></argsstring>
+        <name>ProposalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a382392cabd839d5b3478b3eaae47c596" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; float &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;float&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::EdgeWeights</definition>
+        <argsstring></argsstring>
+        <name>EdgeWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a0795b4019784f326cb43bb1d37179e7c" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a3e3e6166f8860e862acf00a9d134af54" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a2b98855091f1c32e3be1f49dbfda104f" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::numberOfThreads_</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a5d9a3b37e9a46af98edb7d048628cc79" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="156" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1aa6e471307dad48e4cdbd74cd3eedaef3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::negativeEdges_</definition>
+        <argsstring></argsstring>
+        <name>negativeEdges_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a34faf59eb9c617b9442791b637b9b53b" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a382392cabd839d5b3478b3eaae47c596" kindref="member">EdgeWeights</ref></type>
+        <definition>EdgeWeights nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::noisyEdgeWeights_</definition>
+        <argsstring></argsstring>
+        <name>noisyEdgeWeights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1aafce18c42eceb695695e472c1b0ed6d3" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a1a51f12b52812e4a7942bcfaa2d35d05" kindref="member">ProposalType</ref></type>
+        <definition>ProposalType nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::seeds_</definition>
+        <argsstring></argsstring>
+        <name>seeds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="159" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a28ef75cdfe47e4d32b13aedfdeff8ddd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::mt19937 &gt;</type>
+        <definition>std::vector&lt;std::mt19937&gt; nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::gens_</definition>
+        <argsstring></argsstring>
+        <name>gens_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="161" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ae55580eb3a30f3c7858f7f52b7ddd29a" prot="private" static="no" mutable="no">
+        <type>std::normal_distribution</type>
+        <definition>std::normal_distribution nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::dist_</definition>
+        <argsstring></argsstring>
+        <name>dist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="162" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a54ec88c562896cfff9788fb87afe691c" prot="private" static="no" mutable="no">
+        <type>std::uniform_int_distribution</type>
+        <definition>std::uniform_int_distribution nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::intDist_</definition>
+        <argsstring></argsstring>
+        <name>intDist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="163" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a13d741c3e55df3a21430869ca4546627" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::GreedyAdditiveMulticutProposals</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>GreedyAdditiveMulticutProposals</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a3e3e6166f8860e862acf00a9d134af54" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="61" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a4b45c7d68ca492662bdf8585b99b6ec8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="83" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="83" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ab6333904198780a44ac75fc37a6ae49a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::~GreedyAdditiveMulticutProposals</definition>
+        <argsstring>()</argsstring>
+        <name>~GreedyAdditiveMulticutProposals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a72bb3fb26fe3d32cf8fa0f6fd2a05010" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const ProposalType &amp;currentBest, ProposalType &amp;proposal, const size_t tid)</argsstring>
+        <name>generateProposal</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a1a51f12b52812e4a7942bcfaa2d35d05" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a1a51f12b52812e4a7942bcfaa2d35d05" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>proposal</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="105" bodyend="152"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Watershed proposal generator for <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased" kindref="compound">lifted_multicut::FusionMoveBased</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>{ description } </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="418">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="417">
+        <label>nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals"/>
+        <childnode refid="418" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="420">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="419">
+        <label>nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals"/>
+        <childnode refid="420" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx" bodystart="29" bodyend="166"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1af4cc9116e5172d0f8b95d1d059bf437d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>Base</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ae55580eb3a30f3c7858f7f52b7ddd29a" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>dist_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a09e4cb8aea3e3aae593a050b1c55430e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>EdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a382392cabd839d5b3478b3eaae47c596" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>EdgeWeights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a72bb3fb26fe3d32cf8fa0f6fd2a05010" prot="public" virt="virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::common::ProposalGeneratorBase::"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a28ef75cdfe47e4d32b13aedfdeff8ddd" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>gens_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a9130fd4fe68ba06febed6f9472e16b2d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a13d741c3e55df3a21430869ca4546627" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>GreedyAdditiveMulticutProposals</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a54ec88c562896cfff9788fb87afe691c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>intDist_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1aa6e471307dad48e4cdbd74cd3eedaef3" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>negativeEdges_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a9efc518b323ff1019cb348d568557291" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>NodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a34faf59eb9c617b9442791b637b9b53b" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>noisyEdgeWeights_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a2b98855091f1c32e3be1f49dbfda104f" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>numberOfThreads_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a0795b4019784f326cb43bb1d37179e7c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a3e3e6166f8860e862acf00a9d134af54" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a1a51f12b52812e4a7942bcfaa2d35d05" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>ProposalType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a4b45c7d68ca492662bdf8585b99b6ec8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1aafce18c42eceb695695e472c1b0ed6d3" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>seeds_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a5d9a3b37e9a46af98edb7d048628cc79" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ad034fe9ab2c958d276ff06aeb2c39122" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>Solver</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1a41bd612b5b820441e0e2bbb3c2675511" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>SolverSettings</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1ab6333904198780a44ac75fc37a6ae49a" prot="public" virt="virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>~GreedyAdditiveMulticutProposals</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" prot="public" virt="virtual"><scope>nifty::graph::opt::common::GreedyAdditiveMulticutProposals</scope><name>~ProposalGeneratorBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

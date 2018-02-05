@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="namespacenifty_1_1array" kind="namespace" language="C++">
     <compoundname>nifty::array</compoundname>
     <innerclass refid="classnifty_1_1array_1_1ArrayExtender" prot="public">nifty::array::ArrayExtender</innerclass>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="143" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="143" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespacenifty_1_1array_1aa0fe9e5e97322da484fa8ffd2fe44cd5" prot="public" static="no">
         <type><ref refid="classnifty_1_1array_1_1ArrayExtender" kindref="compound">ArrayExtender</ref>&lt; std::vector&lt; T, ALLOCATOR &gt; &gt;</type>
@@ -94,10 +94,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="65" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenifty_1_1array_1a4786c4b393cff5d99d56b55ec1aabe5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenifty_1_1array_1a211ca8d1e02522fefe7608751e6420e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>NIFTY_MACRO_BINARY_OP_INPLACE *</type>
         <definition>NIFTY_MACRO_BINARY_OP_INPLACE* nifty::array::NIFTY_MACRO_BINARY_OP_INPLACE</definition>
-        <argsstring>(/=);       NIFTY_MACRO_BINARY_OP_INPLACE(&amp;=</argsstring>
+        <argsstring>(/=);NIFTY_MACRO_BINARY_OP_INPLACE(&amp;=</argsstring>
         <name>NIFTY_MACRO_BINARY_OP_INPLACE</name>
         <param>
           <type>/</type>
@@ -145,10 +145,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="96" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenifty_1_1array_1a7960bc347c963a7cde9178e3e66d8903" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenifty_1_1array_1a70fec34e34b32501a7a24894c2658cf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>nifty::array::NIFTY_MACRO_BINARY_OP</definition>
-        <argsstring>(-,-=)</argsstring>
+        <argsstring>(-, -=)</argsstring>
         <name>NIFTY_MACRO_BINARY_OP</name>
         <param>
           <type>-</type>
@@ -164,10 +164,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/array/arithmetic_array.hxx" line="97" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="namespacenifty_1_1array_1a7777b1eeea0908a2cf0259b2d79db7fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacenifty_1_1array_1aa7253f406426ee08919c625db256f3c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>NIFTY_MACRO_BINARY_OP *</type>
         <definition>NIFTY_MACRO_BINARY_OP* nifty::array::NIFTY_MACRO_BINARY_OP</definition>
-        <argsstring>(/,/=);       NIFTY_MACRO_BINARY_OP(&amp;,&amp;=</argsstring>
+        <argsstring>(/,/=);NIFTY_MACRO_BINARY_OP(&amp;, &amp;=</argsstring>
         <name>NIFTY_MACRO_BINARY_OP</name>
         <param>
           <type>/</type>

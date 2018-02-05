@@ -1,0 +1,648 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classhalf__float_1_1half" kind="class" language="C++" prot="public">
+    <compoundname>half_float::half</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhalf__float_1_1half_1a8c62dbcc77cd228ff65300d012535a09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend struct</type>
+        <definition>friend struct detail::functions</definition>
+        <argsstring></argsstring>
+        <name>detail::functions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1076" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1076" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhalf__float_1_1half_1a66a5c900a45b9733983fc83ae3beaa4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend struct</type>
+        <definition>friend struct detail::unary_specialized&lt; half &gt;</definition>
+        <argsstring></argsstring>
+        <name>detail::unary_specialized&lt; half &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1076" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1077" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhalf__float_1_1half_1a0549e53309bef497d5ce1d1ad89c4bc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend struct</type>
+        <definition>friend struct detail::binary_specialized&lt; half, half &gt;</definition>
+        <argsstring></argsstring>
+        <name>detail::binary_specialized&lt; half, half &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1076" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1078" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhalf__float_1_1half_1a2ff50b0344ffe4a76ba5d7c868fa8ffa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename</type>
+          </param>
+          <param>
+            <type>typename</type>
+          </param>
+          <param>
+            <type>std::float_round_style</type>
+          </param>
+        </templateparamlist>
+        <type>friend struct</type>
+        <definition>friend struct detail::half_caster</definition>
+        <argsstring></argsstring>
+        <name>detail::half_caster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1079" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1079" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhalf__float_1_1half_1a30984629ce0edc2c2e5de40c72ab0292" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class std::numeric_limits&lt; half &gt;</definition>
+        <argsstring></argsstring>
+        <name>std::numeric_limits&lt; half &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1079" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1080" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classhalf__float_1_1half_1afe7e8cf9466aaf6abf833f2176849b79" prot="private" static="yes" mutable="no">
+        <type>const std::float_round_style</type>
+        <definition>const std::float_round_style half_float::half::round_style</definition>
+        <argsstring></argsstring>
+        <name>round_style</name>
+        <initializer>= (std::float_round_style)(<ref refid="half_8hpp_1af470ed60568b3e7f4fde6092d22abbde" kindref="member">HALF_ROUND_STYLE</ref>)</initializer>
+        <briefdescription>
+<para>Rounding mode to use. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1180" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1180" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhalf__float_1_1half_1a8e1049bf4b527aad4423c3054510acb2" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehalf__float_1_1detail_1a239ec58092b4e4849b444baee1a01088" kindref="member">detail::uint16</ref></type>
+        <definition>detail::uint16 half_float::half::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <briefdescription>
+<para>Internal binary representation. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1187" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1187" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhalf__float_1_1half_1a3f52e869fec499d6b86f2afc90749d6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="half_8hpp_1ace3116a3e2cd66dd15780b92060987c7" kindref="member">HALF_CONSTEXPR</ref></type>
+        <definition>HALF_CONSTEXPR half_float::half::half</definition>
+        <argsstring>() HALF_NOEXCEPT</argsstring>
+        <name>half</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default constructor. This initializes the half to 0. Although this does not match the builtin types&apos; default-initialization semantics and may be less efficient than no initialization, it is needed to provide proper value-initialization semantics. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1092" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1092" bodyend="1092"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ab56421622ebddd86fc75ad1eebdfbd8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>half_float::half::half</definition>
+        <argsstring>(detail::expr rhs)</argsstring>
+        <name>half</name>
+        <param>
+          <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">detail::expr</ref></type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy constructor. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to copy from </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1097" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1097" bodyend="1097"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1aad7fddc333853c6a37016e2eac3d4d04" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>half_float::half::half</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>half</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion constructor. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>float to convert </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1101" bodyend="1101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ac44a6dc499322ae9330375f2b0dda8b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>half_float::half::operator float</definition>
+        <argsstring>() const</argsstring>
+        <name>operator float</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion to single-precision. <simplesect kind="return"><para>single precision value representing expression value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1105" bodyend="1105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ada563d2964479ed1a325eca97933dc9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator=</definition>
+        <argsstring>(detail::expr rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structhalf__float_1_1detail_1_1expr" kindref="compound">detail::expr</ref></type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment operator. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to copy from </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1111" bodyend="1111"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1aa562db3abdbf9c0bca4150f7cfa6bd1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structhalf__float_1_1detail_1_1enable" kindref="compound">detail::enable</ref>&lt; <ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;, T &gt;::type</type>
+        <definition>detail::enable&lt;half&amp;,T&gt;::type half_float::half::operator+=</definition>
+        <argsstring>(T rhs)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>T</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to add </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1117" bodyend="1117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a86647595e63e3d0bac1c4b17a3fe162e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structhalf__float_1_1detail_1_1enable" kindref="compound">detail::enable</ref>&lt; <ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;, T &gt;::type</type>
+        <definition>detail::enable&lt;half&amp;,T&gt;::type half_float::half::operator-=</definition>
+        <argsstring>(T rhs)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>T</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to subtract </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1123" bodyend="1123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a6de077e98651981a899b09738e49d3c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structhalf__float_1_1detail_1_1enable" kindref="compound">detail::enable</ref>&lt; <ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;, T &gt;::type</type>
+        <definition>detail::enable&lt;half&amp;,T&gt;::type half_float::half::operator*=</definition>
+        <argsstring>(T rhs)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>T</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to multiply with </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1129" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1129" bodyend="1129"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a7a3a8659d8186e9cb14638907c664aa9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structhalf__float_1_1detail_1_1enable" kindref="compound">detail::enable</ref>&lt; <ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;, T &gt;::type</type>
+        <definition>detail::enable&lt;half&amp;,T&gt;::type half_float::half::operator/=</definition>
+        <argsstring>(T rhs)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>T</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of concrete half expression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half expression to divide by </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1135" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1135" bodyend="1135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a3baf11c1e7ab4f825f182a801d85369a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator=</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assignment operator. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to copy from </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1140" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1140" bodyend="1140"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a91d580c2fea1b3a7b285341b79874333" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator+=</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to add </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1145" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1145" bodyend="1145"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a394f8eec9a67b4577584f994c7c3cb90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator-=</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to subtract </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1150" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1150" bodyend="1150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ab384d4ffe5c7117d1485f514f1113b50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator*=</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to multiply with </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1155" bodyend="1155"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a4a164803ca231d07f3b27c5c2bcf1715" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator/=</definition>
+        <argsstring>(float rhs)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>float</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Arithmetic assignment. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single-precision value to divide by </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to this half </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1160" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1160" bodyend="1160"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ad902e63995af7942b1e498eb381dcdd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator++</definition>
+        <argsstring>()</argsstring>
+        <name>operator++</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prefix increment. <simplesect kind="return"><para>incremented half value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1164" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1164" bodyend="1164"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a3f6f801be0522edc5ae5146012748e5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref> &amp;</type>
+        <definition>half&amp; half_float::half::operator--</definition>
+        <argsstring>()</argsstring>
+        <name>operator--</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prefix decrement. <simplesect kind="return"><para>decremented half value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1168" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1168" bodyend="1168"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1a1a88e6a51b683bb7f3c57997d73561ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>half half_float::half::operator++</definition>
+        <argsstring>(int)</argsstring>
+        <name>operator++</name>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Postfix increment. <simplesect kind="return"><para>non-incremented half value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1172" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1172" bodyend="1172"/>
+      </memberdef>
+      <memberdef kind="function" id="classhalf__float_1_1half_1ae89579e80863e11ad9aae90e7883d4cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>half half_float::half::operator--</definition>
+        <argsstring>(int)</argsstring>
+        <name>operator--</name>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Postfix decrement. <simplesect kind="return"><para>non-decremented half value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1176" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1176" bodyend="1176"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhalf__float_1_1half_1ade33c4d8291f8cfaefe0814207feda8c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="half_8hpp_1ace3116a3e2cd66dd15780b92060987c7" kindref="member">HALF_CONSTEXPR</ref></type>
+        <definition>HALF_CONSTEXPR half_float::half::half</definition>
+        <argsstring>(detail::binary_t, detail::uint16 bits) HALF_NOEXCEPT</argsstring>
+        <name>half</name>
+        <param>
+          <type><ref refid="structhalf__float_1_1detail_1_1binary__t" kindref="compound">detail::binary_t</ref></type>
+        </param>
+        <param>
+          <type><ref refid="namespacehalf__float_1_1detail_1a239ec58092b4e4849b444baee1a01088" kindref="member">detail::uint16</ref></type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>binary representation to set half to </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1184" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1184" bodyend="1184"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Half-precision floating point type. This class implements an IEEE-conformant half-precision floating point type with the usual arithmetic operators and conversions. It is implicitly convertible to single-precision floating point, which makes artihmetic expressions and functions with mixed-type operands to be of the most precise operand type. Additionally all arithmetic operations (and many mathematical functions) are carried out in single-precision internally. All conversions from single- to half-precision are done using the library&apos;s default rounding mode, but temporary results inside chained arithmetic expressions are kept in single-precision as long as possible (while of course still maintaining a strong half-precision type).</para><para>According to the C++98/03 definition, the half type is not a POD type. But according to C++11&apos;s less strict and extended definitions it is both a standard layout type and a trivially copyable type (even if not a POD type), which means it can be standard-conformantly copied using raw binary copies. But in this context some more words about the actual size of the type. Although the half is representing an IEEE 16-bit type, it does not neccessarily have to be of exactly 16-bits size. But on any reasonable implementation the actual binary representation of this type will most probably not ivolve any additional &quot;magic&quot; or padding beyond the simple binary representation of the underlying 16-bit IEEE number, even if not strictly guaranteed by the standard. But even then it only has an actual size of 16 bits if your C++ implementation supports an unsigned integer type of exactly 16 bits width. But this should be the case on nearly any reasonable platform.</para><para>So if your C++ implementation is not totally exotic or imposes special alignment requirements, it is a reasonable assumption that the data of a half is just comprised of the 2 bytes of the underlying IEEE representation. </para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="1075" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="1074" bodyend="1188"/>
+    <listofallmembers>
+      <member refid="classhalf__float_1_1half_1a8e1049bf4b527aad4423c3054510acb2" prot="private" virt="non-virtual"><scope>half_float::half</scope><name>data_</name></member>
+      <member refid="classhalf__float_1_1half_1a0549e53309bef497d5ce1d1ad89c4bc4" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>detail::binary_specialized&lt; half, half &gt;</name></member>
+      <member refid="classhalf__float_1_1half_1a8c62dbcc77cd228ff65300d012535a09" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>detail::functions</name></member>
+      <member refid="classhalf__float_1_1half_1a2ff50b0344ffe4a76ba5d7c868fa8ffa" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>detail::half_caster</name></member>
+      <member refid="classhalf__float_1_1half_1a66a5c900a45b9733983fc83ae3beaa4e" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>detail::unary_specialized&lt; half &gt;</name></member>
+      <member refid="classhalf__float_1_1half_1a3f52e869fec499d6b86f2afc90749d6a" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>half</name></member>
+      <member refid="classhalf__float_1_1half_1ab56421622ebddd86fc75ad1eebdfbd8e" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>half</name></member>
+      <member refid="classhalf__float_1_1half_1aad7fddc333853c6a37016e2eac3d4d04" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>half</name></member>
+      <member refid="classhalf__float_1_1half_1ade33c4d8291f8cfaefe0814207feda8c" prot="private" virt="non-virtual"><scope>half_float::half</scope><name>half</name></member>
+      <member refid="classhalf__float_1_1half_1ac44a6dc499322ae9330375f2b0dda8b6" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator float</name></member>
+      <member refid="classhalf__float_1_1half_1a6de077e98651981a899b09738e49d3c3" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator*=</name></member>
+      <member refid="classhalf__float_1_1half_1ab384d4ffe5c7117d1485f514f1113b50" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator*=</name></member>
+      <member refid="classhalf__float_1_1half_1ad902e63995af7942b1e498eb381dcdd9" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator++</name></member>
+      <member refid="classhalf__float_1_1half_1a1a88e6a51b683bb7f3c57997d73561ed" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator++</name></member>
+      <member refid="classhalf__float_1_1half_1aa562db3abdbf9c0bca4150f7cfa6bd1b" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator+=</name></member>
+      <member refid="classhalf__float_1_1half_1a91d580c2fea1b3a7b285341b79874333" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator+=</name></member>
+      <member refid="classhalf__float_1_1half_1a3f6f801be0522edc5ae5146012748e5d" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator--</name></member>
+      <member refid="classhalf__float_1_1half_1ae89579e80863e11ad9aae90e7883d4cd" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator--</name></member>
+      <member refid="classhalf__float_1_1half_1a86647595e63e3d0bac1c4b17a3fe162e" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator-=</name></member>
+      <member refid="classhalf__float_1_1half_1a394f8eec9a67b4577584f994c7c3cb90" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator-=</name></member>
+      <member refid="classhalf__float_1_1half_1a7a3a8659d8186e9cb14638907c664aa9" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator/=</name></member>
+      <member refid="classhalf__float_1_1half_1a4a164803ca231d07f3b27c5c2bcf1715" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator/=</name></member>
+      <member refid="classhalf__float_1_1half_1ada563d2964479ed1a325eca97933dc9f" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator=</name></member>
+      <member refid="classhalf__float_1_1half_1a3baf11c1e7ab4f825f182a801d85369a" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>operator=</name></member>
+      <member refid="classhalf__float_1_1half_1afe7e8cf9466aaf6abf833f2176849b79" prot="private" virt="non-virtual"><scope>half_float::half</scope><name>round_style</name></member>
+      <member refid="classhalf__float_1_1half_1a30984629ce0edc2c2e5de40c72ab0292" prot="public" virt="non-virtual"><scope>half_float::half</scope><name>std::numeric_limits&lt; half &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

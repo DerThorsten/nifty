@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Union-Find Data Structure &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>Union-Find Data Structure &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ISBI 2012 Simple 2D Multicut Pipeline" href="../multicut/plot_isbi_2012_multicut_2D_simple.html" />
     <link rel="prev" title="Multicut Logging Visitor" href="../graph/plot_toy_multicut.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +44,7 @@
         <li class="right" >
           <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Gallery of Examples</a> &#187;</li> 
       </ul>
@@ -91,7 +88,7 @@ partitioned into a number of disjoint (non-overlapping) subsets.
 It provides near-constant-time operations (bounded by the inverse Ackermann function) to add new sets,
 to merge existing sets,
 and to determine whether elements are in the same set. In addition to many other uses (see the Applications section),
-disjoint-sets play a key role in Kruskal&#8217;s algorithm for finding the minimum spanning tree of a graph.</div></blockquote>
+disjoint-sets play a key role in Kruskal’s algorithm for finding the minimum spanning tree of a graph.</div></blockquote>
 <p>In this example we show how to use a fast UFD implementation.</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span><span class="n">NumberOfSets</span> <span class="mi">10</span>
@@ -160,7 +157,7 @@ disjoint-sets play a key role in Kruskal&#8217;s algorithm for finding the minim
 <span class="c1"># this is way faster for</span>
 <span class="c1"># if a large number of elements</span>
 <span class="c1"># should be found</span>
-<span class="n">toFind</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">toFind</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;find [2, 3] = &quot;</span><span class="p">,</span><span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">toFind</span><span class="p">))</span>
 
 
@@ -169,14 +166,14 @@ disjoint-sets play a key role in Kruskal&#8217;s algorithm for finding the minim
 <span class="c1"># here we merge 4 with 5  and also</span>
 <span class="c1"># 7 with</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;merge 2 with 3 and 7 with 8&quot;</span><span class="p">)</span>
-<span class="n">toMerge</span>  <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.array.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint64&#39;</span><span class="p">)</span>
+<span class="n">toMerge</span>  <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.array" title="View documentation for numpy.array"><span class="n">numpy</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint64&#39;</span><span class="p">)</span>
 <span class="n">ufd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">toMerge</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;NumberOfSets&quot;</span><span class="p">,</span> <span class="n">ufd</span><span class="o">.</span><span class="n">numberOfSets</span><span class="p">)</span>
 
 <span class="c1"># find all elements</span>
-<span class="n">setIds</span> <span class="o">=</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.arange.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">numberOfElements</span><span class="p">))</span>
+<span class="n">setIds</span> <span class="o">=</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">numberOfElements</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;find </span><span class="si">%d</span><span class="s2">  = &quot;</span><span class="o">%</span><span class="n">element</span><span class="p">,</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">setIds</span><span class="p">[</span><span class="n">element</span><span class="p">]))</span>
 
@@ -188,17 +185,17 @@ disjoint-sets play a key role in Kruskal&#8217;s algorithm for finding the minim
 <span class="k">assert</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 
-<span class="k">print</span><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.arange.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">numberOfElements</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><a href="http://docs.scipy.org/doc/numpy-1.9.1/reference/generated/numpy.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="n">ufd</span><span class="o">.</span><span class="n">numberOfElements</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_ufd.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_ufd.py</span></code></a></div>
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_ufd.ipynb" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_ufd.ipynb</span></code></a></div>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -222,13 +219,13 @@ disjoint-sets play a key role in Kruskal&#8217;s algorithm for finding the minim
         <li class="right" >
           <a href="../graph/plot_toy_multicut.html" title="Multicut Logging Visitor"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../examples.html" >Nifty Examples Gallery</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Gallery of Examples</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>

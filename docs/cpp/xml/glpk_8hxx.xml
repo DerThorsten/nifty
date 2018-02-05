@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="glpk_8hxx" kind="file" language="C++">
     <compoundname>glpk.hxx</compoundname>
     <includes local="no">limits</includes>
@@ -8,42 +8,42 @@
     <includes refid="exceptions_8hxx" local="yes">nifty/exceptions/exceptions.hxx</includes>
     <includes refid="ilp__backend_8hxx" local="yes">nifty/ilp_backend/ilp_backend.hxx</includes>
     <incdepgraph>
-      <node id="11328">
+      <node id="5872">
         <label>limits</label>
       </node>
-      <node id="11332">
+      <node id="5876">
         <label>stdexcept</label>
       </node>
-      <node id="11329">
+      <node id="5873">
         <label>string</label>
       </node>
-      <node id="11331">
+      <node id="5875">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="11332" relation="include">
+        <childnode refid="5876" relation="include">
         </childnode>
       </node>
-      <node id="11330">
+      <node id="5874">
         <label>glpk.h</label>
       </node>
-      <node id="11327">
+      <node id="5871">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/glpk.hxx</label>
-        <link refid="glpk.hxx"/>
-        <childnode refid="11328" relation="include">
+        <link refid="glpk_8hxx"/>
+        <childnode refid="5872" relation="include">
         </childnode>
-        <childnode refid="11329" relation="include">
+        <childnode refid="5873" relation="include">
         </childnode>
-        <childnode refid="11330" relation="include">
+        <childnode refid="5874" relation="include">
         </childnode>
-        <childnode refid="11331" relation="include">
+        <childnode refid="5875" relation="include">
         </childnode>
-        <childnode refid="11333" relation="include">
+        <childnode refid="5877" relation="include">
         </childnode>
       </node>
-      <node id="11333">
+      <node id="5877">
         <label>nifty/ilp_backend/ilp_backend.hxx</label>
         <link refid="ilp__backend_8hxx"/>
-        <childnode refid="11328" relation="include">
+        <childnode refid="5872" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -86,7 +86,7 @@
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CoefficientIterator,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1a2e66c98281cb549ee477d58fbd3b8374" kindref="member">optimize</ref>();</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1a37396f440ddcda1e15b6486ed48642e1" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1a7720302149ac1d1df4207854a3f91d03" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34" refid="classnifty_1_1ilp__backend_1_1Glpk_1ad86a2c29a1b0c73a47c79d2d5c0ff07d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1ad86a2c29a1b0c73a47c79d2d5c0ff07d" kindref="member">name</ref>(){</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;Glpk&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -179,7 +179,7 @@
 <codeline lineno="122"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="classnifty_1_1ilp__backend_1_1Glpk_1a37396f440ddcda1e15b6486ed48642e1" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1a37396f440ddcda1e15b6486ed48642e1" kindref="member">Glpk::label</ref>(</highlight></codeline>
+<codeline lineno="125" refid="classnifty_1_1ilp__backend_1_1Glpk_1a7720302149ac1d1df4207854a3f91d03" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Glpk_1a7720302149ac1d1df4207854a3f91d03" kindref="member">Glpk::label</ref>(</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>variableIndex</highlight></codeline>
 <codeline lineno="127"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;get<sp/>label\n&quot;;</highlight><highlight class="normal"></highlight></codeline>

@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</compoundname>
+    <includes refid="merge__rules_8hxx" local="no">merge_rules.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class G</type>
+      </param>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a30c83f3e3f699c7060a9e9605672246b" prot="public" static="no">
+        <type>G</type>
+        <definition>typedef G nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="211" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1ac0fe8dbcb9cc4baa5aff9614e0ddd13d" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; T &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;T&gt; nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::MeanEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>MeanEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="212" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a27bfa4de7c16550e9028903d774c705d" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; <ref refid="namespacenifty_1a20031b62bd5c16b943905d43a8ed361a" kindref="member">nifty::float16_t</ref> &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;nifty::float16_t&gt; nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::SizeEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>SizeEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="213" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a0f463ebc561d6770fa59b4168e4acf98" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxSettings" kindref="compound">SmoothMaxSettings</ref></type>
+        <definition>typedef SmoothMaxSettings nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="215" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a5133a7a943434f374453ddb2a4a0dfb6" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1ac0fe8dbcb9cc4baa5aff9614e0ddd13d" kindref="member">MeanEdgeMapType</ref></type>
+        <definition>MeanEdgeMapType nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::values_</definition>
+        <argsstring></argsstring>
+        <name>values_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="284" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a4389d066fe5a615b77220282ff932df5" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a27bfa4de7c16550e9028903d774c705d" kindref="member">SizeEdgeMapType</ref></type>
+        <definition>SizeEdgeMapType nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="285" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a3ab5572ef1ff30eee36f37dfb3dda98d" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a0f463ebc561d6770fa59b4168e4acf98" kindref="member">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="286" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a7757ee60e33b74e2ecb85c3c5324a3a5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>static auto nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::staticName</definition>
+        <argsstring>()</argsstring>
+        <name>staticName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="205" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="205" bodyend="207"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a287e909e5f1222784b2213960ade1658" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="208" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="208" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a4aa821c3b693ed4eb550d4d0b4579e1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class VALUES</type>
+          </param>
+          <param>
+            <type>class WEIGHTS</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::SmoothMaxEdgeMap</definition>
+        <argsstring>(const GraphType &amp;g, const VALUES &amp;values, const WEIGHTS &amp;weights, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>SmoothMaxEdgeMap</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a30c83f3e3f699c7060a9e9605672246b" kindref="member">GraphType</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const VALUES &amp;</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>const WEIGHTS &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a0f463ebc561d6770fa59b4168e4acf98" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a0f463ebc561d6770fa59b4168e4acf98" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="218" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="218" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a45a0264cbcf21f248437444510b7cb6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::merge</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>merge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="234" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="234" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a8ac7346a7f10f3267fdc6a57be483390" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::setValueFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setValueFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="267" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="267" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a64c165ba49ca6b304ecfe56d4a17bb7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::setFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="270" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a01a6c6d85c9ebad17f45a37ada88d2f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::set</definition>
+        <argsstring>(const uint64_t targetEdge, const T &amp;value, const T &amp;weight)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="275" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="275" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1af895880f98eacaf3c8c157d730c256f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap&lt; G, T &gt;::operator[]</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="280" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="280" bodyend="282"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="202" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="202" bodyend="287"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a30c83f3e3f699c7060a9e9605672246b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1ac0fe8dbcb9cc4baa5aff9614e0ddd13d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>MeanEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a45a0264cbcf21f248437444510b7cb6c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>merge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a287e909e5f1222784b2213960ade1658" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1af895880f98eacaf3c8c157d730c256f7" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a01a6c6d85c9ebad17f45a37ada88d2f8" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>set</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a64c165ba49ca6b304ecfe56d4a17bb7b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>setFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a3ab5572ef1ff30eee36f37dfb3dda98d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a0f463ebc561d6770fa59b4168e4acf98" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a8ac7346a7f10f3267fdc6a57be483390" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>setValueFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a27bfa4de7c16550e9028903d774c705d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>SizeEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a4aa821c3b693ed4eb550d4d0b4579e1f" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>SmoothMaxEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a7757ee60e33b74e2ecb85c3c5324a3a5" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>staticName</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a5133a7a943434f374453ddb2a4a0dfb6" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>values_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_1a4389d066fe5a615b77220282ff932df5" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::SmoothMaxEdgeMap</scope><name>weights_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</compoundname>
     <includes refid="contiguous__indices_8hxx" local="no">contiguous_indices.hxx</includes>
@@ -16,11 +16,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0ca0aedc5cca6cdb6ec300f455c30463" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a9a93d5ced427774523bdbce7912d1788" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,9 +31,9 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1ad642899ad08e4cd62036db776a5e9a10" prot="private" static="no">
-        <type>Graph::template EdgeMap&lt; uint64_t &gt;</type>
-        <definition>typedef Graph:: template EdgeMap&lt;uint64_t&gt; nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::ContiguousIdStorage</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a286936aedbf9742d78831dca4c351dea" prot="private" static="no">
+        <type>GraphType::template EdgeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;uint64_t&gt; nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::ContiguousIdStorage</definition>
         <argsstring></argsstring>
         <name>ContiguousIdStorage</name>
         <briefdescription>
@@ -61,13 +61,13 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0427ceeeebf1d9c6d0df61a17a60f16e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a00a49b794117958e1b0303322c4965cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::EdgeIndicesToContiguousEdgeIndicesImpl</definition>
-        <argsstring>(const Graph &amp;graph)</argsstring>
+        <argsstring>(const GraphType &amp;graph)</argsstring>
         <name>EdgeIndicesToContiguousEdgeIndicesImpl</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0ca0aedc5cca6cdb6ec300f455c30463" kindref="member">Graph</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a9a93d5ced427774523bdbce7912d1788" kindref="member">GraphType</ref> &amp;</type>
           <declname>graph</declname>
         </param>
         <briefdescription>
@@ -78,10 +78,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" bodystart="14" bodyend="23"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a6b61c81dbb699894e396687ae8667e15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1ae161e5dfac99c6d9109450aac9a891ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, EDGE_ID_TAG &gt;::operator[]</definition>
-        <argsstring>(const int64_t edge) const </argsstring>
+        <argsstring>(const int64_t edge) const</argsstring>
         <name>operator[]</name>
         <param>
           <type>const int64_t</type>
@@ -102,11 +102,11 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" line="11" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/contiguous_indices.hxx" bodystart="11" bodyend="30"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1ad642899ad08e4cd62036db776a5e9a10" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>ContiguousIdStorage</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0427ceeeebf1d9c6d0df61a17a60f16e" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>EdgeIndicesToContiguousEdgeIndicesImpl</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a0ca0aedc5cca6cdb6ec300f455c30463" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a286936aedbf9742d78831dca4c351dea" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>ContiguousIdStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a00a49b794117958e1b0303322c4965cb" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>EdgeIndicesToContiguousEdgeIndicesImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a9a93d5ced427774523bdbce7912d1788" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>GraphType</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a17975ef89d8e5fe385488f5395e5170a" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>ids_</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1a6b61c81dbb699894e396687ae8667e15" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl_1ae161e5dfac99c6d9109450aac9a891ac" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl</scope><name>operator[]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

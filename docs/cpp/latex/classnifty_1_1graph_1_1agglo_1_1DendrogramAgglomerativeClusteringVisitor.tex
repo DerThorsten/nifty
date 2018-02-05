@@ -1,0 +1,117 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:Dendrogram\+Agglomerative\+Clustering\+Visitor$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+N\+G $>$@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+N\+G $>$}}
+
+
+{\ttfamily \#include $<$agglomerative\+\_\+clustering.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type}
+\item 
+typedef Agglomerative\+Clustering\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_abbc8e2c55e4b0fc99bc0e52c9349e0a1}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_adccc2152f38cd44b4158f5e6847b5d6e}{Node\+To\+Encoding}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a02d2e28c63f59f3ad2a6fb1266652794}{Node\+Size}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0312d190fc33b4d1bcc07791f409f520}{Dendrogram\+Agglomerative\+Clustering\+Visitor} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type} \&\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0abd59925ced8e1147fd8554613dfab2}{agglomerative\+Clustering})
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_ad7fee0b92e3fce5087ad4a4ffe8f885f}{Dendrogram\+Agglomerative\+Clustering\+Visitor} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type} \&\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0abd59925ced8e1147fd8554613dfab2}{agglomerative\+Clustering}, N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES \&node\+Sizes)
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0941aeea1a4ddd0d4b6915bc5740809e}{is\+Done} () const
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a9335b363cf919ce31d4d366f169712ab}{visit} (const uint64\+\_\+t alive\+Node, const uint64\+\_\+t dead\+Node, const double p)
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0abd59925ced8e1147fd8554613dfab2}{agglomerative\+Clustering} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a1a5d04ed93b944429bef3bc48ba470c9}{dendrogram\+Encoding} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Agglomerative\+Clustering\+Type@{Agglomerative\+Clustering\+Type}}
+\index{Agglomerative\+Clustering\+Type@{Agglomerative\+Clustering\+Type}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Agglomerative\+Clustering\+Type}{AgglomerativeClusteringType}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+typedef A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_abbc8e2c55e4b0fc99bc0e52c9349e0a1}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_abbc8e2c55e4b0fc99bc0e52c9349e0a1}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+typedef Agglomerative\+Clustering\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_abbc8e2c55e4b0fc99bc0e52c9349e0a1}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a02d2e28c63f59f3ad2a6fb1266652794}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a02d2e28c63f59f3ad2a6fb1266652794}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Node\+Size@{Node\+Size}}
+\index{Node\+Size@{Node\+Size}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Node\+Size}{NodeSize}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$double$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a02d2e28c63f59f3ad2a6fb1266652794}{Node\+Size}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_adccc2152f38cd44b4158f5e6847b5d6e}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_adccc2152f38cd44b4158f5e6847b5d6e}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Node\+To\+Encoding@{Node\+To\+Encoding}}
+\index{Node\+To\+Encoding@{Node\+To\+Encoding}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Node\+To\+Encoding}{NodeToEncoding}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$double$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_adccc2152f38cd44b4158f5e6847b5d6e}{Node\+To\+Encoding}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0312d190fc33b4d1bcc07791f409f520}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0312d190fc33b4d1bcc07791f409f520}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Dendrogram\+Agglomerative\+Clustering\+Visitor@{Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\index{Dendrogram\+Agglomerative\+Clustering\+Visitor@{Dendrogram\+Agglomerative\+Clustering\+Visitor}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Dendrogram\+Agglomerative\+Clustering\+Visitor()}{DendrogramAgglomerativeClusteringVisitor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{Dendrogram\+Agglomerative\+Clustering\+Visitor} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type} \&}]{agglomerative\+Clustering }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_ad7fee0b92e3fce5087ad4a4ffe8f885f}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_ad7fee0b92e3fce5087ad4a4ffe8f885f}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!Dendrogram\+Agglomerative\+Clustering\+Visitor@{Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\index{Dendrogram\+Agglomerative\+Clustering\+Visitor@{Dendrogram\+Agglomerative\+Clustering\+Visitor}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{Dendrogram\+Agglomerative\+Clustering\+Visitor()}{DendrogramAgglomerativeClusteringVisitor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+template$<$class N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{Dendrogram\+Agglomerative\+Clustering\+Visitor} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a78a8c905d28562d120d4827cbfbc57bc}{Agglomerative\+Clustering\+Type} \&}]{agglomerative\+Clustering,  }\item[{N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES \&}]{node\+Sizes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0abd59925ced8e1147fd8554613dfab2}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0abd59925ced8e1147fd8554613dfab2}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!agglomerative\+Clustering@{agglomerative\+Clustering}}
+\index{agglomerative\+Clustering@{agglomerative\+Clustering}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{agglomerative\+Clustering()}{agglomerativeClustering()}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::agglomerative\+Clustering (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a1a5d04ed93b944429bef3bc48ba470c9}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a1a5d04ed93b944429bef3bc48ba470c9}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!dendrogram\+Encoding@{dendrogram\+Encoding}}
+\index{dendrogram\+Encoding@{dendrogram\+Encoding}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{dendrogram\+Encoding()}{dendrogramEncoding()}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::dendrogram\+Encoding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0941aeea1a4ddd0d4b6915bc5740809e}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a0941aeea1a4ddd0d4b6915bc5740809e}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!is\+Done@{is\+Done}}
+\index{is\+Done@{is\+Done}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{is\+Done()}{isDone()}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a9335b363cf919ce31d4d366f169712ab}\label{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_a9335b363cf919ce31d4d366f169712ab}} 
+\index{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}!visit@{visit}}
+\index{visit@{visit}!nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor@{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}}
+\subsubsection{\texorpdfstring{visit()}{visit()}}
+{\footnotesize\ttfamily template$<$class A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{nifty\+::graph\+::agglo\+::\+Dendrogram\+Agglomerative\+Clustering\+Visitor}$<$ A\+G\+G\+L\+O\+M\+E\+R\+A\+T\+I\+V\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+I\+NG $>$\+::visit (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Node,  }\item[{const uint64\+\_\+t}]{dead\+Node,  }\item[{const double}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/\hyperlink{agglomerative__clustering_8hxx}{agglomerative\+\_\+clustering.\+hxx}\end{DoxyCompactItemize}

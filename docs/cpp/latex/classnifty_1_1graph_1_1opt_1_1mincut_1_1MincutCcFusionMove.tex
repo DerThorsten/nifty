@@ -1,0 +1,141 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:mincut\+:\+:Mincut\+Cc\+Fusion\+Move$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$mincut\+\_\+cc\+\_\+fusion\+\_\+move.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aac01d4c3a458b6c5b324e23d256e3e9f}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a287ede2c2403264860e0a227cf77f927}{Node\+Labels\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{Undirected\+Graph} \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}{Fm\+Graph}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective}{Mincut\+Objective}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}{Fm\+Graph}, double $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}{Fm\+Mc\+Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}{Fm\+Mc\+Base} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a822ef330a0baebfd30f7690afd5cd4ff}{Fm\+Mc\+Factory\+Base}
+\item 
+typedef \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}{Mincut\+Empty\+Visitor}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a0157a84ec61e81ebdff1fb64515201d0}{Fm\+Empty\+Visitor}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Fm\+Mc\+Base\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5c134293142d4aa780bf5318b224efe9}{Fm\+Node\+Labels\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9f1239db92785db317709b8aee8d1c81}{Mincut\+Cc\+Fusion\+Move} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}{Objective\+Type} \&objective, const \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType}{Settings\+Type}())
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9033e25b234036ee255fc1f1c4bc4574}{fuse} (std\+::initializer\+\_\+list$<$ const N\+O\+D\+E\+\_\+\+M\+AP $\ast$$>$ proposals, N\+O\+D\+E\+\_\+\+M\+AP $\ast$result)
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a6cf6c0686c76b97d8e93edf1b0488b7f}{fuse} (const std\+::vector$<$ const N\+O\+D\+E\+\_\+\+M\+AP $\ast$$>$ \&proposals, N\+O\+D\+E\+\_\+\+M\+AP $\ast$result)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a0157a84ec61e81ebdff1fb64515201d0}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a0157a84ec61e81ebdff1fb64515201d0}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Empty\+Visitor@{Fm\+Empty\+Visitor}}
+\index{Fm\+Empty\+Visitor@{Fm\+Empty\+Visitor}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Empty\+Visitor}{FmEmptyVisitor}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}{Mincut\+Empty\+Visitor}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a0157a84ec61e81ebdff1fb64515201d0}{Fm\+Empty\+Visitor}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Graph@{Fm\+Graph}}
+\index{Fm\+Graph@{Fm\+Graph}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Graph}{FmGraph}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{Undirected\+Graph} \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}{Fm\+Graph}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Mc\+Base@{Fm\+Mc\+Base}}
+\index{Fm\+Mc\+Base@{Fm\+Mc\+Base}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Mc\+Base}{FmMcBase}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}{Fm\+Mc\+Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a822ef330a0baebfd30f7690afd5cd4ff}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a822ef330a0baebfd30f7690afd5cd4ff}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Mc\+Factory\+Base@{Fm\+Mc\+Factory\+Base}}
+\index{Fm\+Mc\+Factory\+Base@{Fm\+Mc\+Factory\+Base}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Mc\+Factory\+Base}{FmMcFactoryBase}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a549fea9f9966d8fd033328c33c5bc7cd}{Fm\+Mc\+Base}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a822ef330a0baebfd30f7690afd5cd4ff}{Fm\+Mc\+Factory\+Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5c134293142d4aa780bf5318b224efe9}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5c134293142d4aa780bf5318b224efe9}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Node\+Labels\+Type@{Fm\+Node\+Labels\+Type}}
+\index{Fm\+Node\+Labels\+Type@{Fm\+Node\+Labels\+Type}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Node\+Labels\+Type}{FmNodeLabelsType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Fm\+Mc\+Base\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5c134293142d4aa780bf5318b224efe9}{Fm\+Node\+Labels\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Fm\+Objective@{Fm\+Objective}}
+\index{Fm\+Objective@{Fm\+Objective}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Fm\+Objective}{FmObjective}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective}{Mincut\+Objective}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5ae3c9a6e16601c6de022f74b7600a2d}{Fm\+Graph}, double$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a5f30047aa697335e354346a6c1c2f8ad}{Fm\+Objective}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aac01d4c3a458b6c5b324e23d256e3e9f}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aac01d4c3a458b6c5b324e23d256e3e9f}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aac01d4c3a458b6c5b324e23d256e3e9f}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a287ede2c2403264860e0a227cf77f927}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a287ede2c2403264860e0a227cf77f927}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Node\+Labels\+Type}{NodeLabelsType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a287ede2c2403264860e0a227cf77f927}{Node\+Labels\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}{Objective\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9f1239db92785db317709b8aee8d1c81}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9f1239db92785db317709b8aee8d1c81}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!Mincut\+Cc\+Fusion\+Move@{Mincut\+Cc\+Fusion\+Move}}
+\index{Mincut\+Cc\+Fusion\+Move@{Mincut\+Cc\+Fusion\+Move}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{Mincut\+Cc\+Fusion\+Move()}{MincutCcFusionMove()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{Mincut\+Cc\+Fusion\+Move} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_aa01f8621f491c8f77e106950d7525c37}{Objective\+Type} \&}]{objective,  }\item[{const \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9033e25b234036ee255fc1f1c4bc4574}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a9033e25b234036ee255fc1f1c4bc4574}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!fuse@{fuse}}
+\index{fuse@{fuse}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{fuse()}{fuse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::fuse (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ const N\+O\+D\+E\+\_\+\+M\+AP $\ast$$>$}]{proposals,  }\item[{N\+O\+D\+E\+\_\+\+M\+AP $\ast$}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a6cf6c0686c76b97d8e93edf1b0488b7f}\label{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_a6cf6c0686c76b97d8e93edf1b0488b7f}} 
+\index{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}!fuse@{fuse}}
+\index{fuse@{fuse}!nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move@{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}}
+\subsubsection{\texorpdfstring{fuse()}{fuse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Cc\+Fusion\+Move}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::fuse (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ const N\+O\+D\+E\+\_\+\+M\+AP $\ast$$>$ \&}]{proposals,  }\item[{N\+O\+D\+E\+\_\+\+M\+AP $\ast$}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/\hyperlink{mincut__cc__fusion__move_8hxx}{mincut\+\_\+cc\+\_\+fusion\+\_\+move.\+hxx}\end{DoxyCompactItemize}

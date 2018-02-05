@@ -1,49 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="depth__first__search_8hxx" kind="file" language="C++">
     <compoundname>depth_first_search.hxx</compoundname>
     <includes refid="subgraph__mask_8hxx" local="yes">nifty/graph/subgraph_mask.hxx</includes>
     <includes refid="search__impl_8hxx" local="yes">nifty/graph/detail/search_impl.hxx</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
     <incdepgraph>
-      <node id="7362">
+      <node id="1324">
         <label>queue</label>
       </node>
-      <node id="7360">
+      <node id="1322">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="7363">
+      <node id="1325">
         <label>stack</label>
       </node>
-      <node id="7359">
+      <node id="1321">
         <label>/home/tbeier/src/nifty/include/nifty/graph/depth_first_search.hxx</label>
-        <link refid="depth_first_search.hxx"/>
-        <childnode refid="7360" relation="include">
+        <link refid="depth__first__search_8hxx"/>
+        <childnode refid="1322" relation="include">
         </childnode>
-        <childnode refid="7361" relation="include">
+        <childnode refid="1323" relation="include">
         </childnode>
       </node>
-      <node id="7361">
+      <node id="1323">
         <label>nifty/graph/detail/search_impl.hxx</label>
         <link refid="search__impl_8hxx"/>
-        <childnode refid="7362" relation="include">
+        <childnode refid="1324" relation="include">
         </childnode>
-        <childnode refid="7363" relation="include">
+        <childnode refid="1325" relation="include">
         </childnode>
-        <childnode refid="7360" relation="include">
+        <childnode refid="1322" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7364">
+      <node id="1326">
         <label>/home/tbeier/src/nifty/include/nifty/graph/depth_first_search.hxx</label>
-        <link refid="depth_first_search.hxx"/>
-        <childnode refid="7365" relation="include">
+        <link refid="depth__first__search_8hxx"/>
+        <childnode refid="1327" relation="include">
         </childnode>
       </node>
-      <node id="7365">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+      <node id="1327">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
         <link refid="lifted__multicut__ilp_8hxx"/>
       </node>
     </invincdepgraph>

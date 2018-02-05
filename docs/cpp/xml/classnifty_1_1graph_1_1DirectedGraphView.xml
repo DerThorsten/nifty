@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1DirectedGraphView" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::DirectedGraphView</compoundname>
     <includes refid="directed__graph__view_8hxx" local="no">directed_graph_view.hxx</includes>
@@ -9,11 +9,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1DirectedGraphView_1a134f616adad04d9389cdada67b2b72a6" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1DirectedGraphView_1abbbfb94d0474216ae2d7411838494108" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::DirectedGraphView&lt; GRAPH &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::DirectedGraphView&lt; GRAPH &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,9 +24,9 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1DirectedGraphView_1a8c563794263a64d8ea0413e04db36188" prot="private" static="no" mutable="no">
-        <type>const <ref refid="classnifty_1_1graph_1_1DirectedGraphView_1a134f616adad04d9389cdada67b2b72a6" kindref="member">Graph</ref> &amp;</type>
-        <definition>const Graph&amp; nifty::graph::DirectedGraphView&lt; GRAPH &gt;::graph_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1DirectedGraphView_1a9a077c24f1eb5638865a1bfbb8aee21c" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1DirectedGraphView_1abbbfb94d0474216ae2d7411838494108" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::DirectedGraphView&lt; GRAPH &gt;::graph_</definition>
         <argsstring></argsstring>
         <name>graph_</name>
         <briefdescription>
@@ -44,8 +44,8 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/directed_graph_view.hxx" line="9" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/directed_graph_view.hxx" bodystart="9" bodyend="14"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1DirectedGraphView_1a134f616adad04d9389cdada67b2b72a6" prot="public" virt="non-virtual"><scope>nifty::graph::DirectedGraphView</scope><name>Graph</name></member>
-      <member refid="classnifty_1_1graph_1_1DirectedGraphView_1a8c563794263a64d8ea0413e04db36188" prot="private" virt="non-virtual"><scope>nifty::graph::DirectedGraphView</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphView_1a9a077c24f1eb5638865a1bfbb8aee21c" prot="private" virt="non-virtual"><scope>nifty::graph::DirectedGraphView</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1DirectedGraphView_1abbbfb94d0474216ae2d7411838494108" prot="public" virt="non-virtual"><scope>nifty::graph::DirectedGraphView</scope><name>GraphType</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

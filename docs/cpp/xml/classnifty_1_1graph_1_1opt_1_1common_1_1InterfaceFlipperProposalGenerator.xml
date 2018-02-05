@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="interface__flipper__proposal__generator_8hxx" local="no">interface_flipper_proposal_generator.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType" prot="public">nifty::graph::opt::common::InterfaceFlipperProposalGenerator::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a9dcf430ac057ae5144895c5bdf547086" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ab4ea7c93e1f428ccbc18970150cac7b8" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aced6351cf8e65e436e1efedd8f5ed089" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::ProposalType</definition>
+        <argsstring></argsstring>
+        <name>ProposalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aa1d36e33904e90a5fb6460cf883bf871" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; bool &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;bool&gt; nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::IsUsed</definition>
+        <argsstring></argsstring>
+        <name>IsUsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ad470133d3ada47802553720b2a057f33" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a9dcf430ac057ae5144895c5bdf547086" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a3e2fce397070c32e73363208edf414ec" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::numberOfThreads_</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1adf7686c2857ae22b994d40fbda914b59" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a1cf67879d568af1a5fbd6824d283057b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::mt19937 &gt;</type>
+        <definition>std::vector&lt;std::mt19937&gt; nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::gens_</definition>
+        <argsstring></argsstring>
+        <name>gens_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a7b5318c55a5ec0cf67a45fce8b0d936d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::unique_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aa1d36e33904e90a5fb6460cf883bf871" kindref="member">IsUsed</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; std::unique_ptr&lt;IsUsed&gt; &gt; nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::isUsedVec_</definition>
+        <argsstring></argsstring>
+        <name>isUsedVec_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ae0241f073c63eecf3821239e990ac823" prot="private" static="no" mutable="no">
+        <type>std::uniform_int_distribution</type>
+        <definition>std::uniform_int_distribution nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::binaryDist_</definition>
+        <argsstring></argsstring>
+        <name>binaryDist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1af23d1f15bbc9a3d5b7463a1231db8e40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::InterfaceFlipperProposalGenerator</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>InterfaceFlipperProposalGenerator</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a9dcf430ac057ae5144895c5bdf547086" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="37" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a73064df4f691b0f2783085ecb9d03102" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="58" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a0c68a92a7b6b00b620151ed1c506057b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::~InterfaceFlipperProposalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~InterfaceFlipperProposalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1acbd07354ba5ba08aa91fbce29c465776" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const ProposalType &amp;currentBest, ProposalType &amp;proposal, const size_t tid)</argsstring>
+        <name>generateProposal</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aced6351cf8e65e436e1efedd8f5ed089" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aced6351cf8e65e436e1efedd8f5ed089" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>proposal</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="64" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Watershed proposal generator for <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased" kindref="compound">lifted_multicut::FusionMoveBased</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>{ description } </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="485">
+        <label>nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator"/>
+        <childnode refid="486" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="486">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="487">
+        <label>nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator"/>
+        <childnode refid="488" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="488">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx" bodystart="24" bodyend="110"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ae0241f073c63eecf3821239e990ac823" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>binaryDist_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1acbd07354ba5ba08aa91fbce29c465776" prot="public" virt="virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::common::ProposalGeneratorBase::"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a1cf67879d568af1a5fbd6824d283057b" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>gens_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ab4ea7c93e1f428ccbc18970150cac7b8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1af23d1f15bbc9a3d5b7463a1231db8e40" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>InterfaceFlipperProposalGenerator</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aa1d36e33904e90a5fb6460cf883bf871" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>IsUsed</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a7b5318c55a5ec0cf67a45fce8b0d936d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>isUsedVec_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a3e2fce397070c32e73363208edf414ec" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>numberOfThreads_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1ad470133d3ada47802553720b2a057f33" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a9dcf430ac057ae5144895c5bdf547086" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1aced6351cf8e65e436e1efedd8f5ed089" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>ProposalType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a73064df4f691b0f2783085ecb9d03102" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1adf7686c2857ae22b994d40fbda914b59" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1a0c68a92a7b6b00b620151ed1c506057b" prot="public" virt="virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>~InterfaceFlipperProposalGenerator</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" prot="public" virt="virtual"><scope>nifty::graph::opt::common::InterfaceFlipperProposalGenerator</scope><name>~ProposalGeneratorBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

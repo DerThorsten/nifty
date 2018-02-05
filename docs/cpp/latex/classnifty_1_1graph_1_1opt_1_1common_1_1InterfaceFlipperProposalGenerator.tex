@@ -1,0 +1,141 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}.  
+
+
+
+
+{\ttfamily \#include $<$interface\+\_\+flipper\+\_\+proposal\+\_\+generator.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_ab4ea7c93e1f428ccbc18970150cac7b8}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ bool $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aa1d36e33904e90a5fb6460cf883bf871}{Is\+Used}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_af23d1f15bbc9a3d5b7463a1231db8e40}{Interface\+Flipper\+Proposal\+Generator} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads, const \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a73064df4f691b0f2783085ecb9d03102}{reset} ()
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a0c68a92a7b6b00b620151ed1c506057b}{$\sim$\+Interface\+Flipper\+Proposal\+Generator} ()
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_acbd07354ba5ba08aa91fbce29c465776}{generate\+Proposal} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type} \&current\+Best, \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type} \&proposal, const size\+\_\+t tid)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$\newline
+class nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em O\+B\+J\+E\+C\+T\+I\+VE} & \{ description \} \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_ab4ea7c93e1f428ccbc18970150cac7b8}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_ab4ea7c93e1f428ccbc18970150cac7b8}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_ab4ea7c93e1f428ccbc18970150cac7b8}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aa1d36e33904e90a5fb6460cf883bf871}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aa1d36e33904e90a5fb6460cf883bf871}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!Is\+Used@{Is\+Used}}
+\index{Is\+Used@{Is\+Used}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Is\+Used}{IsUsed}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$bool$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aa1d36e33904e90a5fb6460cf883bf871}{Is\+Used}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}{Objective\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!Proposal\+Type@{Proposal\+Type}}
+\index{Proposal\+Type@{Proposal\+Type}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Proposal\+Type}{ProposalType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_af23d1f15bbc9a3d5b7463a1231db8e40}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_af23d1f15bbc9a3d5b7463a1231db8e40}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!Interface\+Flipper\+Proposal\+Generator@{Interface\+Flipper\+Proposal\+Generator}}
+\index{Interface\+Flipper\+Proposal\+Generator@{Interface\+Flipper\+Proposal\+Generator}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Interface\+Flipper\+Proposal\+Generator()}{InterfaceFlipperProposalGenerator()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{Interface\+Flipper\+Proposal\+Generator} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a9dcf430ac057ae5144895c5bdf547086}{Objective\+Type} \&}]{objective,  }\item[{const size\+\_\+t}]{number\+Of\+Threads,  }\item[{const \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a0c68a92a7b6b00b620151ed1c506057b}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a0c68a92a7b6b00b620151ed1c506057b}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!````~Interface\+Flipper\+Proposal\+Generator@{$\sim$\+Interface\+Flipper\+Proposal\+Generator}}
+\index{````~Interface\+Flipper\+Proposal\+Generator@{$\sim$\+Interface\+Flipper\+Proposal\+Generator}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{$\sim$\+Interface\+Flipper\+Proposal\+Generator()}{~InterfaceFlipperProposalGenerator()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+virtual \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::$\sim$\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{Interface\+Flipper\+Proposal\+Generator} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_acbd07354ba5ba08aa91fbce29c465776}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_acbd07354ba5ba08aa91fbce29c465776}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!generate\+Proposal@{generate\+Proposal}}
+\index{generate\+Proposal@{generate\+Proposal}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{generate\+Proposal()}{generateProposal()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+virtual void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::generate\+Proposal (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type} \&}]{current\+Best,  }\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_aced6351cf8e65e436e1efedd8f5ed089}{Proposal\+Type} \&}]{proposal,  }\item[{const size\+\_\+t}]{tid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a73064df4f691b0f2783085ecb9d03102}\label{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator_a73064df4f691b0f2783085ecb9d03102}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Interface\+Flipper\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal\+\_\+generators/\hyperlink{interface__flipper__proposal__generator_8hxx}{interface\+\_\+flipper\+\_\+proposal\+\_\+generator.\+hxx}\end{DoxyCompactItemize}

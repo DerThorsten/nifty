@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::opt::common::SolverBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" prot="public" virt="non-virtual">nifty::graph::opt::multicut::MulticutBase&lt; PROPPOSAL_GEN::ObjectiveType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" prot="public" virt="non-virtual">nifty::graph::opt::multicut::MulticutBase&lt; PROPPOSAL_GEN::ObjectiveType &gt;</derivedcompoundref>
+    <includes refid="solver__base_8hxx" local="no">solver_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>CHILD</declname>
+        <defname>CHILD</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aac4861a6201ba3df7ef66ad5af0c65bd" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase" kindref="compound">SolverBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aac4861a6201ba3df7ef66ad5af0c65bd" kindref="member">ObjectiveType</ref>, CHILD &gt;</type>
+        <definition>typedef SolverBase&lt;ObjectiveType,CHILD&gt; nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::SelfType</definition>
+        <argsstring></argsstring>
+        <name>SelfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">VisitorBase</ref>&lt; CHILD &gt;</type>
+        <definition>typedef VisitorBase&lt;CHILD&gt; nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">VisitorProxy</ref>&lt; CHILD &gt;</type>
+        <definition>typedef VisitorProxy&lt;CHILD&gt; nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abd7237c59d5ba5bf2d4c9c0eca8a248b" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" prot="public" static="no">
+        <type>ObjectiveType::NodeLabelsType</type>
+        <definition>typedef ObjectiveType::NodeLabelsType nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::~SolverBase</definition>
+        <argsstring>()</argsstring>
+        <name>~SolverBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)=0</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="34" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aac4861a6201ba3df7ef66ad5af0c65bd" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>virtual const ObjectiveType&amp; nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::objective</definition>
+        <argsstring>() const =0</argsstring>
+        <name>objective</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1a957dcf0e0fe86e29d14a154141a1458f">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1af607a7941ed3d4976129bf81bfbf5f8f">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutBase_1a65b92486f4d6cb8e5d2e5b12ba4623e2">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a9eb51467ec7c3ca43c2df86237030deb">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a0cad5268fb85b36ab8a73d6f08eeef38">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a0cad5268fb85b36ab8a73d6f08eeef38">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_1a5b0b0d349671f7545de66b340d1ca6e2">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut_1a88c479b394180da4220c855c35a1c230">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutDecomposer_1aa42822243117e0823b699d27d7b87876">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased_1a4feaafa03aaeab42931ee2a5b40b0307">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1KernighanLin_1a66a62895fd9b83f0ca17e45bd6a6eb29">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_1af11f4a1d5d7f4897918733ba648c72a2">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a7e315a8fb58cfb031cd17acadfe09bfe">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased_1a77ddf30aa1d4ac905b853aaeee5adc00">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp_1ab8d9679a9568dd6f0838bea4c4ed14ac">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a858016455b3b77d9757a96a891a44d92">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1ChainedSolvers_1aa984a28cef63a284b9fb49fd0694978c">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a75661ba64e38f54afa83f9006f6d4586">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutMp_1a78aabd921e89cc3b4f4a5287a97b27ac">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutMp_1af2324c385248f1400e25c90adb80a7b5">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1aaf7fb543729a5be9211a8dd5400b404a">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1abe5109360a67abc282f952761f7f9558">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_1a7138955d26965ef84ce9dc6781f27c18">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1adddbe72afb04c110796dbcc753dd603a">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_1a7c936b75edaaa2ae36f0a9d52dcef156">objective</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1a3516566160ba18067f1a81dfa6aee33e">objective</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="35" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::currentBestNodeLabels</definition>
+        <argsstring>()=0</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ad49ef5b1f23c054abb4521445871b9b4">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutBase_1a322ab20f3c292bf2e1958eb87d9af1a5">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1afeed3e6753137062c86be81b20d442fa">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1ae55ef699b41926bd799a6d3f048dcf2a">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1ae55ef699b41926bd799a6d3f048dcf2a">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_1aca1f542bc5ea97e60398b90db0630626">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a8cec66d517bc70ed0065b60174d01ce4">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut_1ae09c0ea657df934d97b7b192c82851f8">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutDecomposer_1a75b45d5d59b9c498237ef28581bbf8d8">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased_1aabc560461fe638b3b21fd80cdaa403ff">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1KernighanLin_1ae7382c0fc906c39ecf546ff84dede91f">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a91e6337efe1f6d4dface1170410317d3">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_1aeada6b7d38bc3309ee96048bd41dc039">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1acd9b1de8aceaf4565c768303987e3c08">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp_1a43a6e3211e79a7e95e8f063247372812">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased_1ad9b947c6c21ec27063ca08f5a5671d90">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a6c0b64e2271d19a8b8a10aebf390b530">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1ChainedSolvers_1ad62c0b4a0b11f70020c9e668013aae6a">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1aed65f0ad0252b0cf069a969633271757">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutMp_1a9b359aa0b88830fa4d44a4d115a06042">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ab06bb2d0f90c255f35453aad5b06eea3">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutMp_1a8038995b41fed867522a684985737020">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1a6851390d398b64c24315e60803aee297">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_1a9bd0f6adfa063efebca30424c4a109f5">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a90776c1d69e006d6503007d8c870896b">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_1a106015648a9e405c590a32303364e850">currentBestNodeLabels</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1a1280ab4b4cacaf7205c7d33951931460">currentBestNodeLabels</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::name</definition>
+        <argsstring>() const =0</argsstring>
+        <name>name</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres_1ac7a32dbee9103beb72ba2cf6fcd6ecee">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a4bcea4c5573610d9b656a06772d97353">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutBase_1a2987a843afc3fd9f53333e4fbed08aad">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a0c9a8b12b5a09262a007ae964fb04b04">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a1542fd534762e4bc4c9415848e53e622">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a1542fd534762e4bc4c9415848e53e622">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut_1aeac464d816f0b839bbbfcf9ab4238d06">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_1aa9754f9f8128f36e7b5a76c6c6047036">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutDecomposer_1aa079d79e3821334c45c26e5fdeb41c38">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased_1af6dca89bd863d8c6f577a6cea0a18c98">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1KernighanLin_1a0e6302dd8fad769a31a8cea2df10465f">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a682849d66dfe885424c729600754a160">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresGreedyAdditive_1a4ab9f84d8b762a10f8f31f5dc5721e70">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutAndresKernighanLin_1a4ee4df60823384b6e1515a77f4ee2329">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp_1aea508a0c1233c7e391e9dfbb16fee43e">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased_1a648df4882bea393bd28adce4d0c2defa">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive_1a2e3775af34622f15e57c60986e2d15d4">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1af1a1069a6d390a04f9ac547600ea09e3">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1ChainedSolvers_1a32a1e08e4650b8004d3e97afadec2380">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutMp_1ad70677c1535224e3ebd403d30faccbd9">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin_1ac4b9f02bd36b35faf2ace3e87a224dcc">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutMp_1a5c218aa3ae258bb4c62a1b1c25449fba">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1ae16cee89b02c93b4d2af91f39411411e">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_1adf548d9855d44d4ec6b03aabee9f7e8d">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a2a3351733ab0dc823eb35947c92fa227">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_1aa7320a44731a6784ec5151b4c680d4b4">name</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1a1c7194ad33e321f737b2ca33decd33f8">name</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::weightsChanged</definition>
+        <argsstring>()</argsstring>
+        <name>weightsChanged</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1acab46ec306e4b604eff21549a4366d39">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut_1a7646a6b7c8fe3b8e40ab6f72ab952081">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutDecomposer_1a084c96012a6e513417b08f9e4242f6f7">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased_1acf62cb1de04c57534601efaff463af0f">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1KernighanLin_1ab1238ad81c57f105502a940986e9ffaf">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutIlp_1a3d487db0bd9410f25dd800d04a6633e8">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a68158bd1f3cf0198769e52635989b9b6">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1ChainedSolvers_1ac87503e00006560417c7ab7af4685383">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_1a1d9cf81f32600a8f52ff4e1607203716">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1a532d846fdb2feecb240373e87fec82a4">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aa7b71928fc3f6e46f5ec99c0119c5787">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutGreedyAdditive_1a13ed6cbca21df0bb7fc22d298533e4a7">weightsChanged</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1aff65d0bc2f7537bf328c47979a3293d5">weightsChanged</reimplementedby>
+        <briefdescription>
+<para>Inform solver about a change of weights. </para>        </briefdescription>
+        <detaileddescription>
+<para>Inform solver that all weights could have changed. If a particular solver does not overload this function, an WeightsChangedNotSupported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutBase_1aa67fa470882e305a5a38277ed73d1a3b">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase_1a81f6fb9ecd228513e61e180cc7faf28e">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a0928f8539f5773900cefe88d703c14eb">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase_1a0928f8539f5773900cefe88d703c14eb">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_1a6d178e143ed30594ac6253e10da4e117">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo_1a5ec74bde057ce6892451d3c08042945e">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut_1ae1dcff4732ce6e535f07916fc57565b2">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace0e35ceeaefa85843716a300ca0a3bf">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ab18457f6010006ecfc156f26277e9316">currentBestEnergy</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1adecdb401bca97a45d76a162fc7c8df37">currentBestEnergy</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="60" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="60" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1098">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, CHILD &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="1100">
+        <label>nifty::graph::opt::multicut::FusionMoveBased&lt; PROPPOSAL_GEN &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased"/>
+        <childnode refid="1099" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1099">
+        <label>MulticutBase&lt; PROPPOSAL_GEN::ObjectiveType &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase"/>
+        <childnode refid="1098" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1098" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/solver_base.hxx" bodystart="22" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155" prot="public" virt="virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abd7237c59d5ba5bf2d4c9c0eca8a248b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aac4861a6201ba3df7ef66ad5af0c65bd" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff" prot="public" virt="virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::common::SolverBase</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

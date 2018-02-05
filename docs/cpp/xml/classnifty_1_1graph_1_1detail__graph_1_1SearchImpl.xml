@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::detail_graph::SearchImpl</compoundname>
     <includes refid="search__impl_8hxx" local="no">search_impl.hxx</includes>
@@ -16,11 +16,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a62a34d3de4ba4e0bc6b81eb4bf32bd9b" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,9 +29,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="34" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" prot="public" static="no">
-        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
-        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::PredecessorsMap</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a23e9569c5680c5fd50f5f16235ef8016" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::PredecessorsMap</definition>
         <argsstring></argsstring>
         <name>PredecessorsMap</name>
         <briefdescription>
@@ -42,9 +42,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="35" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" prot="public" static="no">
-        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
-        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::DistanceMap</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9f3e049a2ddbf34d81d9db4b7dd2839f" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;int64_t&gt; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::DistanceMap</definition>
         <argsstring></argsstring>
         <name>DistanceMap</name>
         <briefdescription>
@@ -99,7 +99,7 @@
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="230" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a07be2cc4f245dc8bf3e1cbdd08006337" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" kindref="member">PredecessorsMap</ref></type>
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a23e9569c5680c5fd50f5f16235ef8016" kindref="member">PredecessorsMap</ref></type>
         <definition>PredecessorsMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::predMap_</definition>
         <argsstring></argsstring>
         <name>predMap_</name>
@@ -112,7 +112,7 @@
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="231" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3ed5f51c540fe497eff3145f1d269609" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" kindref="member">DistanceMap</ref></type>
+        <type><ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9f3e049a2ddbf34d81d9db4b7dd2839f" kindref="member">DistanceMap</ref></type>
         <definition>DistanceMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::distMap_</definition>
         <argsstring></argsstring>
         <name>distMap_</name>
@@ -126,13 +126,13 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3b7de8fe1eb6d2f56eb87e6073522ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ace982d78d456d1eda46bbdeb6c4ff3b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::SearchImpl</definition>
-        <argsstring>(const Graph &amp;g)</argsstring>
+        <argsstring>(const GraphType &amp;g)</argsstring>
         <name>SearchImpl</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" kindref="member">Graph</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a62a34d3de4ba4e0bc6b81eb4bf32bd9b" kindref="member">GraphType</ref> &amp;</type>
           <declname>g</declname>
         </param>
         <briefdescription>
@@ -282,10 +282,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="161" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="161" bodyend="169"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ac6aa3c3e65115983363273fe86e25a65" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" kindref="member">DistanceMap</ref> &amp;</type>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a12e6e88a24e3a0224efa401050bde969" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9f3e049a2ddbf34d81d9db4b7dd2839f" kindref="member">DistanceMap</ref> &amp;</type>
         <definition>const DistanceMap&amp; nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::distances</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>distances</name>
         <briefdescription>
         </briefdescription>
@@ -295,10 +295,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="171" bodyend="173"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3a10a297cde6846106aedc9812cebc3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" kindref="member">PredecessorsMap</ref></type>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a750b41bd017661bedf213954e7e5c3cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a23e9569c5680c5fd50f5f16235ef8016" kindref="member">PredecessorsMap</ref></type>
         <definition>const PredecessorsMap nifty::graph::detail_graph::SearchImpl&lt; GRAPH, QUEUE &gt;::predecessors</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>predecessors</name>
         <briefdescription>
         </briefdescription>
@@ -372,15 +372,15 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/detail/search_impl.hxx" bodystart="31" bodyend="233"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abbd31f7e73ba6851a8f955cd64d59917" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>DistanceMap</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ac6aa3c3e65115983363273fe86e25a65" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>distances</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9f3e049a2ddbf34d81d9db4b7dd2839f" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>DistanceMap</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a12e6e88a24e3a0224efa401050bde969" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>distances</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3ed5f51c540fe497eff3145f1d269609" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>distMap_</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af43f4c0eaa3ac06840b926eb196649cb" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>g_</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a8426363c518ca7ef2383b5cb1f06713d" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>Graph</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a9c1d6dd401e9557df0f3a3a186ce13c1" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>graphNeighbourhood</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a62a34d3de4ba4e0bc6b81eb4bf32bd9b" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>GraphType</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a4c98af20ae2d2fc9845d8b43ad1131bf" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>initializeMaps</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3a10a297cde6846106aedc9812cebc3" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>predecessors</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae495d858111c13b737fe264a12a273c8" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>PredecessorsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a750b41bd017661bedf213954e7e5c3cb" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>predecessors</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a23e9569c5680c5fd50f5f16235ef8016" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>PredecessorsMap</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a07be2cc4f245dc8bf3e1cbdd08006337" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>predMap_</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1a3c1b7fa62fd51ff32393cffcb9b63d21" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>Queue</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1abe2b3e9acc9ed0ac89209e1defa7ba32" prot="private" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>queue_</name></member>
@@ -389,7 +389,7 @@
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1af5ed3bebeeea7d64e9d4118732514fb5" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSource</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae8e3bf7786467e899abb8c4507fc77fe" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSourceSingleTarget</name></member>
       <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ab662caa4f11668c78c516554dc6a97a1" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>runSingleSourceSingleTarget</name></member>
-      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ae3b7de8fe1eb6d2f56eb87e6073522ed" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>SearchImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1detail__graph_1_1SearchImpl_1ace982d78d456d1eda46bbdeb6c4ff3b9" prot="public" virt="non-virtual"><scope>nifty::graph::detail_graph::SearchImpl</scope><name>SearchImpl</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

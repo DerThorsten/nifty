@@ -1,101 +1,127 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="graph__name_8hxx" kind="file" language="C++">
     <compoundname>graph_name.hxx</compoundname>
     <includedby refid="python_2graph_2edge__contraction__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx</includedby>
-    <includedby refid="learnable__lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx</includedby>
-    <includedby refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</includedby>
-    <includedby refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/mincut_objective.hxx</includedby>
-    <includedby refid="python_2graph_2optimization_2multicut_2multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/multicut_objective.hxx</includedby>
-    <includedby refid="solver__docstring_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/optimization/solver_docstring.hxx</includedby>
+    <includedby refid="learnable__lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/learnable_lifted_multicut_objective.hxx</includedby>
+    <includedby refid="python_2graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</includedby>
+    <includedby refid="python_2graph_2opt_2mincut_2mincut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/mincut_objective.hxx</includedby>
+    <includedby refid="python_2graph_2opt_2minstcut_2minstcut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/minstcut_objective.hxx</includedby>
+    <includedby refid="python_2graph_2opt_2multicut_2multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/multicut_objective.hxx</includedby>
+    <includedby refid="solver__docstring_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/opt/solver_docstring.hxx</includedby>
     <includedby refid="python_2graph_2undirected__grid__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</includedby>
     <includedby refid="python_2graph_2undirected__list__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</includedby>
+    <includedby refid="python_2graph_2undirected__long__range__grid__graph_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/python/graph/undirected_long_range_grid_graph.hxx</includedby>
     <invincdepgraph>
-      <node id="11842">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/multicut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2multicut_2multicut__objective_8hxx"/>
-        <childnode refid="11843" relation="include">
-        </childnode>
+      <node id="6449">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_long_range_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__long__range__grid__graph_8hxx"/>
       </node>
-      <node id="11839">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
-        <link refid="export__lifted__multicut__solver_8hxx"/>
+      <node id="6435">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/learnable_lifted_multicut_objective.hxx</label>
+        <link refid="learnable__lifted__multicut__objective_8hxx"/>
       </node>
-      <node id="11834">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/graph_name.hxx</label>
-        <link refid="graph_name.hxx"/>
-        <childnode refid="11835" relation="include">
-        </childnode>
-        <childnode refid="11837" relation="include">
-        </childnode>
-        <childnode refid="11838" relation="include">
-        </childnode>
-        <childnode refid="11840" relation="include">
-        </childnode>
-        <childnode refid="11842" relation="include">
-        </childnode>
-        <childnode refid="11844" relation="include">
-        </childnode>
-        <childnode refid="11845" relation="include">
-        </childnode>
-        <childnode refid="11846" relation="include">
-        </childnode>
-      </node>
-      <node id="11841">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx</label>
-        <link refid="export__mincut__solver_8hxx"/>
-      </node>
-      <node id="11844">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/solver_docstring.hxx</label>
+      <node id="6444">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/solver_docstring.hxx</label>
         <link refid="solver__docstring_8hxx"/>
-        <childnode refid="11843" relation="include">
+        <childnode refid="6443" relation="include">
         </childnode>
       </node>
-      <node id="11846">
+      <node id="6438">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/mincut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2mincut_2mincut__objective_8hxx"/>
+        <childnode refid="6439" relation="include">
+        </childnode>
+      </node>
+      <node id="6432">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/graph_name.hxx</label>
+        <link refid="graph__name_8hxx"/>
+        <childnode refid="6433" relation="include">
+        </childnode>
+        <childnode refid="6435" relation="include">
+        </childnode>
+        <childnode refid="6436" relation="include">
+        </childnode>
+        <childnode refid="6438" relation="include">
+        </childnode>
+        <childnode refid="6440" relation="include">
+        </childnode>
+        <childnode refid="6442" relation="include">
+        </childnode>
+        <childnode refid="6444" relation="include">
+        </childnode>
+        <childnode refid="6445" relation="include">
+        </childnode>
+        <childnode refid="6447" relation="include">
+        </childnode>
+        <childnode refid="6449" relation="include">
+        </childnode>
+      </node>
+      <node id="6441">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/export_minstcut_solver.hxx</label>
+        <link refid="export__minstcut__solver_8hxx"/>
+      </node>
+      <node id="6447">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</label>
         <link refid="python_2graph_2undirected__list__graph_8hxx"/>
-        <childnode refid="11847" relation="include">
+        <childnode refid="6448" relation="include">
         </childnode>
-        <childnode refid="11836" relation="include">
+        <childnode refid="6434" relation="include">
         </childnode>
       </node>
-      <node id="11847">
+      <node id="6448">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
         <link refid="export__agglomerative__clustering_8hxx"/>
       </node>
-      <node id="11835">
+      <node id="6433">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/edge_contraction_graph.hxx</label>
         <link refid="python_2graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="11836" relation="include">
+        <childnode refid="6434" relation="include">
         </childnode>
       </node>
-      <node id="11845">
+      <node id="6436">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="6437" relation="include">
+        </childnode>
+      </node>
+      <node id="6445">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</label>
         <link refid="python_2graph_2undirected__grid__graph_8hxx"/>
-      </node>
-      <node id="11840">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/mincut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx"/>
-        <childnode refid="11841" relation="include">
+        <childnode refid="6446" relation="include">
         </childnode>
       </node>
-      <node id="11836">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+      <node id="6440">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/minstcut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2minstcut_2minstcut__objective_8hxx"/>
+        <childnode refid="6441" relation="include">
+        </childnode>
+      </node>
+      <node id="6446">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx</label>
+        <link refid="pixel__wise_8hxx"/>
+      </node>
+      <node id="6442">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/multicut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2multicut_2multicut__objective_8hxx"/>
+        <childnode refid="6443" relation="include">
+        </childnode>
+      </node>
+      <node id="6434">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/export_solver_factory.hxx</label>
         <link refid="export__solver__factory_8hxx"/>
       </node>
-      <node id="11843">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/multicut/export_multicut_solver.hxx</label>
+      <node id="6443">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/export_multicut_solver.hxx</label>
         <link refid="export__multicut__solver_8hxx"/>
       </node>
-      <node id="11837">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/learnable_lifted_multicut_objective.hxx</label>
-        <link refid="learnable__lifted__multicut__objective_8hxx"/>
+      <node id="6439">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/export_mincut_solver.hxx</label>
+        <link refid="export__mincut__solver_8hxx"/>
       </node>
-      <node id="11838">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
-        <childnode refid="11839" relation="include">
-        </childnode>
+      <node id="6437">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structnifty_1_1graph_1_1GraphName" prot="public">nifty::graph::GraphName</innerclass>

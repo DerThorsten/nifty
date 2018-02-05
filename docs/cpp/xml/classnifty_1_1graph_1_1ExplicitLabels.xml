@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1ExplicitLabels" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::ExplicitLabels</compoundname>
     <includes refid="compute__grid__rag_8hxx" local="no">compute_grid_rag.hxx</includes>
@@ -116,10 +116,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="27" bodyend="33"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1ac60baa565d760fbd0685b51440f0cae0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1ab34ace7ac75307c3ae7e1ffc70e4e9eb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::numberOfLabels</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>numberOfLabels</name>
         <briefdescription>
         </briefdescription>
@@ -129,7 +129,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="37" bodyend="56"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a546bc09065e24792dce4ae415dc04727" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a8b3717b94ebe54a2d74f973792984e27" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class ROI_BEGIN_COORD</type>
@@ -140,7 +140,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::readSubarray</definition>
-        <argsstring>(const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, marray::View&lt; LABEL_TYPE &gt; &amp;outArray) const </argsstring>
+        <argsstring>(const ROI_BEGIN_COORD &amp;roiBeginCoord, const ROI_END_COORD &amp;roiEndCoord, marray::View&lt; LABEL_TYPE &gt; &amp;outArray) const</argsstring>
         <name>readSubarray</name>
         <param>
           <type>const ROI_BEGIN_COORD &amp;</type>
@@ -162,10 +162,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="62" bodyend="72"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a791af26bb936452324bf9e0b35521382" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a8ca813486933212330c6053129cb4758" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classnifty_1_1graph_1_1ExplicitLabels_1aaab98314403b95503bf0c32e65fd1884" kindref="member">ViewType</ref> &amp;</type>
         <definition>const ViewType&amp; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::labels</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>labels</name>
         <briefdescription>
         </briefdescription>
@@ -175,10 +175,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx" bodystart="75" bodyend="77"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a92c40e0451004610fa03feee065dd316" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ExplicitLabels_1a84a51a06ef2d9609a6737662e51b8984" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt; &amp;</type>
         <definition>const array::StaticArray&lt;int64_t, DIM&gt;&amp; nifty::graph::ExplicitLabels&lt; DIM, LABEL_TYPE &gt;::shape</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>shape</name>
         <briefdescription>
         </briefdescription>
@@ -197,12 +197,12 @@
     <listofallmembers>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a896653b58048ec52d8e00800279d9b53" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>BlockStorageType</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ae503c70604d75e48d73622f8941cfa34" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>ExplicitLabels</name></member>
-      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a791af26bb936452324bf9e0b35521382" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>labels</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a8ca813486933212330c6053129cb4758" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>labels</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a8fb133f22b32651ffd794f21e6a41920" prot="private" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>labels_</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a3defd2851b5e7071f23a0fdea7aafff0" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>LabelType</name></member>
-      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ac60baa565d760fbd0685b51440f0cae0" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>numberOfLabels</name></member>
-      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a546bc09065e24792dce4ae415dc04727" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>readSubarray</name></member>
-      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a92c40e0451004610fa03feee065dd316" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ab34ace7ac75307c3ae7e1ffc70e4e9eb" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>numberOfLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a8b3717b94ebe54a2d74f973792984e27" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>readSubarray</name></member>
+      <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a84a51a06ef2d9609a6737662e51b8984" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>shape</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1a9042dbf58b2aa34c4e77bfb6415f6f6b" prot="private" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>shape_</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1ae07fe2aed8059beb43b043e8a3becdb7" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>SubarrayViewType</name></member>
       <member refid="classnifty_1_1graph_1_1ExplicitLabels_1aaab98314403b95503bf0c32e65fd1884" prot="public" virt="non-virtual"><scope>nifty::graph::ExplicitLabels</scope><name>ViewType</name></member>

@@ -1,52 +1,94 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="cluster__policies__common_8hxx" kind="file" language="C++">
     <compoundname>cluster_policies_common.hxx</compoundname>
+    <includedby refid="dual__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx</includedby>
     <includedby refid="edge__weighted__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx</includedby>
+    <includedby refid="fixation__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/fixation_cluster_policy.hxx</includedby>
+    <includedby refid="lifted__agglo__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_agglo_cluster_policy.hxx</includedby>
+    <includedby refid="lifted__edge__weighted__cluster__policy2_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx</includedby>
     <includedby refid="lifted__graph__edge__weighted__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</includedby>
     <includedby refid="mala__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx</includedby>
     <includedby refid="minimum__node__size__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx</includedby>
+    <includedby refid="new__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx</includedby>
     <includedby refid="node__and__edge__weighted__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/node_and_edge_weighted_cluster_policy.hxx</includedby>
+    <includedby refid="probabilistic__lifted__cluster__policy_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/probabilistic_lifted_cluster_policy.hxx</includedby>
     <invincdepgraph>
-      <node id="7102">
+      <node id="796">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/node_and_edge_weighted_cluster_policy.hxx</label>
         <link refid="node__and__edge__weighted__cluster__policy_8hxx"/>
       </node>
-      <node id="7097">
+      <node id="787">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/edge_weighted_cluster_policy.hxx</label>
         <link refid="edge__weighted__cluster__policy_8hxx"/>
       </node>
-      <node id="7100">
+      <node id="790">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx</label>
+        <link refid="lifted__edge__weighted__cluster__policy2_8hxx"/>
+      </node>
+      <node id="792">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_graph_features.hxx</label>
+        <link refid="lifted__graph__features_8hxx"/>
+      </node>
+      <node id="793">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/mala_cluster_policy.hxx</label>
         <link refid="mala__cluster__policy_8hxx"/>
       </node>
-      <node id="7098">
+      <node id="795">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx</label>
+        <link refid="new__policy_8hxx"/>
+      </node>
+      <node id="791">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
         <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
-        <childnode refid="7099" relation="include">
+        <childnode refid="792" relation="include">
         </childnode>
       </node>
-      <node id="7096">
+      <node id="786">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx</label>
+        <link refid="dual__cluster__policy_8hxx"/>
+      </node>
+      <node id="788">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/fixation_cluster_policy.hxx</label>
+        <link refid="fixation__cluster__policy_8hxx"/>
+      </node>
+      <node id="797">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/probabilistic_lifted_cluster_policy.hxx</label>
+        <link refid="probabilistic__lifted__cluster__policy_8hxx"/>
+      </node>
+      <node id="785">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx</label>
-        <link refid="cluster_policies_common.hxx"/>
-        <childnode refid="7097" relation="include">
+        <link refid="cluster__policies__common_8hxx"/>
+        <childnode refid="786" relation="include">
         </childnode>
-        <childnode refid="7098" relation="include">
+        <childnode refid="787" relation="include">
         </childnode>
-        <childnode refid="7100" relation="include">
+        <childnode refid="788" relation="include">
         </childnode>
-        <childnode refid="7101" relation="include">
+        <childnode refid="789" relation="include">
         </childnode>
-        <childnode refid="7102" relation="include">
+        <childnode refid="790" relation="include">
+        </childnode>
+        <childnode refid="791" relation="include">
+        </childnode>
+        <childnode refid="793" relation="include">
+        </childnode>
+        <childnode refid="794" relation="include">
+        </childnode>
+        <childnode refid="795" relation="include">
+        </childnode>
+        <childnode refid="796" relation="include">
+        </childnode>
+        <childnode refid="797" relation="include">
         </childnode>
       </node>
-      <node id="7101">
+      <node id="794">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/minimum_node_size_cluster_policy.hxx</label>
         <link refid="minimum__node__size__cluster__policy_8hxx"/>
       </node>
-      <node id="7099">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</label>
-        <link refid="lifted__graph__features_8hxx"/>
+      <node id="789">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_agglo_cluster_policy.hxx</label>
+        <link refid="lifted__agglo__cluster__policy_8hxx"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" prot="public">nifty::graph::agglo::EdgeWeightedClusterPolicySettings</innerclass>
@@ -66,18 +108,27 @@
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" kindref="compound">EdgeWeightedClusterPolicySettings</ref>{</highlight></codeline>
-<codeline lineno="10" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a16830167af377ff60fd7831c4ca30074" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a16830167af377ff60fd7831c4ca30074" kindref="member">sizeRegularizer</ref>{0.5};</highlight></codeline>
-<codeline lineno="11" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a09a8f5ef7a4a14304439367054bf64cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a09a8f5ef7a4a14304439367054bf64cc" kindref="member">numberOfNodesStop</ref>{1};</highlight></codeline>
-<codeline lineno="12" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a34f45712a326b7e635a6ec6419bfe42b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a34f45712a326b7e635a6ec6419bfe42b" kindref="member">numberOfEdgesStop</ref>{0};</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>agglo</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" kindref="compound">EdgeWeightedClusterPolicySettings</ref>{</highlight></codeline>
+<codeline lineno="13" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a16830167af377ff60fd7831c4ca30074" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a16830167af377ff60fd7831c4ca30074" kindref="member">sizeRegularizer</ref>{0.5};</highlight></codeline>
+<codeline lineno="14" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a09a8f5ef7a4a14304439367054bf64cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a09a8f5ef7a4a14304439367054bf64cc" kindref="member">numberOfNodesStop</ref>{1};</highlight></codeline>
+<codeline lineno="15" refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a34f45712a326b7e635a6ec6419bfe42b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings_1a34f45712a326b7e635a6ec6419bfe42b" kindref="member">numberOfEdgesStop</ref>{0};</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="namespacenifty_1_1graph_1_1agglo_1a20068bfcbc3173c0d9da085bfb0b4b23" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1graph_1_1agglo_1a20068bfcbc3173c0d9da085bfb0b4b23" kindref="member">isNegativeInf</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val){</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>val<sp/>&lt;<sp/>0<sp/>&amp;&amp;<sp/><ref refid="namespacehalf__float_1_1detail_1a8963179a7b2e95bb126aea404732e2d3" kindref="member">std::isinf</ref>(val);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>agglo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"/>
   </compounddef>

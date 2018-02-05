@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="bidirectional__breadth__first__search_8hxx" kind="file" language="C++">
     <compoundname>bidirectional_breadth_first_search.hxx</compoundname>
     <includes local="no">cstddef</includes>
@@ -10,80 +10,80 @@
     <includes local="no">algorithm</includes>
     <includes refid="subgraph__mask_8hxx" local="yes">nifty/graph/subgraph_mask.hxx</includes>
     <includes refid="search__impl_8hxx" local="yes">nifty/graph/detail/search_impl.hxx</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
-    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</includedby>
     <incdepgraph>
-      <node id="7299">
+      <node id="1256">
         <label>queue</label>
       </node>
-      <node id="7297">
+      <node id="1254">
         <label>limits</label>
       </node>
-      <node id="7295">
+      <node id="1252">
         <label>/home/tbeier/src/nifty/include/nifty/graph/bidirectional_breadth_first_search.hxx</label>
-        <link refid="bidirectional_breadth_first_search.hxx"/>
-        <childnode refid="7296" relation="include">
+        <link refid="bidirectional__breadth__first__search_8hxx"/>
+        <childnode refid="1253" relation="include">
         </childnode>
-        <childnode refid="7297" relation="include">
+        <childnode refid="1254" relation="include">
         </childnode>
-        <childnode refid="7298" relation="include">
+        <childnode refid="1255" relation="include">
         </childnode>
-        <childnode refid="7299" relation="include">
+        <childnode refid="1256" relation="include">
         </childnode>
-        <childnode refid="7300" relation="include">
+        <childnode refid="1257" relation="include">
         </childnode>
-        <childnode refid="7301" relation="include">
+        <childnode refid="1258" relation="include">
         </childnode>
-        <childnode refid="7302" relation="include">
+        <childnode refid="1259" relation="include">
         </childnode>
-        <childnode refid="7303" relation="include">
+        <childnode refid="1260" relation="include">
         </childnode>
       </node>
-      <node id="7302">
+      <node id="1259">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="7304">
+      <node id="1261">
         <label>stack</label>
       </node>
-      <node id="7300">
+      <node id="1257">
         <label>vector</label>
       </node>
-      <node id="7303">
+      <node id="1260">
         <label>nifty/graph/detail/search_impl.hxx</label>
         <link refid="search__impl_8hxx"/>
-        <childnode refid="7299" relation="include">
+        <childnode refid="1256" relation="include">
         </childnode>
-        <childnode refid="7304" relation="include">
+        <childnode refid="1261" relation="include">
         </childnode>
-        <childnode refid="7302" relation="include">
+        <childnode refid="1259" relation="include">
         </childnode>
       </node>
-      <node id="7296">
+      <node id="1253">
         <label>cstddef</label>
       </node>
-      <node id="7298">
+      <node id="1255">
         <label>deque</label>
       </node>
-      <node id="7301">
+      <node id="1258">
         <label>algorithm</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7305">
+      <node id="1262">
         <label>/home/tbeier/src/nifty/include/nifty/graph/bidirectional_breadth_first_search.hxx</label>
-        <link refid="bidirectional_breadth_first_search.hxx"/>
-        <childnode refid="7306" relation="include">
+        <link refid="bidirectional__breadth__first__search_8hxx"/>
+        <childnode refid="1263" relation="include">
         </childnode>
-        <childnode refid="7307" relation="include">
+        <childnode refid="1264" relation="include">
         </childnode>
       </node>
-      <node id="7307">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+      <node id="1264">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</label>
         <link refid="multicut__ilp_8hxx"/>
       </node>
-      <node id="7306">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+      <node id="1263">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
         <link refid="lifted__multicut__ilp_8hxx"/>
       </node>
     </invincdepgraph>
@@ -195,10 +195,10 @@
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::deque&lt;uint64_t&gt;<sp/>DequeType;<sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="101" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1af6a0e7af586af4ebba7a5f464d82ae71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1af6a0e7af586af4ebba7a5f464d82ae71" kindref="member">Graph</ref>;</highlight></codeline>
-<codeline lineno="102" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a8dad356a684976bd3651d63765e35103" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>NodeMap&lt;int64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a8dad356a684976bd3651d63765e35103" kindref="member">Parents</ref>;</highlight></codeline>
+<codeline lineno="101" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a2a6e6ffd9c93b416a8bc1ad26dff97ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a2a6e6ffd9c93b416a8bc1ad26dff97ac" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="102" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1ac0997b426ed5c99713a89f355bbb2950" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;int64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1ac0997b426ed5c99713a89f355bbb2950" kindref="member">Parents</ref>;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a0190f62ab6974d4d09db4488561605d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a0190f62ab6974d4d09db4488561605d2" kindref="member">BidirectionalBreadthFirstSearch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph)</highlight></codeline>
+<codeline lineno="104" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1abff43678fb2a1c133941ee8f65101f91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1abff43678fb2a1c133941ee8f65101f91" kindref="member">BidirectionalBreadthFirstSearch</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph)</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>graph_(graph),</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parents_(graph){</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
@@ -209,8 +209,8 @@
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>source,</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>int64_t<sp/>target</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>){</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1DefaultSubgraphMask" kindref="compound">DefaultSubgraphMask&lt;Graph&gt;</ref><sp/>subgraphMask;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1af6ae063fd07eb6635ebc070dac6d2730" kindref="member">runSingleSourceSingleTarget</ref>(source,target,subgraphMask);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1DefaultSubgraphMask" kindref="compound">DefaultSubgraphMask&lt;GraphType&gt;</ref><sp/>subgraphMask;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;runSingleSourceSingleTarget(source,target,subgraphMask);</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SUBGRAPH_MASK&gt;</highlight></codeline>
@@ -315,13 +315,13 @@
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//NIFTY_ASSERT(false,&quot;&quot;);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="222" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a1820fb29cd0d00c04ca660e375d3610a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DequeType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a1820fb29cd0d00c04ca660e375d3610a" kindref="member">path</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="222" refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a8cb65a4e1ba03070fa77b4e8e8354332" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DequeType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1BidirectionalBreadthFirstSearch_1a8cb65a4e1ba03070fa77b4e8e8354332" kindref="member">path</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>path_;</highlight></codeline>
 <codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="226"><highlight class="normal"></highlight></codeline>
 <codeline lineno="227"><highlight class="normal"></highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>&amp;<sp/>graph_;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph_;</highlight></codeline>
 <codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Parents<sp/>parents_;</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;<sp/>std::queue&lt;uint64_t&gt;<sp/>,<sp/>2&gt;<sp/>queues_;</highlight></codeline>
 <codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DequeType<sp/>path_;</highlight></codeline>

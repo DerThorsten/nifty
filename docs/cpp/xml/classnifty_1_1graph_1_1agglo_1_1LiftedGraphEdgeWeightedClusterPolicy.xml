@@ -1,35 +1,104 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</compoundname>
-    <includes refid="lifted__graph__edge__weighted__cluster__policy_8hxx" local="no">lifted_graph_edge_weighted_cluster_policy.hxx</includes>
+    <includes refid="lifted__edge__weighted__cluster__policy2_8hxx" local="no">lifted_edge_weighted_cluster_policy2.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" prot="public">nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy::SettingsType</innerclass>
     <templateparamlist>
       <param>
         <type>class GRAPH</type>
       </param>
       <param>
-        <type>class EDGE_INDICATORS</type>
-      </param>
-      <param>
-        <type>class EDGE_SIZES</type>
-      </param>
-      <param>
-        <type>class NODE_SIZES</type>
-      </param>
-      <param>
-        <type>class EDGE_IS_LIFTED</type>
+        <type>class ACC</type>
       </param>
       <param>
         <type>bool</type>
         <declname>ENABLE_UCM</declname>
         <defname>ENABLE_UCM</defname>
-        <defval>true</defval>
       </param>
     </templateparamlist>
       <sectiondef kind="private-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5d6e271e866ff68c58b7c9f6343319a1" prot="private" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a4c52c80c14a7aac17753b4fc92bdca23" prot="private" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy</ref>&lt; GRAPH, ACC, ENABLE_UCM &gt;</type>
+        <definition>typedef LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::SelfType</definition>
+        <argsstring></argsstring>
+        <name>SelfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a297cae37de30f83c5a9e039d5a179c9e" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; uint8_t &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;uint8_t&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::UInt8EdgeMap</definition>
+        <argsstring></argsstring>
+        <name>UInt8EdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a2381c021df1472fafce1fef956ce2de7" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;double&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::FloatEdgeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatEdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a330623b54b5678e45da333802635f553" prot="private" static="no">
+        <type>GRAPH::template NodeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template NodeMap&lt;double&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::FloatNodeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatNodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7437bea2f1feeb0bfe0152ce13b196c2" prot="private" static="no">
+        <type>ACC</type>
+        <definition>typedef ACC nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::AccType</definition>
+        <argsstring></argsstring>
+        <name>AccType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae338de2676e61209fc0aff2c663400eb" prot="private" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">nifty::tools::ChangeablePriorityQueue</ref>&lt; double, std::greater&lt; double &gt; &gt;</type>
+        <definition>typedef nifty::tools::ChangeablePriorityQueue&lt; double , std::greater&lt;double&gt; &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::QueueType</definition>
+        <argsstring></argsstring>
+        <name>QueueType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c3a356920304bc9c061f08051f80f7c" prot="private" static="no">
         <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy</ref>&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;</type>
-        <definition>typedef LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::SelfType</definition>
+        <definition>typedef LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::SelfType</definition>
         <argsstring></argsstring>
         <name>SelfType</name>
         <briefdescription>
@@ -40,9 +109,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="30" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c531f30bf70e8747ed150490c569a81" prot="private" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade353ae46a17eb6a887ecb380ee43a5b" prot="private" static="no">
         <type>GraphType::template EdgeMap&lt; double &gt;</type>
-        <definition>typedef GraphType:: template EdgeMap&lt;double&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::CurrentWeightMap</definition>
+        <definition>typedef GraphType:: template EdgeMap&lt;double&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::CurrentWeightMap</definition>
         <argsstring></argsstring>
         <name>CurrentWeightMap</name>
         <briefdescription>
@@ -53,9 +122,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="47" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="47" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a1548b63d9485b7bc9f6299373445b2c8" prot="private" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af6db347ab9519da4cc49978b0490b5df" prot="private" static="no">
         <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">nifty::tools::ChangeablePriorityQueue</ref>&lt; double,std::less&lt; double &gt; &gt;</type>
-        <definition>typedef nifty::tools::ChangeablePriorityQueue&lt; double ,std::less&lt;double&gt; &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::QueueType</definition>
+        <definition>typedef nifty::tools::ChangeablePriorityQueue&lt; double ,std::less&lt;double&gt; &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::QueueType</definition>
         <argsstring></argsstring>
         <name>QueueType</name>
         <briefdescription>
@@ -68,9 +137,87 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a988cf395d36cc7342860ae6b14977ae2" prot="public" static="no">
+        <type>AccType::SettingsType</type>
+        <definition>typedef AccType::SettingsType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::AccSettingsType</definition>
+        <argsstring></argsstring>
+        <name>AccSettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::GraphType</definition>
+        <definition>typedef GRAPH nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7ef8d9cbb9ed15f40334501771c82ddb" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgePrioType</definition>
+        <argsstring></argsstring>
+        <name>EdgePrioType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad544c54e73b2ce0be17ae1061dcec9ed" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeSizesType</definition>
+        <argsstring></argsstring>
+        <name>EdgeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aec2d1f0ad4c63bb5847322c094a557cb" prot="public" static="no">
+        <type>FloatNodeMap</type>
+        <definition>typedef FloatNodeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::NodeSizesType</definition>
+        <argsstring></argsstring>
+        <name>NodeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">SelfType</ref> &gt;</type>
+        <definition>typedef EdgeContractionGraph&lt;GraphType, SelfType&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeContractionGraphType</definition>
+        <argsstring></argsstring>
+        <name>EdgeContractionGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::GraphType</definition>
         <argsstring></argsstring>
         <name>GraphType</name>
         <briefdescription>
@@ -81,9 +228,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="35" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" prot="public" static="no">
         <type>EDGE_INDICATORS</type>
-        <definition>typedef EDGE_INDICATORS nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::EdgeIndicatorsType</definition>
+        <definition>typedef EDGE_INDICATORS nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeIndicatorsType</definition>
         <argsstring></argsstring>
         <name>EdgeIndicatorsType</name>
         <briefdescription>
@@ -94,9 +241,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="36" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="36" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afe8f683c6cef1ab83446de02c40b3e54" prot="public" static="no">
         <type>EDGE_SIZES</type>
-        <definition>typedef EDGE_SIZES nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::EdgeSizesType</definition>
+        <definition>typedef EDGE_SIZES nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeSizesType</definition>
         <argsstring></argsstring>
         <name>EdgeSizesType</name>
         <briefdescription>
@@ -107,9 +254,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="37" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9fc3be4ac528987e8da19d55ef3b4285" prot="public" static="no">
         <type>NODE_SIZES</type>
-        <definition>typedef NODE_SIZES nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::NodeSizesType</definition>
+        <definition>typedef NODE_SIZES nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::NodeSizesType</definition>
         <argsstring></argsstring>
         <name>NodeSizesType</name>
         <briefdescription>
@@ -120,9 +267,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="38" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" prot="public" static="no">
         <type>EDGE_IS_LIFTED</type>
-        <definition>typedef EDGE_IS_LIFTED nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::EdgeIsLifted</definition>
+        <definition>typedef EDGE_IS_LIFTED nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeIsLifted</definition>
         <argsstring></argsstring>
         <name>EdgeIsLifted</name>
         <briefdescription>
@@ -133,9 +280,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="39" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9bb055f88e22430364ff7624a17276fe" prot="public" static="no">
         <type><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" kindref="compound">EdgeWeightedClusterPolicySettings</ref></type>
-        <definition>typedef EdgeWeightedClusterPolicySettings nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::SettingsType</definition>
+        <definition>typedef EdgeWeightedClusterPolicySettings nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::SettingsType</definition>
         <argsstring></argsstring>
         <name>SettingsType</name>
         <briefdescription>
@@ -146,9 +293,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="40" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" prot="public" static="no">
-        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">SelfType</ref> &gt;</type>
-        <definition>typedef EdgeContractionGraph&lt;GraphType, SelfType&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::EdgeContractionGraphType</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">SelfType</ref> &gt;</type>
+        <definition>typedef EdgeContractionGraph&lt;GraphType, SelfType&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::EdgeContractionGraphType</definition>
         <argsstring></argsstring>
         <name>EdgeContractionGraphType</name>
         <briefdescription>
@@ -172,13 +319,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="44" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="58" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95c111a0ba66ed0ef8723d47dca9912f" prot="private" static="no" mutable="no">
-        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" kindref="member">GraphType</ref> &amp;</type>
-        <definition>const GraphType&amp; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::graph_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c989287d5750d87e520228b0194b752" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType &amp; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::graph_</definition>
         <argsstring></argsstring>
         <name>graph_</name>
         <briefdescription>
@@ -187,11 +334,128 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="81" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="99" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="99" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa9186c75302ddb5e1299f761cb6acb0d" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" kindref="member">EdgeIndicatorsType</ref></type>
-        <definition>EdgeIndicatorsType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeIndicators_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae77278ee3b1b12fc9897c90d0755e35f" prot="private" static="no" mutable="no">
+        <type>ACC</type>
+        <definition>ACC nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::acc_</definition>
+        <argsstring></argsstring>
+        <name>acc_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a03ad9bce2bc15f29edfe3cc98262d245" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::isLocalEdge_</definition>
+        <argsstring></argsstring>
+        <name>isLocalEdge_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1abd8aa98424c468a071d379e79abf2686" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::isPureLocal_</definition>
+        <argsstring></argsstring>
+        <name>isPureLocal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a45761ac4c215df96768a0c6c18bf63e9" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::isPureLifted_</definition>
+        <argsstring></argsstring>
+        <name>isPureLifted_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af0d680f1d1072b41d0e5d721bcba599d" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a1473671b4c13ad295b7f82af141eda8d" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" kindref="member">EdgeContractionGraphType</ref></type>
+        <definition>EdgeContractionGraphType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeContractionGraph_</definition>
+        <argsstring></argsstring>
+        <name>edgeContractionGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae942b09f58de8f18ddc96a4d5a6b0d27" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">QueueType</ref></type>
+        <definition>QueueType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::pq_</definition>
+        <argsstring></argsstring>
+        <name>pq_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="112" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af7724fcf4c679e89f032eae0299f9d38" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeToContractNext_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNext_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af7b4e807cf3c1b84c08f44895ed522af" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeToContractNextMergePrio_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNextMergePrio_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1abbb2c251b0e5e766053973dc81937334" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" kindref="member">EdgeIndicatorsType</ref></type>
+        <definition>EdgeIndicatorsType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeIndicators_</definition>
         <argsstring></argsstring>
         <name>edgeIndicators_</name>
         <briefdescription>
@@ -202,9 +466,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="82" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad14ce8380698996e8d3d851e4051fd98" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" kindref="member">EdgeSizesType</ref></type>
-        <definition>EdgeSizesType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeSizes_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5a39c47d07bb7b5e6dbb23a732158ac4" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad544c54e73b2ce0be17ae1061dcec9ed" kindref="member">EdgeSizesType</ref></type>
+        <definition>EdgeSizesType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeSizes_</definition>
         <argsstring></argsstring>
         <name>edgeSizes_</name>
         <briefdescription>
@@ -215,9 +479,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="83" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="83" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a17733ff9db00f58d36e9c4874e403562" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" kindref="member">NodeSizesType</ref></type>
-        <definition>NodeSizesType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::nodeSizes_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1acfb4aa40bc485c7bd77a0c5a957c3408" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aec2d1f0ad4c63bb5847322c094a557cb" kindref="member">NodeSizesType</ref></type>
+        <definition>NodeSizesType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::nodeSizes_</definition>
         <argsstring></argsstring>
         <name>nodeSizes_</name>
         <briefdescription>
@@ -228,9 +492,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="84" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7a9c1812f7c882cef80d75ed47941272" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" kindref="member">EdgeIsLifted</ref></type>
-        <definition>EdgeIsLifted nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeIsLifted_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab79ed1351758fcd79964f88a41b306fc" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" kindref="member">EdgeIsLifted</ref></type>
+        <definition>EdgeIsLifted nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeIsLifted_</definition>
         <argsstring></argsstring>
         <name>edgeIsLifted_</name>
         <briefdescription>
@@ -241,48 +505,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="85" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac49f29f6e644590e7a8b63e2db82f4fe" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" kindref="member">SettingsType</ref></type>
-        <definition>SettingsType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::settings_</definition>
-        <argsstring></argsstring>
-        <name>settings_</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="86" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a2344a05465a564d5a06485064a9c98e5" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" kindref="member">EdgeContractionGraphType</ref></type>
-        <definition>EdgeContractionGraphType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeContractionGraph_</definition>
-        <argsstring></argsstring>
-        <name>edgeContractionGraph_</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="89" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1acc76c5e573cb1617d169ff51edca8e37" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">QueueType</ref></type>
-        <definition>QueueType nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::pq_</definition>
-        <argsstring></argsstring>
-        <name>pq_</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="90" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a23a5759aa430fa2bbe05120af74d08dc" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a38d9b9a05f6d345ae6599336fb21efff" prot="private" static="no" mutable="no">
         <type>CurrentWeightMap</type>
-        <definition>CurrentWeightMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::currentWeight_</definition>
+        <definition>CurrentWeightMap nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::currentWeight_</definition>
         <argsstring></argsstring>
         <name>currentWeight_</name>
         <briefdescription>
@@ -295,35 +520,42 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class MERGE_PRIOS</type>
+          </param>
+          <param>
+            <type>class IS_LOCAL_EDGE</type>
+          </param>
+          <param>
+            <type>class EDGE_SIZES</type>
+          </param>
+        </templateparamlist>
         <type></type>
-        <definition>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::LiftedGraphEdgeWeightedClusterPolicy</definition>
-        <argsstring>(const GraphType &amp;, EdgeIndicatorsType, EdgeSizesType, NodeSizesType, EdgeIsLifted, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <definition>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::LiftedGraphEdgeWeightedClusterPolicy</definition>
+        <argsstring>(const GraphType &amp;, const MERGE_PRIOS &amp;, const IS_LOCAL_EDGE &amp;, const EDGE_SIZES &amp;, const SettingsType &amp;settings=SettingsType())</argsstring>
         <name>LiftedGraphEdgeWeightedClusterPolicy</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" kindref="member">GraphType</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref> &amp;</type>
           <defname>graph</defname>
         </param>
         <param>
-          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" kindref="member">EdgeIndicatorsType</ref></type>
-          <defname>edgeIndicators</defname>
+          <type>const MERGE_PRIOS &amp;</type>
+          <defname>mergePrios</defname>
         </param>
         <param>
-          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" kindref="member">EdgeSizesType</ref></type>
+          <type>const IS_LOCAL_EDGE &amp;</type>
+          <defname>isLocalEdge</defname>
+        </param>
+        <param>
+          <type>const EDGE_SIZES &amp;</type>
           <defname>edgeSizes</defname>
         </param>
         <param>
-          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" kindref="member">NodeSizesType</ref></type>
-          <defname>nodeSizes</defname>
-        </param>
-        <param>
-          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" kindref="member">EdgeIsLifted</ref></type>
-          <defname>edgeIsLifted</defname>
-        </param>
-        <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" kindref="member">SettingsType</ref> &amp;</type>
+          <type>const <ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
           <declname>settings</declname>
-          <defval><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" kindref="member">SettingsType</ref>()</defval>
+          <defval><ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -331,12 +563,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="98" bodyend="117"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="122" bodyend="142"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac6a70e6487e7d40638f463be143b2fb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::pair&lt; uint64_t, double &gt;</type>
         <definition>std::pair&lt; uint64_t, double &gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeToContractNext</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>edgeToContractNext</name>
         <briefdescription>
         </briefdescription>
@@ -344,12 +576,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="122" bodyend="126"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="147" bodyend="149"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade41a75987866ee0f747f629e8be1f8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::isDone</definition>
-        <argsstring>() const </argsstring>
+        <definition>bool nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::isDone</definition>
+        <argsstring>()</argsstring>
         <name>isDone</name>
         <briefdescription>
         </briefdescription>
@@ -357,10 +589,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="131" bodyend="137"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="153" bodyend="156"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" kindref="member">EdgeContractionGraphType</ref> &amp;</type>
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" kindref="member">EdgeContractionGraphType</ref> &amp;</type>
         <definition>LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::EdgeContractionGraphType &amp; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::edgeContractionGraph</definition>
         <argsstring>()</argsstring>
         <name>edgeContractionGraph</name>
@@ -370,7 +602,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="192" bodyend="194"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="179" bodyend="181"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -387,7 +619,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="182" bodyend="187"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="170" bodyend="174"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -408,7 +640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="201" bodyend="206"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="186" bodyend="190"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -429,7 +661,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="211" bodyend="256"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="195" bodyend="221"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -446,10 +678,180 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="261" bodyend="272"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="227" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::LiftedGraphEdgeWeightedClusterPolicy</definition>
+        <argsstring>(const GraphType &amp;, EdgeIndicatorsType, EdgeSizesType, NodeSizesType, EdgeIsLifted, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>LiftedGraphEdgeWeightedClusterPolicy</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref> &amp;</type>
+          <defname>graph</defname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" kindref="member">EdgeIndicatorsType</ref></type>
+          <defname>edgeIndicators</defname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad544c54e73b2ce0be17ae1061dcec9ed" kindref="member">EdgeSizesType</ref></type>
+          <defname>edgeSizes</defname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aec2d1f0ad4c63bb5847322c094a557cb" kindref="member">NodeSizesType</ref></type>
+          <defname>nodeSizes</defname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" kindref="member">EdgeIsLifted</ref></type>
+          <defname>edgeIsLifted</defname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="98" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a58b578b4c85c6818f990ba21c4079a9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; uint64_t, double &gt;</type>
+        <definition>std::pair&lt;uint64_t, double&gt; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeToContractNext</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeToContractNext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a99bd335a2282e1ea16e062340d480a3a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::isDone</definition>
+        <argsstring>() const</argsstring>
+        <name>isDone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="131" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac94fd9193c674df9e2c3afb9cd3781ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" kindref="member">EdgeContractionGraphType</ref> &amp;</type>
+        <definition>EdgeContractionGraphType&amp; nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::edgeContractionGraph</definition>
+        <argsstring>()</argsstring>
+        <name>edgeContractionGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a39565820aad23066cf2cf8daf56c901c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::contractEdge</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afd367a30ccd5dfb8a5d4f031611e22fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::mergeNodes</definition>
+        <argsstring>(const uint64_t aliveNode, const uint64_t deadNode)</argsstring>
+        <name>mergeNodes</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveNode</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5ef49637ecb3c1481418fc139a236e5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::mergeEdges</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>mergeEdges</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a027c78e42fc174ee93884892c0293a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::contractEdgeDone</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdgeDone</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="77" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a46a82fb5dd451634d598b8ab5f66f846" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, ACC, ENABLE_UCM &gt;::pqMergePrio</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>pqMergePrio</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="161" bodyend="165"/>
+      </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a495df148ef1da269406f9b14058b2584" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::initializeWeights</definition>
@@ -463,10 +865,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="143" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a199b4585b51b8eca571c9582ad50dabf" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5b473c555c585f3640cd011ff0714ef6" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy&lt; GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM &gt;::computeWeight</definition>
-        <argsstring>(const uint64_t edge) const </argsstring>
+        <argsstring>(const uint64_t edge) const</argsstring>
         <name>computeWeight</name>
         <param>
           <type>const uint64_t</type>
@@ -485,38 +887,65 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx" bodystart="24" bodyend="93"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx" bodystart="22" bodyend="116"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a199b4585b51b8eca571c9582ad50dabf" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>computeWeight</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae77278ee3b1b12fc9897c90d0755e35f" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>acc_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a988cf395d36cc7342860ae6b14977ae2" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>AccSettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7437bea2f1feeb0bfe0152ce13b196c2" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>AccType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5b473c555c585f3640cd011ff0714ef6" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>computeWeight</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>contractEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a39565820aad23066cf2cf8daf56c901c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>contractEdge</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>contractEdgeDone</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a23a5759aa430fa2bbe05120af74d08dc" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>currentWeight_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c531f30bf70e8747ed150490c569a81" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>CurrentWeightMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a027c78e42fc174ee93884892c0293a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>contractEdgeDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a38d9b9a05f6d345ae6599336fb21efff" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>currentWeight_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade353ae46a17eb6a887ecb380ee43a5b" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>CurrentWeightMap</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeContractionGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac94fd9193c674df9e2c3afb9cd3781ae" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeContractionGraph</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a2344a05465a564d5a06485064a9c98e5" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeContractionGraph_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeContractionGraphType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa9186c75302ddb5e1299f761cb6acb0d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeIndicators_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeIndicatorsType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeIsLifted</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7a9c1812f7c882cef80d75ed47941272" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeIsLifted_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad14ce8380698996e8d3d851e4051fd98" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeSizes_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeSizesType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeToContractNext</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95c111a0ba66ed0ef8723d47dca9912f" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>graph_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a1473671b4c13ad295b7f82af141eda8d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeContractionGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeContractionGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeContractionGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1abbb2c251b0e5e766053973dc81937334" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeIndicators_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeIndicatorsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeIsLifted</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab79ed1351758fcd79964f88a41b306fc" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeIsLifted_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7ef8d9cbb9ed15f40334501771c82ddb" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgePrioType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5a39c47d07bb7b5e6dbb23a732158ac4" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeSizes_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad544c54e73b2ce0be17ae1061dcec9ed" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afe8f683c6cef1ab83446de02c40b3e54" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>EdgeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac6a70e6487e7d40638f463be143b2fb0" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeToContractNext</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a58b578b4c85c6818f990ba21c4079a9d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeToContractNext</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af7724fcf4c679e89f032eae0299f9d38" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeToContractNext_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af7b4e807cf3c1b84c08f44895ed522af" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>edgeToContractNextMergePrio_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a2381c021df1472fafce1fef956ce2de7" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>FloatEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a330623b54b5678e45da333802635f553" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>FloatNodeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c989287d5750d87e520228b0194b752" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>GraphType</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a495df148ef1da269406f9b14058b2584" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>initializeWeights</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade41a75987866ee0f747f629e8be1f8a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a99bd335a2282e1ea16e062340d480a3a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a03ad9bce2bc15f29edfe3cc98262d245" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isLocalEdge_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a45761ac4c215df96768a0c6c18bf63e9" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isPureLifted_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1abd8aa98424c468a071d379e79abf2686" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>isPureLocal_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>LiftedGraphEdgeWeightedClusterPolicy</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>LiftedGraphEdgeWeightedClusterPolicy</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>mergeEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5ef49637ecb3c1481418fc139a236e5c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>mergeEdges</name></member>
       <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>mergeNodes</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a17733ff9db00f58d36e9c4874e403562" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>nodeSizes_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>NodeSizesType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1acc76c5e573cb1617d169ff51edca8e37" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>pq_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a1548b63d9485b7bc9f6299373445b2c8" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>QueueType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a5d6e271e866ff68c58b7c9f6343319a1" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>SelfType</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac49f29f6e644590e7a8b63e2db82f4fe" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>settings_</name></member>
-      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afd367a30ccd5dfb8a5d4f031611e22fb" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>mergeNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1acfb4aa40bc485c7bd77a0c5a957c3408" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>nodeSizes_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aec2d1f0ad4c63bb5847322c094a557cb" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>NodeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9fc3be4ac528987e8da19d55ef3b4285" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>NodeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae942b09f58de8f18ddc96a4d5a6b0d27" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>pq_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a46a82fb5dd451634d598b8ab5f66f846" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>pqMergePrio</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae338de2676e61209fc0aff2c663400eb" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>QueueType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af6db347ab9519da4cc49978b0490b5df" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>QueueType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a4c52c80c14a7aac17753b4fc92bdca23" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6c3a356920304bc9c061f08051f80f7c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1af0d680f1d1072b41d0e5d721bcba599d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9bb055f88e22430364ff7624a17276fe" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a297cae37de30f83c5a9e039d5a179c9e" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</scope><name>UInt8EdgeMap</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

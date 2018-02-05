@@ -1,0 +1,248 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:lifted\+\_\+multicut\+:\+:Pixel\+Wise\+Lmc\+Objective$<$ D\+IM $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective$<$ D\+I\+M $>$@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective$<$ D\+I\+M $>$}}
+
+
+{\ttfamily \#include $<$pixel\+\_\+wise.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGridGraph}{nifty\+::graph\+::\+Undirected\+Grid\+Graph}$<$ D\+IM, true $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}{Graph\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjective}{Lifted\+Multicut\+Objective}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}{Graph\+Type}, double $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}{Objective\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase}{Lifted\+Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}{Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_ad9932afb08dd17d375de4b15da9ffaa6}{Base\+Type\+::\+Visitor\+Base\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a980f38de550a4b5e49ca2d0e93a3883c}{Visitor\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a445c87635d0c7885842dd701ff326e03}{Node\+Labels}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}{Base\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}{Lmc\+Factory\+Base}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}{Lmc\+Factory\+Base} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}{Lmc\+Factory\+Base\+Shared\+Ptr}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}{Pixel\+Wise\+Lmc\+Objective} ()
+\item 
+{\footnotesize template$<$class D\+\_\+\+W\+E\+I\+G\+H\+TS , class D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}{Pixel\+Wise\+Lmc\+Objective} (const xt\+::xexpression$<$ D\+\_\+\+W\+E\+I\+G\+H\+TS $>$ \&e\+\_\+weights, const xt\+::xexpression$<$ D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \&e\+\_\+offsets)
+\item 
+{\footnotesize template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}{evaluate} (const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&e\+\_\+labels) const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}{weights} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}{offsets} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}{shape} () const
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}{n\+\_\+offsets} () const
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}{n\+\_\+variables} () const
+\item 
+{\footnotesize template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a5d81f386676196f07d1b44cbfaac487a}{optimize} (\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}{Lmc\+Factory\+Base\+Shared\+Ptr} factory, const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&e\+\_\+labels, const bool verbose=false) const
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}{Pixel\+Wise\+Lmc\+Objective} ()
+\item 
+{\footnotesize template$<$class D\+\_\+\+W\+E\+I\+G\+H\+TS , class D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}{Pixel\+Wise\+Lmc\+Objective} (const xt\+::xexpression$<$ D\+\_\+\+W\+E\+I\+G\+H\+TS $>$ \&e\+\_\+weights, const xt\+::xexpression$<$ D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \&e\+\_\+offsets)
+\item 
+{\footnotesize template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}{evaluate} (const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&e\+\_\+labels) const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}{weights} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}{offsets} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}{shape} () const
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}{n\+\_\+offsets} () const
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}{n\+\_\+variables} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase}{Lifted\+Multicut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}{Objective\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}{Base\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGridGraph}{nifty\+::graph\+::\+Undirected\+Grid\+Graph}$<$D\+IM,true$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Lmc\+Factory\+Base@{Lmc\+Factory\+Base}}
+\index{Lmc\+Factory\+Base@{Lmc\+Factory\+Base}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Lmc\+Factory\+Base}{LmcFactoryBase}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Factory\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_afe887edc57b2dcaaf16c8d37a7ef75f5}{Base\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}{Lmc\+Factory\+Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Lmc\+Factory\+Base\+Shared\+Ptr@{Lmc\+Factory\+Base\+Shared\+Ptr}}
+\index{Lmc\+Factory\+Base\+Shared\+Ptr@{Lmc\+Factory\+Base\+Shared\+Ptr}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Lmc\+Factory\+Base\+Shared\+Ptr}{LmcFactoryBaseSharedPtr}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef std\+::shared\+\_\+ptr$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_af25cc9669e2f45203e18687fa4fe1094}{Lmc\+Factory\+Base}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}{Lmc\+Factory\+Base\+Shared\+Ptr}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a445c87635d0c7885842dd701ff326e03}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a445c87635d0c7885842dd701ff326e03}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Node\+Labels@{Node\+Labels}}
+\index{Node\+Labels@{Node\+Labels}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Node\+Labels}{NodeLabels}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Base\+Type\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a445c87635d0c7885842dd701ff326e03}{Node\+Labels}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjective}{Lifted\+Multicut\+Objective}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9d6e35c79c10cda4f8f71d04de7e502a}{Graph\+Type}, double $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aab39b0241a84f330595fb9cc12d9766b}{Objective\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a980f38de550a4b5e49ca2d0e93a3883c}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a980f38de550a4b5e49ca2d0e93a3883c}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Visitor\+Base\+Type@{Visitor\+Base\+Type}}
+\index{Visitor\+Base\+Type@{Visitor\+Base\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Visitor\+Base\+Type}{VisitorBaseType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_ad9932afb08dd17d375de4b15da9ffaa6}{Base\+Type\+::\+Visitor\+Base\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a980f38de550a4b5e49ca2d0e93a3883c}{Visitor\+Base\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}}
+\index{Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Pixel\+Wise\+Lmc\+Objective()}{PixelWiseLmcObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{Pixel\+Wise\+Lmc\+Objective} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}}
+\index{Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Pixel\+Wise\+Lmc\+Objective()}{PixelWiseLmcObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D\+\_\+\+W\+E\+I\+G\+H\+TS , class D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{Pixel\+Wise\+Lmc\+Objective} (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D\+\_\+\+W\+E\+I\+G\+H\+TS $>$ \&}]{e\+\_\+weights,  }\item[{const xt\+::xexpression$<$ D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \&}]{e\+\_\+offsets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a9ca29aebe51f087b87d9353b72e5b4f3}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}}
+\index{Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Pixel\+Wise\+Lmc\+Objective()}{PixelWiseLmcObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{Pixel\+Wise\+Lmc\+Objective} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a289a981e481ffd785ff9e902a1c6b81c}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}}
+\index{Pixel\+Wise\+Lmc\+Objective@{Pixel\+Wise\+Lmc\+Objective}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{Pixel\+Wise\+Lmc\+Objective()}{PixelWiseLmcObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D\+\_\+\+W\+E\+I\+G\+H\+TS , class D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{Pixel\+Wise\+Lmc\+Objective} (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D\+\_\+\+W\+E\+I\+G\+H\+TS $>$ \&}]{e\+\_\+weights,  }\item[{const xt\+::xexpression$<$ D\+\_\+\+O\+F\+F\+S\+E\+TS $>$ \&}]{e\+\_\+offsets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{evaluate()}{evaluate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::evaluate (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&}]{e\+\_\+labels }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a747f137d69865cae987d39e3d1f7d8da}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{evaluate()}{evaluate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::evaluate (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&}]{e\+\_\+labels }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!n\+\_\+offsets@{n\+\_\+offsets}}
+\index{n\+\_\+offsets@{n\+\_\+offsets}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{n\+\_\+offsets()}{n\_offsets()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::n\+\_\+offsets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a8362f64cc0d7898d9fb9d7350cf85ce7}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!n\+\_\+offsets@{n\+\_\+offsets}}
+\index{n\+\_\+offsets@{n\+\_\+offsets}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{n\+\_\+offsets()}{n\_offsets()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::n\+\_\+offsets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!n\+\_\+variables@{n\+\_\+variables}}
+\index{n\+\_\+variables@{n\+\_\+variables}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{n\+\_\+variables()}{n\_variables()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::n\+\_\+variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_abb3ae8311e13fc58cf745ba0e232a2e9}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!n\+\_\+variables@{n\+\_\+variables}}
+\index{n\+\_\+variables@{n\+\_\+variables}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{n\+\_\+variables()}{n\_variables()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::n\+\_\+variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!offsets@{offsets}}
+\index{offsets@{offsets}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{offsets()}{offsets()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::offsets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a1c9506b64a31e69ffe33ce76e94a3399}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!offsets@{offsets}}
+\index{offsets@{offsets}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{offsets()}{offsets()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::offsets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a5d81f386676196f07d1b44cbfaac487a}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a5d81f386676196f07d1b44cbfaac487a}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D\+\_\+\+L\+A\+B\+E\+LS $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::optimize (\begin{DoxyParamCaption}\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_aed7d162d3b82b26428c3e484d7788fc9}{Lmc\+Factory\+Base\+Shared\+Ptr}}]{factory,  }\item[{const xt\+::xexpression$<$ D\+\_\+\+L\+A\+B\+E\+LS $>$ \&}]{e\+\_\+labels,  }\item[{const bool}]{verbose = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!shape@{shape}}
+\index{shape@{shape}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{shape()}{shape()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_a7d7e653cc95b721c529a397652e36b9a}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!shape@{shape}}
+\index{shape@{shape}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{shape()}{shape()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!weights@{weights}}
+\index{weights@{weights}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{weights()}{weights()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::weights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_ad84609a85d2203e52d4eb16c83a3930f}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}!weights@{weights}}
+\index{weights@{weights}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}}
+\subsubsection{\texorpdfstring{weights()}{weights()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Pixel\+Wise\+Lmc\+Objective}$<$ D\+IM $>$\+::weights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/\hyperlink{pixel__wise_8hxx}{pixel\+\_\+wise.\+hxx}\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/\hyperlink{pixel__wise__q_8hxx}{pixel\+\_\+wise\+\_\+q.\+hxx}\end{DoxyCompactItemize}

@@ -1,0 +1,145 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}.  
+
+
+
+
+{\ttfamily \#include $<$random\+\_\+node\+\_\+color\+\_\+proposal\+\_\+generator.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:opt\+:\+:common\+:\+:Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a39d7fdcca43df0ce3e53a415391670b6}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aac7752a102f9b23fd2b21ee80e18ce98}{Proposal\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ bool $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a252ead89e3354056605c75b9da12de53}{Is\+Used}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ada79b36836eedb827e901be1d385e805}{Random\+Node\+Color\+Proposal\+Generator} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}{Objective\+Type} \&objective, const size\+\_\+t number\+Of\+Threads, const \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a655c003dfd00e4022478633ac21cd48c}{reset} ()
+\item 
+virtual \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aaf869008949b90cfc9c0583da99050fb}{$\sim$\+Random\+Node\+Color\+Proposal\+Generator} ()
+\item 
+virtual void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a5862fcb54e6f7332b6466ecc8371aef4}{generate\+Proposal} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_a122993da5c326628cdb865a6279d20c5}{Proposal\+Type} \&current\+Best, \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_a122993da5c326628cdb865a6279d20c5}{Proposal\+Type} \&proposal, const size\+\_\+t tid)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class O\+B\+J\+E\+C\+T\+I\+VE$>$\newline
+class nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+
+Watershed proposal generator for \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased}{lifted\+\_\+multicut\+::\+Fusion\+Move\+Based}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em O\+B\+J\+E\+C\+T\+I\+VE} & \{ description \} \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a39d7fdcca43df0ce3e53a415391670b6}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a39d7fdcca43df0ce3e53a415391670b6}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a39d7fdcca43df0ce3e53a415391670b6}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a252ead89e3354056605c75b9da12de53}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a252ead89e3354056605c75b9da12de53}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!Is\+Used@{Is\+Used}}
+\index{Is\+Used@{Is\+Used}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Is\+Used}{IsUsed}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$bool$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a252ead89e3354056605c75b9da12de53}{Is\+Used}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}{Objective\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aac7752a102f9b23fd2b21ee80e18ce98}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aac7752a102f9b23fd2b21ee80e18ce98}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!Proposal\+Type@{Proposal\+Type}}
+\index{Proposal\+Type@{Proposal\+Type}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Proposal\+Type}{ProposalType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_a122993da5c326628cdb865a6279d20c5}{Proposal\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ada79b36836eedb827e901be1d385e805}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ada79b36836eedb827e901be1d385e805}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!Random\+Node\+Color\+Proposal\+Generator@{Random\+Node\+Color\+Proposal\+Generator}}
+\index{Random\+Node\+Color\+Proposal\+Generator@{Random\+Node\+Color\+Proposal\+Generator}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{Random\+Node\+Color\+Proposal\+Generator()}{RandomNodeColorProposalGenerator()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{Random\+Node\+Color\+Proposal\+Generator} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_ac9a200d0d544cbe279eb5cfb4d51d3d5}{Objective\+Type} \&}]{objective,  }\item[{const size\+\_\+t}]{number\+Of\+Threads,  }\item[{const \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aaf869008949b90cfc9c0583da99050fb}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_aaf869008949b90cfc9c0583da99050fb}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!````~Random\+Node\+Color\+Proposal\+Generator@{$\sim$\+Random\+Node\+Color\+Proposal\+Generator}}
+\index{````~Random\+Node\+Color\+Proposal\+Generator@{$\sim$\+Random\+Node\+Color\+Proposal\+Generator}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{$\sim$\+Random\+Node\+Color\+Proposal\+Generator()}{~RandomNodeColorProposalGenerator()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+virtual \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::$\sim$\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{Random\+Node\+Color\+Proposal\+Generator} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a5862fcb54e6f7332b6466ecc8371aef4}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a5862fcb54e6f7332b6466ecc8371aef4}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!generate\+Proposal@{generate\+Proposal}}
+\index{generate\+Proposal@{generate\+Proposal}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{generate\+Proposal()}{generateProposal()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+virtual void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::generate\+Proposal (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_a122993da5c326628cdb865a6279d20c5}{Proposal\+Type} \&}]{current\+Best,  }\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_a122993da5c326628cdb865a6279d20c5}{Proposal\+Type} \&}]{proposal,  }\item[{const size\+\_\+t}]{tid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_abb7b02d650049f52733b3f2dc81bb395}{nifty\+::graph\+::opt\+::common\+::\+Proposal\+Generator\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}.
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a655c003dfd00e4022478633ac21cd48c}\label{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_a655c003dfd00e4022478633ac21cd48c}} 
+\index{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator@{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator}{nifty\+::graph\+::opt\+::common\+::\+Random\+Node\+Color\+Proposal\+Generator}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal\+\_\+generators/\hyperlink{random__node__color__proposal__generator_8hxx}{random\+\_\+node\+\_\+color\+\_\+proposal\+\_\+generator.\+hxx}\end{DoxyCompactItemize}

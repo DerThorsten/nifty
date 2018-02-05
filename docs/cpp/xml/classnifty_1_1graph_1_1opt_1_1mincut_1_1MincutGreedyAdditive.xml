@@ -1,0 +1,471 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::mincut::MincutGreedyAdditive</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" prot="public" virt="non-virtual">nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="mincut__greedy__additive_8hxx" local="no">mincut_greedy_additive.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>OBJECTIVE</declname>
+        <defname>OBJECTIVE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aaaf060bf6308159bbe5cc3fecb7ccfca" prot="public" static="no">
+        <type>float</type>
+        <definition>typedef float nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::QpboValueType</definition>
+        <argsstring></argsstring>
+        <name>QpboValueType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="172" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3bd8a5b329b83aead0cab24bd24fa884" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="173" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acfb227c3e34c4295ae909fcf0ecbccf1" prot="public" static="no">
+        <type>detail_mincut_greedy_additive::MincutGreedyAdditiveCallback&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef detail_mincut_greedy_additive::MincutGreedyAdditiveCallback&lt;ObjectiveType&gt; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::CallbackType</definition>
+        <argsstring></argsstring>
+        <name>CallbackType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="174" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a86d8ece1058b68985541278c646b0876" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">nifty::graph::EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3bd8a5b329b83aead0cab24bd24fa884" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acfb227c3e34c4295ae909fcf0ecbccf1" kindref="member">CallbackType</ref> &gt;</type>
+        <definition>typedef nifty::graph::EdgeContractionGraph&lt;GraphType, CallbackType&gt; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::ContractionGraphType</definition>
+        <argsstring></argsstring>
+        <name>ContractionGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="175" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a2f1009590b7ee06e4b15ed0b94c658a0" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" kindref="compound">MincutBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef MincutBase&lt;OBJECTIVE&gt; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="176" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a6754295908ae1d3f3ce8a98999bff99d" prot="public" static="no">
+        <type>BaseType::VisitorBaseType</type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="177" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3891af76873b45807f761c64701aeab9" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad209b469b3bc9fc0fc14e9fed4d09075" kindref="member">BaseType::VisitorProxyType</ref></type>
+        <definition>typedef BaseType::VisitorProxyType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::VisitorProxyType</definition>
+        <argsstring></argsstring>
+        <name>VisitorProxyType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="178" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a5a8855589a1e752e63650d8e678fc162" prot="public" static="no">
+        <type>BaseType::NodeLabelsType</type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="179" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acc6768ee2aa88a457488451751bd4aac" prot="public" static="no">
+        <type>CallbackType::SettingsType</type>
+        <definition>typedef CallbackType::SettingsType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="183" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1accf38fcbb1e0b9013dec722e86727f49" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="213" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1afb81e5df47bf1dad646c543ff7e95858" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3bd8a5b329b83aead0cab24bd24fa884" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="214" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a104c3c416a746bc0a5d4dd4010c81626" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a5a8855589a1e752e63650d8e678fc162" kindref="member">NodeLabelsType</ref> *</type>
+        <definition>NodeLabelsType* nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::currentBest_</definition>
+        <argsstring></argsstring>
+        <name>currentBest_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="215" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ad5e58b6a2d1e91e81292698f91ee6b0d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::currentBestEnergy_</definition>
+        <argsstring></argsstring>
+        <name>currentBestEnergy_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="216" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a977f6197be1e4391889d6f328bb0fc5c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acfb227c3e34c4295ae909fcf0ecbccf1" kindref="member">CallbackType</ref></type>
+        <definition>CallbackType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::callback_</definition>
+        <argsstring></argsstring>
+        <name>callback_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="217" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a8bf13890bb46f2c8544d1739b917f1ec" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a86d8ece1058b68985541278c646b0876" kindref="member">ContractionGraphType</ref></type>
+        <definition>ContractionGraphType nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::edgeContractionGraph_</definition>
+        <argsstring></argsstring>
+        <name>edgeContractionGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="218" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a143df97f090159f794b560a7fdaf5412" prot="private" static="no" mutable="no">
+        <type>QPBO&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aaaf060bf6308159bbe5cc3fecb7ccfca" kindref="member">QpboValueType</ref> &gt;</type>
+        <definition>QPBO&lt;QpboValueType&gt; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::qpbo_</definition>
+        <argsstring></argsstring>
+        <name>qpbo_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="219" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aa1f9747e0319c0614c9d0e04586d8e46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::~MincutGreedyAdditive</definition>
+        <argsstring>()</argsstring>
+        <name>~MincutGreedyAdditive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="185" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="185" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a65fff86234d1c749a4355557a80b40a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::MincutGreedyAdditive</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>MincutGreedyAdditive</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acc6768ee2aa88a457488451751bd4aac" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acc6768ee2aa88a457488451751bd4aac" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="186" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="225" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a37d99b0e539ca6150d7ba6a713d937c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::optimize</definition>
+        <argsstring>(NodeLabelsType &amp;nodeLabels, VisitorBaseType *visitor)</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a5a8855589a1e752e63650d8e678fc162" kindref="member">NodeLabelsType</ref> &amp;</type>
+          <declname>nodeLabels</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a6754295908ae1d3f3ce8a98999bff99d" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="187" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="243" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1adddbe72afb04c110796dbcc753dd603a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const MincutGreedyAdditive&lt; OBJECTIVE &gt;::ObjectiveType &amp; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::objective</definition>
+        <argsstring>() const</argsstring>
+        <name>objective</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a55e9eb645c07d6e0782ebfb990ab3c84">objective</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="188" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="351" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ad22ac997a0041491747fe5e13b500fed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="190" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="358" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ae518386c1ce114c22caf499a4ff1cf4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::changeSettings</definition>
+        <argsstring>(const SettingsType &amp;settings)</argsstring>
+        <name>changeSettings</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acc6768ee2aa88a457488451751bd4aac" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="191" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="367" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aa7b71928fc3f6e46f5ec99c0119c5787" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::weightsChanged</definition>
+        <argsstring>()</argsstring>
+        <name>weightsChanged</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a6a5d77ee514c4b5f44d1908c1000f0ff">weightsChanged</reimplements>
+        <briefdescription>
+<para>Inform solver about a change of weights. </para>        </briefdescription>
+        <detaileddescription>
+<para>Inform solver that all weights could have changed. If a particular solver does not overload this function, an WeightsChangedNotSupported exception is thrown. After a call of this function it is save to run optimize again, therefore it resets the solver </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="193" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="193" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a90776c1d69e006d6503007d8c870896b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a5a8855589a1e752e63650d8e678fc162" kindref="member">NodeLabelsType</ref> &amp;</type>
+        <definition>virtual const NodeLabelsType&amp; nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::currentBestNodeLabels</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestNodeLabels</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a7bbe01ee201cf3157b251e54c5ff0619">currentBestNodeLabels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="196" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="196" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ab18457f6010006ecfc156f26277e9316" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::currentBestEnergy</definition>
+        <argsstring>()</argsstring>
+        <name>currentBestEnergy</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a871de6574e6189a0c97c0b2121b07155">currentBestEnergy</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="202" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="202" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a2a3351733ab0dc823eb35947c92fa227" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1af638b9a804cfec3e35fe87c77e942d30">name</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="205" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="205" bodyend="207"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="643">
+        <label>nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive"/>
+        <childnode refid="644" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="645">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="644">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="645" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="646">
+        <label>nifty::graph::opt::mincut::MincutGreedyAdditive&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="648">
+        <label>nifty::graph::opt::common::SolverBase&lt; OBJECTIVE, MincutBase&lt; OBJECTIVE &gt; &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase"/>
+      </node>
+      <node id="647">
+        <label>nifty::graph::opt::mincut::MincutBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase"/>
+        <childnode refid="648" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" line="169" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_greedy_additive.hxx" bodystart="168" bodyend="220"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a2f1009590b7ee06e4b15ed0b94c658a0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a977f6197be1e4391889d6f328bb0fc5c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>callback_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acfb227c3e34c4295ae909fcf0ecbccf1" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>CallbackType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ae518386c1ce114c22caf499a4ff1cf4a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>changeSettings</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a86d8ece1058b68985541278c646b0876" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>ContractionGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a104c3c416a746bc0a5d4dd4010c81626" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>currentBest_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ab18457f6010006ecfc156f26277e9316" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>currentBestEnergy</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ad5e58b6a2d1e91e81292698f91ee6b0d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>currentBestEnergy_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a90776c1d69e006d6503007d8c870896b" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>currentBestNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a8bf13890bb46f2c8544d1739b917f1ec" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>edgeContractionGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1afb81e5df47bf1dad646c543ff7e95858" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3bd8a5b329b83aead0cab24bd24fa884" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a65fff86234d1c749a4355557a80b40a4" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>MincutGreedyAdditive</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a2a3351733ab0dc823eb35947c92fa227" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a5a8855589a1e752e63650d8e678fc162" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1adddbe72afb04c110796dbcc753dd603a" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>objective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1accf38fcbb1e0b9013dec722e86727f49" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a1e4f0fc6675ac7d977619126bfd6e143" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a37d99b0e539ca6150d7ba6a713d937c5" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a3d877f6a2b3b68cde5cfc73e427e3c6f" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::mincut::MincutBase::"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a143df97f090159f794b560a7fdaf5412" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>qpbo_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aaaf060bf6308159bbe5cc3fecb7ccfca" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>QpboValueType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1ad22ac997a0041491747fe5e13b500fed" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1aeaf0e8eabef52cd3858e8c7bacc82dc6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1acc6768ee2aa88a457488451751bd4aac" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a6754295908ae1d3f3ce8a98999bff99d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1a3891af76873b45807f761c64701aeab9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>VisitorProxyType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aa7b71928fc3f6e46f5ec99c0119c5787" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>weightsChanged</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive_1aa1f9747e0319c0614c9d0e04586d8e46" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>~MincutGreedyAdditive</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1a2a5a231352b9e37b2be4a4d7e05a515d" prot="public" virt="virtual"><scope>nifty::graph::opt::mincut::MincutGreedyAdditive</scope><name>~SolverBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1enable" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::enable</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename</type>
+      </param>
+      <param>
+        <type>typename</type>
+        <defval>void</defval>
+      </param>
+      <param>
+        <type>typename</type>
+        <defval>void</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>SFINAE helper for generic half-precision functions. This class template has to be specialized for each valid combination of argument types to provide a corresponding <computeroutput>type</computeroutput> member equivalent to <emphasis>T</emphasis>. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type to return </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="371" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="371" bodyend="371"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

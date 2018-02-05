@@ -1,18 +1,20 @@
 \hypertarget{for__each__block_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+block.hxx File Reference}
 \label{for__each__block_8hxx}\index{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+block.\+hxx@{/home/tbeier/src/nifty/include/nifty/tools/for\+\_\+each\+\_\+block.\+hxx}}
-{\ttfamily \#include $<$sstream$>$}\\*
-{\ttfamily \#include $<$chrono$>$}\\*
-{\ttfamily \#include $<$array$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx\char`\"{}}\\*
-Include dependency graph for for\+\_\+each\+\_\+block.\+hxx\+:\nopagebreak
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/array/arithmetic\+\_\+array.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/for\+\_\+each\+\_\+coordinate.\+hxx\char`\"{}}\newline
+Include dependency graph for for\+\_\+each\+\_\+block.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{for__each__block_8hxx__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,7 +31,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$size\+\_\+t D\+I\+M, class S\+H\+A\+P\+E\+\_\+\+T , class B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_ac5e8d4b06486a3d603cdbb7314f8dd75}{nifty\+::tools\+::parallel\+For\+Each\+Block} (parallel\+::\+Thread\+Pool \&threadpool, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&shape, const array\+::\+Static\+Array$<$ B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&block\+Shape, F \&\&f)
+{\footnotesize template$<$size\+\_\+t D\+IM, class S\+H\+A\+P\+E\+\_\+T , class B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_ac5e8d4b06486a3d603cdbb7314f8dd75}{nifty\+::tools\+::parallel\+For\+Each\+Block} (parallel\+::\+Thread\+Pool \&threadpool, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&shape, const array\+::\+Static\+Array$<$ B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&block\+Shape, F \&\&f)
 \item 
-{\footnotesize template$<$size\+\_\+t D\+I\+M, class S\+H\+A\+P\+E\+\_\+\+T , class B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T , class O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_af942eef6747790a4f8d6868b1f95c3ee}{nifty\+::tools\+::parallel\+For\+Each\+Block\+With\+Overlap} (parallel\+::\+Thread\+Pool \&threadpool, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&shape, const array\+::\+Static\+Array$<$ B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&block\+Shape, const array\+::\+Static\+Array$<$ O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&overlap\+Begin, const array\+::\+Static\+Array$<$ O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+\+T, D\+I\+M $>$ \&overlap\+End, F \&\&f)
+{\footnotesize template$<$size\+\_\+t D\+IM, class S\+H\+A\+P\+E\+\_\+T , class B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+T , class O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+T , class F $>$ }\\void \hyperlink{namespacenifty_1_1tools_af942eef6747790a4f8d6868b1f95c3ee}{nifty\+::tools\+::parallel\+For\+Each\+Block\+With\+Overlap} (parallel\+::\+Thread\+Pool \&threadpool, const array\+::\+Static\+Array$<$ S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&shape, const array\+::\+Static\+Array$<$ B\+L\+O\+C\+K\+\_\+\+S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&block\+Shape, const array\+::\+Static\+Array$<$ O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&overlap\+Begin, const array\+::\+Static\+Array$<$ O\+V\+E\+R\+L\+A\+P\+\_\+\+S\+H\+A\+P\+E\+\_\+T, D\+IM $>$ \&overlap\+End, F \&\&f)
 \end{DoxyCompactItemize}

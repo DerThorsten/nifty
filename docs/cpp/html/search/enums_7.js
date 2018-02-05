@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['seedingstrategie',['SeedingStrategie',['../structnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals_1_1SettingsType.html#add8f7ec36c39fc7153f214f187f8d833',1,'nifty::graph::opt::common::GreedyAdditiveMulticutProposals::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1_1SettingsType.html#a3e291dc78a9f6ed9d97571bd2f41cfc0',1,'nifty::graph::opt::common::WatershedProposalGenerator::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType.html#adb1dc7c5efbaf2442345aaa665aa2027',1,'nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType::SeedingStrategie()'],['../structnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator_1_1SettingsType.html#ae768919b1348c58e3c8c77b25fee1d1e',1,'nifty::graph::opt::mincut::RandomProposalGenerator::SettingsType::SeedingStrategie()']]],
+  ['stringstyle',['StringStyle',['../namespaceandres.html#a69f07c437d156c7028c7d619e566281f',1,'andres']]]
+];

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="lifted__multicut__kernighan__lin_8hxx" kind="file" language="C++">
     <compoundname>lifted_multicut_kernighan_lin.hxx</compoundname>
     <includes local="no">iomanip</includes>
@@ -11,429 +11,435 @@
     <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
     <includes refid="ufd_8hxx" local="yes">nifty/ufd/ufd.hxx</includes>
     <includes refid="adjacency_8hxx" local="yes">nifty/graph/detail/adjacency.hxx</includes>
-    <includes refid="lifted__multicut__base_8hxx" local="yes">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</includes>
+    <includes refid="lifted__multicut__base_8hxx" local="yes">nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx</includes>
     <includes refid="graph_2edge__contraction__graph_8hxx" local="yes">nifty/graph/edge_contraction_graph.hxx</includes>
     <includes refid="components_8hxx" local="yes">nifty/graph/components.hxx</includes>
     <includes refid="subgraph__with__cut_8hxx" local="yes">nifty/graph/subgraph_masks/subgraph_with_cut.hxx</includes>
-    <includes refid="lifted__twocut__kernighan__lin_8hxx" local="yes">nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</includes>
-    <includedby refid="lifted__multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</includedby>
+    <includes refid="lifted__twocut__kernighan__lin_8hxx" local="yes">nifty/graph/opt/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</includes>
+    <includedby refid="lifted__multicut__mp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_mp.hxx</includedby>
     <incdepgraph>
-      <node id="8919">
+      <node id="3131">
         <label>nifty/tools/const_iterator_range.hxx</label>
         <link refid="const__iterator__range_8hxx"/>
       </node>
-      <node id="8904">
+      <node id="3115">
         <label>functional</label>
       </node>
-      <node id="8876">
+      <node id="3087">
         <label>iomanip</label>
       </node>
-      <node id="8882">
+      <node id="3093">
         <label>queue</label>
       </node>
-      <node id="8887">
+      <node id="3098">
         <label>limits</label>
       </node>
-      <node id="8915">
+      <node id="3127">
         <label>iterator</label>
       </node>
-      <node id="8928">
-        <label>nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
+      <node id="3140">
+        <label>nifty/graph/opt/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</label>
         <link refid="lifted__twocut__kernighan__lin_8hxx"/>
-        <childnode refid="8876" relation="include">
+        <childnode refid="3087" relation="include">
         </childnode>
-        <childnode refid="8877" relation="include">
+        <childnode refid="3088" relation="include">
         </childnode>
-        <childnode refid="8878" relation="include">
+        <childnode refid="3089" relation="include">
         </childnode>
-        <childnode refid="8879" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="8880" relation="include">
+        <childnode refid="3091" relation="include">
         </childnode>
-        <childnode refid="8881" relation="include">
+        <childnode refid="3092" relation="include">
         </childnode>
-        <childnode refid="8883" relation="include">
+        <childnode refid="3094" relation="include">
         </childnode>
-        <childnode refid="8889" relation="include">
+        <childnode refid="3100" relation="include">
         </childnode>
-        <childnode refid="8892" relation="include">
+        <childnode refid="3103" relation="include">
         </childnode>
-        <childnode refid="8893" relation="include">
+        <childnode refid="3104" relation="include">
         </childnode>
-        <childnode refid="8903" relation="include">
+        <childnode refid="3114" relation="include">
         </childnode>
-        <childnode refid="8922" relation="include">
+        <childnode refid="3134" relation="include">
         </childnode>
       </node>
-      <node id="8922">
+      <node id="3134">
         <label>nifty/graph/components.hxx</label>
         <link refid="components_8hxx"/>
-        <childnode refid="8923" relation="include">
+        <childnode refid="3135" relation="include">
         </childnode>
-        <childnode refid="8924" relation="include">
+        <childnode refid="3136" relation="include">
         </childnode>
-        <childnode refid="8925" relation="include">
+        <childnode refid="3137" relation="include">
         </childnode>
-        <childnode refid="8889" relation="include">
+        <childnode refid="3100" relation="include">
         </childnode>
       </node>
-      <node id="8884">
+      <node id="3095">
         <label>cstdint</label>
       </node>
-      <node id="8893">
-        <label>nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</label>
-        <link refid="lifted__multicut__base_8hxx"/>
-        <childnode refid="8894" relation="include">
-        </childnode>
-        <childnode refid="8895" relation="include">
-        </childnode>
-        <childnode refid="8886" relation="include">
-        </childnode>
-        <childnode refid="8885" relation="include">
-        </childnode>
-        <childnode refid="8896" relation="include">
-        </childnode>
-        <childnode refid="8897" relation="include">
-        </childnode>
-      </node>
-      <node id="8902">
+      <node id="3113">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="8894" relation="include">
+        <childnode refid="3105" relation="include">
         </childnode>
       </node>
-      <node id="8903">
+      <node id="3086">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="3087" relation="include">
+        </childnode>
+        <childnode refid="3088" relation="include">
+        </childnode>
+        <childnode refid="3089" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3091" relation="include">
+        </childnode>
+        <childnode refid="3092" relation="include">
+        </childnode>
+        <childnode refid="3094" relation="include">
+        </childnode>
+        <childnode refid="3100" relation="include">
+        </childnode>
+        <childnode refid="3103" relation="include">
+        </childnode>
+        <childnode refid="3104" relation="include">
+        </childnode>
+        <childnode refid="3114" relation="include">
+        </childnode>
+        <childnode refid="3134" relation="include">
+        </childnode>
+        <childnode refid="3139" relation="include">
+        </childnode>
+        <childnode refid="3140" relation="include">
+        </childnode>
+      </node>
+      <node id="3114">
         <label>nifty/graph/edge_contraction_graph.hxx</label>
         <link refid="graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="8904" relation="include">
+        <childnode refid="3115" relation="include">
         </childnode>
-        <childnode refid="8905" relation="include">
+        <childnode refid="3116" relation="include">
         </childnode>
-        <childnode refid="8906" relation="include">
+        <childnode refid="3117" relation="include">
         </childnode>
-        <childnode refid="8907" relation="include">
+        <childnode refid="3119" relation="include">
         </childnode>
-        <childnode refid="8920" relation="include">
+        <childnode refid="3132" relation="include">
         </childnode>
-        <childnode refid="8883" relation="include">
+        <childnode refid="3094" relation="include">
         </childnode>
-        <childnode refid="8889" relation="include">
+        <childnode refid="3100" relation="include">
         </childnode>
-        <childnode refid="8892" relation="include">
+        <childnode refid="3103" relation="include">
         </childnode>
       </node>
-      <node id="8888">
+      <node id="3099">
         <label>cmath</label>
       </node>
-      <node id="8913">
+      <node id="3125">
         <label>cassert</label>
       </node>
-      <node id="8908">
+      <node id="3120">
         <label>boost/iterator/transform_iterator.hpp</label>
       </node>
-      <node id="8885">
+      <node id="3096">
         <label>stdexcept</label>
       </node>
-      <node id="8918">
+      <node id="3130">
         <label>numeric</label>
       </node>
-      <node id="8907">
+      <node id="3119">
         <label>nifty/graph/undirected_graph_base.hxx</label>
         <link refid="undirected__graph__base_8hxx"/>
-        <childnode refid="8908" relation="include">
+        <childnode refid="3120" relation="include">
         </childnode>
-        <childnode refid="8909" relation="include">
+        <childnode refid="3121" relation="include">
         </childnode>
-        <childnode refid="8910" relation="include">
+        <childnode refid="3122" relation="include">
         </childnode>
-        <childnode refid="8919" relation="include">
+        <childnode refid="3131" relation="include">
         </childnode>
       </node>
-      <node id="8892">
+      <node id="3103">
         <label>nifty/graph/detail/adjacency.hxx</label>
         <link refid="adjacency_8hxx"/>
       </node>
-      <node id="8897">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="8894" relation="include">
-        </childnode>
-        <childnode refid="8895" relation="include">
-        </childnode>
-        <childnode refid="8886" relation="include">
-        </childnode>
-        <childnode refid="8885" relation="include">
-        </childnode>
-        <childnode refid="8896" relation="include">
-        </childnode>
-        <childnode refid="8897" relation="include">
-        </childnode>
-        <childnode refid="8898" relation="include">
-        </childnode>
-      </node>
-      <node id="8925">
+      <node id="3137">
         <label>nifty/graph/breadth_first_search.hxx</label>
         <link refid="breadth__first__search_8hxx"/>
-        <childnode refid="8924" relation="include">
+        <childnode refid="3136" relation="include">
         </childnode>
-        <childnode refid="8926" relation="include">
+        <childnode refid="3138" relation="include">
         </childnode>
       </node>
-      <node id="8894">
+      <node id="3105">
         <label>string</label>
       </node>
-      <node id="8896">
+      <node id="3107">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="8885" relation="include">
+        <childnode refid="3096" relation="include">
         </childnode>
       </node>
-      <node id="8891">
+      <node id="3102">
         <label>map</label>
       </node>
-      <node id="8927">
+      <node id="3139">
         <label>nifty/graph/subgraph_masks/subgraph_with_cut.hxx</label>
         <link refid="subgraph__with__cut_8hxx"/>
       </node>
-      <node id="8878">
+      <node id="3089">
         <label>unordered_set</label>
       </node>
-      <node id="8901">
+      <node id="3112">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="8886" relation="include">
+        <childnode refid="3097" relation="include">
         </childnode>
-        <childnode refid="8900" relation="include">
+        <childnode refid="3111" relation="include">
         </childnode>
-        <childnode refid="8894" relation="include">
+        <childnode refid="3105" relation="include">
         </childnode>
       </node>
-      <node id="8924">
+      <node id="3136">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="8912">
+      <node id="3124">
         <label>nifty/marray/andres/marray.hxx</label>
         <link refid="andres_2marray_8hxx"/>
-        <childnode refid="8913" relation="include">
+        <childnode refid="3125" relation="include">
         </childnode>
-        <childnode refid="8890" relation="include">
+        <childnode refid="3101" relation="include">
         </childnode>
-        <childnode refid="8885" relation="include">
+        <childnode refid="3096" relation="include">
         </childnode>
-        <childnode refid="8887" relation="include">
+        <childnode refid="3098" relation="include">
         </childnode>
-        <childnode refid="8894" relation="include">
+        <childnode refid="3105" relation="include">
         </childnode>
-        <childnode refid="8886" relation="include">
+        <childnode refid="3097" relation="include">
         </childnode>
-        <childnode refid="8914" relation="include">
+        <childnode refid="3126" relation="include">
         </childnode>
-        <childnode refid="8915" relation="include">
+        <childnode refid="3127" relation="include">
         </childnode>
-        <childnode refid="8879" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="8916" relation="include">
+        <childnode refid="3128" relation="include">
         </childnode>
-        <childnode refid="8899" relation="include">
+        <childnode refid="3110" relation="include">
         </childnode>
-        <childnode refid="8917" relation="include">
+        <childnode refid="3129" relation="include">
         </childnode>
-        <childnode refid="8918" relation="include">
+        <childnode refid="3130" relation="include">
         </childnode>
-        <childnode refid="8904" relation="include">
+        <childnode refid="3115" relation="include">
         </childnode>
       </node>
-      <node id="8889">
+      <node id="3104">
+        <label>nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx</label>
+        <link refid="lifted__multicut__base_8hxx"/>
+        <childnode refid="3105" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3107" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+      </node>
+      <node id="3100">
         <label>nifty/ufd/ufd.hxx</label>
         <link refid="ufd_8hxx"/>
-        <childnode refid="8890" relation="include">
+        <childnode refid="3101" relation="include">
         </childnode>
-        <childnode refid="8879" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="8891" relation="include">
+        <childnode refid="3102" relation="include">
         </childnode>
       </node>
-      <node id="8906">
+      <node id="3118">
         <label>boost/container/flat_set.hpp</label>
       </node>
-      <node id="8920">
+      <node id="3132">
         <label>nifty/container/flat_set.hxx</label>
         <link refid="flat__set_8hxx"/>
-        <childnode refid="8890" relation="include">
+        <childnode refid="3101" relation="include">
         </childnode>
-        <childnode refid="8879" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="8877" relation="include">
+        <childnode refid="3088" relation="include">
         </childnode>
-        <childnode refid="8904" relation="include">
+        <childnode refid="3115" relation="include">
         </childnode>
-        <childnode refid="8921" relation="include">
+        <childnode refid="3133" relation="include">
         </childnode>
       </node>
-      <node id="8881">
+      <node id="3092">
         <label>nifty/tools/changable_priority_queue.hxx</label>
         <link refid="changable__priority__queue_8hxx"/>
-        <childnode refid="8882" relation="include">
+        <childnode refid="3093" relation="include">
         </childnode>
       </node>
-      <node id="8880">
+      <node id="3091">
         <label>stack</label>
       </node>
-      <node id="8879">
+      <node id="3090">
         <label>vector</label>
       </node>
-      <node id="8909">
+      <node id="3121">
         <label>nifty/graph/graph_tags.hxx</label>
         <link refid="graph__tags_8hxx"/>
       </node>
-      <node id="8898">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="8890" relation="include">
-        </childnode>
-        <childnode refid="8894" relation="include">
-        </childnode>
-        <childnode refid="8895" relation="include">
-        </childnode>
-        <childnode refid="8886" relation="include">
-        </childnode>
-        <childnode refid="8899" relation="include">
-        </childnode>
-        <childnode refid="8900" relation="include">
-        </childnode>
-        <childnode refid="8901" relation="include">
-        </childnode>
-        <childnode refid="8902" relation="include">
+      <node id="3117">
+        <label>nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost__flat__set_8hxx"/>
+        <childnode refid="3118" relation="include">
         </childnode>
       </node>
-      <node id="8921">
+      <node id="3133">
         <label>utility</label>
       </node>
-      <node id="8886">
+      <node id="3097">
         <label>sstream</label>
       </node>
-      <node id="8883">
+      <node id="3094">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="8884" relation="include">
+        <childnode refid="3095" relation="include">
         </childnode>
-        <childnode refid="8885" relation="include">
+        <childnode refid="3096" relation="include">
         </childnode>
-        <childnode refid="8886" relation="include">
+        <childnode refid="3097" relation="include">
         </childnode>
-        <childnode refid="8879" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="8887" relation="include">
+        <childnode refid="3098" relation="include">
         </childnode>
-        <childnode refid="8888" relation="include">
+        <childnode refid="3099" relation="include">
         </childnode>
       </node>
-      <node id="8926">
+      <node id="3138">
         <label>nifty/graph/detail/search_impl.hxx</label>
         <link refid="search__impl_8hxx"/>
-        <childnode refid="8882" relation="include">
+        <childnode refid="3093" relation="include">
         </childnode>
-        <childnode refid="8880" relation="include">
+        <childnode refid="3091" relation="include">
         </childnode>
-        <childnode refid="8924" relation="include">
+        <childnode refid="3136" relation="include">
         </childnode>
       </node>
-      <node id="8910">
+      <node id="3108">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="3105" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3107" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+        <childnode refid="3109" relation="include">
+        </childnode>
+      </node>
+      <node id="3122">
         <label>nifty/graph/graph_maps.hxx</label>
         <link refid="graph__maps_8hxx"/>
-        <childnode refid="8911" relation="include">
+        <childnode refid="3123" relation="include">
         </childnode>
       </node>
-      <node id="8899">
+      <node id="3110">
         <label>iostream</label>
       </node>
-      <node id="8890">
+      <node id="3101">
         <label>cstddef</label>
       </node>
-      <node id="8875">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
-        <link refid="lifted_multicut_kernighan_lin.hxx"/>
-        <childnode refid="8876" relation="include">
-        </childnode>
-        <childnode refid="8877" relation="include">
-        </childnode>
-        <childnode refid="8878" relation="include">
-        </childnode>
-        <childnode refid="8879" relation="include">
-        </childnode>
-        <childnode refid="8880" relation="include">
-        </childnode>
-        <childnode refid="8881" relation="include">
-        </childnode>
-        <childnode refid="8883" relation="include">
-        </childnode>
-        <childnode refid="8889" relation="include">
-        </childnode>
-        <childnode refid="8892" relation="include">
-        </childnode>
-        <childnode refid="8893" relation="include">
-        </childnode>
-        <childnode refid="8903" relation="include">
-        </childnode>
-        <childnode refid="8922" relation="include">
-        </childnode>
-        <childnode refid="8927" relation="include">
-        </childnode>
-        <childnode refid="8928" relation="include">
-        </childnode>
-      </node>
-      <node id="8923">
+      <node id="3135">
         <label>unordered_map</label>
       </node>
-      <node id="8900">
+      <node id="3111">
         <label>chrono</label>
       </node>
-      <node id="8911">
+      <node id="3123">
         <label>nifty/marray/marray.hxx</label>
         <link refid="marray_8hxx"/>
-        <childnode refid="8912" relation="include">
+        <childnode refid="3124" relation="include">
         </childnode>
-        <childnode refid="8883" relation="include">
+        <childnode refid="3094" relation="include">
         </childnode>
       </node>
-      <node id="8905">
+      <node id="3116">
         <label>type_traits</label>
       </node>
-      <node id="8916">
+      <node id="3109">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="3101" relation="include">
+        </childnode>
+        <childnode refid="3105" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3110" relation="include">
+        </childnode>
+        <childnode refid="3111" relation="include">
+        </childnode>
+        <childnode refid="3112" relation="include">
+        </childnode>
+        <childnode refid="3113" relation="include">
+        </childnode>
+      </node>
+      <node id="3128">
         <label>set</label>
       </node>
-      <node id="8877">
+      <node id="3088">
         <label>algorithm</label>
       </node>
-      <node id="8914">
+      <node id="3126">
         <label>cstring</label>
       </node>
-      <node id="8917">
+      <node id="3129">
         <label>memory</label>
       </node>
-      <node id="8895">
+      <node id="3106">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="8930">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
-        <link refid="lifted__multicut__mp_8hxx"/>
-      </node>
-      <node id="8929">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
-        <link refid="lifted_multicut_kernighan_lin.hxx"/>
-        <childnode refid="8930" relation="include">
+      <node id="3141">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_kernighan_lin.hxx</label>
+        <link refid="lifted__multicut__kernighan__lin_8hxx"/>
+        <childnode refid="3142" relation="include">
         </childnode>
       </node>
+      <node id="3142">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
+      </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutKernighanLin</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" prot="public">nifty::graph::optimization::lifted_multicut::LiftedMulticutKernighanLin::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" prot="public">nifty::graph::opt::lifted_multicut::LiftedMulticutKernighanLin</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" prot="public">nifty::graph::opt::lifted_multicut::LiftedMulticutKernighanLin::SettingsType</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut">nifty::graph::optimization::lifted_multicut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1lifted__multicut">nifty::graph::opt::lifted_multicut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -457,34 +463,34 @@
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ufd_8hxx" kindref="compound">nifty/ufd/ufd.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adjacency_8hxx" kindref="compound">nifty/graph/detail/adjacency.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__multicut__base_8hxx" kindref="compound">nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__multicut__base_8hxx" kindref="compound">nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2edge__contraction__graph_8hxx" kindref="compound">nifty/graph/edge_contraction_graph.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="components_8hxx" kindref="compound">nifty/graph/components.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="subgraph__with__cut_8hxx" kindref="compound">nifty/graph/subgraph_masks/subgraph_with_cut.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__twocut__kernighan__lin_8hxx" kindref="compound">nifty/graph/optimization/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__twocut__kernighan__lin_8hxx" kindref="compound">nifty/graph/opt/lifted_multicut/detail/lifted_twocut_kernighan_lin.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">lifted_multicut{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="35" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
+<codeline lineno="35" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt;OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:<sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a79c92cc5c34a03b68eeedf17558b0e93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a79c92cc5c34a03b68eeedf17558b0e93" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="40" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a8542e376943627c1493efbfd352d3024" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a8542e376943627c1493efbfd352d3024" kindref="member">BaseType</ref>;</highlight></codeline>
-<codeline lineno="41" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a080a22c3021fede6c1504cd10ff5172a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a080a22c3021fede6c1504cd10ff5172a" kindref="member">GraphType</ref>;</highlight></codeline>
-<codeline lineno="42" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aa1fc019de308769f13bfac7a4b4b612f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::LiftedGraphType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aa1fc019de308769f13bfac7a4b4b612f" kindref="member">LiftedGraphType</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace1226557a9d65b35b09e1e38b11b0b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace1226557a9d65b35b09e1e38b11b0b3" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="40" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a6f0d8b3e69c0ee70c3241eda595ae4d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a6f0d8b3e69c0ee70c3241eda595ae4d2" kindref="member">BaseType</ref>;</highlight></codeline>
+<codeline lineno="41" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a869bf835246678727ca04aacef156c20" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a869bf835246678727ca04aacef156c20" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a577eccc5799d9bdf69ea59ccfcf988af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::LiftedGraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a577eccc5799d9bdf69ea59ccfcf988af" kindref="member">LiftedGraphType</ref>;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aad5914ddfc4336c965ad791c0d0173fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">BaseType::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aad5914ddfc4336c965ad791c0d0173fa" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="45" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a936d52bf3c38146f7fc4e02e1b281ca5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy" kindref="compound">BaseType::VisitorProxyType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a936d52bf3c38146f7fc4e02e1b281ca5" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
-<codeline lineno="46" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7469ffe7b497173067005bdcf091818f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">BaseType::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7469ffe7b497173067005bdcf091818f" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="44" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a3c55dddb71a3b4dabe10de599ff330eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">BaseType::VisitorBaseType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a3c55dddb71a3b4dabe10de599ff330eb" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="45" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af5127f5298cb0ea09b88a07094424ed4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">BaseType::VisitorProxyType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af5127f5298cb0ea09b88a07094424ed4" kindref="member">VisitorProxyType</ref>;</highlight></codeline>
+<codeline lineno="46" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aac39b263efe0f990f6bf6989babec8a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">BaseType::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aac39b263efe0f990f6bf6989babec8a4" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
@@ -498,24 +504,24 @@
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="60" refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a6f2cb4150df1691122aa530a44d92d8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a6f2cb4150df1691122aa530a44d92d8d" kindref="member">numberOfInnerIterations</ref><sp/>{<sp/>std::numeric_limits&lt;std::size_t&gt;::max()<sp/>};</highlight></codeline>
-<codeline lineno="63" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa028d408e916d4bba213e0427663d83d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa028d408e916d4bba213e0427663d83d" kindref="member">numberOfOuterIterations</ref><sp/>{<sp/>100<sp/>};</highlight></codeline>
-<codeline lineno="64" refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa128febdb5173f112122a642901c9cc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa128febdb5173f112122a642901c9cc6" kindref="member">epsilon</ref><sp/>{<sp/>1e-7<sp/>};</highlight></codeline>
+<codeline lineno="62" refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa7cd04eddd95ab3a171b728eb0d28365" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1aa7cd04eddd95ab3a171b728eb0d28365" kindref="member">numberOfInnerIterations</ref><sp/>{<sp/>std::numeric_limits&lt;std::size_t&gt;::max()<sp/>};</highlight></codeline>
+<codeline lineno="63" refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1ad01a16892b0f3a6613afe0b592f37819" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1ad01a16892b0f3a6613afe0b592f37819" kindref="member">numberOfOuterIterations</ref><sp/>{<sp/>100<sp/>};</highlight></codeline>
+<codeline lineno="64" refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a403707cad1a24a2d90e0a55cbd420aea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a403707cad1a24a2d90e0a55cbd420aea" kindref="member">epsilon</ref><sp/>{<sp/>1e-7<sp/>};</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a908add915a015d6127c42761d2be296d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a908add915a015d6127c42761d2be296d" kindref="member">~LiftedMulticutKernighanLin</ref>(){}</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a0383cc3b3c2be20c45039804ef0aab04" kindref="member">LiftedMulticutKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a57c2a0d5d4b6c766170f07120c53a22e" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/>SettingsType());</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af91180c4d1653b5823021f098dc45918" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a57c2a0d5d4b6c766170f07120c53a22e" kindref="member">objective</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aea08e0ae50fca3e7c577a94195165825" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aea08e0ae50fca3e7c577a94195165825" kindref="member">~LiftedMulticutKernighanLin</ref>(){}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ac0e6db9d278ca6b1ffe613345ccf413b" kindref="member">LiftedMulticutKernighanLin</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" kindref="member">objective</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref>());</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a1a171e9e18477dd7b3446fd5d09dda39" kindref="member">optimize</ref>(NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/>VisitorBaseType<sp/>*<sp/>visitor);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" kindref="member">objective</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7d10c148bc703c6b99041b659144454d" kindref="member">currentBestNodeLabels</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a39c9b8f4ffa630538f76929e7f32d3e6" kindref="member">name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1addb4bc6f2f4a63ea8afef98bc26860ed" kindref="member">currentBestEnergy</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a91e6337efe1f6d4dface1170410317d3" kindref="member">currentBestNodeLabels</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a682849d66dfe885424c729600754a160" kindref="member">name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace0e35ceeaefa85843716a300ca0a3bf" kindref="member">currentBestEnergy</ref>();</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
@@ -533,7 +539,7 @@
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective_;</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>settings_;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph_;</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LiftedGraphType<sp/>&amp;<sp/>liftedGraph_;</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>*<sp/>currentBest_;</highlight></codeline>
@@ -559,10 +565,10 @@
 <codeline lineno="118"><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a0383cc3b3c2be20c45039804ef0aab04" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="122" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a0383cc3b3c2be20c45039804ef0aab04" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a0383cc3b3c2be20c45039804ef0aab04" kindref="member">    LiftedMulticutKernighanLin</ref>(</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ac0e6db9d278ca6b1ffe613345ccf413b" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="122" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ac0e6db9d278ca6b1ffe613345ccf413b" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ac0e6db9d278ca6b1ffe613345ccf413b" kindref="member">    LiftedMulticutKernighanLin</ref>(</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace1226557a9d65b35b09e1e38b11b0b3" kindref="member">ObjectiveType</ref><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" kindref="member">objective</ref>,<sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
@@ -586,15 +592,15 @@
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af91180c4d1653b5823021f098dc45918" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="149" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af91180c4d1653b5823021f098dc45918" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1af91180c4d1653b5823021f098dc45918" kindref="member">    optimize</ref>(</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>&amp;<sp/>nodeLabels,<sp/><sp/>VisitorBaseType<sp/>*<sp/>visitor</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a1a171e9e18477dd7b3446fd5d09dda39" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="149" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a1a171e9e18477dd7b3446fd5d09dda39" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a1a171e9e18477dd7b3446fd5d09dda39" kindref="member">    optimize</ref>(</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aac39b263efe0f990f6bf6989babec8a4" kindref="member">NodeLabelsType</ref><sp/>&amp;<sp/>nodeLabels,<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a3c55dddb71a3b4dabe10de599ff330eb" kindref="member">VisitorBaseType</ref><sp/>*<sp/>visitor</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentBest_<sp/>=<sp/>&amp;nodeLabels;</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorProxyType<sp/>visitorProxy(visitor);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visitorProxy.<ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy_1aa753fee7dfe837b8f168a954ad994128" kindref="member">begin</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">VisitorProxyType</ref><sp/>visitorProxy(visitor);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visitorProxy.<ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy_1ad3db841200cd5c415c4d8b9e675731de" kindref="member">begin</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>build<sp/>cc<sp/>on<sp/>given<sp/>nodeLabels</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>and<sp/><sp/>build<sp/>initial<sp/>partiton</highlight><highlight class="normal"></highlight></codeline>
@@ -606,7 +612,7 @@
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>interatively<sp/>update<sp/>bipartition<sp/>in<sp/>order<sp/>to<sp/>minimize<sp/>the<sp/>total<sp/>cost<sp/>of<sp/>the<sp/>multicut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>settings_.numberOfOuterIterations;<sp/>++k){</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1ad01a16892b0f3a6613afe0b592f37819" kindref="member">numberOfOuterIterations</ref>;<sp/>++k){</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"></highlight></codeline>
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>energyDecrease<sp/>=<sp/>0.0;</highlight></codeline>
@@ -623,7 +629,7 @@
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
 <codeline lineno="183"><highlight class="normal"></highlight></codeline>
 <codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>the<sp/>new<sp/>true<sp/>energy<sp/>is<sp/>higher,<sp/>than<sp/>the<sp/>current<sp/>one,<sp/>revert<sp/>the<sp/>changes<sp/>and<sp/>terminate</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newEnergyValue<sp/>&gt;=<sp/>currentBestEnergy_<sp/>-<sp/>settings_.epsilon){</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newEnergyValue<sp/>&gt;=<sp/>currentBestEnergy_<sp/>-<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a403707cad1a24a2d90e0a55cbd420aea" kindref="member">epsilon</ref>){</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>node<sp/>:<sp/>graph_.nodes())</highlight></codeline>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nodeLabels[node]<sp/>=<sp/>lastGoodVertexLabels_[node];</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
@@ -652,11 +658,11 @@
 <codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentBestEnergy_<sp/>=<sp/>newEnergyValue;</highlight></codeline>
 <codeline lineno="212"><highlight class="normal"></highlight></codeline>
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>call<sp/>visitor</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!visitorProxy.<ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy_1a3981609a88d96a9b13e59a9db2470057" kindref="member">visit</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!visitorProxy.<ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy_1a78b19aa3247ad044f62f81fbd10293b7" kindref="member">visit</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">))</highlight></codeline>
 <codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="216"><highlight class="normal"></highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visitorProxy.<ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorProxy_1a9340aa683f5445d064b422c88a7d9233" kindref="member">end</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visitorProxy.<ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy_1ad7a669455e7aed7d461cb5451c145a85" kindref="member">end</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"></highlight></codeline>
 <codeline lineno="221"><highlight class="normal"></highlight></codeline>
@@ -664,18 +670,18 @@
 <codeline lineno="223"><highlight class="normal"></highlight></codeline>
 <codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    initializePartiton</ref>(</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    initializePartiton</ref>(</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="229"><highlight class="normal"></highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>components<sp/>from<sp/>current<sp/>best<sp/>node<sp/>labels</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>components_.build(SubgraphWithCut(graph_,<sp/>*currentBest_));</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>components_.<ref refid="classnifty_1_1graph_1_1ComponentsUfd_1ad41a9eae9bfab1b457630b73adc1b9d3" kindref="member">build</ref>(<ref refid="structnifty_1_1graph_1_1subgraph__masks_1_1SubgraphWithCutFromNodeLabels" kindref="compound">SubgraphWithCut</ref>(graph_,<sp/>*currentBest_));</highlight></codeline>
 <codeline lineno="232"><highlight class="normal"></highlight></codeline>
 <codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>energy</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentBestEnergy_<sp/>=<sp/>objective_.evalNodeLabels(components_);</highlight></codeline>
 <codeline lineno="235"><highlight class="normal"></highlight></codeline>
 <codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get<sp/>maximum<sp/>component<sp/>index</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfComponents_<sp/>=<sp/>components_.maxLabel()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfComponents_<sp/>=<sp/>components_.<ref refid="classnifty_1_1graph_1_1ComponentsUfd_1a675a98fdcf175d7157041633cde35c37" kindref="member">maxLabel</ref>()<sp/>+<sp/>1;</highlight></codeline>
 <codeline lineno="238"><highlight class="normal"></highlight></codeline>
 <codeline lineno="239"><highlight class="normal"></highlight></codeline>
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>build<sp/>the<sp/>explicit<sp/>partitions</highlight><highlight class="normal"></highlight></codeline>
@@ -701,8 +707,8 @@
 <codeline lineno="260"><highlight class="normal"></highlight></codeline>
 <codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>buildRegionAdjacencyGraph(</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    buildRegionAdjacencyGraph</ref>(</highlight></codeline>
 <codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges_.clear();</highlight></codeline>
 <codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edges_.resize(numberOfComponents_);</highlight></codeline>
@@ -722,8 +728,8 @@
 <codeline lineno="281"><highlight class="normal"></highlight></codeline>
 <codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>optimizePairs(</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    optimizePairs</ref>(</highlight></codeline>
 <codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>energyDecrease</highlight></codeline>
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint64_t<sp/>piU=0;<sp/>piU&lt;numberOfComponents_;<sp/>++piU){</highlight></codeline>
@@ -736,7 +742,7 @@
 <codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>HERE<sp/>WE<sp/>TRY<sp/>TO<sp/>UPDATE<sp/>THE<sp/>PAIR<sp/>OF<sp/>PARTITIONS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>twoCut_.optimizeTwoCut(pU,<sp/>pV,<sp/>twoCutBuffers_);</highlight></codeline>
 <codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//std::cout&lt;&lt;&quot;to<sp/>cut<sp/>ret<sp/>&quot;&lt;&lt;ret&lt;&lt;&quot;\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ret<sp/>&gt;<sp/>settings_.epsilon){</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ret<sp/>&gt;<sp/>settings_.<ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1_1SettingsType_1a403707cad1a24a2d90e0a55cbd420aea" kindref="member">epsilon</ref>){</highlight></codeline>
 <codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>changed_[piU]<sp/>=<sp/>1;</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>changed_[piV]<sp/>=<sp/>1;</highlight></codeline>
 <codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -761,8 +767,8 @@
 <codeline lineno="320"><highlight class="normal"></highlight></codeline>
 <codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>introduceNewPartitions(</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    introduceNewPartitions</ref>(</highlight></codeline>
 <codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>energyDecrease</highlight></codeline>
 <codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
 <codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>i<sp/>=<sp/>0,<sp/>pSize<sp/>=<sp/>partitions_.size();<sp/>i<sp/>&lt;<sp/>pSize;<sp/>++i){</highlight></codeline>
@@ -789,8 +795,8 @@
 <codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>connectedComponentLabeling(){</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    connectedComponentLabeling</ref>(){</highlight></codeline>
 <codeline lineno="353"><highlight class="normal"></highlight></codeline>
 <codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stack&lt;std::size_t&gt;<sp/>S;</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>node<sp/>:<sp/>graph_.nodes()){</highlight></codeline>
@@ -833,8 +839,8 @@
 <codeline lineno="392"><highlight class="normal"></highlight></codeline>
 <codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/>hasChanges(){</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    hasChanges</ref>(){</highlight></codeline>
 <codeline lineno="397"><highlight class="normal"></highlight></codeline>
 <codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>didntChange<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>:<sp/>graph_.edges()){</highlight></codeline>
@@ -851,8 +857,8 @@
 <codeline lineno="410"><highlight class="normal"></highlight></codeline>
 <codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/>formNewPartition(){</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    formNewPartition</ref>(){</highlight></codeline>
 <codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>partitions_.clear();</highlight></codeline>
 <codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>partitions_.resize(numberOfComponents_);</highlight></codeline>
 <codeline lineno="417"><highlight class="normal"></highlight></codeline>
@@ -869,8 +875,8 @@
 <codeline lineno="428"><highlight class="normal"></highlight></codeline>
 <codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</highlight></codeline>
-<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/>checkIfPartitonChanged(){</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin" kindref="compound">    checkIfPartitonChanged</ref>(){</highlight></codeline>
 <codeline lineno="433"><highlight class="normal"></highlight></codeline>
 <codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>changed_.clear();</highlight></codeline>
 <codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>changed_.resize(numberOfComponents_);</highlight></codeline>
@@ -921,34 +927,34 @@
 <codeline lineno="480"><highlight class="normal"></highlight></codeline>
 <codeline lineno="481"><highlight class="normal"></highlight></codeline>
 <codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::ObjectiveType<sp/>&amp;</highlight></codeline>
-<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a57c2a0d5d4b6c766170f07120c53a22e" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="485" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a57c2a0d5d4b6c766170f07120c53a22e" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a57c2a0d5d4b6c766170f07120c53a22e" kindref="member">    objective</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace1226557a9d65b35b09e1e38b11b0b3" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::ObjectiveType</ref><sp/>&amp;</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="485" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a14feeebb40c32f817af780c6605b8a7d" kindref="member">    objective</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>objective_;</highlight></codeline>
 <codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="488"><highlight class="normal"></highlight></codeline>
 <codeline lineno="489"><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7469ffe7b497173067005bdcf091818f" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::NodeLabelsType</ref><sp/>&amp;<sp/></highlight></codeline>
-<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7d10c148bc703c6b99041b659144454d" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="494" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7d10c148bc703c6b99041b659144454d" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a7d10c148bc703c6b99041b659144454d" kindref="member">    currentBestNodeLabels</ref>(<sp/>){</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1aac39b263efe0f990f6bf6989babec8a4" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::NodeLabelsType</ref><sp/>&amp;<sp/></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a91e6337efe1f6d4dface1170410317d3" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="494" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a91e6337efe1f6d4dface1170410317d3" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a91e6337efe1f6d4dface1170410317d3" kindref="member">    currentBestNodeLabels</ref>(<sp/>){</highlight></codeline>
 <codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*currentBest_;</highlight></codeline>
 <codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="497"><highlight class="normal"></highlight></codeline>
 <codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="500"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/></highlight></codeline>
-<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a39c9b8f4ffa630538f76929e7f32d3e6" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="502" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a39c9b8f4ffa630538f76929e7f32d3e6" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a39c9b8f4ffa630538f76929e7f32d3e6" kindref="member">    name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a682849d66dfe885424c729600754a160" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="502" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a682849d66dfe885424c729600754a160" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1a682849d66dfe885424c729600754a160" kindref="member">    name</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;LiftedMulticutKernighanLin&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="505"><highlight class="normal"></highlight></codeline>
 <codeline lineno="506"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
 <codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1addb4bc6f2f4a63ea8afef98bc26860ed" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
-<codeline lineno="510" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1addb4bc6f2f4a63ea8afef98bc26860ed" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1addb4bc6f2f4a63ea8afef98bc26860ed" kindref="member">    currentBestEnergy</ref>()<sp/><sp/>{</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace0e35ceeaefa85843716a300ca0a3bf" kindref="member">LiftedMulticutKernighanLin&lt;OBJECTIVE&gt;::</ref></highlight></codeline>
+<codeline lineno="510" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace0e35ceeaefa85843716a300ca0a3bf" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutKernighanLin_1ace0e35ceeaefa85843716a300ca0a3bf" kindref="member">    currentBestEnergy</ref>()<sp/><sp/>{</highlight></codeline>
 <codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>currentBestEnergy_;</highlight></codeline>
 <codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="513"><highlight class="normal"></highlight></codeline>
@@ -956,11 +962,11 @@
 <codeline lineno="515"><highlight class="normal"></highlight></codeline>
 <codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="517"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>lifted_multicut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="518"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="518"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="519"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="520"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="521"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_kernighan_lin.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_kernighan_lin.hxx"/>
   </compounddef>
 </doxygen>

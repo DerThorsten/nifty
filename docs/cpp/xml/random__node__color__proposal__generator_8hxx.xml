@@ -1,44 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="random__node__color__proposal__generator_8hxx" kind="file" language="C++">
     <compoundname>random_node_color_proposal_generator.hxx</compoundname>
     <includes local="no">string</includes>
     <includes local="no">random</includes>
     <includes local="no">vector</includes>
-    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</includes>
+    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</includes>
     <incdepgraph>
-      <node id="8063">
+      <node id="2078">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/random_node_color_proposal_generator.hxx</label>
+        <link refid="random__node__color__proposal__generator_8hxx"/>
+        <childnode refid="2079" relation="include">
+        </childnode>
+        <childnode refid="2080" relation="include">
+        </childnode>
+        <childnode refid="2081" relation="include">
+        </childnode>
+        <childnode refid="2082" relation="include">
+        </childnode>
+      </node>
+      <node id="2079">
         <label>string</label>
       </node>
-      <node id="8062">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx</label>
-        <link refid="random_node_color_proposal_generator.hxx"/>
-        <childnode refid="8063" relation="include">
-        </childnode>
-        <childnode refid="8064" relation="include">
-        </childnode>
-        <childnode refid="8065" relation="include">
-        </childnode>
-        <childnode refid="8066" relation="include">
-        </childnode>
-      </node>
-      <node id="8064">
-        <label>random</label>
-      </node>
-      <node id="8065">
-        <label>vector</label>
-      </node>
-      <node id="8066">
-        <label>nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</label>
+      <node id="2082">
+        <label>nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</label>
         <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
       </node>
+      <node id="2080">
+        <label>random</label>
+      </node>
+      <node id="2081">
+        <label>vector</label>
+      </node>
     </incdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator" prot="public">nifty::graph::optimization::common::RandomNodeColorProposalGenerator</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" prot="public">nifty::graph::optimization::common::RandomNodeColorProposalGenerator::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator" prot="public">nifty::graph::opt::common::RandomNodeColorProposalGenerator</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" prot="public">nifty::graph::opt::common::RandomNodeColorProposalGenerator::SettingsType</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common">nifty::graph::opt::common</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -50,53 +50,53 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="22" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator" kindref="compound">RandomNodeColorProposalGenerator</ref><sp/>:<sp/></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt;OBJECTIVE&gt;{</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator" kindref="compound">RandomNodeColorProposalGenerator</ref><sp/>:<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>&lt;OBJECTIVE&gt;{</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="27" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a84ad8b16bdc71fdac75166ad9b37a747" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a84ad8b16bdc71fdac75166ad9b37a747" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="28" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a3f0b05d046b0dd8aef5843fde5278feb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a3f0b05d046b0dd8aef5843fde5278feb" kindref="member">GraphType</ref>;</highlight></codeline>
-<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a3ee44363c937082dc3f8bd269da30d14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a3ee44363c937082dc3f8bd269da30d14" kindref="member">ProposalType</ref>;</highlight></codeline>
-<codeline lineno="30" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a40c7d60c940dda11289016f362e4f6d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;bool&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a40c7d60c940dda11289016f362e4f6d9" kindref="member">IsUsed</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1ac9a200d0d544cbe279eb5cfb4d51d3d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1ac9a200d0d544cbe279eb5cfb4d51d3d5" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="28" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a39d7fdcca43df0ce3e53a415391670b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a39d7fdcca43df0ce3e53a415391670b6" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1aac7752a102f9b23fd2b21ee80e18ce98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1aac7752a102f9b23fd2b21ee80e18ce98" kindref="member">ProposalType</ref>;</highlight></codeline>
+<codeline lineno="30" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a252ead89e3354056605c75b9da12de53" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>NodeMap&lt;bool&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a252ead89e3354056605c75b9da12de53" kindref="member">IsUsed</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="32" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
-<codeline lineno="33" refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType_1a7526bef233011ca8f3210cd99cf4f117" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType_1a7526bef233011ca8f3210cd99cf4f117" kindref="member">numberOfColors</ref>{size_t(2)};</highlight></codeline>
+<codeline lineno="32" refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="33" refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType_1a1e14b2cc671ef247a649c8637c2ea707" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType_1a1e14b2cc671ef247a649c8637c2ea707" kindref="member">numberOfColors</ref>{size_t(2)};</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a5adddcf4024d0a70787fdcd2847921fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a5adddcf4024d0a70787fdcd2847921fa" kindref="member">RandomNodeColorProposalGenerator</ref>(</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1ada79b36836eedb827e901be1d385e805" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1ada79b36836eedb827e901be1d385e805" kindref="member">RandomNodeColorProposalGenerator</ref>(</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads,</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/><sp/>=<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>&amp;<sp/>settings<sp/><sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numberOfThreads_(numberOfThreads),</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings_(settings),</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gens_(numberOfThreads_),</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colorDist_(0,settings.numberOfColors-1)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colorDist_(0,settings.<ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType_1a1e14b2cc671ef247a649c8637c2ea707" kindref="member">numberOfColors</ref>-1)</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>use<sp/>thread<sp/>index<sp/>as<sp/>seed</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;numberOfThreads_;<sp/>++i){</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gens_[i]<sp/>=<sp/>std::mt19937(i);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a2a1c2b4ecb0d9dab80a05d325d702afb" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a655c003dfd00e4022478633ac21cd48c" kindref="member">reset</ref>();</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="53" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a2a1c2b4ecb0d9dab80a05d325d702afb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a2a1c2b4ecb0d9dab80a05d325d702afb" kindref="member">reset</ref>(){</highlight></codeline>
+<codeline lineno="53" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a655c003dfd00e4022478633ac21cd48c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a655c003dfd00e4022478633ac21cd48c" kindref="member">reset</ref>(){</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="56" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a1070cacbabb3ea607a3c2379d2d70e90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1a1070cacbabb3ea607a3c2379d2d70e90" kindref="member">~RandomNodeColorProposalGenerator</ref>(){}</highlight></codeline>
+<codeline lineno="56" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1aaf869008949b90cfc9c0583da99050fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1aaf869008949b90cfc9c0583da99050fb" kindref="member">~RandomNodeColorProposalGenerator</ref>(){}</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1aa4241c9267e225fe2db4d818be48e987" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1RandomNodeColorProposalGenerator_1aa4241c9267e225fe2db4d818be48e987" kindref="member">generateProposal</ref>(</highlight></codeline>
+<codeline lineno="58" refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a5862fcb54e6f7332b6466ecc8371aef4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a5862fcb54e6f7332b6466ecc8371aef4" kindref="member">generateProposal</ref>(</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ProposalType<sp/>&amp;<sp/>currentBest,<sp/></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ProposalType<sp/>&amp;<sp/>proposal,<sp/></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>tid</highlight></codeline>
@@ -115,17 +115,17 @@
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective_;</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads_;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>settings_;</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::mt19937&gt;<sp/>gens_;</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::uniform_int_distribution&lt;&gt;<sp/><sp/>colorDist_;</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>};<sp/></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/random_node_color_proposal_generator.hxx"/>
   </compounddef>
 </doxygen>

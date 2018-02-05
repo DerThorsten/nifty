@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D" kind="class" language="C++" prot="public">
     <compoundname>nifty::cgp::Cell1LineSegmentDist2D</compoundname>
     <includes refid="geometric__features_8hxx" local="no">geometric_features.hxx</includes>
@@ -52,10 +52,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="146" bodyend="151"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a993da64ae0e96d92daa94ab7a4a8195b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a8a6c270911d7eef4eed6de8e989f0b98" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
         <definition>size_t nifty::cgp::Cell1LineSegmentDist2D::numberOfFeatures</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>numberOfFeatures</name>
         <briefdescription>
         </briefdescription>
@@ -65,10 +65,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="153" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="153" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a97f871d6c777e196edcc576a73009078" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a8eebda085eaee5893d2e046f900ee4a0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
         <definition>std::vector&lt;std::string&gt; nifty::cgp::Cell1LineSegmentDist2D::names</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>names</name>
         <briefdescription>
         </briefdescription>
@@ -78,7 +78,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx" bodystart="157" bodyend="182"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a57d9c462ac4f0ed150d57ab752d4c689" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a1afe73d1ba1b663559ef07ca83996a1a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class T</type>
@@ -86,7 +86,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::cgp::Cell1LineSegmentDist2D::operator()</definition>
-        <argsstring>(const CellGeometryVector&lt; 2, 1 &gt; &amp;cell1GeometryVector, nifty::marray::View&lt; T &gt; &amp;features) const </argsstring>
+        <argsstring>(const CellGeometryVector&lt; 2, 1 &gt; &amp;cell1GeometryVector, nifty::marray::View&lt; T &gt; &amp;features) const</argsstring>
         <name>operator()</name>
         <param>
           <type>const <ref refid="classnifty_1_1cgp_1_1CellGeometryVector" kindref="compound">CellGeometryVector</ref>&lt; 2, 1 &gt; &amp;</type>
@@ -114,9 +114,9 @@
       <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a6d05dca4be159bd9659c960bc6f2f5a4" prot="private" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>AccType</name></member>
       <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a5d5bf2934bf6be384bff119e69ca275b" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>Cell1LineSegmentDist2D</name></member>
       <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a235d14f45136c7b89388c8f4c978c1fa" prot="private" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>dists_</name></member>
-      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a97f871d6c777e196edcc576a73009078" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>names</name></member>
-      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a993da64ae0e96d92daa94ab7a4a8195b" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>numberOfFeatures</name></member>
-      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a57d9c462ac4f0ed150d57ab752d4c689" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>operator()</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a8eebda085eaee5893d2e046f900ee4a0" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>names</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a8a6c270911d7eef4eed6de8e989f0b98" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>numberOfFeatures</name></member>
+      <member refid="classnifty_1_1cgp_1_1Cell1LineSegmentDist2D_1a1afe73d1ba1b663559ef07ca83996a1a" prot="public" virt="non-virtual"><scope>nifty::cgp::Cell1LineSegmentDist2D</scope><name>operator()</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,29 +1,31 @@
-\hypertarget{lifted__twocut__kernighan__lin_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.hxx File Reference}
-\label{lifted__twocut__kernighan__lin_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}}
-{\ttfamily \#include $<$iomanip$>$}\\*
-{\ttfamily \#include $<$algorithm$>$}\\*
-{\ttfamily \#include $<$unordered\+\_\+set$>$}\\*
-{\ttfamily \#include $<$vector$>$}\\*
-{\ttfamily \#include $<$stack$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/detail/adjacency.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\\*
-Include dependency graph for lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx\+:\nopagebreak
+\hypertarget{lifted__twocut__kernighan__lin_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.hxx File Reference}
+\label{lifted__twocut__kernighan__lin_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/detail/lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}}
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/detail/adjacency.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/lifted\+\_\+multicut/lifted\+\_\+multicut\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\newline
+Include dependency graph for lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{lifted__twocut__kernighan__lin_8hxx__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=262pt]{lifted__twocut__kernighan__lin_8hxx__dep__incl}
+\includegraphics[width=217pt]{lifted__twocut__kernighan__lin_8hxx__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Namespaces}
@@ -33,18 +35,21 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+ \hyperlink{namespacenifty_1_1graph_1_1opt}{nifty\+::graph\+::opt}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut}{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut}
+ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X}
+\#define \hyperlink{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX}
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}{}\index{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X}}
-\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X}!lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}}
-\subsubsection[{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+X\+X}\label{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}
+\mbox{\Hypertarget{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}\label{lifted__twocut__kernighan__lin_8hxx_a5b626d4e81b45e357e6597aeccc4c222}} 
+\index{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}!N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX}}
+\index{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX@{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX}!lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx@{lifted\+\_\+twocut\+\_\+kernighan\+\_\+lin.\+hxx}}
+\subsubsection{\texorpdfstring{N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX}{NIFTY\_GRAPH\_OPTIMIZATION\_LIFTED\_MULTICUT\_DETAIL\_LIFTED\_TWOCUT\_KERNIGHAN\_LIN\_HXX}}
+{\footnotesize\ttfamily \#define N\+I\+F\+T\+Y\+\_\+\+G\+R\+A\+P\+H\+\_\+\+O\+P\+T\+I\+M\+I\+Z\+A\+T\+I\+O\+N\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+L\+I\+F\+T\+E\+D\+\_\+\+T\+W\+O\+C\+U\+T\+\_\+\+K\+E\+R\+N\+I\+G\+H\+A\+N\+\_\+\+L\+I\+N\+\_\+\+H\+XX}
+

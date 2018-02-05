@@ -1,100 +1,100 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="common_2proposal__generators_2proposal__generator__base_8hxx" kind="file" language="C++">
     <compoundname>proposal_generator_base.hxx</compoundname>
-    <includedby refid="cc__fusion__move__based__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</includedby>
-    <includedby refid="greedy__additive__multicut__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</includedby>
-    <includedby refid="interface__flipper__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/interface_flipper_proposal_generator.hxx</includedby>
-    <includedby refid="common_2proposal__generators_2proposal__generator__factory_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_factory.hxx</includedby>
-    <includedby refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</includedby>
-    <includedby refid="random__node__color__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx</includedby>
-    <includedby refid="stub__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx</includedby>
-    <includedby refid="common_2proposal__generators_2watershed__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx</includedby>
+    <includedby refid="cc__fusion__move__based__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</includedby>
+    <includedby refid="greedy__additive__multicut__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</includedby>
+    <includedby refid="interface__flipper__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx</includedby>
+    <includedby refid="common_2proposal__generators_2proposal__generator__factory_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_factory.hxx</includedby>
+    <includedby refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_factory_base.hxx</includedby>
+    <includedby refid="random__node__color__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/random_node_color_proposal_generator.hxx</includedby>
+    <includedby refid="stub__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/stub_proposal_generator.hxx</includedby>
+    <includedby refid="common_2proposal__generators_2watershed__proposal__generator_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx</includedby>
     <invincdepgraph>
-      <node id="7972">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_factory_base.hxx</label>
-        <link refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
-        <childnode refid="7965" relation="include">
-        </childnode>
-        <childnode refid="7966" relation="include">
-        </childnode>
-        <childnode refid="7967" relation="include">
-        </childnode>
-        <childnode refid="7971" relation="include">
-        </childnode>
-      </node>
-      <node id="7967">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
-        <link refid="cc__fusion__move__based_8hxx"/>
-      </node>
-      <node id="7975">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/watershed_proposal_generator.hxx</label>
-        <link refid="common_2proposal__generators_2watershed__proposal__generator_8hxx"/>
-      </node>
-      <node id="7965">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
-        <link refid="cc__fusion__move__based__impl_8hxx"/>
-        <childnode refid="7966" relation="include">
-        </childnode>
-        <childnode refid="7967" relation="include">
-        </childnode>
-      </node>
-      <node id="7970">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_factory.hxx</label>
-        <link refid="common_2proposal__generators_2proposal__generator__factory_8hxx"/>
-        <childnode refid="7971" relation="include">
-        </childnode>
-      </node>
-      <node id="7966">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
-        <link refid="mincut__cc__fusion__move__based_8hxx"/>
-      </node>
-      <node id="7973">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/random_node_color_proposal_generator.hxx</label>
-        <link refid="random__node__color__proposal__generator_8hxx"/>
-      </node>
-      <node id="7971">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/py_proposal_generator_factory_base.hxx</label>
-        <link refid="common_2py__proposal__generator__factory__base_8hxx"/>
-      </node>
-      <node id="7969">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/interface_flipper_proposal_generator.hxx</label>
+      <node id="1985">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/interface_flipper_proposal_generator.hxx</label>
         <link refid="interface__flipper__proposal__generator_8hxx"/>
       </node>
-      <node id="7974">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/stub_proposal_generator.hxx</label>
+      <node id="1988">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_factory_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__factory__base_8hxx"/>
+        <childnode refid="1981" relation="include">
+        </childnode>
+        <childnode refid="1982" relation="include">
+        </childnode>
+        <childnode refid="1983" relation="include">
+        </childnode>
+        <childnode refid="1987" relation="include">
+        </childnode>
+      </node>
+      <node id="1989">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/random_node_color_proposal_generator.hxx</label>
+        <link refid="random__node__color__proposal__generator_8hxx"/>
+      </node>
+      <node id="1986">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_factory.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__factory_8hxx"/>
+        <childnode refid="1987" relation="include">
+        </childnode>
+      </node>
+      <node id="1987">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/py_proposal_generator_factory_base.hxx</label>
+        <link refid="common_2py__proposal__generator__factory__base_8hxx"/>
+      </node>
+      <node id="1980">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="common_2proposal__generators_2proposal__generator__base_8hxx"/>
+        <childnode refid="1981" relation="include">
+        </childnode>
+        <childnode refid="1984" relation="include">
+        </childnode>
+        <childnode refid="1985" relation="include">
+        </childnode>
+        <childnode refid="1986" relation="include">
+        </childnode>
+        <childnode refid="1988" relation="include">
+        </childnode>
+        <childnode refid="1989" relation="include">
+        </childnode>
+        <childnode refid="1990" relation="include">
+        </childnode>
+        <childnode refid="1991" relation="include">
+        </childnode>
+      </node>
+      <node id="1983">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="1990">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/stub_proposal_generator.hxx</label>
         <link refid="stub__proposal__generator_8hxx"/>
       </node>
-      <node id="7964">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx</label>
-        <link refid="common/proposal_generators/proposal_generator_base.hxx"/>
-        <childnode refid="7965" relation="include">
+      <node id="1981">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="1982" relation="include">
         </childnode>
-        <childnode refid="7968" relation="include">
-        </childnode>
-        <childnode refid="7969" relation="include">
-        </childnode>
-        <childnode refid="7970" relation="include">
-        </childnode>
-        <childnode refid="7972" relation="include">
-        </childnode>
-        <childnode refid="7973" relation="include">
-        </childnode>
-        <childnode refid="7974" relation="include">
-        </childnode>
-        <childnode refid="7975" relation="include">
+        <childnode refid="1983" relation="include">
         </childnode>
       </node>
-      <node id="7968">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
+      <node id="1991">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx</label>
+        <link refid="common_2proposal__generators_2watershed__proposal__generator_8hxx"/>
+      </node>
+      <node id="1982">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="1984">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/greedy_additive_multicut_proposal_generator.hxx</label>
         <link refid="greedy__additive__multicut__proposal__generator_8hxx"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" prot="public">nifty::graph::optimization::common::ProposalGeneratorBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" prot="public">nifty::graph::opt::common::ProposalGeneratorBase</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common">nifty::graph::opt::common</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -105,31 +105,31 @@
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="12" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>{</highlight></codeline>
+<codeline lineno="12" refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase</ref>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="14" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a26b2bcec6047d728078e1dc78d934876" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a26b2bcec6047d728078e1dc78d934876" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="15" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4700eb43beb708a77c5c34612039c715" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4700eb43beb708a77c5c34612039c715" kindref="member">ProposalType</ref>;</highlight></codeline>
-<codeline lineno="16" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4c5363ab4380df824d4c7a6371e2a23c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a4c5363ab4380df824d4c7a6371e2a23c" kindref="member">~ProposalGeneratorBase</ref>(){}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1ProposalGeneratorBase_1a5751b664edd5f19a0232b3d6527a4135" kindref="member">generateProposal</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ProposalType<sp/>&amp;<sp/>currentBest,ProposalType<sp/>&amp;<sp/>labels,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>tid)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14" refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1aebac1b29ca57644245abe4a9f00b53d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1aebac1b29ca57644245abe4a9f00b53d0" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="15" refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType::<sp/>template<sp/>NodeMap&lt;uint64_t&gt;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref>;</highlight></codeline>
+<codeline lineno="16" refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" kindref="member">~ProposalGeneratorBase</ref>(){}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395" kindref="member">generateProposal</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ProposalType<sp/>&amp;<sp/>currentBest,ProposalType<sp/>&amp;<sp/>labels,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>tid)<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>};<sp/></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/proposal_generators/proposal_generator_base.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx"/>
   </compounddef>
 </doxygen>

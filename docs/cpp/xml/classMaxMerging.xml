@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classMaxMerging" kind="class" language="C++" prot="public">
+    <compoundname>MaxMerging</compoundname>
+    <includes refid="edge__weight__merging_8hxx" local="no">edge_weight_merging.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classMaxMerging_1a2de8c03d49a0b0a4a296278b1cce961d" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;double&gt; MaxMerging&lt; GRAPH, T &gt;::FloatEdgeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatEdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="9" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classMaxMerging_1aad2aed1692a3d6d3a0f2e940ea2907d8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>MaxMerging&lt; GRAPH, T &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <initializer>{
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="12" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classMaxMerging_1ac054df96f76256237b56c1eeccc490d8" prot="private" static="no" mutable="no">
+        <type>FloatEdgeMap</type>
+        <definition>FloatEdgeMap MaxMerging&lt; GRAPH, T &gt;::values_</definition>
+        <argsstring></argsstring>
+        <name>values_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMaxMerging_1ae7c3bd69bc5aac17892a93dc59374865" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MaxMerging&lt; GRAPH, T &gt;::MaxMerging</definition>
+        <argsstring>(const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>MaxMerging</name>
+        <param>
+          <type>const <ref refid="classMaxMerging_1aad2aed1692a3d6d3a0f2e940ea2907d8" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classMaxMerging_1aad2aed1692a3d6d3a0f2e940ea2907d8" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="15" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="15" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classMaxMerging_1a026a1b02b92cbc5dfae2252b5d149e79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxMerging&lt; GRAPH, T &gt;::set</definition>
+        <argsstring>(const uint64_t edge, const T val)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <param>
+          <type>const T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="18" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classMaxMerging_1a307dbd439254d6a7cef38c8d70e371f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxMerging&lt; GRAPH, T &gt;::get</definition>
+        <argsstring>(const uint64_t edge, const T val) const</argsstring>
+        <name>get</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <param>
+          <type>const T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="21" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classMaxMerging_1ae6d472cc2dd8b0e5023c0fbce514c87f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MaxMerging&lt; GRAPH, T &gt;::merge</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>merge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="24" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" line="6" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/edge_weight_merging.hxx" bodystart="6" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classMaxMerging_1a2de8c03d49a0b0a4a296278b1cce961d" prot="private" virt="non-virtual"><scope>MaxMerging</scope><name>FloatEdgeMap</name></member>
+      <member refid="classMaxMerging_1a307dbd439254d6a7cef38c8d70e371f1" prot="public" virt="non-virtual"><scope>MaxMerging</scope><name>get</name></member>
+      <member refid="classMaxMerging_1ae7c3bd69bc5aac17892a93dc59374865" prot="public" virt="non-virtual"><scope>MaxMerging</scope><name>MaxMerging</name></member>
+      <member refid="classMaxMerging_1ae6d472cc2dd8b0e5023c0fbce514c87f" prot="public" virt="non-virtual"><scope>MaxMerging</scope><name>merge</name></member>
+      <member refid="classMaxMerging_1a026a1b02b92cbc5dfae2252b5d149e79" prot="public" virt="non-virtual"><scope>MaxMerging</scope><name>set</name></member>
+      <member refid="classMaxMerging_1aad2aed1692a3d6d3a0f2e940ea2907d8" prot="public" virt="non-virtual"><scope>MaxMerging</scope><name>SettingsType</name></member>
+      <member refid="classMaxMerging_1ac054df96f76256237b56c1eeccc490d8" prot="private" virt="non-virtual"><scope>MaxMerging</scope><name>values_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

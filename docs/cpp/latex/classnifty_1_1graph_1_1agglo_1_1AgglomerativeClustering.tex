@@ -1,4 +1,4 @@
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:Agglomerative\+Clustering$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ Class Template Reference}
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:Agglomerative\+Clustering$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ Class Template Reference}
 \label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$}}
 
 
@@ -7,7 +7,7 @@
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type}
+typedef C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type}
 \item 
 typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type\+::\+With\+Edge\+Ufd \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}{With\+Edge\+Ufd}
 \item 
@@ -18,92 +18,149 @@ typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type \hyperlink{cla
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}{Agglomerative\+Clustering} (\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type} \&cluster\+Policy)
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}{Agglomerative\+Clustering} (\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type} \&\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a5e68685d164d4f6104bd40c29eca0c08}{cluster\+Policy})
 \item 
-void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a163e9745cbaf077ea1e65750bd33eadb}{run} (const bool verbose=false)
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a736c7ce881d0a8a1d305cf2c8746c744}{run} (const bool verbose=false, const uint64\+\_\+t print\+Nth=100)
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+H\+T $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}{run\+And\+Get\+Dendrogram\+Height} (E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+H\+T \&dendrogram\+Height, const bool verbose=false)
+{\footnotesize template$<$class V\+I\+S\+I\+T\+OR $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a6fac3d0b742ab08e8befb34646bafe80}{run} (V\+I\+S\+I\+T\+OR \&visitor, const bool verbose=false, const uint64\+\_\+t print\+Nth=100)
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+M\+A\+P $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a34c94614c65bceb4adb7e405b15b7773}{ucm\+Transform} (E\+D\+G\+E\+\_\+\+M\+A\+P \&edge\+Map) const 
+{\footnotesize template$<$class M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES , class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af5d353cca095be5cd67614c3d5267eea}{run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height} (M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES \&merge\+Times, E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT \&dendrogram\+Height, const bool verbose=false)
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+M\+A\+P , class E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+U\+T $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a020daa26353c691b12e1173aa34c25d3}{ucm\+Transform} (const E\+D\+G\+E\+\_\+\+M\+A\+P \&edge\+Map, E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+U\+T \&edge\+Map\+Out) const 
+{\footnotesize template$<$class M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a9c8d18e03cef48ba261ba8e8a1bcc924}{run\+And\+Get\+Merge\+Times} (M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES \&merge\+Times, const bool verbose=false)
 \item 
-const \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}{Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_aa1dca426965fb41a39ee75f9dace3b67}{graph} () const 
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}{run\+And\+Get\+Dendrogram\+Height} (E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT \&dendrogram\+Height, const bool verbose=false)
 \item 
-{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af6c65243b35df8c69e777261cbb88115}{result} (N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map) const 
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a7e9b9949000d96d91844ab2df1e28509}{ucm\+Transform} (E\+D\+G\+E\+\_\+\+M\+AP \&edge\+Map) const
+\item 
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+M\+AP , class E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+UT $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a717660885100f4c0321c4e19fb536072}{ucm\+Transform} (const E\+D\+G\+E\+\_\+\+M\+AP \&edge\+Map, E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+UT \&edge\+Map\+Out) const
+\item 
+const \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a5e68685d164d4f6104bd40c29eca0c08}{cluster\+Policy} () const
+\item 
+const \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}{Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4da52a342e866335a671879e8c4864d2}{graph} () const
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_afbe080ba596ae20f85404635c5f00d20}{result} (N\+O\+D\+E\+\_\+\+M\+AP \&node\+Map) const
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Typedef Documentation}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Cluster\+Policy\+Type@{Cluster\+Policy\+Type}}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Cluster\+Policy\+Type@{Cluster\+Policy\+Type}}
 \index{Cluster\+Policy\+Type@{Cluster\+Policy\+Type}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{Cluster\+Policy\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ typedef C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::{\bf Cluster\+Policy\+Type}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ab50801119fbdb9ed78884a64f872e1d8}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}}
+\subsubsection{\texorpdfstring{Cluster\+Policy\+Type}{ClusterPolicyType}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+typedef C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ab50801119fbdb9ed78884a64f872e1d8}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ab50801119fbdb9ed78884a64f872e1d8}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}}
 \index{Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{Edge\+Contraction\+Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::{\bf Edge\+Contraction\+Graph\+Type}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ab50801119fbdb9ed78884a64f872e1d8}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Graph\+Type@{Graph\+Type}}
+\subsubsection{\texorpdfstring{Edge\+Contraction\+Graph\+Type}{EdgeContractionGraphType}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ab50801119fbdb9ed78884a64f872e1d8}{Edge\+Contraction\+Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Graph\+Type@{Graph\+Type}}
 \index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{Graph\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ typedef Cluster\+Policy\+Type\+::\+Graph\+Type {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::{\bf Graph\+Type}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!With\+Edge\+Ufd@{With\+Edge\+Ufd}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+typedef Cluster\+Policy\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!With\+Edge\+Ufd@{With\+Edge\+Ufd}}
 \index{With\+Edge\+Ufd@{With\+Edge\+Ufd}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{With\+Edge\+Ufd}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type\+::\+With\+Edge\+Ufd {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::{\bf With\+Edge\+Ufd}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}
+\subsubsection{\texorpdfstring{With\+Edge\+Ufd}{WithEdgeUfd}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+typedef Cluster\+Policy\+Type\+::\+Edge\+Contraction\+Graph\+Type\+::\+With\+Edge\+Ufd \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_ad271a88b3736ec7b3d6a4e47e718828a}{With\+Edge\+Ufd}}
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Agglomerative\+Clustering@{Agglomerative\+Clustering}}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!Agglomerative\+Clustering@{Agglomerative\+Clustering}}
 \index{Agglomerative\+Clustering@{Agglomerative\+Clustering}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{Agglomerative\+Clustering(\+Cluster\+Policy\+Type \&cluster\+Policy)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::{\bf Agglomerative\+Clustering} (
-\begin{DoxyParamCaption}
-\item[{{\bf Cluster\+Policy\+Type} \&}]{cluster\+Policy}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4c1ae55dc3568df3f2e0ffe9e34963df}
+\subsubsection{\texorpdfstring{Agglomerative\+Clustering()}{AgglomerativeClustering()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{Agglomerative\+Clustering} (\begin{DoxyParamCaption}\item[{\hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type} \&}]{cluster\+Policy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_aa1dca426965fb41a39ee75f9dace3b67}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!graph@{graph}}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a5e68685d164d4f6104bd40c29eca0c08}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a5e68685d164d4f6104bd40c29eca0c08}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!cluster\+Policy@{cluster\+Policy}}
+\index{cluster\+Policy@{cluster\+Policy}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
+\subsubsection{\texorpdfstring{cluster\+Policy()}{clusterPolicy()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a3a678ecd37725f2c0f8ec56857768034}{Cluster\+Policy\+Type}\& \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::cluster\+Policy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4da52a342e866335a671879e8c4864d2}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a4da52a342e866335a671879e8c4864d2}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!graph@{graph}}
 \index{graph@{graph}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{graph() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ const {\bf Graph\+Type}\& {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::graph (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_aa1dca426965fb41a39ee75f9dace3b67}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af6c65243b35df8c69e777261cbb88115}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!result@{result}}
+\subsubsection{\texorpdfstring{graph()}{graph()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a0c735105592b55c036be76e3d7fc735f}{Graph\+Type}\& \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_afbe080ba596ae20f85404635c5f00d20}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_afbe080ba596ae20f85404635c5f00d20}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!result@{result}}
 \index{result@{result}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{result(\+N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ template$<$class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ void {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::result (
-\begin{DoxyParamCaption}
-\item[{N\+O\+D\+E\+\_\+\+M\+A\+P \&}]{node\+Map}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af6c65243b35df8c69e777261cbb88115}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a163e9745cbaf077ea1e65750bd33eadb}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run@{run}}
+\subsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class N\+O\+D\+E\+\_\+\+M\+AP $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::result (\begin{DoxyParamCaption}\item[{N\+O\+D\+E\+\_\+\+M\+AP \&}]{node\+Map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a736c7ce881d0a8a1d305cf2c8746c744}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a736c7ce881d0a8a1d305cf2c8746c744}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run@{run}}
 \index{run@{run}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{run(const bool verbose=false)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ void {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::run (
-\begin{DoxyParamCaption}
-\item[{const bool}]{verbose = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a163e9745cbaf077ea1e65750bd33eadb}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run\+And\+Get\+Dendrogram\+Height@{run\+And\+Get\+Dendrogram\+Height}}
+\subsubsection{\texorpdfstring{run()}{run()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::run (\begin{DoxyParamCaption}\item[{const bool}]{verbose = {\ttfamily false},  }\item[{const uint64\+\_\+t}]{print\+Nth = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a6fac3d0b742ab08e8befb34646bafe80}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a6fac3d0b742ab08e8befb34646bafe80}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run@{run}}
+\index{run@{run}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
+\subsubsection{\texorpdfstring{run()}{run()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class V\+I\+S\+I\+T\+OR $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::run (\begin{DoxyParamCaption}\item[{V\+I\+S\+I\+T\+OR \&}]{visitor,  }\item[{const bool}]{verbose = {\ttfamily false},  }\item[{const uint64\+\_\+t}]{print\+Nth = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run\+And\+Get\+Dendrogram\+Height@{run\+And\+Get\+Dendrogram\+Height}}
 \index{run\+And\+Get\+Dendrogram\+Height@{run\+And\+Get\+Dendrogram\+Height}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{run\+And\+Get\+Dendrogram\+Height(\+E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+H\+T \&dendrogram\+Height, const bool verbose=false)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ template$<$class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+H\+T $>$ void {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::run\+And\+Get\+Dendrogram\+Height (
-\begin{DoxyParamCaption}
-\item[{E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+H\+T \&}]{dendrogram\+Height, }
-\item[{const bool}]{verbose = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_adf2c89066a4796c32e722c7244b37f3c}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a34c94614c65bceb4adb7e405b15b7773}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!ucm\+Transform@{ucm\+Transform}}
+\subsubsection{\texorpdfstring{run\+And\+Get\+Dendrogram\+Height()}{runAndGetDendrogramHeight()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::run\+And\+Get\+Dendrogram\+Height (\begin{DoxyParamCaption}\item[{E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT \&}]{dendrogram\+Height,  }\item[{const bool}]{verbose = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a9c8d18e03cef48ba261ba8e8a1bcc924}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a9c8d18e03cef48ba261ba8e8a1bcc924}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run\+And\+Get\+Merge\+Times@{run\+And\+Get\+Merge\+Times}}
+\index{run\+And\+Get\+Merge\+Times@{run\+And\+Get\+Merge\+Times}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
+\subsubsection{\texorpdfstring{run\+And\+Get\+Merge\+Times()}{runAndGetMergeTimes()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::run\+And\+Get\+Merge\+Times (\begin{DoxyParamCaption}\item[{M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES \&}]{merge\+Times,  }\item[{const bool}]{verbose = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af5d353cca095be5cd67614c3d5267eea}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_af5d353cca095be5cd67614c3d5267eea}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height@{run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height}}
+\index{run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height@{run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
+\subsubsection{\texorpdfstring{run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height()}{runAndGetMergeTimesAndDendrogramHeight()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES , class E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::run\+And\+Get\+Merge\+Times\+And\+Dendrogram\+Height (\begin{DoxyParamCaption}\item[{M\+E\+R\+G\+E\+\_\+\+T\+I\+M\+ES \&}]{merge\+Times,  }\item[{E\+D\+G\+E\+\_\+\+D\+E\+N\+D\+R\+O\+G\+R\+A\+M\+\_\+\+H\+E\+I\+G\+HT \&}]{dendrogram\+Height,  }\item[{const bool}]{verbose = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a7e9b9949000d96d91844ab2df1e28509}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a7e9b9949000d96d91844ab2df1e28509}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!ucm\+Transform@{ucm\+Transform}}
 \index{ucm\+Transform@{ucm\+Transform}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{ucm\+Transform(\+E\+D\+G\+E\+\_\+\+M\+A\+P \&edge\+Map) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ template$<$class E\+D\+G\+E\+\_\+\+M\+A\+P $>$ void {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::ucm\+Transform (
-\begin{DoxyParamCaption}
-\item[{E\+D\+G\+E\+\_\+\+M\+A\+P \&}]{edge\+Map}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a34c94614c65bceb4adb7e405b15b7773}
-\hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a020daa26353c691b12e1173aa34c25d3}{}\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!ucm\+Transform@{ucm\+Transform}}
+\subsubsection{\texorpdfstring{ucm\+Transform()}{ucmTransform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class E\+D\+G\+E\+\_\+\+M\+AP $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::ucm\+Transform (\begin{DoxyParamCaption}\item[{E\+D\+G\+E\+\_\+\+M\+AP \&}]{edge\+Map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a717660885100f4c0321c4e19fb536072}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a717660885100f4c0321c4e19fb536072}} 
+\index{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}!ucm\+Transform@{ucm\+Transform}}
 \index{ucm\+Transform@{ucm\+Transform}!nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering@{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}}
-\subsubsection[{ucm\+Transform(const E\+D\+G\+E\+\_\+\+M\+A\+P \&edge\+Map, E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+U\+T \&edge\+Map\+Out) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ template$<$class E\+D\+G\+E\+\_\+\+M\+A\+P , class E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+U\+T $>$ void {\bf nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$\+::ucm\+Transform (
-\begin{DoxyParamCaption}
-\item[{const E\+D\+G\+E\+\_\+\+M\+A\+P \&}]{edge\+Map, }
-\item[{E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+U\+T \&}]{edge\+Map\+Out}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering_a020daa26353c691b12e1173aa34c25d3}
+\subsubsection{\texorpdfstring{ucm\+Transform()}{ucmTransform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+template$<$class E\+D\+G\+E\+\_\+\+M\+AP , class E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+UT $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{nifty\+::graph\+::agglo\+::\+Agglomerative\+Clustering}$<$ C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$\+::ucm\+Transform (\begin{DoxyParamCaption}\item[{const E\+D\+G\+E\+\_\+\+M\+AP \&}]{edge\+Map,  }\item[{E\+D\+G\+E\+\_\+\+M\+A\+P\+\_\+\+O\+UT \&}]{edge\+Map\+Out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,15 +1,14 @@
 \hypertarget{graph_2multicut_2multicut_8cxx-example}{}\section{graph/multicut/multicut.\+cxx}
 
 \begin{DoxyCodeInclude}
-\textcolor{preprocessor}{#include "examples\_common.hxx"}
+\textcolor{comment}{//#include "examples\_common.hxx"}
 
 \textcolor{preprocessor}{#include <iostream>}
 \textcolor{preprocessor}{#include "\hyperlink{runtime__check_8hxx}{nifty/tools/runtime\_check.hxx}"}
 
 \textcolor{preprocessor}{#include "\hyperlink{graph_2undirected__list__graph_8hxx}{nifty/graph/undirected\_list\_graph.hxx}"}
-\textcolor{preprocessor}{#include "\hyperlink{graph_2optimization_2multicut_2multicut__objective_8hxx}{nifty/graph/optimization/multicut/multicut\_objective.hxx}
-      "}
-\textcolor{preprocessor}{#include "\hyperlink{multicut__greedy__additive_8hxx}{nifty/graph/optimization/multicut/multicut\_greedy\_additive.hxx}
+\textcolor{preprocessor}{#include "\hyperlink{graph_2opt_2multicut_2multicut__objective_8hxx}{nifty/graph/opt/multicut/multicut\_objective.hxx}"}
+\textcolor{preprocessor}{#include "\hyperlink{multicut__greedy__additive_8hxx}{nifty/graph/opt/multicut/multicut\_greedy\_additive.hxx}
       "}
 
 \textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc , \textcolor{keywordtype}{char} *argv[] )\{
@@ -26,8 +25,8 @@
     \textcolor{comment}{//   3 - 4 - 5}
     \textcolor{comment}{// }
     \textcolor{comment}{// }
-    \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{nifty::graph::UndirectedGraph<>} Graph;
-    Graph graph(6);
+    \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{nifty::graph::UndirectedGraph<>} GraphType;
+    GraphType graph(6);
 
     \textcolor{comment}{// inserte edges }
     graph.insertEdge(0,1);  
@@ -40,8 +39,7 @@
 
     \textcolor{comment}{// create multicut objective}
     \textcolor{comment}{// do not add more edges to graph after creating the mc objective}
-    \textcolor{keyword}{typedef} 
-      \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective}{nifty::graph::optimization::multicut::MulticutObjective<Graph, float>}
+    \textcolor{keyword}{typedef} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective}{nifty::graph::opt::multicut::MulticutObjective<GraphType, float>}
        MulticutObjective;
     MulticutObjective objective(graph);
 
@@ -60,11 +58,11 @@
     \{  
        
         \textcolor{keyword}{typedef} 
-      \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive}{nifty::graph::optimization::multicut::MulticutGreedyAdditive<MulticutObjective>}
+      \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive}{nifty::graph::opt::multicut::MulticutGreedyAdditive<MulticutObjective>}
        MulticutSolver;
         \textcolor{keyword}{typedef} 
-      \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor}{nifty::graph::optimization::multicut::MulticutVerboseVisitor<MulticutObjective>}
-       \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut_a071c9020e064373e9c11465fbe1870f9}{MulticutVerboseVisitor};
+      \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor}{nifty::graph::opt::multicut::MulticutVerboseVisitor<MulticutObjective>}
+       \hyperlink{namespacenifty_1_1graph_1_1opt_1_1multicut_af26230604a77c9e38690db74e4fcb7b3}{MulticutVerboseVisitor};
         \textcolor{keyword}{typedef} \textcolor{keyword}{typename} MulticutSolver::NodeLabelsType NodeLabelsType;
         MulticutSolver solver(objective);
 

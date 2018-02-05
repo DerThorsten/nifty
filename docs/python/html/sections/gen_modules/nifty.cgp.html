@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>nifty.cgp &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>nifty.cgp &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="nifty.graph" href="nifty.graph.html" />
     <link rel="prev" title="nifty" href="nifty.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +44,7 @@
         <li class="right" >
           <a href="nifty.html" title="nifty"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -96,125 +93,6 @@
 <dt id="nifty.cgp.cell1Features">
 <code class="descclassname">nifty.cgp.</code><code class="descname">cell1Features</code><span class="sig-paren">(</span><em>tgrid</em>, <em>geometry=None</em>, <em>bounds=None</em>, <em>boundedBy=None</em>, <em>raw=None</em>, <em>pmap=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.cgp.cell1Features" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<div style='clear:both'></div><dl class="function">
-<dt id="nifty.cgp.grey_dilation">
-<code class="descclassname">nifty.cgp.</code><code class="descname">grey_dilation</code><span class="sig-paren">(</span><em>input</em>, <em>size=None</em>, <em>footprint=None</em>, <em>structure=None</em>, <em>output=None</em>, <em>mode='reflect'</em>, <em>cval=0.0</em>, <em>origin=0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.cgp.grey_dilation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate a greyscale dilation, using either a structuring element,
-or a footprint corresponding to a flat structuring element.</p>
-<p>Grayscale dilation is a mathematical morphology operation. For the
-simple case of a full and flat structuring element, it can be viewed
-as a maximum filter over a sliding window.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>input</strong> (<em>array_like</em>) &#8211; Array over which the grayscale dilation is to be computed.</li>
-<li><strong>size</strong> (<em>tuple of ints</em>) &#8211; Shape of a flat and full structuring element used for the grayscale
-dilation. Optional if <cite>footprint</cite> or <cite>structure</cite> is provided.</li>
-<li><strong>footprint</strong> (<em>array of ints</em><em>, </em><em>optional</em>) &#8211; Positions of non-infinite elements of a flat structuring element
-used for the grayscale dilation. Non-zero values give the set of
-neighbors of the center over which the maximum is chosen.</li>
-<li><strong>structure</strong> (<em>array of ints</em><em>, </em><em>optional</em>) &#8211; Structuring element used for the grayscale dilation. <cite>structure</cite>
-may be a non-flat structuring element.</li>
-<li><strong>output</strong> (<em>array</em><em>, </em><em>optional</em>) &#8211; An array used for storing the ouput of the dilation may be provided.</li>
-<li><strong>mode</strong> (<em>{'reflect'</em><em>,</em><em>'constant'</em><em>,</em><em>'nearest'</em><em>,</em><em>'mirror'</em><em>, </em><em>'wrap'}</em><em>, </em><em>optional</em>) &#8211; The <cite>mode</cite> parameter determines how the array borders are
-handled, where <cite>cval</cite> is the value when mode is equal to
-&#8216;constant&#8217;. Default is &#8216;reflect&#8217;</li>
-<li><strong>cval</strong> (<em>scalar</em><em>, </em><em>optional</em>) &#8211; Value to fill past edges of input if <cite>mode</cite> is &#8216;constant&#8217;. Default
-is 0.0.</li>
-<li><strong>origin</strong> (<em>scalar</em><em>, </em><em>optional</em>) &#8211; The <cite>origin</cite> parameter controls the placement of the filter.
-Default 0</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>grey_dilation</strong> &#8211; Grayscale dilation of <cite>input</cite>.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-func docutils literal"><span class="pre">binary_dilation()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">grey_erosion()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">grey_closing()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">grey_opening()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">generate_binary_structure()</span></code>, <code class="xref py py-func docutils literal"><span class="pre">ndimage.maximum_filter()</span></code></p>
-</div>
-<p class="rubric">Notes</p>
-<p>The grayscale dilation of an image input by a structuring element s defined
-over a domain E is given by:</p>
-<p>(input+s)(x) = max {input(y) + s(x-y), for y in E}</p>
-<p>In particular, for structuring elements defined as
-s(y) = 0 for y in E, the grayscale dilation computes the maximum of the
-input image inside a sliding window defined by E.</p>
-<p>Grayscale dilation <a class="footnote-reference" href="#id3" id="id1">[1]</a> is a <em>mathematical morphology</em> operation <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
-<p class="rubric">References</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Dilation_%28morphology%29">http://en.wikipedia.org/wiki/Dilation_%28morphology%29</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Mathematical_morphology">http://en.wikipedia.org/wiki/Mathematical_morphology</a></td></tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">ndimage</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">array([[0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 0, 1, 3, 1, 0, 0],</span>
-<span class="go">       [0, 0, 1, 1, 1, 0, 0],</span>
-<span class="go">       [0, 0, 1, 1, 2, 0, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ndimage</span><span class="o">.</span><span class="n">grey_dilation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="go">array([[0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 1, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 1, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 2, 0],</span>
-<span class="go">       [0, 1, 1, 2, 2, 2, 0],</span>
-<span class="go">       [0, 1, 1, 2, 2, 2, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ndimage</span><span class="o">.</span><span class="n">grey_dilation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
-<span class="go">array([[0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 1, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 1, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 2, 0],</span>
-<span class="go">       [0, 1, 1, 2, 2, 2, 0],</span>
-<span class="go">       [0, 1, 1, 2, 2, 2, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">generate_binary_structure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
-<span class="go">array([[False,  True, False],</span>
-<span class="go">       [ True,  True,  True],</span>
-<span class="go">       [False,  True, False]], dtype=bool)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ndimage</span><span class="o">.</span><span class="n">grey_dilation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
-<span class="go">array([[0, 0, 0, 0, 0, 0, 0],</span>
-<span class="go">       [0, 0, 1, 3, 1, 0, 0],</span>
-<span class="go">       [0, 1, 3, 3, 3, 1, 0],</span>
-<span class="go">       [0, 1, 1, 3, 2, 1, 0],</span>
-<span class="go">       [0, 1, 1, 2, 2, 2, 0],</span>
-<span class="go">       [0, 0, 1, 1, 2, 0, 0],</span>
-<span class="go">       [0, 0, 0, 0, 0, 0, 0]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ndimage</span><span class="o">.</span><span class="n">grey_dilation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
-<span class="go">array([[1, 1, 1, 1, 1, 1, 1],</span>
-<span class="go">       [1, 2, 4, 4, 4, 2, 1],</span>
-<span class="go">       [1, 2, 4, 4, 4, 2, 1],</span>
-<span class="go">       [1, 2, 4, 4, 4, 3, 1],</span>
-<span class="go">       [1, 2, 2, 3, 3, 3, 1],</span>
-<span class="go">       [1, 2, 2, 3, 3, 3, 1],</span>
-<span class="go">       [1, 1, 1, 1, 1, 1, 1]])</span>
-</pre></div>
-</div>
-</dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.cgp.makeCellImage">
@@ -488,12 +366,12 @@ input image inside a sliding window defined by E.</p>
         <li class="right" >
           <a href="nifty.html" title="nifty"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>

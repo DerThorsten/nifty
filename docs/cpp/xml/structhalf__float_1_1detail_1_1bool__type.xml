@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1bool__type" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::bool_type</compoundname>
+    <derivedcompoundref refid="structhalf__float_1_1detail_1_1is__float" prot="public" virt="non-virtual">half_float::detail::is_float&lt; typename &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structhalf__float_1_1detail_1_1is__float_3_01double_01_4" prot="public" virt="non-virtual">half_float::detail::is_float&lt; double &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structhalf__float_1_1detail_1_1is__float_3_01float_01_4" prot="public" virt="non-virtual">half_float::detail::is_float&lt; float &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structhalf__float_1_1detail_1_1is__float_3_01long_01double_01_4" prot="public" virt="non-virtual">half_float::detail::is_float&lt; long double &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structhalf__float_1_1detail_1_1is__float" prot="public" virt="non-virtual">half_float::detail::is_float&lt; T &gt;</derivedcompoundref>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>bool</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Helper for tag dispatching. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="109">
+        <label>half_float::detail::is_float&lt; volatile T &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01volatile_01T_01_4"/>
+        <childnode refid="106" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="108">
+        <label>half_float::detail::is_float&lt; const volatile T &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01const_01volatile_01T_01_4"/>
+        <childnode refid="106" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="104">
+        <label>half_float::detail::is_float&lt; float &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01float_01_4"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>half_float::detail::is_float&lt; false &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>half_float::detail::is_float&lt; long double &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01long_01double_01_4"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>half_float::detail::is_float&lt; double &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01double_01_4"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>half_float::detail::bool_type&lt; bool &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1bool__type"/>
+      </node>
+      <node id="107">
+        <label>half_float::detail::is_float&lt; const T &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float_3_01const_01T_01_4"/>
+        <childnode refid="106" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="106">
+        <label>is_float&lt; T &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1is__float"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="299" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="299" bodyend="299"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

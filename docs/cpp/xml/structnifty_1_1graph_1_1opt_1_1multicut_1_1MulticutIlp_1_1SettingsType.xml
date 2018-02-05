@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::multicut::MulticutIlp::SettingsType</compoundname>
+    <includes refid="multicut__ilp_8hxx" local="no">multicut_ilp.hxx</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1afa45b6db286d8000398eff9f719fc5dd" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SettingsType::numberOfIterations</definition>
+        <argsstring></argsstring>
+        <name>numberOfIterations</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Maximum allowed cutting plane iterations. </para>        </briefdescription>
+        <detaileddescription>
+<para>Maximum allowed cutting plane iteration. A value of zero will be interpreted as an unlimited number of iterations. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1a4a91caa517c62ba5098317f4ac8702c8" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SettingsType::addThreeCyclesConstraints</definition>
+        <argsstring></argsstring>
+        <name>addThreeCyclesConstraints</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+<para>Explicitly add constrains for cycle of length three. </para>        </briefdescription>
+        <detaileddescription>
+<para>Should constrains for cycles of length three be added explicitly before the actual opt. This can speedup the opt process. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1ad759353f0698ef7051d150f8a7d3d933" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SettingsType::addOnlyViolatedThreeCyclesConstraints</definition>
+        <argsstring></argsstring>
+        <name>addOnlyViolatedThreeCyclesConstraints</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+<para>Explicitly add violated constrains for cycle of length three. </para>        </briefdescription>
+        <detaileddescription>
+<para>If addThreeCyclesConstraints is true, should only possible violating constraints be added before the actual opt. This can speedup the opt process. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="163" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1a02f867e50e587e0a1d74b93a34bd94b8" prot="public" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1ad46bf56538766a3bbf4d5783727e1e7c" kindref="member">IlpSettingsType</ref></type>
+        <definition>IlpSettingsType nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SettingsType::ilpSettings</definition>
+        <argsstring></argsstring>
+        <name>ilpSettings</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>Settings of the ILP backend.  ILP related options like relative and absolute gaps can be specified. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="170" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Settings for <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp" kindref="compound">MulticutIlp</ref> solver. </para>    </briefdescription>
+    <detaileddescription>
+<para>The settings for <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp" kindref="compound">MulticutIlp</ref> are not very critical and the default settings should be changed seldomly. </para>    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="136" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="136" bodyend="171"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1ad759353f0698ef7051d150f8a7d3d933" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SettingsType</scope><name>addOnlyViolatedThreeCyclesConstraints</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1a4a91caa517c62ba5098317f4ac8702c8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SettingsType</scope><name>addThreeCyclesConstraints</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1a02f867e50e587e0a1d74b93a34bd94b8" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SettingsType</scope><name>ilpSettings</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_1afa45b6db286d8000398eff9f719fc5dd" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SettingsType</scope><name>numberOfIterations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

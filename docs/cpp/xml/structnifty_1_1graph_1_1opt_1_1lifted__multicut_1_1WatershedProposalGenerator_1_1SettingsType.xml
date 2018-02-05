@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType" kind="struct" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</compoundname>
+    <includes refid="lifted__multicut_2proposal__generators_2watershed__proposal__generator_8hxx" local="no">watershed_proposal_generator.hxx</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027" prot="public" static="no">
+        <name>SeedingStrategie</name>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027a7282202a01543dc6167933813f619626" prot="public">
+          <name>SEED_FROM_LIFTED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027ae5ca5e78c1133acb8e67e728f8b90644" prot="public">
+          <name>SEED_FROM_LOCAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027a431526b0114ce2893c003f9cf9e3356a" prot="public">
+          <name>SEED_FROM_BOTH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="34" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a387d22edfea50e580158045e2e39316d" prot="public" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027" kindref="member">SeedingStrategie</ref></type>
+        <definition>SeedingStrategie nifty::graph::opt::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::seedingStrategie</definition>
+        <argsstring></argsstring>
+        <name>seedingStrategie</name>
+        <initializer>{<ref refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027a7282202a01543dc6167933813f619626" kindref="member">SEED_FROM_LIFTED</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a0e953fc83386175059bb0eca942e8abf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a8c5a91c8525be02b50e67cbb7ccba3a1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::lifted_multicut::WatershedProposalGenerator&lt; OBJECTIVE &gt;::SettingsType::numberOfSeeds</definition>
+        <argsstring></argsstring>
+        <name>numberOfSeeds</name>
+        <initializer>{0.1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/watershed_proposal_generator.hxx" bodystart="31" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a8c5a91c8525be02b50e67cbb7ccba3a1" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>numberOfSeeds</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027a431526b0114ce2893c003f9cf9e3356a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>SEED_FROM_BOTH</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027a7282202a01543dc6167933813f619626" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>SEED_FROM_LIFTED</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027ae5ca5e78c1133acb8e67e728f8b90644" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>SEED_FROM_LOCAL</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a387d22edfea50e580158045e2e39316d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>seedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1adb1dc7c5efbaf2442345aaa665aa2027" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>SeedingStrategie</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1WatershedProposalGenerator_1_1SettingsType_1a0e953fc83386175059bb0eca942e8abf" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::WatershedProposalGenerator::SettingsType</scope><name>sigma</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

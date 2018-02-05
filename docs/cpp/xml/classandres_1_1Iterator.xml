@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classandres_1_1Iterator" kind="class" language="C++" prot="public">
     <compoundname>andres::Iterator</compoundname>
     <includes refid="andres_2marray_8hxx" local="no">marray.hxx</includes>
@@ -181,11 +181,11 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="655" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="657" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="friend" id="classandres_1_1Iterator_1a3a5905d3e8cc40712f6a818a92e94c3b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classandres_1_1Iterator_1a3e31228776921035379cfec27253f881" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
-        <definition>friend class Iterator&lt; T,!isConst, A &gt;</definition>
+        <definition>friend class Iterator&lt; T, !isConst, A &gt;</definition>
         <argsstring></argsstring>
-        <name>Iterator&lt; T,!isConst, A &gt;</name>
+        <name>Iterator&lt; T, !isConst, A &gt;</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -337,10 +337,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="611" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4196" bodyend="4205"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a2ea1f1bf8a9d61241f6ab9e68d051663" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1aa98dec12fce71115edb4e9d3f9454bac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classandres_1_1Iterator_1a9805f26813688f04c33e798f7999e5f7" kindref="member">reference</ref></type>
         <definition>Iterator&lt; T, isConst, A &gt;::reference andres::Iterator&lt; T, isConst, A &gt;::operator*</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>operator*</name>
         <briefdescription>
         </briefdescription>
@@ -350,10 +350,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="615" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4211" bodyend="4215"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a41397c945f86104d4553e264f360862b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a1299459201b748ef50d43cf871de510b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classandres_1_1Iterator_1adf2ba3f1a3cc9c98bff9c544afdb22f9" kindref="member">pointer</ref></type>
         <definition>Iterator&lt; T, isConst, A &gt;::pointer andres::Iterator&lt; T, isConst, A &gt;::operator-&gt;</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>operator-&gt;</name>
         <briefdescription>
         </briefdescription>
@@ -363,10 +363,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="616" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4221" bodyend="4225"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a3dda3a1f02423997143ed405766ed26d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a1b359b213c766dd83673d96fa73c5a51" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classandres_1_1Iterator_1a9805f26813688f04c33e798f7999e5f7" kindref="member">reference</ref></type>
         <definition>Iterator&lt; T, isConst, A &gt;::reference andres::Iterator&lt; T, isConst, A &gt;::operator[]</definition>
-        <argsstring>(const std::size_t) const </argsstring>
+        <argsstring>(const std::size_t) const</argsstring>
         <name>operator[]</name>
         <param>
           <type>const std::size_t</type>
@@ -472,10 +472,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="624" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4444" bodyend="4450"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1ac11e0481263bcc5b0d9b6d85d5d35cee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a3777cbd5f8b239d4fae5ba457b6820dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConst, A &gt;</type>
         <definition>Iterator&lt; T, isConst, A &gt; andres::Iterator&lt; T, isConst, A &gt;::operator+</definition>
-        <argsstring>(const difference_type &amp;) const </argsstring>
+        <argsstring>(const difference_type &amp;) const</argsstring>
         <name>operator+</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator_1a10f8053d87b6b597d9fe011f66a240ca" kindref="member">difference_type</ref> &amp;</type>
@@ -489,10 +489,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="625" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4455" bodyend="4463"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a397e725017a0c85f3625c4cca9c78f19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1aba616b917d32ebbe2535d6906c89d373" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConst, A &gt;</type>
         <definition>Iterator&lt; T, isConst, A &gt; andres::Iterator&lt; T, isConst, A &gt;::operator-</definition>
-        <argsstring>(const difference_type &amp;) const </argsstring>
+        <argsstring>(const difference_type &amp;) const</argsstring>
         <name>operator-</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator_1a10f8053d87b6b597d9fe011f66a240ca" kindref="member">difference_type</ref> &amp;</type>
@@ -506,7 +506,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="626" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4468" bodyend="4476"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a76bf815f78f5f151987ddabaa711d3c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a3aa56c16988a94b6bff8267bd73814ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -516,7 +516,7 @@
         </templateparamlist>
         <type><ref refid="classandres_1_1Iterator_1a10f8053d87b6b597d9fe011f66a240ca" kindref="member">difference_type</ref></type>
         <definition>Iterator&lt; T, isConst, A &gt;::difference_type andres::Iterator&lt; T, isConst, A &gt;::operator-</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator-</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -530,7 +530,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="628" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4482" bodyend="4489"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1ad5ffd4771bc3865c3d97943a0eddf96c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1abfe4d2b016415ed309b845dab09eff59" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -540,7 +540,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator==</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator==</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -554,7 +554,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="630" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4495" bodyend="4502"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1ad0006aa63862a839230521e571642b9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a62860af14494290007b383421f32e0f6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -564,7 +564,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator!=</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator!=</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -578,7 +578,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="632" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4508" bodyend="4517"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1ac8c047ae76cffe6f91e0d45bea1fb94c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a45a23d62f4675ef17b113b0e93f4fcf9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -588,7 +588,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator&lt;</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator&lt;</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -602,7 +602,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="634" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4523" bodyend="4530"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a0ddb701b0ac1b721eee2348e016050fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a2db26a241958f29fd51ecfb5fa405cd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -612,7 +612,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator&gt;</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator&gt;</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -626,7 +626,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="636" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4536" bodyend="4543"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a303fe7634819191eff8e2bb676083f9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1ad19c0fdcff997fb2411fe20530fa241f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -636,7 +636,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator&lt;=</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator&lt;=</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -650,7 +650,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="638" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4549" bodyend="4556"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a8ab389dea14eeceb8bbee9a9d7d6a04a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a11fa8f85608f6f9fc7170c299755e917" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>bool</type>
@@ -660,7 +660,7 @@
         </templateparamlist>
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::operator&gt;=</definition>
-        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const </argsstring>
+        <argsstring>(const Iterator&lt; T, isConstLocal, A &gt; &amp;) const</argsstring>
         <name>operator&gt;=</name>
         <param>
           <type>const <ref refid="classandres_1_1Iterator" kindref="compound">Iterator</ref>&lt; T, isConstLocal, A &gt; &amp;</type>
@@ -674,10 +674,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="640" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4562" bodyend="4569"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1aa00e98e48b060ec6de7593d473643ef7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a26f75a0ecde5e9b0512f07234ca2f39e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool andres::Iterator&lt; T, isConst, A &gt;::hasMore</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>hasMore</name>
         <briefdescription>
         </briefdescription>
@@ -688,10 +688,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="643" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4577" bodyend="4581"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a2f5bd43ca080a25450423d5f874b3cdd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1abf00924fc7110262606fdd9de01ebc2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t andres::Iterator&lt; T, isConst, A &gt;::index</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>index</name>
         <briefdescription>
         </briefdescription>
@@ -702,7 +702,7 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="644" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="4589" bodyend="4592"/>
       </memberdef>
-      <memberdef kind="function" id="classandres_1_1Iterator_1a6b0076e5b74f548e820cbfa6fb7681d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1aabb5942c0b13da2dd3450f4146635e69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class CoordinateIterator</type>
@@ -710,7 +710,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void andres::Iterator&lt; T, isConst, A &gt;::coordinate</definition>
-        <argsstring>(CoordinateIterator) const </argsstring>
+        <argsstring>(CoordinateIterator) const</argsstring>
         <name>coordinate</name>
         <param>
           <type>CoordinateIterator</type>
@@ -734,10 +734,10 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classandres_1_1Iterator_1a98eca15362351379bb5ee1a695e1d1de" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classandres_1_1Iterator_1a0af146f94e88728fd3988ad9a3418fc5" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void andres::Iterator&lt; T, isConst, A &gt;::testInvariant</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>testInvariant</name>
         <briefdescription>
         </briefdescription>
@@ -751,45 +751,45 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>STL-compliant random access iterator for <ref refid="classandres_1_1View" kindref="compound">View</ref> and <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para><para>In addition to the STL iterator interface, the member functions <ref refid="classandres_1_1Iterator_1aa00e98e48b060ec6de7593d473643ef7" kindref="member">hasMore()</ref>, <ref refid="classandres_1_1Iterator_1a2f5bd43ca080a25450423d5f874b3cdd" kindref="member">index()</ref>, and <ref refid="classandres_1_1Iterator_1a6b0076e5b74f548e820cbfa6fb7681d7" kindref="member">coordinate()</ref> are defined. </para>    </detaileddescription>
+<para>STL-compliant random access iterator for <ref refid="classandres_1_1View" kindref="compound">View</ref> and <ref refid="classandres_1_1Marray" kindref="compound">Marray</ref>.</para><para>In addition to the STL iterator interface, the member functions <ref refid="classandres_1_1Iterator_1a26f75a0ecde5e9b0512f07234ca2f39e" kindref="member">hasMore()</ref>, <ref refid="classandres_1_1Iterator_1abf00924fc7110262606fdd9de01ebc2d" kindref="member">index()</ref>, and <ref refid="classandres_1_1Iterator_1aabb5942c0b13da2dd3450f4146635e69" kindref="member">coordinate()</ref> are defined. </para>    </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/marray/andres/marray.hxx" bodystart="118" bodyend="-1"/>
     <listofallmembers>
-      <member refid="classandres_1_1Iterator_1a6b0076e5b74f548e820cbfa6fb7681d7" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>coordinate</name></member>
+      <member refid="classandres_1_1Iterator_1aabb5942c0b13da2dd3450f4146635e69" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>coordinate</name></member>
       <member refid="classandres_1_1Iterator_1ac0682d9a3d4c65a4a470cb33760da9c2" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>coordinates_</name></member>
       <member refid="classandres_1_1Iterator_1a10f8053d87b6b597d9fe011f66a240ca" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>difference_type</name></member>
-      <member refid="classandres_1_1Iterator_1aa00e98e48b060ec6de7593d473643ef7" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>hasMore</name></member>
-      <member refid="classandres_1_1Iterator_1a2f5bd43ca080a25450423d5f874b3cdd" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>index</name></member>
+      <member refid="classandres_1_1Iterator_1a26f75a0ecde5e9b0512f07234ca2f39e" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>hasMore</name></member>
+      <member refid="classandres_1_1Iterator_1abf00924fc7110262606fdd9de01ebc2d" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>index</name></member>
       <member refid="classandres_1_1Iterator_1aff2356bc568f3c1c6e702fea35b6a52e" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>index_</name></member>
       <member refid="classandres_1_1Iterator_1a6a97994e2999c992ed829b3da6c748bf" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator</name></member>
       <member refid="classandres_1_1Iterator_1a7b3a9873e6c06df90bd70a0262c90de1" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator</name></member>
       <member refid="classandres_1_1Iterator_1a182a2080c203da0d9a92045e12c0ac9d" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator</name></member>
       <member refid="classandres_1_1Iterator_1aba0cdb5062a14318d9c45c6c71646285" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator</name></member>
       <member refid="classandres_1_1Iterator_1a6c650c1a0c2ae10324cb33cb22336172" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator</name></member>
-      <member refid="classandres_1_1Iterator_1a3a5905d3e8cc40712f6a818a92e94c3b" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator&lt; T,!isConst, A &gt;</name></member>
+      <member refid="classandres_1_1Iterator_1a3e31228776921035379cfec27253f881" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>Iterator&lt; T, !isConst, A &gt;</name></member>
       <member refid="classandres_1_1Iterator_1a36e37107724fb0c9265f8d3f41f93309" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>iterator_category</name></member>
       <member refid="classandres_1_1Iterator_1ad7bf464de20a2e1bbc38644d8615fba8" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>Marray&lt; T, A &gt;</name></member>
-      <member refid="classandres_1_1Iterator_1ad0006aa63862a839230521e571642b9e" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator!=</name></member>
-      <member refid="classandres_1_1Iterator_1a2ea1f1bf8a9d61241f6ab9e68d051663" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator*</name></member>
-      <member refid="classandres_1_1Iterator_1ac11e0481263bcc5b0d9b6d85d5d35cee" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator+</name></member>
+      <member refid="classandres_1_1Iterator_1a62860af14494290007b383421f32e0f6" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator!=</name></member>
+      <member refid="classandres_1_1Iterator_1aa98dec12fce71115edb4e9d3f9454bac" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator*</name></member>
+      <member refid="classandres_1_1Iterator_1a3777cbd5f8b239d4fae5ba457b6820dc" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator+</name></member>
       <member refid="classandres_1_1Iterator_1aa25f91324c261608591f0d072afa8ac2" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator++</name></member>
       <member refid="classandres_1_1Iterator_1a3f16288a75cc46f0f597da32d4af4cc8" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator++</name></member>
       <member refid="classandres_1_1Iterator_1ad35d9bf0e2f5079c444353292f5def0c" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator+=</name></member>
-      <member refid="classandres_1_1Iterator_1a397e725017a0c85f3625c4cca9c78f19" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-</name></member>
-      <member refid="classandres_1_1Iterator_1a76bf815f78f5f151987ddabaa711d3c4" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-</name></member>
+      <member refid="classandres_1_1Iterator_1aba616b917d32ebbe2535d6906c89d373" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-</name></member>
+      <member refid="classandres_1_1Iterator_1a3aa56c16988a94b6bff8267bd73814ac" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-</name></member>
       <member refid="classandres_1_1Iterator_1a2e7a4ffd36e64600b7a785dd5fcf9920" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator--</name></member>
       <member refid="classandres_1_1Iterator_1acfde3bc208623f9105a8ea0d5103aec3" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator--</name></member>
       <member refid="classandres_1_1Iterator_1a2d9d6f6b6b9c3e1843f00b3162f9dfeb" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-=</name></member>
-      <member refid="classandres_1_1Iterator_1a41397c945f86104d4553e264f360862b" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-&gt;</name></member>
-      <member refid="classandres_1_1Iterator_1ac8c047ae76cffe6f91e0d45bea1fb94c" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&lt;</name></member>
-      <member refid="classandres_1_1Iterator_1a303fe7634819191eff8e2bb676083f9c" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&lt;=</name></member>
-      <member refid="classandres_1_1Iterator_1ad5ffd4771bc3865c3d97943a0eddf96c" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator==</name></member>
-      <member refid="classandres_1_1Iterator_1a0ddb701b0ac1b721eee2348e016050fc" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&gt;</name></member>
-      <member refid="classandres_1_1Iterator_1a8ab389dea14eeceb8bbee9a9d7d6a04a" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&gt;=</name></member>
-      <member refid="classandres_1_1Iterator_1a3dda3a1f02423997143ed405766ed26d" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator[]</name></member>
+      <member refid="classandres_1_1Iterator_1a1299459201b748ef50d43cf871de510b" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator-&gt;</name></member>
+      <member refid="classandres_1_1Iterator_1a45a23d62f4675ef17b113b0e93f4fcf9" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&lt;</name></member>
+      <member refid="classandres_1_1Iterator_1ad19c0fdcff997fb2411fe20530fa241f" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&lt;=</name></member>
+      <member refid="classandres_1_1Iterator_1abfe4d2b016415ed309b845dab09eff59" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator==</name></member>
+      <member refid="classandres_1_1Iterator_1a2db26a241958f29fd51ecfb5fa405cd3" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&gt;</name></member>
+      <member refid="classandres_1_1Iterator_1a11fa8f85608f6f9fc7170c299755e917" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator&gt;=</name></member>
+      <member refid="classandres_1_1Iterator_1a1b359b213c766dd83673d96fa73c5a51" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>operator[]</name></member>
       <member refid="classandres_1_1Iterator_1adf2ba3f1a3cc9c98bff9c544afdb22f9" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>pointer</name></member>
       <member refid="classandres_1_1Iterator_1aeb0796cdc658cbb32940fcf3f1662174" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>pointer_</name></member>
       <member refid="classandres_1_1Iterator_1a9805f26813688f04c33e798f7999e5f7" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>reference</name></member>
-      <member refid="classandres_1_1Iterator_1a98eca15362351379bb5ee1a695e1d1de" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>testInvariant</name></member>
+      <member refid="classandres_1_1Iterator_1a0af146f94e88728fd3988ad9a3418fc5" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>testInvariant</name></member>
       <member refid="classandres_1_1Iterator_1a3fd8a072268f4ad5c55963a6ea6d7a65" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>value_type</name></member>
       <member refid="classandres_1_1Iterator_1a3589ec5c6e1551154809c9e4a9cb4881" prot="private" virt="non-virtual"><scope>andres::Iterator</scope><name>view_</name></member>
       <member refid="classandres_1_1Iterator_1a937adfd36b5e7b01be53d16bd823af12" prot="public" virt="non-virtual"><scope>andres::Iterator</scope><name>view_pointer</name></member>

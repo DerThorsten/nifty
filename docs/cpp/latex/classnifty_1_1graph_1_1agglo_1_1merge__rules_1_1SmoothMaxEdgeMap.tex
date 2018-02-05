@@ -1,0 +1,138 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:merge\+\_\+rules\+:\+:Smooth\+Max\+Edge\+Map$<$ G, T $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map$<$ G, T $>$@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map$<$ G, T $>$}}
+
+
+{\ttfamily \#include $<$merge\+\_\+rules.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ T $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_ac0fe8dbcb9cc4baa5aff9614e0ddd13d}{Mean\+Edge\+Map\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ \hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t} $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a27bfa4de7c16550e9028903d774c705d}{Size\+Edge\+Map\+Type}
+\item 
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxSettings}{Smooth\+Max\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a287e909e5f1222784b2213960ade1658}{name} () const
+\item 
+{\footnotesize template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a4aa821c3b693ed4eb550d4d0b4579e1f}{Smooth\+Max\+Edge\+Map} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}{Graph\+Type} \&g, const V\+A\+L\+U\+ES \&values, const W\+E\+I\+G\+H\+TS \&weights, const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type} \&settings=\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a45a0264cbcf21f248437444510b7cb6c}{merge} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a8ac7346a7f10f3267fdc6a57be483390}{set\+Value\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a64c165ba49ca6b304ecfe56d4a17bb7b}{set\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a01a6c6d85c9ebad17f45a37ada88d2f8}{set} (const uint64\+\_\+t target\+Edge, const T \&value, const T \&weight)
+\item 
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_af895880f98eacaf3c8c157d730c256f7}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t edge) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a7757ee60e33b74e2ecb85c3c5324a3a5}{static\+Name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_ac0fe8dbcb9cc4baa5aff9614e0ddd13d}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_ac0fe8dbcb9cc4baa5aff9614e0ddd13d}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!Mean\+Edge\+Map\+Type@{Mean\+Edge\+Map\+Type}}
+\index{Mean\+Edge\+Map\+Type@{Mean\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Mean\+Edge\+Map\+Type}{MeanEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$T$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_ac0fe8dbcb9cc4baa5aff9614e0ddd13d}{Mean\+Edge\+Map\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!Settings\+Type@{Settings\+Type}}
+\index{Settings\+Type@{Settings\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Settings\+Type}{SettingsType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxSettings}{Smooth\+Max\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a27bfa4de7c16550e9028903d774c705d}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a27bfa4de7c16550e9028903d774c705d}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}}
+\index{Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Size\+Edge\+Map\+Type}{SizeEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$\hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t}$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a27bfa4de7c16550e9028903d774c705d}{Size\+Edge\+Map\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a4aa821c3b693ed4eb550d4d0b4579e1f}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a4aa821c3b693ed4eb550d4d0b4579e1f}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!Smooth\+Max\+Edge\+Map@{Smooth\+Max\+Edge\+Map}}
+\index{Smooth\+Max\+Edge\+Map@{Smooth\+Max\+Edge\+Map}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Smooth\+Max\+Edge\+Map()}{SmoothMaxEdgeMap()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{Smooth\+Max\+Edge\+Map} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a30c83f3e3f699c7060a9e9605672246b}{Graph\+Type} \&}]{g,  }\item[{const V\+A\+L\+U\+ES \&}]{values,  }\item[{const W\+E\+I\+G\+H\+TS \&}]{weights,  }\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a0f463ebc561d6770fa59b4168e4acf98}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a45a0264cbcf21f248437444510b7cb6c}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a45a0264cbcf21f248437444510b7cb6c}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!merge@{merge}}
+\index{merge@{merge}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::merge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a287e909e5f1222784b2213960ade1658}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a287e909e5f1222784b2213960ade1658}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_af895880f98eacaf3c8c157d730c256f7}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_af895880f98eacaf3c8c157d730c256f7}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a01a6c6d85c9ebad17f45a37ada88d2f8}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a01a6c6d85c9ebad17f45a37ada88d2f8}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!set@{set}}
+\index{set@{set}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::set (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const T \&}]{value,  }\item[{const T \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a64c165ba49ca6b304ecfe56d4a17bb7b}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a64c165ba49ca6b304ecfe56d4a17bb7b}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!set\+From@{set\+From}}
+\index{set\+From@{set\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+From()}{setFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::set\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a8ac7346a7f10f3267fdc6a57be483390}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a8ac7346a7f10f3267fdc6a57be483390}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!set\+Value\+From@{set\+Value\+From}}
+\index{set\+Value\+From@{set\+Value\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+Value\+From()}{setValueFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::set\+Value\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a7757ee60e33b74e2ecb85c3c5324a3a5}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap_a7757ee60e33b74e2ecb85c3c5324a3a5}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}!static\+Name@{static\+Name}}
+\index{static\+Name@{static\+Name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{static\+Name()}{staticName()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1SmoothMaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Smooth\+Max\+Edge\+Map}$<$ G, T $>$\+::static\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/detail/\hyperlink{merge__rules_8hxx}{merge\+\_\+rules.\+hxx}\end{DoxyCompactItemize}

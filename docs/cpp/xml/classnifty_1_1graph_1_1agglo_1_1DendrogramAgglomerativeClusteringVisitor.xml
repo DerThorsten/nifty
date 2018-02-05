@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</compoundname>
+    <includes refid="agglomerative__clustering_8hxx" local="no">agglomerative_clustering.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class AGGLOMERATIVE_CLUSTERING</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a5970286d26d68f37b06a8b261a3641cc" prot="private" static="no">
+        <type>std::tuple&lt; uint64_t, uint64_t, double, double &gt;</type>
+        <definition>typedef std::tuple&lt;uint64_t,uint64_t, double, double&gt; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::MergeEncodingType</definition>
+        <argsstring></argsstring>
+        <name>MergeEncodingType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a78a8c905d28562d120d4827cbfbc57bc" prot="public" static="no">
+        <type>AGGLOMERATIVE_CLUSTERING</type>
+        <definition>typedef AGGLOMERATIVE_CLUSTERING nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::AgglomerativeClusteringType</definition>
+        <argsstring></argsstring>
+        <name>AgglomerativeClusteringType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1abbc8e2c55e4b0fc99bc0e52c9349e0a1" prot="public" static="no">
+        <type>AgglomerativeClusteringType::GraphType</type>
+        <definition>typedef AgglomerativeClusteringType::GraphType nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1adccc2152f38cd44b4158f5e6847b5d6e" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; double &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;double&gt; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::NodeToEncoding</definition>
+        <argsstring></argsstring>
+        <name>NodeToEncoding</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a02d2e28c63f59f3ad2a6fb1266652794" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; double &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;double&gt; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::NodeSize</definition>
+        <argsstring></argsstring>
+        <name>NodeSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a67cb0d58858340a9d0e63c78245ac700" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a78a8c905d28562d120d4827cbfbc57bc" kindref="member">AgglomerativeClusteringType</ref> &amp;</type>
+        <definition>const AgglomerativeClusteringType&amp; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::agglomerativeClustering_</definition>
+        <argsstring></argsstring>
+        <name>agglomerativeClustering_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9659c2fe036ccd34714fde4b16718b6c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a02d2e28c63f59f3ad2a6fb1266652794" kindref="member">NodeSize</ref></type>
+        <definition>NodeSize nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::nodeSizes_</definition>
+        <argsstring></argsstring>
+        <name>nodeSizes_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1adb45262c242e50986049bc3a0198ed7c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1adccc2152f38cd44b4158f5e6847b5d6e" kindref="member">NodeToEncoding</ref></type>
+        <definition>NodeToEncoding nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::nodeToEncoding_</definition>
+        <argsstring></argsstring>
+        <name>nodeToEncoding_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="95" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9d979e5684d77ecf2e992b3b0660e686" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; MergeEncodingType &gt;</type>
+        <definition>std::vector&lt;MergeEncodingType &gt; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::encoding_</definition>
+        <argsstring></argsstring>
+        <name>encoding_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="96" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1ab365be608bc5395b2066c2814cfd9b19" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::timeStamp_</definition>
+        <argsstring></argsstring>
+        <name>timeStamp_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0312d190fc33b4d1bcc07791f409f520" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::DendrogramAgglomerativeClusteringVisitor</definition>
+        <argsstring>(const AgglomerativeClusteringType &amp;agglomerativeClustering)</argsstring>
+        <name>DendrogramAgglomerativeClusteringVisitor</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a78a8c905d28562d120d4827cbfbc57bc" kindref="member">AgglomerativeClusteringType</ref> &amp;</type>
+          <declname>agglomerativeClustering</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="33" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1ad7fee0b92e3fce5087ad4a4ffe8f885f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_SIZES</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::DendrogramAgglomerativeClusteringVisitor</definition>
+        <argsstring>(const AgglomerativeClusteringType &amp;agglomerativeClustering, NODE_SIZES &amp;nodeSizes)</argsstring>
+        <name>DendrogramAgglomerativeClusteringVisitor</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a78a8c905d28562d120d4827cbfbc57bc" kindref="member">AgglomerativeClusteringType</ref> &amp;</type>
+          <declname>agglomerativeClustering</declname>
+        </param>
+        <param>
+          <type>NODE_SIZES &amp;</type>
+          <declname>nodeSizes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="49" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0941aeea1a4ddd0d4b6915bc5740809e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::isDone</definition>
+        <argsstring>() const</argsstring>
+        <name>isDone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="66" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9335b363cf919ce31d4d366f169712ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::visit</definition>
+        <argsstring>(const uint64_t aliveNode, const uint64_t deadNode, const double p)</argsstring>
+        <name>visit</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveNode</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadNode</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="70" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0abd59925ced8e1147fd8554613dfab2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::agglomerativeClustering</definition>
+        <argsstring>() const</argsstring>
+        <name>agglomerativeClustering</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a1a5d04ed93b944429bef3bc48ba470c9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor&lt; AGGLOMERATIVE_CLUSTERING &gt;::dendrogramEncoding</definition>
+        <argsstring>() const</argsstring>
+        <name>dendrogramEncoding</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="88" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" line="20" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/agglomerative_clustering.hxx" bodystart="20" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0abd59925ced8e1147fd8554613dfab2" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>agglomerativeClustering</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a67cb0d58858340a9d0e63c78245ac700" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>agglomerativeClustering_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a78a8c905d28562d120d4827cbfbc57bc" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>AgglomerativeClusteringType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0312d190fc33b4d1bcc07791f409f520" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>DendrogramAgglomerativeClusteringVisitor</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1ad7fee0b92e3fce5087ad4a4ffe8f885f" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>DendrogramAgglomerativeClusteringVisitor</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a1a5d04ed93b944429bef3bc48ba470c9" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>dendrogramEncoding</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9d979e5684d77ecf2e992b3b0660e686" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>encoding_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1abbc8e2c55e4b0fc99bc0e52c9349e0a1" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a0941aeea1a4ddd0d4b6915bc5740809e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a5970286d26d68f37b06a8b261a3641cc" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>MergeEncodingType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a02d2e28c63f59f3ad2a6fb1266652794" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>NodeSize</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9659c2fe036ccd34714fde4b16718b6c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>nodeSizes_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1adccc2152f38cd44b4158f5e6847b5d6e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>NodeToEncoding</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1adb45262c242e50986049bc3a0198ed7c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>nodeToEncoding_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1ab365be608bc5395b2066c2814cfd9b19" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>timeStamp_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor_1a9335b363cf919ce31d4d366f169712ab" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::DendrogramAgglomerativeClusteringVisitor</scope><name>visit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

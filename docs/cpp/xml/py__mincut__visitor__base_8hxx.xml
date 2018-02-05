@@ -1,137 +1,137 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="py__mincut__visitor__base_8hxx" kind="file" language="C++">
     <compoundname>py_mincut_visitor_base.hxx</compoundname>
     <includes local="no">cstddef</includes>
     <includes local="no">string</includes>
     <includes local="no">initializer_list</includes>
-    <includes refid="mincut__base_8hxx" local="yes">nifty/graph/optimization/mincut/mincut_base.hxx</includes>
+    <includes refid="mincut__base_8hxx" local="yes">nifty/graph/opt/mincut/mincut_base.hxx</includes>
     <incdepgraph>
-      <node id="12141">
+      <node id="6745">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="12130" relation="include">
+        <childnode refid="6734" relation="include">
         </childnode>
       </node>
-      <node id="12135">
+      <node id="6739">
         <label>stdexcept</label>
       </node>
-      <node id="12134">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="12130" relation="include">
-        </childnode>
-        <childnode refid="12131" relation="include">
-        </childnode>
-        <childnode refid="12133" relation="include">
-        </childnode>
-        <childnode refid="12135" relation="include">
-        </childnode>
-        <childnode refid="12136" relation="include">
-        </childnode>
-        <childnode refid="12134" relation="include">
-        </childnode>
-        <childnode refid="12137" relation="include">
-        </childnode>
-      </node>
-      <node id="12130">
+      <node id="6734">
         <label>string</label>
       </node>
-      <node id="12136">
+      <node id="6740">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="12135" relation="include">
+        <childnode refid="6739" relation="include">
         </childnode>
       </node>
-      <node id="12142">
-        <label>mincut_visitor_base.hxx</label>
-        <link refid="mincut__visitor__base_8hxx"/>
-        <childnode refid="12130" relation="include">
-        </childnode>
-        <childnode refid="12131" relation="include">
-        </childnode>
-        <childnode refid="12133" relation="include">
-        </childnode>
-        <childnode refid="12137" relation="include">
-        </childnode>
-      </node>
-      <node id="12140">
+      <node id="6744">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="12133" relation="include">
+        <childnode refid="6737" relation="include">
         </childnode>
-        <childnode refid="12139" relation="include">
+        <childnode refid="6743" relation="include">
         </childnode>
-        <childnode refid="12130" relation="include">
+        <childnode refid="6734" relation="include">
         </childnode>
       </node>
-      <node id="12132">
-        <label>nifty/graph/optimization/mincut/mincut_base.hxx</label>
+      <node id="6736">
+        <label>nifty/graph/opt/mincut/mincut_base.hxx</label>
         <link refid="mincut__base_8hxx"/>
-        <childnode refid="12130" relation="include">
+        <childnode refid="6734" relation="include">
         </childnode>
-        <childnode refid="12131" relation="include">
+        <childnode refid="6735" relation="include">
         </childnode>
-        <childnode refid="12133" relation="include">
+        <childnode refid="6737" relation="include">
         </childnode>
-        <childnode refid="12134" relation="include">
+        <childnode refid="6738" relation="include">
         </childnode>
-        <childnode refid="12142" relation="include">
-        </childnode>
-      </node>
-      <node id="12137">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="12129" relation="include">
-        </childnode>
-        <childnode refid="12130" relation="include">
-        </childnode>
-        <childnode refid="12131" relation="include">
-        </childnode>
-        <childnode refid="12133" relation="include">
-        </childnode>
-        <childnode refid="12138" relation="include">
-        </childnode>
-        <childnode refid="12139" relation="include">
-        </childnode>
-        <childnode refid="12140" relation="include">
-        </childnode>
-        <childnode refid="12141" relation="include">
+        <childnode refid="6746" relation="include">
         </childnode>
       </node>
-      <node id="12133">
+      <node id="6732">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_visitor_base.hxx</label>
+        <link refid="py__mincut__visitor__base_8hxx"/>
+        <childnode refid="6733" relation="include">
+        </childnode>
+        <childnode refid="6734" relation="include">
+        </childnode>
+        <childnode refid="6735" relation="include">
+        </childnode>
+        <childnode refid="6736" relation="include">
+        </childnode>
+      </node>
+      <node id="6737">
         <label>sstream</label>
       </node>
-      <node id="12138">
+      <node id="6738">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="6734" relation="include">
+        </childnode>
+        <childnode refid="6735" relation="include">
+        </childnode>
+        <childnode refid="6737" relation="include">
+        </childnode>
+        <childnode refid="6739" relation="include">
+        </childnode>
+        <childnode refid="6740" relation="include">
+        </childnode>
+        <childnode refid="6738" relation="include">
+        </childnode>
+        <childnode refid="6741" relation="include">
+        </childnode>
+      </node>
+      <node id="6742">
         <label>iostream</label>
       </node>
-      <node id="12129">
+      <node id="6733">
         <label>cstddef</label>
       </node>
-      <node id="12139">
+      <node id="6743">
         <label>chrono</label>
       </node>
-      <node id="12131">
+      <node id="6741">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="6733" relation="include">
+        </childnode>
+        <childnode refid="6734" relation="include">
+        </childnode>
+        <childnode refid="6735" relation="include">
+        </childnode>
+        <childnode refid="6737" relation="include">
+        </childnode>
+        <childnode refid="6742" relation="include">
+        </childnode>
+        <childnode refid="6743" relation="include">
+        </childnode>
+        <childnode refid="6744" relation="include">
+        </childnode>
+        <childnode refid="6745" relation="include">
+        </childnode>
+      </node>
+      <node id="6746">
+        <label>mincut_visitor_base.hxx</label>
+        <link refid="mincut__visitor__base_8hxx"/>
+        <childnode refid="6734" relation="include">
+        </childnode>
+        <childnode refid="6735" relation="include">
+        </childnode>
+        <childnode refid="6737" relation="include">
+        </childnode>
+        <childnode refid="6741" relation="include">
+        </childnode>
+      </node>
+      <node id="6735">
         <label>initializer_list</label>
       </node>
-      <node id="12128">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/py_mincut_visitor_base.hxx</label>
-        <link refid="py_mincut_visitor_base.hxx"/>
-        <childnode refid="12129" relation="include">
-        </childnode>
-        <childnode refid="12130" relation="include">
-        </childnode>
-        <childnode refid="12131" relation="include">
-        </childnode>
-        <childnode refid="12132" relation="include">
-        </childnode>
-      </node>
     </incdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase" prot="public">nifty::graph::optimization::mincut::PyMincutVisitorBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase" prot="public">nifty::graph::opt::mincut::PyMincutVisitorBase</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1mincut">nifty::graph::optimization::mincut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1mincut">nifty::graph::opt::mincut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -143,11 +143,11 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;initializer_list&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mincut__base_8hxx" kindref="compound">nifty/graph/optimization/mincut/mincut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mincut__base_8hxx" kindref="compound">nifty/graph/opt/mincut/mincut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">mincut{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
@@ -156,59 +156,59 @@
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="20" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase" kindref="compound">PyMincutVisitorBase</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">MincutVisitorBase</ref>&lt;OBJECTIVE&gt;<sp/>{</highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase" kindref="compound">PyMincutVisitorBase</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">MincutVisitorBase</ref>&lt;OBJECTIVE&gt;<sp/>{</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Inherit<sp/>the<sp/>constructors<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>MincutFactory&lt;Objective&gt;::MincutFactory;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>MincutFactory&lt;ObjectiveType&gt;::MincutFactory;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a9c7747e47d6211e3db9bbb6d181d66c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a9c7747e47d6211e3db9bbb6d181d66c2" kindref="member">Objective</ref>;</highlight></codeline>
-<codeline lineno="26" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1af95408b02f41443ea9506434d4106949" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">MincutVisitorBase&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1af95408b02f41443ea9506434d4106949" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
-<codeline lineno="27" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1ab1309040c1e0106d47616facaf55aec8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutBase" kindref="compound">MincutBase&lt;Objective&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1ab1309040c1e0106d47616facaf55aec8" kindref="member">McBase</ref>;</highlight></codeline>
-<codeline lineno="28" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a88185164062a6c0b2a2d24bdde71ee6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Objective::Graph<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a88185164062a6c0b2a2d24bdde71ee6c" kindref="member">Graph</ref>;</highlight></codeline>
+<codeline lineno="25" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a2b620db205e661bd3dedede448cb8ca6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a2b620db205e661bd3dedede448cb8ca6" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1af4e0e98d9d903d41f506563262ef8fbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">MincutVisitorBase&lt;OBJECTIVE&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1af4e0e98d9d903d41f506563262ef8fbe" kindref="member">VisitorBaseType</ref>;</highlight></codeline>
+<codeline lineno="27" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1affe563abecb7aced8bf1b0a273bf61b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" kindref="compound">MincutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1affe563abecb7aced8bf1b0a273bf61b1" kindref="member">McBase</ref>;</highlight></codeline>
+<codeline lineno="28" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a0538023e7fea2fb064c0526687a923fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a0538023e7fea2fb064c0526687a923fa" kindref="member">GraphType</ref>;</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a7dc3479e0472035557a7a27fb60dba02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a7dc3479e0472035557a7a27fb60dba02" kindref="member">begin</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
+<codeline lineno="32" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a92bcd3baab1b60f3c50e9e8723b0b562" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a92bcd3baab1b60f3c50e9e8723b0b562" kindref="member">begin</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PYBIND11_OVERLOAD_PURE(</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorBaseType,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Parent<sp/>class<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a7dc3479e0472035557a7a27fb60dba02" kindref="member">begin</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a92bcd3baab1b60f3c50e9e8723b0b562" kindref="member">begin</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mcBase<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Argument(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a2c941b20434baf6eb007aca7fb755240" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a2c941b20434baf6eb007aca7fb755240" kindref="member">visit</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
+<codeline lineno="41" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a40a323a9b5748e162043d516954e940c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a40a323a9b5748e162043d516954e940c" kindref="member">visit</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PYBIND11_OVERLOAD_PURE(</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorBaseType,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Parent<sp/>class<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a2c941b20434baf6eb007aca7fb755240" kindref="member">visit</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a40a323a9b5748e162043d516954e940c" kindref="member">visit</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mcBase<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Argument(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a1e146652a2ed11b0076bcc938d6ac5b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a1e146652a2ed11b0076bcc938d6ac5b7" kindref="member">end</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
+<codeline lineno="50" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1abf805fce00cd02f6721ee7825e2510a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1abf805fce00cd02f6721ee7825e2510a9" kindref="member">end</ref>(McBase<sp/>*<sp/>mcBase)<sp/>{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PYBIND11_OVERLOAD_PURE(</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorBaseType,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Parent<sp/>class<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a1e146652a2ed11b0076bcc938d6ac5b7" kindref="member">end</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1abf805fce00cd02f6721ee7825e2510a9" kindref="member">end</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mcBase<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Argument(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1ac8911aa341b2e5d7920ff7a86de21f35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1ac8911aa341b2e5d7920ff7a86de21f35" kindref="member">addLogNames</ref>(std::initializer_list&lt;std::string&gt;<sp/>logNames)<sp/>{</highlight></codeline>
+<codeline lineno="59" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a99c335cf50430f381e66e826f6805e5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a99c335cf50430f381e66e826f6805e5b" kindref="member">addLogNames</ref>(std::initializer_list&lt;std::string&gt;<sp/>logNames)<sp/>{</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PYBIND11_OVERLOAD(</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorBaseType,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Parent<sp/>class<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1ac8911aa341b2e5d7920ff7a86de21f35" kindref="member">addLogNames</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a99c335cf50430f381e66e826f6805e5b" kindref="member">addLogNames</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logNames<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Argument(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a08ad6e45f4bf5f0129a5943f35eafe2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a08ad6e45f4bf5f0129a5943f35eafe2d" kindref="member">setLogValue</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>logIndex,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logValue)<sp/>{</highlight></codeline>
+<codeline lineno="68" refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a3c2aa40745b7853704fee9a77625dc8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a3c2aa40745b7853704fee9a77625dc8d" kindref="member">setLogValue</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>logIndex,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logValue)<sp/>{</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PYBIND11_OVERLOAD(</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VisitorBaseType,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Parent<sp/>class<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1mincut_1_1PyMincutVisitorBase_1a08ad6e45f4bf5f0129a5943f35eafe2d" kindref="member">setLogValue</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase_1a3c2aa40745b7853704fee9a77625dc8d" kindref="member">setLogValue</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logIndex,logValue<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Argument(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -216,10 +216,10 @@
 <codeline lineno="77"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>mincut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/py_mincut_visitor_base.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/py_mincut_visitor_base.hxx"/>
   </compounddef>
 </doxygen>

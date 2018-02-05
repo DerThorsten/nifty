@@ -1,10 +1,11 @@
-\hypertarget{lifted__graph__features_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.hxx File Reference}
-\label{lifted__graph__features_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.\+hxx}}
-{\ttfamily \#include $<$vector$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/agglo/agglomerative\+\_\+clustering.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/agglo/cluster\+\_\+policies/lifted\+\_\+graph\+\_\+edge\+\_\+weighted\+\_\+cluster\+\_\+policy.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/shortest\+\_\+path\+\_\+dijkstra.\+hxx\char`\"{}}\\*
-Include dependency graph for lifted\+\_\+graph\+\_\+features.\+hxx\+:\nopagebreak
+\hypertarget{lifted__graph__features_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.hxx File Reference}
+\label{lifted__graph__features_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/opt/lifted\+\_\+multicut/lifted\+\_\+graph\+\_\+features.\+hxx}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/agglo/agglomerative\+\_\+clustering.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/agglo/cluster\+\_\+policies/lifted\+\_\+graph\+\_\+edge\+\_\+weighted\+\_\+cluster\+\_\+policy.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/shortest\+\_\+path\+\_\+dijkstra.\+hxx\char`\"{}}\newline
+Include dependency graph for lifted\+\_\+graph\+\_\+features.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,14 +19,14 @@ Include dependency graph for lifted\+\_\+graph\+\_\+features.\+hxx\+:\nopagebrea
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+ \hyperlink{namespacenifty_1_1graph_1_1opt}{nifty\+::graph\+::opt}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut}{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut}
+ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E , class E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+R\+S , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+E\+S , class N\+O\+D\+E\+\_\+\+S\+I\+Z\+E\+S , class O\+U\+T $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_a1b3c26702144eea575aeec046471c4df}{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::lifted\+Ucm\+Features} (const L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E \&objective, const E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+R\+S \&edge\+Indicators, const E\+D\+G\+E\+\_\+\+S\+I\+Z\+E\+S \&edge\+Sizes, const N\+O\+D\+E\+\_\+\+S\+I\+Z\+E\+S \&node\+Sizes, std\+::vector$<$ double $>$ size\+Regularizers, O\+U\+T \&out)
+{\footnotesize template$<$class L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+VE , class E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+RS , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES , class N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES , class O\+UT $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut_a65f5a56b03ea304933a314eae9078f0d}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::lifted\+Ucm\+Features} (const L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+VE \&objective, const E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+RS \&edge\+Indicators, const E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES \&edge\+Sizes, const N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES \&node\+Sizes, std\+::vector$<$ double $>$ size\+Regularizers, O\+UT \&out)
 \item 
-{\footnotesize template$<$class L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E , class E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+R\+S , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+E\+S , class N\+O\+D\+E\+\_\+\+S\+I\+Z\+E\+S , class O\+U\+T $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut_aa93e330f76d91d2c5ddeeb9d972d809d}{nifty\+::graph\+::optimization\+::lifted\+\_\+multicut\+::lifted\+Shorted\+Path\+Features} (const L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+V\+E \&objective, const E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+R\+S \&edge\+Indicators, std\+::vector$<$ double $>$ offsets, O\+U\+T \&out, const int n\+Threads=-\/1)
+{\footnotesize template$<$class L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+VE , class E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+RS , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES , class N\+O\+D\+E\+\_\+\+S\+I\+Z\+ES , class O\+UT $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut_aa59f63a687c2d9216d3abd0d9926e06c}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::lifted\+Shorted\+Path\+Features} (const L\+I\+F\+T\+E\+D\+\_\+\+M\+U\+L\+T\+I\+C\+U\+T\+\_\+\+O\+B\+J\+E\+C\+T\+I\+VE \&objective, const E\+D\+G\+E\+\_\+\+I\+N\+D\+I\+C\+A\+T\+O\+RS \&edge\+Indicators, std\+::vector$<$ double $>$ offsets, O\+UT \&out, const int n\+Threads=-\/1)
 \end{DoxyCompactItemize}

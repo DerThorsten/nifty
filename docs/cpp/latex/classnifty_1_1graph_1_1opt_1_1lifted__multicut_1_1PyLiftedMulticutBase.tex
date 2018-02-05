@@ -1,0 +1,158 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:lifted\+\_\+multicut\+:\+:Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$py\+\_\+lifted\+\_\+multicut\+\_\+base.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:opt\+:\+:lifted\+\_\+multicut\+:\+:Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:opt\+:\+:lifted\+\_\+multicut\+:\+:Py\+Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type}
+\item 
+typedef \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut_a3350124f8869505fecf39d697b9b2718}{Lifted\+Multicut\+Visitor\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}{Visitor\+Base\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase}{Lifted\+Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aac831c9dae03c2f6e60a14d927a14627}{Mc\+Base}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a3b06c0de042d21b98ad3503fa7a6b000}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ uint8\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5e4bcacb959f6be14e4544b8ae228deb}{Edge\+Labels}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_af964f40577302eda71f68ba080d4e0f0}{optimize} (\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type} \&node\+Labels, \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}{Visitor\+Base\+Type} $\ast$visitor)
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aca1f542bc5ea97e60398b90db0630626}{current\+Best\+Node\+Labels} ()
+\item 
+double \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a6d178e143ed30594ac6253e10da4e117}{current\+Best\+Energy} ()
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5b0b0d349671f7545de66b340d1ca6e2}{objective} () const
+\item 
+std\+::string \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aa9754f9f8128f36e7b5a76c6c6047036}{name} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5e4bcacb959f6be14e4544b8ae228deb}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5e4bcacb959f6be14e4544b8ae228deb}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Edge\+Labels@{Edge\+Labels}}
+\index{Edge\+Labels@{Edge\+Labels}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Edge\+Labels}{EdgeLabels}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$uint8\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5e4bcacb959f6be14e4544b8ae228deb}{Edge\+Labels}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a3b06c0de042d21b98ad3503fa7a6b000}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a3b06c0de042d21b98ad3503fa7a6b000}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a3b06c0de042d21b98ad3503fa7a6b000}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aac831c9dae03c2f6e60a14d927a14627}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aac831c9dae03c2f6e60a14d927a14627}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Mc\+Base@{Mc\+Base}}
+\index{Mc\+Base@{Mc\+Base}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Mc\+Base}{McBase}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase}{Lifted\+Multicut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aac831c9dae03c2f6e60a14d927a14627}{Mc\+Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Node\+Labels\+Type}{NodeLabelsType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!Visitor\+Base\+Type@{Visitor\+Base\+Type}}
+\index{Visitor\+Base\+Type@{Visitor\+Base\+Type}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{Visitor\+Base\+Type}{VisitorBaseType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{namespacenifty_1_1graph_1_1opt_1_1lifted__multicut_a3350124f8869505fecf39d697b9b2718}{Lifted\+Multicut\+Visitor\+Base}$<$O\+B\+J\+E\+C\+T\+I\+VE$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}{Visitor\+Base\+Type}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a6d178e143ed30594ac6253e10da4e117}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a6d178e143ed30594ac6253e10da4e117}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!current\+Best\+Energy@{current\+Best\+Energy}}
+\index{current\+Best\+Energy@{current\+Best\+Energy}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{current\+Best\+Energy()}{currentBestEnergy()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+double \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::current\+Best\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_a871de6574e6189a0c97c0b2121b07155}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aca1f542bc5ea97e60398b90db0630626}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aca1f542bc5ea97e60398b90db0630626}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}}
+\index{current\+Best\+Node\+Labels@{current\+Best\+Node\+Labels}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{current\+Best\+Node\+Labels()}{currentBestNodeLabels()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type}\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::current\+Best\+Node\+Labels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_a7bbe01ee201cf3157b251e54c5ff0619}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aa9754f9f8128f36e7b5a76c6c6047036}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_aa9754f9f8128f36e7b5a76c6c6047036}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+std\+::string \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_af638b9a804cfec3e35fe87c77e942d30}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5b0b0d349671f7545de66b340d1ca6e2}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a5b0b0d349671f7545de66b340d1ca6e2}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!objective@{objective}}
+\index{objective@{objective}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{objective()}{objective()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_a2e2f37a21bb3b5e986e130287bcdeede}{Objective\+Type}\& \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::objective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_a55e9eb645c07d6e0782ebfb990ab3c84}{nifty\+::graph\+::opt\+::common\+::\+Solver\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, Lifted\+Multicut\+Base$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$ $>$}.
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_af964f40577302eda71f68ba080d4e0f0}\label{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_af964f40577302eda71f68ba080d4e0f0}} 
+\index{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}!optimize@{optimize}}
+\index{optimize@{optimize}!nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base@{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase}{nifty\+::graph\+::opt\+::lifted\+\_\+multicut\+::\+Py\+Lifted\+Multicut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::optimize (\begin{DoxyParamCaption}\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_afeaa6139205af7449872174c68de2b57}{Node\+Labels\+Type} \&}]{node\+Labels,  }\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutBase_ac5e5eff52536f20200ad9004bea80998}{Visitor\+Base\+Type} $\ast$}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted\+\_\+multicut/\hyperlink{py__lifted__multicut__base_8hxx}{py\+\_\+lifted\+\_\+multicut\+\_\+base.\+hxx}\end{DoxyCompactItemize}

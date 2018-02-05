@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="threadpool_8hxx" kind="file" language="C++">
     <compoundname>threadpool.hxx</compoundname>
     <includes local="no">functional</includes>
@@ -16,11 +16,11 @@
     <includes local="no">boost/iterator/counting_iterator.hpp</includes>
     <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
     <includedby refid="fastfilters__wrapper_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx</includedby>
-    <includedby refid="cc__fusion__move__based__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</includedby>
-    <includedby refid="lifted__multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</includedby>
-    <includedby refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</includedby>
-    <includedby refid="multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</includedby>
-    <includedby refid="perturb__and__map_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</includedby>
+    <includedby refid="cc__fusion__move__based__impl_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</includedby>
+    <includedby refid="lifted__multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</includedby>
+    <includedby refid="graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</includedby>
+    <includedby refid="multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move_based.hxx</includedby>
+    <includedby refid="perturb__and__map_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/perturb_and_map.hxx</includedby>
     <includedby refid="compute__grid__rag_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</includedby>
     <includedby refid="compute__grid__rag__hdf5_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</includedby>
     <includedby refid="grid__rag_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</includedby>
@@ -31,487 +31,525 @@
     <includedby refid="for__each__coordinate_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/for_each_coordinate.hxx</includedby>
     <includedby refid="make__dense_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/tools/make_dense.hxx</includedby>
     <incdepgraph>
-      <node id="11667">
+      <node id="6255">
         <label>atomic</label>
       </node>
-      <node id="11665">
+      <node id="6253">
         <label>functional</label>
       </node>
-      <node id="11671">
+      <node id="6259">
         <label>queue</label>
       </node>
-      <node id="11680">
+      <node id="6268">
         <label>limits</label>
       </node>
-      <node id="11678">
+      <node id="6266">
         <label>cstdint</label>
       </node>
-      <node id="11674">
+      <node id="6262">
         <label>cmath</label>
       </node>
-      <node id="11675">
+      <node id="6263">
         <label>boost/iterator/transform_iterator.hpp</label>
       </node>
-      <node id="11673">
+      <node id="6261">
         <label>stdexcept</label>
       </node>
-      <node id="11676">
+      <node id="6264">
         <label>boost/iterator/counting_iterator.hpp</label>
       </node>
-      <node id="11672">
+      <node id="6260">
         <label>condition_variable</label>
       </node>
-      <node id="11669">
+      <node id="6257">
         <label>future</label>
       </node>
-      <node id="11668">
+      <node id="6256">
         <label>vector</label>
       </node>
-      <node id="11679">
+      <node id="6267">
         <label>sstream</label>
       </node>
-      <node id="11677">
+      <node id="6265">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="11678" relation="include">
+        <childnode refid="6266" relation="include">
         </childnode>
-        <childnode refid="11673" relation="include">
+        <childnode refid="6261" relation="include">
         </childnode>
-        <childnode refid="11679" relation="include">
+        <childnode refid="6267" relation="include">
         </childnode>
-        <childnode refid="11668" relation="include">
+        <childnode refid="6256" relation="include">
         </childnode>
-        <childnode refid="11680" relation="include">
+        <childnode refid="6268" relation="include">
         </childnode>
-        <childnode refid="11674" relation="include">
+        <childnode refid="6262" relation="include">
         </childnode>
       </node>
-      <node id="11664">
+      <node id="6252">
         <label>/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx</label>
-        <link refid="threadpool.hxx"/>
-        <childnode refid="11665" relation="include">
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="6253" relation="include">
         </childnode>
-        <childnode refid="11666" relation="include">
+        <childnode refid="6254" relation="include">
         </childnode>
-        <childnode refid="11667" relation="include">
+        <childnode refid="6255" relation="include">
         </childnode>
-        <childnode refid="11668" relation="include">
+        <childnode refid="6256" relation="include">
         </childnode>
-        <childnode refid="11669" relation="include">
+        <childnode refid="6257" relation="include">
         </childnode>
-        <childnode refid="11670" relation="include">
+        <childnode refid="6258" relation="include">
         </childnode>
-        <childnode refid="11671" relation="include">
+        <childnode refid="6259" relation="include">
         </childnode>
-        <childnode refid="11672" relation="include">
+        <childnode refid="6260" relation="include">
         </childnode>
-        <childnode refid="11673" relation="include">
+        <childnode refid="6261" relation="include">
         </childnode>
-        <childnode refid="11674" relation="include">
+        <childnode refid="6262" relation="include">
         </childnode>
-        <childnode refid="11675" relation="include">
+        <childnode refid="6263" relation="include">
         </childnode>
-        <childnode refid="11676" relation="include">
+        <childnode refid="6264" relation="include">
         </childnode>
-        <childnode refid="11677" relation="include">
+        <childnode refid="6265" relation="include">
         </childnode>
       </node>
-      <node id="11670">
+      <node id="6258">
         <label>mutex</label>
       </node>
-      <node id="11666">
+      <node id="6254">
         <label>thread</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11698">
+      <node id="6302">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_long_range_grid_graph.hxx</label>
+        <link refid="python_2graph_2undirected__long__range__grid__graph_8hxx"/>
+      </node>
+      <node id="6277">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move.hxx</label>
+        <link refid="lifted__multicut_2fusion__move_8hxx"/>
+        <childnode refid="6274" relation="include">
+        </childnode>
+      </node>
+      <node id="6289">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_hdf5.hxx</label>
         <link refid="grid__rag__hdf5_8hxx"/>
       </node>
-      <node id="11693">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/perturb_and_map.hxx</label>
-        <link refid="perturb__and__map_8hxx"/>
+      <node id="6275">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="6276" relation="include">
+        </childnode>
+        <childnode refid="6277" relation="include">
+        </childnode>
+        <childnode refid="6278" relation="include">
+        </childnode>
+        <childnode refid="6279" relation="include">
+        </childnode>
+        <childnode refid="6280" relation="include">
+        </childnode>
+        <childnode refid="6281" relation="include">
+        </childnode>
       </node>
-      <node id="11685">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
-        <link refid="cc__fusion__move__based_8hxx"/>
+      <node id="6298">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.hxx</label>
+        <link refid="cgc_8hxx"/>
       </node>
-      <node id="11723">
+      <node id="6283">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move_based.hxx</label>
+        <link refid="multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="6316">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
         <link refid="geometric__features_8hxx"/>
       </node>
-      <node id="11699">
+      <node id="6290">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d.hxx</label>
         <link refid="grid__rag__stacked__2d_8hxx"/>
-        <childnode refid="11700" relation="include">
+        <childnode refid="6291" relation="include">
         </childnode>
       </node>
-      <node id="11725">
+      <node id="6318">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features.hxx</label>
         <link refid="features_8hxx"/>
       </node>
-      <node id="11691">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/export_lifted_multicut_solver.hxx</label>
-        <link refid="export__lifted__multicut__solver_8hxx"/>
-      </node>
-      <node id="11688">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move.hxx</label>
-        <link refid="lifted__multicut_2fusion__move_8hxx"/>
-        <childnode refid="11686" relation="include">
-        </childnode>
-      </node>
-      <node id="11719">
+      <node id="6312">
         <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_coordinate.hxx</label>
         <link refid="for__each__coordinate_8hxx"/>
-        <childnode refid="11720" relation="include">
+        <childnode refid="6313" relation="include">
         </childnode>
-        <childnode refid="11721" relation="include">
+        <childnode refid="6314" relation="include">
         </childnode>
-        <childnode refid="11728" relation="include">
+        <childnode refid="6321" relation="include">
         </childnode>
-        <childnode refid="11729" relation="include">
+        <childnode refid="6322" relation="include">
         </childnode>
-        <childnode refid="11694" relation="include">
+        <childnode refid="6285" relation="include">
         </childnode>
-        <childnode refid="11701" relation="include">
+        <childnode refid="6292" relation="include">
         </childnode>
-        <childnode refid="11697" relation="include">
+        <childnode refid="6288" relation="include">
         </childnode>
-        <childnode refid="11730" relation="include">
+        <childnode refid="6323" relation="include">
         </childnode>
-        <childnode refid="11731" relation="include">
+        <childnode refid="6301" relation="include">
         </childnode>
-        <childnode refid="11732" relation="include">
+        <childnode refid="6324" relation="include">
         </childnode>
-        <childnode refid="11733" relation="include">
+        <childnode refid="6325" relation="include">
         </childnode>
-        <childnode refid="11734" relation="include">
+        <childnode refid="6326" relation="include">
         </childnode>
-      </node>
-      <node id="11707">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx</label>
-        <link refid="cgc_8hxx"/>
-      </node>
-      <node id="11683">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_based_impl.hxx</label>
-        <link refid="cc__fusion__move__based__impl_8hxx"/>
-        <childnode refid="11684" relation="include">
-        </childnode>
-        <childnode refid="11685" relation="include">
+        <childnode refid="6327" relation="include">
         </childnode>
       </node>
-      <node id="11708">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move.hxx</label>
-        <link refid="multicut_2fusion__move_8hxx"/>
-        <childnode refid="11685" relation="include">
-        </childnode>
-        <childnode refid="11692" relation="include">
-        </childnode>
-      </node>
-      <node id="11731">
+      <node id="6324">
         <label>/home/tbeier/src/nifty/include/nifty/ground_truth/overlap.hxx</label>
         <link refid="overlap_8hxx"/>
       </node>
-      <node id="11714">
+      <node id="6307">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels.hxx</label>
         <link refid="grid__rag__labels_8hxx"/>
-        <childnode refid="11694" relation="include">
+        <childnode refid="6285" relation="include">
         </childnode>
-        <childnode refid="11695" relation="include">
+        <childnode refid="6286" relation="include">
         </childnode>
       </node>
-      <node id="11720">
+      <node id="6313">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/filled_topological_grid.hxx</label>
         <link refid="filled__topological__grid_8hxx"/>
       </node>
-      <node id="11717">
+      <node id="6310">
         <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5_array.hxx</label>
         <link refid="hdf5__array_8hxx"/>
-        <childnode refid="11715" relation="include">
+        <childnode refid="6308" relation="include">
         </childnode>
       </node>
-      <node id="11705">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc_fusion_move_impl.hxx</label>
-        <link refid="cc__fusion__move__impl_8hxx"/>
+      <node id="6297">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx</label>
+        <link refid="mincut__cc__fusion__move_8hxx"/>
+        <childnode refid="6272" relation="include">
+        </childnode>
       </node>
-      <node id="11692">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/fusion_move_based.hxx</label>
-        <link refid="multicut_2fusion__move__based_8hxx"/>
-      </node>
-      <node id="11732">
+      <node id="6325">
         <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_edges.hxx</label>
         <link refid="seg__to__edges_8hxx"/>
       </node>
-      <node id="11689">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_mp.hxx</label>
-        <link refid="lifted__multicut__mp_8hxx"/>
-      </node>
-      <node id="11724">
+      <node id="6317">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
         <link refid="topological__features_8hxx"/>
       </node>
-      <node id="11700">
+      <node id="6291">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx</label>
         <link refid="grid__rag__stacked__2d__hdf5_8hxx"/>
       </node>
-      <node id="11684">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
-        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      <node id="6300">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_decomposer.hxx</label>
+        <link refid="multicut__decomposer_8hxx"/>
       </node>
-      <node id="11729">
+      <node id="6322">
         <label>/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</label>
         <link refid="gaussian__curvature_8hxx"/>
-        <childnode refid="11723" relation="include">
+        <childnode refid="6316" relation="include">
         </childnode>
-        <childnode refid="11724" relation="include">
+        <childnode refid="6317" relation="include">
         </childnode>
       </node>
-      <node id="11713">
+      <node id="6306">
         <label>/home/tbeier/src/nifty/include/nifty/tools/block_access.hxx</label>
         <link refid="block__access_8hxx"/>
-        <childnode refid="11714" relation="include">
+        <childnode refid="6307" relation="include">
         </childnode>
-        <childnode refid="11715" relation="include">
+        <childnode refid="6308" relation="include">
         </childnode>
-        <childnode refid="11716" relation="include">
+        <childnode refid="6309" relation="include">
         </childnode>
-        <childnode refid="11717" relation="include">
+        <childnode refid="6310" relation="include">
         </childnode>
-        <childnode refid="11718" relation="include">
+        <childnode refid="6311" relation="include">
         </childnode>
       </node>
-      <node id="11697">
+      <node id="6288">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_features.hxx</label>
         <link refid="grid__rag__features_8hxx"/>
       </node>
-      <node id="11710">
+      <node id="6303">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_list_graph.hxx</label>
         <link refid="python_2graph_2undirected__list__graph_8hxx"/>
-        <childnode refid="11711" relation="include">
+        <childnode refid="6304" relation="include">
         </childnode>
-        <childnode refid="11712" relation="include">
+        <childnode refid="6305" relation="include">
         </childnode>
       </node>
-      <node id="11709">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_decomposer.hxx</label>
-        <link refid="multicut__decomposer_8hxx"/>
+      <node id="6273">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
       </node>
-      <node id="11711">
+      <node id="6304">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/agglo/export_agglomerative_clustering.hxx</label>
         <link refid="export__agglomerative__clustering_8hxx"/>
       </node>
-      <node id="11715">
+      <node id="6308">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_labels_hdf5.hxx</label>
         <link refid="grid__rag__labels__hdf5_8hxx"/>
-        <childnode refid="11701" relation="include">
+        <childnode refid="6292" relation="include">
         </childnode>
-        <childnode refid="11698" relation="include">
+        <childnode refid="6289" relation="include">
         </childnode>
-        <childnode refid="11700" relation="include">
+        <childnode refid="6291" relation="include">
         </childnode>
       </node>
-      <node id="11694">
+      <node id="6281">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
+        <childnode refid="6282" relation="include">
+        </childnode>
+      </node>
+      <node id="6285">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag.hxx</label>
         <link refid="compute__grid__rag_8hxx"/>
-        <childnode refid="11695" relation="include">
+        <childnode refid="6286" relation="include">
         </childnode>
       </node>
-      <node id="11733">
+      <node id="6326">
         <label>/home/tbeier/src/nifty/include/nifty/ground_truth/seg_to_lifted_edges.hxx</label>
         <link refid="seg__to__lifted__edges_8hxx"/>
       </node>
-      <node id="11730">
+      <node id="6323">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/project_to_pixels.hxx</label>
         <link refid="project__to__pixels_8hxx"/>
       </node>
-      <node id="11696">
+      <node id="6287">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag_accumulate.hxx</label>
         <link refid="grid__rag__accumulate_8hxx"/>
       </node>
-      <node id="11703">
+      <node id="6294">
         <label>/home/tbeier/src/nifty/include/nifty/python/graph/undirected_grid_graph.hxx</label>
         <link refid="python_2graph_2undirected__grid__graph_8hxx"/>
+        <childnode refid="6279" relation="include">
+        </childnode>
       </node>
-      <node id="11722">
+      <node id="6279">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx</label>
+        <link refid="pixel__wise_8hxx"/>
+      </node>
+      <node id="6315">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/bounds.hxx</label>
         <link refid="bounds_8hxx"/>
-        <childnode refid="11723" relation="include">
+        <childnode refid="6316" relation="include">
         </childnode>
-        <childnode refid="11724" relation="include">
+        <childnode refid="6317" relation="include">
         </childnode>
-        <childnode refid="11725" relation="include">
+        <childnode refid="6318" relation="include">
         </childnode>
       </node>
-      <node id="11726">
+      <node id="6319">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/cgp.hxx</label>
         <link refid="cgp_8hxx"/>
       </node>
-      <node id="11686">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
-        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
-      </node>
-      <node id="11682">
+      <node id="6270">
         <label>/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx</label>
         <link refid="fastfilters__wrapper_8hxx"/>
       </node>
-      <node id="11706">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move.hxx</label>
-        <link refid="mincut__cc__fusion__move_8hxx"/>
-        <childnode refid="11684" relation="include">
-        </childnode>
+      <node id="6278">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_mp.hxx</label>
+        <link refid="lifted__multicut__mp_8hxx"/>
       </node>
-      <node id="11695">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
-        <link refid="grid__rag_8hxx"/>
-        <childnode refid="11696" relation="include">
-        </childnode>
-        <childnode refid="11697" relation="include">
-        </childnode>
-        <childnode refid="11698" relation="include">
-        </childnode>
-        <childnode refid="11699" relation="include">
-        </childnode>
-      </node>
-      <node id="11712">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/common/export_solver_factory.hxx</label>
+      <node id="6305">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/common/export_solver_factory.hxx</label>
         <link refid="export__solver__factory_8hxx"/>
       </node>
-      <node id="11702">
+      <node id="6286">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/rag/grid_rag.hxx</label>
+        <link refid="grid__rag_8hxx"/>
+        <childnode refid="6287" relation="include">
+        </childnode>
+        <childnode refid="6288" relation="include">
+        </childnode>
+        <childnode refid="6289" relation="include">
+        </childnode>
+        <childnode refid="6290" relation="include">
+        </childnode>
+      </node>
+      <node id="6296">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_impl.hxx</label>
+        <link refid="cc__fusion__move__impl_8hxx"/>
+      </node>
+      <node id="6293">
         <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_grid_graph.hxx</label>
         <link refid="graph_2undirected__grid__graph_8hxx"/>
-        <childnode refid="11703" relation="include">
+        <childnode refid="6294" relation="include">
         </childnode>
       </node>
-      <node id="11687">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
-        <link refid="graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
-        <childnode refid="11688" relation="include">
-        </childnode>
-        <childnode refid="11689" relation="include">
-        </childnode>
-        <childnode refid="11690" relation="include">
-        </childnode>
-      </node>
-      <node id="11681">
+      <node id="6269">
         <label>/home/tbeier/src/nifty/include/nifty/parallel/threadpool.hxx</label>
-        <link refid="threadpool.hxx"/>
-        <childnode refid="11682" relation="include">
+        <link refid="threadpool_8hxx"/>
+        <childnode refid="6270" relation="include">
         </childnode>
-        <childnode refid="11683" relation="include">
+        <childnode refid="6271" relation="include">
         </childnode>
-        <childnode refid="11686" relation="include">
+        <childnode refid="6274" relation="include">
         </childnode>
-        <childnode refid="11687" relation="include">
+        <childnode refid="6275" relation="include">
         </childnode>
-        <childnode refid="11692" relation="include">
+        <childnode refid="6283" relation="include">
         </childnode>
-        <childnode refid="11693" relation="include">
+        <childnode refid="6284" relation="include">
         </childnode>
-        <childnode refid="11694" relation="include">
+        <childnode refid="6285" relation="include">
         </childnode>
-        <childnode refid="11701" relation="include">
+        <childnode refid="6292" relation="include">
         </childnode>
-        <childnode refid="11695" relation="include">
+        <childnode refid="6286" relation="include">
         </childnode>
-        <childnode refid="11696" relation="include">
+        <childnode refid="6287" relation="include">
         </childnode>
-        <childnode refid="11702" relation="include">
+        <childnode refid="6293" relation="include">
         </childnode>
-        <childnode refid="11704" relation="include">
+        <childnode refid="6295" relation="include">
         </childnode>
-        <childnode refid="11713" relation="include">
+        <childnode refid="6306" relation="include">
         </childnode>
-        <childnode refid="11719" relation="include">
+        <childnode refid="6312" relation="include">
         </childnode>
-        <childnode refid="11735" relation="include">
+        <childnode refid="6328" relation="include">
         </childnode>
       </node>
-      <node id="11721">
+      <node id="6276">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx</label>
+        <link refid="lifted__multicut_2chained__solvers_8hxx"/>
+      </node>
+      <node id="6314">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/topological_grid.hxx</label>
         <link refid="topological__grid_8hxx"/>
-        <childnode refid="11722" relation="include">
+        <childnode refid="6315" relation="include">
         </childnode>
-        <childnode refid="11726" relation="include">
+        <childnode refid="6319" relation="include">
         </childnode>
-        <childnode refid="11720" relation="include">
+        <childnode refid="6313" relation="include">
         </childnode>
-        <childnode refid="11727" relation="include">
+        <childnode refid="6320" relation="include">
         </childnode>
       </node>
-      <node id="11734">
+      <node id="6327">
         <label>/home/tbeier/src/nifty/include/nifty/tools/for_each_block.hxx</label>
         <link refid="for__each__block_8hxx"/>
-        <childnode refid="11701" relation="include">
+        <childnode refid="6292" relation="include">
         </childnode>
-        <childnode refid="11696" relation="include">
+        <childnode refid="6287" relation="include">
         </childnode>
       </node>
-      <node id="11704">
+      <node id="6280">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx</label>
+        <link refid="pixel__wise__q_8hxx"/>
+      </node>
+      <node id="6295">
         <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx</label>
         <link refid="graph_2undirected__list__graph_8hxx"/>
-        <childnode refid="11705" relation="include">
+        <childnode refid="6296" relation="include">
         </childnode>
-        <childnode refid="11688" relation="include">
+        <childnode refid="6277" relation="include">
         </childnode>
-        <childnode refid="11687" relation="include">
+        <childnode refid="6275" relation="include">
         </childnode>
-        <childnode refid="11706" relation="include">
+        <childnode refid="6279" relation="include">
         </childnode>
-        <childnode refid="11707" relation="include">
+        <childnode refid="6280" relation="include">
         </childnode>
-        <childnode refid="11708" relation="include">
+        <childnode refid="6297" relation="include">
         </childnode>
-        <childnode refid="11709" relation="include">
+        <childnode refid="6298" relation="include">
         </childnode>
-        <childnode refid="11694" relation="include">
+        <childnode refid="6299" relation="include">
         </childnode>
-        <childnode refid="11701" relation="include">
+        <childnode refid="6300" relation="include">
         </childnode>
-        <childnode refid="11695" relation="include">
+        <childnode refid="6285" relation="include">
         </childnode>
-        <childnode refid="11710" relation="include">
+        <childnode refid="6292" relation="include">
+        </childnode>
+        <childnode refid="6286" relation="include">
+        </childnode>
+        <childnode refid="6301" relation="include">
+        </childnode>
+        <childnode refid="6303" relation="include">
         </childnode>
       </node>
-      <node id="11727">
+      <node id="6320">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/geometry.hxx</label>
         <link refid="geometry_8hxx"/>
-        <childnode refid="11723" relation="include">
+        <childnode refid="6316" relation="include">
         </childnode>
-        <childnode refid="11724" relation="include">
+        <childnode refid="6317" relation="include">
         </childnode>
       </node>
-      <node id="11701">
+      <node id="6271">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc_fusion_move_based_impl.hxx</label>
+        <link refid="cc__fusion__move__based__impl_8hxx"/>
+        <childnode refid="6272" relation="include">
+        </childnode>
+        <childnode refid="6273" relation="include">
+        </childnode>
+      </node>
+      <node id="6292">
         <label>/home/tbeier/src/nifty/include/nifty/graph/rag/detail_rag/compute_grid_rag_hdf5.hxx</label>
         <link refid="compute__grid__rag__hdf5_8hxx"/>
-        <childnode refid="11698" relation="include">
+        <childnode refid="6289" relation="include">
         </childnode>
-        <childnode refid="11700" relation="include">
+        <childnode refid="6291" relation="include">
         </childnode>
       </node>
-      <node id="11718">
+      <node id="6311">
         <label>/home/tbeier/src/nifty/include/nifty/python/converter.hxx</label>
         <link refid="converter_8hxx"/>
-        <childnode refid="11711" relation="include">
+        <childnode refid="6304" relation="include">
         </childnode>
-        <childnode refid="11712" relation="include">
+        <childnode refid="6305" relation="include">
         </childnode>
       </node>
-      <node id="11728">
+      <node id="6274">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</label>
+        <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
+      </node>
+      <node id="6301">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx</label>
+        <link refid="graph_2undirected__long__range__grid__graph_8hxx"/>
+        <childnode refid="6302" relation="include">
+        </childnode>
+      </node>
+      <node id="6321">
         <label>/home/tbeier/src/nifty/include/nifty/filters/affinities.hxx</label>
         <link refid="affinities_8hxx"/>
       </node>
-      <node id="11716">
+      <node id="6284">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/perturb_and_map.hxx</label>
+        <link refid="perturb__and__map_8hxx"/>
+      </node>
+      <node id="6282">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/export_lifted_multicut_solver.hxx</label>
+        <link refid="export__lifted__multicut__solver_8hxx"/>
+      </node>
+      <node id="6272">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="6309">
         <label>/home/tbeier/src/nifty/include/nifty/hdf5/hdf5.hxx</label>
         <link refid="hdf5_8hxx"/>
       </node>
-      <node id="11735">
+      <node id="6328">
         <label>/home/tbeier/src/nifty/include/nifty/tools/make_dense.hxx</label>
         <link refid="make__dense_8hxx"/>
       </node>
-      <node id="11690">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/lifted_multicut/lifted_multicut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2lifted__multicut_2lifted__multicut__objective_8hxx"/>
-        <childnode refid="11691" relation="include">
+      <node id="6299">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/fusion_move.hxx</label>
+        <link refid="multicut_2fusion__move_8hxx"/>
+        <childnode refid="6273" relation="include">
+        </childnode>
+        <childnode refid="6283" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -559,12 +597,12 @@
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>numThreads_(actualNumThreads(nT))</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55" refid="classnifty_1_1parallel_1_1ParallelOptions_1ab4f8893bc656a86116db578ea8e634ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1ab4f8893bc656a86116db578ea8e634ff" kindref="member">getNumThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="55" refid="classnifty_1_1parallel_1_1ParallelOptions_1a25312a5665cb4240e07a989bbf05cf7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a25312a5665cb4240e07a989bbf05cf7b" kindref="member">getNumThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="56"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>numThreads_;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a7dc7ea2f236660f51bb2e5497a5fefbf" kindref="member">getActualNumThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="64" refid="classnifty_1_1parallel_1_1ParallelOptions_1a0d905f623f4de9ce01361065c0042c50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a0d905f623f4de9ce01361065c0042c50" kindref="member">getActualNumThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="65"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::max(1,numThreads_);</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -617,16 +655,16 @@
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>busy(0),</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>processed(0)</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init(<ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref>().numThreads(n));</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init(<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1ae1b1ff787e99e1f4ea75a2d8cb7e3d43" kindref="member">ParallelOptions</ref>().<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a50e3d373c07fb36be7b3b39bf6886b9b" kindref="member">numThreads</ref>(n));</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga77c519ec32559623c64d61f532c570b8" kindref="member">~ThreadPool</ref>();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">ThreadPool</ref>();</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>std::future&lt;typename<sp/>std::result_of&lt;F(int)&gt;::type&gt;<sp/><sp/><ref refid="group__ParallelProcessing_1ga5ffeb64ca8f60c37ad2db97bf80b05af" kindref="member">enqueueReturning</ref>(F&amp;&amp;<sp/>f)<sp/>;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>std::future&lt;typename<sp/>std::result_of&lt;F(int)&gt;::type&gt;<sp/><sp/>enqueueReturning(F&amp;&amp;<sp/>f)<sp/>;</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"></highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>std::future&lt;void&gt;<sp/><ref refid="group__ParallelProcessing_1ga030f79847ecd6a609877dd5f997ac875" kindref="member">enqueue</ref>(F&amp;&amp;<sp/>f)<sp/>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>std::future&lt;void&gt;<sp/>enqueue(F&amp;&amp;<sp/>f)<sp/>;</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
 <codeline lineno="176" refid="classnifty_1_1parallel_1_1ThreadPool_1a72bcedd7dfdb99fe347ee9da0a80cabd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool_1a72bcedd7dfdb99fe347ee9da0a80cabd" kindref="member">waitFinished</ref>()</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -634,7 +672,7 @@
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>finish_condition.wait(lock,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tasks.empty()<sp/>&amp;&amp;<sp/>(busy<sp/>==<sp/>0);<sp/>});</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="185" refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" kindref="member">nThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="185" refid="classnifty_1_1parallel_1_1ThreadPool_1aa826f97a6941c9dc9d3b265240077875" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool_1aa826f97a6941c9dc9d3b265240077875" kindref="member">nThreads</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="186"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>workers.size();</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -658,9 +696,9 @@
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>std::atomic&lt;unsigned<sp/>int&gt;<sp/>busy,<sp/>processed;</highlight></codeline>
 <codeline lineno="207"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ThreadPool::init(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ParallelOptions<sp/>&amp;<sp/>options)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ThreadPool::init(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1parallel_1_1ParallelOptions" kindref="compound">ParallelOptions</ref><sp/>&amp;<sp/>options)</highlight></codeline>
 <codeline lineno="210"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>actualNThreads<sp/>=<sp/>options.getNumThreads();</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>actualNThreads<sp/>=<sp/>options.<ref refid="classnifty_1_1parallel_1_1ParallelOptions_1a25312a5665cb4240e07a989bbf05cf7b" kindref="member">getNumThreads</ref>();</highlight></codeline>
 <codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ti<sp/>=<sp/>0;<sp/>ti&lt;actualNThreads;<sp/>++ti)</highlight></codeline>
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>workers.emplace_back(</highlight></codeline>
@@ -795,7 +833,7 @@
 <codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ptrdiff_t<sp/>workload<sp/>=<sp/>std::distance(iter,<sp/>end);</highlight></codeline>
 <codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" kindref="member">NIFTY_CHECK</ref>(workload<sp/>==<sp/>nItems<sp/>||<sp/>nItems<sp/>==<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;parallel_foreach():<sp/>Mismatch<sp/>between<sp/>num<sp/>items<sp/>and<sp/>begin/end.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>workPerThread<sp/>=<sp/>float(workload)/pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" kindref="member">nThreads</ref>();</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>workPerThread<sp/>=<sp/>float(workload)/pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1aa826f97a6941c9dc9d3b265240077875" kindref="member">nThreads</ref>();</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::ptrdiff_t<sp/>chunkedWorkPerThread<sp/>=<sp/>std::max&lt;std::ptrdiff_t&gt;(int(workPerThread/3.0f<sp/>+<sp/>0.5f),<sp/>1);</highlight></codeline>
 <codeline lineno="348"><highlight class="normal"></highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::future&lt;void&gt;<sp/>&gt;<sp/>futures;</highlight></codeline>
@@ -836,7 +874,7 @@
 <codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nItems<sp/>=<sp/>std::distance(iter,<sp/>end);</highlight></codeline>
 <codeline lineno="385"><highlight class="normal"></highlight></codeline>
 <codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ptrdiff_t<sp/>workload<sp/>=<sp/>nItems;</highlight></codeline>
-<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>workPerThread<sp/>=<sp/>float(workload)/pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" kindref="member">nThreads</ref>();</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>workPerThread<sp/>=<sp/>float(workload)/pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1aa826f97a6941c9dc9d3b265240077875" kindref="member">nThreads</ref>();</highlight></codeline>
 <codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::ptrdiff_t<sp/>chunkedWorkPerThread<sp/>=<sp/>std::max&lt;std::ptrdiff_t&gt;(int(workPerThread/3.0f+0.5f),<sp/>1);</highlight></codeline>
 <codeline lineno="389"><highlight class="normal"></highlight></codeline>
 <codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::future&lt;void&gt;<sp/>&gt;<sp/>futures;</highlight></codeline>
@@ -877,7 +915,7 @@
 <codeline lineno="425"><highlight class="normal"></highlight></codeline>
 <codeline lineno="426"><highlight class="normal"></highlight><highlight class="comment">//<sp/>nItems<sp/>must<sp/>be<sp/>either<sp/>zero<sp/>or<sp/>std::distance(iter,<sp/>end).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="427"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ITER,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="428" refid="group__ParallelProcessing_1ga402d9e45f8edf065e6775e76a447f72e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga402d9e45f8edf065e6775e76a447f72e" kindref="member">parallel_foreach_impl</ref>(</highlight></codeline>
+<codeline lineno="428" refid="group__ParallelProcessing_1ga402d9e45f8edf065e6775e76a447f72e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga7604490d8cf7a5b53de4477c866c8b86" kindref="member">parallel_foreach_impl</ref>(</highlight></codeline>
 <codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">ThreadPool</ref><sp/>&amp;<sp/>pool,</highlight></codeline>
 <codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::ptrdiff_t<sp/>nItems,</highlight></codeline>
 <codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/>ITER<sp/>iter,</highlight></codeline>
@@ -925,16 +963,16 @@
 <codeline lineno="574"><highlight class="comment">//doxygen_overloaded_function(template<sp/>&lt;...&gt;<sp/>void<sp/>parallel_foreach)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="575"><highlight class="normal"></highlight></codeline>
 <codeline lineno="576"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ITER,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="577" refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(</highlight></codeline>
+<codeline lineno="577" refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(</highlight></codeline>
 <codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">ThreadPool</ref><sp/>&amp;<sp/>pool,</highlight></codeline>
 <codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/>ITER<sp/>begin,</highlight></codeline>
 <codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/>ITER<sp/>end,</highlight></codeline>
 <codeline lineno="581"><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f,</highlight></codeline>
 <codeline lineno="582"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::ptrdiff_t<sp/>nItems<sp/>=<sp/>0)</highlight></codeline>
 <codeline lineno="583"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1abebd5767549c0d0e07d0a8379df8dac0" kindref="member">nThreads</ref>()&gt;1)</highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pool.<ref refid="classnifty_1_1parallel_1_1ThreadPool_1aa826f97a6941c9dc9d3b265240077875" kindref="member">nThreads</ref>()&gt;1)</highlight></codeline>
 <codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga402d9e45f8edf065e6775e76a447f72e" kindref="member">parallel_foreach_impl</ref>(pool,nItems,<sp/>begin,<sp/>end,<sp/>f,</highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga7604490d8cf7a5b53de4477c866c8b86" kindref="member">parallel_foreach_impl</ref>(pool,nItems,<sp/>begin,<sp/>end,<sp/>f,</highlight></codeline>
 <codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::iterator_traits&lt;ITER&gt;::iterator_category());</highlight></codeline>
 <codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
@@ -944,7 +982,7 @@
 <codeline lineno="593"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="594"><highlight class="normal"></highlight></codeline>
 <codeline lineno="595"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>ITER,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="596" refid="group__ParallelProcessing_1gae081bc77f03a070b9fe0f97966949f58" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(</highlight></codeline>
+<codeline lineno="596" refid="group__ParallelProcessing_1gae081bc77f03a070b9fe0f97966949f58" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(</highlight></codeline>
 <codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>nThreads,</highlight></codeline>
 <codeline lineno="598"><highlight class="normal"><sp/><sp/><sp/><sp/>ITER<sp/>begin,</highlight></codeline>
 <codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/>ITER<sp/>end,</highlight></codeline>
@@ -953,11 +991,11 @@
 <codeline lineno="602"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="603"><highlight class="normal"></highlight></codeline>
 <codeline lineno="604"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">ThreadPool</ref><sp/>pool(nThreads);</highlight></codeline>
-<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(pool,<sp/>begin,<sp/>end,<sp/>f,<sp/>nItems);</highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(pool,<sp/>begin,<sp/>end,<sp/>f,<sp/>nItems);</highlight></codeline>
 <codeline lineno="606"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="607"><highlight class="normal"></highlight></codeline>
 <codeline lineno="608"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="609" refid="group__ParallelProcessing_1ga900cd2b90fda714e21082d5ba897f240" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(</highlight></codeline>
+<codeline lineno="609" refid="group__ParallelProcessing_1ga900cd2b90fda714e21082d5ba897f240" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(</highlight></codeline>
 <codeline lineno="610"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>nThreads,</highlight></codeline>
 <codeline lineno="611"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ptrdiff_t<sp/>nItems,</highlight></codeline>
 <codeline lineno="612"><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f)</highlight></codeline>
@@ -965,12 +1003,12 @@
 <codeline lineno="614"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>beginIter<sp/><sp/>=<sp/>boost::counting_iterator&lt;int64_t&gt;(0);</highlight></codeline>
 <codeline lineno="615"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>endIter<sp/><sp/>=<sp/>boost::counting_iterator&lt;int64_t&gt;(nItems);</highlight></codeline>
 <codeline lineno="616"><highlight class="normal"></highlight></codeline>
-<codeline lineno="617"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(nThreads,<sp/>beginIter,<sp/>endIter,<sp/>f,<sp/>nItems);</highlight></codeline>
+<codeline lineno="617"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(nThreads,<sp/>beginIter,<sp/>endIter,<sp/>f,<sp/>nItems);</highlight></codeline>
 <codeline lineno="618"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="619"><highlight class="normal"></highlight></codeline>
 <codeline lineno="620"><highlight class="normal"></highlight></codeline>
 <codeline lineno="621"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>F&gt;</highlight></codeline>
-<codeline lineno="622" refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(</highlight></codeline>
+<codeline lineno="622" refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(</highlight></codeline>
 <codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1parallel_1_1ThreadPool" kindref="compound">ThreadPool</ref><sp/>&amp;<sp/>threadpool,</highlight></codeline>
 <codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ptrdiff_t<sp/>nItems,</highlight></codeline>
 <codeline lineno="625"><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>&amp;&amp;<sp/>f)</highlight></codeline>
@@ -979,7 +1017,7 @@
 <codeline lineno="628"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>beginIter<sp/><sp/>=<sp/>boost::counting_iterator&lt;int64_t&gt;(0);</highlight></codeline>
 <codeline lineno="629"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>endIter<sp/><sp/>=<sp/>boost::counting_iterator&lt;int64_t&gt;(nItems);</highlight></codeline>
 <codeline lineno="630"><highlight class="normal"></highlight></codeline>
-<codeline lineno="631"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1gaf78ef995aaa44624da018033fd03beeb" kindref="member">parallel_foreach</ref>(threadpool,<sp/>beginIter,<sp/>endIter,<sp/>f,<sp/>nItems);</highlight></codeline>
+<codeline lineno="631"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__ParallelProcessing_1ga505ac3d12ecde87341bce7b6f1027c88" kindref="member">parallel_foreach</ref>(threadpool,<sp/>beginIter,<sp/>endIter,<sp/>f,<sp/>nItems);</highlight></codeline>
 <codeline lineno="632"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="633"><highlight class="normal"></highlight></codeline>
 <codeline lineno="635"><highlight class="normal"></highlight></codeline>

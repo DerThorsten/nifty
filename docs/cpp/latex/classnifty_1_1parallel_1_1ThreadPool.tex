@@ -24,7 +24,7 @@ Thread pool class to manage a set of parallel workers.
 \item 
 void \hyperlink{classnifty_1_1parallel_1_1ThreadPool_a72bcedd7dfdb99fe347ee9da0a80cabd}{wait\+Finished} ()
 \item 
-size\+\_\+t \hyperlink{classnifty_1_1parallel_1_1ThreadPool_abebd5767549c0d0e07d0a8379df8dac0}{n\+Threads} () const 
+size\+\_\+t \hyperlink{classnifty_1_1parallel_1_1ThreadPool_aa826f97a6941c9dc9d3b265240077875}{n\+Threads} () const
 \end{DoxyCompactItemize}
 
 
@@ -35,39 +35,35 @@ Thread pool class to manage a set of parallel workers.
  Namespace\+: \hyperlink{namespacenifty_1_1parallel}{nifty\+::parallel} 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classnifty_1_1parallel_1_1ThreadPool_a43dcc819b5ac947b6f68a774d6fc40e7}{}\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!Thread\+Pool@{Thread\+Pool}}
+\mbox{\Hypertarget{classnifty_1_1parallel_1_1ThreadPool_a43dcc819b5ac947b6f68a774d6fc40e7}\label{classnifty_1_1parallel_1_1ThreadPool_a43dcc819b5ac947b6f68a774d6fc40e7}} 
+\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!Thread\+Pool@{Thread\+Pool}}
 \index{Thread\+Pool@{Thread\+Pool}!nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}}
-\subsubsection[{Thread\+Pool(const Parallel\+Options \&options)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::parallel\+::\+Thread\+Pool\+::\+Thread\+Pool (
-\begin{DoxyParamCaption}
-\item[{const {\bf Parallel\+Options} \&}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ThreadPool_a43dcc819b5ac947b6f68a774d6fc40e7}
-Create a thread pool from \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{Parallel\+Options}. The constructor just launches the desired number of workers. If the number of threads is zero, no workers are started, and all tasks will be executed in synchronously in the present thread. \hypertarget{classnifty_1_1parallel_1_1ThreadPool_ac6ddbc44375bf1ae46b73707c7eabf85}{}\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!Thread\+Pool@{Thread\+Pool}}
+\subsubsection{\texorpdfstring{Thread\+Pool()}{ThreadPool()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily nifty\+::parallel\+::\+Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{Parallel\+Options} \&}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a thread pool from \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{Parallel\+Options}. The constructor just launches the desired number of workers. If the number of threads is zero, no workers are started, and all tasks will be executed in synchronously in the present thread. \mbox{\Hypertarget{classnifty_1_1parallel_1_1ThreadPool_ac6ddbc44375bf1ae46b73707c7eabf85}\label{classnifty_1_1parallel_1_1ThreadPool_ac6ddbc44375bf1ae46b73707c7eabf85}} 
+\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!Thread\+Pool@{Thread\+Pool}}
 \index{Thread\+Pool@{Thread\+Pool}!nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}}
-\subsubsection[{Thread\+Pool(const int n)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::parallel\+::\+Thread\+Pool\+::\+Thread\+Pool (
-\begin{DoxyParamCaption}
-\item[{const int}]{n}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ThreadPool_ac6ddbc44375bf1ae46b73707c7eabf85}
+\subsubsection{\texorpdfstring{Thread\+Pool()}{ThreadPool()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily nifty\+::parallel\+::\+Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{const int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 Create a thread pool with n threads. The constructor just launches the desired number of workers. If \begin{DoxyItemize}
-\item n is {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Parallel\+Options\+::\+Auto}}, the number of threads is determined by {\ttfamily std\+::thread\+::hardware\+\_\+concurrency()}. {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}{Parallel\+Options\+::\+Nice}} will create half as many threads. If {\ttfamily n = 0}, no workers are started, and all tasks will be executed synchronously in the present thread. If the preprocessor flag {\ttfamily N\+I\+F\+T\+Y\+\_\+\+N\+O\+\_\+\+P\+A\+R\+A\+L\+L\+E\+L\+I\+S\+M} is defined, the number of threads is always set to zero (i.\+e. synchronous execution), regardless of the value of \item n. This is useful for debugging. \end{DoxyItemize}
+\item n is {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Parallel\+Options\+::\+Auto}}, the number of threads is determined by {\ttfamily std\+::thread\+::hardware\+\_\+concurrency()}. {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}{Parallel\+Options\+::\+Nice}} will create half as many threads. If {\ttfamily n = 0}, no workers are started, and all tasks will be executed synchronously in the present thread. If the preprocessor flag {\ttfamily N\+I\+F\+T\+Y\+\_\+\+N\+O\+\_\+\+P\+A\+R\+A\+L\+L\+E\+L\+I\+SM} is defined, the number of threads is always set to zero (i.\+e. synchronous execution), regardless of the value of \item n. This is useful for debugging. \end{DoxyItemize}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classnifty_1_1parallel_1_1ThreadPool_abebd5767549c0d0e07d0a8379df8dac0}{}\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!n\+Threads@{n\+Threads}}
+\mbox{\Hypertarget{classnifty_1_1parallel_1_1ThreadPool_aa826f97a6941c9dc9d3b265240077875}\label{classnifty_1_1parallel_1_1ThreadPool_aa826f97a6941c9dc9d3b265240077875}} 
+\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!n\+Threads@{n\+Threads}}
 \index{n\+Threads@{n\+Threads}!nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}}
-\subsubsection[{n\+Threads() const }]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t nifty\+::parallel\+::\+Thread\+Pool\+::n\+Threads (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ThreadPool_abebd5767549c0d0e07d0a8379df8dac0}
-Return the number of worker threads. \hypertarget{classnifty_1_1parallel_1_1ThreadPool_a72bcedd7dfdb99fe347ee9da0a80cabd}{}\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!wait\+Finished@{wait\+Finished}}
+\subsubsection{\texorpdfstring{n\+Threads()}{nThreads()}}
+{\footnotesize\ttfamily size\+\_\+t nifty\+::parallel\+::\+Thread\+Pool\+::n\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the number of worker threads. \mbox{\Hypertarget{classnifty_1_1parallel_1_1ThreadPool_a72bcedd7dfdb99fe347ee9da0a80cabd}\label{classnifty_1_1parallel_1_1ThreadPool_a72bcedd7dfdb99fe347ee9da0a80cabd}} 
+\index{nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}!wait\+Finished@{wait\+Finished}}
 \index{wait\+Finished@{wait\+Finished}!nifty\+::parallel\+::\+Thread\+Pool@{nifty\+::parallel\+::\+Thread\+Pool}}
-\subsubsection[{wait\+Finished()}]{\setlength{\rightskip}{0pt plus 5cm}void nifty\+::parallel\+::\+Thread\+Pool\+::wait\+Finished (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ThreadPool_a72bcedd7dfdb99fe347ee9da0a80cabd}
+\subsubsection{\texorpdfstring{wait\+Finished()}{waitFinished()}}
+{\footnotesize\ttfamily void nifty\+::parallel\+::\+Thread\+Pool\+::wait\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 Block until all tasks are finished. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

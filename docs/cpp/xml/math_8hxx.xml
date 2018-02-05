@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="math_8hxx" kind="file" language="C++">
     <compoundname>math.hxx</compoundname>
     <includes local="no">array</includes>
@@ -9,98 +9,98 @@
     <includedby refid="geometric__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</includedby>
     <includedby refid="topological__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</includedby>
     <incdepgraph>
-      <node id="11638">
+      <node id="6212">
         <label>limits</label>
       </node>
-      <node id="11643">
+      <node id="6217">
         <label>cstdint</label>
       </node>
-      <node id="11646">
+      <node id="6220">
         <label>cmath</label>
       </node>
-      <node id="11644">
+      <node id="6218">
         <label>stdexcept</label>
       </node>
-      <node id="11639">
+      <node id="6213">
         <label>vigra/numerictraits.hxx</label>
       </node>
-      <node id="11640">
+      <node id="6214">
         <label>nifty/array/static_array.hxx</label>
         <link refid="static__array_8hxx"/>
-        <childnode refid="11641" relation="include">
+        <childnode refid="6215" relation="include">
         </childnode>
       </node>
-      <node id="11637">
+      <node id="6211">
         <label>nifty/math/numerics.hxx</label>
         <link refid="numerics_8hxx"/>
-        <childnode refid="11638" relation="include">
+        <childnode refid="6212" relation="include">
         </childnode>
-        <childnode refid="11639" relation="include">
+        <childnode refid="6213" relation="include">
         </childnode>
       </node>
-      <node id="11636">
+      <node id="6210">
         <label>vector</label>
       </node>
-      <node id="11641">
+      <node id="6215">
         <label>arithmetic_array.hxx</label>
         <link refid="arithmetic__array_8hxx"/>
-        <childnode refid="11635" relation="include">
+        <childnode refid="6209" relation="include">
         </childnode>
-        <childnode refid="11636" relation="include">
+        <childnode refid="6210" relation="include">
         </childnode>
-        <childnode refid="11642" relation="include">
+        <childnode refid="6216" relation="include">
         </childnode>
       </node>
-      <node id="11635">
+      <node id="6209">
         <label>array</label>
       </node>
-      <node id="11645">
+      <node id="6219">
         <label>sstream</label>
       </node>
-      <node id="11642">
+      <node id="6216">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="11643" relation="include">
+        <childnode refid="6217" relation="include">
         </childnode>
-        <childnode refid="11644" relation="include">
+        <childnode refid="6218" relation="include">
         </childnode>
-        <childnode refid="11645" relation="include">
+        <childnode refid="6219" relation="include">
         </childnode>
-        <childnode refid="11636" relation="include">
+        <childnode refid="6210" relation="include">
         </childnode>
-        <childnode refid="11638" relation="include">
+        <childnode refid="6212" relation="include">
         </childnode>
-        <childnode refid="11646" relation="include">
+        <childnode refid="6220" relation="include">
         </childnode>
       </node>
-      <node id="11634">
+      <node id="6208">
         <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
-        <link refid="math.hxx"/>
-        <childnode refid="11635" relation="include">
+        <link refid="math_8hxx"/>
+        <childnode refid="6209" relation="include">
         </childnode>
-        <childnode refid="11636" relation="include">
+        <childnode refid="6210" relation="include">
         </childnode>
-        <childnode refid="11637" relation="include">
+        <childnode refid="6211" relation="include">
         </childnode>
-        <childnode refid="11640" relation="include">
+        <childnode refid="6214" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11648">
+      <node id="6222">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
         <link refid="geometric__features_8hxx"/>
       </node>
-      <node id="11649">
+      <node id="6223">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
         <link refid="topological__features_8hxx"/>
       </node>
-      <node id="11647">
+      <node id="6221">
         <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
-        <link refid="math.hxx"/>
-        <childnode refid="11648" relation="include">
+        <link refid="math_8hxx"/>
+        <childnode refid="6222" relation="include">
         </childnode>
-        <childnode refid="11649" relation="include">
+        <childnode refid="6223" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -138,7 +138,7 @@
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dist<sp/>=<sp/>T0T1(a[i])-T0T1(b[i]);</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/>+=<sp/>dist*dist;</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::sqrt(d);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespacehalf__float_1_1detail_1af714c124a18db9b79b703007b8d66162" kindref="member">std::sqrt</ref>(d);</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>

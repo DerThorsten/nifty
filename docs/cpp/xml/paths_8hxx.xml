@@ -1,77 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="paths_8hxx" kind="file" language="C++">
     <compoundname>paths.hxx</compoundname>
     <includes local="no">cstddef</includes>
     <includes local="no">utility</includes>
     <includes local="no">queue</includes>
     <includes refid="subgraph__mask_8hxx" local="yes">nifty/graph/subgraph_mask.hxx</includes>
-    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
-    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</includedby>
-    <includedby refid="mincut__qpbo_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</includedby>
-    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</includedby>
-    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</includedby>
+    <includedby refid="lifted__multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</includedby>
+    <includedby refid="mincut__cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</includedby>
+    <includedby refid="mincut__qpbo_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx</includedby>
+    <includedby refid="minstcut__maxflow_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_maxflow.hxx</includedby>
+    <includedby refid="cc__fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</includedby>
+    <includedby refid="multicut__ilp_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</includedby>
     <incdepgraph>
-      <node id="10165">
+      <node id="4565">
         <label>queue</label>
       </node>
-      <node id="10166">
+      <node id="4566">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="10164">
+      <node id="4564">
         <label>utility</label>
       </node>
-      <node id="10162">
+      <node id="4562">
         <label>/home/tbeier/src/nifty/include/nifty/graph/paths.hxx</label>
-        <link refid="paths.hxx"/>
-        <childnode refid="10163" relation="include">
+        <link refid="paths_8hxx"/>
+        <childnode refid="4563" relation="include">
         </childnode>
-        <childnode refid="10164" relation="include">
+        <childnode refid="4564" relation="include">
         </childnode>
-        <childnode refid="10165" relation="include">
+        <childnode refid="4565" relation="include">
         </childnode>
-        <childnode refid="10166" relation="include">
+        <childnode refid="4566" relation="include">
         </childnode>
       </node>
-      <node id="10163">
+      <node id="4563">
         <label>cstddef</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="10171">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cc_fusion_move_based.hxx</label>
-        <link refid="cc__fusion__move__based_8hxx"/>
-      </node>
-      <node id="10170">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_qpbo.hxx</label>
+      <node id="4570">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_qpbo.hxx</label>
         <link refid="mincut__qpbo_8hxx"/>
       </node>
-      <node id="10169">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/mincut/mincut_cc_fusion_move_based.hxx</label>
-        <link refid="mincut__cc__fusion__move__based_8hxx"/>
+      <node id="4571">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_maxflow.hxx</label>
+        <link refid="minstcut__maxflow_8hxx"/>
       </node>
-      <node id="10172">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/multicut_ilp.hxx</label>
+      <node id="4573">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx</label>
         <link refid="multicut__ilp_8hxx"/>
       </node>
-      <node id="10167">
+      <node id="4572">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cc_fusion_move_based.hxx</label>
+        <link refid="cc__fusion__move__based_8hxx"/>
+      </node>
+      <node id="4567">
         <label>/home/tbeier/src/nifty/include/nifty/graph/paths.hxx</label>
-        <link refid="paths.hxx"/>
-        <childnode refid="10168" relation="include">
+        <link refid="paths_8hxx"/>
+        <childnode refid="4568" relation="include">
         </childnode>
-        <childnode refid="10169" relation="include">
+        <childnode refid="4569" relation="include">
         </childnode>
-        <childnode refid="10170" relation="include">
+        <childnode refid="4570" relation="include">
         </childnode>
-        <childnode refid="10171" relation="include">
+        <childnode refid="4571" relation="include">
         </childnode>
-        <childnode refid="10172" relation="include">
+        <childnode refid="4572" relation="include">
+        </childnode>
+        <childnode refid="4573" relation="include">
         </childnode>
       </node>
-      <node id="10168">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_multicut_ilp.hxx</label>
+      <node id="4568">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_multicut_ilp.hxx</label>
         <link refid="lifted__multicut__ilp_8hxx"/>
+      </node>
+      <node id="4569">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move_based.hxx</label>
+        <link refid="mincut__cc__fusion__move__based_8hxx"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespacenifty">nifty</innernamespace>

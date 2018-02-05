@@ -1,0 +1,82 @@
+\hypertarget{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:multicut\+:\+:Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+VE, I\+L\+P\+\_\+\+S\+O\+L\+V\+ER $>$\+:\+:Settings\+Type Struct Reference}
+\label{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType}\index{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$\+::\+Settings\+Type}}
+
+
+Settings for \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{Multicut\+Ilp} solver.  
+
+
+
+
+{\ttfamily \#include $<$multicut\+\_\+ilp.\+hxx$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_afa45b6db286d8000398eff9f719fc5dd}{number\+Of\+Iterations} \{0\}
+\begin{DoxyCompactList}\small\item\em Maximum allowed cutting plane iterations. \end{DoxyCompactList}\item 
+bool \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a4a91caa517c62ba5098317f4ac8702c8}{add\+Three\+Cycles\+Constraints} \{true\}
+\begin{DoxyCompactList}\small\item\em Explicitly add constrains for cycle of length three. \end{DoxyCompactList}\item 
+bool \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_ad759353f0698ef7051d150f8a7d3d933}{add\+Only\+Violated\+Three\+Cycles\+Constraints} \{true\}
+\begin{DoxyCompactList}\small\item\em Explicitly add violated constrains for cycle of length three. \end{DoxyCompactList}\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_ad46bf56538766a3bbf4d5783727e1e7c}{Ilp\+Settings\+Type} \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a02f867e50e587e0a1d74b93a34bd94b8}{ilp\+Settings} \{\}
+\begin{DoxyCompactList}\small\item\em Settings of the I\+LP backend.  I\+LP related options like relative and absolute gaps can be specified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class O\+B\+J\+E\+C\+T\+I\+VE, class I\+L\+P\+\_\+\+S\+O\+L\+V\+ER$>$\newline
+struct nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, I\+L\+P\+\_\+\+S\+O\+L\+V\+E\+R $>$\+::\+Settings\+Type}
+
+Settings for \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{Multicut\+Ilp} solver. 
+
+The settings for \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{Multicut\+Ilp} are not very critical and the default settings should be changed seldomly. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_ad759353f0698ef7051d150f8a7d3d933}\label{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_ad759353f0698ef7051d150f8a7d3d933}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}!add\+Only\+Violated\+Three\+Cycles\+Constraints@{add\+Only\+Violated\+Three\+Cycles\+Constraints}}
+\index{add\+Only\+Violated\+Three\+Cycles\+Constraints@{add\+Only\+Violated\+Three\+Cycles\+Constraints}!nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}}
+\subsubsection{\texorpdfstring{add\+Only\+Violated\+Three\+Cycles\+Constraints}{addOnlyViolatedThreeCyclesConstraints}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE, class I\+L\+P\+\_\+\+S\+O\+L\+V\+ER$>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp}$<$ O\+B\+J\+E\+C\+T\+I\+VE, I\+L\+P\+\_\+\+S\+O\+L\+V\+ER $>$\+::Settings\+Type\+::add\+Only\+Violated\+Three\+Cycles\+Constraints \{true\}}
+
+
+
+Explicitly add violated constrains for cycle of length three. 
+
+If add\+Three\+Cycles\+Constraints is true, should only possible violating constraints be added before the actual opt. This can speedup the opt process. \mbox{\Hypertarget{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a4a91caa517c62ba5098317f4ac8702c8}\label{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a4a91caa517c62ba5098317f4ac8702c8}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}!add\+Three\+Cycles\+Constraints@{add\+Three\+Cycles\+Constraints}}
+\index{add\+Three\+Cycles\+Constraints@{add\+Three\+Cycles\+Constraints}!nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}}
+\subsubsection{\texorpdfstring{add\+Three\+Cycles\+Constraints}{addThreeCyclesConstraints}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE, class I\+L\+P\+\_\+\+S\+O\+L\+V\+ER$>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp}$<$ O\+B\+J\+E\+C\+T\+I\+VE, I\+L\+P\+\_\+\+S\+O\+L\+V\+ER $>$\+::Settings\+Type\+::add\+Three\+Cycles\+Constraints \{true\}}
+
+
+
+Explicitly add constrains for cycle of length three. 
+
+Should constrains for cycles of length three be added explicitly before the actual opt. This can speedup the opt process. \mbox{\Hypertarget{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a02f867e50e587e0a1d74b93a34bd94b8}\label{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_a02f867e50e587e0a1d74b93a34bd94b8}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}!ilp\+Settings@{ilp\+Settings}}
+\index{ilp\+Settings@{ilp\+Settings}!nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}}
+\subsubsection{\texorpdfstring{ilp\+Settings}{ilpSettings}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE, class I\+L\+P\+\_\+\+S\+O\+L\+V\+ER$>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_ad46bf56538766a3bbf4d5783727e1e7c}{Ilp\+Settings\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp}$<$ O\+B\+J\+E\+C\+T\+I\+VE, I\+L\+P\+\_\+\+S\+O\+L\+V\+ER $>$\+::Settings\+Type\+::ilp\+Settings \{\}}
+
+
+
+Settings of the I\+LP backend.  I\+LP related options like relative and absolute gaps can be specified. 
+
+\mbox{\Hypertarget{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_afa45b6db286d8000398eff9f719fc5dd}\label{structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SettingsType_afa45b6db286d8000398eff9f719fc5dd}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}!number\+Of\+Iterations@{number\+Of\+Iterations}}
+\index{number\+Of\+Iterations@{number\+Of\+Iterations}!nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type@{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp\+::\+Settings\+Type}}
+\subsubsection{\texorpdfstring{number\+Of\+Iterations}{numberOfIterations}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE, class I\+L\+P\+\_\+\+S\+O\+L\+V\+ER$>$ \\
+size\+\_\+t \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp}{nifty\+::graph\+::opt\+::multicut\+::\+Multicut\+Ilp}$<$ O\+B\+J\+E\+C\+T\+I\+VE, I\+L\+P\+\_\+\+S\+O\+L\+V\+ER $>$\+::Settings\+Type\+::number\+Of\+Iterations \{0\}}
+
+
+
+Maximum allowed cutting plane iterations. 
+
+Maximum allowed cutting plane iteration. A value of zero will be interpreted as an unlimited number of iterations. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/\hyperlink{multicut__ilp_8hxx}{multicut\+\_\+ilp.\+hxx}\end{DoxyCompactItemize}

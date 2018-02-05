@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">VisitorBaseType</basecompoundref>
+    <includes refid="lifted__multicut_2chained__solvers_8hxx" local="no">chained_solvers.hxx</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a0e1204d78c8a78793aa3535d10db8842" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1ac33a800e2d3542a35679d01a334e1751" kindref="member">VisitorBaseType</ref> *</type>
+        <definition>VisitorBaseType* nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::visitor_</definition>
+        <argsstring></argsstring>
+        <name>visitor_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a6ea4f474073abab6c2808f16ccb4b849" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::NoBeginEndVisitor</definition>
+        <argsstring>(VisitorBaseType *visitor)</argsstring>
+        <name>NoBeginEndVisitor</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1ac33a800e2d3542a35679d01a334e1751" kindref="member">VisitorBaseType</ref> *</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="44" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a2f119eafaca61da6400964a9c2ad0a2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::begin</definition>
+        <argsstring>(BaseType *solver)</argsstring>
+        <name>begin</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a8d7bda129d1f1afb9dca81ff513dca09" kindref="member">BaseType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a4d9925d9386eaf87359b0d5c5e166907" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::visit</definition>
+        <argsstring>(BaseType *solver)</argsstring>
+        <name>visit</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a8d7bda129d1f1afb9dca81ff513dca09" kindref="member">BaseType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="51" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1ae9220d11a25d171ff5b6e390caedb8b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::end</definition>
+        <argsstring>(BaseType *solver)</argsstring>
+        <name>end</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1a8d7bda129d1f1afb9dca81ff513dca09" kindref="member">BaseType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="59" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="59" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a44ace79d3c5efbc21538c8e76a47ad80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::clearLogNames</definition>
+        <argsstring>()</argsstring>
+        <name>clearLogNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1aa085f85189d444b28755de0ac22b549f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::addLogNames</definition>
+        <argsstring>(std::initializer_list&lt; std::string &gt; logNames)</argsstring>
+        <name>addLogNames</name>
+        <param>
+          <type>std::initializer_list&lt; std::string &gt;</type>
+          <declname>logNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a8763e6f47acea79e61c08885ec88bcfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::setLogValue</definition>
+        <argsstring>(const size_t logIndex, double logValue)</argsstring>
+        <name>setLogValue</name>
+        <param>
+          <type>const size_t</type>
+          <declname>logIndex</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>logValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="72" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="72" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a8333b0619444101ea5ec31064433451b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor::printLog</definition>
+        <argsstring>(const nifty::logging::LogLevel logLevel, const std::string &amp;logString)</argsstring>
+        <name>printLog</name>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref></type>
+          <declname>logLevel</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>logString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="772">
+        <label>nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor"/>
+        <childnode refid="773" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="773">
+        <label>VisitorBaseType</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="774">
+        <label>nifty::graph::opt::lifted_multicut::ChainedSolvers&lt; OBJECTIVE &gt;::NoBeginEndVisitor</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor"/>
+        <childnode refid="775" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="775">
+        <label>VisitorBaseType</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/chained_solvers.hxx" bodystart="41" bodyend="85"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1aa085f85189d444b28755de0ac22b549f" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>addLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a2f119eafaca61da6400964a9c2ad0a2b" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a44ace79d3c5efbc21538c8e76a47ad80" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>clearLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1ae9220d11a25d171ff5b6e390caedb8b1" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a6ea4f474073abab6c2808f16ccb4b849" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>NoBeginEndVisitor</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a8333b0619444101ea5ec31064433451b" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>printLog</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a8763e6f47acea79e61c08885ec88bcfb" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>setLogValue</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a4d9925d9386eaf87359b0d5c5e166907" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>visit</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ChainedSolvers_1_1NoBeginEndVisitor_1a0e1204d78c8a78793aa3535d10db8842" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::ChainedSolvers::NoBeginEndVisitor</scope><name>visitor_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

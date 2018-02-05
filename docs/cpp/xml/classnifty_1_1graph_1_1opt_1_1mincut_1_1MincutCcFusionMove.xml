@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::mincut::MincutCcFusionMove</compoundname>
+    <includes refid="mincut__cc__fusion__move_8hxx" local="no">mincut_cc_fusion_move.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType" prot="public">nifty::graph::opt::mincut::MincutCcFusionMove::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aa01f8621f491c8f77e106950d7525c37" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aac01d4c3a458b6c5b324e23d256e3e9f" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a287ede2c2403264860e0a227cf77f927" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5ae3c9a6e16601c6de022f74b7600a2d" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">UndirectedGraph</ref></type>
+        <definition>typedef UndirectedGraph nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmGraph</definition>
+        <argsstring></argsstring>
+        <name>FmGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5f30047aa697335e354346a6c1c2f8ad" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective" kindref="compound">MincutObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5ae3c9a6e16601c6de022f74b7600a2d" kindref="member">FmGraph</ref>, double &gt;</type>
+        <definition>typedef MincutObjective&lt;FmGraph, double&gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmObjective</definition>
+        <argsstring></argsstring>
+        <name>FmObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a549fea9f9966d8fd033328c33c5bc7cd" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase" kindref="compound">MincutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5f30047aa697335e354346a6c1c2f8ad" kindref="member">FmObjective</ref> &gt;</type>
+        <definition>typedef MincutBase&lt;FmObjective&gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmMcBase</definition>
+        <argsstring></argsstring>
+        <name>FmMcBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a822ef330a0baebfd30f7690afd5cd4ff" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::opt::common::SolverFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a549fea9f9966d8fd033328c33c5bc7cd" kindref="member">FmMcBase</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::SolverFactoryBase&lt;FmMcBase&gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmMcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>FmMcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="32" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a0157a84ec61e81ebdff1fb64515201d0" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1graph_1_1opt_1_1mincut_1abaeb42be72a153c73386cda5564721b2" kindref="member">MincutEmptyVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5f30047aa697335e354346a6c1c2f8ad" kindref="member">FmObjective</ref> &gt;</type>
+        <definition>typedef MincutEmptyVisitor&lt;FmObjective&gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmEmptyVisitor</definition>
+        <argsstring></argsstring>
+        <name>FmEmptyVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5c134293142d4aa780bf5318b224efe9" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">FmMcBase::NodeLabelsType</ref></type>
+        <definition>typedef FmMcBase::NodeLabelsType nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::FmNodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>FmNodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1ad31dfec7a7ff0fda81cc38f00cc4e974" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aa01f8621f491c8f77e106950d7525c37" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="209" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a0c1194ebb63a0cf7921cb190d1386d1c" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aac01d4c3a458b6c5b324e23d256e3e9f" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="210" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a276a255ea678823a8a5a0804202d9881" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="211" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1afc96b6e66cd613f46e0c78e834def095" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">nifty::ufd::Ufd</ref>&lt; &gt;</type>
+        <definition>nifty::ufd::Ufd&lt; &gt; nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::ufd_</definition>
+        <argsstring></argsstring>
+        <name>ufd_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="212" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a39d38ff867102d1401a398bc290e882a" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a287ede2c2403264860e0a227cf77f927" kindref="member">NodeLabelsType</ref></type>
+        <definition>NodeLabelsType nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::nodeToDense_</definition>
+        <argsstring></argsstring>
+        <name>nodeToDense_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="213" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a9f1239db92785db317709b8aee8d1c81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::MincutCcFusionMove</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>MincutCcFusionMove</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aa01f8621f491c8f77e106950d7525c37" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="41" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="41" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a9033e25b234036ee255fc1f1c4bc4574" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::fuse</definition>
+        <argsstring>(std::initializer_list&lt; const NODE_MAP *&gt; proposals, NODE_MAP *result)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>std::initializer_list&lt; const NODE_MAP *&gt;</type>
+          <declname>proposals</declname>
+        </param>
+        <param>
+          <type>NODE_MAP *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="54" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a6cf6c0686c76b97d8e93edf1b0488b7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::fuse</definition>
+        <argsstring>(const std::vector&lt; const NODE_MAP *&gt; &amp;proposals, NODE_MAP *result)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>const std::vector&lt; const NODE_MAP *&gt; &amp;</type>
+          <declname>proposals</declname>
+        </param>
+        <param>
+          <type>NODE_MAP *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="64" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1af9db6f089293a6d698a680e50676a125" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_MAP</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void nifty::graph::opt::mincut::MincutCcFusionMove&lt; OBJECTIVE &gt;::fuseImpl</definition>
+        <argsstring>(NODE_MAP *result)</argsstring>
+        <name>fuseImpl</name>
+        <param>
+          <type>NODE_MAP *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="118" bodyend="206"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/mincut/mincut_cc_fusion_move.hxx" bodystart="22" bodyend="214"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a0157a84ec61e81ebdff1fb64515201d0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmEmptyVisitor</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5ae3c9a6e16601c6de022f74b7600a2d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a549fea9f9966d8fd033328c33c5bc7cd" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmMcBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a822ef330a0baebfd30f7690afd5cd4ff" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmMcFactoryBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5c134293142d4aa780bf5318b224efe9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmNodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a5f30047aa697335e354346a6c1c2f8ad" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>FmObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a9033e25b234036ee255fc1f1c4bc4574" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a6cf6c0686c76b97d8e93edf1b0488b7f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1af9db6f089293a6d698a680e50676a125" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>fuseImpl</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a0c1194ebb63a0cf7921cb190d1386d1c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aac01d4c3a458b6c5b324e23d256e3e9f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a9f1239db92785db317709b8aee8d1c81" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>MincutCcFusionMove</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a287ede2c2403264860e0a227cf77f927" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a39d38ff867102d1401a398bc290e882a" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>nodeToDense_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1ad31dfec7a7ff0fda81cc38f00cc4e974" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1aa01f8621f491c8f77e106950d7525c37" prot="public" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1a276a255ea678823a8a5a0804202d9881" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove_1afc96b6e66cd613f46e0c78e834def095" prot="private" virt="non-virtual"><scope>nifty::graph::opt::mincut::MincutCcFusionMove</scope><name>ufd_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

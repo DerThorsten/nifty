@@ -1,0 +1,138 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:merge\+\_\+rules\+:\+:Max\+Edge\+Map$<$ G, T $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map$<$ G, T $>$@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map$<$ G, T $>$}}
+
+
+{\ttfamily \#include $<$merge\+\_\+rules.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ T $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7ebdeaafb5f49f80a7c43206826a706b}{Max\+Edge\+Map\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ \hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t} $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aed9c04ef6558fb988fb2bb2a49a3d4a3}{Size\+Edge\+Map\+Type}
+\item 
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxSettings}{Max\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a44295606b3c1250d5994dde8f6dda2a1}{name} () const
+\item 
+{\footnotesize template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aa970480b4cf10bb00c507e7d9161feff}{Max\+Edge\+Map} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}{Graph\+Type} \&g, const V\+A\+L\+U\+ES \&values, const W\+E\+I\+G\+H\+TS \&weights, const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type} \&settings=\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a924065ef7a925db0fcd7126c5c4c5847}{merge} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afb967cd939fd955475e1cfdd687940e0}{set\+Value\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aca714607ca3a7a8b53229174b211501d}{set\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a89fedf36c75b3ec21c34d88a2732882b}{set} (const uint64\+\_\+t target\+Edge, const T \&value, const T \&weight)
+\item 
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aae0dad0ea0b97c0acea36bba4c772052}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t edge) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afa3c23046cdc560e647781cabcd43af4}{static\+Name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7ebdeaafb5f49f80a7c43206826a706b}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7ebdeaafb5f49f80a7c43206826a706b}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!Max\+Edge\+Map\+Type@{Max\+Edge\+Map\+Type}}
+\index{Max\+Edge\+Map\+Type@{Max\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Max\+Edge\+Map\+Type}{MaxEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$T$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7ebdeaafb5f49f80a7c43206826a706b}{Max\+Edge\+Map\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!Settings\+Type@{Settings\+Type}}
+\index{Settings\+Type@{Settings\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Settings\+Type}{SettingsType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxSettings}{Max\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aed9c04ef6558fb988fb2bb2a49a3d4a3}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aed9c04ef6558fb988fb2bb2a49a3d4a3}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}}
+\index{Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Size\+Edge\+Map\+Type}{SizeEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$\hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t}$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aed9c04ef6558fb988fb2bb2a49a3d4a3}{Size\+Edge\+Map\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aa970480b4cf10bb00c507e7d9161feff}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aa970480b4cf10bb00c507e7d9161feff}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!Max\+Edge\+Map@{Max\+Edge\+Map}}
+\index{Max\+Edge\+Map@{Max\+Edge\+Map}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Max\+Edge\+Map()}{MaxEdgeMap()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{Max\+Edge\+Map} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7b996d3f4737ff2b77cca85520e62510}{Graph\+Type} \&}]{g,  }\item[{const V\+A\+L\+U\+ES \&}]{values,  }\item[{const W\+E\+I\+G\+H\+TS \&}]{weights,  }\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a7123769ad8199741d682d9de6be59ca3}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a924065ef7a925db0fcd7126c5c4c5847}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a924065ef7a925db0fcd7126c5c4c5847}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!merge@{merge}}
+\index{merge@{merge}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::merge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a44295606b3c1250d5994dde8f6dda2a1}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a44295606b3c1250d5994dde8f6dda2a1}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aae0dad0ea0b97c0acea36bba4c772052}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aae0dad0ea0b97c0acea36bba4c772052}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a89fedf36c75b3ec21c34d88a2732882b}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_a89fedf36c75b3ec21c34d88a2732882b}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!set@{set}}
+\index{set@{set}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::set (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const T \&}]{value,  }\item[{const T \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aca714607ca3a7a8b53229174b211501d}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_aca714607ca3a7a8b53229174b211501d}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!set\+From@{set\+From}}
+\index{set\+From@{set\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+From()}{setFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::set\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afb967cd939fd955475e1cfdd687940e0}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afb967cd939fd955475e1cfdd687940e0}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!set\+Value\+From@{set\+Value\+From}}
+\index{set\+Value\+From@{set\+Value\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+Value\+From()}{setValueFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::set\+Value\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afa3c23046cdc560e647781cabcd43af4}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap_afa3c23046cdc560e647781cabcd43af4}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}!static\+Name@{static\+Name}}
+\index{static\+Name@{static\+Name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}}
+\subsubsection{\texorpdfstring{static\+Name()}{staticName()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1MaxEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Max\+Edge\+Map}$<$ G, T $>$\+::static\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/detail/\hyperlink{merge__rules_8hxx}{merge\+\_\+rules.\+hxx}\end{DoxyCompactItemize}

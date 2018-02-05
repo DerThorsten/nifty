@@ -1,20 +1,21 @@
-\hypertarget{cgc_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.hxx File Reference}
-\label{cgc_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/cgc.\+hxx}}
-{\ttfamily \#include $<$queue$>$}\\*
-{\ttfamily \#include \char`\"{}boost/format.\+hpp\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/multicut/multicut\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/common/solver\+\_\+factory.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/multicut/multicut\+\_\+objective.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/mincut/mincut\+\_\+visitor\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/mincut/mincut\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/mincut/mincut\+\_\+objective.\+hxx\char`\"{}}\\*
-Include dependency graph for cgc.\+hxx\+:\nopagebreak
+\hypertarget{cgc_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.hxx File Reference}
+\label{cgc_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/cgc.\+hxx}}
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include \char`\"{}boost/format.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/multicut/multicut\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/common/solver\+\_\+factory.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/multicut/multicut\+\_\+objective.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/undirected\+\_\+list\+\_\+graph.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/mincut/mincut\+\_\+visitor\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/mincut/mincut\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/mincut/mincut\+\_\+objective.\+hxx\char`\"{}}\newline
+Include dependency graph for cgc.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,9 +25,9 @@ Include dependency graph for cgc.\+hxx\+:\nopagebreak
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc}{nifty\+::graph\+::optimization\+::multicut\+::\+Cgc$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc}{nifty\+::graph\+::opt\+::multicut\+::\+Cgc$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}
 \item 
-struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1SettingsType}{nifty\+::graph\+::optimization\+::multicut\+::\+Cgc$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings\+Type}
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc_1_1SettingsType}{nifty\+::graph\+::opt\+::multicut\+::\+Cgc$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$\+::\+Settings\+Type}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -35,7 +36,7 @@ struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1multicut_1_1Cgc_1_1Set
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+ \hyperlink{namespacenifty_1_1graph_1_1opt}{nifty\+::graph\+::opt}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1multicut}{nifty\+::graph\+::optimization\+::multicut}
+ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1multicut}{nifty\+::graph\+::opt\+::multicut}
 \end{DoxyCompactItemize}

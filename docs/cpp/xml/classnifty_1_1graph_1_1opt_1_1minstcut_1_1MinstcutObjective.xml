@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::minstcut::MinstcutObjective</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase" prot="public" virt="non-virtual">nifty::graph::opt::minstcut::MinstcutObjectiveBase&lt; MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</basecompoundref>
+    <includes refid="graph_2opt_2minstcut_2minstcut__objective_8hxx" local="no">minstcut_objective.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>class WEIGHT_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a673518e95b6f21213996c12dea91d72b" prot="public" static="no">
+        <type>WEIGHT_TYPE</type>
+        <definition>typedef WEIGHT_TYPE nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightType</definition>
+        <argsstring></argsstring>
+        <name>WeightType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1afba077d00b3dff86d2b482c1fb88344b" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" kindref="compound">graph_maps::EdgeMap</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a673518e95b6f21213996c12dea91d72b" kindref="member">WeightType</ref> &gt;</type>
+        <definition>typedef graph_maps::EdgeMap&lt;GraphType, WeightType&gt; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightsMap</definition>
+        <argsstring></argsstring>
+        <name>WeightsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="68" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1662c8902f85cd5d0aa046c5657ee0f2" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1graph__maps_1_1NodeMap" kindref="compound">graph_maps::NodeMap</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" kindref="member">GraphType</ref>, std::pair&lt; float, float &gt; &gt;</type>
+        <definition>typedef graph_maps::NodeMap&lt;GraphType, std::pair&lt;float, float&gt; &gt; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::UnaryMap</definition>
+        <argsstring></argsstring>
+        <name>UnaryMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1ac450f5d647c4c29de17ab11ecf5d8d84" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1ae8015f9f83316cedbec0f7c51c58e36d" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a0f0f42321380b12a6155c66c08474761" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1afba077d00b3dff86d2b482c1fb88344b" kindref="member">WeightsMap</ref></type>
+        <definition>WeightsMap nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="99" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1a40cd3ec43615d85a2969f17bda5c9c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1662c8902f85cd5d0aa046c5657ee0f2" kindref="member">UnaryMap</ref></type>
+        <definition>UnaryMap nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::unaries_</definition>
+        <argsstring></argsstring>
+        <name>unaries_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="100" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a681f14ace4c80212ab76d593f1de6687" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::MinstcutObjective</definition>
+        <argsstring>(const GraphType &amp;g)</argsstring>
+        <name>MinstcutObjective</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" kindref="member">GraphType</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="71" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af20ea050d5f17a80c93df2b3f932c267" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1afba077d00b3dff86d2b482c1fb88344b" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>WeightsMap&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>()</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af0dc330909000b8840eb93d8f33efb18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph</definition>
+        <argsstring>() const</argsstring>
+        <name>graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="82" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a7b9ef2574b0ff94756e361f6b5ac8c49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1afba077d00b3dff86d2b482c1fb88344b" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>const WeightsMap&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>() const</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af16923a509758da3fe2093404a5c3bdf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1662c8902f85cd5d0aa046c5657ee0f2" kindref="member">UnaryMap</ref> &amp;</type>
+        <definition>const UnaryMap&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::unaries</definition>
+        <argsstring>() const</argsstring>
+        <name>unaries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="88" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a4cc8cdadf8cf764f294e941d76cf8923" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1662c8902f85cd5d0aa046c5657ee0f2" kindref="member">UnaryMap</ref> &amp;</type>
+        <definition>UnaryMap&amp; nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::unaries</definition>
+        <argsstring>()</argsstring>
+        <name>unaries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="92" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="677">
+        <label>nifty::graph::opt::minstcut::MinstcutObjectiveBase&lt; MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase"/>
+      </node>
+      <node id="676">
+        <label>nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective"/>
+        <childnode refid="677" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="679">
+        <label>nifty::graph::opt::minstcut::MinstcutObjectiveBase&lt; MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase"/>
+      </node>
+      <node id="678">
+        <label>nifty::graph::opt::minstcut::MinstcutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective"/>
+        <childnode refid="679" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" line="64" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_objective.hxx" bodystart="60" bodyend="101"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase_1a76bb16eab8d99a40abe6326d17bd0769" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>ChildObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase_1a5d1482bf80f2a2dfb416b32fa38fca5e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>evalNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af0dc330909000b8840eb93d8f33efb18" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>graph</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1ae8015f9f83316cedbec0f7c51c58e36d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a8d416ff18d747ac8ac242dde0e1406c0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a681f14ace4c80212ab76d593f1de6687" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>MinstcutObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1ac450f5d647c4c29de17ab11ecf5d8d84" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase_1a6ed9ee2c13bc67e3c6993837a30c24b9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af16923a509758da3fe2093404a5c3bdf" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>unaries</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a4cc8cdadf8cf764f294e941d76cf8923" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>unaries</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1a40cd3ec43615d85a2969f17bda5c9c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>unaries_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a1662c8902f85cd5d0aa046c5657ee0f2" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>UnaryMap</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1af20ea050d5f17a80c93df2b3f932c267" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a7b9ef2574b0ff94756e361f6b5ac8c49" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a0f0f42321380b12a6155c66c08474761" prot="private" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>weights_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1afba077d00b3dff86d2b482c1fb88344b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>WeightsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective_1a673518e95b6f21213996c12dea91d72b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::minstcut::MinstcutObjective</scope><name>WeightType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

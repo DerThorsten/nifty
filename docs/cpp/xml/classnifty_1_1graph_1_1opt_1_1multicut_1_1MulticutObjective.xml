@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::multicut::MulticutObjective</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase" prot="public" virt="non-virtual">nifty::graph::opt::multicut::MulticutObjectiveBase&lt; MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</basecompoundref>
+    <includes refid="graph_2opt_2multicut_2multicut__objective_8hxx" local="no">multicut_objective.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>GRAPH</declname>
+        <defname>GRAPH</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>WEIGHT_TYPE</declname>
+        <defname>WEIGHT_TYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="51" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1ade78c0dcabc90473c11c36dcbed3c157" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::NodeLabelsType</definition>
+        <argsstring></argsstring>
+        <name>NodeLabelsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a958d4c547cb186fb4d7af5e664027a16" prot="public" static="no">
+        <type>WEIGHT_TYPE</type>
+        <definition>typedef WEIGHT_TYPE nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightType</definition>
+        <argsstring></argsstring>
+        <name>WeightType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="54" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aa893b1c13cb7add0c87445a1ed24d214" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1graph__maps_1_1EdgeMap" kindref="compound">graph_maps::EdgeMap</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a958d4c547cb186fb4d7af5e664027a16" kindref="member">WeightType</ref> &gt;</type>
+        <definition>typedef graph_maps::EdgeMap&lt;GraphType, WeightType&gt; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::WeightsMap</definition>
+        <argsstring></argsstring>
+        <name>WeightsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a0efecff90ca2ef5b1bc8c003f69f1ddd" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a49e236743fc94453a7e588b54be0a3c4" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aa893b1c13cb7add0c87445a1ed24d214" kindref="member">WeightsMap</ref></type>
+        <definition>WeightsMap nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aea34e2cb5314dab5a6aa51c0a0eca336" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::MulticutObjective</definition>
+        <argsstring>(const GraphType &amp;g)</argsstring>
+        <name>MulticutObjective</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" kindref="member">GraphType</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="56" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="56" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a8789c71e5f2591ab17dc56a90e6a0f6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aa893b1c13cb7add0c87445a1ed24d214" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>WeightsMap&amp; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>()</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="62" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a77da7e88d6b4818554de5b30a6b21bf1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::graph</definition>
+        <argsstring>() const</argsstring>
+        <name>graph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a3f97ef87873adce4123c49c87a9ecc6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aa893b1c13cb7add0c87445a1ed24d214" kindref="member">WeightsMap</ref> &amp;</type>
+        <definition>const WeightsMap&amp; nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;::weights</definition>
+        <argsstring>() const</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="70" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="755">
+        <label>nifty::graph::opt::multicut::MulticutObjectiveBase&lt; MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase"/>
+      </node>
+      <node id="754">
+        <label>nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective"/>
+        <childnode refid="755" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="757">
+        <label>nifty::graph::opt::multicut::MulticutObjectiveBase&lt; MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;, GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase"/>
+      </node>
+      <node id="756">
+        <label>nifty::graph::opt::multicut::MulticutObjective&lt; GRAPH, WEIGHT_TYPE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective"/>
+        <childnode refid="757" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_objective.hxx" bodystart="45" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase_1a5acf025b98f33ce503ddd157c3f56a53" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>ChildObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase_1a46baad38ba237fc1bca02ec5719dd869" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>evalNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a77da7e88d6b4818554de5b30a6b21bf1" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>graph</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a0efecff90ca2ef5b1bc8c003f69f1ddd" prot="private" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a542786fae244388460be05f98396f864" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aea34e2cb5314dab5a6aa51c0a0eca336" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>MulticutObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1ade78c0dcabc90473c11c36dcbed3c157" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>NodeLabelsType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase_1a4071799f8254ec6fbc7d0cb5cb141464" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a8789c71e5f2591ab17dc56a90e6a0f6e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a3f97ef87873adce4123c49c87a9ecc6f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a49e236743fc94453a7e588b54be0a3c4" prot="private" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>weights_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1aa893b1c13cb7add0c87445a1ed24d214" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>WeightsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective_1a958d4c547cb186fb4d7af5e664027a16" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutObjective</scope><name>WeightType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

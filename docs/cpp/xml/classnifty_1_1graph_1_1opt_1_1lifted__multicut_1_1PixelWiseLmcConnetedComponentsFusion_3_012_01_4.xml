@@ -1,0 +1,562 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</compoundname>
+    <includes refid="pixel__wise_8hxx" local="no">pixel_wise.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1_1Settings" prot="public">nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::Settings</innerclass>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">nifty::graph::UndirectedGraph</ref></type>
+        <definition>typedef nifty::graph::UndirectedGraph nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCGraphType</definition>
+        <argsstring></argsstring>
+        <name>CCGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="361" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="361" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjective" kindref="compound">LiftedMulticutObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" kindref="member">CCGraphType</ref>, double &gt;</type>
+        <definition>typedef LiftedMulticutObjective&lt;CCGraphType, double &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>CCObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="362" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" kindref="member">CCObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;CCObjectiveType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCBaseType</definition>
+        <argsstring></argsstring>
+        <name>CCBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="363" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="363" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a3a84e4f6c88a564b711c7132c03da60b" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">CCBaseType::VisitorBaseType</ref></type>
+        <definition>typedef CCBaseType::VisitorBaseType nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CVisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>CVisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="364" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab41b38aa58faf46ada5a185e801c5ac9" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">CCBaseType::NodeLabelsType</ref></type>
+        <definition>typedef CCBaseType::NodeLabelsType nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCNodeLabels</definition>
+        <argsstring></argsstring>
+        <name>CCNodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="365" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="365" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::opt::common::SolverFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" kindref="member">CCBaseType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::SolverFactoryBase&lt;CCBaseType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCLmcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>CCLmcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="367" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="367" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">nifty::graph::UndirectedGraph</ref></type>
+        <definition>typedef nifty::graph::UndirectedGraph nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCGraphType</definition>
+        <argsstring></argsstring>
+        <name>CCGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjective" kindref="compound">LiftedMulticutObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" kindref="member">CCGraphType</ref>, double &gt;</type>
+        <definition>typedef LiftedMulticutObjective&lt;CCGraphType, double &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>CCObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" kindref="member">CCObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;CCObjectiveType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCBaseType</definition>
+        <argsstring></argsstring>
+        <name>CCBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="156" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a3a84e4f6c88a564b711c7132c03da60b" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">CCBaseType::VisitorBaseType</ref></type>
+        <definition>typedef CCBaseType::VisitorBaseType nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CVisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>CVisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab41b38aa58faf46ada5a185e801c5ac9" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">CCBaseType::NodeLabelsType</ref></type>
+        <definition>typedef CCBaseType::NodeLabelsType nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCNodeLabels</definition>
+        <argsstring></argsstring>
+        <name>CCNodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::opt::common::SolverFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" kindref="member">CCBaseType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::SolverFactoryBase&lt;CCBaseType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::CCLmcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>CCLmcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="160" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" prot="public" static="yes" mutable="no">
+        <type>const std::size_t</type>
+        <definition>static const std::size_t nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::DIM</definition>
+        <argsstring></argsstring>
+        <name>DIM</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="357" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="357" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ae13faee16ef3bdfc7c4245f7d17ea11a" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective" kindref="compound">PixelWiseLmcObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" kindref="member">DIM</ref> &gt; &amp;</type>
+        <definition>const PixelWiseLmcObjective&lt; DIM &gt; &amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="698" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="698" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af1451e7ee63a54a567515d221397484e" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">nifty::ufd::Ufd</ref>&lt; uint64_t &gt;</type>
+        <definition>nifty::ufd::Ufd&lt; uint64_t &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::ufd_</definition>
+        <argsstring></argsstring>
+        <name>ufd_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="699" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="699" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92f8663141ee33c6e2b496799911007b" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" kindref="member">CCLmcFactoryBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; CCLmcFactoryBase &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::solver_fatory_</definition>
+        <argsstring></argsstring>
+        <name>solver_fatory_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="700" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="700" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92433c7064b9b236e84d5f9de3a3d177" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::PixelWiseLmcConnetedComponentsFusion</definition>
+        <argsstring>(const PixelWiseLmcObjective&lt; DIM &gt; &amp;objective, std::shared_ptr&lt; CCLmcFactoryBase &gt; solver_fatory)</argsstring>
+        <name>PixelWiseLmcConnetedComponentsFusion</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective" kindref="compound">PixelWiseLmcObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" kindref="member">DIM</ref> &gt; &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" kindref="member">CCLmcFactoryBase</ref> &gt;</type>
+          <declname>solver_fatory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="376" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="376" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a474eb36f28a8e5053b8779f03524a74e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS_A</type>
+          </param>
+          <param>
+            <type>class D_LABELS_B</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::fuse</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS_A &gt; &amp;e_labels_a, const xt::xexpression&lt; D_LABELS_B &gt; &amp;e_labels_b)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_A &gt; &amp;</type>
+          <declname>e_labels_a</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_B &gt; &amp;</type>
+          <declname>e_labels_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="397" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="397" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af4cb1b970e31478a1a9d608dc0433ba6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::fuse</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="446" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="446" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92433c7064b9b236e84d5f9de3a3d177" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::PixelWiseLmcConnetedComponentsFusion</definition>
+        <argsstring>(const PixelWiseLmcObjective&lt; DIM &gt; &amp;objective, std::shared_ptr&lt; CCLmcFactoryBase &gt; solver_fatory)</argsstring>
+        <name>PixelWiseLmcConnetedComponentsFusion</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective" kindref="compound">PixelWiseLmcObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" kindref="member">DIM</ref> &gt; &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" kindref="member">CCLmcFactoryBase</ref> &gt;</type>
+          <declname>solver_fatory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="169" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="169" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a474eb36f28a8e5053b8779f03524a74e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS_A</type>
+          </param>
+          <param>
+            <type>class D_LABELS_B</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::fuse</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS_A &gt; &amp;e_labels_a, const xt::xexpression&lt; D_LABELS_B &gt; &amp;e_labels_b)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_A &gt; &amp;</type>
+          <declname>e_labels_a</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_B &gt; &amp;</type>
+          <declname>e_labels_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="190" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="190" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af4cb1b970e31478a1a9d608dc0433ba6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::fuse</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels)</argsstring>
+        <name>fuse</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="239" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="239" bodyend="287"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7f40ca74382cf83e3df5b1ad961f26a5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS_A</type>
+          </param>
+          <param>
+            <type>class D_LABELS_B</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::merge_ufd</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS_A &gt; &amp;e_labels_a, const xt::xexpression&lt; D_LABELS_B &gt; &amp;e_labels_b)</argsstring>
+        <name>merge_ufd</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_A &gt; &amp;</type>
+          <declname>e_labels_a</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_B &gt; &amp;</type>
+          <declname>e_labels_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="514" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="514" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a0dbf2cdfd836e9039ea4b78e43d93095" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::merge_ufd2</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels)</argsstring>
+        <name>merge_ufd2</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="553" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="553" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af313af1b9096a1b0f3ab8bc84c8e2990" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::_build_</definition>
+        <argsstring>(xt::xtensor&lt; uint64_t, DIM, xt::layout_type::row_major &gt; &amp;res, F &amp;&amp;f)</argsstring>
+        <name>_build_</name>
+        <param>
+          <type>xt::xtensor&lt; uint64_t, <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" kindref="member">DIM</ref>, xt::layout_type::row_major &gt; &amp;</type>
+          <declname>res</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="603" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="603" bodyend="695"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7f40ca74382cf83e3df5b1ad961f26a5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS_A</type>
+          </param>
+          <param>
+            <type>class D_LABELS_B</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::merge_ufd</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS_A &gt; &amp;e_labels_a, const xt::xexpression&lt; D_LABELS_B &gt; &amp;e_labels_b)</argsstring>
+        <name>merge_ufd</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_A &gt; &amp;</type>
+          <declname>e_labels_a</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS_B &gt; &amp;</type>
+          <declname>e_labels_b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="294" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="294" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a0dbf2cdfd836e9039ea4b78e43d93095" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::merge_ufd2</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels)</argsstring>
+        <name>merge_ufd2</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="333" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="333" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1afd71413f17936a541164ff2a7a9518b9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class F</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;::do_it</definition>
+        <argsstring>(xt::xtensor&lt; int, DIM, xt::layout_type::row_major &gt; &amp;res, F &amp;&amp;f)</argsstring>
+        <name>do_it</name>
+        <param>
+          <type>xt::xtensor&lt; int, <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" kindref="member">DIM</ref>, xt::layout_type::row_major &gt; &amp;</type>
+          <declname>res</declname>
+        </param>
+        <param>
+          <type>F &amp;&amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="383" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="383" bodyend="475"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="355" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="354" bodyend="701"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af313af1b9096a1b0f3ab8bc84c8e2990" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>_build_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a4db4caca2bad22f2dff0390dac8dc501" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7852eb58b25f78c8c4755e42a18bd459" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCLmcFactoryBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab4ad143cd3473408280088a97d5680c5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCLmcFactoryBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab41b38aa58faf46ada5a185e801c5ac9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ab41b38aa58faf46ada5a185e801c5ac9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCNodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a79b4a925ec284a5e76a7769518eb3b0a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CCObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a3a84e4f6c88a564b711c7132c03da60b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CVisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a3a84e4f6c88a564b711c7132c03da60b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>CVisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1aa53357c01823259e7ac1216f1211a531" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>DIM</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1afd71413f17936a541164ff2a7a9518b9" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>do_it</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a474eb36f28a8e5053b8779f03524a74e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af4cb1b970e31478a1a9d608dc0433ba6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a474eb36f28a8e5053b8779f03524a74e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af4cb1b970e31478a1a9d608dc0433ba6" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>fuse</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7f40ca74382cf83e3df5b1ad961f26a5" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>merge_ufd</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a7f40ca74382cf83e3df5b1ad961f26a5" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>merge_ufd</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a0dbf2cdfd836e9039ea4b78e43d93095" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>merge_ufd2</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a0dbf2cdfd836e9039ea4b78e43d93095" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>merge_ufd2</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1ae13faee16ef3bdfc7c4245f7d17ea11a" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92433c7064b9b236e84d5f9de3a3d177" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>PixelWiseLmcConnetedComponentsFusion</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92433c7064b9b236e84d5f9de3a3d177" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>PixelWiseLmcConnetedComponentsFusion</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1a92f8663141ee33c6e2b496799911007b" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>solver_fatory_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcConnetedComponentsFusion_3_012_01_4_1af1451e7ee63a54a567515d221397484e" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcConnetedComponentsFusion&lt; 2 &gt;</scope><name>ufd_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

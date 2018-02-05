@@ -9,7 +9,7 @@
 \item 
  \hyperlink{namespacenifty_1_1graph_1_1graph__maps}{graph\+\_\+maps}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization}{optimization}
+ \hyperlink{namespacenifty_1_1graph_1_1opt}{opt}
 \item 
  \hyperlink{namespacenifty_1_1graph_1_1subgraph__masks}{subgraph\+\_\+masks}
 \end{DoxyCompactItemize}
@@ -58,11 +58,13 @@ struct \hyperlink{structnifty_1_1graph_1_1GraphName_3_01PyUndirectedGraph_01_4}{
 \item 
 struct \hyperlink{structnifty_1_1graph_1_1GraphName_3_01UndirectedGridGraph_3_01DIM_00_01SIMPLE__NH_01_4_01_4}{Graph\+Name$<$ Undirected\+Grid\+Graph$<$ D\+I\+M, S\+I\+M\+P\+L\+E\+\_\+\+N\+H $>$ $>$}
 \item 
+struct \hyperlink{structnifty_1_1graph_1_1GraphName_3_01UndirectedLongRangeGridGraph_3_01DIM_01_4_01_4}{Graph\+Name$<$ Undirected\+Long\+Range\+Grid\+Graph$<$ D\+I\+M $>$ $>$}
+\item 
 class \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}
 \item 
-class \hyperlink{classnifty_1_1graph_1_1GridRag3DStacked2D}{Grid\+Rag3\+D\+Stacked2\+D}
+class \hyperlink{classnifty_1_1graph_1_1GridRag3DStacked2D}{Grid\+Rag3\+D\+Stacked2D}
 \item 
-class \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D}{Grid\+Rag\+Stacked2\+D}
+class \hyperlink{classnifty_1_1graph_1_1GridRagStacked2D}{Grid\+Rag\+Stacked2D}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1Hdf5Labels}{Hdf5\+Labels}
 \item 
@@ -90,179 +92,167 @@ class \hyperlink{classnifty_1_1graph_1_1UndirectedGridGraph}{Undirected\+Grid\+G
 \item 
 class \hyperlink{classnifty_1_1graph_1_1UndirectedGridGraph_3_01DIM_00_01true_01_4}{Undirected\+Grid\+Graph$<$ D\+I\+M, true $>$}
 \item 
+class \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{Undirected\+Long\+Range\+Grid\+Graph}
+\item 
 struct \hyperlink{structnifty_1_1graph_1_1UnsortedTag}{Unsorted\+Tag}
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H $>$ }\\using \hyperlink{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}{Breadth\+First\+Search} = \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1FiFo}{detail\+\_\+graph\+::\+Fi\+Fo}$<$ int64\+\_\+t $>$ $>$
+{\footnotesize template$<$class G\+R\+A\+PH $>$ }\\using \hyperlink{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}{Breadth\+First\+Search} = \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1FiFo}{detail\+\_\+graph\+::\+Fi\+Fo}$<$ int64\+\_\+t $>$ $>$
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H $>$ }\\using \hyperlink{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}{Depth\+First\+Search} = \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+P\+H, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1LiFo}{detail\+\_\+graph\+::\+Li\+Fo}$<$ int64\+\_\+t $>$ $>$
+{\footnotesize template$<$class G\+R\+A\+PH $>$ }\\using \hyperlink{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}{Depth\+First\+Search} = \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$ G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1LiFo}{detail\+\_\+graph\+::\+Li\+Fo}$<$ int64\+\_\+t $>$ $>$
 \item 
-{\footnotesize template$<$unsigned int D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ }\\using \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag} = \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, \hyperlink{classnifty_1_1graph_1_1ExplicitLabels}{Explicit\+Labels}$<$ D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ $>$
+{\footnotesize template$<$unsigned int D\+IM, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+PE $>$ }\\using \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag} = \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, \hyperlink{classnifty_1_1graph_1_1ExplicitLabels}{Explicit\+Labels}$<$ D\+IM, L\+A\+B\+E\+L\+\_\+\+T\+Y\+PE $>$ $>$
 \item 
-{\footnotesize template$<$class B\+A\+S\+E\+\_\+\+G\+R\+A\+P\+H $>$ }\\using \hyperlink{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}{Py\+Contraction\+Graph} = \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraphWithSets}{Edge\+Contraction\+Graph\+With\+Sets}$<$ B\+A\+S\+E\+\_\+\+G\+R\+A\+P\+H, \hyperlink{structnifty_1_1graph_1_1FlexibleCallback}{Flexible\+Callback}, std\+::set$<$ uint64\+\_\+t $>$ $>$
+{\footnotesize template$<$class B\+A\+S\+E\+\_\+\+G\+R\+A\+PH $>$ }\\using \hyperlink{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}{Py\+Contraction\+Graph} = \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraphWithSets}{Edge\+Contraction\+Graph\+With\+Sets}$<$ B\+A\+S\+E\+\_\+\+G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1FlexibleCallback}{Flexible\+Callback}, std\+::set$<$ uint64\+\_\+t $>$ $>$
 \item 
 typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{Undirected\+Graph} \hyperlink{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}{Py\+Undirected\+Graph}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ }\\void \hyperlink{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}{edge\+Weighted\+Watersheds\+Segmentation} (const G\+R\+A\+P\+H \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&edge\+Weights, const S\+E\+E\+D\+S \&seeds, L\+A\+B\+E\+L\+S \&labels)
+{\footnotesize template$<$class G\+R\+A\+PH , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ }\\void \hyperlink{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}{edge\+Weighted\+Watersheds\+Segmentation} (const G\+R\+A\+PH \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&edge\+Weights, const S\+E\+E\+DS \&seeds, L\+A\+B\+E\+LS \&labels)
 \begin{DoxyCompactList}\small\item\em edge weighted watersheds Segmentataion \end{DoxyCompactList}\item 
-{\footnotesize template$<$class G\+R\+A\+P\+H , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ }\\void \hyperlink{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}{carving\+Segmentation} (const G\+R\+A\+P\+H \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&edge\+Weights, const S\+E\+E\+D\+S \&seeds, const typename L\+A\+B\+E\+L\+S\+::value\+\_\+type background\+Label, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type background\+Bias, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type no\+Prior\+Below, L\+A\+B\+E\+L\+S \&labels)
+{\footnotesize template$<$class G\+R\+A\+PH , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ }\\void \hyperlink{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}{carving\+Segmentation} (const G\+R\+A\+PH \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&edge\+Weights, const S\+E\+E\+DS \&seeds, const typename L\+A\+B\+E\+L\+S\+::value\+\_\+type background\+Label, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type background\+Bias, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type no\+Prior\+Below, L\+A\+B\+E\+LS \&labels)
 \begin{DoxyCompactList}\small\item\em edge weighted watersheds Segmentataion \end{DoxyCompactList}\item 
-{\footnotesize template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ }\\void \hyperlink{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}{node\+Weighted\+Watersheds\+Segmentation} (const G\+R\+A\+P\+H \&g, const N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&node\+Weights, const S\+E\+E\+D\+S \&seeds, L\+A\+B\+E\+L\+S \&labels)
+{\footnotesize template$<$class G\+R\+A\+PH , class N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ }\\void \hyperlink{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}{node\+Weighted\+Watersheds\+Segmentation} (const G\+R\+A\+PH \&g, const N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&node\+Weights, const S\+E\+E\+DS \&seeds, L\+A\+B\+E\+LS \&labels)
 \begin{DoxyCompactList}\small\item\em edge weighted watersheds Segmentataion \end{DoxyCompactList}\item 
-{\footnotesize template$<$class G\+R\+A\+P\+H , class I\+T\+E\+R\+A\+T\+O\+R $>$ }\\int64\+\_\+t \hyperlink{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}{find\+Chord} (const G\+R\+A\+P\+H \&graph, I\+T\+E\+R\+A\+T\+O\+R begin, I\+T\+E\+R\+A\+T\+O\+R end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)
+{\footnotesize template$<$class G\+R\+A\+PH , class I\+T\+E\+R\+A\+T\+OR $>$ }\\int64\+\_\+t \hyperlink{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}{find\+Chord} (const G\+R\+A\+PH \&graph, I\+T\+E\+R\+A\+T\+OR begin, I\+T\+E\+R\+A\+T\+OR end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class I\+T\+E\+R\+A\+T\+O\+R $>$ }\\int64\+\_\+t \hyperlink{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}{find\+Chord} (const G\+R\+A\+P\+H \&graph, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&mask, I\+T\+E\+R\+A\+T\+O\+R begin, I\+T\+E\+R\+A\+T\+O\+R end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)
+{\footnotesize template$<$class G\+R\+A\+PH , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+SK , class I\+T\+E\+R\+A\+T\+OR $>$ }\\int64\+\_\+t \hyperlink{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}{find\+Chord} (const G\+R\+A\+PH \&graph, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+SK \&mask, I\+T\+E\+R\+A\+T\+OR begin, I\+T\+E\+R\+A\+T\+OR end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)
 \item 
-{\footnotesize template$<$class P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+A\+P , class O\+U\+T\+\_\+\+I\+T\+E\+R $>$ }\\size\+\_\+t \hyperlink{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}{build\+Path\+In\+Large\+Enough\+Buffer} (const uint64\+\_\+t source, const uint64\+\_\+t target, const P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+A\+P \&predecessor\+Map, O\+U\+T\+\_\+\+I\+T\+E\+R large\+Enough\+Buffer\+Begin)
+{\footnotesize template$<$class P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+AP , class O\+U\+T\+\_\+\+I\+T\+ER $>$ }\\size\+\_\+t \hyperlink{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}{build\+Path\+In\+Large\+Enough\+Buffer} (const uint64\+\_\+t source, const uint64\+\_\+t target, const P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+AP \&predecessor\+Map, O\+U\+T\+\_\+\+I\+T\+ER large\+Enough\+Buffer\+Begin)
 \item 
-{\footnotesize template$<$class C\+O\+O\+R\+D $>$ }\\C\+O\+O\+R\+D \hyperlink{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}{make\+Coord2} (const C\+O\+O\+R\+D \&coord, const size\+\_\+t axis)
+{\footnotesize template$<$class G\+R\+A\+PH , class C\+U\+T\+\_\+\+P\+R\+O\+BS , class C\+U\+T\+\_\+\+P\+R\+O\+B\+S\+\_\+\+O\+UT $>$ }\\void \hyperlink{namespacenifty_1_1graph_a694051530c47e632c37d39ba5d8b0f04}{edge\+Weighted\+Watersheds\+Segmentation\+Impl} (const G\+R\+A\+PH \&g, const C\+U\+T\+\_\+\+P\+R\+O\+BS \&cut\+Probs, C\+U\+T\+\_\+\+P\+R\+O\+B\+S\+\_\+\+O\+UT \&cut\+Probs\+Out,)
+\item 
+{\footnotesize template$<$class C\+O\+O\+RD $>$ }\\C\+O\+O\+RD \hyperlink{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}{make\+Coord2} (const C\+O\+O\+RD \&coord, const size\+\_\+t axis)
 \item 
 {\footnotesize template$<$class T , class U $>$ }\\T \hyperlink{namespacenifty_1_1graph_a511023b23336eb0591905cc2034b00a5}{replace\+If\+Not\+Finite} (const T \&val, const U \&replace\+Val)
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}{accumulate\+Edge\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}{accumulate\+Edge\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
 \item 
-{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f)
+{\footnotesize template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f)
 \item 
-{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}{accumulate\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}{accumulate\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f, const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&acc\+Options=\hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}())
 \item 
-{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}{accumulate\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f)
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F $>$ }\\void \hyperlink{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}{accumulate\+Node\+Features\+With\+Acc\+Chain} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&p\+Opts, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool, F \&\&f)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}{accumulate\+Mean\+And\+Length} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1, const bool save\+Memory=false)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}{accumulate\+Mean\+And\+Length} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&edge\+Features\+Out, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1, const bool save\+Memory=false)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}{accumulate\+Edge\+Mean\+And\+Length} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}{accumulate\+Edge\+Mean\+And\+Length} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&out, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}{accumulate\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}{accumulate\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&edge\+Features\+Out, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}{accumulate\+Edge\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}{accumulate\+Edge\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}{accumulate\+Node\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}{accumulate\+Node\+Standart\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const D\+A\+TA \&data, const double min\+Val, const double max\+Val, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}{accumulate\+Geometric\+Node\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}{accumulate\+Geometric\+Node\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ }\\void \hyperlink{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}{accumulate\+Geometric\+Edge\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ }\\void \hyperlink{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}{accumulate\+Geometric\+Edge\+Features} (const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&rag, const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&block\+Shape, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)
 \begin{DoxyCompactList}\small\item\em accumulate geometric features \end{DoxyCompactList}\item 
-{\footnotesize template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E , class L\+A\+B\+E\+L\+S , class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ }\\void \hyperlink{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}{grid\+Rag\+Accumulate\+Labels} (const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&graph, \hyperlink{classandres_1_1View}{nifty\+::marray\+::\+View}$<$ L\+A\+B\+E\+L\+S $>$ data, N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map)
+{\footnotesize template$<$size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE , class L\+A\+B\+E\+LS , class N\+O\+D\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}{grid\+Rag\+Accumulate\+Labels} (const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE $>$ \&graph, \hyperlink{classandres_1_1View}{nifty\+::marray\+::\+View}$<$ L\+A\+B\+E\+LS $>$ data, N\+O\+D\+E\+\_\+\+M\+AP \&node\+Map)
 \item 
-{\footnotesize template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E , class P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+A\+Y , class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ }\\void \hyperlink{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}{project\+Scalar\+Node\+Data\+To\+Pixels} (const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&graph, N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Data, P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+A\+Y \&pixel\+Data, const int number\+Of\+Threads=-\/1)
+{\footnotesize template$<$size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE , class P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+AY , class N\+O\+D\+E\+\_\+\+M\+AP $>$ }\\void \hyperlink{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}{project\+Scalar\+Node\+Data\+To\+Pixels} (const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE $>$ \&graph, N\+O\+D\+E\+\_\+\+M\+AP \&node\+Data, P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+AY \&pixel\+Data, const int number\+Of\+Threads=-\/1)
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H $>$ }\\void \hyperlink{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}{find\+Three\+Cycles\+Edges} (const G\+R\+A\+P\+H \&graph, std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \&three\+Cycles)
+{\footnotesize template$<$class G\+R\+A\+PH $>$ }\\void \hyperlink{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}{find\+Three\+Cycles\+Edges} (const G\+R\+A\+PH \&graph, std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \&three\+Cycles)
 \item 
-{\footnotesize template$<$class G\+R\+A\+P\+H $>$ }\\std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \hyperlink{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}{find\+Three\+Cycles\+Edges} (const G\+R\+A\+P\+H \&graph)
+{\footnotesize template$<$class G\+R\+A\+PH $>$ }\\std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \hyperlink{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}{find\+Three\+Cycles\+Edges} (const G\+R\+A\+PH \&graph)
 \end{DoxyCompactItemize}
 
 
 \subsection{Typedef Documentation}
-\hypertarget{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}{}\index{nifty\+::graph@{nifty\+::graph}!Breadth\+First\+Search@{Breadth\+First\+Search}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}\label{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}} 
+\index{nifty\+::graph@{nifty\+::graph}!Breadth\+First\+Search@{Breadth\+First\+Search}}
 \index{Breadth\+First\+Search@{Breadth\+First\+Search}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{Breadth\+First\+Search}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H $>$ using {\bf nifty\+::graph\+::\+Breadth\+First\+Search} = typedef {\bf detail\+\_\+graph\+::\+Search\+Impl}$<$G\+R\+A\+P\+H, {\bf detail\+\_\+graph\+::\+Fi\+Fo}$<$int64\+\_\+t$>$ $>$}\label{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}
-\hypertarget{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}{}\index{nifty\+::graph@{nifty\+::graph}!Depth\+First\+Search@{Depth\+First\+Search}}
+\subsubsection{\texorpdfstring{Breadth\+First\+Search}{BreadthFirstSearch}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH $>$ \\
+using \hyperlink{namespacenifty_1_1graph_a5cdea7eb940a178738d5f7ba11b92a15}{nifty\+::graph\+::\+Breadth\+First\+Search} = typedef \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1FiFo}{detail\+\_\+graph\+::\+Fi\+Fo}$<$int64\+\_\+t$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}\label{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}} 
+\index{nifty\+::graph@{nifty\+::graph}!Depth\+First\+Search@{Depth\+First\+Search}}
 \index{Depth\+First\+Search@{Depth\+First\+Search}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{Depth\+First\+Search}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H $>$ using {\bf nifty\+::graph\+::\+Depth\+First\+Search} = typedef {\bf detail\+\_\+graph\+::\+Search\+Impl}$<$G\+R\+A\+P\+H, {\bf detail\+\_\+graph\+::\+Li\+Fo}$<$int64\+\_\+t$>$ $>$}\label{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}
-\hypertarget{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{}\index{nifty\+::graph@{nifty\+::graph}!Explicit\+Labels\+Grid\+Rag@{Explicit\+Labels\+Grid\+Rag}}
+\subsubsection{\texorpdfstring{Depth\+First\+Search}{DepthFirstSearch}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH $>$ \\
+using \hyperlink{namespacenifty_1_1graph_a3d6d4a5216a5d0a11785373bc7537085}{nifty\+::graph\+::\+Depth\+First\+Search} = typedef \hyperlink{classnifty_1_1graph_1_1detail__graph_1_1SearchImpl}{detail\+\_\+graph\+::\+Search\+Impl}$<$G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1detail__graph_1_1LiFo}{detail\+\_\+graph\+::\+Li\+Fo}$<$int64\+\_\+t$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}\label{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}} 
+\index{nifty\+::graph@{nifty\+::graph}!Explicit\+Labels\+Grid\+Rag@{Explicit\+Labels\+Grid\+Rag}}
 \index{Explicit\+Labels\+Grid\+Rag@{Explicit\+Labels\+Grid\+Rag}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{Explicit\+Labels\+Grid\+Rag}]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned int D\+I\+M, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E $>$ using {\bf nifty\+::graph\+::\+Explicit\+Labels\+Grid\+Rag} = typedef {\bf Grid\+Rag}$<$D\+I\+M, {\bf Explicit\+Labels}$<$D\+I\+M, L\+A\+B\+E\+L\+\_\+\+T\+Y\+P\+E$>$ $>$}\label{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}
-\hypertarget{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}{}\index{nifty\+::graph@{nifty\+::graph}!Py\+Contraction\+Graph@{Py\+Contraction\+Graph}}
+\subsubsection{\texorpdfstring{Explicit\+Labels\+Grid\+Rag}{ExplicitLabelsGridRag}}
+{\footnotesize\ttfamily template$<$unsigned int D\+IM, class L\+A\+B\+E\+L\+\_\+\+T\+Y\+PE $>$ \\
+using \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{nifty\+::graph\+::\+Explicit\+Labels\+Grid\+Rag} = typedef \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$D\+IM, \hyperlink{classnifty_1_1graph_1_1ExplicitLabels}{Explicit\+Labels}$<$D\+IM, L\+A\+B\+E\+L\+\_\+\+T\+Y\+PE$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}\label{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}} 
+\index{nifty\+::graph@{nifty\+::graph}!Py\+Contraction\+Graph@{Py\+Contraction\+Graph}}
 \index{Py\+Contraction\+Graph@{Py\+Contraction\+Graph}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{Py\+Contraction\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class B\+A\+S\+E\+\_\+\+G\+R\+A\+P\+H $>$ using {\bf nifty\+::graph\+::\+Py\+Contraction\+Graph} = typedef {\bf Edge\+Contraction\+Graph\+With\+Sets}$<$ B\+A\+S\+E\+\_\+\+G\+R\+A\+P\+H, {\bf Flexible\+Callback}, std\+::set$<$uint64\+\_\+t$>$ $>$}\label{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}
-\hypertarget{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}{}\index{nifty\+::graph@{nifty\+::graph}!Py\+Undirected\+Graph@{Py\+Undirected\+Graph}}
+\subsubsection{\texorpdfstring{Py\+Contraction\+Graph}{PyContractionGraph}}
+{\footnotesize\ttfamily template$<$class B\+A\+S\+E\+\_\+\+G\+R\+A\+PH $>$ \\
+using \hyperlink{namespacenifty_1_1graph_aa9ab054f2ea0df09d60d6adf1c7ee6b3}{nifty\+::graph\+::\+Py\+Contraction\+Graph} = typedef \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraphWithSets}{Edge\+Contraction\+Graph\+With\+Sets}$<$ B\+A\+S\+E\+\_\+\+G\+R\+A\+PH, \hyperlink{structnifty_1_1graph_1_1FlexibleCallback}{Flexible\+Callback}, std\+::set$<$uint64\+\_\+t$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}\label{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}} 
+\index{nifty\+::graph@{nifty\+::graph}!Py\+Undirected\+Graph@{Py\+Undirected\+Graph}}
 \index{Py\+Undirected\+Graph@{Py\+Undirected\+Graph}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{Py\+Undirected\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf Undirected\+Graph} {\bf nifty\+::graph\+::\+Py\+Undirected\+Graph}}\label{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}
+\subsubsection{\texorpdfstring{Py\+Undirected\+Graph}{PyUndirectedGraph}}
+{\footnotesize\ttfamily typedef \hyperlink{classnifty_1_1graph_1_1UndirectedGraph}{Undirected\+Graph} \hyperlink{namespacenifty_1_1graph_a62ff5304d118f627910196adc6ab7aab}{nifty\+::graph\+::\+Py\+Undirected\+Graph}}
+
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}\label{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}}
 \index{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f, const Acc\+Options \&acc\+Options=\+Acc\+Options())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f, }
-\item[{const {\bf Acc\+Options} \&}]{acc\+Options = {\ttfamily {\bf Acc\+Options}()}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a8f3282d2d63b3f644bf2176ed21d3082}
-\hypertarget{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain()}{accumulateEdgeAndNodeFeaturesWithAccChain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f,  }\item[{const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&}]{acc\+Options = {\ttfamily \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}\label{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}}
 \index{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F $>$ void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a5e388756ae7e421f92ef5f78494b94d7}
-\hypertarget{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain()}{accumulateEdgeAndNodeFeaturesWithAccChain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}\label{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory}}
 \index{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory@{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f, const Acc\+Options \&acc\+Options=\+Acc\+Options())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f, }
-\item[{const {\bf Acc\+Options} \&}]{acc\+Options = {\ttfamily {\bf Acc\+Options}()}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a8bba7bf00968cb611c2b01bddfe6f2fd}
-\hypertarget{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+Features\+With\+Acc\+Chain}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory()}{accumulateEdgeAndNodeFeaturesWithAccChainSaveMemory()}}
+{\footnotesize\ttfamily template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+And\+Node\+Features\+With\+Acc\+Chain\+Save\+Memory (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f,  }\item[{const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&}]{acc\+Options = {\ttfamily \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}\label{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+Features\+With\+Acc\+Chain}}
 \index{accumulate\+Edge\+Features\+With\+Acc\+Chain@{accumulate\+Edge\+Features\+With\+Acc\+Chain}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+Features\+With\+Acc\+Chain(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f, const Acc\+Options \&acc\+Options=\+Acc\+Options())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ void nifty\+::graph\+::accumulate\+Edge\+Features\+With\+Acc\+Chain (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f, }
-\item[{const {\bf Acc\+Options} \&}]{acc\+Options = {\ttfamily {\bf Acc\+Options}()}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a367cdb1cc5ac050b60098dc22effd452}
-\hypertarget{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Mean\+And\+Length@{accumulate\+Edge\+Mean\+And\+Length}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+Features\+With\+Acc\+Chain()}{accumulateEdgeFeaturesWithAccChain()}}
+{\footnotesize\ttfamily template$<$class E\+D\+G\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+Features\+With\+Acc\+Chain (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f,  }\item[{const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&}]{acc\+Options = {\ttfamily \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}\label{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Mean\+And\+Length@{accumulate\+Edge\+Mean\+And\+Length}}
 \index{accumulate\+Edge\+Mean\+And\+Length@{accumulate\+Edge\+Mean\+And\+Length}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+Mean\+And\+Length(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Edge\+Mean\+And\+Length (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a44f9d32c6516b8a8fad328a7bffff8fe}
-\hypertarget{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Standart\+Features@{accumulate\+Edge\+Standart\+Features}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+Mean\+And\+Length()}{accumulateEdgeMeanAndLength()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+Mean\+And\+Length (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}\label{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Edge\+Standart\+Features@{accumulate\+Edge\+Standart\+Features}}
 \index{accumulate\+Edge\+Standart\+Features@{accumulate\+Edge\+Standart\+Features}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Edge\+Standart\+Features(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Edge\+Standart\+Features (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const double}]{min\+Val, }
-\item[{const double}]{max\+Val, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{edge\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a418009772088e19eb7c14b46e6a01eb5}
-\hypertarget{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Geometric\+Edge\+Features@{accumulate\+Geometric\+Edge\+Features}}
+\subsubsection{\texorpdfstring{accumulate\+Edge\+Standart\+Features()}{accumulateEdgeStandartFeatures()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Edge\+Standart\+Features (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const double}]{min\+Val,  }\item[{const double}]{max\+Val,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{edge\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}\label{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Geometric\+Edge\+Features@{accumulate\+Geometric\+Edge\+Features}}
 \index{accumulate\+Geometric\+Edge\+Features@{accumulate\+Geometric\+Edge\+Features}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Geometric\+Edge\+Features(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Geometric\+Edge\+Features (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{edge\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a152a70f798b787b7fe72acfa1927e098}
+\subsubsection{\texorpdfstring{accumulate\+Geometric\+Edge\+Features()}{accumulateGeometricEdgeFeatures()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Geometric\+Edge\+Features (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{edge\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
 
 
 accumulate geometric features 
@@ -280,112 +270,71 @@ accumulate geometric features
 \end{DoxyParams}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em D\+I\+M} & Dimension of the rag \\
+{\em D\+IM} & Dimension of the rag \\
 \hline
-{\em L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y} & Label Proxy type of the rag \\
+{\em L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY} & Label Proxy type of the rag \\
 \hline
-{\em F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E} & Out\+Type of the features\\
+{\em F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE} & Out\+Type of the features\\
 \hline
 \end{DoxyTemplParams}
 
 
-feature 0 \+: mean edge length \hypertarget{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Geometric\+Node\+Features@{accumulate\+Geometric\+Node\+Features}}
+feature 0 \+: mean edge length \mbox{\Hypertarget{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}\label{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Geometric\+Node\+Features@{accumulate\+Geometric\+Node\+Features}}
 \index{accumulate\+Geometric\+Node\+Features@{accumulate\+Geometric\+Node\+Features}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Geometric\+Node\+Features(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Geometric\+Node\+Features (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{node\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a11bcf8795f57d9e5200fa52c1fb3a883}
-\hypertarget{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Mean\+And\+Length@{accumulate\+Mean\+And\+Length}}
+\subsubsection{\texorpdfstring{accumulate\+Geometric\+Node\+Features()}{accumulateGeometricNodeFeatures()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Geometric\+Node\+Features (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{node\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}\label{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Mean\+And\+Length@{accumulate\+Mean\+And\+Length}}
 \index{accumulate\+Mean\+And\+Length@{accumulate\+Mean\+And\+Length}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Mean\+And\+Length(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1, const bool save\+Memory=false)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Mean\+And\+Length (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{edge\+Features\+Out, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{node\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}, }
-\item[{const bool}]{save\+Memory = {\ttfamily false}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_afa27dafc0727ab9fb2d7e5e5fa23996b}
-\hypertarget{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}}
+\subsubsection{\texorpdfstring{accumulate\+Mean\+And\+Length()}{accumulateMeanAndLength()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Mean\+And\+Length (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{edge\+Features\+Out,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{node\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1},  }\item[{const bool}]{save\+Memory = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}\label{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}}
 \index{accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Node\+Features\+With\+Acc\+Chain(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f, const Acc\+Options \&acc\+Options=\+Acc\+Options())}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F $>$ void nifty\+::graph\+::accumulate\+Node\+Features\+With\+Acc\+Chain (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f, }
-\item[{const {\bf Acc\+Options} \&}]{acc\+Options = {\ttfamily {\bf Acc\+Options}()}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a2cfa949da8b5193deb5fb6d898154e23}
-\hypertarget{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}}
+\subsubsection{\texorpdfstring{accumulate\+Node\+Features\+With\+Acc\+Chain()}{accumulateNodeFeaturesWithAccChain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Node\+Features\+With\+Acc\+Chain (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f,  }\item[{const \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options} \&}]{acc\+Options = {\ttfamily \hyperlink{structnifty_1_1graph_1_1AccOptions}{Acc\+Options}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}\label{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}}
 \index{accumulate\+Node\+Features\+With\+Acc\+Chain@{accumulate\+Node\+Features\+With\+Acc\+Chain}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Node\+Features\+With\+Acc\+Chain(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, const parallel\+::\+Parallel\+Options \&p\+Opts, parallel\+::\+Thread\+Pool \&threadpool, F \&\&f)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+I\+N , std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class F $>$ void nifty\+::graph\+::accumulate\+Node\+Features\+With\+Acc\+Chain (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{const {\bf parallel\+::\+Parallel\+Options} \&}]{p\+Opts, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool, }
-\item[{F \&\&}]{f}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a1464a1e4da963bdaf932c41c042f734e}
-\hypertarget{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Standart\+Features@{accumulate\+Node\+Standart\+Features}}
+\subsubsection{\texorpdfstring{accumulate\+Node\+Features\+With\+Acc\+Chain()}{accumulateNodeFeaturesWithAccChain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class N\+O\+D\+E\+\_\+\+A\+C\+C\+\_\+\+C\+H\+A\+IN , std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class F $>$ \\
+void nifty\+::graph\+::accumulate\+Node\+Features\+With\+Acc\+Chain (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{const \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{parallel\+::\+Parallel\+Options} \&}]{p\+Opts,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool,  }\item[{F \&\&}]{f }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}\label{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Node\+Standart\+Features@{accumulate\+Node\+Standart\+Features}}
 \index{accumulate\+Node\+Standart\+Features@{accumulate\+Node\+Standart\+Features}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Node\+Standart\+Features(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Node\+Standart\+Features (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const double}]{min\+Val, }
-\item[{const double}]{max\+Val, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{node\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_ad7d29a3cfced104a7af73df235b91238}
-\hypertarget{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}{}\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Standart\+Features@{accumulate\+Standart\+Features}}
+\subsubsection{\texorpdfstring{accumulate\+Node\+Standart\+Features()}{accumulateNodeStandartFeatures()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Node\+Standart\+Features (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const double}]{min\+Val,  }\item[{const double}]{max\+Val,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{node\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}\label{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}} 
+\index{nifty\+::graph@{nifty\+::graph}!accumulate\+Standart\+Features@{accumulate\+Standart\+Features}}
 \index{accumulate\+Standart\+Features@{accumulate\+Standart\+Features}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{accumulate\+Standart\+Features(const Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&rag, const D\+A\+T\+A \&data, const double min\+Val, const double max\+Val, const array\+::\+Static\+Array$<$ int64\+\_\+t, D\+I\+M $>$ \&block\+Shape, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&edge\+Features\+Out, marray\+::\+View$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&node\+Features\+Out, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y , class D\+A\+T\+A , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ void nifty\+::graph\+::accumulate\+Standart\+Features (
-\begin{DoxyParamCaption}
-\item[{const {\bf Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+X\+Y $>$ \&}]{rag, }
-\item[{const D\+A\+T\+A \&}]{data, }
-\item[{const double}]{min\+Val, }
-\item[{const double}]{max\+Val, }
-\item[{const {\bf array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M $>$ \&}]{block\+Shape, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{edge\+Features\+Out, }
-\item[{{\bf marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+P\+E $>$ \&}]{node\+Features\+Out, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a42c0895aee417f8a18d643aad2591c8b}
-\hypertarget{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}{}\index{nifty\+::graph@{nifty\+::graph}!build\+Path\+In\+Large\+Enough\+Buffer@{build\+Path\+In\+Large\+Enough\+Buffer}}
+\subsubsection{\texorpdfstring{accumulate\+Standart\+Features()}{accumulateStandartFeatures()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY , class D\+A\+TA , class F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \\
+void nifty\+::graph\+::accumulate\+Standart\+Features (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1GridRag}{Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+P\+R\+O\+XY $>$ \&}]{rag,  }\item[{const D\+A\+TA \&}]{data,  }\item[{const double}]{min\+Val,  }\item[{const double}]{max\+Val,  }\item[{const \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \&}]{block\+Shape,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{edge\+Features\+Out,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ F\+E\+A\+T\+U\+R\+E\+\_\+\+T\+Y\+PE $>$ \&}]{node\+Features\+Out,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}\label{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}} 
+\index{nifty\+::graph@{nifty\+::graph}!build\+Path\+In\+Large\+Enough\+Buffer@{build\+Path\+In\+Large\+Enough\+Buffer}}
 \index{build\+Path\+In\+Large\+Enough\+Buffer@{build\+Path\+In\+Large\+Enough\+Buffer}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{build\+Path\+In\+Large\+Enough\+Buffer(const uint64\+\_\+t source, const uint64\+\_\+t target, const P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+A\+P \&predecessor\+Map, O\+U\+T\+\_\+\+I\+T\+E\+R large\+Enough\+Buffer\+Begin)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+A\+P , class O\+U\+T\+\_\+\+I\+T\+E\+R $>$ size\+\_\+t nifty\+::graph\+::build\+Path\+In\+Large\+Enough\+Buffer (
-\begin{DoxyParamCaption}
-\item[{const uint64\+\_\+t}]{source, }
-\item[{const uint64\+\_\+t}]{target, }
-\item[{const P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+A\+P \&}]{predecessor\+Map, }
-\item[{O\+U\+T\+\_\+\+I\+T\+E\+R}]{large\+Enough\+Buffer\+Begin}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_ad5fff1c63a572469a352e1645f9d3d0c}
-\hypertarget{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}{}\index{nifty\+::graph@{nifty\+::graph}!carving\+Segmentation@{carving\+Segmentation}}
+\subsubsection{\texorpdfstring{build\+Path\+In\+Large\+Enough\+Buffer()}{buildPathInLargeEnoughBuffer()}}
+{\footnotesize\ttfamily template$<$class P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+AP , class O\+U\+T\+\_\+\+I\+T\+ER $>$ \\
+size\+\_\+t nifty\+::graph\+::build\+Path\+In\+Large\+Enough\+Buffer (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{source,  }\item[{const uint64\+\_\+t}]{target,  }\item[{const P\+R\+E\+D\+E\+C\+E\+S\+S\+O\+R\+S\+\_\+\+M\+AP \&}]{predecessor\+Map,  }\item[{O\+U\+T\+\_\+\+I\+T\+ER}]{large\+Enough\+Buffer\+Begin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}\label{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}} 
+\index{nifty\+::graph@{nifty\+::graph}!carving\+Segmentation@{carving\+Segmentation}}
 \index{carving\+Segmentation@{carving\+Segmentation}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{carving\+Segmentation(const G\+R\+A\+P\+H \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&edge\+Weights, const S\+E\+E\+D\+S \&seeds, const typename L\+A\+B\+E\+L\+S\+::value\+\_\+type background\+Label, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type background\+Bias, const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type no\+Prior\+Below, L\+A\+B\+E\+L\+S \&labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ void nifty\+::graph\+::carving\+Segmentation (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{g, }
-\item[{const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&}]{edge\+Weights, }
-\item[{const S\+E\+E\+D\+S \&}]{seeds, }
-\item[{const typename L\+A\+B\+E\+L\+S\+::value\+\_\+type}]{background\+Label, }
-\item[{const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type}]{background\+Bias, }
-\item[{const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type}]{no\+Prior\+Below, }
-\item[{L\+A\+B\+E\+L\+S \&}]{labels}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a428250605a1a1f6fc93fd6aac965b931}
+\subsubsection{\texorpdfstring{carving\+Segmentation()}{carvingSegmentation()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ \\
+void nifty\+::graph\+::carving\+Segmentation (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{g,  }\item[{const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&}]{edge\+Weights,  }\item[{const S\+E\+E\+DS \&}]{seeds,  }\item[{const typename L\+A\+B\+E\+L\+S\+::value\+\_\+type}]{background\+Label,  }\item[{const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type}]{background\+Bias,  }\item[{const typename E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S\+::value\+\_\+type}]{no\+Prior\+Below,  }\item[{L\+A\+B\+E\+LS \&}]{labels }\end{DoxyParamCaption})}
+
 
 
 edge weighted watersheds Segmentataion 
@@ -407,16 +356,13 @@ edge weighted watersheds Segmentataion
 \mbox{\tt out}  & {\em labels} & \+: resulting node\+Labeling (not necessarily dense) \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}{}\index{nifty\+::graph@{nifty\+::graph}!edge\+Weighted\+Watersheds\+Segmentation@{edge\+Weighted\+Watersheds\+Segmentation}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}\label{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}} 
+\index{nifty\+::graph@{nifty\+::graph}!edge\+Weighted\+Watersheds\+Segmentation@{edge\+Weighted\+Watersheds\+Segmentation}}
 \index{edge\+Weighted\+Watersheds\+Segmentation@{edge\+Weighted\+Watersheds\+Segmentation}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{edge\+Weighted\+Watersheds\+Segmentation(const G\+R\+A\+P\+H \&g, const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&edge\+Weights, const S\+E\+E\+D\+S \&seeds, L\+A\+B\+E\+L\+S \&labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ void nifty\+::graph\+::edge\+Weighted\+Watersheds\+Segmentation (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{g, }
-\item[{const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&}]{edge\+Weights, }
-\item[{const S\+E\+E\+D\+S \&}]{seeds, }
-\item[{L\+A\+B\+E\+L\+S \&}]{labels}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a3e294171c18ca5e524f85c9341ef2f5e}
+\subsubsection{\texorpdfstring{edge\+Weighted\+Watersheds\+Segmentation()}{edgeWeightedWatershedsSegmentation()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ \\
+void nifty\+::graph\+::edge\+Weighted\+Watersheds\+Segmentation (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{g,  }\item[{const E\+D\+G\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&}]{edge\+Weights,  }\item[{const S\+E\+E\+DS \&}]{seeds,  }\item[{L\+A\+B\+E\+LS \&}]{labels }\end{DoxyParamCaption})}
+
 
 
 edge weighted watersheds Segmentataion 
@@ -432,16 +378,20 @@ edge weighted watersheds Segmentataion
 \mbox{\tt out}  & {\em labels} & \+: resulting node\+Labeling (not necessarily dense) \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}{}\index{nifty\+::graph@{nifty\+::graph}!find\+Chord@{find\+Chord}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a694051530c47e632c37d39ba5d8b0f04}\label{namespacenifty_1_1graph_a694051530c47e632c37d39ba5d8b0f04}} 
+\index{nifty\+::graph@{nifty\+::graph}!edge\+Weighted\+Watersheds\+Segmentation\+Impl@{edge\+Weighted\+Watersheds\+Segmentation\+Impl}}
+\index{edge\+Weighted\+Watersheds\+Segmentation\+Impl@{edge\+Weighted\+Watersheds\+Segmentation\+Impl}!nifty\+::graph@{nifty\+::graph}}
+\subsubsection{\texorpdfstring{edge\+Weighted\+Watersheds\+Segmentation\+Impl()}{edgeWeightedWatershedsSegmentationImpl()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class C\+U\+T\+\_\+\+P\+R\+O\+BS , class C\+U\+T\+\_\+\+P\+R\+O\+B\+S\+\_\+\+O\+UT $>$ \\
+void nifty\+::graph\+::edge\+Weighted\+Watersheds\+Segmentation\+Impl (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{g,  }\item[{const C\+U\+T\+\_\+\+P\+R\+O\+BS \&}]{cut\+Probs,  }\item[{C\+U\+T\+\_\+\+P\+R\+O\+B\+S\+\_\+\+O\+UT \&}]{cut\+Probs\+Out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}\label{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}} 
+\index{nifty\+::graph@{nifty\+::graph}!find\+Chord@{find\+Chord}}
 \index{find\+Chord@{find\+Chord}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{find\+Chord(const G\+R\+A\+P\+H \&graph, I\+T\+E\+R\+A\+T\+O\+R begin, I\+T\+E\+R\+A\+T\+O\+R end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class I\+T\+E\+R\+A\+T\+O\+R $>$ int64\+\_\+t nifty\+::graph\+::find\+Chord (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{graph, }
-\item[{I\+T\+E\+R\+A\+T\+O\+R}]{begin, }
-\item[{I\+T\+E\+R\+A\+T\+O\+R}]{end, }
-\item[{const bool}]{ignore\+Edge\+Between\+First\+And\+Last = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespacenifty_1_1graph_a5efcd6025d7a1aa6ec3e9826f05d73f1}
+\subsubsection{\texorpdfstring{find\+Chord()}{findChord()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class I\+T\+E\+R\+A\+T\+OR $>$ \\
+int64\+\_\+t nifty\+::graph\+::find\+Chord (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{graph,  }\item[{I\+T\+E\+R\+A\+T\+OR}]{begin,  }\item[{I\+T\+E\+R\+A\+T\+OR}]{end,  }\item[{const bool}]{ignore\+Edge\+Between\+First\+And\+Last = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 Search a path for a chord.
 
 
@@ -455,17 +405,13 @@ Search a path for a chord.
 {\em ignore\+Edge\+Between\+First\+And\+Last} & Flag. \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}{}\index{nifty\+::graph@{nifty\+::graph}!find\+Chord@{find\+Chord}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}\label{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}} 
+\index{nifty\+::graph@{nifty\+::graph}!find\+Chord@{find\+Chord}}
 \index{find\+Chord@{find\+Chord}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{find\+Chord(const G\+R\+A\+P\+H \&graph, const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&mask, I\+T\+E\+R\+A\+T\+O\+R begin, I\+T\+E\+R\+A\+T\+O\+R end, const bool ignore\+Edge\+Between\+First\+And\+Last=false)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K , class I\+T\+E\+R\+A\+T\+O\+R $>$ int64\+\_\+t nifty\+::graph\+::find\+Chord (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{graph, }
-\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+S\+K \&}]{mask, }
-\item[{I\+T\+E\+R\+A\+T\+O\+R}]{begin, }
-\item[{I\+T\+E\+R\+A\+T\+O\+R}]{end, }
-\item[{const bool}]{ignore\+Edge\+Between\+First\+And\+Last = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespacenifty_1_1graph_aa3515c9d13aba223fd3f7771db67af53}
+\subsubsection{\texorpdfstring{find\+Chord()}{findChord()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+SK , class I\+T\+E\+R\+A\+T\+OR $>$ \\
+int64\+\_\+t nifty\+::graph\+::find\+Chord (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{graph,  }\item[{const S\+U\+B\+G\+R\+A\+P\+H\+\_\+\+M\+A\+SK \&}]{mask,  }\item[{I\+T\+E\+R\+A\+T\+OR}]{begin,  }\item[{I\+T\+E\+R\+A\+T\+OR}]{end,  }\item[{const bool}]{ignore\+Edge\+Between\+First\+And\+Last = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 Search a path for a chord.
 
 
@@ -481,48 +427,41 @@ Search a path for a chord.
 {\em ignore\+Edge\+Between\+First\+And\+Last} & Flag. \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}{}\index{nifty\+::graph@{nifty\+::graph}!find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}\label{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}} 
+\index{nifty\+::graph@{nifty\+::graph}!find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}}
 \index{find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{find\+Three\+Cycles\+Edges(const G\+R\+A\+P\+H \&graph, std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \&three\+Cycles)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H $>$ void nifty\+::graph\+::find\+Three\+Cycles\+Edges (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{graph, }
-\item[{std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \&}]{three\+Cycles}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a2ae7ba3bc963090781fd1cafd70ac800}
-\hypertarget{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}{}\index{nifty\+::graph@{nifty\+::graph}!find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}}
+\subsubsection{\texorpdfstring{find\+Three\+Cycles\+Edges()}{findThreeCyclesEdges()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH $>$ \\
+void nifty\+::graph\+::find\+Three\+Cycles\+Edges (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{graph,  }\item[{std\+::vector$<$ std\+::array$<$ uint64\+\_\+t, 3 $>$ $>$ \&}]{three\+Cycles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}\label{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}} 
+\index{nifty\+::graph@{nifty\+::graph}!find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}}
 \index{find\+Three\+Cycles\+Edges@{find\+Three\+Cycles\+Edges}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{find\+Three\+Cycles\+Edges(const G\+R\+A\+P\+H \&graph)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H $>$ std\+::vector$<$ std\+::array$<$uint64\+\_\+t, 3 $>$ $>$ nifty\+::graph\+::find\+Three\+Cycles\+Edges (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{graph}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_ad3135898f4d621d7b498e65c7b5f38c1}
-\hypertarget{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}{}\index{nifty\+::graph@{nifty\+::graph}!grid\+Rag\+Accumulate\+Labels@{grid\+Rag\+Accumulate\+Labels}}
+\subsubsection{\texorpdfstring{find\+Three\+Cycles\+Edges()}{findThreeCyclesEdges()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH $>$ \\
+std\+::vector$<$ std\+::array$<$uint64\+\_\+t, 3 $>$ $>$ nifty\+::graph\+::find\+Three\+Cycles\+Edges (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{graph }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}\label{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}} 
+\index{nifty\+::graph@{nifty\+::graph}!grid\+Rag\+Accumulate\+Labels@{grid\+Rag\+Accumulate\+Labels}}
 \index{grid\+Rag\+Accumulate\+Labels@{grid\+Rag\+Accumulate\+Labels}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{grid\+Rag\+Accumulate\+Labels(const Explicit\+Labels\+Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&graph, nifty\+::marray\+::\+View$<$ L\+A\+B\+E\+L\+S $>$ data, N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Map)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E , class L\+A\+B\+E\+L\+S , class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ void nifty\+::graph\+::grid\+Rag\+Accumulate\+Labels (
-\begin{DoxyParamCaption}
-\item[{const {\bf Explicit\+Labels\+Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&}]{graph, }
-\item[{{\bf nifty\+::marray\+::\+View}$<$ L\+A\+B\+E\+L\+S $>$}]{data, }
-\item[{N\+O\+D\+E\+\_\+\+M\+A\+P \&}]{node\+Map}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a079406a55f43b7ea55616943a3bc6fff}
-\hypertarget{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}{}\index{nifty\+::graph@{nifty\+::graph}!make\+Coord2@{make\+Coord2}}
+\subsubsection{\texorpdfstring{grid\+Rag\+Accumulate\+Labels()}{gridRagAccumulateLabels()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE , class L\+A\+B\+E\+LS , class N\+O\+D\+E\+\_\+\+M\+AP $>$ \\
+void nifty\+::graph\+::grid\+Rag\+Accumulate\+Labels (\begin{DoxyParamCaption}\item[{const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE $>$ \&}]{graph,  }\item[{\hyperlink{classandres_1_1View}{nifty\+::marray\+::\+View}$<$ L\+A\+B\+E\+LS $>$}]{data,  }\item[{N\+O\+D\+E\+\_\+\+M\+AP \&}]{node\+Map }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}\label{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}} 
+\index{nifty\+::graph@{nifty\+::graph}!make\+Coord2@{make\+Coord2}}
 \index{make\+Coord2@{make\+Coord2}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{make\+Coord2(const C\+O\+O\+R\+D \&coord, const size\+\_\+t axis)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+O\+O\+R\+D $>$ C\+O\+O\+R\+D nifty\+::graph\+::make\+Coord2 (
-\begin{DoxyParamCaption}
-\item[{const C\+O\+O\+R\+D \&}]{coord, }
-\item[{const size\+\_\+t}]{axis}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_aca62625e3c61b810e2f6cda338de2c26}
-\hypertarget{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}{}\index{nifty\+::graph@{nifty\+::graph}!node\+Weighted\+Watersheds\+Segmentation@{node\+Weighted\+Watersheds\+Segmentation}}
+\subsubsection{\texorpdfstring{make\+Coord2()}{makeCoord2()}}
+{\footnotesize\ttfamily template$<$class C\+O\+O\+RD $>$ \\
+C\+O\+O\+RD nifty\+::graph\+::make\+Coord2 (\begin{DoxyParamCaption}\item[{const C\+O\+O\+RD \&}]{coord,  }\item[{const size\+\_\+t}]{axis }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}\label{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}} 
+\index{nifty\+::graph@{nifty\+::graph}!node\+Weighted\+Watersheds\+Segmentation@{node\+Weighted\+Watersheds\+Segmentation}}
 \index{node\+Weighted\+Watersheds\+Segmentation@{node\+Weighted\+Watersheds\+Segmentation}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{node\+Weighted\+Watersheds\+Segmentation(const G\+R\+A\+P\+H \&g, const N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&node\+Weights, const S\+E\+E\+D\+S \&seeds, L\+A\+B\+E\+L\+S \&labels)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class G\+R\+A\+P\+H , class N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S , class S\+E\+E\+D\+S , class L\+A\+B\+E\+L\+S $>$ void nifty\+::graph\+::node\+Weighted\+Watersheds\+Segmentation (
-\begin{DoxyParamCaption}
-\item[{const G\+R\+A\+P\+H \&}]{g, }
-\item[{const N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+T\+S \&}]{node\+Weights, }
-\item[{const S\+E\+E\+D\+S \&}]{seeds, }
-\item[{L\+A\+B\+E\+L\+S \&}]{labels}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a5f2f2483c8ff3c80f1597b4d206a65b2}
+\subsubsection{\texorpdfstring{node\+Weighted\+Watersheds\+Segmentation()}{nodeWeightedWatershedsSegmentation()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+TS , class S\+E\+E\+DS , class L\+A\+B\+E\+LS $>$ \\
+void nifty\+::graph\+::node\+Weighted\+Watersheds\+Segmentation (\begin{DoxyParamCaption}\item[{const G\+R\+A\+PH \&}]{g,  }\item[{const N\+O\+D\+E\+\_\+\+W\+E\+I\+G\+H\+TS \&}]{node\+Weights,  }\item[{const S\+E\+E\+DS \&}]{seeds,  }\item[{L\+A\+B\+E\+LS \&}]{labels }\end{DoxyParamCaption})}
+
 
 
 edge weighted watersheds Segmentataion 
@@ -538,21 +477,17 @@ edge weighted watersheds Segmentataion
 \mbox{\tt out}  & {\em labels} & \+: resulting node\+Labeling (not necessarily dense) \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}{}\index{nifty\+::graph@{nifty\+::graph}!project\+Scalar\+Node\+Data\+To\+Pixels@{project\+Scalar\+Node\+Data\+To\+Pixels}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}\label{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}} 
+\index{nifty\+::graph@{nifty\+::graph}!project\+Scalar\+Node\+Data\+To\+Pixels@{project\+Scalar\+Node\+Data\+To\+Pixels}}
 \index{project\+Scalar\+Node\+Data\+To\+Pixels@{project\+Scalar\+Node\+Data\+To\+Pixels}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{project\+Scalar\+Node\+Data\+To\+Pixels(const Explicit\+Labels\+Grid\+Rag$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&graph, N\+O\+D\+E\+\_\+\+M\+A\+P \&node\+Data, P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+A\+Y \&pixel\+Data, const int number\+Of\+Threads=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$size\+\_\+t D\+I\+M, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E , class P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+A\+Y , class N\+O\+D\+E\+\_\+\+M\+A\+P $>$ void nifty\+::graph\+::project\+Scalar\+Node\+Data\+To\+Pixels (
-\begin{DoxyParamCaption}
-\item[{const {\bf Explicit\+Labels\+Grid\+Rag}$<$ D\+I\+M, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+P\+E $>$ \&}]{graph, }
-\item[{N\+O\+D\+E\+\_\+\+M\+A\+P \&}]{node\+Data, }
-\item[{P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+A\+Y \&}]{pixel\+Data, }
-\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_a6b3a3f0cacf4a06ba0b45afc3fb9bc08}
-\hypertarget{namespacenifty_1_1graph_a511023b23336eb0591905cc2034b00a5}{}\index{nifty\+::graph@{nifty\+::graph}!replace\+If\+Not\+Finite@{replace\+If\+Not\+Finite}}
+\subsubsection{\texorpdfstring{project\+Scalar\+Node\+Data\+To\+Pixels()}{projectScalarNodeDataToPixels()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t D\+IM, class L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE , class P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+AY , class N\+O\+D\+E\+\_\+\+M\+AP $>$ \\
+void nifty\+::graph\+::project\+Scalar\+Node\+Data\+To\+Pixels (\begin{DoxyParamCaption}\item[{const \hyperlink{namespacenifty_1_1graph_a45cca2dcd061996d13ec8e6bb8afb200}{Explicit\+Labels\+Grid\+Rag}$<$ D\+IM, L\+A\+B\+E\+L\+S\+\_\+\+T\+Y\+PE $>$ \&}]{graph,  }\item[{N\+O\+D\+E\+\_\+\+M\+AP \&}]{node\+Data,  }\item[{P\+I\+X\+E\+L\+\_\+\+A\+R\+R\+AY \&}]{pixel\+Data,  }\item[{const int}]{number\+Of\+Threads = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_a511023b23336eb0591905cc2034b00a5}\label{namespacenifty_1_1graph_a511023b23336eb0591905cc2034b00a5}} 
+\index{nifty\+::graph@{nifty\+::graph}!replace\+If\+Not\+Finite@{replace\+If\+Not\+Finite}}
 \index{replace\+If\+Not\+Finite@{replace\+If\+Not\+Finite}!nifty\+::graph@{nifty\+::graph}}
-\subsubsection[{replace\+If\+Not\+Finite(const T \&val, const U \&replace\+Val)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T , class U $>$ T nifty\+::graph\+::replace\+If\+Not\+Finite (
-\begin{DoxyParamCaption}
-\item[{const T \&}]{val, }
-\item[{const U \&}]{replace\+Val}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{namespacenifty_1_1graph_a511023b23336eb0591905cc2034b00a5}
+\subsubsection{\texorpdfstring{replace\+If\+Not\+Finite()}{replaceIfNotFinite()}}
+{\footnotesize\ttfamily template$<$class T , class U $>$ \\
+T nifty\+::graph\+::replace\+If\+Not\+Finite (\begin{DoxyParamCaption}\item[{const T \&}]{val,  }\item[{const U \&}]{replace\+Val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

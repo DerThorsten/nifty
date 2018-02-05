@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="logging__visitor_8hxx" kind="file" language="C++">
     <compoundname>logging_visitor.hxx</compoundname>
     <includes local="no">cstddef</includes>
@@ -10,90 +10,90 @@
     <includes local="no">chrono</includes>
     <includes refid="timer_8hxx" local="yes">nifty/tools/timer.hxx</includes>
     <includes refid="logging_8hxx" local="yes">nifty/tools/logging.hxx</includes>
-    <includes refid="visitor__base_8hxx" local="yes">nifty/graph/optimization/common/visitor_base.hxx</includes>
+    <includes refid="visitor__base_8hxx" local="yes">nifty/graph/opt/common/visitor_base.hxx</includes>
     <incdepgraph>
-      <node id="7897">
+      <node id="1912">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="7891" relation="include">
+        <childnode refid="1906" relation="include">
         </childnode>
       </node>
-      <node id="7891">
+      <node id="1906">
         <label>string</label>
       </node>
-      <node id="7896">
+      <node id="1911">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="7893" relation="include">
+        <childnode refid="1908" relation="include">
         </childnode>
-        <childnode refid="7895" relation="include">
+        <childnode refid="1910" relation="include">
         </childnode>
-        <childnode refid="7891" relation="include">
-        </childnode>
-      </node>
-      <node id="7898">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="7890" relation="include">
-        </childnode>
-        <childnode refid="7891" relation="include">
-        </childnode>
-        <childnode refid="7892" relation="include">
-        </childnode>
-        <childnode refid="7893" relation="include">
-        </childnode>
-        <childnode refid="7894" relation="include">
-        </childnode>
-        <childnode refid="7895" relation="include">
-        </childnode>
-        <childnode refid="7896" relation="include">
-        </childnode>
-        <childnode refid="7897" relation="include">
+        <childnode refid="1906" relation="include">
         </childnode>
       </node>
-      <node id="7893">
+      <node id="1908">
         <label>sstream</label>
       </node>
-      <node id="7889">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/common/logging_visitor.hxx</label>
-        <link refid="logging_visitor.hxx"/>
-        <childnode refid="7890" relation="include">
-        </childnode>
-        <childnode refid="7891" relation="include">
-        </childnode>
-        <childnode refid="7892" relation="include">
-        </childnode>
-        <childnode refid="7893" relation="include">
-        </childnode>
-        <childnode refid="7894" relation="include">
-        </childnode>
-        <childnode refid="7895" relation="include">
-        </childnode>
-        <childnode refid="7896" relation="include">
-        </childnode>
-        <childnode refid="7897" relation="include">
-        </childnode>
-        <childnode refid="7898" relation="include">
-        </childnode>
-      </node>
-      <node id="7894">
+      <node id="1909">
         <label>iostream</label>
       </node>
-      <node id="7890">
+      <node id="1905">
         <label>cstddef</label>
       </node>
-      <node id="7895">
+      <node id="1910">
         <label>chrono</label>
       </node>
-      <node id="7892">
+      <node id="1913">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="1905" relation="include">
+        </childnode>
+        <childnode refid="1906" relation="include">
+        </childnode>
+        <childnode refid="1907" relation="include">
+        </childnode>
+        <childnode refid="1908" relation="include">
+        </childnode>
+        <childnode refid="1909" relation="include">
+        </childnode>
+        <childnode refid="1910" relation="include">
+        </childnode>
+        <childnode refid="1911" relation="include">
+        </childnode>
+        <childnode refid="1912" relation="include">
+        </childnode>
+      </node>
+      <node id="1904">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/common/logging_visitor.hxx</label>
+        <link refid="logging__visitor_8hxx"/>
+        <childnode refid="1905" relation="include">
+        </childnode>
+        <childnode refid="1906" relation="include">
+        </childnode>
+        <childnode refid="1907" relation="include">
+        </childnode>
+        <childnode refid="1908" relation="include">
+        </childnode>
+        <childnode refid="1909" relation="include">
+        </childnode>
+        <childnode refid="1910" relation="include">
+        </childnode>
+        <childnode refid="1911" relation="include">
+        </childnode>
+        <childnode refid="1912" relation="include">
+        </childnode>
+        <childnode refid="1913" relation="include">
+        </childnode>
+      </node>
+      <node id="1907">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor" prot="public">nifty::graph::optimization::common::LoggingVisitor</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor" prot="public">nifty::graph::opt::common::LoggingVisitor</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1common">nifty::graph::optimization::common</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1common">nifty::graph::opt::common</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -110,11 +110,11 @@
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="timer_8hxx" kindref="compound">nifty/tools/timer.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="logging_8hxx" kindref="compound">nifty/tools/logging.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="visitor__base_8hxx" kindref="compound">nifty/graph/optimization/common/visitor_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="visitor__base_8hxx" kindref="compound">nifty/graph/opt/common/visitor_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref><sp/>{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph<sp/>{</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">common{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
@@ -124,12 +124,12 @@
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER&gt;</highlight></codeline>
-<codeline lineno="26" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor" kindref="compound">LoggingVisitor</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VisitorBase" kindref="compound">VisitorBase</ref>&lt;SOLVER&gt;{</highlight></codeline>
+<codeline lineno="26" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor" kindref="compound">LoggingVisitor</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">VisitorBase</ref>&lt;SOLVER&gt;{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="28" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a948f90213104a37e586b5024cb918f40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a948f90213104a37e586b5024cb918f40" kindref="member">SolverType</ref>;</highlight></codeline>
-<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a38539dee10778eecf56be540fd64eea2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Timer" kindref="compound">nifty::tools::Timer</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a38539dee10778eecf56be540fd64eea2" kindref="member">TimerType</ref>;</highlight></codeline>
+<codeline lineno="28" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1af6aa5fbf9acd4c1fa02fa34c73b90c1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1af6aa5fbf9acd4c1fa02fa34c73b90c1b" kindref="member">SolverType</ref>;</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a1d5b577cddaca83ee88c8a21c20cf82b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1tools_1_1Timer" kindref="compound">nifty::tools::Timer</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a1d5b577cddaca83ee88c8a21c20cf82b" kindref="member">TimerType</ref>;</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1af37d19689243f420e3fd499feddf825c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1af37d19689243f420e3fd499feddf825c" kindref="member">LoggingVisitor</ref>(</highlight></codeline>
+<codeline lineno="31" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a4c800001aaba274d08b3284b373844a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a4c800001aaba274d08b3284b373844a2" kindref="member">LoggingVisitor</ref>(</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>visitNth<sp/>=<sp/>1,</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>verbose<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeLimitSolver<sp/>=<sp/>std::numeric_limits&lt;double&gt;::infinity(),</highlight></codeline>
@@ -154,7 +154,7 @@
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a0d371764a35038bb959c30787ee27115" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a0d371764a35038bb959c30787ee27115" kindref="member">begin</ref>(SolverType<sp/>*<sp/>)<sp/>{</highlight></codeline>
+<codeline lineno="56" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a5ab79ee5e4afe5e7af570c64b1678dbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a5ab79ee5e4afe5e7af570c64b1678dbc" kindref="member">begin</ref>(SolverType<sp/>*<sp/>)<sp/>{</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(verbose_){</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;</highlight><highlight class="stringliteral">&quot;begin<sp/>inference\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -162,12 +162,12 @@
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a0167833955c7125f150098b40bd9cdff" kindref="member">start</ref>();</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a09686da1cd21063cf5fbe6c80fd7eaf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a09686da1cd21063cf5fbe6c80fd7eaf2" kindref="member">visit</ref>(SolverType<sp/>*<sp/>solver)<sp/>{</highlight></codeline>
+<codeline lineno="64" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a0079f597f09fae363906092f00df126b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a0079f597f09fae363906092f00df126b" kindref="member">visit</ref>(SolverType<sp/>*<sp/>solver)<sp/>{</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1ac45248ef59cb5b742566fde4f64ddada" kindref="member">stop</ref>();</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1ac45248ef59cb5b742566fde4f64ddada" kindref="member">stop</ref>();</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeTotal_<sp/><sp/>+=<sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a6851719aee1a9c0180a640a7b6183f4d" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeTotal_<sp/><sp/>+=<sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a8503fcdb305528e56bd06076ee854df5" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a6cfa990f8398a8dfd00810d3b0d6f526" kindref="member">reset</ref>().<ref refid="classnifty_1_1tools_1_1Timer_1a0167833955c7125f150098b40bd9cdff" kindref="member">start</ref>();</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeSolver_<sp/>+=<sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1a6851719aee1a9c0180a640a7b6183f4d" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeSolver_<sp/>+=<sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1a8503fcdb305528e56bd06076ee854df5" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iter_%visitNth_<sp/>==<sp/>0){</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
@@ -195,14 +195,14 @@
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>runOpt_;</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="97" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a2d4504dd47356f50e59a79e13e826e64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a2d4504dd47356f50e59a79e13e826e64" kindref="member">end</ref>(SolverType<sp/>*<sp/>solver)<sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a8597af1625d5499fa13c1890d92052a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a8597af1625d5499fa13c1890d92052a0" kindref="member">end</ref>(SolverType<sp/>*<sp/>solver)<sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1ac45248ef59cb5b742566fde4f64ddada" kindref="member">stop</ref>();</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1ac45248ef59cb5b742566fde4f64ddada" kindref="member">stop</ref>();</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeTotal_<sp/><sp/>+=<sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a6851719aee1a9c0180a640a7b6183f4d" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeTotal_<sp/><sp/>+=<sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a8503fcdb305528e56bd06076ee854df5" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerTotal_.<ref refid="classnifty_1_1tools_1_1Timer_1a6cfa990f8398a8dfd00810d3b0d6f526" kindref="member">reset</ref>().<ref refid="classnifty_1_1tools_1_1Timer_1a0167833955c7125f150098b40bd9cdff" kindref="member">start</ref>();</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeSolver_<sp/>+=<sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1a6851719aee1a9c0180a640a7b6183f4d" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runtimeSolver_<sp/>+=<sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1a8503fcdb305528e56bd06076ee854df5" kindref="member">elapsedSeconds</ref>();</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"></highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>e<sp/>=<sp/>solver-&gt;currentBestEnergy();</highlight></codeline>
@@ -223,36 +223,36 @@
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerSolver_.<ref refid="classnifty_1_1tools_1_1Timer_1ac45248ef59cb5b742566fde4f64ddada" kindref="member">stop</ref>();</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1ab0c92d5a637a2f4184bc8b3616b7c1d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1ab0c92d5a637a2f4184bc8b3616b7c1d7" kindref="member">clearLogNames</ref>(){</highlight></codeline>
+<codeline lineno="125" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a84dd33facd4e7b509e5d311f2e94df1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a84dd33facd4e7b509e5d311f2e94df1a" kindref="member">clearLogNames</ref>(){</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logNames_.clear();</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logValues_.clear();</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="129" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a937aea0724cef965a33c13f80600e5d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a937aea0724cef965a33c13f80600e5d3" kindref="member">addLogNames</ref>(std::initializer_list&lt;std::string&gt;<sp/>logNames){</highlight></codeline>
+<codeline lineno="129" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a19ea135ecf8fbc92a8a7792164c4fd44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a19ea135ecf8fbc92a8a7792164c4fd44" kindref="member">addLogNames</ref>(std::initializer_list&lt;std::string&gt;<sp/>logNames){</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logNames_.assign(logNames.begin(),<sp/>logNames.end());</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logValues_.resize(logNames.size());</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1aa690344d8a8a88da98a2f27d2f1a8f1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1aa690344d8a8a88da98a2f27d2f1a8f1f" kindref="member">setLogValue</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>logIndex,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logValue){</highlight></codeline>
+<codeline lineno="134" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a2e4db3bf347a0f6eae52d2b66c341935" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a2e4db3bf347a0f6eae52d2b66c341935" kindref="member">setLogValue</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>logIndex,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logValue){</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logValues_[logIndex]<sp/>=<sp/>logValue;</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1adb75d5a267ca5465a9d01a88fd160e74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1adb75d5a267ca5465a9d01a88fd160e74" kindref="member">printLog</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref><sp/>logLevel,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>logString){</highlight></codeline>
+<codeline lineno="138" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a516caf5c8a5c5378ef5d5d62d920142c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a516caf5c8a5c5378ef5d5d62d920142c" kindref="member">printLog</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref><sp/>logLevel,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>logString){</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(logLevel)<sp/>&lt;=<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(logLevel_)){</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;</highlight><highlight class="stringliteral">&quot;LOG[&quot;</highlight><highlight class="normal">&lt;&lt;<ref refid="namespacenifty_1_1logging_1a71e51d733eeaede804a36fd8dea1a28e" kindref="member">nifty::logging::logLevelName</ref>(logLevel)&lt;&lt;</highlight><highlight class="stringliteral">&quot;]:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;logString&lt;&lt;</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1abce5bb67a05da90465eeb020c90210ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1abce5bb67a05da90465eeb020c90210ba" kindref="member">stopOptimize</ref>(){</highlight></codeline>
+<codeline lineno="144" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a744a5519377c2f34057c1e79867f2bc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a744a5519377c2f34057c1e79867f2bc5" kindref="member">stopOptimize</ref>(){</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>runOpt_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"></highlight></codeline>
-<codeline lineno="153" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a526c951d42128b2538f31ac029507c25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint32_t&gt;<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a526c951d42128b2538f31ac029507c25" kindref="member">iterations</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a7bfbbd9384969ab69e3ac7dcdb0481b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint32_t&gt;<sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a7bfbbd9384969ab69e3ac7dcdb0481b3" kindref="member">iterations</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>iterations_;</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="161" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1aebcf36bb46057979ecf18cedf6aeadbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/><sp/><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1aebcf36bb46057979ecf18cedf6aeadbe" kindref="member">energies</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="161" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1ae48f0bf94c4693a7f0c16bca10540373" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/><sp/><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1ae48f0bf94c4693a7f0c16bca10540373" kindref="member">energies</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>energies_;</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="169" refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a5c20b8621b87d4d188685694672e7b48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/><sp/><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1LoggingVisitor_1a5c20b8621b87d4d188685694672e7b48" kindref="member">runtimes</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="169" refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a4cef121f38488dc23115927768c7b8b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/><sp/><sp/>&amp;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1LoggingVisitor_1a4cef121f38488dc23115927768c7b8b3" kindref="member">runtimes</ref>()</highlight><highlight class="keyword">const</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>runtimes_;</highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
@@ -301,11 +301,11 @@
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
 <codeline lineno="216"><highlight class="normal"></highlight></codeline>
 <codeline lineno="217"><highlight class="normal"></highlight></codeline>
-<codeline lineno="218"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="219"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="220"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="221"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/common/logging_visitor.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/logging_visitor.hxx"/>
   </compounddef>
 </doxygen>

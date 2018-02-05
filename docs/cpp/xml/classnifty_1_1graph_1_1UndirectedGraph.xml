@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1UndirectedGraph" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::UndirectedGraph</compoundname>
     <basecompoundref refid="classnifty_1_1graph_1_1UndirectedGraphBase" prot="public" virt="non-virtual">nifty::graph::UndirectedGraphBase&lt; UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;, detail_graph::SimpleGraphNodeIter, detail_graph::SimpleGraphEdgeIter, detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter &gt;</basecompoundref>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="73" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="73" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1aa3b43dd44281416b7232caae529e8780" prot="protected" static="no">
         <type>NODE_INTERNAL_TYPE</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="74" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="68" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1ab50d4774bd9a93ac226589352866df69" prot="protected" static="no">
         <type>detail_graph::UndirectedAdjacency&lt; int64_t, int64_t, <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aa3b43dd44281416b7232caae529e8780" kindref="member">NodeInteralType</ref>, <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" kindref="member">EdgeInternalType</ref> &gt;</type>
@@ -56,11 +56,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="75" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="69" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a3a90ae1386fcc168216856934bf1ec24" prot="protected" static="no">
-        <type><ref refid="classnifty_1_1container_1_1FlatSet" kindref="compound">nifty::container::FlatSet</ref>&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1ab50d4774bd9a93ac226589352866df69" kindref="member">NodeAdjacency</ref> &gt;</type>
-        <definition>typedef nifty::container::FlatSet&lt;NodeAdjacency&gt; nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeStorage</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a6e9a6dd89601d6f9039492053dc9f2a8" prot="protected" static="no">
+        <type><ref refid="namespacenifty_1_1container_1ad9f6bbba60eac29f50d418e4c09d5c7b" kindref="member">nifty::container::BoostFlatSet</ref>&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1ab50d4774bd9a93ac226589352866df69" kindref="member">NodeAdjacency</ref> &gt;</type>
+        <definition>typedef nifty::container::BoostFlatSet&lt;NodeAdjacency&gt; nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeStorage</definition>
         <argsstring></argsstring>
         <name>NodeStorage</name>
         <briefdescription>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="76" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a77256cc943f931180bf84b14d943f39a" prot="protected" static="no">
         <type>std::pair&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" kindref="member">EdgeInternalType</ref>, <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" kindref="member">EdgeInternalType</ref> &gt;</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="77" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="71" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-type">
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="79" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="73" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1aa37a0dc690ad1257d5eb5105e7d66bba" prot="public" static="no">
         <type>boost::counting_iterator&lt; int64_t &gt;</type>
@@ -110,10 +110,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="80" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="80" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="74" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" prot="public" static="no">
-        <type><ref refid="classnifty_1_1container_1_1FlatSet_1a0f4cd26da060859b18742abfd534aa24" kindref="member">NodeStorage::const_iterator</ref></type>
+        <type>NodeStorage::const_iterator</type>
         <definition>typedef NodeStorage::const_iterator nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter</definition>
         <argsstring></argsstring>
         <name>AdjacencyIter</name>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="81" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="75" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a5e5a59e9d25ab322da5e8286cadc3e00" prot="public" static="no">
         <type><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref></type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="84" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="78" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a5d11b1e802f0be2f967b62f7ea5ff61e" prot="public" static="no">
         <type><ref refid="structnifty_1_1graph_1_1ContiguousTag" kindref="compound">ContiguousTag</ref></type>
@@ -149,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="85" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a2f74e8de961bf80dc037ceedf58c46a4" prot="public" static="no">
         <type><ref refid="structnifty_1_1graph_1_1SortedTag" kindref="compound">SortedTag</ref></type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="87" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedGraph_1a0756fdeac9df76a32f46f2969ffacd80" prot="public" static="no">
         <type><ref refid="structnifty_1_1graph_1_1SortedTag" kindref="compound">SortedTag</ref></type>
@@ -175,12 +175,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="88" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="82" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classnifty_1_1graph_1_1UndirectedGraph_1a4e12e37bede71b7beaca9fdbc7dd9abc" prot="protected" static="no" mutable="no">
-        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a3a90ae1386fcc168216856934bf1ec24" kindref="member">NodeStorage</ref> &gt;</type>
+        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a6e9a6dd89601d6f9039492053dc9f2a8" kindref="member">NodeStorage</ref> &gt;</type>
         <definition>std::vector&lt;NodeStorage&gt; nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodes_</definition>
         <argsstring></argsstring>
         <name>nodes_</name>
@@ -190,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="154" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1UndirectedGraph_1adc3e4d3dc0f8bff661042af2a05d342f" prot="protected" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a77256cc943f931180bf84b14d943f39a" kindref="member">EdgeStorage</ref> &gt;</type>
@@ -203,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="155" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="158" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="161" bodyend="166"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="164" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a0c4b2840735519b961431c64400c2dc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -251,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="93" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="171" bodyend="176"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="174" bodyend="179"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a72feacfbdf4fcf8025182cadd1ac62ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
@@ -272,12 +272,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="181" bodyend="196"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="88" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="184" bodyend="199"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a65e4fc15d99d3198592231092dbd5cd3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ad615dcee7447b5663be51ff5725943d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::u</definition>
-        <argsstring>(const int64_t e) const </argsstring>
+        <argsstring>(const int64_t e) const</argsstring>
         <name>u</name>
         <param>
           <type>const int64_t</type>
@@ -289,12 +289,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="100" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="201" bodyend="204"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="204" bodyend="207"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a5d27d9bbc47026eda2223f53e41b1d22" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1af5f8ff3cf680e86d0fc2eb4a40cd7e45" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::v</definition>
-        <argsstring>(const int64_t e) const </argsstring>
+        <argsstring>(const int64_t e) const</argsstring>
         <name>v</name>
         <param>
           <type>const int64_t</type>
@@ -306,12 +306,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="209" bodyend="212"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="95" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="212" bodyend="215"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a6988247544e191fb6acceb58b826c736" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1aa7b79785e3030d9a629987e3c5854d11" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::findEdge</definition>
-        <argsstring>(const int64_t u, const int64_t v) const </argsstring>
+        <argsstring>(const int64_t u, const int64_t v) const</argsstring>
         <name>findEdge</name>
         <param>
           <type>const int64_t</type>
@@ -327,12 +327,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="217" bodyend="225"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="220" bodyend="228"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a0e62fb3ccc0d599b1d5857bf1f39973b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1adab2b7ff99de38d68bccb75d928252ac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodeIdUpperBound</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>nodeIdUpperBound</name>
         <briefdescription>
         </briefdescription>
@@ -340,12 +340,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="230" bodyend="232"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="233" bodyend="235"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ac20fc58728aa6d70c5cfca9f4c7d7b9c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a7f8d1e94b073910e57f53e57905f7877" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int64_t</type>
         <definition>int64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::edgeIdUpperBound</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>edgeIdUpperBound</name>
         <briefdescription>
         </briefdescription>
@@ -353,12 +353,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="238" bodyend="240"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="99" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="241" bodyend="243"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a7c5d24028937e4119315bde14a4ccc7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ac11798f3ea9a39d2af683c6a6af5c30d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::numberOfEdges</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>numberOfEdges</name>
         <briefdescription>
         </briefdescription>
@@ -366,12 +366,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="245" bodyend="247"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="100" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="248" bodyend="250"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a6c6acc627c6a90269c06fb34a8c1973d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1af3450885d48968733f3754544a20c012" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::numberOfNodes</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>numberOfNodes</name>
         <briefdescription>
         </briefdescription>
@@ -379,12 +379,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="107" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="252" bodyend="254"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="255" bodyend="257"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ad343f62b74b5b2ea9d05a3b85a4efc4f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1aa8d42d0d15cc214e1da4a5c8d0ae4e3e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aac54e4ad3a525489e9b29c1bd4c92c88" kindref="member">NodeIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodesBegin</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>nodesBegin</name>
         <briefdescription>
         </briefdescription>
@@ -392,12 +392,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="259" bodyend="261"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="262" bodyend="264"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a67c4ce1c91980e9ec31aab1376e5db65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a8e3e13d42c2770d0d739fa8d65b22c6f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aac54e4ad3a525489e9b29c1bd4c92c88" kindref="member">NodeIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::NodeIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::nodesEnd</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>nodesEnd</name>
         <briefdescription>
         </briefdescription>
@@ -405,12 +405,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="110" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="266" bodyend="268"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="269" bodyend="271"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1adde9dd3a77b87b946acf4b44177d6f89" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a9cd92ddc55ce257585e3b1c34921292b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aa37a0dc690ad1257d5eb5105e7d66bba" kindref="member">EdgeIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::edgesBegin</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>edgesBegin</name>
         <briefdescription>
         </briefdescription>
@@ -418,12 +418,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="111" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="273" bodyend="275"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="105" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="276" bodyend="278"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ae4c6a06e1ffc88a967c10da6c24a6b88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a390b4171a59695c701258e9e4bd4d796" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aa37a0dc690ad1257d5eb5105e7d66bba" kindref="member">EdgeIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::EdgeIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::edgesEnd</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>edgesEnd</name>
         <briefdescription>
         </briefdescription>
@@ -431,12 +431,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="112" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="280" bodyend="282"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="283" bodyend="285"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a3158c45f6b045f886bd2b3bb98921d86" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a51975f5b48920fc9ef2b1283329253d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" kindref="member">AdjacencyIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyBegin</definition>
-        <argsstring>(const int64_t node) const </argsstring>
+        <argsstring>(const int64_t node) const</argsstring>
         <name>adjacencyBegin</name>
         <param>
           <type>const int64_t</type>
@@ -448,12 +448,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="287" bodyend="290"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="290" bodyend="293"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1aee5f776e07d2902e36fe5a8e258cb3fc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a96a867a0211f95e39a6003feed661aab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" kindref="member">AdjacencyIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyEnd</definition>
-        <argsstring>(const int64_t node) const </argsstring>
+        <argsstring>(const int64_t node) const</argsstring>
         <name>adjacencyEnd</name>
         <param>
           <type>const int64_t</type>
@@ -465,12 +465,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="295" bodyend="298"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="109" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="298" bodyend="301"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ac8f9e2e6aff947622a48a875f3c33b15" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1aeb650cb1aa92c762db247e336c35f352" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" kindref="member">AdjacencyIter</ref></type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::adjacencyOutBegin</definition>
-        <argsstring>(const int64_t node) const </argsstring>
+        <argsstring>(const int64_t node) const</argsstring>
         <name>adjacencyOutBegin</name>
         <param>
           <type>const int64_t</type>
@@ -482,12 +482,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="116" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="303" bodyend="305"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="110" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="306" bodyend="308"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a3f39f306b8f1e66812abfded1415ae38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a270b13442535d2407d9b0741748d5fb0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; int64_t, int64_t &gt;</type>
         <definition>std::pair&lt; int64_t, int64_t &gt; nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::uv</definition>
-        <argsstring>(const int64_t e) const </argsstring>
+        <argsstring>(const int64_t e) const</argsstring>
         <name>uv</name>
         <param>
           <type>const int64_t</type>
@@ -499,9 +499,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="311" bodyend="314"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="314" bodyend="317"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a521eb0c379b3c0f3a14c30dddcec4715" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a6e9c1a754ba6d85b12a44e49f8f0a343" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class F</type>
@@ -509,7 +509,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::forEachEdge</definition>
-        <argsstring>(F &amp;&amp;f) const </argsstring>
+        <argsstring>(F &amp;&amp;f) const</argsstring>
         <name>forEachEdge</name>
         <param>
           <type>F &amp;&amp;</type>
@@ -521,9 +521,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="123" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="320" bodyend="324"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="323" bodyend="327"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a6b04c2efc92ed8e43661a3d3067e7454" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a2bd33f944c05eeea7295047378902cb6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class F</type>
@@ -531,7 +531,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::forEachNode</definition>
-        <argsstring>(F &amp;&amp;f) const </argsstring>
+        <argsstring>(F &amp;&amp;f) const</argsstring>
         <name>forEachNode</name>
         <param>
           <type>F &amp;&amp;</type>
@@ -543,12 +543,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="126" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="331" bodyend="335"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="120" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="334" bodyend="338"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a331afe7d6d0765cd71af8bf218d4cc36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ae1dde74a0b401367dd42bff541b9fcd1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::serializationSize</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>serializationSize</name>
         <briefdescription>
         </briefdescription>
@@ -556,9 +556,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="131" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="343" bodyend="348"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="125" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="346" bodyend="351"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ad39b5a1269522c86a7c5469bbf9df2e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a482c06ee7f8b1acd32897c45a4de436e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class ITER</type>
@@ -566,7 +566,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::serialize</definition>
-        <argsstring>(ITER iter) const </argsstring>
+        <argsstring>(ITER iter) const</argsstring>
         <name>serialize</name>
         <param>
           <type>ITER</type>
@@ -578,7 +578,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="134" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="354" bodyend="367"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="128" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="357" bodyend="370"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1ad64103a26a487c730d69e7daaef38191" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -600,12 +600,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="137" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="373" bodyend="389"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="131" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="376" bodyend="392"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a124a705edb8f41f7f2672443fcfb1051" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1aceb04e9a0aacfd415c87c1c70ab89612" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">UndirectedGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" kindref="member">EdgeInternalType</ref>, <ref refid="classnifty_1_1graph_1_1UndirectedGraph_1aa3b43dd44281416b7232caae529e8780" kindref="member">NodeInteralType</ref> &gt;</type>
         <definition>UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt; nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::extractSubgraphFromNodes</definition>
-        <argsstring>(const marray::View&lt; NODE_INTERNAL_TYPE &gt; &amp;nodeList, std::vector&lt; EDGE_INTERANL_TYPE &gt; &amp;innerEdgesOut, std::vector&lt; EDGE_INTERANL_TYPE &gt; &amp;outerEdgesOut) const </argsstring>
+        <argsstring>(const marray::View&lt; NODE_INTERNAL_TYPE &gt; &amp;nodeList, std::vector&lt; EDGE_INTERANL_TYPE &gt; &amp;innerEdgesOut, std::vector&lt; EDGE_INTERANL_TYPE &gt; &amp;outerEdgesOut) const</argsstring>
         <name>extractSubgraphFromNodes</name>
         <param>
           <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; NODE_INTERNAL_TYPE &gt; &amp;</type>
@@ -625,7 +625,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="139" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="450" bodyend="491"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="133" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="453" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a4d1abbc35f94744412a9f6474d922e59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::shrinkToFit</definition>
+        <argsstring>()</argsstring>
+        <name>shrinkToFit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="139" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="139" bodyend="146"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -648,7 +661,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="435" bodyend="445"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="149" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="438" bodyend="448"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedGraph_1a397456fa4036ba4606a375e3c78cb9d4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -674,7 +687,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="149" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="396" bodyend="430"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="152" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="399" bodyend="433"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -682,84 +695,85 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1870">
+      <node id="1168">
         <label>nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;</label>
         <link refid="classnifty_1_1graph_1_1UndirectedGraph"/>
-        <childnode refid="1871" relation="public-inheritance">
+        <childnode refid="1169" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1871">
+      <node id="1169">
         <label>nifty::graph::UndirectedGraphBase&lt; UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;, detail_graph::SimpleGraphNodeIter, detail_graph::SimpleGraphEdgeIter, detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter &gt;</label>
         <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1872">
+      <node id="1170">
         <label>nifty::graph::UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;</label>
         <link refid="classnifty_1_1graph_1_1UndirectedGraph"/>
-        <childnode refid="1873" relation="public-inheritance">
+        <childnode refid="1171" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1873">
+      <node id="1171">
         <label>nifty::graph::UndirectedGraphBase&lt; UndirectedGraph&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;, detail_graph::SimpleGraphNodeIter, detail_graph::SimpleGraphEdgeIter, detail_graph::UndirectedGraphTypeHelper&lt; EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE &gt;::AdjacencyIter &gt;</label>
         <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
       </node>
     </collaborationgraph>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="71" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="64" bodyend="156"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" line="65" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_list_graph.hxx" bodystart="58" bodyend="159"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7077e010ade064cd0e5f7bbca55120b7" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacency</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a3158c45f6b045f886bd2b3bb98921d86" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyBegin</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aee5f776e07d2902e36fe5a8e258cb3fc" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyEnd</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a6ed7fbd6938aad8f6520eb3298bbe24e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyIn</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a7afa033e4b12fcf61b51cd64d80c3c5a" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyInBegin</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab07e2c9932aefe659b1b378462941ac3" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyInEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a46eb06d4cd54189ba6b992735494b788" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a51975f5b48920fc9ef2b1283329253d6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a96a867a0211f95e39a6003feed661aab" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40d901c4ac73481fe54e829749b4b079" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyIn</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a89a51da8736b59edacd6127e366019ce" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyInBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a389da3c388ff86eba5434b1999687e67" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyInEnd</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>AdjacencyIter</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af23538c8549cdce616df93f6a0d0f229" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOut</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ac8f9e2e6aff947622a48a875f3c33b15" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOutBegin</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae4b6e4c05d4a6cdefaa74e4d320763bd" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOutEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab9ce419a67ba4351bb2066a9b85a2b32" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOut</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aeb650cb1aa92c762db247e336c35f352" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOutBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a074b4246bb62d8f6e57d913126709831" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>adjacencyOutEnd</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a0c4b2840735519b961431c64400c2dc2" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>assign</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af2541cf9fb91440ff0a7b56dd5a6be29" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>ChildGraph</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad64103a26a487c730d69e7daaef38191" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>deserialize</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2f74e8de961bf80dc037ceedf58c46a4" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>EdgeIdOrderTag</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a5e5a59e9d25ab322da5e8286cadc3e00" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>EdgeIdTag</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ac20fc58728aa6d70c5cfca9f4c7d7b9c" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a7f8d1e94b073910e57f53e57905f7877" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgeIdUpperBound</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>EdgeInternalType</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa37a0dc690ad1257d5eb5105e7d66bba" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>EdgeIter</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a45e69adbc55f3841a414a886b97d9672" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edges</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ace8277ea99ae46b11bf9070955abf846" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edges</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adc3e4d3dc0f8bff661042af2a05d342f" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edges_</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adde9dd3a77b87b946acf4b44177d6f89" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgesBegin</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ae4c6a06e1ffc88a967c10da6c24a6b88" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a9cd92ddc55ce257585e3b1c34921292b" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a390b4171a59695c701258e9e4bd4d796" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>edgesEnd</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a77256cc943f931180bf84b14d943f39a" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>EdgeStorage</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a124a705edb8f41f7f2672443fcfb1051" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>extractSubgraphFromNodes</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6988247544e191fb6acceb58b826c736" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>findEdge</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a521eb0c379b3c0f3a14c30dddcec4715" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachEdge</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a07dfaf6d9511301e6c8fcdc05a6ec358" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachItem</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6b04c2efc92ed8e43661a3d3067e7454" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachNode</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aceb04e9a0aacfd415c87c1c70ab89612" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>extractSubgraphFromNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa7b79785e3030d9a629987e3c5854d11" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>findEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6e9c1a754ba6d85b12a44e49f8f0a343" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1acfc8a7b6851e1ae726211911d84d309a" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachItem</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2bd33f944c05eeea7295047378902cb6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>forEachNode</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a72feacfbdf4fcf8025182cadd1ac62ea" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>insertEdge</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2a97f53b477b71af29c6e8409729e353" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>insertEdgeOnlyInNodeAdj</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40f5b095eec6297939d5ec7ffa785c13" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>items</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ac1e7c6a7e6e20cb8b184e331789965cd" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>items</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a397456fa4036ba4606a375e3c78cb9d4" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>mergeAdjacencies</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ab50d4774bd9a93ac226589352866df69" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeAdjacency</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a0756fdeac9df76a32f46f2969ffacd80" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeIdOrderTag</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a5d11b1e802f0be2f967b62f7ea5ff61e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeIdTag</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a0e62fb3ccc0d599b1d5857bf1f39973b" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adab2b7ff99de38d68bccb75d928252ac" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodeIdUpperBound</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa3b43dd44281416b7232caae529e8780" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeInteralType</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aac54e4ad3a525489e9b29c1bd4c92c88" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeIter</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a4b3cb925bbce09bea0ceeede5c04c4a1" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodeLabelsToEdgeLabels</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ae143a4dc03467aad4b89a627ae6fdfc7" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ad554bdf7772878fb846b4f3a753f338f" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodes</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a4e12e37bede71b7beaca9fdbc7dd9abc" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodes_</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad343f62b74b5b2ea9d05a3b85a4efc4f" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodesBegin</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a67c4ce1c91980e9ec31aab1376e5db65" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodesEnd</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a3a90ae1386fcc168216856934bf1ec24" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeStorage</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a7c5d24028937e4119315bde14a4ccc7d" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>numberOfEdges</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6c6acc627c6a90269c06fb34a8c1973d" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>numberOfNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa8d42d0d15cc214e1da4a5c8d0ae4e3e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a8e3e13d42c2770d0d739fa8d65b22c6f" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>nodesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6e9a6dd89601d6f9039492053dc9f2a8" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>NodeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ac11798f3ea9a39d2af683c6a6af5c30d" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>numberOfEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1af3450885d48968733f3754544a20c012" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>numberOfNodes</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a3a637f240a8d05794be99e5f290a71b9" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>Self</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a331afe7d6d0765cd71af8bf218d4cc36" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>serializationSize</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad39b5a1269522c86a7c5469bbf9df2e1" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>serialize</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a65e4fc15d99d3198592231092dbd5cd3" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>u</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ae1dde74a0b401367dd42bff541b9fcd1" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>serializationSize</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a482c06ee7f8b1acd32897c45a4de436e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>serialize</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a4d1abbc35f94744412a9f6474d922e59" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>shrinkToFit</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad615dcee7447b5663be51ff5725943d6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>u</name></member>
       <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a3c2087810feadcef80e0a1a1ca288b43" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>UndirectedGraph</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a3f39f306b8f1e66812abfded1415ae38" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>uv</name></member>
-      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a5d27d9bbc47026eda2223f53e41b1d22" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>v</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a270b13442535d2407d9b0741748d5fb0" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>uv</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1af5f8ff3cf680e86d0fc2eb4a40cd7e45" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedGraph</scope><name>v</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

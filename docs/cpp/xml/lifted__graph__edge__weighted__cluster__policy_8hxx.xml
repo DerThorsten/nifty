@@ -1,245 +1,251 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="lifted__graph__edge__weighted__cluster__policy_8hxx" kind="file" language="C++">
     <compoundname>lifted_graph_edge_weighted_cluster_policy.hxx</compoundname>
     <includes local="no">functional</includes>
     <includes refid="changable__priority__queue_8hxx" local="yes">nifty/tools/changable_priority_queue.hxx</includes>
     <includes refid="graph_2edge__contraction__graph_8hxx" local="yes">nifty/graph/edge_contraction_graph.hxx</includes>
     <includes refid="cluster__policies__common_8hxx" local="yes">nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx</includes>
-    <includedby refid="lifted__graph__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</includedby>
+    <includedby refid="lifted__graph__features_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_graph_features.hxx</includedby>
     <incdepgraph>
-      <node id="7170">
+      <node id="1044">
         <label>nifty/tools/const_iterator_range.hxx</label>
         <link refid="const__iterator__range_8hxx"/>
       </node>
-      <node id="7142">
+      <node id="1015">
         <label>functional</label>
       </node>
-      <node id="7144">
+      <node id="1017">
         <label>queue</label>
       </node>
-      <node id="7157">
+      <node id="1031">
         <label>limits</label>
       </node>
-      <node id="7161">
+      <node id="1035">
         <label>iterator</label>
       </node>
-      <node id="7168">
+      <node id="1042">
         <label>cstdint</label>
       </node>
-      <node id="7145">
+      <node id="1018">
         <label>nifty/graph/edge_contraction_graph.hxx</label>
         <link refid="graph_2edge__contraction__graph_8hxx"/>
-        <childnode refid="7142" relation="include">
+        <childnode refid="1015" relation="include">
         </childnode>
-        <childnode refid="7146" relation="include">
+        <childnode refid="1019" relation="include">
         </childnode>
-        <childnode refid="7147" relation="include">
+        <childnode refid="1020" relation="include">
         </childnode>
-        <childnode refid="7148" relation="include">
+        <childnode refid="1022" relation="include">
         </childnode>
-        <childnode refid="7171" relation="include">
+        <childnode refid="1045" relation="include">
         </childnode>
-        <childnode refid="7167" relation="include">
+        <childnode refid="1041" relation="include">
         </childnode>
-        <childnode refid="7174" relation="include">
+        <childnode refid="1048" relation="include">
         </childnode>
-        <childnode refid="7176" relation="include">
+        <childnode refid="1050" relation="include">
         </childnode>
       </node>
-      <node id="7169">
+      <node id="1043">
         <label>cmath</label>
       </node>
-      <node id="7154">
+      <node id="1028">
         <label>cassert</label>
       </node>
-      <node id="7149">
+      <node id="1023">
         <label>boost/iterator/transform_iterator.hpp</label>
       </node>
-      <node id="7156">
+      <node id="1030">
         <label>stdexcept</label>
       </node>
-      <node id="7166">
+      <node id="1040">
         <label>numeric</label>
       </node>
-      <node id="7148">
+      <node id="1022">
         <label>nifty/graph/undirected_graph_base.hxx</label>
         <link refid="undirected__graph__base_8hxx"/>
-        <childnode refid="7149" relation="include">
+        <childnode refid="1023" relation="include">
         </childnode>
-        <childnode refid="7150" relation="include">
+        <childnode refid="1024" relation="include">
         </childnode>
-        <childnode refid="7151" relation="include">
+        <childnode refid="1025" relation="include">
         </childnode>
-        <childnode refid="7170" relation="include">
+        <childnode refid="1044" relation="include">
         </childnode>
       </node>
-      <node id="7176">
+      <node id="1050">
         <label>nifty/graph/detail/adjacency.hxx</label>
         <link refid="adjacency_8hxx"/>
       </node>
-      <node id="7158">
+      <node id="1032">
         <label>string</label>
       </node>
-      <node id="7175">
+      <node id="1049">
         <label>map</label>
       </node>
-      <node id="7153">
+      <node id="1027">
         <label>nifty/marray/andres/marray.hxx</label>
         <link refid="andres_2marray_8hxx"/>
-        <childnode refid="7154" relation="include">
+        <childnode refid="1028" relation="include">
         </childnode>
-        <childnode refid="7155" relation="include">
+        <childnode refid="1029" relation="include">
         </childnode>
-        <childnode refid="7156" relation="include">
+        <childnode refid="1030" relation="include">
         </childnode>
-        <childnode refid="7157" relation="include">
+        <childnode refid="1031" relation="include">
         </childnode>
-        <childnode refid="7158" relation="include">
+        <childnode refid="1032" relation="include">
         </childnode>
-        <childnode refid="7159" relation="include">
+        <childnode refid="1033" relation="include">
         </childnode>
-        <childnode refid="7160" relation="include">
+        <childnode refid="1034" relation="include">
         </childnode>
-        <childnode refid="7161" relation="include">
+        <childnode refid="1035" relation="include">
         </childnode>
-        <childnode refid="7162" relation="include">
+        <childnode refid="1036" relation="include">
         </childnode>
-        <childnode refid="7163" relation="include">
+        <childnode refid="1037" relation="include">
         </childnode>
-        <childnode refid="7164" relation="include">
+        <childnode refid="1038" relation="include">
         </childnode>
-        <childnode refid="7165" relation="include">
+        <childnode refid="1039" relation="include">
         </childnode>
-        <childnode refid="7166" relation="include">
+        <childnode refid="1040" relation="include">
         </childnode>
-        <childnode refid="7142" relation="include">
+        <childnode refid="1015" relation="include">
         </childnode>
       </node>
-      <node id="7174">
+      <node id="1048">
         <label>nifty/ufd/ufd.hxx</label>
         <link refid="ufd_8hxx"/>
-        <childnode refid="7155" relation="include">
+        <childnode refid="1029" relation="include">
         </childnode>
-        <childnode refid="7162" relation="include">
+        <childnode refid="1036" relation="include">
         </childnode>
-        <childnode refid="7175" relation="include">
+        <childnode refid="1049" relation="include">
         </childnode>
       </node>
-      <node id="7147">
+      <node id="1021">
         <label>boost/container/flat_set.hpp</label>
       </node>
-      <node id="7171">
+      <node id="1045">
         <label>nifty/container/flat_set.hxx</label>
         <link refid="flat__set_8hxx"/>
-        <childnode refid="7155" relation="include">
+        <childnode refid="1029" relation="include">
         </childnode>
-        <childnode refid="7162" relation="include">
+        <childnode refid="1036" relation="include">
         </childnode>
-        <childnode refid="7172" relation="include">
+        <childnode refid="1046" relation="include">
         </childnode>
-        <childnode refid="7142" relation="include">
+        <childnode refid="1015" relation="include">
         </childnode>
-        <childnode refid="7173" relation="include">
+        <childnode refid="1047" relation="include">
         </childnode>
       </node>
-      <node id="7143">
+      <node id="1016">
         <label>nifty/tools/changable_priority_queue.hxx</label>
         <link refid="changable__priority__queue_8hxx"/>
-        <childnode refid="7144" relation="include">
+        <childnode refid="1017" relation="include">
         </childnode>
       </node>
-      <node id="7162">
+      <node id="1036">
         <label>vector</label>
       </node>
-      <node id="7150">
+      <node id="1024">
         <label>nifty/graph/graph_tags.hxx</label>
         <link refid="graph__tags_8hxx"/>
       </node>
-      <node id="7173">
+      <node id="1020">
+        <label>nifty/container/boost_flat_set.hxx</label>
+        <link refid="boost__flat__set_8hxx"/>
+        <childnode refid="1021" relation="include">
+        </childnode>
+      </node>
+      <node id="1047">
         <label>utility</label>
       </node>
-      <node id="7159">
+      <node id="1033">
         <label>sstream</label>
       </node>
-      <node id="7167">
+      <node id="1041">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="7168" relation="include">
+        <childnode refid="1042" relation="include">
         </childnode>
-        <childnode refid="7156" relation="include">
+        <childnode refid="1030" relation="include">
         </childnode>
-        <childnode refid="7159" relation="include">
+        <childnode refid="1033" relation="include">
         </childnode>
-        <childnode refid="7162" relation="include">
+        <childnode refid="1036" relation="include">
         </childnode>
-        <childnode refid="7157" relation="include">
+        <childnode refid="1031" relation="include">
         </childnode>
-        <childnode refid="7169" relation="include">
+        <childnode refid="1043" relation="include">
         </childnode>
       </node>
-      <node id="7141">
+      <node id="1014">
         <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
-        <link refid="lifted_graph_edge_weighted_cluster_policy.hxx"/>
-        <childnode refid="7142" relation="include">
+        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
+        <childnode refid="1015" relation="include">
         </childnode>
-        <childnode refid="7143" relation="include">
+        <childnode refid="1016" relation="include">
         </childnode>
-        <childnode refid="7145" relation="include">
+        <childnode refid="1018" relation="include">
         </childnode>
-        <childnode refid="7177" relation="include">
+        <childnode refid="1051" relation="include">
         </childnode>
       </node>
-      <node id="7151">
+      <node id="1025">
         <label>nifty/graph/graph_maps.hxx</label>
         <link refid="graph__maps_8hxx"/>
-        <childnode refid="7152" relation="include">
+        <childnode refid="1026" relation="include">
         </childnode>
       </node>
-      <node id="7164">
+      <node id="1038">
         <label>iostream</label>
       </node>
-      <node id="7155">
+      <node id="1029">
         <label>cstddef</label>
       </node>
-      <node id="7177">
+      <node id="1051">
         <label>nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx</label>
         <link refid="cluster__policies__common_8hxx"/>
       </node>
-      <node id="7152">
+      <node id="1026">
         <label>nifty/marray/marray.hxx</label>
         <link refid="marray_8hxx"/>
-        <childnode refid="7153" relation="include">
+        <childnode refid="1027" relation="include">
         </childnode>
-        <childnode refid="7167" relation="include">
+        <childnode refid="1041" relation="include">
         </childnode>
       </node>
-      <node id="7146">
+      <node id="1019">
         <label>type_traits</label>
       </node>
-      <node id="7163">
+      <node id="1037">
         <label>set</label>
       </node>
-      <node id="7172">
+      <node id="1046">
         <label>algorithm</label>
       </node>
-      <node id="7160">
+      <node id="1034">
         <label>cstring</label>
       </node>
-      <node id="7165">
+      <node id="1039">
         <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7178">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
-        <link refid="lifted_graph_edge_weighted_cluster_policy.hxx"/>
-        <childnode refid="7179" relation="include">
-        </childnode>
-      </node>
-      <node id="7179">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/lifted_graph_features.hxx</label>
+      <node id="1053">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/lifted_graph_features.hxx</label>
         <link refid="lifted__graph__features_8hxx"/>
+      </node>
+      <node id="1052">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/lifted_graph_edge_weighted_cluster_policy.hxx</label>
+        <link refid="lifted__graph__edge__weighted__cluster__policy_8hxx"/>
+        <childnode refid="1053" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" prot="public">nifty::graph::agglo::LiftedGraphEdgeWeightedClusterPolicy</innerclass>
@@ -274,27 +280,27 @@
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">EDGE_SIZES,<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">NODE_SIZES,</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal">&gt;</highlight></codeline>
-<codeline lineno="24" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy</ref>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">LiftedGraphEdgeWeightedClusterPolicy{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy</ref>&lt;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" kindref="member">LiftedGraphEdgeWeightedClusterPolicy</ref>&lt;</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GRAPH,<sp/>EDGE_INDICATORS,<sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EDGE_SIZES,<sp/>NODE_SIZES,<sp/></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EDGE_IS_LIFTED,<sp/>ENABLE_UCM</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;<sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">SelfType</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;<sp/>SelfType;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>input<sp/>types</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ae3d069ea1fd066a37e1c816c0bf50b83" kindref="member">GraphType</ref>;</highlight></codeline>
-<codeline lineno="36" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_INDICATORS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad0813aa75f1e76d10b794cab88615f61" kindref="member">EdgeIndicatorsType</ref>;</highlight></codeline>
-<codeline lineno="37" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_SIZES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad63cc4f759cd05f1bf9b7fec48629221" kindref="member">EdgeSizesType</ref>;</highlight></codeline>
-<codeline lineno="38" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>NODE_SIZES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a83ef319d77186be2fc3957ed06f0a8f1" kindref="member">NodeSizesType</ref>;</highlight></codeline>
-<codeline lineno="39" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad104d8984e0964ccfb7d1ec06ee977a2" kindref="member">EdgeIsLifted</ref>;</highlight></codeline>
-<codeline lineno="40" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" kindref="compound">EdgeWeightedClusterPolicySettings</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" kindref="member">SettingsType</ref>;</highlight></codeline>
-<codeline lineno="41" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph&lt;GraphType, SelfType&gt;</ref><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a316c395d0d3bcc00ddbed21302419354" kindref="member">EdgeContractionGraphType</ref>;</highlight></codeline>
+<codeline lineno="35" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>GRAPH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a09555efd4d9896f60e2225f905a6600c" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_INDICATORS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ad402115dae3b01054a62b0573f84fcab" kindref="member">EdgeIndicatorsType</ref>;</highlight></codeline>
+<codeline lineno="37" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afe8f683c6cef1ab83446de02c40b3e54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_SIZES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1afe8f683c6cef1ab83446de02c40b3e54" kindref="member">EdgeSizesType</ref>;</highlight></codeline>
+<codeline lineno="38" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9fc3be4ac528987e8da19d55ef3b4285" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>NODE_SIZES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9fc3be4ac528987e8da19d55ef3b4285" kindref="member">NodeSizesType</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8294f4c5a6745b1898f9ecf65e486cf6" kindref="member">EdgeIsLifted</ref>;</highlight></codeline>
+<codeline lineno="40" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9bb055f88e22430364ff7624a17276fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicySettings" kindref="compound">EdgeWeightedClusterPolicySettings</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9bb055f88e22430364ff7624a17276fe" kindref="member">SettingsType</ref>;</highlight></codeline>
+<codeline lineno="41" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph&lt;GraphType, SelfType&gt;</ref><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a20c8dc11217be76cda874a9ef9720e92" kindref="member">EdgeContractionGraphType</ref>;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt;GraphType,<sp/>SelfType,<sp/>ENABLE_UCM&gt;<sp/>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt;GraphType,<sp/>SelfType,<sp/>ENABLE_UCM&gt;<sp/>;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>EdgeMap&lt;double&gt;<sp/>CurrentWeightMap;</highlight></codeline>
@@ -305,14 +311,14 @@
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" kindref="member">LiftedGraphEdgeWeightedClusterPolicy</ref>(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" kindref="member">LiftedGraphEdgeWeightedClusterPolicy</ref>(</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;,<sp/>EdgeIndicatorsType,<sp/></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeSizesType,<sp/>NodeSizesType,</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeIsLifted,</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7bf0e26a2c4776e866807429e912084b" kindref="member">SettingsType</ref>());</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a9bb055f88e22430364ff7624a17276fe" kindref="member">SettingsType</ref>());</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;uint64_t,<sp/>double&gt;<sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" kindref="member">edgeToContractNext</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" kindref="member">isDone</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;uint64_t,<sp/>double&gt;<sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac6a70e6487e7d40638f463be143b2fb0" kindref="member">edgeToContractNext</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade41a75987866ee0f747f629e8be1f8a" kindref="member">isDone</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>callback<sp/>called<sp/>by<sp/>edge<sp/>contraction<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -347,8 +353,8 @@
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="98" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" kindref="member">LiftedGraphEdgeWeightedClusterPolicy</ref>(</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
+<codeline lineno="98" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ab7ae607d3f0b14dea37488433e97c91d" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a8380b58dc9e7c5b772af56a620c7946b" kindref="member">LiftedGraphEdgeWeightedClusterPolicy</ref>(</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>&amp;<sp/>graph,</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>EdgeIndicatorsType<sp/><sp/>edgeIndicators,</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>EdgeSizesType<sp/><sp/><sp/><sp/><sp/><sp/><sp/>edgeSizes,</highlight></codeline>
@@ -371,20 +377,20 @@
 <codeline lineno="118"><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::pair&lt;uint64_t,<sp/>double&gt;<sp/></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="122" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac27f4726c16aaa1f77b68a318a13d681" kindref="member">edgeToContractNext</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeToContract<sp/>=<sp/>pq_.top();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac6a70e6487e7d40638f463be143b2fb0" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ac6a70e6487e7d40638f463be143b2fb0" kindref="member">edgeToContractNext</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edgeToContract<sp/>=<sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a550194380fddc3658871dbb64b59960d" kindref="member">top</ref>();</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" kindref="member">NIFTY_CHECK</ref>(!edgeIsLifted_[edgeToContract],<sp/></highlight><highlight class="stringliteral">&quot;internal<sp/>error&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::pair&lt;uint64_t,<sp/>double&gt;(pq_.top(),pq_.topPriority())<sp/>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::pair&lt;uint64_t,<sp/>double&gt;(pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a550194380fddc3658871dbb64b59960d" kindref="member">top</ref>(),pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a2839b67aa76dc79afd492466aeaea3dd" kindref="member">topPriority</ref>())<sp/>;</highlight></codeline>
 <codeline lineno="126"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="131" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a7e11bb64b33cf2123c48eb46d9feebf5" kindref="member">isDone</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(edgeContractionGraph_.numberOfNodes()<sp/>&lt;=<sp/>settings_.numberOfNodesStop)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade41a75987866ee0f747f629e8be1f8a" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
+<codeline lineno="131" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a99bd335a2282e1ea16e062340d480a3a" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1ade41a75987866ee0f747f629e8be1f8a" kindref="member">isDone</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(edgeContractionGraph_.<ref refid="classnifty_1_1graph_1_1EdgeContractionGraph_1add06772035f2b62cabd4d1887a2101e6" kindref="member">numberOfNodes</ref>()<sp/>&lt;=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1_1SettingsType_1a49fe83e6225e58830d651157c52a6985" kindref="member">numberOfNodesStop</ref>)</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(edgeContractionGraph_.numberOfEdges()<sp/>&lt;=<sp/>settings_.numberOfEdgesStop)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(edgeContractionGraph_.<ref refid="classnifty_1_1graph_1_1EdgeContractionGraph_1ad62c0b6483f0470dfe4d9af2f273d07a" kindref="member">numberOfEdges</ref>()<sp/>&lt;=<sp/>settings_.numberOfEdgesStop)</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="137"><highlight class="normal">}</highlight></codeline>
@@ -397,11 +403,11 @@
 <codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>:<sp/>graph_.edges()){</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(edgeIsLifted_[edge]){</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.push(edge,<sp/>std::numeric_limits&lt;double&gt;::infinity()<sp/>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ada41a7adfde46118d48833321ac94066" kindref="member">push</ref>(edge,<sp/>std::numeric_limits&lt;double&gt;::infinity()<sp/>);</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>w<sp/><sp/>=<sp/><sp/>this-&gt;computeWeight(edge);</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.push(edge,<sp/>w);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ada41a7adfde46118d48833321ac94066" kindref="member">push</ref>(edge,<sp/>w);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -409,18 +415,18 @@
 <codeline lineno="156"><highlight class="normal"></highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="159"><highlight class="normal">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH,<sp/>EDGE_INDICATORS,<sp/>EDGE_SIZES,<sp/>NODE_SIZES,<sp/>EDGE_IS_LIFTED,<sp/>ENABLE_UCM&gt;::</highlight></codeline>
-<codeline lineno="160"><highlight class="normal">computeWeight(</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy" kindref="compound">computeWeight</ref>(</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edge</highlight></codeline>
 <codeline lineno="162"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!edgeIsLifted_[edge]){</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"></highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sr<sp/>=<sp/>settings_.sizeRegularizer;</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/>edgeContractionGraph_.uv(edge);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uv<sp/>=<sp/>edgeContractionGraph_.<ref refid="classnifty_1_1graph_1_1EdgeContractionGraph_1aa9f877c513e88e0fcb31ea57c0601b82" kindref="member">uv</ref>(edge);</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sizeU<sp/>=<sp/>nodeSizes_[uv.first];</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sizeV<sp/>=<sp/>nodeSizes_[uv.second];</highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sFac<sp/>=<sp/>2.0<sp/>/<sp/>(<sp/>1.0/std::pow(sizeU,sr)<sp/>+<sp/>1.0/std::pow(sizeV,sr)<sp/>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sFac<sp/>=<sp/>2.0<sp/>/<sp/>(<sp/>1.0/<ref refid="namespacehalf__float_1_1detail_1adf4df435c03de776c4ed53d5cf278e31" kindref="member">std::pow</ref>(sizeU,sr)<sp/>+<sp/>1.0/<ref refid="namespacehalf__float_1_1detail_1adf4df435c03de776c4ed53d5cf278e31" kindref="member">std::pow</ref>(sizeV,sr)<sp/>);</highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>edgeIndicators_[edge]<sp/>*<sp/>sFac;</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
@@ -432,17 +438,17 @@
 <codeline lineno="179"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="182" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" kindref="member">contractEdge</ref>(</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a56bc42922fcf00d486cfebca957c18ab" kindref="member">contractEdge</ref>(</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edgeToContract</highlight></codeline>
 <codeline lineno="184"><highlight class="normal">){</highlight></codeline>
 <codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="runtime__check_8hxx_1a003e065ee36ca7e6b022bbfbd68afaca" kindref="member">NIFTY_CHECK</ref>(!edgeIsLifted_[edgeToContract],<sp/></highlight><highlight class="stringliteral">&quot;internal<sp/>error&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>pq_.deleteItem(edgeToContract);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af5b15b7c4cfedc7f95d168553a06a189" kindref="member">deleteItem</ref>(edgeToContract);</highlight></codeline>
 <codeline lineno="187"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"></highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::EdgeContractionGraphType</ref><sp/>&amp;<sp/></highlight></codeline>
 <codeline lineno="191"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="192" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" kindref="member">edgeContractionGraph</ref>(){</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a95287f99bc3b86ccbed7dcd9c8851628" kindref="member">edgeContractionGraph</ref>(){</highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>edgeContractionGraph_;</highlight></codeline>
 <codeline lineno="194"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="195"><highlight class="normal"></highlight></codeline>
@@ -451,7 +457,7 @@
 <codeline lineno="198"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="199"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="201" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" kindref="member">mergeNodes</ref>(</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a0a8e7d91a8393b6c9d350bc69305bedf" kindref="member">mergeNodes</ref>(</highlight></codeline>
 <codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>aliveNode,<sp/></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>deadNode</highlight></codeline>
 <codeline lineno="204"><highlight class="normal">){</highlight></codeline>
@@ -461,11 +467,11 @@
 <codeline lineno="208"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="210"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="211" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" kindref="member">mergeEdges</ref>(</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1a033e17251eb1e313f930a53a3c73a002" kindref="member">mergeEdges</ref>(</highlight></codeline>
 <codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>aliveEdge,<sp/></highlight></codeline>
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>deadEdge</highlight></codeline>
 <codeline lineno="214"><highlight class="normal">){</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>pq_.deleteItem(deadEdge);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af5b15b7c4cfedc7f95d168553a06a189" kindref="member">deleteItem</ref>(deadEdge);</highlight></codeline>
 <codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>aIsLifted<sp/>=<sp/>edgeIsLifted_[aliveEdge];</highlight></codeline>
@@ -511,15 +517,15 @@
 <codeline lineno="258"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>GRAPH,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_INDICATORS,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>NODE_SIZES,</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>EDGE_IS_LIFTED,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ENABLE_UCM&gt;</highlight></codeline>
 <codeline lineno="259"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="260"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" kindref="member">LiftedGraphEdgeWeightedClusterPolicy&lt;GRAPH, EDGE_INDICATORS, EDGE_SIZES, NODE_SIZES, EDGE_IS_LIFTED, ENABLE_UCM&gt;::</ref></highlight></codeline>
-<codeline lineno="261" refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" kindref="member">contractEdgeDone</ref>(</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><ref refid="classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy_1aa5bcb1829765b56a0fc10a82be501cc0" kindref="member">contractEdgeDone</ref>(</highlight></codeline>
 <codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint64_t<sp/>edgeToContract</highlight></codeline>
 <codeline lineno="263"><highlight class="normal">){</highlight></codeline>
 <codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>HERE<sp/>WE<sp/>UPDATE<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>edgeContractionGraph_.nodeOfDeadEdge(edgeToContract);</highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>adj<sp/>:<sp/>edgeContractionGraph_.adjacency(u)){</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>edgeContractionGraph_.<ref refid="classnifty_1_1graph_1_1EdgeContractionGraph_1a6538334aa0d9cd0fc95bc197f73228bd" kindref="member">nodeOfDeadEdge</ref>(edgeToContract);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>adj<sp/>:<sp/>edgeContractionGraph_.<ref refid="classnifty_1_1graph_1_1EdgeContractionGraph_1a304b4afa030620170b93269c0f9211ca" kindref="member">adjacency</ref>(u)){</highlight></codeline>
 <codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>edge<sp/>=<sp/>adj.edge();</highlight></codeline>
 <codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!edgeIsLifted_[edge]){</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.push(edge,<sp/>computeWeight(edge));</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pq_.<ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ada41a7adfde46118d48833321ac94066" kindref="member">push</ref>(edge,<sp/>computeWeight(edge));</highlight></codeline>
 <codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="272"><highlight class="normal">}</highlight></codeline>

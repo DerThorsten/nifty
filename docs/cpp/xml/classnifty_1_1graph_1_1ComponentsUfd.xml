@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1ComponentsUfd" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::ComponentsUfd</compoundname>
     <includes refid="components_8hxx" local="no">components.hxx</includes>
@@ -11,11 +11,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ComponentsUfd_1afafd21184dee3aecdfa218eb5e72af84" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ComponentsUfd_1a022ccf51b6dd4a943d3d614b97faa783" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::ComponentsUfd&lt; GRAPH &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::ComponentsUfd&lt; GRAPH &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -26,9 +26,9 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classnifty_1_1graph_1_1ComponentsUfd_1a9abe1b04527cb3338e3d18fcce4801aa" prot="private" static="no" mutable="no">
-        <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1afafd21184dee3aecdfa218eb5e72af84" kindref="member">Graph</ref> &amp;</type>
-        <definition>const Graph&amp; nifty::graph::ComponentsUfd&lt; GRAPH &gt;::graph_</definition>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1ComponentsUfd_1a9895b303587e08b4fbe04a165f503448" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1a022ccf51b6dd4a943d3d614b97faa783" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::ComponentsUfd&lt; GRAPH &gt;::graph_</definition>
         <argsstring></argsstring>
         <name>graph_</name>
         <briefdescription>
@@ -37,10 +37,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="137" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="137" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1ComponentsUfd_1a793b5f3a77981a329cc6eb6c7bbcc41b" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">nifty::ufd::Ufd</ref>&lt;  &gt;</type>
+        <type><ref refid="classnifty_1_1ufd_1_1Ufd" kindref="compound">nifty::ufd::Ufd</ref>&lt; &gt;</type>
         <definition>nifty::ufd::Ufd&lt; &gt; nifty::graph::ComponentsUfd&lt; GRAPH &gt;::ufd_</definition>
         <argsstring></argsstring>
         <name>ufd_</name>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="138" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="138" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1ComponentsUfd_1a04f9aa4d70b1f6584ce0a2102043b860" prot="private" static="no" mutable="no">
         <type>uint64_t</type>
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="139" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="139" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="156" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="156" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1ComponentsUfd_1afd0f0298381875b263017f9ea2107d3a" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -76,17 +76,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="140" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="140" bodyend="-1"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="157" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a6913c18bf7713329a42438c95674536e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a4d31de0cf2c4eb1abadf9c2611174ead" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::graph::ComponentsUfd&lt; GRAPH &gt;::ComponentsUfd</definition>
-        <argsstring>(const Graph &amp;graph)</argsstring>
+        <argsstring>(const GraphType &amp;graph)</argsstring>
         <name>ComponentsUfd</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1afafd21184dee3aecdfa218eb5e72af84" kindref="member">Graph</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1a022ccf51b6dd4a943d3d614b97faa783" kindref="member">GraphType</ref> &amp;</type>
           <declname>graph</declname>
         </param>
         <briefdescription>
@@ -132,6 +132,28 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="34" bodyend="46"/>
       </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a19cff4294cf2b0ea9a96be7ad9166bc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class EDGE_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::ComponentsUfd&lt; GRAPH &gt;::buildFromEdgeLabels</definition>
+        <argsstring>(const EDGE_LABELS &amp;edgeLabels)</argsstring>
+        <name>buildFromEdgeLabels</name>
+        <param>
+          <type>const EDGE_LABELS &amp;</type>
+          <declname>edgeLabels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="48" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="48" bodyend="62"/>
+      </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1addaee74aadc18b2b3a479dca5b0851cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -152,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="49" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="49" bodyend="63"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="66" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="66" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1af5c4c45f3de807f548f07060e4ac5ed5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -165,12 +187,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="65" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="65" bodyend="67"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="82" bodyend="84"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a680c25bd16a0728b1d937d21383b0730" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a37bd75263b5a1dce2d3452e5ad71062f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::graph::ComponentsUfd&lt; GRAPH &gt;::areConnected</definition>
-        <argsstring>(const int64_t u, const int64_t v) const </argsstring>
+        <argsstring>(const int64_t u, const int64_t v) const</argsstring>
         <name>areConnected</name>
         <param>
           <type>const int64_t</type>
@@ -186,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="69" bodyend="71"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="86" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a530d516ae63b9765ae18671da71bee9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -207,12 +229,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="73" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="73" bodyend="75"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="90" bodyend="92"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a4af6546f5ae5c08b6ded79278988920a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a613e0d3515c4b0aeb961ebf2afac08fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::ComponentsUfd&lt; GRAPH &gt;::componentLabel</definition>
-        <argsstring>(const uint64_t u) const </argsstring>
+        <argsstring>(const uint64_t u) const</argsstring>
         <name>componentLabel</name>
         <param>
           <type>const uint64_t</type>
@@ -224,7 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="77" bodyend="79"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="94" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1ab94489c15d132f7af184f66bf2a2dc2c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>uint64_t</type>
@@ -241,12 +263,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="81" bodyend="83"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="98" bodyend="100"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a40829c2475f277aebdeead2723380381" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a9b49939a2a5ffe4ae5c246d65d4302aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::ComponentsUfd&lt; GRAPH &gt;::operator[]</definition>
-        <argsstring>(const uint64_t u) const </argsstring>
+        <argsstring>(const uint64_t u) const</argsstring>
         <name>operator[]</name>
         <param>
           <type>const uint64_t</type>
@@ -258,12 +280,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="85" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="85" bodyend="87"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="102" bodyend="104"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a5a2a7b3bf4d5f260932b8129b63b8a15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a675a98fdcf175d7157041633cde35c37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>uint64_t</type>
         <definition>uint64_t nifty::graph::ComponentsUfd&lt; GRAPH &gt;::maxLabel</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>maxLabel</name>
         <briefdescription>
         </briefdescription>
@@ -271,9 +293,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="89" bodyend="95"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="106" bodyend="112"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a9631be50bd7cfd87c25945c52797aa45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1af9d0873f2dd65ca662fe886ef3ae43ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class NODE_MAP</type>
@@ -281,7 +303,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::ComponentsUfd&lt; GRAPH &gt;::denseRelabeling</definition>
-        <argsstring>(NODE_MAP &amp;nodeMap) const </argsstring>
+        <argsstring>(NODE_MAP &amp;nodeMap) const</argsstring>
         <name>denseRelabeling</name>
         <param>
           <type>NODE_MAP &amp;</type>
@@ -293,9 +315,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="98" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="98" bodyend="109"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="115" bodyend="126"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a41359f3f6901e4c503b39c224423952a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a40304c705953ef4b0d74308f083c12a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>class NODE_MAP</type>
@@ -306,7 +328,7 @@
         </templateparamlist>
         <type>void</type>
         <definition>void nifty::graph::ComponentsUfd&lt; GRAPH &gt;::denseRelabeling</definition>
-        <argsstring>(NODE_MAP &amp;nodeMap, COMP_SIZE &amp;compSize) const </argsstring>
+        <argsstring>(NODE_MAP &amp;nodeMap, COMP_SIZE &amp;compSize) const</argsstring>
         <name>denseRelabeling</name>
         <param>
           <type>NODE_MAP &amp;</type>
@@ -322,12 +344,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="113" bodyend="128"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="130" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="130" bodyend="145"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1aec56e122103d4a3593b4fa437695d685" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1afafd21184dee3aecdfa218eb5e72af84" kindref="member">Graph</ref> &amp;</type>
-        <definition>const Graph&amp; nifty::graph::ComponentsUfd&lt; GRAPH &gt;::graph</definition>
-        <argsstring>() const </argsstring>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ComponentsUfd_1a98cca33e98d6e1d9172c6fe65ceae849" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ComponentsUfd_1a022ccf51b6dd4a943d3d614b97faa783" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::ComponentsUfd&lt; GRAPH &gt;::graph</definition>
+        <argsstring>() const</argsstring>
         <name>graph</name>
         <briefdescription>
         </briefdescription>
@@ -335,32 +357,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="130" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="130" bodyend="132"/>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="147" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="147" bodyend="149"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="16" bodyend="141"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/components.hxx" bodystart="16" bodyend="158"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a680c25bd16a0728b1d937d21383b0730" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>areConnected</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a37bd75263b5a1dce2d3452e5ad71062f" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>areConnected</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a530d516ae63b9765ae18671da71bee9f" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>areConnected</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1ad41a9eae9bfab1b457630b73adc1b9d3" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>build</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1addaee74aadc18b2b3a479dca5b0851cc" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>build</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a19cff4294cf2b0ea9a96be7ad9166bc9" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>buildFromEdgeLabels</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a1a6d02426ccb3d0f22cd7ad14abfa0b7" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>buildFromLabels</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a4af6546f5ae5c08b6ded79278988920a" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>componentLabel</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a613e0d3515c4b0aeb961ebf2afac08fa" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>componentLabel</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1ab94489c15d132f7af184f66bf2a2dc2c" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>componentLabel</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a6913c18bf7713329a42438c95674536e" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>ComponentsUfd</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a9631be50bd7cfd87c25945c52797aa45" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>denseRelabeling</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a41359f3f6901e4c503b39c224423952a" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>denseRelabeling</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1afafd21184dee3aecdfa218eb5e72af84" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>Graph</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1aec56e122103d4a3593b4fa437695d685" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>graph</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a9abe1b04527cb3338e3d18fcce4801aa" prot="private" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>graph_</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a5a2a7b3bf4d5f260932b8129b63b8a15" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>maxLabel</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a4d31de0cf2c4eb1abadf9c2611174ead" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>ComponentsUfd</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1af9d0873f2dd65ca662fe886ef3ae43ff" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>denseRelabeling</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a40304c705953ef4b0d74308f083c12a3" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>denseRelabeling</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a98cca33e98d6e1d9172c6fe65ceae849" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>graph</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a9895b303587e08b4fbe04a165f503448" prot="private" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a022ccf51b6dd4a943d3d614b97faa783" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a675a98fdcf175d7157041633cde35c37" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>maxLabel</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1afd0f0298381875b263017f9ea2107d3a" prot="private" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>needsReset_</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a04f9aa4d70b1f6584ce0a2102043b860" prot="private" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>offset_</name></member>
-      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a40829c2475f277aebdeead2723380381" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a9b49939a2a5ffe4ae5c246d65d4302aa" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>operator[]</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1af5c4c45f3de807f548f07060e4ac5ed5" prot="public" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>reset</name></member>
       <member refid="classnifty_1_1graph_1_1ComponentsUfd_1a793b5f3a77981a329cc6eb6c7bbcc41b" prot="private" virt="non-virtual"><scope>nifty::graph::ComponentsUfd</scope><name>ufd_</name></member>
     </listofallmembers>

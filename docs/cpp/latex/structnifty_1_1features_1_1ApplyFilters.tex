@@ -1,4 +1,4 @@
-\hypertarget{structnifty_1_1features_1_1ApplyFilters}{}\section{nifty\+:\+:features\+:\+:Apply\+Filters$<$ D\+I\+M $>$ Struct Template Reference}
+\hypertarget{structnifty_1_1features_1_1ApplyFilters}{}\section{nifty\+:\+:features\+:\+:Apply\+Filters$<$ D\+IM $>$ Struct Template Reference}
 \label{structnifty_1_1features_1_1ApplyFilters}\index{nifty\+::features\+::\+Apply\+Filters$<$ D\+I\+M $>$@{nifty\+::features\+::\+Apply\+Filters$<$ D\+I\+M $>$}}
 
 
@@ -7,68 +7,72 @@
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef std\+::conditional$<$ D\+I\+M==2, fastfilters\+\_\+array2d\+\_\+t, fastfilters\+\_\+array3d\+\_\+t $>$\+::type \hyperlink{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}{Fastfilters\+Array\+Type}
+typedef std\+::conditional$<$ D\+IM==2, fastfilters\+\_\+array2d\+\_\+t, fastfilters\+\_\+array3d\+\_\+t $>$\+::type \hyperlink{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}{Fastfilters\+Array\+Type}
 \item 
-typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+I\+M+1 $>$ \hyperlink{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}{Coord}
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM+1 $>$ \hyperlink{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}{Coord}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structnifty_1_1features_1_1ApplyFilters_a21bb107c65ee2783993d6de3170d2922}{Apply\+Filters} (const std\+::vector$<$ double $>$ \&sigmas, const std\+::vector$<$ \hyperlink{structnifty_1_1features_1_1FilterBase}{Filter\+Base} $\ast$ $>$ filters)
+\hyperlink{structnifty_1_1features_1_1ApplyFilters_ad851e87ed8e1ec3ba63fb11e58aa2856}{Apply\+Filters} (const std\+::vector$<$ double $>$ \&sigmas, const std\+::vector$<$ \hyperlink{structnifty_1_1features_1_1FilterBase}{Filter\+Base} $\ast$$>$ filters)
 \item 
-void \hyperlink{structnifty_1_1features_1_1ApplyFilters_a075f9232abd8d323ba121b2bdd49fa17}{operator()} (const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&in, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&out) const 
+void \hyperlink{structnifty_1_1features_1_1ApplyFilters_a63d2a6c7fca07fed1921c6c8bf8ecc19}{operator()} (const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&in, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&out) const
 \item 
-void \hyperlink{structnifty_1_1features_1_1ApplyFilters_a6fc96c356178496a7b6c08c8e429dead}{operator()} (const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&in, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&out, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool) const 
+void \hyperlink{structnifty_1_1features_1_1ApplyFilters_af1316760b67e21d2c3f647313942f087}{operator()} (const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&in, \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&out, \hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&threadpool) const
 \item 
-size\+\_\+t \hyperlink{structnifty_1_1features_1_1ApplyFilters_afb7d56d68a25b2aaf2de29e3d6f39cff}{number\+Of\+Channels} () const 
+size\+\_\+t \hyperlink{structnifty_1_1features_1_1ApplyFilters_a7f28df00a4ecfcbeff8cafcae8d7a2b5}{number\+Of\+Channels} () const
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Typedef Documentation}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Coord@{Coord}}
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}\label{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Coord@{Coord}}
 \index{Coord@{Coord}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{Coord}]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ typedef {\bf array\+::\+Static\+Array}$<$int64\+\_\+t, D\+I\+M+1$>$ {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::{\bf Coord}}\label{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Fastfilters\+Array\+Type@{Fastfilters\+Array\+Type}}
+\subsubsection{\texorpdfstring{Coord}{Coord}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$int64\+\_\+t, D\+IM+1$>$ \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::\hyperlink{structnifty_1_1features_1_1ApplyFilters_a0a26d161f300b3394044f1357ae5ebfd}{Coord}}
+
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}\label{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Fastfilters\+Array\+Type@{Fastfilters\+Array\+Type}}
 \index{Fastfilters\+Array\+Type@{Fastfilters\+Array\+Type}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{Fastfilters\+Array\+Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ typedef std\+::conditional$<$D\+I\+M==2, fastfilters\+\_\+array2d\+\_\+t, fastfilters\+\_\+array3d\+\_\+t $>$\+::type {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::{\bf Fastfilters\+Array\+Type}}\label{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}
+\subsubsection{\texorpdfstring{Fastfilters\+Array\+Type}{FastfiltersArrayType}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+typedef std\+::conditional$<$D\+IM==2, fastfilters\+\_\+array2d\+\_\+t, fastfilters\+\_\+array3d\+\_\+t $>$\+::type \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::\hyperlink{structnifty_1_1features_1_1ApplyFilters_adfddd3f0fdaa0179cc23100901565774}{Fastfilters\+Array\+Type}}
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_a21bb107c65ee2783993d6de3170d2922}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Apply\+Filters@{Apply\+Filters}}
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_ad851e87ed8e1ec3ba63fb11e58aa2856}\label{structnifty_1_1features_1_1ApplyFilters_ad851e87ed8e1ec3ba63fb11e58aa2856}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!Apply\+Filters@{Apply\+Filters}}
 \index{Apply\+Filters@{Apply\+Filters}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{Apply\+Filters(const std\+::vector$<$ double $>$ \&sigmas, const std\+::vector$<$ Filter\+Base $\ast$ $>$ filters)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::{\bf Apply\+Filters} (
-\begin{DoxyParamCaption}
-\item[{const std\+::vector$<$ double $>$ \&}]{sigmas, }
-\item[{const std\+::vector$<$ {\bf Filter\+Base} $\ast$ $>$}]{filters}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1ApplyFilters_a21bb107c65ee2783993d6de3170d2922}
+\subsubsection{\texorpdfstring{Apply\+Filters()}{ApplyFilters()}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+\hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::\hyperlink{structnifty_1_1features_1_1ApplyFilters}{Apply\+Filters} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{sigmas,  }\item[{const std\+::vector$<$ \hyperlink{structnifty_1_1features_1_1FilterBase}{Filter\+Base} $\ast$$>$}]{filters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_afb7d56d68a25b2aaf2de29e3d6f39cff}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!number\+Of\+Channels@{number\+Of\+Channels}}
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_a7f28df00a4ecfcbeff8cafcae8d7a2b5}\label{structnifty_1_1features_1_1ApplyFilters_a7f28df00a4ecfcbeff8cafcae8d7a2b5}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!number\+Of\+Channels@{number\+Of\+Channels}}
 \index{number\+Of\+Channels@{number\+Of\+Channels}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{number\+Of\+Channels() const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ size\+\_\+t {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::number\+Of\+Channels (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1ApplyFilters_afb7d56d68a25b2aaf2de29e3d6f39cff}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_a075f9232abd8d323ba121b2bdd49fa17}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!operator()@{operator()}}
+\subsubsection{\texorpdfstring{number\+Of\+Channels()}{numberOfChannels()}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+size\+\_\+t \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::number\+Of\+Channels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_a63d2a6c7fca07fed1921c6c8bf8ecc19}\label{structnifty_1_1features_1_1ApplyFilters_a63d2a6c7fca07fed1921c6c8bf8ecc19}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!operator()@{operator()}}
 \index{operator()@{operator()}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{operator()(const marray\+::\+View$<$ float $>$ \&in, marray\+::\+View$<$ float $>$ \&out) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ void {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::operator() (
-\begin{DoxyParamCaption}
-\item[{const {\bf marray\+::\+View}$<$ float $>$ \&}]{in, }
-\item[{{\bf marray\+::\+View}$<$ float $>$ \&}]{out}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1ApplyFilters_a075f9232abd8d323ba121b2bdd49fa17}
-\hypertarget{structnifty_1_1features_1_1ApplyFilters_a6fc96c356178496a7b6c08c8e429dead}{}\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!operator()@{operator()}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+void \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&}]{in,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&}]{out }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structnifty_1_1features_1_1ApplyFilters_af1316760b67e21d2c3f647313942f087}\label{structnifty_1_1features_1_1ApplyFilters_af1316760b67e21d2c3f647313942f087}} 
+\index{nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}!operator()@{operator()}}
 \index{operator()@{operator()}!nifty\+::features\+::\+Apply\+Filters@{nifty\+::features\+::\+Apply\+Filters}}
-\subsubsection[{operator()(const marray\+::\+View$<$ float $>$ \&in, marray\+::\+View$<$ float $>$ \&out, parallel\+::\+Thread\+Pool \&threadpool) const }]{\setlength{\rightskip}{0pt plus 5cm}template$<$unsigned D\+I\+M$>$ void {\bf nifty\+::features\+::\+Apply\+Filters}$<$ D\+I\+M $>$\+::operator() (
-\begin{DoxyParamCaption}
-\item[{const {\bf marray\+::\+View}$<$ float $>$ \&}]{in, }
-\item[{{\bf marray\+::\+View}$<$ float $>$ \&}]{out, }
-\item[{{\bf parallel\+::\+Thread\+Pool} \&}]{threadpool}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{structnifty_1_1features_1_1ApplyFilters_a6fc96c356178496a7b6c08c8e429dead}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
+void \hyperlink{structnifty_1_1features_1_1ApplyFilters}{nifty\+::features\+::\+Apply\+Filters}$<$ D\+IM $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&}]{in,  }\item[{\hyperlink{classandres_1_1View}{marray\+::\+View}$<$ float $>$ \&}]{out,  }\item[{\hyperlink{classnifty_1_1parallel_1_1ThreadPool}{parallel\+::\+Thread\+Pool} \&}]{threadpool }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

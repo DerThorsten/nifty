@@ -1,0 +1,133 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:multicut\+:\+:Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals$<$ O\+B\+J\+E\+C\+T\+I\+V\+E $>$}}
+
+
+{\ttfamily \#include $<$greedy\+\_\+additive\+\_\+proposals.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type}
+\item 
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a059ec39cbdde7294a76dac00d102e209}{Graph\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a058a440d88f840a245fdc792d47611d5}{Base}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive}{Multicut\+Greedy\+Additive}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a436b21c4ce1d95f27c50cf7aa9b41b1f}{Solver}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_a074ee39f5884cff7359f5c0997929e2f}{Solver\+::\+Settings\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a7612d756b6f63b2cda337c3d1a0fa4c9}{Solver\+Settings}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Base\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_acfd468728e9728e3e4430431f1b4aea8}{Greedy\+Additive\+Proposals} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type} \&objective, const \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_1_1SettingsType}{Settings\+Type} \&settings, const size\+\_\+t thread\+Index)
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a182df5d93866be9a4d6f19f6c6de92c9}{$\sim$\+Greedy\+Additive\+Proposals} ()
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a084ca7ba230e26884a2ecbb694415df6}{generate} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type} \&current\+Best, \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type} \&proposal)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a039d407722e0ad11b70e420787d89f2b}{reset} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_aa01754a86f77c4637a4c8497ff1d4cbd}{name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a058a440d88f840a245fdc792d47611d5}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a058a440d88f840a245fdc792d47611d5}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Base@{Base}}
+\index{Base@{Base}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase}{Multicut\+Base}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a058a440d88f840a245fdc792d47611d5}{Base}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a059ec39cbdde7294a76dac00d102e209}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a059ec39cbdde7294a76dac00d102e209}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef Objective\+Type\+::\+Graph\+Type \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a059ec39cbdde7294a76dac00d102e209}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Node\+Labels\+Type}{NodeLabelsType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_abefd51561de2fd009f6bed6bef6009ea}{Base\+::\+Node\+Labels\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Objective\+Type@{Objective\+Type}}
+\index{Objective\+Type@{Objective\+Type}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Objective\+Type}{ObjectiveType}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef O\+B\+J\+E\+C\+T\+I\+VE \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a436b21c4ce1d95f27c50cf7aa9b41b1f}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a436b21c4ce1d95f27c50cf7aa9b41b1f}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Solver@{Solver}}
+\index{Solver@{Solver}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Solver}{Solver}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive}{Multicut\+Greedy\+Additive}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a436b21c4ce1d95f27c50cf7aa9b41b1f}{Solver}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a7612d756b6f63b2cda337c3d1a0fa4c9}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a7612d756b6f63b2cda337c3d1a0fa4c9}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Solver\+Settings@{Solver\+Settings}}
+\index{Solver\+Settings@{Solver\+Settings}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Solver\+Settings}{SolverSettings}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_a074ee39f5884cff7359f5c0997929e2f}{Solver\+::\+Settings\+Type} \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a7612d756b6f63b2cda337c3d1a0fa4c9}{Solver\+Settings}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_acfd468728e9728e3e4430431f1b4aea8}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_acfd468728e9728e3e4430431f1b4aea8}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!Greedy\+Additive\+Proposals@{Greedy\+Additive\+Proposals}}
+\index{Greedy\+Additive\+Proposals@{Greedy\+Additive\+Proposals}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{Greedy\+Additive\+Proposals()}{GreedyAdditiveProposals()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{Greedy\+Additive\+Proposals} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a8b28464e490d224a3626680692ac2170}{Objective\+Type} \&}]{objective,  }\item[{const \hyperlink{structnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_1_1SettingsType}{Settings\+Type} \&}]{settings,  }\item[{const size\+\_\+t}]{thread\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a182df5d93866be9a4d6f19f6c6de92c9}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a182df5d93866be9a4d6f19f6c6de92c9}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!````~Greedy\+Additive\+Proposals@{$\sim$\+Greedy\+Additive\+Proposals}}
+\index{````~Greedy\+Additive\+Proposals@{$\sim$\+Greedy\+Additive\+Proposals}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{$\sim$\+Greedy\+Additive\+Proposals()}{~GreedyAdditiveProposals()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::$\sim$\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{Greedy\+Additive\+Proposals} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a084ca7ba230e26884a2ecbb694415df6}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a084ca7ba230e26884a2ecbb694415df6}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!generate@{generate}}
+\index{generate@{generate}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::generate (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type} \&}]{current\+Best,  }\item[{\hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a4097016ca99d6d2aab8f3a8a9432f001}{Node\+Labels\+Type} \&}]{proposal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_aa01754a86f77c4637a4c8497ff1d4cbd}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_aa01754a86f77c4637a4c8497ff1d4cbd}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+static std\+::string \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a039d407722e0ad11b70e420787d89f2b}\label{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals_a039d407722e0ad11b70e420787d89f2b}} 
+\index{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}!reset@{reset}}
+\index{reset@{reset}!nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals@{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals}{nifty\+::graph\+::opt\+::multicut\+::\+Greedy\+Additive\+Proposals}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/proposal\+\_\+generators/\hyperlink{greedy__additive__proposals_8hxx}{greedy\+\_\+additive\+\_\+proposals.\+hxx}\end{DoxyCompactItemize}

@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="structnifty_1_1features_1_1LaplacianOfGaussian" kind="struct" language="C++" prot="public">
     <compoundname>nifty::features::LaplacianOfGaussian</compoundname>
     <basecompoundref refid="structnifty_1_1features_1_1FilterBase" prot="public" virt="non-virtual">nifty::features::FilterBase</basecompoundref>
     <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1ac83a5c2fb54fc120106906a6ad7f4ed8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1a35537b627fd708494af6857ad5312e4b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void nifty::features::LaplacianOfGaussian::operator()</definition>
-        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <argsstring>(const fastfilters_array2d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const</argsstring>
         <name>operator()</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab362e4142a783ce298a477557bcd9436">operator()</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a17c77d36dd765c5ec0b163102428656c">operator()</reimplements>
         <param>
           <type>const fastfilters_array2d_t &amp;</type>
           <declname>ff</declname>
@@ -31,12 +31,12 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="135" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="135" bodyend="140"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1a42c4026bf65a2747d04361bc4ebd0c0a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1a1b7536cdff2a3f16035d55c58e3922ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
         <definition>void nifty::features::LaplacianOfGaussian::operator()</definition>
-        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const </argsstring>
+        <argsstring>(const fastfilters_array3d_t &amp;ff, marray::View&lt; float &gt; &amp;out, const double sigma) const</argsstring>
         <name>operator()</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1ab7d7de20b106e80ccfd65a818e1b6eef">operator()</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1abbef4e9c260026926e0021aa0cc11c81">operator()</reimplements>
         <param>
           <type>const fastfilters_array3d_t &amp;</type>
           <declname>ff</declname>
@@ -57,12 +57,12 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="142" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="142" bodyend="147"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1a8284b5055a1567105201d3e3ea1b588a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1LaplacianOfGaussian_1aaf34aa1ea6844c2166ed474db7e1b694" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
         <definition>bool nifty::features::LaplacianOfGaussian::isMultiChannel</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>isMultiChannel</name>
-        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a01fbc04537c69b997079a98a845c5ab3">isMultiChannel</reimplements>
+        <reimplements refid="structnifty_1_1features_1_1FilterBase_1a1c278e2b6ef0cb2a5bba2f758c6855e2">isMultiChannel</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -77,35 +77,35 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1328">
+      <node id="532">
         <label>nifty::features::FilterBase</label>
         <link refid="structnifty_1_1features_1_1FilterBase"/>
       </node>
-      <node id="1327">
+      <node id="531">
         <label>nifty::features::LaplacianOfGaussian</label>
         <link refid="structnifty_1_1features_1_1LaplacianOfGaussian"/>
-        <childnode refid="1328" relation="public-inheritance">
+        <childnode refid="532" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1330">
+      <node id="534">
         <label>nifty::features::FilterBase</label>
         <link refid="structnifty_1_1features_1_1FilterBase"/>
       </node>
-      <node id="1329">
+      <node id="533">
         <label>nifty::features::LaplacianOfGaussian</label>
         <link refid="structnifty_1_1features_1_1LaplacianOfGaussian"/>
-        <childnode refid="1330" relation="public-inheritance">
+        <childnode refid="534" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="133" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="133" bodyend="153"/>
     <listofallmembers>
       <member refid="structnifty_1_1features_1_1FilterBase_1ac10b9d69df645dd2feb7ce555e544502" prot="public" virt="non-virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>FilterBase</name></member>
-      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1a8284b5055a1567105201d3e3ea1b588a" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>isMultiChannel</name></member>
-      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1ac83a5c2fb54fc120106906a6ad7f4ed8" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>operator()</name></member>
-      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1a42c4026bf65a2747d04361bc4ebd0c0a" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1aaf34aa1ea6844c2166ed474db7e1b694" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>isMultiChannel</name></member>
+      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1a35537b627fd708494af6857ad5312e4b" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1LaplacianOfGaussian_1a1b7536cdff2a3f16035d55c58e3922ce" prot="public" virt="virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>operator()</name></member>
       <member refid="structnifty_1_1features_1_1FilterBase_1a4bd3a5f88a4c061e80f0b0c4a1074c8c" prot="protected" virt="non-virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>opt_</name></member>
       <member refid="structnifty_1_1features_1_1FilterBase_1ab59d743ba07608b8aaa37e59f049431e" prot="public" virt="non-virtual"><scope>nifty::features::LaplacianOfGaussian</scope><name>set_window_ratio</name></member>
     </listofallmembers>

@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>nifty.segmentation &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>nifty.segmentation &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="nifty.ground_truth" href="nifty.ground_truth.html" />
-    <link rel="prev" title="nifty.graph.optimization.mincut" href="nifty.graph.optimization.mincut.html" /> 
+    <link rel="prev" title="nifty.graph.opt.mincut" href="nifty.graph.opt.mincut.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,9 +42,9 @@
           <a href="nifty.ground_truth.html" title="nifty.ground_truth"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+          <a href="nifty.graph.opt.mincut.html" title="nifty.graph.opt.mincut"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -62,8 +59,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="nifty.graph.optimization.mincut.html"
-                        title="previous chapter">nifty.graph.optimization.mincut</a></p>
+  <p class="topless"><a href="nifty.graph.opt.mincut.html"
+                        title="previous chapter">nifty.graph.opt.mincut</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="nifty.ground_truth.html"
                         title="next chapter">nifty.ground_truth</a></p>
@@ -103,9 +100,9 @@ This is a high level wrapper for</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>labels</strong> (<em>numpy.ndarray</em>) &#8211; </li>
-<li><strong>dense</strong> (<em>bool</em>) &#8211; should the return labeling be dense (default: {True})</li>
-<li><strong>ignoreBackground</strong> (<em>bool</em>) &#8211; should values of zero be excluded (default: {False})</li>
+<li><strong>labels</strong> (<em>numpy.ndarray</em>) – </li>
+<li><strong>dense</strong> (<em>bool</em>) – should the return labeling be dense (default: {True})</li>
+<li><strong>ignoreBackground</strong> (<em>bool</em>) – should values of zero be excluded (default: {False})</li>
 </ul>
 </td>
 </tr>
@@ -128,19 +125,19 @@ generate a over-segmentation suitable for neuro data</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>pmap</strong> (<em>numpy.ndarray</em>) &#8211; Membrane probability in [0,1].</li>
-<li><strong>preBinarizationMedianRadius</strong> (<em>int</em>) &#8211; Radius of
+<li><strong>pmap</strong> (<em>numpy.ndarray</em>) – Membrane probability in [0,1].</li>
+<li><strong>preBinarizationMedianRadius</strong> (<em>int</em>) – Radius of
 diskMedian filter applied to the probability map
 before binarization. (default:{1})</li>
-<li><strong>threshold</strong> (<em>float</em>) &#8211; threshold to binarize
+<li><strong>threshold</strong> (<em>float</em>) – threshold to binarize
 probability map  before applying
 the distance transform (default: {0.5})</li>
-<li><strong>preSeedSigma</strong> (<em>float</em>) &#8211; smooth the distance
+<li><strong>preSeedSigma</strong> (<em>float</em>) – smooth the distance
 transform image before getting the seeds.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; if applied to data with wrong dimensionality</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> – if applied to data with wrong dimensionality</p>
 </td>
 </tr>
 </tbody>
@@ -158,7 +155,7 @@ as maximum pixel.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; the input image</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) – the input image</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array which is 1 the maximum 0 elsewhere.</td>
 </tr>
@@ -181,12 +178,12 @@ and <a class="reference internal" href="#nifty.segmentation.connectedComponents"
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> &#8211; [description]</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> – [description]</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[description]
 [type]</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> – [description]</td>
 </tr>
 </tbody>
 </table>
@@ -203,7 +200,7 @@ as minimum pixel.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; the input image</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) – the input image</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array which is 1 the minimum 0 elsewhere.</td>
 </tr>
@@ -226,12 +223,12 @@ and <a class="reference internal" href="#nifty.segmentation.connectedComponents"
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> &#8211; [description]</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> – [description]</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[description]
 [type]</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> – [description]</td>
 </tr>
 </tbody>
 </table>
@@ -252,10 +249,10 @@ as the input if this is True.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>image</strong> &#8211; the input image</li>
-<li><strong>segmentation</strong> &#8211; the segmentation</li>
-<li><strong>color</strong> (<em>tuple</em>) &#8211; the edge color(default: {(0,0,0)})</li>
-<li><strong>thin</strong> (<em>bool</em>) &#8211; IF true, the image is interpolated and
+<li><strong>image</strong> – the input image</li>
+<li><strong>segmentation</strong> – the segmentation</li>
+<li><strong>color</strong> (<em>tuple</em>) – the edge color(default: {(0,0,0)})</li>
+<li><strong>thin</strong> (<em>bool</em>) – IF true, the image is interpolated and
 the boundaries are marked in the interpolated
 image. This will make the output twice as large.</li>
 </ul>
@@ -294,30 +291,30 @@ and <a class="reference internal" href="nifty.graph.html#nifty.graph.nodeWeighte
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>heightMap</strong> (<em>numpy.ndarray</em>) &#8211; height / evaluation map</li>
-<li><strong>seeds</strong> (<em>numpy.ndarray</em>) &#8211; Seeds as non zero elements in the array.
+<li><strong>heightMap</strong> (<em>numpy.ndarray</em>) – height / evaluation map</li>
+<li><strong>seeds</strong> (<em>numpy.ndarray</em>) – Seeds as non zero elements in the array.
 (default: {nifty.segmentation.localMinimaSeeds(heightMap)})</li>
-<li><strong>method</strong> (<em>str</em>) &#8211; <p>Algorithm type can be:</p>
+<li><strong>method</strong> (<em>str</em>) – <p>Algorithm type can be:</p>
 <ul>
-<li>&#8220;node_weighted&#8221;: ordinary node weighted watershed</li>
-<li>&#8220;edge_weighted&#8221;: edge weighted watershed (minimum spanning tree)</li>
+<li>”node_weighted”: ordinary node weighted watershed</li>
+<li>”edge_weighted”: edge weighted watershed (minimum spanning tree)</li>
 </ul>
-<p>(default: {&#8220;max&#8221;})</p>
+<p>(default: {“max”})</p>
 </li>
-<li><strong>acc</strong> (<em>str</em>) &#8211; <p>If method is &#8220;edge_weighted&#8221;, one needs to specify how
+<li><strong>acc</strong> (<em>str</em>) – <p>If method is “edge_weighted”, one needs to specify how
 to convert the heightMap into an edgeMap.
 This parameter specificities this method.
 Allow values are:</p>
 <ul>
-<li>&#8216;min&#8217; : Take the minimum value of the endpoints of the edge</li>
-<li>&#8216;max&#8217; : Take the minimum value of the endpoints of the edge</li>
-<li>&#8216;sum&#8217; : Take the sum  of the values of the endpoints of the edge</li>
-<li>&#8216;prod&#8217; : Take the product of the values of the endpoints of the edge</li>
-<li>&#8216;interpixel&#8217; : Take the value of the image at the interpixel
+<li>’min’ : Take the minimum value of the endpoints of the edge</li>
+<li>’max’ : Take the minimum value of the endpoints of the edge</li>
+<li>’sum’ : Take the sum  of the values of the endpoints of the edge</li>
+<li>’prod’ : Take the product of the values of the endpoints of the edge</li>
+<li>’interpixel’ : Take the value of the image at the interpixel
 coordinate in between the two endpoints.
 To do this the image is resampled to have shape :math: <a href="#id1"><span class="problematic" id="id2">`</span></a>2 cdot shape -1 `</li>
 </ul>
-<p>(default: {&#8220;max&#8221;})</p>
+<p>(default: {“max”})</p>
 </li>
 </ul>
 </td>
@@ -328,7 +325,7 @@ To do this the image is resampled to have shape :math: <a href="#id1"><span clas
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">numpy.ndarray</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> &#8211; [description]</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code> – [description]</p>
 </td>
 </tr>
 </tbody>
@@ -368,14 +365,14 @@ To do this the image is resampled to have shape :math: <a href="#id1"><span clas
           <a href="nifty.ground_truth.html" title="nifty.ground_truth"
              >next</a> |</li>
         <li class="right" >
-          <a href="nifty.graph.optimization.mincut.html" title="nifty.graph.optimization.mincut"
+          <a href="nifty.graph.opt.mincut.html" title="nifty.graph.opt.mincut"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>

@@ -1,9 +1,18 @@
 \hypertarget{namespacenifty_1_1graph_1_1agglo}{}\section{nifty\+:\+:graph\+:\+:agglo Namespace Reference}
 \label{namespacenifty_1_1graph_1_1agglo}\index{nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacenifty_1_1graph_1_1agglo_1_1merge__rules}{merge\+\_\+rules}
+\end{DoxyCompactItemize}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1AgglomerativeClustering}{Agglomerative\+Clustering}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1DendrogramAgglomerativeClusteringVisitor}{Dendrogram\+Agglomerative\+Clustering\+Visitor}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Dual\+Cluster\+Policy}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1EdgeWeightedClusterPolicy}{Edge\+Weighted\+Cluster\+Policy}
 \item 
@@ -13,27 +22,51 @@ struct \hyperlink{structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions}{Export\+U
 \item 
 struct \hyperlink{structnifty_1_1graph_1_1agglo_1_1ExportUcmFunctions_3_01true_01_4}{Export\+Ucm\+Functions$<$ true $>$}
 \item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1FixationClusterPolicy}{Fixation\+Cluster\+Policy}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1LiftedAggloClusterPolicy}{Lifted\+Agglo\+Cluster\+Policy}
+\item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1LiftedGraphEdgeWeightedClusterPolicy}{Lifted\+Graph\+Edge\+Weighted\+Cluster\+Policy}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1MalaClusterPolicy}{Mala\+Cluster\+Policy}
 \item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1MinimumNodeSizeClusterPolicy}{Minimum\+Node\+Size\+Cluster\+Policy}
 \item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1NewPolicy}{New\+Policy}
+\item 
 class \hyperlink{classnifty_1_1graph_1_1agglo_1_1NodeAndEdgeWeightedClusterPolicy}{Node\+And\+Edge\+Weighted\+Cluster\+Policy}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{Probabilistic\+Lifted\+Cluster\+Policy}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name)
+bool \hyperlink{namespacenifty_1_1graph_1_1agglo_a20068bfcbc3173c0d9da085bfb0b4b23}{is\+Negative\+Inf} (const double val)
+\item 
+{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY , class P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_a4f7f64daedf9d50119ccf491a948f309}{export\+Agglomerative\+Clustering\+Visitors} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name, P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS \&agglo\+Cls)
+\item 
+{\footnotesize template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ }\\void \hyperlink{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy} (py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name)
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}{}\index{nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}!export\+Agglomerative\+Clustering\+T\+Cluster\+Policy@{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy}}
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}\label{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}} 
+\index{nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}!export\+Agglomerative\+Clustering\+T\+Cluster\+Policy@{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy}}
 \index{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy@{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy}!nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}}
-\subsubsection[{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy(py\+::module \&agglo\+Module, const std\+::string \&cluster\+Policy\+Base\+Name)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+C\+Y $>$ void nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+T\+Cluster\+Policy (
-\begin{DoxyParamCaption}
-\item[{py\+::module \&}]{agglo\+Module, }
-\item[{const std\+::string \&}]{cluster\+Policy\+Base\+Name}
-\end{DoxyParamCaption}
-)}\label{namespacenifty_1_1graph_1_1agglo_ac1f80b0263547645d7f6603e7a094bd1}
+\subsubsection{\texorpdfstring{export\+Agglomerative\+Clustering\+T\+Cluster\+Policy()}{exportAgglomerativeClusteringTClusterPolicy()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY $>$ \\
+void nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+T\+Cluster\+Policy (\begin{DoxyParamCaption}\item[{py\+::module \&}]{agglo\+Module,  }\item[{const std\+::string \&}]{cluster\+Policy\+Base\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1agglo_a4f7f64daedf9d50119ccf491a948f309}\label{namespacenifty_1_1graph_1_1agglo_a4f7f64daedf9d50119ccf491a948f309}} 
+\index{nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}!export\+Agglomerative\+Clustering\+Visitors@{export\+Agglomerative\+Clustering\+Visitors}}
+\index{export\+Agglomerative\+Clustering\+Visitors@{export\+Agglomerative\+Clustering\+Visitors}!nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}}
+\subsubsection{\texorpdfstring{export\+Agglomerative\+Clustering\+Visitors()}{exportAgglomerativeClusteringVisitors()}}
+{\footnotesize\ttfamily template$<$class C\+L\+U\+S\+T\+E\+R\+\_\+\+P\+O\+L\+I\+CY , class P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS $>$ \\
+void nifty\+::graph\+::agglo\+::export\+Agglomerative\+Clustering\+Visitors (\begin{DoxyParamCaption}\item[{py\+::module \&}]{agglo\+Module,  }\item[{const std\+::string \&}]{cluster\+Policy\+Base\+Name,  }\item[{P\+Y\+\_\+\+A\+G\+G\+L\+O\+\_\+\+C\+LS \&}]{agglo\+Cls }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1agglo_a20068bfcbc3173c0d9da085bfb0b4b23}\label{namespacenifty_1_1graph_1_1agglo_a20068bfcbc3173c0d9da085bfb0b4b23}} 
+\index{nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}!is\+Negative\+Inf@{is\+Negative\+Inf}}
+\index{is\+Negative\+Inf@{is\+Negative\+Inf}!nifty\+::graph\+::agglo@{nifty\+::graph\+::agglo}}
+\subsubsection{\texorpdfstring{is\+Negative\+Inf()}{isNegativeInf()}}
+{\footnotesize\ttfamily bool nifty\+::graph\+::agglo\+::is\+Negative\+Inf (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

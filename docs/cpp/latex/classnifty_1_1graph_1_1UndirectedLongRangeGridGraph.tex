@@ -1,0 +1,168 @@
+\hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{}\section{nifty\+:\+:graph\+:\+:Undirected\+Long\+Range\+Grid\+Graph$<$ D\+IM $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph$<$ D\+I\+M $>$@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph$<$ D\+I\+M $>$}}
+
+
+{\ttfamily \#include $<$undirected\+\_\+long\+\_\+range\+\_\+grid\+\_\+graph.\+hxx$>$}
+
+
+
+Inheritance diagram for nifty\+:\+:graph\+:\+:Undirected\+Long\+Range\+Grid\+Graph$<$ D\+IM $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for nifty\+:\+:graph\+:\+:Undirected\+Long\+Range\+Grid\+Graph$<$ D\+IM $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}{Shape\+Type}
+\item 
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a93409ee0bdff70a63b80bc8d4a126240}{Strides\+Type}
+\item 
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a1a49e04a1f2c35151ca873ba859eddf0}{Coordinate\+Type}
+\item 
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$ int64\+\_\+t, D\+IM $>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}{Offset\+Type}
+\item 
+typedef std\+::vector$<$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}{Offset\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}{Offset\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a6dc33ffd84f88fe4e15c463e51435e07}{Undirected\+Long\+Range\+Grid\+Graph} (const \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}{Shape\+Type} \&\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_ac65c15cf1960267a284c8f7647386484}{shape}, const \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}{Offset\+Vector} \&\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a0ca3608b3c18ffdaa23aa78886ca203a}{offsets})
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_aca6e797834ea50def5d1c266dcf6c859}{edge\+Offset\+Index} () const
+\item 
+{\footnotesize template$<$class D $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a16ea3b3fe14f4536380bc6b561444c54}{node\+Feature\+Differeces} (const xt\+::xexpression$<$ D $>$ \&node\+Features\+Expression) const
+\item 
+{\footnotesize template$<$class D $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_abd817b6bfc8a0748146b406e99688d45}{node\+Feature\+Differeces2} (const xt\+::xexpression$<$ D $>$ \&node\+Features\+Expression) const
+\item 
+{\footnotesize template$<$class D $>$ }\\auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a293b184a26e4a6d7dfa2d1a125a32a85}{edge\+Values} (const xt\+::xexpression$<$ D $>$ \&values\+Expression) const
+\item 
+{\footnotesize template$<$class N\+O\+D\+E\+\_\+\+C\+O\+O\+R\+D\+I\+N\+A\+TE $>$ }\\uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a45303228fbd25cb46ec9bef4bf0d29f7}{coordiante\+To\+Node} (const N\+O\+D\+E\+\_\+\+C\+O\+O\+R\+D\+I\+N\+A\+TE \&coordinate) const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_ac65c15cf1960267a284c8f7647386484}{shape} () const
+\item 
+const auto \& \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a0ca3608b3c18ffdaa23aa78886ca203a}{offsets} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a1a49e04a1f2c35151ca873ba859eddf0}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a1a49e04a1f2c35151ca873ba859eddf0}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Coordinate\+Type@{Coordinate\+Type}}
+\index{Coordinate\+Type@{Coordinate\+Type}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Coordinate\+Type}{CoordinateType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$int64\+\_\+t, D\+IM$>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a1a49e04a1f2c35151ca873ba859eddf0}{Coordinate\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Offset\+Type@{Offset\+Type}}
+\index{Offset\+Type@{Offset\+Type}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Offset\+Type}{OffsetType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$int64\+\_\+t, D\+IM$>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}{Offset\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Offset\+Vector@{Offset\+Vector}}
+\index{Offset\+Vector@{Offset\+Vector}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Offset\+Vector}{OffsetVector}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef std\+::vector$<$\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a7fa465d2ce67dd437c9bbb18ea580012}{Offset\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}{Offset\+Vector}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Shape\+Type@{Shape\+Type}}
+\index{Shape\+Type@{Shape\+Type}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Shape\+Type}{ShapeType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$int64\+\_\+t, D\+IM$>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}{Shape\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a93409ee0bdff70a63b80bc8d4a126240}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a93409ee0bdff70a63b80bc8d4a126240}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Strides\+Type@{Strides\+Type}}
+\index{Strides\+Type@{Strides\+Type}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Strides\+Type}{StridesType}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+typedef \hyperlink{namespacenifty_1_1array_a683f151f19c851754e0c6d55ed16a0c2}{array\+::\+Static\+Array}$<$int64\+\_\+t, D\+IM$>$ \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a93409ee0bdff70a63b80bc8d4a126240}{Strides\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a6dc33ffd84f88fe4e15c463e51435e07}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a6dc33ffd84f88fe4e15c463e51435e07}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!Undirected\+Long\+Range\+Grid\+Graph@{Undirected\+Long\+Range\+Grid\+Graph}}
+\index{Undirected\+Long\+Range\+Grid\+Graph@{Undirected\+Long\+Range\+Grid\+Graph}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{Undirected\+Long\+Range\+Grid\+Graph()}{UndirectedLongRangeGridGraph()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::\hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{Undirected\+Long\+Range\+Grid\+Graph} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a59b2f5f607a442d6aedb1ddd5ca53d50}{Shape\+Type} \&}]{shape,  }\item[{const \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a74078f6c712f2f257bfbfd62c7d8b902}{Offset\+Vector} \&}]{offsets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a45303228fbd25cb46ec9bef4bf0d29f7}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a45303228fbd25cb46ec9bef4bf0d29f7}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!coordiante\+To\+Node@{coordiante\+To\+Node}}
+\index{coordiante\+To\+Node@{coordiante\+To\+Node}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{coordiante\+To\+Node()}{coordianteToNode()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class N\+O\+D\+E\+\_\+\+C\+O\+O\+R\+D\+I\+N\+A\+TE $>$ \\
+uint64\+\_\+t \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::coordiante\+To\+Node (\begin{DoxyParamCaption}\item[{const N\+O\+D\+E\+\_\+\+C\+O\+O\+R\+D\+I\+N\+A\+TE \&}]{coordinate }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_aca6e797834ea50def5d1c266dcf6c859}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_aca6e797834ea50def5d1c266dcf6c859}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!edge\+Offset\+Index@{edge\+Offset\+Index}}
+\index{edge\+Offset\+Index@{edge\+Offset\+Index}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{edge\+Offset\+Index()}{edgeOffsetIndex()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::edge\+Offset\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a293b184a26e4a6d7dfa2d1a125a32a85}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a293b184a26e4a6d7dfa2d1a125a32a85}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!edge\+Values@{edge\+Values}}
+\index{edge\+Values@{edge\+Values}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{edge\+Values()}{edgeValues()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::edge\+Values (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D $>$ \&}]{values\+Expression }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a16ea3b3fe14f4536380bc6b561444c54}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a16ea3b3fe14f4536380bc6b561444c54}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!node\+Feature\+Differeces@{node\+Feature\+Differeces}}
+\index{node\+Feature\+Differeces@{node\+Feature\+Differeces}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{node\+Feature\+Differeces()}{nodeFeatureDiffereces()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::node\+Feature\+Differeces (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D $>$ \&}]{node\+Features\+Expression }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_abd817b6bfc8a0748146b406e99688d45}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_abd817b6bfc8a0748146b406e99688d45}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!node\+Feature\+Differeces2@{node\+Feature\+Differeces2}}
+\index{node\+Feature\+Differeces2@{node\+Feature\+Differeces2}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{node\+Feature\+Differeces2()}{nodeFeatureDiffereces2()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+template$<$class D $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::node\+Feature\+Differeces2 (\begin{DoxyParamCaption}\item[{const xt\+::xexpression$<$ D $>$ \&}]{node\+Features\+Expression }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a0ca3608b3c18ffdaa23aa78886ca203a}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_a0ca3608b3c18ffdaa23aa78886ca203a}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!offsets@{offsets}}
+\index{offsets@{offsets}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{offsets()}{offsets()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::offsets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_ac65c15cf1960267a284c8f7647386484}\label{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_ac65c15cf1960267a284c8f7647386484}} 
+\index{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}!shape@{shape}}
+\index{shape@{shape}!nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph@{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}}
+\subsubsection{\texorpdfstring{shape()}{shape()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t D\+IM$>$ \\
+const auto\& \hyperlink{classnifty_1_1graph_1_1UndirectedLongRangeGridGraph}{nifty\+::graph\+::\+Undirected\+Long\+Range\+Grid\+Graph}$<$ D\+IM $>$\+::shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/\hyperlink{graph_2undirected__long__range__grid__graph_8hxx}{undirected\+\_\+long\+\_\+range\+\_\+grid\+\_\+graph.\+hxx}\end{DoxyCompactItemize}

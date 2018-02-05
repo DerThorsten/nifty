@@ -1,276 +1,276 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="export__mincut__solver_8hxx" kind="file" language="C++">
     <compoundname>export_mincut_solver.hxx</compoundname>
     <includes local="no">pybind11/pybind11.h</includes>
-    <includes refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx" local="yes">nifty/python/graph/optimization/mincut/mincut_objective.hxx</includes>
-    <includes refid="solver__factory_8hxx" local="yes">nifty/graph/optimization/common/solver_factory.hxx</includes>
+    <includes refid="python_2graph_2opt_2mincut_2mincut__objective_8hxx" local="yes">nifty/python/graph/opt/mincut/mincut_objective.hxx</includes>
+    <includes refid="solver__factory_8hxx" local="yes">nifty/graph/opt/common/solver_factory.hxx</includes>
     <includes refid="py__mincut__base_8hxx" local="yes">py_mincut_base.hxx</includes>
     <incdepgraph>
-      <node id="12094">
+      <node id="6698">
         <label>functional</label>
       </node>
-      <node id="12079">
+      <node id="6683">
         <label>limits</label>
       </node>
-      <node id="12089">
+      <node id="6693">
         <label>iterator</label>
       </node>
-      <node id="12075">
+      <node id="6679">
         <label>cstdint</label>
       </node>
-      <node id="12106">
-        <label>nifty/tools/logging.hxx</label>
-        <link refid="logging_8hxx"/>
-        <childnode refid="12087" relation="include">
+      <node id="6676">
+        <label>nifty/python/graph/opt/mincut/mincut_objective.hxx</label>
+        <link refid="python_2graph_2opt_2mincut_2mincut__objective_8hxx"/>
+        <childnode refid="6677" relation="include">
+        </childnode>
+        <childnode refid="6699" relation="include">
         </childnode>
       </node>
-      <node id="12095">
+      <node id="6710">
+        <label>nifty/tools/logging.hxx</label>
+        <link refid="logging_8hxx"/>
+        <childnode refid="6691" relation="include">
+        </childnode>
+      </node>
+      <node id="6700">
+        <label>nifty/graph/opt/common/solver_factory.hxx</label>
+        <link refid="solver__factory_8hxx"/>
+        <childnode refid="6701" relation="include">
+        </childnode>
+      </node>
+      <node id="6699">
         <label>nifty/python/graph/graph_name.hxx</label>
         <link refid="graph__name_8hxx"/>
       </node>
-      <node id="12080">
+      <node id="6684">
         <label>cmath</label>
       </node>
-      <node id="12085">
+      <node id="6689">
         <label>cassert</label>
       </node>
-      <node id="12076">
+      <node id="6680">
         <label>stdexcept</label>
       </node>
-      <node id="12093">
+      <node id="6697">
         <label>numeric</label>
       </node>
-      <node id="12101">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="12087" relation="include">
-        </childnode>
-        <childnode refid="12100" relation="include">
-        </childnode>
-        <childnode refid="12077" relation="include">
-        </childnode>
-        <childnode refid="12076" relation="include">
-        </childnode>
-        <childnode refid="12102" relation="include">
-        </childnode>
-        <childnode refid="12101" relation="include">
-        </childnode>
-        <childnode refid="12103" relation="include">
-        </childnode>
-      </node>
-      <node id="12087">
-        <label>string</label>
-      </node>
-      <node id="12070">
-        <label>/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx</label>
-        <link refid="export_mincut_solver.hxx"/>
-        <childnode refid="12071" relation="include">
-        </childnode>
-        <childnode refid="12072" relation="include">
-        </childnode>
-        <childnode refid="12096" relation="include">
-        </childnode>
-        <childnode refid="12098" relation="include">
-        </childnode>
-      </node>
-      <node id="12102">
-        <label>nifty/exceptions/exceptions.hxx</label>
-        <link refid="exceptions_8hxx"/>
-        <childnode refid="12076" relation="include">
-        </childnode>
-      </node>
-      <node id="12097">
-        <label>nifty/graph/optimization/common/solver_factory_base.hxx</label>
+      <node id="6701">
+        <label>nifty/graph/opt/common/solver_factory_base.hxx</label>
         <link refid="solver__factory__base_8hxx"/>
       </node>
-      <node id="12107">
-        <label>mincut_visitor_base.hxx</label>
-        <link refid="mincut__visitor__base_8hxx"/>
-        <childnode refid="12087" relation="include">
-        </childnode>
-        <childnode refid="12100" relation="include">
-        </childnode>
-        <childnode refid="12077" relation="include">
-        </childnode>
-        <childnode refid="12103" relation="include">
+      <node id="6691">
+        <label>string</label>
+      </node>
+      <node id="6706">
+        <label>nifty/exceptions/exceptions.hxx</label>
+        <link refid="exceptions_8hxx"/>
+        <childnode refid="6680" relation="include">
         </childnode>
       </node>
-      <node id="12105">
+      <node id="6709">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="12077" relation="include">
+        <childnode refid="6681" relation="include">
         </childnode>
-        <childnode refid="12104" relation="include">
+        <childnode refid="6708" relation="include">
         </childnode>
-        <childnode refid="12087" relation="include">
+        <childnode refid="6691" relation="include">
         </childnode>
       </node>
-      <node id="12081">
+      <node id="6685">
         <label>nifty/graph/subgraph_mask.hxx</label>
         <link refid="subgraph__mask_8hxx"/>
       </node>
-      <node id="12099">
-        <label>nifty/graph/optimization/mincut/mincut_base.hxx</label>
+      <node id="6703">
+        <label>nifty/graph/opt/mincut/mincut_base.hxx</label>
         <link refid="mincut__base_8hxx"/>
-        <childnode refid="12087" relation="include">
+        <childnode refid="6691" relation="include">
         </childnode>
-        <childnode refid="12100" relation="include">
+        <childnode refid="6704" relation="include">
         </childnode>
-        <childnode refid="12077" relation="include">
+        <childnode refid="6681" relation="include">
         </childnode>
-        <childnode refid="12101" relation="include">
+        <childnode refid="6705" relation="include">
         </childnode>
-        <childnode refid="12107" relation="include">
+        <childnode refid="6711" relation="include">
         </childnode>
       </node>
-      <node id="12084">
+      <node id="6688">
         <label>nifty/marray/andres/marray.hxx</label>
         <link refid="andres_2marray_8hxx"/>
-        <childnode refid="12085" relation="include">
+        <childnode refid="6689" relation="include">
         </childnode>
-        <childnode refid="12086" relation="include">
+        <childnode refid="6690" relation="include">
         </childnode>
-        <childnode refid="12076" relation="include">
+        <childnode refid="6680" relation="include">
         </childnode>
-        <childnode refid="12079" relation="include">
+        <childnode refid="6683" relation="include">
         </childnode>
-        <childnode refid="12087" relation="include">
+        <childnode refid="6691" relation="include">
         </childnode>
-        <childnode refid="12077" relation="include">
+        <childnode refid="6681" relation="include">
         </childnode>
-        <childnode refid="12088" relation="include">
+        <childnode refid="6692" relation="include">
         </childnode>
-        <childnode refid="12089" relation="include">
+        <childnode refid="6693" relation="include">
         </childnode>
-        <childnode refid="12078" relation="include">
+        <childnode refid="6682" relation="include">
         </childnode>
-        <childnode refid="12090" relation="include">
+        <childnode refid="6694" relation="include">
         </childnode>
-        <childnode refid="12091" relation="include">
+        <childnode refid="6695" relation="include">
         </childnode>
-        <childnode refid="12092" relation="include">
+        <childnode refid="6696" relation="include">
         </childnode>
-        <childnode refid="12093" relation="include">
+        <childnode refid="6697" relation="include">
         </childnode>
-        <childnode refid="12094" relation="include">
-        </childnode>
-      </node>
-      <node id="12096">
-        <label>nifty/graph/optimization/common/solver_factory.hxx</label>
-        <link refid="solver__factory_8hxx"/>
-        <childnode refid="12097" relation="include">
+        <childnode refid="6698" relation="include">
         </childnode>
       </node>
-      <node id="12098">
-        <label>py_mincut_base.hxx</label>
-        <link refid="py__mincut__base_8hxx"/>
-        <childnode refid="12099" relation="include">
-        </childnode>
-      </node>
-      <node id="12078">
+      <node id="6682">
         <label>vector</label>
       </node>
-      <node id="12103">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="12086" relation="include">
-        </childnode>
-        <childnode refid="12087" relation="include">
-        </childnode>
-        <childnode refid="12100" relation="include">
-        </childnode>
-        <childnode refid="12077" relation="include">
-        </childnode>
-        <childnode refid="12091" relation="include">
-        </childnode>
-        <childnode refid="12104" relation="include">
-        </childnode>
-        <childnode refid="12105" relation="include">
-        </childnode>
-        <childnode refid="12106" relation="include">
-        </childnode>
-      </node>
-      <node id="12077">
+      <node id="6681">
         <label>sstream</label>
       </node>
-      <node id="12071">
+      <node id="6675">
         <label>pybind11/pybind11.h</label>
       </node>
-      <node id="12074">
+      <node id="6678">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="12075" relation="include">
+        <childnode refid="6679" relation="include">
         </childnode>
-        <childnode refid="12076" relation="include">
+        <childnode refid="6680" relation="include">
         </childnode>
-        <childnode refid="12077" relation="include">
+        <childnode refid="6681" relation="include">
         </childnode>
-        <childnode refid="12078" relation="include">
+        <childnode refid="6682" relation="include">
         </childnode>
-        <childnode refid="12079" relation="include">
+        <childnode refid="6683" relation="include">
         </childnode>
-        <childnode refid="12080" relation="include">
-        </childnode>
-      </node>
-      <node id="12072">
-        <label>nifty/python/graph/optimization/mincut/mincut_objective.hxx</label>
-        <link refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx"/>
-        <childnode refid="12073" relation="include">
-        </childnode>
-        <childnode refid="12095" relation="include">
+        <childnode refid="6684" relation="include">
         </childnode>
       </node>
-      <node id="12082">
+      <node id="6677">
+        <label>nifty/graph/opt/mincut/mincut_objective.hxx</label>
+        <link refid="graph_2opt_2mincut_2mincut__objective_8hxx"/>
+        <childnode refid="6678" relation="include">
+        </childnode>
+        <childnode refid="6685" relation="include">
+        </childnode>
+        <childnode refid="6686" relation="include">
+        </childnode>
+      </node>
+      <node id="6705">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="6691" relation="include">
+        </childnode>
+        <childnode refid="6704" relation="include">
+        </childnode>
+        <childnode refid="6681" relation="include">
+        </childnode>
+        <childnode refid="6680" relation="include">
+        </childnode>
+        <childnode refid="6706" relation="include">
+        </childnode>
+        <childnode refid="6705" relation="include">
+        </childnode>
+        <childnode refid="6707" relation="include">
+        </childnode>
+      </node>
+      <node id="6686">
         <label>nifty/graph/graph_maps.hxx</label>
         <link refid="graph__maps_8hxx"/>
-        <childnode refid="12083" relation="include">
+        <childnode refid="6687" relation="include">
         </childnode>
       </node>
-      <node id="12091">
+      <node id="6695">
         <label>iostream</label>
       </node>
-      <node id="12086">
+      <node id="6690">
         <label>cstddef</label>
       </node>
-      <node id="12073">
-        <label>nifty/graph/optimization/mincut/mincut_objective.hxx</label>
-        <link refid="graph_2optimization_2mincut_2mincut__objective_8hxx"/>
-        <childnode refid="12074" relation="include">
-        </childnode>
-        <childnode refid="12081" relation="include">
-        </childnode>
-        <childnode refid="12082" relation="include">
+      <node id="6702">
+        <label>py_mincut_base.hxx</label>
+        <link refid="py__mincut__base_8hxx"/>
+        <childnode refid="6703" relation="include">
         </childnode>
       </node>
-      <node id="12104">
+      <node id="6708">
         <label>chrono</label>
       </node>
-      <node id="12083">
+      <node id="6687">
         <label>nifty/marray/marray.hxx</label>
         <link refid="marray_8hxx"/>
-        <childnode refid="12084" relation="include">
+        <childnode refid="6688" relation="include">
         </childnode>
-        <childnode refid="12074" relation="include">
+        <childnode refid="6678" relation="include">
         </childnode>
       </node>
-      <node id="12090">
+      <node id="6707">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="6690" relation="include">
+        </childnode>
+        <childnode refid="6691" relation="include">
+        </childnode>
+        <childnode refid="6704" relation="include">
+        </childnode>
+        <childnode refid="6681" relation="include">
+        </childnode>
+        <childnode refid="6695" relation="include">
+        </childnode>
+        <childnode refid="6708" relation="include">
+        </childnode>
+        <childnode refid="6709" relation="include">
+        </childnode>
+        <childnode refid="6710" relation="include">
+        </childnode>
+      </node>
+      <node id="6694">
         <label>set</label>
       </node>
-      <node id="12088">
+      <node id="6674">
+        <label>/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/export_mincut_solver.hxx</label>
+        <link refid="export__mincut__solver_8hxx"/>
+        <childnode refid="6675" relation="include">
+        </childnode>
+        <childnode refid="6676" relation="include">
+        </childnode>
+        <childnode refid="6700" relation="include">
+        </childnode>
+        <childnode refid="6702" relation="include">
+        </childnode>
+      </node>
+      <node id="6711">
+        <label>mincut_visitor_base.hxx</label>
+        <link refid="mincut__visitor__base_8hxx"/>
+        <childnode refid="6691" relation="include">
+        </childnode>
+        <childnode refid="6704" relation="include">
+        </childnode>
+        <childnode refid="6681" relation="include">
+        </childnode>
+        <childnode refid="6707" relation="include">
+        </childnode>
+      </node>
+      <node id="6692">
         <label>cstring</label>
       </node>
-      <node id="12092">
+      <node id="6696">
         <label>memory</label>
       </node>
-      <node id="12100">
+      <node id="6704">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1mincut">nifty::graph::optimization::mincut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1mincut">nifty::graph::opt::mincut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -282,8 +282,8 @@
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/pybind11.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="python_2graph_2optimization_2mincut_2mincut__objective_8hxx" kindref="compound">nifty/python/graph/optimization/mincut/mincut_objective.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="solver__factory_8hxx" kindref="compound">nifty/graph/optimization/common/solver_factory.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="python_2graph_2opt_2mincut_2mincut__objective_8hxx" kindref="compound">nifty/python/graph/opt/mincut/mincut_objective.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="solver__factory_8hxx" kindref="compound">nifty/graph/opt/common/solver_factory.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="py__mincut__base_8hxx" kindref="compound">py_mincut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
@@ -295,11 +295,11 @@
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">mincut{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SOLVER&gt;</highlight></codeline>
-<codeline lineno="24" refid="namespacenifty_1_1graph_1_1optimization_1_1mincut_1a04964bd5e4637ce88073ee84c12fa0c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;typename<sp/>SOLVER::SettingsType&gt;<sp/><sp/><ref refid="namespacenifty_1_1graph_1_1optimization_1_1mincut_1a04964bd5e4637ce88073ee84c12fa0c4" kindref="member">exportMincutSolver</ref>(</highlight></codeline>
+<codeline lineno="24" refid="namespacenifty_1_1graph_1_1opt_1_1mincut_1aeda4464d98c5dab3438e95fb91851183" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;typename<sp/>SOLVER::SettingsType&gt;<sp/><sp/><ref refid="namespacenifty_1_1graph_1_1opt_1_1mincut_1aeda4464d98c5dab3438e95fb91851183" kindref="member">exportMincutSolver</ref>(</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::module<sp/>&amp;<sp/>mincutModule,</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>solverName</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>){</highlight></codeline>
@@ -307,10 +307,10 @@
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>SOLVER<sp/>Solver;</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Solver::ObjectiveType<sp/>ObjectiveType;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Solver::SettingsType<sp/>SettingsType;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverFactory" kindref="compound">nifty::graph::optimization::common::SolverFactory&lt;Solver&gt;</ref><sp/>Factory;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactory" kindref="compound">nifty::graph::opt::common::SolverFactory&lt;Solver&gt;</ref><sp/>Factory;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>objName<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1mincut_1_1MincutObjectiveName" kindref="compound">MincutObjectiveName&lt;ObjectiveType&gt;::name</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>objName<sp/>=<sp/><ref refid="structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjectiveName" kindref="compound">MincutObjectiveName&lt;ObjectiveType&gt;::name</ref>();</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>factoryBaseName<sp/>=<sp/>std::string(</highlight><highlight class="stringliteral">&quot;SolverFactoryBase&quot;</highlight><highlight class="normal">)+objName;</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>solverBaseName<sp/>=<sp/>std::string(</highlight><highlight class="stringliteral">&quot;MincutBase&quot;</highlight><highlight class="normal">)<sp/>+<sp/>objName;</highlight></codeline>
@@ -346,13 +346,13 @@
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>mincut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="73"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/optimization/mincut/export_mincut_solver.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/mincut/export_mincut_solver.hxx"/>
   </compounddef>
 </doxygen>

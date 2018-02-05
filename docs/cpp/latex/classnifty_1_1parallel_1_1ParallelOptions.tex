@@ -20,11 +20,11 @@ enum \{ \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}{Parallel\+Options} (int n\+T=\hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Auto})
+\hyperlink{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}{Parallel\+Options} (int nT=\hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Auto})
 \item 
-int \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_ab4f8893bc656a86116db578ea8e634ff}{get\+Num\+Threads} () const 
+int \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a25312a5665cb4240e07a989bbf05cf7b}{get\+Num\+Threads} () const
 \begin{DoxyCompactList}\small\item\em Get desired number of threads. \end{DoxyCompactList}\item 
-int \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7dc7ea2f236660f51bb2e5497a5fefbf}{get\+Actual\+Num\+Threads} () const 
+int \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a0d905f623f4de9ce01361065c0042c50}{get\+Actual\+Num\+Threads} () const
 \begin{DoxyCompactList}\small\item\em Get desired number of threads. \end{DoxyCompactList}\item 
 \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{Parallel\+Options} \& \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a50e3d373c07fb36be7b3b39bf6886b9b}{num\+Threads} (const int n)
 \begin{DoxyCompactList}\small\item\em Set the number of threads or one of the constants {\ttfamily Auto}, {\ttfamily Nice} and {\ttfamily No\+Threads}. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -37,67 +37,69 @@ Option base class for parallel algorithms.
  Namespace\+: \hyperlink{namespacenifty_1_1parallel}{nifty\+::parallel} 
 
 \subsection{Member Enumeration Documentation}
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88a}{}\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88a}
-Constants for special settings. \begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Auto@{Auto}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Auto@{Auto}}\item[{\em 
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{}Auto\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}
-}]Determine number of threads automatically (from {\ttfamily std\+::thread\+::hardware\+\_\+concurrency()}) \index{Nice@{Nice}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Nice@{Nice}}\item[{\em 
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}{}Nice\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}
-}]Use half as many threads as {\ttfamily Auto} would. \index{No\+Threads@{No\+Threads}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!No\+Threads@{No\+Threads}}\item[{\em 
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349}{}No\+Threads\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349}
-}]Switch off multi-\/threading (i.\+e. execute tasks sequentially) \end{description}
-\end{Desc}
+\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88a}\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88a}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+Constants for special settings. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Auto@{Auto}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Auto@{Auto}}}\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}} 
+Auto&Determine number of threads automatically (from {\ttfamily std\+::thread\+::hardware\+\_\+concurrency()}) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Nice@{Nice}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Nice@{Nice}}}\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aad7df42230112f42413aa5fc2b3671651}} 
+Nice&Use half as many threads as {\ttfamily Auto} would. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{No\+Threads@{No\+Threads}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!No\+Threads@{No\+Threads}}}\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349}\label{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aaf7f33aa5c75f955eb0e6f6ca380f7349}} 
+No\+Threads&Switch off multi-\/threading (i.\+e. execute tasks sequentially) \\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}{}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Parallel\+Options@{Parallel\+Options}}
+\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}\label{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}} 
+\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!Parallel\+Options@{Parallel\+Options}}
 \index{Parallel\+Options@{Parallel\+Options}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}
-\subsubsection[{Parallel\+Options(int n\+T=\+Auto)}]{\setlength{\rightskip}{0pt plus 5cm}nifty\+::parallel\+::\+Parallel\+Options\+::\+Parallel\+Options (
-\begin{DoxyParamCaption}
-\item[{int}]{n\+T = {\ttfamily {\bf Auto}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ParallelOptions_ae1b1ff787e99e1f4ea75a2d8cb7e3d43}
+\subsubsection{\texorpdfstring{Parallel\+Options()}{ParallelOptions()}}
+{\footnotesize\ttfamily nifty\+::parallel\+::\+Parallel\+Options\+::\+Parallel\+Options (\begin{DoxyParamCaption}\item[{int}]{nT = {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Auto}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a7dc7ea2f236660f51bb2e5497a5fefbf}{}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!get\+Actual\+Num\+Threads@{get\+Actual\+Num\+Threads}}
+\mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a0d905f623f4de9ce01361065c0042c50}\label{classnifty_1_1parallel_1_1ParallelOptions_a0d905f623f4de9ce01361065c0042c50}} 
+\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!get\+Actual\+Num\+Threads@{get\+Actual\+Num\+Threads}}
 \index{get\+Actual\+Num\+Threads@{get\+Actual\+Num\+Threads}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}
-\subsubsection[{get\+Actual\+Num\+Threads() const }]{\setlength{\rightskip}{0pt plus 5cm}int nifty\+::parallel\+::\+Parallel\+Options\+::get\+Actual\+Num\+Threads (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ParallelOptions_a7dc7ea2f236660f51bb2e5497a5fefbf}
+\subsubsection{\texorpdfstring{get\+Actual\+Num\+Threads()}{getActualNumThreads()}}
+{\footnotesize\ttfamily int nifty\+::parallel\+::\+Parallel\+Options\+::get\+Actual\+Num\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 Get desired number of threads. 
 
-In contrast to {\ttfamily num\+Thread()}, this will always return a value {\ttfamily $>$=1}. \hypertarget{classnifty_1_1parallel_1_1ParallelOptions_ab4f8893bc656a86116db578ea8e634ff}{}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!get\+Num\+Threads@{get\+Num\+Threads}}
+In contrast to {\ttfamily num\+Thread()}, this will always return a value {\ttfamily $>$=1}. \mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a25312a5665cb4240e07a989bbf05cf7b}\label{classnifty_1_1parallel_1_1ParallelOptions_a25312a5665cb4240e07a989bbf05cf7b}} 
+\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!get\+Num\+Threads@{get\+Num\+Threads}}
 \index{get\+Num\+Threads@{get\+Num\+Threads}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}
-\subsubsection[{get\+Num\+Threads() const }]{\setlength{\rightskip}{0pt plus 5cm}int nifty\+::parallel\+::\+Parallel\+Options\+::get\+Num\+Threads (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ParallelOptions_ab4f8893bc656a86116db578ea8e634ff}
+\subsubsection{\texorpdfstring{get\+Num\+Threads()}{getNumThreads()}}
+{\footnotesize\ttfamily int nifty\+::parallel\+::\+Parallel\+Options\+::get\+Num\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 Get desired number of threads. 
 
-{\bfseries Note\+:} This function may return 0, which means that multi-\/threading shall be switched off entirely. If an algorithm receives this value, it should revert to a sequential implementation. In contrast, if {\ttfamily num\+Thread() == 1}, the parallel algorithm version shall be executed with a single thread. \hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a50e3d373c07fb36be7b3b39bf6886b9b}{}\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!num\+Threads@{num\+Threads}}
+{\bfseries Note\+:} This function may return 0, which means that multi-\/threading shall be switched off entirely. If an algorithm receives this value, it should revert to a sequential implementation. In contrast, if {\ttfamily num\+Thread() == 1}, the parallel algorithm version shall be executed with a single thread. \mbox{\Hypertarget{classnifty_1_1parallel_1_1ParallelOptions_a50e3d373c07fb36be7b3b39bf6886b9b}\label{classnifty_1_1parallel_1_1ParallelOptions_a50e3d373c07fb36be7b3b39bf6886b9b}} 
+\index{nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}!num\+Threads@{num\+Threads}}
 \index{num\+Threads@{num\+Threads}!nifty\+::parallel\+::\+Parallel\+Options@{nifty\+::parallel\+::\+Parallel\+Options}}
-\subsubsection[{num\+Threads(const int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parallel\+Options}\& nifty\+::parallel\+::\+Parallel\+Options\+::num\+Threads (
-\begin{DoxyParamCaption}
-\item[{const int}]{n}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classnifty_1_1parallel_1_1ParallelOptions_a50e3d373c07fb36be7b3b39bf6886b9b}
+\subsubsection{\texorpdfstring{num\+Threads()}{numThreads()}}
+{\footnotesize\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions}{Parallel\+Options}\& nifty\+::parallel\+::\+Parallel\+Options\+::num\+Threads (\begin{DoxyParamCaption}\item[{const int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 Set the number of threads or one of the constants {\ttfamily Auto}, {\ttfamily Nice} and {\ttfamily No\+Threads}. 
 
 Default\+: {\ttfamily \hyperlink{classnifty_1_1parallel_1_1ParallelOptions_a7a945e8bd698883de4af0f906b2aa88aa0bd8f9fd00d78fcfdcb6ee1575f43fd6}{Parallel\+Options\+::\+Auto}} (use system default)
 
-This setting is ignored if the preprocessor flag {\ttfamily N\+I\+F\+T\+Y\+\_\+\+N\+O\+\_\+\+P\+A\+R\+A\+L\+L\+E\+L\+I\+S\+M} is defined. Then, the number of threads is set to 0 and all tasks revert to sequential algorithm implementations. The same can be achieved at runtime by passing {\ttfamily n = 0} to this function. In contrast, passing {\ttfamily n = 1} causes the parallel algorithm versions to be executed with a single thread. Both possibilities are mainly useful for debugging. 
+This setting is ignored if the preprocessor flag {\ttfamily N\+I\+F\+T\+Y\+\_\+\+N\+O\+\_\+\+P\+A\+R\+A\+L\+L\+E\+L\+I\+SM} is defined. Then, the number of threads is set to 0 and all tasks revert to sequential algorithm implementations. The same can be achieved at runtime by passing {\ttfamily n = 0} to this function. In contrast, passing {\ttfamily n = 1} causes the parallel algorithm versions to be executed with a single thread. Both possibilities are mainly useful for debugging. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

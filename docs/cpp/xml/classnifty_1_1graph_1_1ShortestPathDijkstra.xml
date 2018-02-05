@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1graph_1_1ShortestPathDijkstra" kind="class" language="C++" prot="public">
     <compoundname>nifty::graph::ShortestPathDijkstra</compoundname>
     <includes refid="shortest__path__dijkstra_8hxx" local="no">shortest_path_dijkstra.hxx</includes>
@@ -12,11 +12,11 @@
       </param>
     </templateparamlist>
       <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1abf7e8e078818d19f973eebe1784f6716" prot="public" static="no">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1ab811998d24996c29b2ba613d9604b800" prot="public" static="no">
         <type>GRAPH</type>
-        <definition>typedef GRAPH nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::Graph</definition>
+        <definition>typedef GRAPH nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::GraphType</definition>
         <argsstring></argsstring>
-        <name>Graph</name>
+        <name>GraphType</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -38,9 +38,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="14" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a61f6bc245259c631182b51c3eb34785b" prot="public" static="no">
-        <type>Graph::template NodeMap&lt; int64_t &gt;</type>
-        <definition>typedef Graph:: template NodeMap&lt;int64_t&gt; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::PredecessorsMap</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87227c1cb37963c6a826889c693ab906" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; int64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;int64_t&gt; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::PredecessorsMap</definition>
         <argsstring></argsstring>
         <name>PredecessorsMap</name>
         <briefdescription>
@@ -51,9 +51,9 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="16" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87e51b119ce8d43b03c913527ff3a4c9" prot="public" static="no">
-        <type>Graph::template NodeMap&lt; <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a99783a7c717b74f48226852d73844fed" kindref="member">WeightType</ref> &gt;</type>
-        <definition>typedef Graph:: template NodeMap&lt;WeightType&gt; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::DistanceMap</definition>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7fd5b5d4bd9b9a6b9e8812b2c184c18a" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a99783a7c717b74f48226852d73844fed" kindref="member">WeightType</ref> &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;WeightType&gt; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::DistanceMap</definition>
         <argsstring></argsstring>
         <name>DistanceMap</name>
         <briefdescription>
@@ -108,7 +108,7 @@
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="196" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a30f79f31396d4872d77670100f87f80a" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a61f6bc245259c631182b51c3eb34785b" kindref="member">PredecessorsMap</ref></type>
+        <type><ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87227c1cb37963c6a826889c693ab906" kindref="member">PredecessorsMap</ref></type>
         <definition>PredecessorsMap nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::predMap_</definition>
         <argsstring></argsstring>
         <name>predMap_</name>
@@ -121,7 +121,7 @@
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="197" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a26c0a39a5d89bdc34c08c0efea4d24b8" prot="private" static="no" mutable="no">
-        <type><ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87e51b119ce8d43b03c913527ff3a4c9" kindref="member">DistanceMap</ref></type>
+        <type><ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7fd5b5d4bd9b9a6b9e8812b2c184c18a" kindref="member">DistanceMap</ref></type>
         <definition>DistanceMap nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::distMap_</definition>
         <argsstring></argsstring>
         <name>distMap_</name>
@@ -135,13 +135,13 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1acb13df0b0c2900bd1e937f061f8cc65c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a4ac2678953bd864c66d86b1c0b624d8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::ShortestPathDijkstra</definition>
-        <argsstring>(const Graph &amp;g)</argsstring>
+        <argsstring>(const GraphType &amp;g)</argsstring>
         <name>ShortestPathDijkstra</name>
         <param>
-          <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1abf7e8e078818d19f973eebe1784f6716" kindref="member">Graph</ref> &amp;</type>
+          <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ab811998d24996c29b2ba613d9604b800" kindref="member">GraphType</ref> &amp;</type>
           <declname>g</declname>
         </param>
         <briefdescription>
@@ -286,10 +286,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="106" bodyend="115"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1ad6163b3d85e34b8e857b5a3f27c3efbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87e51b119ce8d43b03c913527ff3a4c9" kindref="member">DistanceMap</ref> &amp;</type>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a4e312b4ec1ecaddb21c5b5e14049ead8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7fd5b5d4bd9b9a6b9e8812b2c184c18a" kindref="member">DistanceMap</ref> &amp;</type>
         <definition>const DistanceMap&amp; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::distances</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>distances</name>
         <briefdescription>
         </briefdescription>
@@ -299,10 +299,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="117" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="117" bodyend="119"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7e8d4715856c89271e44c1f56c162f57" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a61f6bc245259c631182b51c3eb34785b" kindref="member">PredecessorsMap</ref> &amp;</type>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1ShortestPathDijkstra_1af00403d368fb8128d37a8bc736631245" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87227c1cb37963c6a826889c693ab906" kindref="member">PredecessorsMap</ref> &amp;</type>
         <definition>const PredecessorsMap&amp; nifty::graph::ShortestPathDijkstra&lt; GRAPH, WEIGHT_TYPE &gt;::predecessors</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>predecessors</name>
         <briefdescription>
         </briefdescription>
@@ -383,23 +383,23 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" line="10" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/shortest_path_dijkstra.hxx" bodystart="10" bodyend="199"/>
     <listofallmembers>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87e51b119ce8d43b03c913527ff3a4c9" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>DistanceMap</name></member>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ad6163b3d85e34b8e857b5a3f27c3efbb" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>distances</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7fd5b5d4bd9b9a6b9e8812b2c184c18a" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>DistanceMap</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a4e312b4ec1ecaddb21c5b5e14049ead8" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>distances</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a26c0a39a5d89bdc34c08c0efea4d24b8" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>distMap_</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ae3fbb7f63b9a8271aa060c0d5b646c20" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>g_</name></member>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1abf7e8e078818d19f973eebe1784f6716" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>Graph</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ab811998d24996c29b2ba613d9604b800" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>GraphType</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a9fb78933d33e3a40425cf6c2b7682431" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>initializeMaps</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a81292330625da2928e90704885a14578" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>pq_</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a6e3caa30f91e0980a2d0235e37c310ee" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>PqType</name></member>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a7e8d4715856c89271e44c1f56c162f57" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>predecessors</name></member>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a61f6bc245259c631182b51c3eb34785b" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>PredecessorsMap</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1af00403d368fb8128d37a8bc736631245" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>predecessors</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a87227c1cb37963c6a826889c693ab906" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>PredecessorsMap</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a30f79f31396d4872d77670100f87f80a" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>predMap_</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a3772fbcff8a5baa69b3884e69849380d" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>run</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a4a98460befddd9dbcf81e2757e758e70" prot="private" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>runImpl</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ad5f769f5a2acc76b6b0e8914cafd1eb1" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>runSingleSource</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ac73da5c1ffcd7367ae159264895cc1fc" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>runSingleSourceMultiTarget</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1ab199118e6b805700d5330563401fe39d" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>runSingleSourceSingleTarget</name></member>
-      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1acb13df0b0c2900bd1e937f061f8cc65c" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>ShortestPathDijkstra</name></member>
+      <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a4ac2678953bd864c66d86b1c0b624d8b" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>ShortestPathDijkstra</name></member>
       <member refid="classnifty_1_1graph_1_1ShortestPathDijkstra_1a99783a7c717b74f48226852d73844fed" prot="public" virt="non-virtual"><scope>nifty::graph::ShortestPathDijkstra</scope><name>WeightType</name></member>
     </listofallmembers>
   </compounddef>

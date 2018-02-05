@@ -1,0 +1,103 @@
+\hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:mincut Namespace Reference}
+\label{namespacenifty_1_1graph_1_1opt_1_1mincut}\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1DefaultProposalGeneratorMock}{Default\+Proposal\+Generator\+Mock}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMove}{Mincut\+Cc\+Fusion\+Move}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutCcFusionMoveBased}{Mincut\+Cc\+Fusion\+Move\+Based}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutGreedyAdditive}{Mincut\+Greedy\+Additive}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective}{Mincut\+Objective}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjectiveBase}{Mincut\+Objective\+Base}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjectiveName}{Mincut\+Objective\+Name}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjectiveName_3_01PyDefaultMincutObjective_3_01GRAPH_01_4_01_4}{Mincut\+Objective\+Name$<$ Py\+Default\+Mincut\+Objective$<$ G\+R\+A\+P\+H $>$ $>$}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutQpbo}{Mincut\+Qpbo}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1ProposalGeneratorBase}{Proposal\+Generator\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1ProposalGeneratorFactory}{Proposal\+Generator\+Factory}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1ProposalGeneratorFactoryBase}{Proposal\+Generator\+Factory\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutBase}{Py\+Mincut\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1PyMincutVisitorBase}{Py\+Mincut\+Visitor\+Base}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1RandomProposalGenerator}{Random\+Proposal\+Generator}
+\begin{DoxyCompactList}\small\item\em Watershed proposal generator for mincut\+::\+Fusion\+Move\+Based. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ }\\using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_af5f9546254de453f964641e936ad8ba3}{Mincut\+Visitor\+Base} = \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase}{nifty\+::graph\+::opt\+::common\+::\+Visitor\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ $>$
+\item 
+{\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ }\\using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_add3f7a943158f70c24847778a52bd29a}{Mincut\+Verbose\+Visitor} = \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor}{nifty\+::graph\+::opt\+::common\+::\+Verbose\+Visitor}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ $>$
+\item 
+{\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ }\\using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}{Mincut\+Empty\+Visitor} = \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor}{nifty\+::graph\+::opt\+::common\+::\+Empty\+Visitor}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ $>$
+\item 
+{\footnotesize template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ }\\using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_ac0dd04b06e282faa322f3a967acf0347}{Mincut\+Visitor\+Proxy} = \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy}{nifty\+::graph\+::opt\+::common\+::\+Visitor\+Proxy}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$ O\+B\+J\+E\+C\+T\+I\+VE $>$ $>$
+\item 
+{\footnotesize template$<$class G\+R\+A\+PH $>$ }\\using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_a0580af1ea835f50c2c67e3903864ea08}{Py\+Default\+Mincut\+Objective} = \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective}{Mincut\+Objective}$<$ G\+R\+A\+PH, double $>$
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class S\+O\+L\+V\+ER $>$ }\\py\+::class\+\_\+$<$ typename S\+O\+L\+V\+E\+R\+::\+Settings\+Type $>$ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_aeda4464d98c5dab3438e95fb91851183}{export\+Mincut\+Solver} (py\+::module \&mincut\+Module, const std\+::string \&solver\+Name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!Mincut\+Empty\+Visitor@{Mincut\+Empty\+Visitor}}
+\index{Mincut\+Empty\+Visitor@{Mincut\+Empty\+Visitor}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{Mincut\+Empty\+Visitor}{MincutEmptyVisitor}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_abaeb42be72a153c73386cda5564721b2}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Empty\+Visitor} = typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor}{nifty\+::graph\+::opt\+::common\+::\+Empty\+Visitor}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+VE$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_add3f7a943158f70c24847778a52bd29a}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_add3f7a943158f70c24847778a52bd29a}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!Mincut\+Verbose\+Visitor@{Mincut\+Verbose\+Visitor}}
+\index{Mincut\+Verbose\+Visitor@{Mincut\+Verbose\+Visitor}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{Mincut\+Verbose\+Visitor}{MincutVerboseVisitor}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_add3f7a943158f70c24847778a52bd29a}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Verbose\+Visitor} = typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor}{nifty\+::graph\+::opt\+::common\+::\+Verbose\+Visitor}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+VE$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_af5f9546254de453f964641e936ad8ba3}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_af5f9546254de453f964641e936ad8ba3}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!Mincut\+Visitor\+Base@{Mincut\+Visitor\+Base}}
+\index{Mincut\+Visitor\+Base@{Mincut\+Visitor\+Base}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{Mincut\+Visitor\+Base}{MincutVisitorBase}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_af5f9546254de453f964641e936ad8ba3}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Visitor\+Base} = typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase}{nifty\+::graph\+::opt\+::common\+::\+Visitor\+Base}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+VE$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_ac0dd04b06e282faa322f3a967acf0347}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_ac0dd04b06e282faa322f3a967acf0347}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!Mincut\+Visitor\+Proxy@{Mincut\+Visitor\+Proxy}}
+\index{Mincut\+Visitor\+Proxy@{Mincut\+Visitor\+Proxy}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{Mincut\+Visitor\+Proxy}{MincutVisitorProxy}}
+{\footnotesize\ttfamily template$<$class O\+B\+J\+E\+C\+T\+I\+VE $>$ \\
+using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_ac0dd04b06e282faa322f3a967acf0347}{nifty\+::graph\+::opt\+::mincut\+::\+Mincut\+Visitor\+Proxy} = typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy}{nifty\+::graph\+::opt\+::common\+::\+Visitor\+Proxy}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutBase}{Mincut\+Base}$<$O\+B\+J\+E\+C\+T\+I\+VE$>$ $>$}
+
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_a0580af1ea835f50c2c67e3903864ea08}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_a0580af1ea835f50c2c67e3903864ea08}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!Py\+Default\+Mincut\+Objective@{Py\+Default\+Mincut\+Objective}}
+\index{Py\+Default\+Mincut\+Objective@{Py\+Default\+Mincut\+Objective}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{Py\+Default\+Mincut\+Objective}{PyDefaultMincutObjective}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH $>$ \\
+using \hyperlink{namespacenifty_1_1graph_1_1opt_1_1mincut_a0580af1ea835f50c2c67e3903864ea08}{nifty\+::graph\+::opt\+::mincut\+::\+Py\+Default\+Mincut\+Objective} = typedef \hyperlink{classnifty_1_1graph_1_1opt_1_1mincut_1_1MincutObjective}{Mincut\+Objective}$<$G\+R\+A\+PH, double$>$}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacenifty_1_1graph_1_1opt_1_1mincut_aeda4464d98c5dab3438e95fb91851183}\label{namespacenifty_1_1graph_1_1opt_1_1mincut_aeda4464d98c5dab3438e95fb91851183}} 
+\index{nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}!export\+Mincut\+Solver@{export\+Mincut\+Solver}}
+\index{export\+Mincut\+Solver@{export\+Mincut\+Solver}!nifty\+::graph\+::opt\+::mincut@{nifty\+::graph\+::opt\+::mincut}}
+\subsubsection{\texorpdfstring{export\+Mincut\+Solver()}{exportMincutSolver()}}
+{\footnotesize\ttfamily template$<$class S\+O\+L\+V\+ER $>$ \\
+py\+::class\+\_\+$<$typename S\+O\+L\+V\+E\+R\+::\+Settings\+Type$>$ nifty\+::graph\+::opt\+::mincut\+::export\+Mincut\+Solver (\begin{DoxyParamCaption}\item[{py\+::module \&}]{mincut\+Module,  }\item[{const std\+::string \&}]{solver\+Name }\end{DoxyParamCaption})}
+

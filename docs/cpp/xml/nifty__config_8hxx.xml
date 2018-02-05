@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="nifty__config_8hxx" kind="file" language="C++">
+    <compoundname>nifty_config.hxx</compoundname>
+    <includedby refid="nifty_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/nifty.hxx</includedby>
+    <invincdepgraph>
+      <node id="6250">
+        <label>/home/tbeier/src/nifty/include/nifty/nifty.hxx</label>
+        <link refid="nifty_8hxx"/>
+        <childnode refid="6251" relation="include">
+        </childnode>
+      </node>
+      <node id="6249">
+        <label>/home/tbeier/src/nifty/include/nifty/nifty_config.hxx</label>
+        <link refid="nifty__config_8hxx"/>
+        <childnode refid="6250" relation="include">
+        </childnode>
+      </node>
+      <node id="6251">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx</label>
+        <link refid="merge__rules_8hxx"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="nifty__config_8hxx_1ae7de9648e8606c4f6cde204add6c291b" prot="public" static="no">
+        <name>NIFTY_VERSION_MAJOR</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" line="4" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="nifty__config_8hxx_1ae0988ce6be1f0d8c3b565a1822cd4aa6" prot="public" static="no">
+        <name>NIFTY_VERSION_MINOR</name>
+        <initializer>24</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" line="5" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="nifty__config_8hxx_1acb214830ff2e9690eb3356d5c05aaeb9" prot="public" static="no">
+        <name>NIFTY_VERSION_PATCH</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" line="6" column="9" bodyfile="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="nifty__config_8hxx_1ae7de9648e8606c4f6cde204add6c291b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_VERSION_MAJOR<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="nifty__config_8hxx_1ae0988ce6be1f0d8c3b565a1822cd4aa6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_VERSION_MINOR<sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="nifty__config_8hxx_1acb214830ff2e9690eb3356d5c05aaeb9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NIFTY_VERSION_PATCH<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DETECT<sp/>3.6<sp/>&lt;=<sp/>clang<sp/>&lt;<sp/>3.8<sp/>for<sp/>compiler<sp/>bug<sp/>workaround.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>from<sp/><sp/>https://github.com/QuantStack/xtensor/blob/master/include/xtensor/xtensor_config.hpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__clang__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#if<sp/>__clang_major__<sp/>==<sp/>3<sp/>&amp;&amp;<sp/>__clang_minor__<sp/>&lt;<sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>NIFTY_PLLMC_OLD_CLANG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/tbeier/src/nifty/include/nifty/nifty_config.hxx"/>
+  </compounddef>
+</doxygen>

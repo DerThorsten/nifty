@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="graph_2multicut_2multicut_8cxx-example" kind="example">
     <compoundname>graph/multicut/multicut.cxx</compoundname>
     <detaileddescription>
-<para><programlisting><codeline><highlight class="preprocessor">#include<sp/>&quot;examples_common.hxx&quot;</highlight><highlight class="normal"></highlight></codeline>
+<para><programlisting><codeline><highlight class="comment">//#include<sp/>&quot;examples_common.hxx&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2undirected__list__graph_8hxx" kindref="compound">nifty/graph/undirected_list_graph.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2optimization_2multicut_2multicut__objective_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_objective.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__greedy__additive_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_greedy_additive.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="graph_2opt_2multicut_2multicut__objective_8hxx" kindref="compound">nifty/graph/opt/multicut/multicut_objective.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__greedy__additive_8hxx" kindref="compound">nifty/graph/opt/multicut/multicut_greedy_additive.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc<sp/>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[]<sp/>){</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -26,8 +26,8 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/>3<sp/>-<sp/>4<sp/>-<sp/>5</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">nifty::graph::UndirectedGraph&lt;&gt;</ref><sp/>Graph;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Graph<sp/>graph(6);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1UndirectedGraph" kindref="compound">nifty::graph::UndirectedGraph&lt;&gt;</ref><sp/>GraphType;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GraphType<sp/>graph(6);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inserte<sp/>edges<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>graph.insertEdge(0,1);<sp/><sp/></highlight></codeline>
@@ -40,7 +40,7 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>multicut<sp/>objective</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>not<sp/>add<sp/>more<sp/>edges<sp/>to<sp/>graph<sp/>after<sp/>creating<sp/>the<sp/>mc<sp/>objective</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutObjective" kindref="compound">nifty::graph::optimization::multicut::MulticutObjective&lt;Graph, float&gt;</ref><sp/>MulticutObjective;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective" kindref="compound">nifty::graph::opt::multicut::MulticutObjective&lt;GraphType, float&gt;</ref><sp/>MulticutObjective;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MulticutObjective<sp/>objective(graph);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>edge<sp/>weights<sp/></highlight><highlight class="normal"></highlight></codeline>
@@ -57,8 +57,8 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>solve<sp/>not<sp/>very<sp/>powerful<sp/>but<sp/>simple<sp/>solver</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive" kindref="compound">nifty::graph::optimization::multicut::MulticutGreedyAdditive&lt;MulticutObjective&gt;</ref><sp/>MulticutSolver;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::optimization::multicut::MulticutVerboseVisitor&lt;MulticutObjective&gt;</ref><sp/><ref refid="namespacenifty_1_1graph_1_1optimization_1_1multicut_1a071c9020e064373e9c11465fbe1870f9" kindref="member">MulticutVerboseVisitor</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive" kindref="compound">nifty::graph::opt::multicut::MulticutGreedyAdditive&lt;MulticutObjective&gt;</ref><sp/>MulticutSolver;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::opt::multicut::MulticutVerboseVisitor&lt;MulticutObjective&gt;</ref><sp/><ref refid="namespacenifty_1_1graph_1_1opt_1_1multicut_1af26230604a77c9e38690db74e4fcb7b3" kindref="member">MulticutVerboseVisitor</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>MulticutSolver::NodeLabelsType<sp/>NodeLabelsType;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MulticutSolver<sp/>solver(objective);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>

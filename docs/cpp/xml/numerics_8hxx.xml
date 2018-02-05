@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="numerics_8hxx" kind="file" language="C++">
     <compoundname>numerics.hxx</compoundname>
     <includes local="no">limits</includes>
@@ -7,52 +7,52 @@
     <includedby refid="gaussian__curvature_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</includedby>
     <includedby refid="math_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/math/math.hxx</includedby>
     <incdepgraph>
-      <node id="11651">
+      <node id="6225">
         <label>limits</label>
       </node>
-      <node id="11652">
+      <node id="6226">
         <label>vigra/numerictraits.hxx</label>
       </node>
-      <node id="11650">
+      <node id="6224">
         <label>/home/tbeier/src/nifty/include/nifty/math/numerics.hxx</label>
-        <link refid="numerics.hxx"/>
-        <childnode refid="11651" relation="include">
+        <link refid="numerics_8hxx"/>
+        <childnode refid="6225" relation="include">
         </childnode>
-        <childnode refid="11652" relation="include">
+        <childnode refid="6226" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11655">
+      <node id="6229">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/geometric_features.hxx</label>
         <link refid="geometric__features_8hxx"/>
       </node>
-      <node id="11656">
+      <node id="6230">
         <label>/home/tbeier/src/nifty/include/nifty/cgp/features/topological_features.hxx</label>
         <link refid="topological__features_8hxx"/>
       </node>
-      <node id="11654">
+      <node id="6228">
         <label>/home/tbeier/src/nifty/include/nifty/filters/gaussian_curvature.hxx</label>
         <link refid="gaussian__curvature_8hxx"/>
-        <childnode refid="11655" relation="include">
+        <childnode refid="6229" relation="include">
         </childnode>
-        <childnode refid="11656" relation="include">
+        <childnode refid="6230" relation="include">
         </childnode>
       </node>
-      <node id="11653">
+      <node id="6227">
         <label>/home/tbeier/src/nifty/include/nifty/math/numerics.hxx</label>
-        <link refid="numerics.hxx"/>
-        <childnode refid="11654" relation="include">
+        <link refid="numerics_8hxx"/>
+        <childnode refid="6228" relation="include">
         </childnode>
-        <childnode refid="11657" relation="include">
+        <childnode refid="6231" relation="include">
         </childnode>
       </node>
-      <node id="11657">
+      <node id="6231">
         <label>/home/tbeier/src/nifty/include/nifty/math/math.hxx</label>
         <link refid="math_8hxx"/>
-        <childnode refid="11655" relation="include">
+        <childnode refid="6229" relation="include">
         </childnode>
-        <childnode refid="11656" relation="include">
+        <childnode refid="6230" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

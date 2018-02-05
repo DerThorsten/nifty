@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::WatershedProposalGenerator</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="common_2proposal__generators_2watershed__proposal__generator_8hxx" local="no">watershed_proposal_generator.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" prot="public">nifty::graph::opt::common::WatershedProposalGenerator::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a00f7d66acd5c7510f38ba3866f9644ff" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a376349d1d4bc53280b7ad79f3193ed37" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a94ccb07cc30e64f015714e21344c3cbe" prot="public" static="no">
+        <type>GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::ProposalType</definition>
+        <argsstring></argsstring>
+        <name>ProposalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0eab02b7bfa3b93e48b75e3335e18a5a" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; float &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;float&gt; nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::EdgeWeights</definition>
+        <argsstring></argsstring>
+        <name>EdgeWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a3055a6666c0ec3fc9baf40da24cbe97e" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a00f7d66acd5c7510f38ba3866f9644ff" kindref="member">ObjectiveType</ref> &amp;</type>
+        <definition>const ObjectiveType&amp; nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::objective_</definition>
+        <argsstring></argsstring>
+        <name>objective_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="138" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a22c018a54c72f95f8040941efb207aa0" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::numberOfThreads_</definition>
+        <argsstring></argsstring>
+        <name>numberOfThreads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="139" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a709ada3d2d7fd605ee98a307ff7bd5b8" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="140" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a76cc725e2e1347b1c1bb02197c1b5605" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::negativeEdges_</definition>
+        <argsstring></argsstring>
+        <name>negativeEdges_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="141" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0ff792bfe9dc63cc4a3f6314cce38254" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0eab02b7bfa3b93e48b75e3335e18a5a" kindref="member">EdgeWeights</ref></type>
+        <definition>EdgeWeights nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::noisyEdgeWeights_</definition>
+        <argsstring></argsstring>
+        <name>noisyEdgeWeights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="142" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0273287eee1a2ed833417d09a27f63c6" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref></type>
+        <definition>ProposalType nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::seeds_</definition>
+        <argsstring></argsstring>
+        <name>seeds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="143" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a8f6815840c860d8cf04b985d8945cfb7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::mt19937 &gt;</type>
+        <definition>std::vector&lt;std::mt19937&gt; nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::gens_</definition>
+        <argsstring></argsstring>
+        <name>gens_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="145" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a3854c6431fd734ccf1ba0c688796f6fb" prot="private" static="no" mutable="no">
+        <type>std::normal_distribution</type>
+        <definition>std::normal_distribution nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::dist_</definition>
+        <argsstring></argsstring>
+        <name>dist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a640ba7c00ba44b9b3960ab15079524f3" prot="private" static="no" mutable="no">
+        <type>std::uniform_int_distribution</type>
+        <definition>std::uniform_int_distribution nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::intDist_</definition>
+        <argsstring></argsstring>
+        <name>intDist_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="147" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a8bf28bcf418e0de0789e1f64fccda671" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::WatershedProposalGenerator</definition>
+        <argsstring>(const ObjectiveType &amp;objective, const size_t numberOfThreads, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>WatershedProposalGenerator</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a00f7d66acd5c7510f38ba3866f9644ff" kindref="member">ObjectiveType</ref> &amp;</type>
+          <declname>objective</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numberOfThreads</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="45" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a93174a3bd752d4c2cf2a3eabce5d740c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="67" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="67" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1aa64defb3bc6b8b7ab1b5e6f409d07b16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::~WatershedProposalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~WatershedProposalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0dadaa8e06ec15ac6e892ecc2fa6ad97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const ProposalType &amp;currentBest, ProposalType &amp;proposal, const size_t tid)</argsstring>
+        <name>generateProposal</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395">generateProposal</reimplements>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>proposal</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="89" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Watershed proposal generator for <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1FusionMoveBased" kindref="compound">lifted_multicut::FusionMoveBased</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>OBJECTIVE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>{ description } </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1219">
+        <label>nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator"/>
+        <childnode refid="1220" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1220">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1221">
+        <label>nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator"/>
+        <childnode refid="1222" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1222">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/watershed_proposal_generator.hxx" bodystart="24" bodyend="150"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a3854c6431fd734ccf1ba0c688796f6fb" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>dist_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0eab02b7bfa3b93e48b75e3335e18a5a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>EdgeWeights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0dadaa8e06ec15ac6e892ecc2fa6ad97" prot="public" virt="virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a8f6815840c860d8cf04b985d8945cfb7" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>gens_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a376349d1d4bc53280b7ad79f3193ed37" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a640ba7c00ba44b9b3960ab15079524f3" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>intDist_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a76cc725e2e1347b1c1bb02197c1b5605" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>negativeEdges_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0ff792bfe9dc63cc4a3f6314cce38254" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>noisyEdgeWeights_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a22c018a54c72f95f8040941efb207aa0" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>numberOfThreads_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a3055a6666c0ec3fc9baf40da24cbe97e" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>objective_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a00f7d66acd5c7510f38ba3866f9644ff" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a94ccb07cc30e64f015714e21344c3cbe" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>ProposalType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a93174a3bd752d4c2cf2a3eabce5d740c" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>reset</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0273287eee1a2ed833417d09a27f63c6" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>seeds_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a709ada3d2d7fd605ee98a307ff7bd5b8" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a8bf28bcf418e0de0789e1f64fccda671" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>WatershedProposalGenerator</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" prot="public" virt="virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>~ProposalGeneratorBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1aa64defb3bc6b8b7ab1b5e6f409d07b16" prot="public" virt="virtual"><scope>nifty::graph::opt::common::WatershedProposalGenerator</scope><name>~WatershedProposalGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

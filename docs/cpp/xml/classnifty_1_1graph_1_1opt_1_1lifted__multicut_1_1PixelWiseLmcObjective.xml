@@ -1,0 +1,501 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</compoundname>
+    <includes refid="pixel__wise_8hxx" local="no">pixel_wise.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9d6e35c79c10cda4f8f71d04de7e502a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedGridGraph" kindref="compound">nifty::graph::UndirectedGridGraph</ref>&lt; DIM, true &gt;</type>
+        <definition>typedef nifty::graph::UndirectedGridGraph&lt;DIM,true&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="276" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aab39b0241a84f330595fb9cc12d9766b" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutObjective" kindref="compound">LiftedMulticutObjective</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9d6e35c79c10cda4f8f71d04de7e502a" kindref="member">GraphType</ref>, double &gt;</type>
+        <definition>typedef LiftedMulticutObjective&lt;GraphType, double &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="277" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1afe887edc57b2dcaaf16c8d37a7ef75f5" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aab39b0241a84f330595fb9cc12d9766b" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::BaseType</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="278" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a980f38de550a4b5e49ca2d0e93a3883c" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1ad9932afb08dd17d375de4b15da9ffaa6" kindref="member">BaseType::VisitorBaseType</ref></type>
+        <definition>typedef BaseType::VisitorBaseType nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="279" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a445c87635d0c7885842dd701ff326e03" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">BaseType::NodeLabelsType</ref></type>
+        <definition>typedef BaseType::NodeLabelsType nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::NodeLabels</definition>
+        <argsstring></argsstring>
+        <name>NodeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="280" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1af25cc9669e2f45203e18687fa4fe1094" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverFactoryBase" kindref="compound">nifty::graph::opt::common::SolverFactoryBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1afe887edc57b2dcaaf16c8d37a7ef75f5" kindref="member">BaseType</ref> &gt;</type>
+        <definition>typedef nifty::graph::opt::common::SolverFactoryBase&lt;BaseType&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::LmcFactoryBase</definition>
+        <argsstring></argsstring>
+        <name>LmcFactoryBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="281" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aed7d162d3b82b26428c3e484d7788fc9" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1af25cc9669e2f45203e18687fa4fe1094" kindref="member">LmcFactoryBase</ref> &gt;</type>
+        <definition>typedef std::shared_ptr&lt;LmcFactoryBase&gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::LmcFactoryBaseSharedPtr</definition>
+        <argsstring></argsstring>
+        <name>LmcFactoryBaseSharedPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="282" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a48c06297b09df231c4efb0296ba8ff44" prot="private" static="no" mutable="no">
+        <type>xt::xtensor&lt; int, 2, xt::layout_type::row_major &gt;</type>
+        <definition>xt::xtensor&lt; int, 2, xt::layout_type::row_major &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::offsets_</definition>
+        <argsstring></argsstring>
+        <name>offsets_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="340" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="340" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9a6d4a32998cc75696b46eb8232ac7eb" prot="private" static="no" mutable="no">
+        <type>xt::xtensor&lt; float, DIM+1, xt::layout_type::row_major &gt;</type>
+        <definition>xt::xtensor&lt; float, DIM+1, xt::layout_type::row_major &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="341" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="341" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a68333c1603e42a4e5fa1d21fc0b36fb7" prot="private" static="no" mutable="no">
+        <type>std::array&lt; int, DIM &gt;</type>
+        <definition>std::array&lt; int, DIM &gt; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="343" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1e996b12d756ace50eaa82b63450f8f6" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_offsets_</definition>
+        <argsstring></argsstring>
+        <name>n_offsets_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="344" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ec7e80de3b2d80f02c01e6a0fd6dd4d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_variables_</definition>
+        <argsstring></argsstring>
+        <name>n_variables_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="345" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ca29aebe51f087b87d9353b72e5b4f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::PixelWiseLmcObjective</definition>
+        <argsstring>()</argsstring>
+        <name>PixelWiseLmcObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="226" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="226" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a289a981e481ffd785ff9e902a1c6b81c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_WEIGHTS</type>
+          </param>
+          <param>
+            <type>class D_OFFSETS</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::PixelWiseLmcObjective</definition>
+        <argsstring>(const xt::xexpression&lt; D_WEIGHTS &gt; &amp;e_weights, const xt::xexpression&lt; D_OFFSETS &gt; &amp;e_offsets)</argsstring>
+        <name>PixelWiseLmcObjective</name>
+        <param>
+          <type>const xt::xexpression&lt; D_WEIGHTS &gt; &amp;</type>
+          <declname>e_weights</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_OFFSETS &gt; &amp;</type>
+          <declname>e_offsets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="231" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="231" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a747f137d69865cae987d39e3d1f7d8da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::evaluate</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels) const</argsstring>
+        <name>evaluate</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="255" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="255" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1ad84609a85d2203e52d4eb16c83a3930f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::weights</definition>
+        <argsstring>() const</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="260" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="260" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1c9506b64a31e69ffe33ce76e94a3399" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::offsets</definition>
+        <argsstring>() const</argsstring>
+        <name>offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="263" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="263" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a7d7e653cc95b721c529a397652e36b9a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="266" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="266" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a8362f64cc0d7898d9fb9d7350cf85ce7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_offsets</definition>
+        <argsstring>() const</argsstring>
+        <name>n_offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="269" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="269" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1abb3ae8311e13fc58cf745ba0e232a2e9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_variables</definition>
+        <argsstring>() const</argsstring>
+        <name>n_variables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="272" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="272" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a5d81f386676196f07d1b44cbfaac487a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::optimize</definition>
+        <argsstring>(LmcFactoryBaseSharedPtr factory, const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels, const bool verbose=false) const</argsstring>
+        <name>optimize</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aed7d162d3b82b26428c3e484d7788fc9" kindref="member">LmcFactoryBaseSharedPtr</ref></type>
+          <declname>factory</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>verbose</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="285" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="285" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ca29aebe51f087b87d9353b72e5b4f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::PixelWiseLmcObjective</definition>
+        <argsstring>()</argsstring>
+        <name>PixelWiseLmcObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a289a981e481ffd785ff9e902a1c6b81c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_WEIGHTS</type>
+          </param>
+          <param>
+            <type>class D_OFFSETS</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::PixelWiseLmcObjective</definition>
+        <argsstring>(const xt::xexpression&lt; D_WEIGHTS &gt; &amp;e_weights, const xt::xexpression&lt; D_OFFSETS &gt; &amp;e_offsets)</argsstring>
+        <name>PixelWiseLmcObjective</name>
+        <param>
+          <type>const xt::xexpression&lt; D_WEIGHTS &gt; &amp;</type>
+          <declname>e_weights</declname>
+        </param>
+        <param>
+          <type>const xt::xexpression&lt; D_OFFSETS &gt; &amp;</type>
+          <declname>e_offsets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="84" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="84" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a747f137d69865cae987d39e3d1f7d8da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D_LABELS</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::evaluate</definition>
+        <argsstring>(const xt::xexpression&lt; D_LABELS &gt; &amp;e_labels) const</argsstring>
+        <name>evaluate</name>
+        <param>
+          <type>const xt::xexpression&lt; D_LABELS &gt; &amp;</type>
+          <declname>e_labels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="108" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1ad84609a85d2203e52d4eb16c83a3930f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::weights</definition>
+        <argsstring>() const</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="113" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="113" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1c9506b64a31e69ffe33ce76e94a3399" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::offsets</definition>
+        <argsstring>() const</argsstring>
+        <name>offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="116" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="116" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a7d7e653cc95b721c529a397652e36b9a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="119" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a8362f64cc0d7898d9fb9d7350cf85ce7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_offsets</definition>
+        <argsstring>() const</argsstring>
+        <name>n_offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="122" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="122" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1abb3ae8311e13fc58cf745ba0e232a2e9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective&lt; DIM &gt;::n_variables</definition>
+        <argsstring>() const</argsstring>
+        <name>n_variables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" line="125" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise_q.hxx" bodystart="125" bodyend="127"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" line="223" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/pixel_wise.hxx" bodystart="223" bodyend="346"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1afe887edc57b2dcaaf16c8d37a7ef75f5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>BaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a747f137d69865cae987d39e3d1f7d8da" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>evaluate</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a747f137d69865cae987d39e3d1f7d8da" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>evaluate</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9d6e35c79c10cda4f8f71d04de7e502a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1af25cc9669e2f45203e18687fa4fe1094" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>LmcFactoryBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aed7d162d3b82b26428c3e484d7788fc9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>LmcFactoryBaseSharedPtr</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a8362f64cc0d7898d9fb9d7350cf85ce7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_offsets</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a8362f64cc0d7898d9fb9d7350cf85ce7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_offsets</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1e996b12d756ace50eaa82b63450f8f6" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_offsets_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1abb3ae8311e13fc58cf745ba0e232a2e9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_variables</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1abb3ae8311e13fc58cf745ba0e232a2e9" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_variables</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ec7e80de3b2d80f02c01e6a0fd6dd4d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>n_variables_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a445c87635d0c7885842dd701ff326e03" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>NodeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1aab39b0241a84f330595fb9cc12d9766b" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1c9506b64a31e69ffe33ce76e94a3399" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>offsets</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a1c9506b64a31e69ffe33ce76e94a3399" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>offsets</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a48c06297b09df231c4efb0296ba8ff44" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>offsets_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a5d81f386676196f07d1b44cbfaac487a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>optimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ca29aebe51f087b87d9353b72e5b4f3" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>PixelWiseLmcObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a289a981e481ffd785ff9e902a1c6b81c" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>PixelWiseLmcObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9ca29aebe51f087b87d9353b72e5b4f3" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>PixelWiseLmcObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a289a981e481ffd785ff9e902a1c6b81c" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>PixelWiseLmcObjective</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a7d7e653cc95b721c529a397652e36b9a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a7d7e653cc95b721c529a397652e36b9a" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a68333c1603e42a4e5fa1d21fc0b36fb7" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>shape_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a980f38de550a4b5e49ca2d0e93a3883c" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>VisitorBaseType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1ad84609a85d2203e52d4eb16c83a3930f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1ad84609a85d2203e52d4eb16c83a3930f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>weights</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PixelWiseLmcObjective_1a9a6d4a32998cc75696b46eb8232ac7eb" prot="private" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PixelWiseLmcObjective</scope><name>weights_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

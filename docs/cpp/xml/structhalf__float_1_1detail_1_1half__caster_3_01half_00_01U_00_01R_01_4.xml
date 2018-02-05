@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::half_caster&lt; half, U, R &gt;</compoundname>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename U</type>
+      </param>
+      <param>
+        <type>std::float_round_style</type>
+        <declname>R</declname>
+        <defname>R</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1aa32ee58e119cf3e82017c420893c3adb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::half_caster&lt; half, U, R &gt;::cast</definition>
+        <argsstring>(U arg)</argsstring>
+        <name>cast</name>
+        <param>
+          <type>U</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2073" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2073" bodyend="2073"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1af6027e45c9e073c975906d113cf23445" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::half_caster&lt; half, U, R &gt;::cast_impl</definition>
+        <argsstring>(U arg, true_type)</argsstring>
+        <name>cast_impl</name>
+        <param>
+          <type>U</type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehalf__float_1_1detail_1a5e245748a3cc20e348dd92383d99d03c" kindref="member">true_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2076" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2076" bodyend="2076"/>
+      </memberdef>
+      <memberdef kind="function" id="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1a5de89b48451f4442bbe80696f63242e4" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhalf__float_1_1half" kindref="compound">half</ref></type>
+        <definition>static half half_float::detail::half_caster&lt; half, U, R &gt;::cast_impl</definition>
+        <argsstring>(U arg, false_type)</argsstring>
+        <name>cast_impl</name>
+        <param>
+          <type>U</type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehalf__float_1_1detail_1a04d0449ab22bc6d1cfb2f31a8271945c" kindref="member">false_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2077" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2077" bodyend="2077"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="2068" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="2067" bodyend="2078"/>
+    <listofallmembers>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1aa32ee58e119cf3e82017c420893c3adb" prot="public" virt="non-virtual"><scope>half_float::detail::half_caster&lt; half, U, R &gt;</scope><name>cast</name></member>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1af6027e45c9e073c975906d113cf23445" prot="private" virt="non-virtual"><scope>half_float::detail::half_caster&lt; half, U, R &gt;</scope><name>cast_impl</name></member>
+      <member refid="structhalf__float_1_1detail_1_1half__caster_3_01half_00_01U_00_01R_01_4_1a5de89b48451f4442bbe80696f63242e4" prot="private" virt="non-virtual"><scope>half_float::detail::half_caster&lt; half, U, R &gt;</scope><name>cast_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

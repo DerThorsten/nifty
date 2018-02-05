@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</compoundname>
+    <includes refid="merge__rules_8hxx" local="no">merge_rules.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class G</type>
+      </param>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1af6ef0c41c3cbeb666e040e06ebcda4c6" prot="public" static="no">
+        <type>G</type>
+        <definition>typedef G nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="311" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a83f4d4fcda328512f9d91989e84a655a" prot="public" static="no">
+        <type><ref refid="classnifty_1_1histogram_1_1Histogram" kindref="compound">nifty::histogram::Histogram</ref>&lt; double, double &gt;</type>
+        <definition>typedef nifty::histogram::Histogram&lt;double, double&gt; nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::HistogramType</definition>
+        <argsstring></argsstring>
+        <name>HistogramType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="312" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1ac1bbf5aac0730dfa1d721a7f0d046f99" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a83f4d4fcda328512f9d91989e84a655a" kindref="member">HistogramType</ref> &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;HistogramType&gt; nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::HistogramEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>HistogramEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="313" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="313" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a3d289c2deaa4d68cea55486aa10e56dd" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; T &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;T&gt; nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::SizeEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>SizeEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="314" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="314" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6b6c608fd32fef4275091eba71bb6e1a" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderSettings" kindref="compound">RankOrderSettings</ref></type>
+        <definition>typedef RankOrderSettings nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="316" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="316" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a2ece06eacecc7844c663ad77bf554567" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1ac1bbf5aac0730dfa1d721a7f0d046f99" kindref="member">HistogramEdgeMapType</ref></type>
+        <definition>HistogramEdgeMapType nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::histogram_</definition>
+        <argsstring></argsstring>
+        <name>histogram_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="370" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="370" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a7bceb9e3168e466db0d836c14fca0b59" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6b6c608fd32fef4275091eba71bb6e1a" kindref="member">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="371" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1aa13bc5263991b55d9c7a1660dfb33b04" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>static auto nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::staticName</definition>
+        <argsstring>()</argsstring>
+        <name>staticName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="303" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="303" bodyend="305"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1ae1a500cc8f90e57134ad0ab34a4b0425" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="306" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="306" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a971ad0a135c83e57b3649b082f50b2e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class VALUES</type>
+          </param>
+          <param>
+            <type>class WEIGHTS</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::RankOrderEdgeMap</definition>
+        <argsstring>(const GraphType &amp;g, const VALUES &amp;values, const WEIGHTS &amp;weights, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>RankOrderEdgeMap</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1af6ef0c41c3cbeb666e040e06ebcda4c6" kindref="member">GraphType</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const VALUES &amp;</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>const WEIGHTS &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6b6c608fd32fef4275091eba71bb6e1a" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6b6c608fd32fef4275091eba71bb6e1a" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="319" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="319" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6c3273f47e4788c38bb9e884e3ad968a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::merge</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>merge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="344" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="344" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1abd93ae043ad33066b05aeea3d8417a30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::setValueFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setValueFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="348" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="348" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a4ee972a8bb9154edfbced24b55dd616e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::setFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="357" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="357" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a5a6cedd737a0ea813c6efc73929d6c9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::set</definition>
+        <argsstring>(const uint64_t targetEdge, const T &amp;value, const T &amp;weight)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="360" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="360" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a873bc5fb25d492f74ef3b3dfd08358b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T nifty::graph::agglo::merge_rules::RankOrderEdgeMap&lt; G, T &gt;::operator[]</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="366" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="366" bodyend="368"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="301" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="301" bodyend="372"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1af6ef0c41c3cbeb666e040e06ebcda4c6" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a2ece06eacecc7844c663ad77bf554567" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>histogram_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1ac1bbf5aac0730dfa1d721a7f0d046f99" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>HistogramEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a83f4d4fcda328512f9d91989e84a655a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>HistogramType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6c3273f47e4788c38bb9e884e3ad968a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>merge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1ae1a500cc8f90e57134ad0ab34a4b0425" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a873bc5fb25d492f74ef3b3dfd08358b8" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a971ad0a135c83e57b3649b082f50b2e4" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>RankOrderEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a5a6cedd737a0ea813c6efc73929d6c9d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>set</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a4ee972a8bb9154edfbced24b55dd616e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>setFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a7bceb9e3168e466db0d836c14fca0b59" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a6b6c608fd32fef4275091eba71bb6e1a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1abd93ae043ad33066b05aeea3d8417a30" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>setValueFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1a3d289c2deaa4d68cea55486aa10e56dd" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>SizeEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1RankOrderEdgeMap_1aa13bc5263991b55d9c7a1660dfb33b04" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::RankOrderEdgeMap</scope><name>staticName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

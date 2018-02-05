@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacenifty_1_1graph_1_1opt_1_1multicut" kind="namespace" language="C++">
+    <compoundname>nifty::graph::opt::multicut</compoundname>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1BlockMulticut" prot="public">nifty::graph::opt::multicut::BlockMulticut</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1CcFusionMoveBased" prot="public">nifty::graph::opt::multicut::CcFusionMoveBased</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1Cgc" prot="public">nifty::graph::opt::multicut::Cgc</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1ChainedSolvers" prot="public">nifty::graph::opt::multicut::ChainedSolvers</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMove" prot="public">nifty::graph::opt::multicut::FusionMove</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1FusionMoveBased" prot="public">nifty::graph::opt::multicut::FusionMoveBased</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1GreedyAdditiveProposals" prot="public">nifty::graph::opt::multicut::GreedyAdditiveProposals</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1KernighanLin" prot="public">nifty::graph::opt::multicut::KernighanLin</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndres" prot="public">nifty::graph::opt::multicut::MulticutAndres</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresGreedyAdditive" prot="public">nifty::graph::opt::multicut::MulticutAndresGreedyAdditive</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutAndresKernighanLin" prot="public">nifty::graph::opt::multicut::MulticutAndresKernighanLin</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" prot="public">nifty::graph::opt::multicut::MulticutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutDecomposer" prot="public">nifty::graph::opt::multicut::MulticutDecomposer</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive" prot="public">nifty::graph::opt::multicut::MulticutGreedyAdditive</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp" prot="public">nifty::graph::opt::multicut::MulticutIlp</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutMp" prot="public">nifty::graph::opt::multicut::MulticutMp</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective" prot="public">nifty::graph::opt::multicut::MulticutObjective</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveBase" prot="public">nifty::graph::opt::multicut::MulticutObjectiveBase</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveName" prot="public">nifty::graph::opt::multicut::MulticutObjectiveName</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjectiveName_3_01PyDefaultMulticutObjective_3_01GRAPH_01_4_01_4" prot="public">nifty::graph::opt::multicut::MulticutObjectiveName&lt; PyDefaultMulticutObjective&lt; GRAPH &gt; &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap" prot="public">nifty::graph::opt::multicut::PerturbAndMap</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutBase" prot="public">nifty::graph::opt::multicut::PyMulticutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1PyMulticutVisitorBase" prot="public">nifty::graph::opt::multicut::PyMulticutVisitorBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals" prot="public">nifty::graph::opt::multicut::WatershedProposals</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1a3a8f68d7814a77531781fb55327f05d2" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">nifty::graph::opt::common::VisitorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::multicut::MulticutVisitorBase = typedef nifty::graph::opt::common::VisitorBase&lt; MulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MulticutVisitorBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1af26230604a77c9e38690db74e4fcb7b3" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::opt::common::VerboseVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::multicut::MulticutVerboseVisitor = typedef nifty::graph::opt::common::VerboseVisitor&lt; MulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MulticutVerboseVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1aa5367b6f47794a63333b96b04502396c" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" kindref="compound">nifty::graph::opt::common::EmptyVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::multicut::MulticutEmptyVisitor = typedef nifty::graph::opt::common::EmptyVisitor&lt; MulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MulticutEmptyVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1aa3ab4d745c71c8cd9ea1535b73f6e54b" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">nifty::graph::opt::common::VisitorProxy</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::multicut::MulticutVisitorProxy = typedef nifty::graph::opt::common::VisitorProxy&lt; MulticutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MulticutVisitorProxy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_visitor_base.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1a7dbb5a757325e1a3bdf7e8ed21168986" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutObjective" kindref="compound">MulticutObjective</ref>&lt; GRAPH, double &gt;</type>
+        <definition>using nifty::graph::opt::multicut::PyDefaultMulticutObjective = typedef MulticutObjective&lt;GRAPH, double&gt;</definition>
+        <argsstring></argsstring>
+        <name>PyDefaultMulticutObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/multicut_objective.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/multicut_objective.hxx" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1opt_1_1multicut_1aa76d6b4acd0499b1fb1e18eed88696fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOLVER</type>
+          </param>
+        </templateparamlist>
+        <type>py::class_&lt; typename SOLVER::SettingsType &gt;</type>
+        <definition>py::class_&lt;typename SOLVER::SettingsType&gt; nifty::graph::opt::multicut::exportMulticutSolver</definition>
+        <argsstring>(py::module &amp;multicutModule, const std::string &amp;solverName, nifty::graph::opt::SolverDocstringHelper docHelper=nifty::graph::opt::SolverDocstringHelper())</argsstring>
+        <name>exportMulticutSolver</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>multicutModule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>solverName</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1SolverDocstringHelper" kindref="compound">nifty::graph::opt::SolverDocstringHelper</ref></type>
+          <declname>docHelper</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1opt_1_1SolverDocstringHelper" kindref="compound">nifty::graph::opt::SolverDocstringHelper</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/export_multicut_solver.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/multicut/export_multicut_solver.hxx" bodystart="25" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/multicut_base.hxx" line="13" column="1"/>
+  </compounddef>
+</doxygen>

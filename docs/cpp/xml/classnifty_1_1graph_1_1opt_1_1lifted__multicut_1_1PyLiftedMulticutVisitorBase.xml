@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::VisitorBase&lt; OBJECTIVE &gt;</basecompoundref>
+    <includes refid="py__lifted__multicut__visitor__base_8hxx" local="no">py_lifted_multicut_visitor_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a9e8855d94040cf1e16d59cad6a8dabd5" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="27" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a559b64ba9b334622ef91ec4e2e927be4" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1graph_1_1opt_1_1lifted__multicut_1a3350124f8869505fecf39d697b9b2718" kindref="member">LiftedMulticutVisitorBase</ref>&lt; OBJECTIVE &gt;</type>
+        <definition>typedef LiftedMulticutVisitorBase&lt;OBJECTIVE&gt; nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::VisitorBaseType</definition>
+        <argsstring></argsstring>
+        <name>VisitorBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab42d6b0fdecfe2dc9232654ce690c923" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1LiftedMulticutBase" kindref="compound">LiftedMulticutBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a9e8855d94040cf1e16d59cad6a8dabd5" kindref="member">ObjectiveType</ref> &gt;</type>
+        <definition>typedef LiftedMulticutBase&lt;ObjectiveType&gt; nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::LmcBase</definition>
+        <argsstring></argsstring>
+        <name>LmcBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a9d2428fd2f0972bd1214adb32262f694" prot="public" static="no">
+        <type>ObjectiveType::GraphType</type>
+        <definition>typedef ObjectiveType::GraphType nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a67233e1adc5ab7dc616c76ca42990dca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::begin</definition>
+        <argsstring>(LmcBase *mcBase)</argsstring>
+        <name>begin</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab42d6b0fdecfe2dc9232654ce690c923" kindref="member">LmcBase</ref> *</type>
+          <declname>mcBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="34" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab9e6900065799496ae1bd88afee881a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::visit</definition>
+        <argsstring>(LmcBase *mcBase)</argsstring>
+        <name>visit</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab42d6b0fdecfe2dc9232654ce690c923" kindref="member">LmcBase</ref> *</type>
+          <declname>mcBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="43" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1abc9fa6914576a96ef3c261e8a176fffa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::end</definition>
+        <argsstring>(LmcBase *mcBase)</argsstring>
+        <name>end</name>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab42d6b0fdecfe2dc9232654ce690c923" kindref="member">LmcBase</ref> *</type>
+          <declname>mcBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="52" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ad7e8835d70def796b71cff0caa79c596" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::addLogNames</definition>
+        <argsstring>(std::initializer_list&lt; std::string &gt; logNames)</argsstring>
+        <name>addLogNames</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1acc4f1b419303965b0313ca83c6a7a420">addLogNames</reimplements>
+        <param>
+          <type>std::initializer_list&lt; std::string &gt;</type>
+          <declname>logNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="61" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="61" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a3b6820cf08c0cda2cd72fd5627ea8faa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;::setLogValue</definition>
+        <argsstring>(const std::size_t logIndex, double logValue)</argsstring>
+        <name>setLogValue</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a41efc013731cca97176a61be58db0094">setLogValue</reimplements>
+        <param>
+          <type>const std::size_t</type>
+          <declname>logIndex</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>logValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="70" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="70" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="898">
+        <label>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase"/>
+        <childnode refid="899" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="899">
+        <label>LiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="900">
+        <label>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase"/>
+        <childnode refid="901" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="901">
+        <label>LiftedMulticutVisitorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/lifted_multicut/py_lifted_multicut_visitor_base.hxx" bodystart="22" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ad7e8835d70def796b71cff0caa79c596" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>addLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a67233e1adc5ab7dc616c76ca42990dca" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a8c4462a0cd838b0082f7157ad4b2d770" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::common::VisitorBase::"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a9ac54577b1a0378834ffe2029a321744" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>clearLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1abc9fa6914576a96ef3c261e8a176fffa" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aab59ead6ecef2fcaf3da5a96d0ec4c51" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::common::VisitorBase::"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a9d2428fd2f0972bd1214adb32262f694" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab42d6b0fdecfe2dc9232654ce690c923" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>LmcBase</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a9e8855d94040cf1e16d59cad6a8dabd5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1ad9092d8387ff327b254df08ef97363a3" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>printLog</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a3b6820cf08c0cda2cd72fd5627ea8faa" prot="public" virt="virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>setLogValue</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>SolverType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1ab9e6900065799496ae1bd88afee881a4" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>visit</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aaeef625f11705918d3fdd05f2550a879" prot="public" virt="pure-virtual" ambiguityscope="nifty::graph::opt::common::VisitorBase::"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>visit</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1PyLiftedMulticutVisitorBase_1a559b64ba9b334622ef91ec4e2e927be4" prot="public" virt="non-virtual"><scope>nifty::graph::opt::lifted_multicut::PyLiftedMulticutVisitorBase</scope><name>VisitorBaseType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

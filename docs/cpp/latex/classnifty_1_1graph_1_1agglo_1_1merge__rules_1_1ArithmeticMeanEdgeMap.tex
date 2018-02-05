@@ -1,0 +1,138 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:merge\+\_\+rules\+:\+:Arithmetic\+Mean\+Edge\+Map$<$ G, T $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map$<$ G, T $>$@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map$<$ G, T $>$}}
+
+
+{\ttfamily \#include $<$merge\+\_\+rules.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ T $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a81130e05d85be89cc569cab155332d57}{Mean\+Edge\+Map\+Type}
+\item 
+typedef Graph\+Type\+::template Edge\+Map$<$ \hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t} $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a2d697e72339ef4155e249f0b785b82a9}{Size\+Edge\+Map\+Type}
+\item 
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanSettings}{Arithmetic\+Mean\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a4a3138619d92afa12e883b09d538896a}{name} () const
+\item 
+{\footnotesize template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ae92e301804e5bf9b875517f97e225d5d}{Arithmetic\+Mean\+Edge\+Map} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}{Graph\+Type} \&g, const V\+A\+L\+U\+ES \&values, const W\+E\+I\+G\+H\+TS \&weights, const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type} \&settings=\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type}())
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a800c49f685e5e9d538c4882d3850bf25}{merge} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ab8cb13b03ece7afe026a3423cc1d91aa}{set\+Value\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a24503113d90f0294a8a16ad7b9553dfd}{set\+From} (const uint64\+\_\+t target\+Edge, const uint64\+\_\+t source\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ac3b18557bfdd68a5f85fccf700da5c5e}{set} (const uint64\+\_\+t target\+Edge, const T \&value, const T \&weight)
+\item 
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ad63987afccca212c9ed566d68dba3e67}{operator\mbox{[}$\,$\mbox{]}} (const uint64\+\_\+t edge) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a566abab9594baa39a5e445c368ed24e7}{static\+Name} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef G \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a81130e05d85be89cc569cab155332d57}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a81130e05d85be89cc569cab155332d57}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!Mean\+Edge\+Map\+Type@{Mean\+Edge\+Map\+Type}}
+\index{Mean\+Edge\+Map\+Type@{Mean\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Mean\+Edge\+Map\+Type}{MeanEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$T$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a81130e05d85be89cc569cab155332d57}{Mean\+Edge\+Map\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!Settings\+Type@{Settings\+Type}}
+\index{Settings\+Type@{Settings\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Settings\+Type}{SettingsType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef \hyperlink{structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanSettings}{Arithmetic\+Mean\+Settings} \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a2d697e72339ef4155e249f0b785b82a9}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a2d697e72339ef4155e249f0b785b82a9}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}}
+\index{Size\+Edge\+Map\+Type@{Size\+Edge\+Map\+Type}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Size\+Edge\+Map\+Type}{SizeEdgeMapType}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+typedef Graph\+Type\+:: template Edge\+Map$<$\hyperlink{namespacenifty_a20031b62bd5c16b943905d43a8ed361a}{nifty\+::float16\+\_\+t}$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a2d697e72339ef4155e249f0b785b82a9}{Size\+Edge\+Map\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ae92e301804e5bf9b875517f97e225d5d}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ae92e301804e5bf9b875517f97e225d5d}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!Arithmetic\+Mean\+Edge\+Map@{Arithmetic\+Mean\+Edge\+Map}}
+\index{Arithmetic\+Mean\+Edge\+Map@{Arithmetic\+Mean\+Edge\+Map}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{Arithmetic\+Mean\+Edge\+Map()}{ArithmeticMeanEdgeMap()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+template$<$class V\+A\+L\+U\+ES , class W\+E\+I\+G\+H\+TS $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{Arithmetic\+Mean\+Edge\+Map} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a920251c7296554c793d991a09938cc0f}{Graph\+Type} \&}]{g,  }\item[{const V\+A\+L\+U\+ES \&}]{values,  }\item[{const W\+E\+I\+G\+H\+TS \&}]{weights,  }\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a356668f9c14aae4ff88d90a232923766}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a800c49f685e5e9d538c4882d3850bf25}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a800c49f685e5e9d538c4882d3850bf25}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!merge@{merge}}
+\index{merge@{merge}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::merge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a4a3138619d92afa12e883b09d538896a}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a4a3138619d92afa12e883b09d538896a}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!name@{name}}
+\index{name@{name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ad63987afccca212c9ed566d68dba3e67}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ad63987afccca212c9ed566d68dba3e67}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+T \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ac3b18557bfdd68a5f85fccf700da5c5e}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ac3b18557bfdd68a5f85fccf700da5c5e}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!set@{set}}
+\index{set@{set}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::set (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const T \&}]{value,  }\item[{const T \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a24503113d90f0294a8a16ad7b9553dfd}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a24503113d90f0294a8a16ad7b9553dfd}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!set\+From@{set\+From}}
+\index{set\+From@{set\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+From()}{setFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::set\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ab8cb13b03ece7afe026a3423cc1d91aa}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_ab8cb13b03ece7afe026a3423cc1d91aa}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!set\+Value\+From@{set\+Value\+From}}
+\index{set\+Value\+From@{set\+Value\+From}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{set\+Value\+From()}{setValueFrom()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::set\+Value\+From (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{target\+Edge,  }\item[{const uint64\+\_\+t}]{source\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a566abab9594baa39a5e445c368ed24e7}\label{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_a566abab9594baa39a5e445c368ed24e7}} 
+\index{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}!static\+Name@{static\+Name}}
+\index{static\+Name@{static\+Name}!nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map@{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}}
+\subsubsection{\texorpdfstring{static\+Name()}{staticName()}}
+{\footnotesize\ttfamily template$<$class G , class T $>$ \\
+static auto \hyperlink{classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap}{nifty\+::graph\+::agglo\+::merge\+\_\+rules\+::\+Arithmetic\+Mean\+Edge\+Map}$<$ G, T $>$\+::static\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/detail/\hyperlink{merge__rules_8hxx}{merge\+\_\+rules.\+hxx}\end{DoxyCompactItemize}

@@ -49,7 +49,7 @@ import nifty.segmentation
 import nifty.filters
 import nifty.graph.rag
 import nifty.ground_truth
-import nifty.graph.optimization.multicut
+import nifty.graph.opt.multicut
 
 #############################################################
 # Download  ISBI 2012:
@@ -337,12 +337,10 @@ for ds in ['test']:
         # do multicut obtimization 
         if nifty.Configuration.WITH_CPLEX:
             solver = MulticutObjective.multicutIlpCplexFactory().create(objective)
-        elif nifty.Configuration.WITH_GLPK:
+        elif nifty.Configuration.WITH_GUROBI:
             solver = MulticutObjective.multicutIlpGurobiFactory().create(objective)
-        elif nifty.Configuration.WITH_GLPK:
-            solver = MulticutObjective.multicutIlpGlpkFactory().create(objective)
         else:
-            solver = MulticutObjective.fusionMoveBasedFactory().create(objective)
+            solver = MulticutObjective.ccFusionMoveBasedFactory().create(objective)
 
 
         arg = solver.optimize(visitor=MulticutObjective.verboseVisitor())

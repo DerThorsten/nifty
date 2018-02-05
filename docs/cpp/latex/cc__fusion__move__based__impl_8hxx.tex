@@ -1,29 +1,31 @@
-\hypertarget{cc__fusion__move__based__impl_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.hxx File Reference}
-\label{cc__fusion__move__based__impl_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/optimization/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx}}
-{\ttfamily \#include $<$mutex$>$}\\*
-{\ttfamily \#include $<$iomanip$>$}\\*
-{\ttfamily \#include $<$algorithm$>$}\\*
-{\ttfamily \#include $<$unordered\+\_\+set$>$}\\*
-{\ttfamily \#include $<$vector$>$}\\*
-{\ttfamily \#include $<$stack$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/detail/adjacency.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/mincut/mincut\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/common/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/graph/optimization/common/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+factory\+\_\+base.\+hxx\char`\"{}}\\*
-Include dependency graph for cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx\+:\nopagebreak
+\hypertarget{cc__fusion__move__based__impl_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.hxx File Reference}
+\label{cc__fusion__move__based__impl_8hxx}\index{/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx@{/home/tbeier/src/nifty/include/nifty/graph/opt/common/cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx}}
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/changable\+\_\+priority\+\_\+queue.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/ufd/ufd.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/detail/adjacency.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/mincut/mincut\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/edge\+\_\+contraction\+\_\+graph.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/components.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/parallel/threadpool.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/common/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+base.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/graph/opt/common/proposal\+\_\+generators/proposal\+\_\+generator\+\_\+factory\+\_\+base.\+hxx\char`\"{}}\newline
+Include dependency graph for cc\+\_\+fusion\+\_\+move\+\_\+based\+\_\+impl.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{cc__fusion__move__based__impl_8hxx__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,9 +35,9 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl}{nifty\+::graph\+::optimization\+::common\+::detail\+\_\+cc\+\_\+fusion\+::\+Cc\+Fusion\+Move\+Based\+Impl$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E, F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E $>$}
+class \hyperlink{classnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl}{nifty\+::graph\+::opt\+::common\+::detail\+\_\+cc\+\_\+fusion\+::\+Cc\+Fusion\+Move\+Based\+Impl$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E, F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E $>$}
 \item 
-struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType}{nifty\+::graph\+::optimization\+::common\+::detail\+\_\+cc\+\_\+fusion\+::\+Cc\+Fusion\+Move\+Based\+Impl$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E, F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E $>$\+::\+Settings\+Type}
+struct \hyperlink{structnifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion_1_1CcFusionMoveBasedImpl_1_1SettingsType}{nifty\+::graph\+::opt\+::common\+::detail\+\_\+cc\+\_\+fusion\+::\+Cc\+Fusion\+Move\+Based\+Impl$<$ O\+B\+J\+E\+C\+T\+I\+V\+E, S\+O\+L\+V\+E\+R\+\_\+\+B\+A\+S\+E, F\+U\+S\+I\+O\+N\+\_\+\+M\+O\+V\+E $>$\+::\+Settings\+Type}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -44,9 +46,9 @@ struct \hyperlink{structnifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__
 \item 
  \hyperlink{namespacenifty_1_1graph}{nifty\+::graph}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization}{nifty\+::graph\+::optimization}
+ \hyperlink{namespacenifty_1_1graph_1_1opt}{nifty\+::graph\+::opt}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common}{nifty\+::graph\+::optimization\+::common}
+ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1common}{nifty\+::graph\+::opt\+::common}
 \item 
- \hyperlink{namespacenifty_1_1graph_1_1optimization_1_1common_1_1detail__cc__fusion}{nifty\+::graph\+::optimization\+::common\+::detail\+\_\+cc\+\_\+fusion}
+ \hyperlink{namespacenifty_1_1graph_1_1opt_1_1common_1_1detail__cc__fusion}{nifty\+::graph\+::opt\+::common\+::detail\+\_\+cc\+\_\+fusion}
 \end{DoxyCompactItemize}

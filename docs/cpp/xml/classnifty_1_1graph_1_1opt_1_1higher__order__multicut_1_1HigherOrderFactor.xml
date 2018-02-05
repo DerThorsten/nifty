@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::higher_order_multicut::HigherOrderFactor</compoundname>
+    <includes refid="higher__order__multicut__objective_8hxx" local="no">higher_order_multicut_objective.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class WEIGHT_TYPE</type>
+        <defval>float</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1ab5569e37b04aee2a55ffd77b3282ee42" prot="private" static="no" mutable="no">
+        <type><ref refid="classandres_1_1Marray" kindref="compound">nifty::marray::Marray</ref>&lt; WEIGHT_TYPE &gt;</type>
+        <definition>nifty::marray::Marray&lt;WEIGHT_TYPE&gt; nifty::graph::opt::higher_order_multicut::HigherOrderFactor&lt; WEIGHT_TYPE &gt;::valueTable_</definition>
+        <argsstring></argsstring>
+        <name>valueTable_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1aa9ad5b8ee0b61aa1c8bfabbff2c0d63d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uint64_t &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; nifty::graph::opt::higher_order_multicut::HigherOrderFactor&lt; WEIGHT_TYPE &gt;::edgeIds_</definition>
+        <argsstring></argsstring>
+        <name>edgeIds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1a0746874bcc367003afa7e8ff0d5bfb25" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SIZE_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::opt::higher_order_multicut::HigherOrderFactor&lt; WEIGHT_TYPE &gt;::HigherOrderFactor</definition>
+        <argsstring>(std::initializer_list&lt; SIZE_TYPE &gt; shape)</argsstring>
+        <name>HigherOrderFactor</name>
+        <param>
+          <type>std::initializer_list&lt; SIZE_TYPE &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" bodystart="17" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1a7425d7771d442ab8d8526de2f978eb0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classandres_1_1Marray" kindref="compound">nifty::marray::Marray</ref>&lt; WEIGHT_TYPE &gt; &amp;</type>
+        <definition>const nifty::marray::Marray&lt;WEIGHT_TYPE&gt;&amp; nifty::graph::opt::higher_order_multicut::HigherOrderFactor&lt; WEIGHT_TYPE &gt;::valueTable</definition>
+        <argsstring>()</argsstring>
+        <name>valueTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" bodystart="29" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/higher_order_multicut/higher_order_multicut_objective.hxx" bodystart="14" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1aa9ad5b8ee0b61aa1c8bfabbff2c0d63d" prot="private" virt="non-virtual"><scope>nifty::graph::opt::higher_order_multicut::HigherOrderFactor</scope><name>edgeIds_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1a0746874bcc367003afa7e8ff0d5bfb25" prot="public" virt="non-virtual"><scope>nifty::graph::opt::higher_order_multicut::HigherOrderFactor</scope><name>HigherOrderFactor</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1a7425d7771d442ab8d8526de2f978eb0f" prot="public" virt="non-virtual"><scope>nifty::graph::opt::higher_order_multicut::HigherOrderFactor</scope><name>valueTable</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor_1ab5569e37b04aee2a55ffd77b3282ee42" prot="private" virt="non-virtual"><scope>nifty::graph::opt::higher_order_multicut::HigherOrderFactor</scope><name>valueTable_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

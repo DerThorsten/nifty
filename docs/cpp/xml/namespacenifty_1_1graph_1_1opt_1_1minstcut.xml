@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacenifty_1_1graph_1_1opt_1_1minstcut" kind="namespace" language="C++">
+    <compoundname>nifty::graph::opt::minstcut</compoundname>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" prot="public">nifty::graph::opt::minstcut::MinstcutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective" prot="public">nifty::graph::opt::minstcut::MinstcutObjective</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveBase" prot="public">nifty::graph::opt::minstcut::MinstcutObjectiveBase</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveName" prot="public">nifty::graph::opt::minstcut::MinstcutObjectiveName</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjectiveName_3_01PyDefaultMinstcutObjective_3_01GRAPH_01_4_01_4" prot="public">nifty::graph::opt::minstcut::MinstcutObjectiveName&lt; PyDefaultMinstcutObjective&lt; GRAPH &gt; &gt;</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutBase" prot="public">nifty::graph::opt::minstcut::PyMinstcutBase</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1PyMinstcutVisitorBase" prot="public">nifty::graph::opt::minstcut::PyMinstcutVisitorBase</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a42d7fa14edf7c8f367a49541f392e5aa" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" kindref="compound">nifty::graph::opt::common::VisitorBase</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" kindref="compound">MinstcutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::minstcut::MinstcutVisitorBase = typedef nifty::graph::opt::common::VisitorBase&lt; MinstcutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MinstcutVisitorBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" line="19" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1aa168742d4d2935e1348ea4b866f3ae09" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kindref="compound">nifty::graph::opt::common::VerboseVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" kindref="compound">MinstcutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::minstcut::MinstcutVerboseVisitor = typedef nifty::graph::opt::common::VerboseVisitor&lt; MinstcutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MinstcutVerboseVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1abf938a3f241189100b5df0217faaddfb" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1EmptyVisitor" kindref="compound">nifty::graph::opt::common::EmptyVisitor</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" kindref="compound">MinstcutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::minstcut::MinstcutEmptyVisitor = typedef nifty::graph::opt::common::EmptyVisitor&lt; MinstcutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MinstcutEmptyVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" line="25" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a50858becd7b1ba218be1797c92e3a947" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorProxy" kindref="compound">nifty::graph::opt::common::VisitorProxy</ref>&lt; <ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutBase" kindref="compound">MinstcutBase</ref>&lt; OBJECTIVE &gt; &gt;</type>
+        <definition>using nifty::graph::opt::minstcut::MinstcutVisitorProxy = typedef nifty::graph::opt::common::VisitorProxy&lt; MinstcutBase&lt;OBJECTIVE&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>MinstcutVisitorProxy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" line="28" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_visitor_base.hxx" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a066e5a061f3b821097a733b59298e7fc" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1minstcut_1_1MinstcutObjective" kindref="compound">MinstcutObjective</ref>&lt; GRAPH, double &gt;</type>
+        <definition>using nifty::graph::opt::minstcut::PyDefaultMinstcutObjective = typedef MinstcutObjective&lt;GRAPH, double&gt;</definition>
+        <argsstring></argsstring>
+        <name>PyDefaultMinstcutObjective</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/minstcut_objective.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/minstcut_objective.hxx" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacenifty_1_1graph_1_1opt_1_1minstcut_1a6aa5581d72ddc42bc38f3482a33c4761" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SOLVER</type>
+          </param>
+        </templateparamlist>
+        <type>py::class_&lt; typename SOLVER::SettingsType &gt;</type>
+        <definition>py::class_&lt;typename SOLVER::SettingsType&gt; nifty::graph::opt::minstcut::exportMinstcutSolver</definition>
+        <argsstring>(py::module &amp;minstcutModule, const std::string &amp;solverName)</argsstring>
+        <name>exportMinstcutSolver</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>minstcutModule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>solverName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/export_minstcut_solver.hxx" line="24" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/python/graph/opt/minstcut/export_minstcut_solver.hxx" bodystart="24" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/minstcut/minstcut_base.hxx" line="13" column="1"/>
+  </compounddef>
+</doxygen>

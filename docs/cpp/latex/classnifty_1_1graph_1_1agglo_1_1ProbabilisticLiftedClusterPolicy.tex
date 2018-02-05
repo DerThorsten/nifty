@@ -1,0 +1,182 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:Probabilistic\+Lifted\+Cluster\+Policy$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy$<$ G\+R\+A\+P\+H, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy$<$ G\+R\+A\+P\+H, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}}
+
+
+{\ttfamily \#include $<$probabilistic\+\_\+lifted\+\_\+cluster\+\_\+policy.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Acc0\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a09fe3ffd1a828f90b14da010c525fce5}{Acc0\+Settings\+Type}
+\item 
+typedef Acc1\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ecb3159c4d99c52bd145ce470d07cb8}{Acc1\+Settings\+Type}
+\item 
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type}
+\item 
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ace81e94cdcbc05507645b724a12adec3}{Edge\+Prio\+Type}
+\item 
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a8d978f1a75c207cb7492dd0e576d78d1}{Edge\+Sizes\+Type}
+\item 
+typedef Float\+Node\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ae92bc42e274c38e719aa47b38d3399f5}{Node\+Sizes\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type}, Self\+Type $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}{Edge\+Contraction\+Graph\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ccd736854852a0b56cc5bf9d1e21d0a}{Probabilistic\+Lifted\+Cluster\+Policy} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type} \&, const M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&, const N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&, const I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE \&, const E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES \&, const \hyperlink{structnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_1_1SettingsType}{Settings\+Type}())
+\item 
+std\+::pair$<$ uint64\+\_\+t, double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a5f77f3b4d1fba47f53a7893879574277}{edge\+To\+Contract\+Next} () const
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a0c31097df93f81618b57bcef6d2cc139}{is\+Done} ()
+\item 
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}{Edge\+Contraction\+Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a088f4fb94d242b907e42cba7cbad8ba7}{edge\+Contraction\+Graph} ()
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_af8383e3011d7d3c895edc482c188e513}{contract\+Edge} (const uint64\+\_\+t edge\+To\+Contract)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a04589e80c304fcae51817abbce67bc43}{merge\+Nodes} (const uint64\+\_\+t alive\+Node, const uint64\+\_\+t dead\+Node)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a62bc28943144e3662b395c4ab41c65b9}{merge\+Edges} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ab98af5a72c945086a6fac570200305c7}{contract\+Edge\+Done} (const uint64\+\_\+t edge\+To\+Contract)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a09fe3ffd1a828f90b14da010c525fce5}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a09fe3ffd1a828f90b14da010c525fce5}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Acc0\+Settings\+Type@{Acc0\+Settings\+Type}}
+\index{Acc0\+Settings\+Type@{Acc0\+Settings\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Acc0\+Settings\+Type}{Acc0SettingsType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Acc0\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a09fe3ffd1a828f90b14da010c525fce5}{Acc0\+Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ecb3159c4d99c52bd145ce470d07cb8}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ecb3159c4d99c52bd145ce470d07cb8}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Acc1\+Settings\+Type@{Acc1\+Settings\+Type}}
+\index{Acc1\+Settings\+Type@{Acc1\+Settings\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Acc1\+Settings\+Type}{Acc1SettingsType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Acc1\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ecb3159c4d99c52bd145ce470d07cb8}{Acc1\+Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}}
+\index{Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Contraction\+Graph\+Type}{EdgeContractionGraphType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type}, Self\+Type$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}{Edge\+Contraction\+Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ace81e94cdcbc05507645b724a12adec3}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ace81e94cdcbc05507645b724a12adec3}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Edge\+Prio\+Type@{Edge\+Prio\+Type}}
+\index{Edge\+Prio\+Type@{Edge\+Prio\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Prio\+Type}{EdgePrioType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ace81e94cdcbc05507645b724a12adec3}{Edge\+Prio\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a8d978f1a75c207cb7492dd0e576d78d1}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a8d978f1a75c207cb7492dd0e576d78d1}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Edge\+Sizes\+Type@{Edge\+Sizes\+Type}}
+\index{Edge\+Sizes\+Type@{Edge\+Sizes\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Sizes\+Type}{EdgeSizesType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a8d978f1a75c207cb7492dd0e576d78d1}{Edge\+Sizes\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ae92bc42e274c38e719aa47b38d3399f5}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ae92bc42e274c38e719aa47b38d3399f5}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Node\+Sizes\+Type@{Node\+Sizes\+Type}}
+\index{Node\+Sizes\+Type@{Node\+Sizes\+Type}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Node\+Sizes\+Type}{NodeSizesType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Node\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ae92bc42e274c38e719aa47b38d3399f5}{Node\+Sizes\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ccd736854852a0b56cc5bf9d1e21d0a}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a4ccd736854852a0b56cc5bf9d1e21d0a}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Probabilistic\+Lifted\+Cluster\+Policy@{Probabilistic\+Lifted\+Cluster\+Policy}}
+\index{Probabilistic\+Lifted\+Cluster\+Policy@{Probabilistic\+Lifted\+Cluster\+Policy}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Probabilistic\+Lifted\+Cluster\+Policy()}{ProbabilisticLiftedClusterPolicy()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+template$<$class M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{Probabilistic\+Lifted\+Cluster\+Policy} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type} \&}]{graph,  }\item[{const M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&}]{merge\+Prios,  }\item[{const N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&}]{not\+Merge\+Prios,  }\item[{const I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE \&}]{is\+Local\+Edge,  }\item[{const E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES \&}]{edge\+Sizes,  }\item[{const \hyperlink{structnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_1_1SettingsType}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_af8383e3011d7d3c895edc482c188e513}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_af8383e3011d7d3c895edc482c188e513}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!contract\+Edge@{contract\+Edge}}
+\index{contract\+Edge@{contract\+Edge}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{contract\+Edge()}{contractEdge()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::contract\+Edge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge\+To\+Contract }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ab98af5a72c945086a6fac570200305c7}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_ab98af5a72c945086a6fac570200305c7}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!contract\+Edge\+Done@{contract\+Edge\+Done}}
+\index{contract\+Edge\+Done@{contract\+Edge\+Done}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{contract\+Edge\+Done()}{contractEdgeDone()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::contract\+Edge\+Done (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge\+To\+Contract }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a088f4fb94d242b907e42cba7cbad8ba7}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a088f4fb94d242b907e42cba7cbad8ba7}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!edge\+Contraction\+Graph@{edge\+Contraction\+Graph}}
+\index{edge\+Contraction\+Graph@{edge\+Contraction\+Graph}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{edge\+Contraction\+Graph()}{edgeContractionGraph()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1FixationClusterPolicy}{Fixation\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a328efe50fff8d430a835e8ffc50ba60f}{Edge\+Contraction\+Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::edge\+Contraction\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a5f77f3b4d1fba47f53a7893879574277}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a5f77f3b4d1fba47f53a7893879574277}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!edge\+To\+Contract\+Next@{edge\+To\+Contract\+Next}}
+\index{edge\+To\+Contract\+Next@{edge\+To\+Contract\+Next}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{edge\+To\+Contract\+Next()}{edgeToContractNext()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+std\+::pair$<$ uint64\+\_\+t, double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::edge\+To\+Contract\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a0c31097df93f81618b57bcef6d2cc139}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a0c31097df93f81618b57bcef6d2cc139}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!is\+Done@{is\+Done}}
+\index{is\+Done@{is\+Done}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{is\+Done()}{isDone()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a62bc28943144e3662b395c4ab41c65b9}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a62bc28943144e3662b395c4ab41c65b9}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!merge\+Edges@{merge\+Edges}}
+\index{merge\+Edges@{merge\+Edges}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{merge\+Edges()}{mergeEdges()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::merge\+Edges (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a04589e80c304fcae51817abbce67bc43}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a04589e80c304fcae51817abbce67bc43}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!merge\+Nodes@{merge\+Nodes}}
+\index{merge\+Nodes@{merge\+Nodes}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{merge\+Nodes()}{mergeNodes()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy}{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::merge\+Nodes (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Node,  }\item[{const uint64\+\_\+t}]{dead\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}\label{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}} 
+\index{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}!Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}}
+\index{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}!nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Probabilistic\+Lifted\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}{EdgeContractionGraph< GraphType, SelfType, ENABLE\_UCM >}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+friend class \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1ProbabilisticLiftedClusterPolicy_a196d3d530d5eed9f8a40172dcd93fa41}{Graph\+Type}, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/\hyperlink{probabilistic__lifted__cluster__policy_8hxx}{probabilistic\+\_\+lifted\+\_\+cluster\+\_\+policy.\+hxx}\end{DoxyCompactItemize}

@@ -1,20 +1,22 @@
 \hypertarget{hdf5__array_8hxx}{}\section{/home/tbeier/src/nifty/include/nifty/hdf5/hdf5\+\_\+array.hxx File Reference}
 \label{hdf5__array_8hxx}\index{/home/tbeier/src/nifty/include/nifty/hdf5/hdf5\+\_\+array.\+hxx@{/home/tbeier/src/nifty/include/nifty/hdf5/hdf5\+\_\+array.\+hxx}}
-{\ttfamily \#include $<$cstddef$>$}\\*
-{\ttfamily \#include $<$string$>$}\\*
-{\ttfamily \#include $<$vector$>$}\\*
-{\ttfamily \#include $<$mutex$>$}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/block\+\_\+access.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nifty/marray/marray\+\_\+hdf5.\+hxx\char`\"{}}\\*
-Include dependency graph for hdf5\+\_\+array.\+hxx\+:\nopagebreak
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/block\+\_\+access.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/tools/runtime\+\_\+check.\+hxx\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifty/marray/marray\+\_\+hdf5.\+hxx\char`\"{}}\newline
+Include dependency graph for hdf5\+\_\+array.\+hxx\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{hdf5__array_8hxx__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -44,11 +46,11 @@ struct \hyperlink{structnifty_1_1tools_1_1BlockStorageSelector_3_01hdf5_1_1Hdf5A
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class T , class C\+O\+O\+R\+D $>$ }\\void \hyperlink{namespacenifty_1_1tools_a8b0e46da1e0ed94de12c1ea0b89a07d9}{nifty\+::tools\+::read\+Subarray} (const hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+R\+D \&begin\+Coord, const C\+O\+O\+R\+D \&end\+Coord, marray\+::\+View$<$ T $>$ \&subarray)
+{\footnotesize template$<$class T , class C\+O\+O\+RD $>$ }\\void \hyperlink{namespacenifty_1_1tools_a8b0e46da1e0ed94de12c1ea0b89a07d9}{nifty\+::tools\+::read\+Subarray} (const hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+RD \&begin\+Coord, const C\+O\+O\+RD \&end\+Coord, marray\+::\+View$<$ T $>$ \&subarray)
 \item 
-{\footnotesize template$<$class T , class C\+O\+O\+R\+D $>$ }\\void \hyperlink{namespacenifty_1_1tools_a46fa9e03448a433ba5ca485435b540b8}{nifty\+::tools\+::write\+Subarray} (hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+R\+D \&begin\+Coord, const C\+O\+O\+R\+D \&end\+Coord, const marray\+::\+View$<$ T $>$ \&subarray)
+{\footnotesize template$<$class T , class C\+O\+O\+RD $>$ }\\void \hyperlink{namespacenifty_1_1tools_a46fa9e03448a433ba5ca485435b540b8}{nifty\+::tools\+::write\+Subarray} (hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+RD \&begin\+Coord, const C\+O\+O\+RD \&end\+Coord, const marray\+::\+View$<$ T $>$ \&subarray)
 \item 
-{\footnotesize template$<$class T , class C\+O\+O\+R\+D $>$ }\\void \hyperlink{namespacenifty_1_1tools_a562317b7926e706fa893b03ad3bfdfda}{nifty\+::tools\+::read\+Subarray\+Locked} (const hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+R\+D \&begin\+Coord, const C\+O\+O\+R\+D \&end\+Coord, marray\+::\+View$<$ T $>$ \&subarray)
+{\footnotesize template$<$class T , class C\+O\+O\+RD $>$ }\\void \hyperlink{namespacenifty_1_1tools_a562317b7926e706fa893b03ad3bfdfda}{nifty\+::tools\+::read\+Subarray\+Locked} (const hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+RD \&begin\+Coord, const C\+O\+O\+RD \&end\+Coord, marray\+::\+View$<$ T $>$ \&subarray)
 \item 
-{\footnotesize template$<$class T , class C\+O\+O\+R\+D $>$ }\\void \hyperlink{namespacenifty_1_1tools_a102fca55b5880c5b398205f0b438fbfe}{nifty\+::tools\+::write\+Subarray\+Locked} (hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+R\+D \&begin\+Coord, const C\+O\+O\+R\+D \&end\+Coord, const marray\+::\+View$<$ T $>$ \&subarray)
+{\footnotesize template$<$class T , class C\+O\+O\+RD $>$ }\\void \hyperlink{namespacenifty_1_1tools_a102fca55b5880c5b398205f0b438fbfe}{nifty\+::tools\+::write\+Subarray\+Locked} (hdf5\+::\+Hdf5\+Array$<$ T $>$ \&array, const C\+O\+O\+RD \&begin\+Coord, const C\+O\+O\+RD \&end\+Coord, const marray\+::\+View$<$ T $>$ \&subarray)
 \end{DoxyCompactItemize}

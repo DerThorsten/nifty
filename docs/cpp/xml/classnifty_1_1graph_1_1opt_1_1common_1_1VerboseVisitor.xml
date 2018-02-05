@@ -1,0 +1,503 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::opt::common::VerboseVisitor</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase" prot="public" virt="non-virtual">nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</basecompoundref>
+    <includes refid="visitor__base_8hxx" local="no">visitor_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>SOLVER</declname>
+        <defname>SOLVER</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ae29f33f171913b9a2ced7adb9da4dc1d" prot="public" static="no">
+        <type>SOLVER</type>
+        <definition>typedef SOLVER nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::SolverType</definition>
+        <argsstring></argsstring>
+        <name>SolverType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="141" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a32037ceff860ce8e6909b12aa02fa525" prot="public" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1Timer" kindref="compound">nifty::tools::Timer</ref></type>
+        <definition>typedef nifty::tools::Timer nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::TimerType</definition>
+        <argsstring></argsstring>
+        <name>TimerType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="142" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ad17e00adfc4772409dc64379d876d332" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::runOpt_</definition>
+        <argsstring></argsstring>
+        <name>runOpt_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="232" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a29743f03daa0312a422eaa501fe05e47" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::printNth_</definition>
+        <argsstring></argsstring>
+        <name>printNth_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="233" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a7867a46e25af13dc10703d8416e9b81b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::iter_</definition>
+        <argsstring></argsstring>
+        <name>iter_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="234" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a1b99c1d28d00b135d5242be9fdaee564" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timeLimitTotal_</definition>
+        <argsstring></argsstring>
+        <name>timeLimitTotal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="236" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a0577878d05df283274e5e8023f778512" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timeLimitSolver_</definition>
+        <argsstring></argsstring>
+        <name>timeLimitSolver_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="237" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4c8c0b05e6580d5cc984e58715b8bfe9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::runtimeSolver_</definition>
+        <argsstring></argsstring>
+        <name>runtimeSolver_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="238" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4cd3a85a3d0e34dd976da2b9d33c9582" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::runtimeTotal_</definition>
+        <argsstring></argsstring>
+        <name>runtimeTotal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="239" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ab692870c661a79f69a0dd18a5cd92b29" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref></type>
+        <definition>nifty::logging::LogLevel nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::logLevel_</definition>
+        <argsstring></argsstring>
+        <name>logLevel_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="240" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1aa15684979eadccc0f2444fc984e23c2f" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a32037ceff860ce8e6909b12aa02fa525" kindref="member">TimerType</ref></type>
+        <definition>TimerType nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timerSolver_</definition>
+        <argsstring></argsstring>
+        <name>timerSolver_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="241" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ac3435224433f00a213552cf3f7b7976c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a32037ceff860ce8e6909b12aa02fa525" kindref="member">TimerType</ref></type>
+        <definition>TimerType nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timerTotal_</definition>
+        <argsstring></argsstring>
+        <name>timerTotal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="242" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1adc0eaa57b3b9ed9921b86336f25d4daf" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::logNames_</definition>
+        <argsstring></argsstring>
+        <name>logNames_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="243" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a6f9a09f7a1226169f324b6034889e5f3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::logValues_</definition>
+        <argsstring></argsstring>
+        <name>logValues_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="244" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a1204cafa8df5b0b6fda89262bee6db6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::VerboseVisitor</definition>
+        <argsstring>(const int printNth=1, const double timeLimitSolver=std::numeric_limits&lt; double &gt;::infinity(), const double timeLimitTotal=std::numeric_limits&lt; double &gt;::infinity(), const nifty::logging::LogLevel logLevel=nifty::logging::LogLevel::WARN)</argsstring>
+        <name>VerboseVisitor</name>
+        <param>
+          <type>const int</type>
+          <declname>printNth</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>timeLimitSolver</declname>
+          <defval>std::numeric_limits&lt; double &gt;::infinity()</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>timeLimitTotal</declname>
+          <defval>std::numeric_limits&lt; double &gt;::infinity()</defval>
+        </param>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref></type>
+          <declname>logLevel</declname>
+          <defval><ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64da32bd8a1db2275458673903bdb84cb277" kindref="member">nifty::logging::LogLevel::WARN</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="144" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="144" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a94bdc19115ed1cedceb2811654983293" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::begin</definition>
+        <argsstring>(SolverType *)</argsstring>
+        <name>begin</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a8c4462a0cd838b0082f7157ad4b2d770">begin</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="160" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="160" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1afa21c42d9fa10fe8be09d55c4a51c49e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::visit</definition>
+        <argsstring>(SolverType *solver)</argsstring>
+        <name>visit</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aaeef625f11705918d3fdd05f2550a879">visit</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+          <declname>solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="166" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="166" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ab903991aacf3d9569949c0cce466e3d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::end</definition>
+        <argsstring>(SolverType *)</argsstring>
+        <name>end</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1aab59ead6ecef2fcaf3da5a96d0ec4c51">end</reimplements>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a433d03139897d4aefe27315b2bbb3adc" kindref="member">SolverType</ref> *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="189" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="189" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a0df0016f1f72819de000a57538426969" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::clearLogNames</definition>
+        <argsstring>()</argsstring>
+        <name>clearLogNames</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a9ac54577b1a0378834ffe2029a321744">clearLogNames</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="194" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="194" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a7ce06c6374afec8ecf6e5ceca4669682" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::addLogNames</definition>
+        <argsstring>(std::initializer_list&lt; std::string &gt; logNames)</argsstring>
+        <name>addLogNames</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1acc4f1b419303965b0313ca83c6a7a420">addLogNames</reimplements>
+        <param>
+          <type>std::initializer_list&lt; std::string &gt;</type>
+          <declname>logNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="198" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="198" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4f01ae337ac5fedf5ad178c883cd0153" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::setLogValue</definition>
+        <argsstring>(const std::size_t logIndex, double logValue)</argsstring>
+        <name>setLogValue</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1a41efc013731cca97176a61be58db0094">setLogValue</reimplements>
+        <param>
+          <type>const std::size_t</type>
+          <declname>logIndex</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>logValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="203" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="203" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1abfb4175c92ce0c98eb3c214882cde62a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::printLog</definition>
+        <argsstring>(const nifty::logging::LogLevel logLevel, const std::string &amp;logString)</argsstring>
+        <name>printLog</name>
+        <reimplements refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase_1ad9092d8387ff327b254df08ef97363a3">printLog</reimplements>
+        <param>
+          <type>const <ref refid="namespacenifty_1_1logging_1a3385625f9a0dbb17f70c47d3fca2f64d" kindref="member">nifty::logging::LogLevel</ref></type>
+          <declname>logLevel</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>logString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="207" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ad723638f9bc640bf6ee2db68e59840d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::stopOptimize</definition>
+        <argsstring>()</argsstring>
+        <name>stopOptimize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="213" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="213" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ac4d88a68c144e0dd15b47dac8275866e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::runtimeSolver</definition>
+        <argsstring>() const</argsstring>
+        <name>runtimeSolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="217" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="217" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1af51c8a2e3b5b5bd9f873a748bfa99240" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::runtimeTotal</definition>
+        <argsstring>() const</argsstring>
+        <name>runtimeTotal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="220" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="220" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a60babdee8b9daa8f48f43dc6bab8c5c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timeLimitTotal</definition>
+        <argsstring>() const</argsstring>
+        <name>timeLimitTotal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="224" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="224" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a84b59607c8922f5be67b21e08adc9b5d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::timeLimitSolver</definition>
+        <argsstring>() const</argsstring>
+        <name>timeLimitSolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="227" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="227" bodyend="229"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a8d5403055cb5dbcf034179681d5cef3a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;::checkRuntime</definition>
+        <argsstring>()</argsstring>
+        <name>checkRuntime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="246" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="246" bodyend="257"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1199">
+        <label>nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+      <node id="1198">
+        <label>nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor"/>
+        <childnode refid="1199" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1201">
+        <label>nifty::graph::opt::common::VisitorBase&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VisitorBase"/>
+      </node>
+      <node id="1200">
+        <label>nifty::graph::opt::common::VerboseVisitor&lt; SOLVER &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor"/>
+        <childnode refid="1201" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" line="139" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/visitor_base.hxx" bodystart="139" bodyend="258"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a7ce06c6374afec8ecf6e5ceca4669682" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>addLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a94bdc19115ed1cedceb2811654983293" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>begin</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a8d5403055cb5dbcf034179681d5cef3a" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>checkRuntime</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a0df0016f1f72819de000a57538426969" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>clearLogNames</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ab903991aacf3d9569949c0cce466e3d8" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>end</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a7867a46e25af13dc10703d8416e9b81b" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>iter_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ab692870c661a79f69a0dd18a5cd92b29" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>logLevel_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1adc0eaa57b3b9ed9921b86336f25d4daf" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>logNames_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a6f9a09f7a1226169f324b6034889e5f3" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>logValues_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1abfb4175c92ce0c98eb3c214882cde62a" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>printLog</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a29743f03daa0312a422eaa501fe05e47" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>printNth_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ad17e00adfc4772409dc64379d876d332" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>runOpt_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ac4d88a68c144e0dd15b47dac8275866e" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>runtimeSolver</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4c8c0b05e6580d5cc984e58715b8bfe9" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>runtimeSolver_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1af51c8a2e3b5b5bd9f873a748bfa99240" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>runtimeTotal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4cd3a85a3d0e34dd976da2b9d33c9582" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>runtimeTotal_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a4f01ae337ac5fedf5ad178c883cd0153" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>setLogValue</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ae29f33f171913b9a2ced7adb9da4dc1d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>SolverType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ad723638f9bc640bf6ee2db68e59840d4" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>stopOptimize</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a84b59607c8922f5be67b21e08adc9b5d" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timeLimitSolver</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a0577878d05df283274e5e8023f778512" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timeLimitSolver_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a60babdee8b9daa8f48f43dc6bab8c5c0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timeLimitTotal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a1b99c1d28d00b135d5242be9fdaee564" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timeLimitTotal_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1aa15684979eadccc0f2444fc984e23c2f" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timerSolver_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1ac3435224433f00a213552cf3f7b7976c" prot="private" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>timerTotal_</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a32037ceff860ce8e6909b12aa02fa525" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>TimerType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1a1204cafa8df5b0b6fda89262bee6db6c" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>VerboseVisitor</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1VerboseVisitor_1afa21c42d9fa10fe8be09d55c4a51c49e" prot="public" virt="virtual"><scope>nifty::graph::opt::common::VerboseVisitor</scope><name>visit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

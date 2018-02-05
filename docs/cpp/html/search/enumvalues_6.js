@@ -1,5 +1,12 @@
 var searchData=
 [
-  ['make_5fless_5fcertain',['MAKE_LESS_CERTAIN',['../classnifty_1_1graph_1_1optimization_1_1multicut_1_1PerturbAndMap.html#a88d773cee3d185e28aecdc2c2707b744a2cb2a7701e9f7486014039cb6a907218',1,'nifty::graph::optimization::multicut::PerturbAndMap']]],
-  ['matrixstyle',['MatrixStyle',['../namespaceandres.html#a69f07c437d156c7028c7d619e566281fa8b1efd8fc40539ba5b5255b46440eeaf',1,'andres']]]
+  ['lastmajororder',['LastMajorOrder',['../namespaceandres.html#a2ac8b7aa89d44e8188a7c0ba50f4306ba586bd03d7519be47cac8605d4833b7ae',1,'andres']]],
+  ['latest_5fhdf5_5fversion',['LATEST_HDF5_VERSION',['../namespaceandres_1_1hdf5.html#ad5194a7b8773d3776e8dfc068f58f41ba29da3f0202bdf4ea2b036678ae7aa717',1,'andres::hdf5']]],
+  ['lifted',['LIFTED',['../classnifty_1_1graph_1_1agglo_1_1FixationClusterPolicy.html#acb3c9f163adf8275650f22017535e684a289339cd2226b0a2fc2da300c1356ff8',1,'nifty::graph::agglo::FixationClusterPolicy']]],
+  ['local',['LOCAL',['../classnifty_1_1graph_1_1agglo_1_1FixationClusterPolicy.html#acb3c9f163adf8275650f22017535e684a54b4c4075463b2e02cd69f5cd139b5b2',1,'nifty::graph::agglo::FixationClusterPolicy']]],
+  ['lp_5fsolver_5fbarrier',['LP_SOLVER_BARRIER',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204afbfc81377d73d1c59b31be26a8bf8fb2',1,'nifty::ilp_backend::IlpBackendSettings']]],
+  ['lp_5fsolver_5fdefault',['LP_SOLVER_DEFAULT',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204a24fa810f69bf55c40d68082a2e3653f8',1,'nifty::ilp_backend::IlpBackendSettings']]],
+  ['lp_5fsolver_5fdual_5fsimplex',['LP_SOLVER_DUAL_SIMPLEX',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204aadd4ba29f78f9104467f136c05d6e354',1,'nifty::ilp_backend::IlpBackendSettings']]],
+  ['lp_5fsolver_5fprimal_5fsimplex',['LP_SOLVER_PRIMAL_SIMPLEX',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204a02afc6e85659e3fda7c48df74d3e3934',1,'nifty::ilp_backend::IlpBackendSettings']]],
+  ['lp_5fsolver_5fsifting',['LP_SOLVER_SIFTING',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#a4b3fd0d313a8d95f9f6a3ba64802e204ac6de1eff7352159f0db89583e569f86e',1,'nifty::ilp_backend::IlpBackendSettings']]]
 ];

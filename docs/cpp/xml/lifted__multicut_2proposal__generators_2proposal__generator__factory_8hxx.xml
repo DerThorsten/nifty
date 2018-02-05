@@ -1,145 +1,145 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="lifted__multicut_2proposal__generators_2proposal__generator__factory_8hxx" kind="file" language="C++">
     <compoundname>proposal_generator_factory.hxx</compoundname>
     <includes local="no">memory</includes>
-    <includes refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_base.hxx</includes>
-    <includedby refid="lifted__multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</includedby>
+    <includes refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx" local="yes">nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_base.hxx</includes>
+    <includedby refid="lifted__multicut_2fusion__move__based_8hxx" local="yes">/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</includedby>
     <incdepgraph>
-      <node id="8007">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory.hxx</label>
-        <link refid="lifted_multicut/proposal_generators/proposal_generator_factory.hxx"/>
-        <childnode refid="8008" relation="include">
-        </childnode>
-        <childnode refid="8009" relation="include">
-        </childnode>
-      </node>
-      <node id="8010">
-        <label>nifty/graph/optimization/lifted_multicut/lifted_multicut_base.hxx</label>
-        <link refid="lifted__multicut__base_8hxx"/>
-        <childnode refid="8011" relation="include">
-        </childnode>
-        <childnode refid="8012" relation="include">
-        </childnode>
-        <childnode refid="8013" relation="include">
-        </childnode>
-        <childnode refid="8014" relation="include">
-        </childnode>
-        <childnode refid="8015" relation="include">
-        </childnode>
-        <childnode refid="8016" relation="include">
-        </childnode>
-      </node>
-      <node id="8022">
+      <node id="2038">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="8011" relation="include">
+        <childnode refid="2027" relation="include">
         </childnode>
       </node>
-      <node id="8014">
+      <node id="2025">
+        <label>nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_base.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx"/>
+        <childnode refid="2024" relation="include">
+        </childnode>
+        <childnode refid="2026" relation="include">
+        </childnode>
+      </node>
+      <node id="2030">
         <label>stdexcept</label>
       </node>
-      <node id="8016">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="8011" relation="include">
-        </childnode>
-        <childnode refid="8012" relation="include">
-        </childnode>
-        <childnode refid="8013" relation="include">
-        </childnode>
-        <childnode refid="8014" relation="include">
-        </childnode>
-        <childnode refid="8015" relation="include">
-        </childnode>
-        <childnode refid="8016" relation="include">
-        </childnode>
-        <childnode refid="8017" relation="include">
-        </childnode>
-      </node>
-      <node id="8011">
+      <node id="2027">
         <label>string</label>
       </node>
-      <node id="8015">
+      <node id="2031">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="8014" relation="include">
+        <childnode refid="2030" relation="include">
         </childnode>
       </node>
-      <node id="8021">
+      <node id="2037">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="8013" relation="include">
+        <childnode refid="2029" relation="include">
         </childnode>
-        <childnode refid="8020" relation="include">
+        <childnode refid="2036" relation="include">
         </childnode>
-        <childnode refid="8011" relation="include">
-        </childnode>
-      </node>
-      <node id="8017">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="8018" relation="include">
-        </childnode>
-        <childnode refid="8011" relation="include">
-        </childnode>
-        <childnode refid="8012" relation="include">
-        </childnode>
-        <childnode refid="8013" relation="include">
-        </childnode>
-        <childnode refid="8019" relation="include">
-        </childnode>
-        <childnode refid="8020" relation="include">
-        </childnode>
-        <childnode refid="8021" relation="include">
-        </childnode>
-        <childnode refid="8022" relation="include">
+        <childnode refid="2027" relation="include">
         </childnode>
       </node>
-      <node id="8013">
+      <node id="2026">
+        <label>nifty/graph/opt/lifted_multicut/lifted_multicut_base.hxx</label>
+        <link refid="lifted__multicut__base_8hxx"/>
+        <childnode refid="2027" relation="include">
+        </childnode>
+        <childnode refid="2028" relation="include">
+        </childnode>
+        <childnode refid="2029" relation="include">
+        </childnode>
+        <childnode refid="2030" relation="include">
+        </childnode>
+        <childnode refid="2031" relation="include">
+        </childnode>
+        <childnode refid="2032" relation="include">
+        </childnode>
+      </node>
+      <node id="2023">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__factory_8hxx"/>
+        <childnode refid="2024" relation="include">
+        </childnode>
+        <childnode refid="2025" relation="include">
+        </childnode>
+      </node>
+      <node id="2029">
         <label>sstream</label>
       </node>
-      <node id="8009">
-        <label>nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_base.hxx</label>
-        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx"/>
-        <childnode refid="8008" relation="include">
+      <node id="2032">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="2027" relation="include">
         </childnode>
-        <childnode refid="8010" relation="include">
+        <childnode refid="2028" relation="include">
+        </childnode>
+        <childnode refid="2029" relation="include">
+        </childnode>
+        <childnode refid="2030" relation="include">
+        </childnode>
+        <childnode refid="2031" relation="include">
+        </childnode>
+        <childnode refid="2032" relation="include">
+        </childnode>
+        <childnode refid="2033" relation="include">
         </childnode>
       </node>
-      <node id="8019">
+      <node id="2035">
         <label>iostream</label>
       </node>
-      <node id="8018">
+      <node id="2034">
         <label>cstddef</label>
       </node>
-      <node id="8020">
+      <node id="2036">
         <label>chrono</label>
       </node>
-      <node id="8008">
+      <node id="2033">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="2034" relation="include">
+        </childnode>
+        <childnode refid="2027" relation="include">
+        </childnode>
+        <childnode refid="2028" relation="include">
+        </childnode>
+        <childnode refid="2029" relation="include">
+        </childnode>
+        <childnode refid="2035" relation="include">
+        </childnode>
+        <childnode refid="2036" relation="include">
+        </childnode>
+        <childnode refid="2037" relation="include">
+        </childnode>
+        <childnode refid="2038" relation="include">
+        </childnode>
+      </node>
+      <node id="2024">
         <label>memory</label>
       </node>
-      <node id="8012">
+      <node id="2028">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="8023">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory.hxx</label>
-        <link refid="lifted_multicut/proposal_generators/proposal_generator_factory.hxx"/>
-        <childnode refid="8024" relation="include">
+      <node id="2039">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory.hxx</label>
+        <link refid="lifted__multicut_2proposal__generators_2proposal__generator__factory_8hxx"/>
+        <childnode refid="2040" relation="include">
         </childnode>
       </node>
-      <node id="8024">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/fusion_move_based.hxx</label>
+      <node id="2040">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/fusion_move_based.hxx</label>
         <link refid="lifted__multicut_2fusion__move__based_8hxx"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory" prot="public">nifty::graph::optimization::lifted_multicut::ProposalGeneratorFactory</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory" prot="public">nifty::graph::opt::lifted_multicut::ProposalGeneratorFactory</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1lifted__multicut">nifty::graph::optimization::lifted_multicut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1lifted__multicut">nifty::graph::opt::lifted_multicut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -152,34 +152,34 @@
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lifted__multicut_2proposal__generators_2proposal__generator__base_8hxx" kindref="compound">nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">lifted_multicut{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PROPOSAL_GENERATOR&gt;</highlight></codeline>
-<codeline lineno="17" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory" kindref="compound">ProposalGeneratorFactory</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase" kindref="compound">ProposalGeneratorFactoryBase</ref>&lt;typename<sp/>PROPOSAL_GENERATOR::ObjectiveType&gt;{</highlight></codeline>
+<codeline lineno="17" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory" kindref="compound">ProposalGeneratorFactory</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactoryBase" kindref="compound">ProposalGeneratorFactoryBase</ref>&lt;typename<sp/>PROPOSAL_GENERATOR::ObjectiveType&gt;{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="19" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ab201124c178fce5e0f3feb66e452875f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>PROPOSAL_GENERATOR<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ab201124c178fce5e0f3feb66e452875f" kindref="member">ProposalGeneratorType</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="20" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a8a4620ef865f99985788e622beb5b57a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ProposalGeneratorType::SettingsType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a8a4620ef865f99985788e622beb5b57a" kindref="member">SettingsType</ref>;</highlight></codeline>
-<codeline lineno="21" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a24c9e1b6451e11a3fc4763a10822211d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ProposalGeneratorType::ObjectiveType<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a24c9e1b6451e11a3fc4763a10822211d" kindref="member">ObjectiveType</ref>;</highlight></codeline>
-<codeline lineno="22" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a92fb194e366c0de20435001454931109" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a92fb194e366c0de20435001454931109" kindref="member">ProposalGeneratorBaseType</ref>;</highlight></codeline>
+<codeline lineno="19" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a83bd360f4339287921819d1f56de75e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>PROPOSAL_GENERATOR<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a83bd360f4339287921819d1f56de75e0" kindref="member">ProposalGeneratorType</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1afb6407f4e95de326103d613ca2627290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ProposalGeneratorType::SettingsType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1afb6407f4e95de326103d613ca2627290" kindref="member">SettingsType</ref>;</highlight></codeline>
+<codeline lineno="21" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ae173dfe15e6d1706c8a390c60024cc42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ProposalGeneratorType::ObjectiveType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ae173dfe15e6d1706c8a390c60024cc42" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1adbef9a4dba21ef9517233d4e74b4933f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorBase" kindref="compound">ProposalGeneratorBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1adbef9a4dba21ef9517233d4e74b4933f" kindref="member">ProposalGeneratorBaseType</ref>;</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a89a3582461e06f2b1f984a3a1f2b51ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a89a3582461e06f2b1f984a3a1f2b51ae" kindref="member">ProposalGeneratorFactory</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a8a4620ef865f99985788e622beb5b57a" kindref="member">SettingsType</ref>())</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1adc6805a943b9a1d0c731d66b29a9852b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1adc6805a943b9a1d0c731d66b29a9852b" kindref="member">ProposalGeneratorFactory</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SettingsType<sp/>&amp;<sp/>settings<sp/>=<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1afb6407f4e95de326103d613ca2627290" kindref="member">SettingsType</ref>())</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>settings_(settings){</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1aa8c54c12a99599815cc6f5f992351c8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1aa8c54c12a99599815cc6f5f992351c8b" kindref="member">~ProposalGeneratorFactory</ref>(){}</highlight></codeline>
+<codeline lineno="29" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a566e47d4bf93bb66fe45cf0ac3f9c089" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a566e47d4bf93bb66fe45cf0ac3f9c089" kindref="member">~ProposalGeneratorFactory</ref>(){}</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a1ebcdcba8c5acee7f9d7279cb7621c91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;ProposalGeneratorBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a1ebcdcba8c5acee7f9d7279cb7621c91" kindref="member">createShared</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads){</highlight></codeline>
+<codeline lineno="31" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a019bdd023454d694d29a8a085bef833a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;ProposalGeneratorBaseType&gt;<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a019bdd023454d694d29a8a085bef833a" kindref="member">createShared</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads){</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;ProposalGeneratorType&gt;(objective,<sp/>numberOfThreads,<sp/>settings_);</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="34" refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ad4ca28e58bebba2b060a9ce7df5cf9be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>ProposalGeneratorBaseType<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ad4ca28e58bebba2b060a9ce7df5cf9be" kindref="member">create</ref>(<sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads){</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1lifted__multicut_1_1ProposalGeneratorFactory_1ab201124c178fce5e0f3feb66e452875f" kindref="member">ProposalGeneratorType</ref>(objective,<sp/>numberOfThreads,<sp/>settings_);</highlight></codeline>
+<codeline lineno="34" refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a9fd48d8b0b3fead665bb20fe960914b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>ProposalGeneratorBaseType<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a9fd48d8b0b3fead665bb20fe960914b6" kindref="member">create</ref>(<sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numberOfThreads){</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1lifted__multicut_1_1ProposalGeneratorFactory_1a83bd360f4339287921819d1f56de75e0" kindref="member">ProposalGeneratorType</ref>(objective,<sp/>numberOfThreads,<sp/>settings_);</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
@@ -193,6 +193,6 @@
 <codeline lineno="46"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/lifted_multicut/proposal_generators/proposal_generator_factory.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/lifted_multicut/proposal_generators/proposal_generator_factory.hxx"/>
   </compounddef>
 </doxygen>

@@ -1,0 +1,662 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1NewPolicy" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::NewPolicy</compoundname>
+    <includes refid="new__policy_8hxx" local="no">new_policy.hxx</includes>
+    <innerclass refid="structnifty_1_1graph_1_1agglo_1_1NewPolicy_1_1SettingsType" prot="public">nifty::graph::agglo::NewPolicy::SettingsType</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class GRAPH</type>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>ENABLE_UCM</declname>
+        <defname>ENABLE_UCM</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1af9b73360bda7b782ce92f4af482e80c5" prot="private" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy" kindref="compound">NewPolicy</ref>&lt; GRAPH, ENABLE_UCM &gt;</type>
+        <definition>typedef NewPolicy&lt; GRAPH, ENABLE_UCM &gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::SelfType</definition>
+        <argsstring></argsstring>
+        <name>SelfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7abe3689a10085726e0535315f721d09" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; uint8_t &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;uint8_t&gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::UInt8EdgeMap</definition>
+        <argsstring></argsstring>
+        <name>UInt8EdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ad290ac2b71b6f927a9c8b938ace3709a" prot="private" static="no">
+        <type>GRAPH::template EdgeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template EdgeMap&lt;double&gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::FloatEdgeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatEdgeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="30" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1abee7c8f60417294f520747ea85829450" prot="private" static="no">
+        <type>GRAPH::template NodeMap&lt; double &gt;</type>
+        <definition>typedef GRAPH:: template NodeMap&lt;double&gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::FloatNodeMap</definition>
+        <argsstring></argsstring>
+        <name>FloatNodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="31" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a37141cb53a852ccba0891235f1f8f0e4" prot="private" static="no">
+        <type>boost::container::flat_set&lt; uint64_t &gt;</type>
+        <definition>typedef boost::container::flat_set&lt;uint64_t&gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::SetType</definition>
+        <argsstring></argsstring>
+        <name>SetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6f38164163764e34ae129238070fac19" prot="private" static="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">nifty::tools::ChangeablePriorityQueue</ref>&lt; double, std::greater&lt; double &gt; &gt;</type>
+        <definition>typedef nifty::tools::ChangeablePriorityQueue&lt; double , std::greater&lt;double&gt; &gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::QueueType</definition>
+        <argsstring></argsstring>
+        <name>QueueType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="76" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ac8758b09604128d2bded40975109e808" prot="public" static="no">
+        <type>GRAPH</type>
+        <definition>typedef GRAPH nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="43" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::EdgePrioType</definition>
+        <argsstring></argsstring>
+        <name>EdgePrioType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="44" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ae2cee465b05f3ba70c44b2769e8bc750" prot="public" static="no">
+        <type>FloatEdgeMap</type>
+        <definition>typedef FloatEdgeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::EdgeSizesType</definition>
+        <argsstring></argsstring>
+        <name>EdgeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="45" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a77d4a9bba74fd8bd0adfae7058ce934e" prot="public" static="no">
+        <type>FloatNodeMap</type>
+        <definition>typedef FloatNodeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::NodeSizesType</definition>
+        <argsstring></argsstring>
+        <name>NodeSizesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="46" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a704192e6cafc4bfba6071564ea52e17c" prot="public" static="no">
+        <type><ref refid="classnifty_1_1graph_1_1EdgeContractionGraph" kindref="compound">EdgeContractionGraph</ref>&lt; <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ac8758b09604128d2bded40975109e808" kindref="member">GraphType</ref>, <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy" kindref="compound">SelfType</ref> &gt;</type>
+        <definition>typedef EdgeContractionGraph&lt;GraphType, SelfType&gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::EdgeContractionGraphType</definition>
+        <argsstring></argsstring>
+        <name>EdgeContractionGraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="68" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</definition>
+        <argsstring></argsstring>
+        <name>EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="68" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a1b0edf83389e3b054a20a769b5d4c793" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ac8758b09604128d2bded40975109e808" kindref="member">GraphType</ref> &amp;</type>
+        <definition>const GraphType&amp; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::graph_</definition>
+        <argsstring></argsstring>
+        <name>graph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="140" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a3c925bbba1a027f04377b6ff4c4c6a79" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" kindref="member">EdgePrioType</ref></type>
+        <definition>EdgePrioType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::mergePrios_</definition>
+        <argsstring></argsstring>
+        <name>mergePrios_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="144" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aab90e205b4d2f245c69b4c0d0e829452" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" kindref="member">EdgePrioType</ref></type>
+        <definition>EdgePrioType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::notMergePrios_</definition>
+        <argsstring></argsstring>
+        <name>notMergePrios_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="145" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7c7f35c8da77fddb1e15faf4a54dbaef" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::isLocalEdge_</definition>
+        <argsstring></argsstring>
+        <name>isLocalEdge_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="147" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a9112d8c2345603dee3aaf8a589eb28d0" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::isPureLocal_</definition>
+        <argsstring></argsstring>
+        <name>isPureLocal_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="148" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a4e71f9074eefb3f8711e2d912acff546" prot="private" static="no" mutable="no">
+        <type>UInt8EdgeMap</type>
+        <definition>UInt8EdgeMap nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::isPureLifted_</definition>
+        <argsstring></argsstring>
+        <name>isPureLifted_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="149" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1acdde11479163e8e07d0f30ba84d2496d" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ae2cee465b05f3ba70c44b2769e8bc750" kindref="member">EdgeSizesType</ref></type>
+        <definition>EdgeSizesType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeSizes_</definition>
+        <argsstring></argsstring>
+        <name>edgeSizes_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="150" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aaa95b2aeb00845b3fa29564f3c41a6d0" prot="private" static="no" mutable="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1NewPolicy_1_1SettingsType" kindref="compound">SettingsType</ref></type>
+        <definition>SettingsType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::settings_</definition>
+        <argsstring></argsstring>
+        <name>settings_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="151" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a193835c1bb41d95fb9f4527c23d859a8" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a704192e6cafc4bfba6071564ea52e17c" kindref="member">EdgeContractionGraphType</ref></type>
+        <definition>EdgeContractionGraphType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeContractionGraph_</definition>
+        <argsstring></argsstring>
+        <name>edgeContractionGraph_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="154" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6515030f019610e861dcdfc92c854f2c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue" kindref="compound">QueueType</ref></type>
+        <definition>QueueType nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::pq_</definition>
+        <argsstring></argsstring>
+        <name>pq_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="155" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aed44e439ea1c82e65660086537614ddf" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeToContractNext_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNext_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="158" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a3af9d201178de7fa737bd6f685ec4d67" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeToContractNextMergePrio_</definition>
+        <argsstring></argsstring>
+        <name>edgeToContractNextMergePrio_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="159" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1abb73c71b6c9fd8038e323a56161cd52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class MERGE_PRIOS</type>
+          </param>
+          <param>
+            <type>class NOT_MERGE_PRIOS</type>
+          </param>
+          <param>
+            <type>class IS_LOCAL_EDGE</type>
+          </param>
+          <param>
+            <type>class EDGE_SIZES</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::NewPolicy</definition>
+        <argsstring>(const GraphType &amp;, const MERGE_PRIOS &amp;, const NOT_MERGE_PRIOS &amp;, const IS_LOCAL_EDGE &amp;, const EDGE_SIZES &amp;, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>NewPolicy</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ac8758b09604128d2bded40975109e808" kindref="member">GraphType</ref> &amp;</type>
+          <defname>graph</defname>
+        </param>
+        <param>
+          <type>const MERGE_PRIOS &amp;</type>
+          <defname>mergePrios</defname>
+        </param>
+        <param>
+          <type>const NOT_MERGE_PRIOS &amp;</type>
+          <defname>notMergePrios</defname>
+        </param>
+        <param>
+          <type>const IS_LOCAL_EDGE &amp;</type>
+          <defname>isLocalEdge</defname>
+        </param>
+        <param>
+          <type>const EDGE_SIZES &amp;</type>
+          <defname>edgeSizes</defname>
+        </param>
+        <param>
+          <type>const <ref refid="structnifty_1_1graph_1_1agglo_1_1NewPolicy_1_1SettingsType" kindref="compound">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="structnifty_1_1graph_1_1agglo_1_1NewPolicy_1_1SettingsType" kindref="compound">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="81" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="166" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a81e86b1d68aaf96fec449c9663ba7b54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; uint64_t, double &gt;</type>
+        <definition>std::pair&lt; uint64_t, double &gt; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeToContractNext</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeToContractNext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="210" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1adb2e0454a5fdd281efd72ef5f049c482" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::isDone</definition>
+        <argsstring>()</argsstring>
+        <name>isDone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="217" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a146805a200532c83f0c1f0bcf66287e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a704192e6cafc4bfba6071564ea52e17c" kindref="member">EdgeContractionGraphType</ref> &amp;</type>
+        <definition>NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::EdgeContractionGraphType &amp; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeContractionGraph</definition>
+        <argsstring>()</argsstring>
+        <name>edgeContractionGraph</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="272" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7fa5fce0d956a2d35707d6cf66dac566" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::contractEdge</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="101" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="262" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a522b44525f9dfd9cd68c97c1e5626cec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::mergeNodes</definition>
+        <argsstring>(const uint64_t aliveNode, const uint64_t deadNode)</argsstring>
+        <name>mergeNodes</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveNode</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="102" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="279" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a775d22ce7efed5178d851e5ffded73c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::mergeEdges</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>mergeEdges</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="103" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="289" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aed38fddcff9c9f1be261bcd4e548fad1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::contractEdgeDone</definition>
+        <argsstring>(const uint64_t edgeToContract)</argsstring>
+        <name>contractEdgeDone</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edgeToContract</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="104" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="432" bodyend="436"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a135e5c2612afce2172cc4a3ac47a66cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::isMergeAllowed</definition>
+        <argsstring>(const uint64_t edge)</argsstring>
+        <name>isMergeAllowed</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="106" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a93c53212f83b7427a3dd53d02fd06e4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" kindref="member">EdgePrioType</ref> &amp;</type>
+        <definition>const EdgePrioType&amp; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::mergePrios</definition>
+        <argsstring>() const</argsstring>
+        <name>mergePrios</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="118" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="118" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a63f56b84f75d674ababb3ae5266e1c75" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" kindref="member">EdgePrioType</ref> &amp;</type>
+        <definition>const EdgePrioType&amp; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::notMergePrios</definition>
+        <argsstring>() const</argsstring>
+        <name>notMergePrios</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="121" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="121" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1acf3ea1c58fa6f0da63eba6c8d1ecb3ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ae2cee465b05f3ba70c44b2769e8bc750" kindref="member">EdgeSizesType</ref> &amp;</type>
+        <definition>const EdgeSizesType&amp; nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::edgeSizes</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeSizes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="124" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a2562911d980989948c82de09dc437c47" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::pqMergePrio</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>pqMergePrio</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="253" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a88680829527347620a3287172fc98b52" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const double</type>
+        <definition>const double nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::getMergePrio</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>getMergePrio</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="131" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="131" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aa6da5e493a5b8f9eb380a485878bd660" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const double</type>
+        <definition>const double nifty::graph::agglo::NewPolicy&lt; GRAPH, ENABLE_UCM &gt;::notMergePrio</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>notMergePrio</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="135" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="135" bodyend="137"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" line="22" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/new_policy.hxx" bodystart="22" bodyend="160"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7fa5fce0d956a2d35707d6cf66dac566" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>contractEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aed38fddcff9c9f1be261bcd4e548fad1" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>contractEdgeDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a146805a200532c83f0c1f0bcf66287e1" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeContractionGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6939aa4c6113ba9c44fd5e048687ba92" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>EdgeContractionGraph&lt; GraphType, SelfType, ENABLE_UCM &gt;</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a193835c1bb41d95fb9f4527c23d859a8" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeContractionGraph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a704192e6cafc4bfba6071564ea52e17c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>EdgeContractionGraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a19a7b9c67786f9dbf1dfb3c92aef141c" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>EdgePrioType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1acf3ea1c58fa6f0da63eba6c8d1ecb3ff" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeSizes</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1acdde11479163e8e07d0f30ba84d2496d" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeSizes_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ae2cee465b05f3ba70c44b2769e8bc750" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>EdgeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a81e86b1d68aaf96fec449c9663ba7b54" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeToContractNext</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aed44e439ea1c82e65660086537614ddf" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeToContractNext_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a3af9d201178de7fa737bd6f685ec4d67" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>edgeToContractNextMergePrio_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ad290ac2b71b6f927a9c8b938ace3709a" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>FloatEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1abee7c8f60417294f520747ea85829450" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>FloatNodeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a88680829527347620a3287172fc98b52" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>getMergePrio</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a1b0edf83389e3b054a20a769b5d4c793" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>graph_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1ac8758b09604128d2bded40975109e808" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1adb2e0454a5fdd281efd72ef5f049c482" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>isDone</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7c7f35c8da77fddb1e15faf4a54dbaef" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>isLocalEdge_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a135e5c2612afce2172cc4a3ac47a66cc" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>isMergeAllowed</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a4e71f9074eefb3f8711e2d912acff546" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>isPureLifted_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a9112d8c2345603dee3aaf8a589eb28d0" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>isPureLocal_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a775d22ce7efed5178d851e5ffded73c9" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>mergeEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a522b44525f9dfd9cd68c97c1e5626cec" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>mergeNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a93c53212f83b7427a3dd53d02fd06e4e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>mergePrios</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a3c925bbba1a027f04377b6ff4c4c6a79" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>mergePrios_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1abb73c71b6c9fd8038e323a56161cd52d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>NewPolicy</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a77d4a9bba74fd8bd0adfae7058ce934e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>NodeSizesType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aa6da5e493a5b8f9eb380a485878bd660" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>notMergePrio</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a63f56b84f75d674ababb3ae5266e1c75" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>notMergePrios</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aab90e205b4d2f245c69b4c0d0e829452" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>notMergePrios_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6515030f019610e861dcdfc92c854f2c" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>pq_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a2562911d980989948c82de09dc437c47" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>pqMergePrio</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a6f38164163764e34ae129238070fac19" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>QueueType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1af9b73360bda7b782ce92f4af482e80c5" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>SelfType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1aaa95b2aeb00845b3fa29564f3c41a6d0" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>settings_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a37141cb53a852ccba0891235f1f8f0e4" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>SetType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1NewPolicy_1a7abe3689a10085726e0535315f721d09" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::NewPolicy</scope><name>UInt8EdgeMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

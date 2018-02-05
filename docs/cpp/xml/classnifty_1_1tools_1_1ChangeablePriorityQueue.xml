@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classnifty_1_1tools_1_1ChangeablePriorityQueue" kind="class" language="C++" prot="public">
     <compoundname>nifty::tools::ChangeablePriorityQueue</compoundname>
     <includes refid="changable__priority__queue_8hxx" local="no">changable_priority_queue.hxx</includes>
@@ -181,10 +181,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="42" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="42" bodyend="46"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acdf305d34b52f49fc7da051e244176db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a72b99349411452bef664191455f31b30" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::empty</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>empty</name>
         <briefdescription>
 <para>check if the PQ is empty </para>        </briefdescription>
@@ -200,17 +200,17 @@
         <argsstring>()</argsstring>
         <name>clear</name>
         <briefdescription>
-<para>check if the PQ is empty </para>        </briefdescription>
+<para>clear PQ </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="53" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="53" bodyend="60"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aff0718c7915d834072155b5ec692e01f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ac6aa1d06e1cb5c2b13bfa58594e01ec6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::contains</definition>
-        <argsstring>(const int i) const </argsstring>
+        <argsstring>(const int i) const</argsstring>
         <name>contains</name>
         <param>
           <type>const int</type>
@@ -224,10 +224,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="63" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="63" bodyend="65"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a2ed3d3d66aefbc62095858fc6a0dfcd1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1adbb917b18a8bec3c379dfa742a9aacfd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
         <definition>int nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::size</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>size</name>
         <briefdescription>
 <para>return the number of elements in the PQ </para>        </briefdescription>
@@ -258,10 +258,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="79" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="79" bodyend="90"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acbfa1600a36b452c65f774f3af32cd02" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a550194380fddc3658871dbb64b59960d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acb7eb23bd9ca7c52955adc06bf4816c3" kindref="member">const_reference</ref></type>
         <definition>const_reference nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::top</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>top</name>
         <briefdescription>
 <para>get index with top priority </para>        </briefdescription>
@@ -271,10 +271,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="94" bodyend="96"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aa0f5e1ac67eb42e45ee6470483646b31" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a2839b67aa76dc79afd492466aeaea3dd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a6ecafb387f99a1cfa7ff5795c924682c" kindref="member">priority_type</ref></type>
         <definition>priority_type nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::topPriority</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>topPriority</name>
         <briefdescription>
 <para>get top priority </para>        </briefdescription>
@@ -297,10 +297,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="106" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="106" bodyend="112"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a6eceb658416fdce27ec6056984bbb432" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af437e744315c988b3cddbe66b4cfbe68" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a6ecafb387f99a1cfa7ff5795c924682c" kindref="member">priority_type</ref></type>
         <definition>priority_type nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::priority</definition>
-        <argsstring>(const value_type i) const </argsstring>
+        <argsstring>(const value_type i) const</argsstring>
         <name>priority</name>
         <param>
           <type>const <ref refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aa00fbc748b94bdc6175b4c49bb2bba48" kindref="member">value_type</ref></type>
@@ -409,10 +409,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="157" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="157" bodyend="168"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a00369b4b7bb1d6e44ec7f1967e7b664b" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a015620bf0ca2eb1053b26fbc7d6df6b6" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::_lt</definition>
-        <argsstring>(const T &amp;a, const T &amp;b) const </argsstring>
+        <argsstring>(const T &amp;a, const T &amp;b) const</argsstring>
         <name>_lt</name>
         <param>
           <type>const T &amp;</type>
@@ -430,10 +430,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="171" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="171" bodyend="173"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1adda5521ccc085f285c010eda47cf595b" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ae9896a0667d1741d39f56b9ba5846068" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::_leqt</definition>
-        <argsstring>(const T &amp;a, const T &amp;b) const </argsstring>
+        <argsstring>(const T &amp;a, const T &amp;b) const</argsstring>
         <name>_leqt</name>
         <param>
           <type>const T &amp;</type>
@@ -451,10 +451,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="174" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="174" bodyend="176"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a8366e4d973f2985bddd6f1c9a782395c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a43a4b98afe8f01a45678ed825215ce37" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::_eq</definition>
-        <argsstring>(const T &amp;a, const T &amp;b) const </argsstring>
+        <argsstring>(const T &amp;a, const T &amp;b) const</argsstring>
         <name>_eq</name>
         <param>
           <type>const T &amp;</type>
@@ -472,10 +472,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="177" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="177" bodyend="179"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a1a4d1105cf3ea6d12c9dda7eb493e75b" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ad85a91a0d2834a3f8756a752da4d6c87" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::_gt</definition>
-        <argsstring>(const T &amp;a, const T &amp;b) const </argsstring>
+        <argsstring>(const T &amp;a, const T &amp;b) const</argsstring>
         <name>_gt</name>
         <param>
           <type>const T &amp;</type>
@@ -493,10 +493,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="180" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="180" bodyend="182"/>
       </memberdef>
-      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a7d8d884958bbc5c6c8c2c49b82ff339c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aea4525041780db6ef9934bf8f9f5eac8" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool nifty::tools::ChangeablePriorityQueue&lt; T, COMPARE &gt;::_geqt</definition>
-        <argsstring>(const T &amp;a, const T &amp;b) const </argsstring>
+        <argsstring>(const T &amp;a, const T &amp;b) const</argsstring>
         <name>_geqt</name>
         <param>
           <type>const T &amp;</type>
@@ -522,11 +522,11 @@
 </para><para>Namespace: <ref refid="namespacenifty_1_1tools" kindref="compound">nifty::tools</ref> </para>    </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" line="17" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/tools/changable_priority_queue.hxx" bodystart="17" bodyend="195"/>
     <listofallmembers>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a8366e4d973f2985bddd6f1c9a782395c" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_eq</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a7d8d884958bbc5c6c8c2c49b82ff339c" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_geqt</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a1a4d1105cf3ea6d12c9dda7eb493e75b" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_gt</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1adda5521ccc085f285c010eda47cf595b" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_leqt</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a00369b4b7bb1d6e44ec7f1967e7b664b" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_lt</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a43a4b98afe8f01a45678ed825215ce37" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_eq</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aea4525041780db6ef9934bf8f9f5eac8" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_geqt</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ad85a91a0d2834a3f8756a752da4d6c87" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_gt</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ae9896a0667d1741d39f56b9ba5846068" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_leqt</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a015620bf0ca2eb1053b26fbc7d6df6b6" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>_lt</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af201b73bfc7a2414c2bc6943b51aebd0" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>bubbleDown</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a52f0c0b04aab6410ca43588b17a62f23" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>bubbleUp</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a5882abdd882fadd12ba20fd181b80c00" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>ChangeablePriorityQueue</name></member>
@@ -534,23 +534,23 @@
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ab919dd067f7435c0e10268d81f474179" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>clear</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a1b678407ca75acca8c2f37bea51249b0" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>comp_</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acb7eb23bd9ca7c52955adc06bf4816c3" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>const_reference</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aff0718c7915d834072155b5ec692e01f" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>contains</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ac6aa1d06e1cb5c2b13bfa58594e01ec6" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>contains</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a85b19933efd34cfe727ac839edd01af2" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>currentSize_</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af5b15b7c4cfedc7f95d168553a06a189" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>deleteItem</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acdf305d34b52f49fc7da051e244176db" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>empty</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a72b99349411452bef664191455f31b30" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>empty</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a05a030c6d430ddd01db3616f5bd18484" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>heap_</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ad16700658e9c0deeac24a0e21acb4773" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>indices_</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a3052167577b39509a49f304a839c1838" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>maxSize_</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a7c5e4f9f3f2a837a9a1738144c76c17d" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>pop</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a9875085e89b2c5436761ba4769c09e49" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>priorities_</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a6eceb658416fdce27ec6056984bbb432" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>priority</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1af437e744315c988b3cddbe66b4cfbe68" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>priority</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a6ecafb387f99a1cfa7ff5795c924682c" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>priority_type</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1ada41a7adfde46118d48833321ac94066" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>push</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a544ad33d36c8c3884951b048c9fae0d7" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>reset</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a2ed3d3d66aefbc62095858fc6a0dfcd1" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>size</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1adbb917b18a8bec3c379dfa742a9aacfd" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>size</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a7868c05359bd35d2085ac00649b95813" prot="private" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>swapItems</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1acbfa1600a36b452c65f774f3af32cd02" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>top</name></member>
-      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aa0f5e1ac67eb42e45ee6470483646b31" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>topPriority</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a550194380fddc3658871dbb64b59960d" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>top</name></member>
+      <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a2839b67aa76dc79afd492466aeaea3dd" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>topPriority</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1aa00fbc748b94bdc6175b4c49bb2bba48" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>value_type</name></member>
       <member refid="classnifty_1_1tools_1_1ChangeablePriorityQueue_1a3b9e96ad70a62b02b4a117d58f758a1f" prot="public" virt="non-virtual"><scope>nifty::tools::ChangeablePriorityQueue</scope><name>ValueType</name></member>
     </listofallmembers>

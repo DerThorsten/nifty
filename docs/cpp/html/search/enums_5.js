@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['presolver',['PreSolver',['../structnifty_1_1ilp__backend_1_1IlpBackendSettings.html#ad16c71cc049dcb37c07f2abdda69dab4',1,'nifty::ilp_backend::IlpBackendSettings']]]
+  ['noisetype',['NoiseType',['../classnifty_1_1graph_1_1opt_1_1multicut_1_1PerturbAndMap.html#a4bd929ae1c1786dc7f8bcdf9afd06a36',1,'nifty::graph::opt::multicut::PerturbAndMap']]]
 ];

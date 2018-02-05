@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="structnifty_1_1features_1_1ApplyFilters" kind="struct" language="C++" prot="public">
     <compoundname>nifty::features::ApplyFilters</compoundname>
     <includes refid="fastfilters__wrapper_8hxx" local="no">fastfilters_wrapper.hxx</includes>
@@ -67,17 +67,17 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1a21bb107c65ee2783993d6de3170d2922" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1ad851e87ed8e1ec3ba63fb11e58aa2856" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>nifty::features::ApplyFilters&lt; DIM &gt;::ApplyFilters</definition>
-        <argsstring>(const std::vector&lt; double &gt; &amp;sigmas, const std::vector&lt; FilterBase * &gt; filters)</argsstring>
+        <argsstring>(const std::vector&lt; double &gt; &amp;sigmas, const std::vector&lt; FilterBase *&gt; filters)</argsstring>
         <name>ApplyFilters</name>
         <param>
           <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>sigmas</declname>
         </param>
         <param>
-          <type>const std::vector&lt; <ref refid="structnifty_1_1features_1_1FilterBase" kindref="compound">FilterBase</ref> * &gt;</type>
+          <type>const std::vector&lt; <ref refid="structnifty_1_1features_1_1FilterBase" kindref="compound">FilterBase</ref> *&gt;</type>
           <declname>filters</declname>
         </param>
         <briefdescription>
@@ -88,10 +88,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="321" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="321" bodyend="323"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1a075f9232abd8d323ba121b2bdd49fa17" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1a63d2a6c7fca07fed1921c6c8bf8ecc19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nifty::features::ApplyFilters&lt; DIM &gt;::operator()</definition>
-        <argsstring>(const marray::View&lt; float &gt; &amp;in, marray::View&lt; float &gt; &amp;out) const </argsstring>
+        <argsstring>(const marray::View&lt; float &gt; &amp;in, marray::View&lt; float &gt; &amp;out) const</argsstring>
         <name>operator()</name>
         <param>
           <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
@@ -109,10 +109,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="326" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="326" bodyend="359"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1a6fc96c356178496a7b6c08c8e429dead" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1af1316760b67e21d2c3f647313942f087" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void nifty::features::ApplyFilters&lt; DIM &gt;::operator()</definition>
-        <argsstring>(const marray::View&lt; float &gt; &amp;in, marray::View&lt; float &gt; &amp;out, parallel::ThreadPool &amp;threadpool) const </argsstring>
+        <argsstring>(const marray::View&lt; float &gt; &amp;in, marray::View&lt; float &gt; &amp;out, parallel::ThreadPool &amp;threadpool) const</argsstring>
         <name>operator()</name>
         <param>
           <type>const <ref refid="classandres_1_1View" kindref="compound">marray::View</ref>&lt; float &gt; &amp;</type>
@@ -134,10 +134,10 @@
         </inbodydescription>
         <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="362" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="362" bodyend="409"/>
       </memberdef>
-      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1afb7d56d68a25b2aaf2de29e3d6f39cff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structnifty_1_1features_1_1ApplyFilters_1a7f28df00a4ecfcbeff8cafcae8d7a2b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
         <definition>size_t nifty::features::ApplyFilters&lt; DIM &gt;::numberOfChannels</definition>
-        <argsstring>() const </argsstring>
+        <argsstring>() const</argsstring>
         <name>numberOfChannels</name>
         <briefdescription>
         </briefdescription>
@@ -154,13 +154,13 @@
     </detaileddescription>
     <location file="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" line="313" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/features/fastfilters_wrapper.hxx" bodystart="313" bodyend="422"/>
     <listofallmembers>
-      <member refid="structnifty_1_1features_1_1ApplyFilters_1a21bb107c65ee2783993d6de3170d2922" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>ApplyFilters</name></member>
+      <member refid="structnifty_1_1features_1_1ApplyFilters_1ad851e87ed8e1ec3ba63fb11e58aa2856" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>ApplyFilters</name></member>
       <member refid="structnifty_1_1features_1_1ApplyFilters_1a0a26d161f300b3394044f1357ae5ebfd" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>Coord</name></member>
       <member refid="structnifty_1_1features_1_1ApplyFilters_1adfddd3f0fdaa0179cc23100901565774" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>FastfiltersArrayType</name></member>
       <member refid="structnifty_1_1features_1_1ApplyFilters_1afb45baaeb23329eff65f6105364b75a7" prot="private" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>filters_</name></member>
-      <member refid="structnifty_1_1features_1_1ApplyFilters_1afb7d56d68a25b2aaf2de29e3d6f39cff" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>numberOfChannels</name></member>
-      <member refid="structnifty_1_1features_1_1ApplyFilters_1a075f9232abd8d323ba121b2bdd49fa17" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>operator()</name></member>
-      <member refid="structnifty_1_1features_1_1ApplyFilters_1a6fc96c356178496a7b6c08c8e429dead" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1ApplyFilters_1a7f28df00a4ecfcbeff8cafcae8d7a2b5" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>numberOfChannels</name></member>
+      <member refid="structnifty_1_1features_1_1ApplyFilters_1a63d2a6c7fca07fed1921c6c8bf8ecc19" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>operator()</name></member>
+      <member refid="structnifty_1_1features_1_1ApplyFilters_1af1316760b67e21d2c3f647313942f087" prot="public" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>operator()</name></member>
       <member refid="structnifty_1_1features_1_1ApplyFilters_1a7fe0108c9409b6e059e29fe7c6d5f0a7" prot="private" virt="non-virtual"><scope>nifty::features::ApplyFilters</scope><name>sigmas_</name></member>
     </listofallmembers>
   </compounddef>

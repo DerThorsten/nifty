@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structhalf__float_1_1detail_1_1result" kind="struct" language="C++" prot="public">
+    <compoundname>half_float::detail::result</compoundname>
+    <basecompoundref refid="structhalf__float_1_1detail_1_1enable" prot="public" virt="non-virtual">half_float::detail::enable&lt; expr, T, U &gt;</basecompoundref>
+    <includes refid="half_8hpp" local="no">half.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename U</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Return type for specialized generic 2-argument half-precision functions. This class template has to be specialized for each valid combination of argument types to provide a corresponding <computeroutput>type</computeroutput> member denoting the appropriate return type. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument type </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first argument type </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="975">
+        <label>half_float::detail::result&lt; T, U &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1result"/>
+        <childnode refid="976" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="976">
+        <label>half_float::detail::enable&lt; expr, T, U &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1enable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="977">
+        <label>half_float::detail::result&lt; T, U &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1result"/>
+        <childnode refid="978" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="978">
+        <label>half_float::detail::enable&lt; expr, T, U &gt;</label>
+        <link refid="structhalf__float_1_1detail_1_1enable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/external/half.hpp" line="392" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/external/half.hpp" bodystart="392" bodyend="392"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

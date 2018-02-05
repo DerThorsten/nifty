@@ -1,212 +1,212 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="watershed__proposals_8hxx" kind="file" language="C++">
     <compoundname>watershed_proposals.hxx</compoundname>
     <includes local="no">string</includes>
     <includes local="no">random</includes>
     <includes refid="runtime__check_8hxx" local="yes">nifty/tools/runtime_check.hxx</includes>
-    <includes refid="multicut__base_8hxx" local="yes">nifty/graph/optimization/multicut/multicut_base.hxx</includes>
+    <includes refid="multicut_2multicut__base_8hxx" local="yes">nifty/graph/opt/multicut/multicut_base.hxx</includes>
     <includes refid="edge__weighted__watersheds_8hxx" local="yes">nifty/graph/edge_weighted_watersheds.hxx</includes>
     <incdepgraph>
-      <node id="10158">
+      <node id="4558">
         <label>queue</label>
       </node>
-      <node id="10141">
+      <node id="4541">
         <label>limits</label>
       </node>
-      <node id="10137">
+      <node id="4537">
         <label>cstdint</label>
       </node>
-      <node id="10152">
+      <node id="4552">
         <label>nifty/tools/logging.hxx</label>
         <link refid="logging_8hxx"/>
-        <childnode refid="10134" relation="include">
+        <childnode refid="4534" relation="include">
         </childnode>
       </node>
-      <node id="10133">
-        <label>/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx</label>
-        <link refid="watershed_proposals.hxx"/>
-        <childnode refid="10134" relation="include">
+      <node id="4553">
+        <label>nifty/graph/opt/multicut/multicut_visitor_base.hxx</label>
+        <link refid="multicut__visitor__base_8hxx"/>
+        <childnode refid="4534" relation="include">
         </childnode>
-        <childnode refid="10135" relation="include">
+        <childnode refid="4544" relation="include">
         </childnode>
-        <childnode refid="10136" relation="include">
+        <childnode refid="4539" relation="include">
         </childnode>
-        <childnode refid="10143" relation="include">
-        </childnode>
-        <childnode refid="10154" relation="include">
+        <childnode refid="4547" relation="include">
         </childnode>
       </node>
-      <node id="10142">
+      <node id="4542">
         <label>cmath</label>
       </node>
-      <node id="10143">
-        <label>nifty/graph/optimization/multicut/multicut_base.hxx</label>
-        <link refid="multicut__base_8hxx"/>
-        <childnode refid="10134" relation="include">
-        </childnode>
-        <childnode refid="10144" relation="include">
-        </childnode>
-        <childnode refid="10139" relation="include">
-        </childnode>
-        <childnode refid="10145" relation="include">
-        </childnode>
-        <childnode refid="10153" relation="include">
-        </childnode>
-      </node>
-      <node id="10138">
+      <node id="4538">
         <label>stdexcept</label>
       </node>
-      <node id="10145">
-        <label>nifty/graph/optimization/common/solver_base.hxx</label>
-        <link refid="solver__base_8hxx"/>
-        <childnode refid="10134" relation="include">
-        </childnode>
-        <childnode refid="10144" relation="include">
-        </childnode>
-        <childnode refid="10139" relation="include">
-        </childnode>
-        <childnode refid="10138" relation="include">
-        </childnode>
-        <childnode refid="10146" relation="include">
-        </childnode>
-        <childnode refid="10145" relation="include">
-        </childnode>
-        <childnode refid="10147" relation="include">
-        </childnode>
-      </node>
-      <node id="10134">
+      <node id="4534">
         <label>string</label>
       </node>
-      <node id="10146">
+      <node id="4546">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="10138" relation="include">
+        <childnode refid="4538" relation="include">
         </childnode>
       </node>
-      <node id="10160">
+      <node id="4560">
         <label>map</label>
       </node>
-      <node id="10151">
+      <node id="4551">
         <label>nifty/tools/timer.hxx</label>
         <link refid="timer_8hxx"/>
-        <childnode refid="10139" relation="include">
+        <childnode refid="4539" relation="include">
         </childnode>
-        <childnode refid="10150" relation="include">
+        <childnode refid="4550" relation="include">
         </childnode>
-        <childnode refid="10134" relation="include">
+        <childnode refid="4534" relation="include">
         </childnode>
       </node>
-      <node id="10135">
+      <node id="4543">
+        <label>nifty/graph/opt/multicut/multicut_base.hxx</label>
+        <link refid="multicut_2multicut__base_8hxx"/>
+        <childnode refid="4534" relation="include">
+        </childnode>
+        <childnode refid="4544" relation="include">
+        </childnode>
+        <childnode refid="4539" relation="include">
+        </childnode>
+        <childnode refid="4545" relation="include">
+        </childnode>
+        <childnode refid="4553" relation="include">
+        </childnode>
+      </node>
+      <node id="4535">
         <label>random</label>
       </node>
-      <node id="10159">
+      <node id="4559">
         <label>nifty/ufd/ufd.hxx</label>
         <link refid="ufd_8hxx"/>
-        <childnode refid="10148" relation="include">
+        <childnode refid="4548" relation="include">
         </childnode>
-        <childnode refid="10140" relation="include">
+        <childnode refid="4540" relation="include">
         </childnode>
-        <childnode refid="10160" relation="include">
+        <childnode refid="4560" relation="include">
         </childnode>
       </node>
-      <node id="10157">
+      <node id="4557">
         <label>nifty/tools/changable_priority_queue.hxx</label>
         <link refid="changable__priority__queue_8hxx"/>
-        <childnode refid="10158" relation="include">
+        <childnode refid="4558" relation="include">
         </childnode>
       </node>
-      <node id="10156">
+      <node id="4556">
         <label>vigra/priority_queue.hxx</label>
       </node>
-      <node id="10140">
+      <node id="4540">
         <label>vector</label>
       </node>
-      <node id="10147">
-        <label>nifty/graph/optimization/common/visitor_base.hxx</label>
-        <link refid="visitor__base_8hxx"/>
-        <childnode refid="10148" relation="include">
-        </childnode>
-        <childnode refid="10134" relation="include">
-        </childnode>
-        <childnode refid="10144" relation="include">
-        </childnode>
-        <childnode refid="10139" relation="include">
-        </childnode>
-        <childnode refid="10149" relation="include">
-        </childnode>
-        <childnode refid="10150" relation="include">
-        </childnode>
-        <childnode refid="10151" relation="include">
-        </childnode>
-        <childnode refid="10152" relation="include">
-        </childnode>
-      </node>
-      <node id="10139">
+      <node id="4539">
         <label>sstream</label>
       </node>
-      <node id="10136">
+      <node id="4536">
         <label>nifty/tools/runtime_check.hxx</label>
         <link refid="runtime__check_8hxx"/>
-        <childnode refid="10137" relation="include">
+        <childnode refid="4537" relation="include">
         </childnode>
-        <childnode refid="10138" relation="include">
+        <childnode refid="4538" relation="include">
         </childnode>
-        <childnode refid="10139" relation="include">
+        <childnode refid="4539" relation="include">
         </childnode>
-        <childnode refid="10140" relation="include">
+        <childnode refid="4540" relation="include">
         </childnode>
-        <childnode refid="10141" relation="include">
+        <childnode refid="4541" relation="include">
         </childnode>
-        <childnode refid="10142" relation="include">
+        <childnode refid="4542" relation="include">
         </childnode>
       </node>
-      <node id="10149">
+      <node id="4533">
+        <label>/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/proposal_generators/watershed_proposals.hxx</label>
+        <link refid="watershed__proposals_8hxx"/>
+        <childnode refid="4534" relation="include">
+        </childnode>
+        <childnode refid="4535" relation="include">
+        </childnode>
+        <childnode refid="4536" relation="include">
+        </childnode>
+        <childnode refid="4543" relation="include">
+        </childnode>
+        <childnode refid="4554" relation="include">
+        </childnode>
+      </node>
+      <node id="4545">
+        <label>nifty/graph/opt/common/solver_base.hxx</label>
+        <link refid="solver__base_8hxx"/>
+        <childnode refid="4534" relation="include">
+        </childnode>
+        <childnode refid="4544" relation="include">
+        </childnode>
+        <childnode refid="4539" relation="include">
+        </childnode>
+        <childnode refid="4538" relation="include">
+        </childnode>
+        <childnode refid="4546" relation="include">
+        </childnode>
+        <childnode refid="4545" relation="include">
+        </childnode>
+        <childnode refid="4547" relation="include">
+        </childnode>
+      </node>
+      <node id="4549">
         <label>iostream</label>
       </node>
-      <node id="10148">
+      <node id="4548">
         <label>cstddef</label>
       </node>
-      <node id="10154">
+      <node id="4554">
         <label>nifty/graph/edge_weighted_watersheds.hxx</label>
         <link refid="edge__weighted__watersheds_8hxx"/>
-        <childnode refid="10155" relation="include">
+        <childnode refid="4555" relation="include">
         </childnode>
-        <childnode refid="10156" relation="include">
+        <childnode refid="4556" relation="include">
         </childnode>
-        <childnode refid="10157" relation="include">
+        <childnode refid="4557" relation="include">
         </childnode>
-        <childnode refid="10159" relation="include">
+        <childnode refid="4559" relation="include">
         </childnode>
       </node>
-      <node id="10150">
+      <node id="4550">
         <label>chrono</label>
       </node>
-      <node id="10153">
-        <label>nifty/graph/optimization/multicut/multicut_visitor_base.hxx</label>
-        <link refid="multicut__visitor__base_8hxx"/>
-        <childnode refid="10134" relation="include">
+      <node id="4547">
+        <label>nifty/graph/opt/common/visitor_base.hxx</label>
+        <link refid="visitor__base_8hxx"/>
+        <childnode refid="4548" relation="include">
         </childnode>
-        <childnode refid="10144" relation="include">
+        <childnode refid="4534" relation="include">
         </childnode>
-        <childnode refid="10139" relation="include">
+        <childnode refid="4544" relation="include">
         </childnode>
-        <childnode refid="10147" relation="include">
+        <childnode refid="4539" relation="include">
+        </childnode>
+        <childnode refid="4549" relation="include">
+        </childnode>
+        <childnode refid="4550" relation="include">
+        </childnode>
+        <childnode refid="4551" relation="include">
+        </childnode>
+        <childnode refid="4552" relation="include">
         </childnode>
       </node>
-      <node id="10155">
+      <node id="4555">
         <label>algorithm</label>
       </node>
-      <node id="10144">
+      <node id="4544">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals" prot="public">nifty::graph::optimization::multicut::WatershedProposals</innerclass>
-    <innerclass refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType" prot="public">nifty::graph::optimization::multicut::WatershedProposals::SettingsType</innerclass>
+    <innerclass refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals" prot="public">nifty::graph::opt::multicut::WatershedProposals</innerclass>
+    <innerclass refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType" prot="public">nifty::graph::opt::multicut::WatershedProposals::SettingsType</innerclass>
     <innernamespace refid="namespacenifty">nifty</innernamespace>
     <innernamespace refid="namespacenifty_1_1graph">nifty::graph</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization">nifty::graph::optimization</innernamespace>
-    <innernamespace refid="namespacenifty_1_1graph_1_1optimization_1_1multicut">nifty::graph::optimization::multicut</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt">nifty::graph::opt</innernamespace>
+    <innernamespace refid="namespacenifty_1_1graph_1_1opt_1_1multicut">nifty::graph::opt::multicut</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -218,38 +218,38 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="runtime__check_8hxx" kindref="compound">nifty/tools/runtime_check.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut__base_8hxx" kindref="compound">nifty/graph/optimization/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="multicut_2multicut__base_8hxx" kindref="compound">nifty/graph/opt/multicut/multicut_base.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="edge__weighted__watersheds_8hxx" kindref="compound">nifty/graph/edge_weighted_watersheds.hxx</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacenifty" kindref="compound">nifty</ref>{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">graph{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">optimization{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">opt{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">multicut{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>OBJECTIVE&gt;</highlight></codeline>
-<codeline lineno="17" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals" kindref="compound">WatershedProposals</ref>{</highlight></codeline>
+<codeline lineno="17" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals" kindref="compound">WatershedProposals</ref>{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="19" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1ab718f52fd4c86362784d507794123a77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1ab718f52fd4c86362784d507794123a77" kindref="member">Objective</ref>;</highlight></codeline>
-<codeline lineno="20" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1ae5682cdbd9df86644a5ff5f03149b959" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Objective::Graph<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1ae5682cdbd9df86644a5ff5f03149b959" kindref="member">Graph</ref>;</highlight></codeline>
-<codeline lineno="21" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a830da5754c9f95076be49214815b3093" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;Objective&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a830da5754c9f95076be49214815b3093" kindref="member">Base</ref>;</highlight></codeline>
-<codeline lineno="22" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a1be6a8728eb5896d77798bea92e7840e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive" kindref="compound">MulticutGreedyAdditive&lt;Objective&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a1be6a8728eb5896d77798bea92e7840e" kindref="member">Solver</ref>;</highlight></codeline>
-<codeline lineno="23" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a47d856b6946598de4414fe0c84bcf368" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1MulticutGreedyAdditive_1a5ab2bca40a57afb6cecb04e97204973b" kindref="member">Solver::SettingsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a47d856b6946598de4414fe0c84bcf368" kindref="member">SolverSettings</ref>;</highlight></codeline>
-<codeline lineno="24" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a73c2ef9e4f709718cd0ce6c6349a559b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1common_1_1SolverBase_1a6e4e465f3b6e039882669fcfb9714818" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a73c2ef9e4f709718cd0ce6c6349a559b" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
-<codeline lineno="25" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a8dc46879d28f37e1a8a8a79091a59e7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Graph::<sp/>template<sp/>EdgeMap&lt;double&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a8dc46879d28f37e1a8a8a79091a59e7f" kindref="member">EdgeWeights</ref>;</highlight></codeline>
+<codeline lineno="19" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a2ea604fcb16dc28bf52164ec5b3f232a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>OBJECTIVE<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a2ea604fcb16dc28bf52164ec5b3f232a" kindref="member">ObjectiveType</ref>;</highlight></codeline>
+<codeline lineno="20" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a1b552b5ad2f22af891c4e83fc3b324cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ObjectiveType::GraphType<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a1b552b5ad2f22af891c4e83fc3b324cf" kindref="member">GraphType</ref>;</highlight></codeline>
+<codeline lineno="21" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a5484630cc07bc37751c4262e40a059f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutBase" kindref="compound">MulticutBase&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a5484630cc07bc37751c4262e40a059f8" kindref="member">Base</ref>;</highlight></codeline>
+<codeline lineno="22" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ac5c603312951d07e9fc516ad4c99c7df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive" kindref="compound">MulticutGreedyAdditive&lt;ObjectiveType&gt;</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ac5c603312951d07e9fc516ad4c99c7df" kindref="member">Solver</ref>;</highlight></codeline>
+<codeline lineno="23" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ae59892ab06d67fc3099a0e352e4e51b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutGreedyAdditive_1a074ee39f5884cff7359f5c0997929e2f" kindref="member">Solver::SettingsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ae59892ab06d67fc3099a0e352e4e51b9" kindref="member">SolverSettings</ref>;</highlight></codeline>
+<codeline lineno="24" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a41e2d6c837cbe4d58aa4279419483723" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1SolverBase_1abefd51561de2fd009f6bed6bef6009ea" kindref="member">Base::NodeLabelsType</ref><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a41e2d6c837cbe4d58aa4279419483723" kindref="member">NodeLabelsType</ref>;</highlight></codeline>
+<codeline lineno="25" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1abd0739ab4f295cc667a246a878dfff43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>GraphType::<sp/>template<sp/>EdgeMap&lt;double&gt;<sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1abd0739ab4f295cc667a246a878dfff43" kindref="member">EdgeWeights</ref>;</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
-<codeline lineno="28" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a015986f91cf741f2992ca66219d1d0d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a015986f91cf741f2992ca66219d1d0d8" kindref="member">sigma</ref>{1.0};</highlight></codeline>
-<codeline lineno="29" refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a9632f51291234a1a5ae90e01ade142a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a9632f51291234a1a5ae90e01ade142a4" kindref="member">seedFraction</ref>{0.1};</highlight></codeline>
+<codeline lineno="27" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType" kindref="compound">SettingsType</ref>{</highlight></codeline>
+<codeline lineno="28" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType_1af51562f48c898c74ae4f15b2d3c239ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType_1af51562f48c898c74ae4f15b2d3c239ec" kindref="member">sigma</ref>{1.0};</highlight></codeline>
+<codeline lineno="29" refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType_1af9d2c2d7871b3086a65598751225fd0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType_1af9d2c2d7871b3086a65598751225fd0c" kindref="member">seedFraction</ref>{0.1};</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1aedbb9117726ceea9f28564a1862951d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1aedbb9117726ceea9f28564a1862951d2" kindref="member">name</ref>(){</highlight></codeline>
+<codeline lineno="32" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a2fcdf9019b48369fe66806d87be937dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a2fcdf9019b48369fe66806d87be937dc" kindref="member">name</ref>(){</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;WatershedProposals&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1af01b4b9c54bd0cfcc7d63c18f9e2f909" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1af01b4b9c54bd0cfcc7d63c18f9e2f909" kindref="member">WatershedProposals</ref>(</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType" kindref="compound">SettingsType</ref><sp/><sp/>&amp;<sp/>settings,</highlight></codeline>
+<codeline lineno="36" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a9d2d0702cfa98b669ebbb5ea2d4a1f07" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a9d2d0702cfa98b669ebbb5ea2d4a1f07" kindref="member">WatershedProposals</ref>(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective,<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType" kindref="compound">SettingsType</ref><sp/><sp/>&amp;<sp/>settings,</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadIndex</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><sp/><sp/>objective_(objective),</highlight></codeline>
@@ -261,24 +261,24 @@
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threadIndex_(threadIndex),</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proposalNumber_(0),</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gen_(threadIndex),</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist_(0.0,<sp/>settings.sigma),</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist_(0.0,<sp/>settings.<ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType_1af51562f48c898c74ae4f15b2d3c239ec" kindref="member">sigma</ref>),</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intDist_()</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a7c938f64ae453042d0502c0214a8dada" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a4b51334351431bc1e232d52605580931" kindref="member">reset</ref>();</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a2b5d44322905b88633025b0eede464e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a2b5d44322905b88633025b0eede464e2" kindref="member">~WatershedProposals</ref>(){</highlight></codeline>
+<codeline lineno="56" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ad66bba72cf18799a092676b354c252a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1ad66bba72cf18799a092676b354c252a5" kindref="member">~WatershedProposals</ref>(){</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a08707d8d165909f93061e9584407dbdc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a08707d8d165909f93061e9584407dbdc" kindref="member">generate</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/>currentBest,<sp/>NodeLabelsType<sp/>&amp;<sp/>proposal){</highlight></codeline>
+<codeline lineno="60" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a8fdb72d28492ef820838d9b673af48ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a8fdb72d28492ef820838d9b673af48ea" kindref="member">generate</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>NodeLabelsType<sp/>&amp;<sp/>currentBest,<sp/>NodeLabelsType<sp/>&amp;<sp/>proposal){</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(negativeEdges_.empty()){</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proposal<sp/>=<sp/>currentBest;</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>nSeeds<sp/>=<sp/>settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a9632f51291234a1a5ae90e01ade142a4" kindref="member">seedFraction</ref><sp/>&lt;=1.0<sp/>?<sp/></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(graph_.numberOfNodes())*settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a9632f51291234a1a5ae90e01ade142a4" kindref="member">seedFraction</ref>+0.5f)<sp/>:</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(settings_.<ref refid="structnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1_1SettingsType_1a9632f51291234a1a5ae90e01ade142a4" kindref="member">seedFraction</ref><sp/>+<sp/>0.5);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>nSeeds<sp/>=<sp/>settings_.seedFraction<sp/>&lt;=1.0<sp/>?<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(graph_.numberOfNodes())*settings_.seedFraction+0.5f)<sp/>:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t(settings_.seedFraction<sp/>+<sp/>0.5);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nSeeds<sp/>=<sp/>std::max(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(1),nSeeds);</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nSeeds<sp/>=<sp/>std::min(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(negativeEdges_.size()-1),<sp/>nSeeds);</highlight></codeline>
@@ -310,7 +310,7 @@
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++proposalNumber_;</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99" refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a7c938f64ae453042d0502c0214a8dada" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1optimization_1_1multicut_1_1WatershedProposals_1a7c938f64ae453042d0502c0214a8dada" kindref="member">reset</ref>(){</highlight></codeline>
+<codeline lineno="99" refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a4b51334351431bc1e232d52605580931" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1a4b51334351431bc1e232d52605580931" kindref="member">reset</ref>(){</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proposalNumber_<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>negativeEdges_.resize(0);</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>weights<sp/>=<sp/>objective_.weights();</highlight></codeline>
@@ -329,12 +329,12 @@
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Objective<sp/>&amp;<sp/>objective_;</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Graph<sp/>graph_;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ObjectiveType<sp/>&amp;<sp/>objective_;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GraphType<sp/>graph_;</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EdgeWeights<sp/>weights_;</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NodeLabelsType<sp/>seeds_;</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;uint64_t&gt;<sp/>negativeEdges_;</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SettingsType<sp/>settings_;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1WatershedProposals_1_1SettingsType" kindref="compound">SettingsType</ref><sp/>settings_;</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>threadIndex_;</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>proposalNumber_;</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::mt19937<sp/>gen_;</highlight></codeline>
@@ -344,12 +344,12 @@
 <codeline lineno="130"><highlight class="normal"></highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization::multicut</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::optimization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt::multicut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph::opt</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty::graph</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>nifty</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/tbeier/src/nifty/include/nifty/graph/optimization/multicut/proposal_generators/watershed_proposals.hxx"/>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/proposal_generators/watershed_proposals.hxx"/>
   </compounddef>
 </doxygen>

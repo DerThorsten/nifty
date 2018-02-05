@@ -1,0 +1,402 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::UndirectedLongRangeGridGraph</compoundname>
+    <basecompoundref refid="classnifty_1_1graph_1_1UndirectedGraph" prot="public" virt="non-virtual">nifty::graph::UndirectedGraph&lt;&gt;</basecompoundref>
+    <includes refid="graph_2undirected__long__range__grid__graph_8hxx" local="no">undirected_long_range_grid_graph.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>DIM</declname>
+        <defname>DIM</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1aba6fa8c9f7796453365767ff51c1b4a3" prot="private" static="no">
+        <type>detail_graph::UndirectedLongRangeGridGraphAssign&lt; DIM &gt;</type>
+        <definition>typedef detail_graph::UndirectedLongRangeGridGraphAssign&lt;DIM&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::HelperType</definition>
+        <argsstring></argsstring>
+        <name>HelperType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a59b2f5f607a442d6aedb1ddd5ca53d50" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>typedef array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::ShapeType</definition>
+        <argsstring></argsstring>
+        <name>ShapeType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="89" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a93409ee0bdff70a63b80bc8d4a126240" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>typedef array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::StridesType</definition>
+        <argsstring></argsstring>
+        <name>StridesType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="90" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a1a49e04a1f2c35151ca873ba859eddf0" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>typedef array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::CoordinateType</definition>
+        <argsstring></argsstring>
+        <name>CoordinateType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="91" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a7fa465d2ce67dd437c9bbb18ea580012" prot="public" static="no">
+        <type><ref refid="namespacenifty_1_1array_1a683f151f19c851754e0c6d55ed16a0c2" kindref="member">array::StaticArray</ref>&lt; int64_t, DIM &gt;</type>
+        <definition>typedef array::StaticArray&lt;int64_t, DIM&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::OffsetType</definition>
+        <argsstring></argsstring>
+        <name>OffsetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="92" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a74078f6c712f2f257bfbfd62c7d8b902" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a7fa465d2ce67dd437c9bbb18ea580012" kindref="member">OffsetType</ref> &gt;</type>
+        <definition>typedef std::vector&lt;OffsetType&gt; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::OffsetVector</definition>
+        <argsstring></argsstring>
+        <name>OffsetVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="94" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a9f7db832c3c250f18e6feac2ccccfd0c" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a59b2f5f607a442d6aedb1ddd5ca53d50" kindref="member">ShapeType</ref></type>
+        <definition>ShapeType nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="332" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="332" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1abe54174c57dc3f780dbe96d659292625" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a93409ee0bdff70a63b80bc8d4a126240" kindref="member">StridesType</ref></type>
+        <definition>StridesType nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::strides_</definition>
+        <argsstring></argsstring>
+        <name>strides_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="333" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="333" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a7f7af7fb43713eb171ba4550f574b17b" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a74078f6c712f2f257bfbfd62c7d8b902" kindref="member">OffsetVector</ref></type>
+        <definition>OffsetVector nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::offsets_</definition>
+        <argsstring></argsstring>
+        <name>offsets_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="334" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a6dc33ffd84f88fe4e15c463e51435e07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::UndirectedLongRangeGridGraph</definition>
+        <argsstring>(const ShapeType &amp;shape, const OffsetVector &amp;offsets)</argsstring>
+        <name>UndirectedLongRangeGridGraph</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a59b2f5f607a442d6aedb1ddd5ca53d50" kindref="member">ShapeType</ref> &amp;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a74078f6c712f2f257bfbfd62c7d8b902" kindref="member">OffsetVector</ref> &amp;</type>
+          <declname>offsets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="97" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="97" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1aca6e797834ea50def5d1c266dcf6c859" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::edgeOffsetIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeOffsetIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="122" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="122" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a16ea3b3fe14f4536380bc6b561444c54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::nodeFeatureDiffereces</definition>
+        <argsstring>(const xt::xexpression&lt; D &gt; &amp;nodeFeaturesExpression) const</argsstring>
+        <name>nodeFeatureDiffereces</name>
+        <param>
+          <type>const xt::xexpression&lt; D &gt; &amp;</type>
+          <declname>nodeFeaturesExpression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="146" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="146" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1abd817b6bfc8a0748146b406e99688d45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::nodeFeatureDiffereces2</definition>
+        <argsstring>(const xt::xexpression&lt; D &gt; &amp;nodeFeaturesExpression) const</argsstring>
+        <name>nodeFeatureDiffereces2</name>
+        <param>
+          <type>const xt::xexpression&lt; D &gt; &amp;</type>
+          <declname>nodeFeaturesExpression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="199" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="199" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a293b184a26e4a6d7dfa2d1a125a32a85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::edgeValues</definition>
+        <argsstring>(const xt::xexpression&lt; D &gt; &amp;valuesExpression) const</argsstring>
+        <name>edgeValues</name>
+        <param>
+          <type>const xt::xexpression&lt; D &gt; &amp;</type>
+          <declname>valuesExpression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="260" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="260" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a45303228fbd25cb46ec9bef4bf0d29f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class NODE_COORDINATE</type>
+          </param>
+        </templateparamlist>
+        <type>uint64_t</type>
+        <definition>uint64_t nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::coordianteToNode</definition>
+        <argsstring>(const NODE_COORDINATE &amp;coordinate) const</argsstring>
+        <name>coordianteToNode</name>
+        <param>
+          <type>const NODE_COORDINATE &amp;</type>
+          <declname>coordinate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="315" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="315" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1ac65c15cf1960267a284c8f7647386484" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="325" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="325" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a0ca3608b3c18ffdaa23aa78886ca203a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const auto &amp;</type>
+        <definition>const auto&amp; nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;::offsets</definition>
+        <argsstring>() const</argsstring>
+        <name>offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="328" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="328" bodyend="330"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1186">
+        <label>nifty::graph::UndirectedGraphBase&lt; UndirectedGraph&lt; int64_t, int64_t &gt;, detail_graph::SimpleGraphNodeIter, detail_graph::SimpleGraphEdgeIter, detail_graph::UndirectedGraphTypeHelper&lt; int64_t, int64_t &gt;::AdjacencyIter &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
+      </node>
+      <node id="1185">
+        <label>nifty::graph::UndirectedGraph&lt;&gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraph"/>
+        <childnode refid="1186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1184">
+        <label>nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph"/>
+        <childnode refid="1185" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1189">
+        <label>nifty::graph::UndirectedGraphBase&lt; UndirectedGraph&lt; int64_t, int64_t &gt;, detail_graph::SimpleGraphNodeIter, detail_graph::SimpleGraphEdgeIter, detail_graph::UndirectedGraphTypeHelper&lt; int64_t, int64_t &gt;::AdjacencyIter &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraphBase"/>
+      </node>
+      <node id="1188">
+        <label>nifty::graph::UndirectedGraph&lt;&gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedGraph"/>
+        <childnode refid="1189" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1187">
+        <label>nifty::graph::UndirectedLongRangeGridGraph&lt; DIM &gt;</label>
+        <link refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph"/>
+        <childnode refid="1188" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/undirected_long_range_grid_graph.hxx" bodystart="16" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a46eb06d4cd54189ba6b992735494b788" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a51975f5b48920fc9ef2b1283329253d6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a96a867a0211f95e39a6003feed661aab" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a40d901c4ac73481fe54e829749b4b079" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyIn</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a89a51da8736b59edacd6127e366019ce" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyInBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a389da3c388ff86eba5434b1999687e67" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyInEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adecb4597d23d097b08c2c03a106bc57b" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>AdjacencyIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ab9ce419a67ba4351bb2066a9b85a2b32" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyOut</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aeb650cb1aa92c762db247e336c35f352" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyOutBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a074b4246bb62d8f6e57d913126709831" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>adjacencyOutEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a0c4b2840735519b961431c64400c2dc2" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>assign</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1af2541cf9fb91440ff0a7b56dd5a6be29" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>ChildGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a45303228fbd25cb46ec9bef4bf0d29f7" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>coordianteToNode</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a1a49e04a1f2c35151ca873ba859eddf0" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>CoordinateType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad64103a26a487c730d69e7daaef38191" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>deserialize</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2f74e8de961bf80dc037ceedf58c46a4" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>EdgeIdOrderTag</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a5e5a59e9d25ab322da5e8286cadc3e00" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>EdgeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a7f8d1e94b073910e57f53e57905f7877" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edgeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a70e38582c25deca5e0ce080277cb30fc" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>EdgeInternalType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa37a0dc690ad1257d5eb5105e7d66bba" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>EdgeIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1aca6e797834ea50def5d1c266dcf6c859" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edgeOffsetIndex</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ace8277ea99ae46b11bf9070955abf846" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edges</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adc3e4d3dc0f8bff661042af2a05d342f" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edges_</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a9cd92ddc55ce257585e3b1c34921292b" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edgesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a390b4171a59695c701258e9e4bd4d796" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edgesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a77256cc943f931180bf84b14d943f39a" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>EdgeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a293b184a26e4a6d7dfa2d1a125a32a85" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>edgeValues</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aceb04e9a0aacfd415c87c1c70ab89612" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>extractSubgraphFromNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa7b79785e3030d9a629987e3c5854d11" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>findEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6e9c1a754ba6d85b12a44e49f8f0a343" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>forEachEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1acfc8a7b6851e1ae726211911d84d309a" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>forEachItem</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2bd33f944c05eeea7295047378902cb6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>forEachNode</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1aba6fa8c9f7796453365767ff51c1b4a3" prot="private" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>HelperType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a72feacfbdf4fcf8025182cadd1ac62ea" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>insertEdge</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a2a97f53b477b71af29c6e8409729e353" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>insertEdgeOnlyInNodeAdj</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ac1e7c6a7e6e20cb8b184e331789965cd" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>items</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a397456fa4036ba4606a375e3c78cb9d4" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>mergeAdjacencies</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ab50d4774bd9a93ac226589352866df69" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeAdjacency</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a16ea3b3fe14f4536380bc6b561444c54" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodeFeatureDiffereces</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1abd817b6bfc8a0748146b406e99688d45" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodeFeatureDiffereces2</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a0756fdeac9df76a32f46f2969ffacd80" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeIdOrderTag</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a5d11b1e802f0be2f967b62f7ea5ff61e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeIdTag</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1adab2b7ff99de38d68bccb75d928252ac" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodeIdUpperBound</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa3b43dd44281416b7232caae529e8780" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeInteralType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aac54e4ad3a525489e9b29c1bd4c92c88" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeIter</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a4b3cb925bbce09bea0ceeede5c04c4a1" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodeLabelsToEdgeLabels</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1ad554bdf7772878fb846b4f3a753f338f" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a4e12e37bede71b7beaca9fdbc7dd9abc" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodes_</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1aa8d42d0d15cc214e1da4a5c8d0ae4e3e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodesBegin</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a8e3e13d42c2770d0d739fa8d65b22c6f" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>nodesEnd</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a6e9a6dd89601d6f9039492053dc9f2a8" prot="protected" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>NodeStorage</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ac11798f3ea9a39d2af683c6a6af5c30d" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>numberOfEdges</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1af3450885d48968733f3754544a20c012" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>numberOfNodes</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a0ca3608b3c18ffdaa23aa78886ca203a" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>offsets</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a7f7af7fb43713eb171ba4550f574b17b" prot="private" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>offsets_</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a7fa465d2ce67dd437c9bbb18ea580012" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>OffsetType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a74078f6c712f2f257bfbfd62c7d8b902" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>OffsetVector</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraphBase_1a3a637f240a8d05794be99e5f290a71b9" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>Self</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ae1dde74a0b401367dd42bff541b9fcd1" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>serializationSize</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a482c06ee7f8b1acd32897c45a4de436e" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>serialize</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1ac65c15cf1960267a284c8f7647386484" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>shape</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a9f7db832c3c250f18e6feac2ccccfd0c" prot="private" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>shape_</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a59b2f5f607a442d6aedb1ddd5ca53d50" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>ShapeType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a4d1abbc35f94744412a9f6474d922e59" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>shrinkToFit</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1abe54174c57dc3f780dbe96d659292625" prot="private" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>strides_</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a93409ee0bdff70a63b80bc8d4a126240" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>StridesType</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1ad615dcee7447b5663be51ff5725943d6" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>u</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a3c2087810feadcef80e0a1a1ca288b43" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>UndirectedGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedLongRangeGridGraph_1a6dc33ffd84f88fe4e15c463e51435e07" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>UndirectedLongRangeGridGraph</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1a270b13442535d2407d9b0741748d5fb0" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>uv</name></member>
+      <member refid="classnifty_1_1graph_1_1UndirectedGraph_1af5f8ff3cf680e86d0fc2eb4a40cd7e45" prot="public" virt="non-virtual"><scope>nifty::graph::UndirectedLongRangeGridGraph</scope><name>v</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

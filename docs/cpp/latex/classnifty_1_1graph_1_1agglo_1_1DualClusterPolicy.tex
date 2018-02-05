@@ -1,0 +1,191 @@
+\hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{}\section{nifty\+:\+:graph\+:\+:agglo\+:\+:Dual\+Cluster\+Policy$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy$<$ G\+R\+A\+P\+H, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy$<$ G\+R\+A\+P\+H, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}}
+
+
+{\ttfamily \#include $<$dual\+\_\+cluster\+\_\+policy.\+hxx$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType}{Settings\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Acc0\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac8d246f0a0387bf78fcf9d823496e515}{Acc0\+Settings\+Type}
+\item 
+typedef Acc1\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a9e9443784c4c09926fd8c97608547779}{Acc1\+Settings\+Type}
+\item 
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type}
+\item 
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a54d7666f80620939d704938530b7564a}{Edge\+Prio\+Type}
+\item 
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7687a1027ad05abe1b32b034cc383003}{Edge\+Sizes\+Type}
+\item 
+typedef Float\+Node\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a03e7d4c024b17e4fa6647058bac773dc}{Node\+Sizes\+Type}
+\item 
+typedef \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type}, \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Self\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}{Edge\+Contraction\+Graph\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES $>$ }\\\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac52bf8e25834241e96fe1637579ffc1b}{Dual\+Cluster\+Policy} (const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type} \&, const M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&, const N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&, const I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE \&, const E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES \&, const \hyperlink{structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType}{Settings\+Type} \&settings=\hyperlink{structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType}{Settings\+Type}())
+\item 
+std\+::pair$<$ uint64\+\_\+t, double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a71302b486964ff3d8f4c1b73cfbd7eae}{edge\+To\+Contract\+Next} () const
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a055733fe4b1a2883fc157be44ca116d2}{is\+Done} ()
+\item 
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}{Edge\+Contraction\+Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa08bdfd6a8112f736978ff2025d8d395}{edge\+Contraction\+Graph} ()
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7e137da249efd061a846fb73a4d642ab}{contract\+Edge} (const uint64\+\_\+t edge\+To\+Contract)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a8c7aa0c86c9ec848a46dbe547f4a36d1}{merge\+Nodes} (const uint64\+\_\+t alive\+Node, const uint64\+\_\+t dead\+Node)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a0f986a69135f3b76cf1ffd5852b8d7a0}{merge\+Edges} (const uint64\+\_\+t alive\+Edge, const uint64\+\_\+t dead\+Edge)
+\item 
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa151dd026d3773ff06b1f97c54681e15}{contract\+Edge\+Done} (const uint64\+\_\+t edge\+To\+Contract)
+\item 
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac4ede299befaa57d313f0ffe9b27ac16}{is\+Merge\+Allowed} (const uint64\+\_\+t edge)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac8d246f0a0387bf78fcf9d823496e515}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac8d246f0a0387bf78fcf9d823496e515}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Acc0\+Settings\+Type@{Acc0\+Settings\+Type}}
+\index{Acc0\+Settings\+Type@{Acc0\+Settings\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Acc0\+Settings\+Type}{Acc0SettingsType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Acc0\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac8d246f0a0387bf78fcf9d823496e515}{Acc0\+Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a9e9443784c4c09926fd8c97608547779}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a9e9443784c4c09926fd8c97608547779}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Acc1\+Settings\+Type@{Acc1\+Settings\+Type}}
+\index{Acc1\+Settings\+Type@{Acc1\+Settings\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Acc1\+Settings\+Type}{Acc1SettingsType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Acc1\+Type\+::\+Settings\+Type \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a9e9443784c4c09926fd8c97608547779}{Acc1\+Settings\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}}
+\index{Edge\+Contraction\+Graph\+Type@{Edge\+Contraction\+Graph\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Contraction\+Graph\+Type}{EdgeContractionGraphType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type}, \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Self\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}{Edge\+Contraction\+Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a54d7666f80620939d704938530b7564a}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a54d7666f80620939d704938530b7564a}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Edge\+Prio\+Type@{Edge\+Prio\+Type}}
+\index{Edge\+Prio\+Type@{Edge\+Prio\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Prio\+Type}{EdgePrioType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a54d7666f80620939d704938530b7564a}{Edge\+Prio\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7687a1027ad05abe1b32b034cc383003}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7687a1027ad05abe1b32b034cc383003}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Edge\+Sizes\+Type@{Edge\+Sizes\+Type}}
+\index{Edge\+Sizes\+Type@{Edge\+Sizes\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Sizes\+Type}{EdgeSizesType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Edge\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7687a1027ad05abe1b32b034cc383003}{Edge\+Sizes\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a03e7d4c024b17e4fa6647058bac773dc}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a03e7d4c024b17e4fa6647058bac773dc}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Node\+Sizes\+Type@{Node\+Sizes\+Type}}
+\index{Node\+Sizes\+Type@{Node\+Sizes\+Type}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Node\+Sizes\+Type}{NodeSizesType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+typedef Float\+Node\+Map \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a03e7d4c024b17e4fa6647058bac773dc}{Node\+Sizes\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac52bf8e25834241e96fe1637579ffc1b}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac52bf8e25834241e96fe1637579ffc1b}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Dual\+Cluster\+Policy@{Dual\+Cluster\+Policy}}
+\index{Dual\+Cluster\+Policy@{Dual\+Cluster\+Policy}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Dual\+Cluster\+Policy()}{DualClusterPolicy()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+template$<$class M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS , class I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE , class E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES $>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Dual\+Cluster\+Policy} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type} \&}]{graph,  }\item[{const M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&}]{merge\+Prios,  }\item[{const N\+O\+T\+\_\+\+M\+E\+R\+G\+E\+\_\+\+P\+R\+I\+OS \&}]{not\+Merge\+Prios,  }\item[{const I\+S\+\_\+\+L\+O\+C\+A\+L\+\_\+\+E\+D\+GE \&}]{is\+Local\+Edge,  }\item[{const E\+D\+G\+E\+\_\+\+S\+I\+Z\+ES \&}]{edge\+Sizes,  }\item[{const \hyperlink{structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType}{Settings\+Type} \&}]{settings = {\ttfamily \hyperlink{structnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_1_1SettingsType}{Settings\+Type}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7e137da249efd061a846fb73a4d642ab}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a7e137da249efd061a846fb73a4d642ab}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!contract\+Edge@{contract\+Edge}}
+\index{contract\+Edge@{contract\+Edge}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{contract\+Edge()}{contractEdge()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::contract\+Edge (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge\+To\+Contract }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa151dd026d3773ff06b1f97c54681e15}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa151dd026d3773ff06b1f97c54681e15}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!contract\+Edge\+Done@{contract\+Edge\+Done}}
+\index{contract\+Edge\+Done@{contract\+Edge\+Done}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{contract\+Edge\+Done()}{contractEdgeDone()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::contract\+Edge\+Done (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge\+To\+Contract }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa08bdfd6a8112f736978ff2025d8d395}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_aa08bdfd6a8112f736978ff2025d8d395}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!edge\+Contraction\+Graph@{edge\+Contraction\+Graph}}
+\index{edge\+Contraction\+Graph@{edge\+Contraction\+Graph}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{edge\+Contraction\+Graph()}{edgeContractionGraph()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::\hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a50412f31fd3dc355ef0804cb8d753c05}{Edge\+Contraction\+Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::edge\+Contraction\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a71302b486964ff3d8f4c1b73cfbd7eae}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a71302b486964ff3d8f4c1b73cfbd7eae}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!edge\+To\+Contract\+Next@{edge\+To\+Contract\+Next}}
+\index{edge\+To\+Contract\+Next@{edge\+To\+Contract\+Next}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{edge\+To\+Contract\+Next()}{edgeToContractNext()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+std\+::pair$<$ uint64\+\_\+t, double $>$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::edge\+To\+Contract\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a055733fe4b1a2883fc157be44ca116d2}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a055733fe4b1a2883fc157be44ca116d2}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!is\+Done@{is\+Done}}
+\index{is\+Done@{is\+Done}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{is\+Done()}{isDone()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac4ede299befaa57d313f0ffe9b27ac16}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ac4ede299befaa57d313f0ffe9b27ac16}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!is\+Merge\+Allowed@{is\+Merge\+Allowed}}
+\index{is\+Merge\+Allowed@{is\+Merge\+Allowed}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{is\+Merge\+Allowed()}{isMergeAllowed()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+bool \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::is\+Merge\+Allowed (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a0f986a69135f3b76cf1ffd5852b8d7a0}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a0f986a69135f3b76cf1ffd5852b8d7a0}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!merge\+Edges@{merge\+Edges}}
+\index{merge\+Edges@{merge\+Edges}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{merge\+Edges()}{mergeEdges()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::merge\+Edges (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Edge,  }\item[{const uint64\+\_\+t}]{dead\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a8c7aa0c86c9ec848a46dbe547f4a36d1}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a8c7aa0c86c9ec848a46dbe547f4a36d1}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!merge\+Nodes@{merge\+Nodes}}
+\index{merge\+Nodes@{merge\+Nodes}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{merge\+Nodes()}{mergeNodes()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+void \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}$<$ G\+R\+A\+PH, A\+C\+C\+\_\+0, A\+C\+C\+\_\+1, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\+::merge\+Nodes (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{alive\+Node,  }\item[{const uint64\+\_\+t}]{dead\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}\label{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_a6939aa4c6113ba9c44fd5e048687ba92}} 
+\index{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}!Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}}
+\index{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$@{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}!nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy@{nifty\+::graph\+::agglo\+::\+Dual\+Cluster\+Policy}}
+\subsubsection{\texorpdfstring{Edge\+Contraction\+Graph$<$ Graph\+Type, Self\+Type, E\+N\+A\+B\+L\+E\+\_\+\+U\+C\+M $>$}{EdgeContractionGraph< GraphType, SelfType, ENABLE\_UCM >}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class A\+C\+C\+\_\+0 , class A\+C\+C\+\_\+1 , bool E\+N\+A\+B\+L\+E\+\_\+\+U\+CM$>$ \\
+friend class \hyperlink{classnifty_1_1graph_1_1EdgeContractionGraph}{Edge\+Contraction\+Graph}$<$ \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy_ad8e19fe87ad08f4187fdb79c1367389a}{Graph\+Type}, \hyperlink{classnifty_1_1graph_1_1agglo_1_1DualClusterPolicy}{Self\+Type}, E\+N\+A\+B\+L\+E\+\_\+\+U\+CM $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster\+\_\+policies/\hyperlink{dual__cluster__policy_8hxx}{dual\+\_\+cluster\+\_\+policy.\+hxx}\end{DoxyCompactItemize}

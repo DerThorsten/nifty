@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut" kind="struct" language="C++" prot="private">
+    <compoundname>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1aad067320b2fe3ef03abd311a4e7bd3f7" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1a981964ae77e95e0f0754ab51df67f6a5" kindref="member">IlpSovler</ref> &amp;</type>
+        <definition>const IlpSovler&amp; nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut::ilpSolver_</definition>
+        <argsstring></argsstring>
+        <name>ilpSolver_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="124" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1a4c6f4079ee73a025f044b4f503be1ab4" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" kindref="compound">DenseIds</ref> &amp;</type>
+        <definition>const DenseIds&amp; nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut::denseIds_</definition>
+        <argsstring></argsstring>
+        <name>denseIds_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="125" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1aea6368c5e5962ad3995417d39c859692" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut::SubgraphWithCut</definition>
+        <argsstring>(const IlpSovler &amp;ilpSolver, const DenseIds &amp;denseIds)</argsstring>
+        <name>SubgraphWithCut</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1a981964ae77e95e0f0754ab51df67f6a5" kindref="member">IlpSovler</ref> &amp;</type>
+          <declname>ilpSolver</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices" kindref="compound">DenseIds</ref> &amp;</type>
+          <declname>denseIds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="115" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="115" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1acc38836cd910a739383d77c68432a543" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut::useNode</definition>
+        <argsstring>(const size_t v) const</argsstring>
+        <name>useNode</name>
+        <param>
+          <type>const size_t</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="119" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="119" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1ac225dee52c2eb4d0b2149f353005f6f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut::useEdge</definition>
+        <argsstring>(const size_t e) const</argsstring>
+        <name>useEdge</name>
+        <param>
+          <type>const size_t</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="121" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="121" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1128">
+        <label>nifty::graph::opt::multicut::MulticutIlp&lt; OBJECTIVE, ILP_SOLVER &gt;::SubgraphWithCut</label>
+        <childnode refid="1129" relation="usage">
+          <edgelabel>denseIds_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1130">
+        <label>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndicesImpl&lt; GRAPH, GRAPH::EdgeIdTag &gt;</label>
+        <link refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndicesImpl"/>
+      </node>
+      <node id="1129">
+        <label>nifty::graph::detail_graph::EdgeIndicesToContiguousEdgeIndices&lt; GRAPH &gt;</label>
+        <link refid="classnifty_1_1graph_1_1detail__graph_1_1EdgeIndicesToContiguousEdgeIndices"/>
+        <childnode refid="1130" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" line="114" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/multicut/multicut_ilp.hxx" bodystart="114" bodyend="126"/>
+    <listofallmembers>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1a4c6f4079ee73a025f044b4f503be1ab4" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</scope><name>denseIds_</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1aad067320b2fe3ef03abd311a4e7bd3f7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</scope><name>ilpSolver_</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1aea6368c5e5962ad3995417d39c859692" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</scope><name>SubgraphWithCut</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1ac225dee52c2eb4d0b2149f353005f6f7" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</scope><name>useEdge</name></member>
+      <member refid="structnifty_1_1graph_1_1opt_1_1multicut_1_1MulticutIlp_1_1SubgraphWithCut_1acc38836cd910a739383d77c68432a543" prot="public" virt="non-virtual"><scope>nifty::graph::opt::multicut::MulticutIlp::SubgraphWithCut</scope><name>useNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

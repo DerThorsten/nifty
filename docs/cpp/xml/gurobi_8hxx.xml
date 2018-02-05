@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="gurobi_8hxx" kind="file" language="C++">
     <compoundname>gurobi.hxx</compoundname>
     <includes local="no">limits</includes>
@@ -8,42 +8,42 @@
     <includes refid="exceptions_8hxx" local="yes">nifty/exceptions/exceptions.hxx</includes>
     <includes refid="ilp__backend_8hxx" local="yes">nifty/ilp_backend/ilp_backend.hxx</includes>
     <incdepgraph>
-      <node id="11336">
+      <node id="5880">
         <label>limits</label>
       </node>
-      <node id="11340">
+      <node id="5884">
         <label>stdexcept</label>
       </node>
-      <node id="11337">
+      <node id="5881">
         <label>string</label>
       </node>
-      <node id="11339">
+      <node id="5883">
         <label>nifty/exceptions/exceptions.hxx</label>
         <link refid="exceptions_8hxx"/>
-        <childnode refid="11340" relation="include">
+        <childnode refid="5884" relation="include">
         </childnode>
       </node>
-      <node id="11335">
+      <node id="5879">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/gurobi.hxx</label>
-        <link refid="gurobi.hxx"/>
-        <childnode refid="11336" relation="include">
+        <link refid="gurobi_8hxx"/>
+        <childnode refid="5880" relation="include">
         </childnode>
-        <childnode refid="11337" relation="include">
+        <childnode refid="5881" relation="include">
         </childnode>
-        <childnode refid="11338" relation="include">
+        <childnode refid="5882" relation="include">
         </childnode>
-        <childnode refid="11339" relation="include">
+        <childnode refid="5883" relation="include">
         </childnode>
-        <childnode refid="11341" relation="include">
+        <childnode refid="5885" relation="include">
         </childnode>
       </node>
-      <node id="11338">
+      <node id="5882">
         <label>gurobi_c++.h</label>
       </node>
-      <node id="11341">
+      <node id="5885">
         <label>nifty/ilp_backend/ilp_backend.hxx</label>
         <link refid="ilp__backend_8hxx"/>
-        <childnode refid="11336" relation="include">
+        <childnode refid="5880" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -86,7 +86,7 @@
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CoefficientIterator,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a2521e51c0cdfb1e029d332ab7f203021" kindref="member">optimize</ref>();</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1afbdf38456bb7ce8110168dd3aa7f691f" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a510a33ec8e49b005e5a2a0802d8e0383" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34" refid="classnifty_1_1ilp__backend_1_1Gurobi_1a3c80f9769e9f33482397305e234b0aa7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a3c80f9769e9f33482397305e234b0aa7" kindref="member">name</ref>(){</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;Gurobi&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -219,7 +219,7 @@
 <codeline lineno="162"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
 <codeline lineno="164"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="165" refid="classnifty_1_1ilp__backend_1_1Gurobi_1afbdf38456bb7ce8110168dd3aa7f691f" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1afbdf38456bb7ce8110168dd3aa7f691f" kindref="member">Gurobi::label</ref>(</highlight></codeline>
+<codeline lineno="165" refid="classnifty_1_1ilp__backend_1_1Gurobi_1a510a33ec8e49b005e5a2a0802d8e0383" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Gurobi_1a510a33ec8e49b005e5a2a0802d8e0383" kindref="member">Gurobi::label</ref>(</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>variableIndex</highlight></codeline>
 <codeline lineno="167"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gurobiVariables_[variableIndex].get(GRB_DoubleAttr_X);</highlight></codeline>

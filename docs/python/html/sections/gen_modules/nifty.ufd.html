@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>nifty.ufd &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>nifty.ufd &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="How to Contribute" href="../contribute.html" />
+    <link rel="next" title="Nifty C++ API Reference" href="../cpp_reference.html" />
     <link rel="prev" title="nifty.hdf5" href="nifty.hdf5.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,12 +39,12 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../contribute.html" title="How to Contribute"
+          <a href="../cpp_reference.html" title="Nifty C++ API Reference"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="nifty.hdf5.html" title="nifty.hdf5"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -68,8 +65,8 @@
   <p class="topless"><a href="nifty.hdf5.html"
                         title="previous chapter">nifty.hdf5</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../contribute.html"
-                        title="next chapter">How to Contribute</a></p>
+  <p class="topless"><a href="../cpp_reference.html"
+                        title="next chapter">Nifty C++ API Reference</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
@@ -105,42 +102,126 @@
 <dd><dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.assign">
 <code class="descname">assign</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.assign" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Reset the ufd (to a number of sets each containing one element).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>int</em>) – Number of distinct sets.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.elementLabeling">
 <code class="descname">elementLabeling</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.elementLabeling" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Output a contiguous labeling of all elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.find">
 <code class="descname">find</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.find" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.insert">
 <code class="descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.insert" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Insert a number of new sets, each containing one element.</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>number</strong> (<em>int</em>) – Number of sets to insert.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.merge">
 <code class="descname">merge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.merge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Merge two elements</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element1</strong> (<em>int</em>) – Element in the first set.</li>
+<li><strong>element2</strong> – Element in the first set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed….TODO</p>
+<p>Args:</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="nifty.ufd.Ufd_UInt32.numberOfElements">
 <code class="descname">numberOfElements</code><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.numberOfElements" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="nifty.ufd.Ufd_UInt32.numberOfSets">
 <code class="descname">numberOfSets</code><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.numberOfSets" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of sets.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.representativesToSets">
 <code class="descname">representativesToSets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt32.representativesToSets" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt32.reset">
@@ -155,42 +236,126 @@
 <dd><dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.assign">
 <code class="descname">assign</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.assign" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Reset the ufd (to a number of sets each containing one element).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>int</em>) – Number of distinct sets.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.elementLabeling">
 <code class="descname">elementLabeling</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.elementLabeling" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Output a contiguous labeling of all elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.find">
 <code class="descname">find</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.find" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the representative element of the set that contains the given element (with path compression).</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element</strong> (<em>int</em>) – Element.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.insert">
 <code class="descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.insert" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Insert a number of new sets, each containing one element.</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>number</strong> (<em>int</em>) – Number of sets to insert.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.merge">
 <code class="descname">merge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.merge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Merge two elements</p>
+<p>Detailed….TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element1</strong> (<em>int</em>) – Element in the first set.</li>
+<li><strong>element2</strong> – Element in the first set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed….TODO</p>
+<p>Args:</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="nifty.ufd.Ufd_UInt64.numberOfElements">
 <code class="descname">numberOfElements</code><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.numberOfElements" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="nifty.ufd.Ufd_UInt64.numberOfSets">
 <code class="descname">numberOfSets</code><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.numberOfSets" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of sets.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.representativesToSets">
 <code class="descname">representativesToSets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.ufd.Ufd_UInt64.representativesToSets" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the number of elements.</p>
+<p>Detailed….TODO</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="nifty.ufd.Ufd_UInt64.reset">
@@ -219,17 +384,17 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../contribute.html" title="How to Contribute"
+          <a href="../cpp_reference.html" title="Nifty C++ API Reference"
              >next</a> |</li>
         <li class="right" >
           <a href="nifty.hdf5.html" title="nifty.hdf5"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>

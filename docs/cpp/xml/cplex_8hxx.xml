@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.10">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="cplex_8hxx" kind="file" language="C++">
     <compoundname>cplex.hxx</compoundname>
     <includes local="no">limits</includes>
@@ -8,36 +8,36 @@
     <includes local="no">ilcplex/ilocplex.h</includes>
     <includes refid="ilp__backend_8hxx" local="yes">nifty/ilp_backend/ilp_backend.hxx</includes>
     <incdepgraph>
-      <node id="11321">
+      <node id="5865">
         <label>limits</label>
       </node>
-      <node id="11322">
+      <node id="5866">
         <label>string</label>
       </node>
-      <node id="11324">
+      <node id="5868">
         <label>ilcplex/ilocplex.h</label>
       </node>
-      <node id="11323">
+      <node id="5867">
         <label>sstream</label>
       </node>
-      <node id="11320">
+      <node id="5864">
         <label>/home/tbeier/src/nifty/include/nifty/ilp_backend/cplex.hxx</label>
-        <link refid="cplex.hxx"/>
-        <childnode refid="11321" relation="include">
+        <link refid="cplex_8hxx"/>
+        <childnode refid="5865" relation="include">
         </childnode>
-        <childnode refid="11322" relation="include">
+        <childnode refid="5866" relation="include">
         </childnode>
-        <childnode refid="11323" relation="include">
+        <childnode refid="5867" relation="include">
         </childnode>
-        <childnode refid="11324" relation="include">
+        <childnode refid="5868" relation="include">
         </childnode>
-        <childnode refid="11325" relation="include">
+        <childnode refid="5869" relation="include">
         </childnode>
       </node>
-      <node id="11325">
+      <node id="5869">
         <label>nifty/ilp_backend/ilp_backend.hxx</label>
         <link refid="ilp__backend_8hxx"/>
-        <childnode refid="11321" relation="include">
+        <childnode refid="5865" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -96,7 +96,7 @@
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>VariableIndexIterator,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>CoefficientIterator&gt;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1ac1aca9700667959bb0d99c55ffec16ed" kindref="member">addConstraint</ref>(VariableIndexIterator,<sp/>VariableIndexIterator,CoefficientIterator,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1aa0055358a4aef6b8b660c14422500b23" kindref="member">optimize</ref>();</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1aded72f7962341ae66e4a72c2ef463015" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1ab15c34e1113706d59f1d795d877942a9" kindref="member">label</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37" refid="classnifty_1_1ilp__backend_1_1Cplex_1a35cb51113bf3b858d470f9c742884cdc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1a35cb51113bf3b858d470f9c742884cdc" kindref="member">name</ref>(){</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;Cplex&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -110,7 +110,7 @@
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>v=0;<sp/>v&lt;nVariables_;<sp/>++v){</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>val<sp/>=<sp/>*objectiveIter;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(std::abs(val)&lt;=0.00000001){</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="namespacehalf__float_1_1detail_1a25d76d0f9f18298a1096716c0da7b6e5" kindref="member">std::abs</ref>(val)&lt;=0.00000001){</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(val&lt;0.0){</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>obj[v]<sp/>=<sp/>-0.00000001;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -288,7 +288,7 @@
 <codeline lineno="224"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"></highlight></codeline>
 <codeline lineno="226"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="227" refid="classnifty_1_1ilp__backend_1_1Cplex_1aded72f7962341ae66e4a72c2ef463015" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1aded72f7962341ae66e4a72c2ef463015" kindref="member">Cplex::label</ref>(</highlight></codeline>
+<codeline lineno="227" refid="classnifty_1_1ilp__backend_1_1Cplex_1ab15c34e1113706d59f1d795d877942a9" refkind="member"><highlight class="normal"><ref refid="classnifty_1_1ilp__backend_1_1Cplex_1ab15c34e1113706d59f1d795d877942a9" kindref="member">Cplex::label</ref>(</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>variableIndex</highlight></codeline>
 <codeline lineno="229"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nVariables_&gt;=1){</highlight></codeline>

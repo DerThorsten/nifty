@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap" kind="class" language="C++" prot="public">
+    <compoundname>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</compoundname>
+    <includes refid="merge__rules_8hxx" local="no">merge_rules.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class G</type>
+      </param>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a920251c7296554c793d991a09938cc0f" prot="public" static="no">
+        <type>G</type>
+        <definition>typedef G nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::GraphType</definition>
+        <argsstring></argsstring>
+        <name>GraphType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="33" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a81130e05d85be89cc569cab155332d57" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; T &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;T&gt; nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::MeanEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>MeanEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="34" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a2d697e72339ef4155e249f0b785b82a9" prot="public" static="no">
+        <type>GraphType::template EdgeMap&lt; <ref refid="namespacenifty_1a20031b62bd5c16b943905d43a8ed361a" kindref="member">nifty::float16_t</ref> &gt;</type>
+        <definition>typedef GraphType:: template EdgeMap&lt;nifty::float16_t&gt; nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::SizeEdgeMapType</definition>
+        <argsstring></argsstring>
+        <name>SizeEdgeMapType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="35" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a356668f9c14aae4ff88d90a232923766" prot="public" static="no">
+        <type><ref refid="structnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanSettings" kindref="compound">ArithmeticMeanSettings</ref></type>
+        <definition>typedef ArithmeticMeanSettings nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::SettingsType</definition>
+        <argsstring></argsstring>
+        <name>SettingsType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="37" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1abc6532eea4d2156e1c15b3b6d5ba26e9" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a81130e05d85be89cc569cab155332d57" kindref="member">MeanEdgeMapType</ref></type>
+        <definition>MeanEdgeMapType nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::values_</definition>
+        <argsstring></argsstring>
+        <name>values_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="86" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ae1f58080880ba273c150a6ae5d29b5bf" prot="private" static="no" mutable="no">
+        <type><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a2d697e72339ef4155e249f0b785b82a9" kindref="member">SizeEdgeMapType</ref></type>
+        <definition>SizeEdgeMapType nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::weights_</definition>
+        <argsstring></argsstring>
+        <name>weights_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="87" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a566abab9594baa39a5e445c368ed24e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>static auto nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::staticName</definition>
+        <argsstring>()</argsstring>
+        <name>staticName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="26" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="26" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a4a3138619d92afa12e883b09d538896a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="29" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ae92e301804e5bf9b875517f97e225d5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class VALUES</type>
+          </param>
+          <param>
+            <type>class WEIGHTS</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::ArithmeticMeanEdgeMap</definition>
+        <argsstring>(const GraphType &amp;g, const VALUES &amp;values, const WEIGHTS &amp;weights, const SettingsType &amp;settings=SettingsType())</argsstring>
+        <name>ArithmeticMeanEdgeMap</name>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a920251c7296554c793d991a09938cc0f" kindref="member">GraphType</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const VALUES &amp;</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>const WEIGHTS &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a356668f9c14aae4ff88d90a232923766" kindref="member">SettingsType</ref> &amp;</type>
+          <declname>settings</declname>
+          <defval><ref refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a356668f9c14aae4ff88d90a232923766" kindref="member">SettingsType</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="40" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="40" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a800c49f685e5e9d538c4882d3850bf25" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::merge</definition>
+        <argsstring>(const uint64_t aliveEdge, const uint64_t deadEdge)</argsstring>
+        <name>merge</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>aliveEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>deadEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="55" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="55" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ab8cb13b03ece7afe026a3423cc1d91aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::setValueFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setValueFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="69" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a24503113d90f0294a8a16ad7b9553dfd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::setFrom</definition>
+        <argsstring>(const uint64_t targetEdge, const uint64_t sourceEdge)</argsstring>
+        <name>setFrom</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const uint64_t</type>
+          <declname>sourceEdge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="72" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="72" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ac3b18557bfdd68a5f85fccf700da5c5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::set</definition>
+        <argsstring>(const uint64_t targetEdge, const T &amp;value, const T &amp;weight)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>targetEdge</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="77" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ad63987afccca212c9ed566d68dba3e67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap&lt; G, T &gt;::operator[]</definition>
+        <argsstring>(const uint64_t edge) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const uint64_t</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="82" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="82" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" line="23" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx" bodystart="23" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ae92e301804e5bf9b875517f97e225d5d" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>ArithmeticMeanEdgeMap</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a920251c7296554c793d991a09938cc0f" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>GraphType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a81130e05d85be89cc569cab155332d57" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>MeanEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a800c49f685e5e9d538c4882d3850bf25" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>merge</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a4a3138619d92afa12e883b09d538896a" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>name</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ad63987afccca212c9ed566d68dba3e67" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>operator[]</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ac3b18557bfdd68a5f85fccf700da5c5e" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>set</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a24503113d90f0294a8a16ad7b9553dfd" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>setFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a356668f9c14aae4ff88d90a232923766" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>SettingsType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ab8cb13b03ece7afe026a3423cc1d91aa" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>setValueFrom</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a2d697e72339ef4155e249f0b785b82a9" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>SizeEdgeMapType</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1a566abab9594baa39a5e445c368ed24e7" prot="public" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>staticName</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1abc6532eea4d2156e1c15b3b6d5ba26e9" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>values_</name></member>
+      <member refid="classnifty_1_1graph_1_1agglo_1_1merge__rules_1_1ArithmeticMeanEdgeMap_1ae1f58080880ba273c150a6ae5d29b5bf" prot="private" virt="non-virtual"><scope>nifty::graph::agglo::merge_rules::ArithmeticMeanEdgeMap</scope><name>weights_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

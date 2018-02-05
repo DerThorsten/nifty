@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nifty::graph::opt::common::ProposalGeneratorBase</compoundname>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals" prot="public" virt="non-virtual">nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator" prot="public" virt="non-virtual">nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator" prot="public" virt="non-virtual">nifty::graph::opt::common::RandomNodeColorProposalGenerator&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1StubProposalGenerator" prot="public" virt="non-virtual">nifty::graph::opt::common::StubProposalGenerator&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator" prot="public" virt="non-virtual">nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;</derivedcompoundref>
+    <includes refid="common_2proposal__generators_2proposal__generator__base_8hxx" local="no">proposal_generator_base.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class OBJECTIVE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1aebac1b29ca57644245abe4a9f00b53d0" prot="public" static="no">
+        <type>OBJECTIVE</type>
+        <definition>typedef OBJECTIVE nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;::ObjectiveType</definition>
+        <argsstring></argsstring>
+        <name>ObjectiveType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" line="14" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" prot="public" static="no">
+        <type>ObjectiveType::GraphType::template NodeMap&lt; uint64_t &gt;</type>
+        <definition>typedef ObjectiveType::GraphType:: template NodeMap&lt;uint64_t&gt; nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;::ProposalType</definition>
+        <argsstring></argsstring>
+        <name>ProposalType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" line="15" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;::~ProposalGeneratorBase</definition>
+        <argsstring>()</argsstring>
+        <name>~ProposalGeneratorBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" line="16" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;::generateProposal</definition>
+        <argsstring>(const ProposalType &amp;currentBest, ProposalType &amp;labels, const size_t tid)=0</argsstring>
+        <name>generateProposal</name>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1StubProposalGenerator_1a38c36aac9cf548bbc9871ccb865709d7">generateProposal</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator_1a5862fcb54e6f7332b6466ecc8371aef4">generateProposal</reimplementedby>
+        <reimplementedby refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator_1a0dadaa8e06ec15ac6e892ecc2fa6ad97">generateProposal</reimplementedby>
+        <param>
+          <type>const <ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>currentBest</declname>
+        </param>
+        <param>
+          <type><ref refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" kindref="member">ProposalType</ref> &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>tid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" line="17" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="858">
+        <label>nifty::graph::opt::common::StubProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1StubProposalGenerator"/>
+        <childnode refid="854" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="856">
+        <label>nifty::graph::opt::common::InterfaceFlipperProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1InterfaceFlipperProposalGenerator"/>
+        <childnode refid="854" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="859">
+        <label>nifty::graph::opt::common::WatershedProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1WatershedProposalGenerator"/>
+        <childnode refid="854" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="854">
+        <label>nifty::graph::opt::common::ProposalGeneratorBase&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase"/>
+      </node>
+      <node id="857">
+        <label>nifty::graph::opt::common::RandomNodeColorProposalGenerator&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1RandomNodeColorProposalGenerator"/>
+        <childnode refid="854" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="855">
+        <label>nifty::graph::opt::common::GreedyAdditiveMulticutProposals&lt; OBJECTIVE &gt;</label>
+        <link refid="classnifty_1_1graph_1_1opt_1_1common_1_1GreedyAdditiveMulticutProposals"/>
+        <childnode refid="854" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" line="12" column="1" bodyfile="/home/tbeier/src/nifty/include/nifty/graph/opt/common/proposal_generators/proposal_generator_base.hxx" bodystart="12" bodyend="18"/>
+    <listofallmembers>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1abb7b02d650049f52733b3f2dc81bb395" prot="public" virt="pure-virtual"><scope>nifty::graph::opt::common::ProposalGeneratorBase</scope><name>generateProposal</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1aebac1b29ca57644245abe4a9f00b53d0" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::ProposalGeneratorBase</scope><name>ObjectiveType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1a122993da5c326628cdb865a6279d20c5" prot="public" virt="non-virtual"><scope>nifty::graph::opt::common::ProposalGeneratorBase</scope><name>ProposalType</name></member>
+      <member refid="classnifty_1_1graph_1_1opt_1_1common_1_1ProposalGeneratorBase_1ac3cf261170f3fb5beb3ecfc483e3fb48" prot="public" virt="virtual"><scope>nifty::graph::opt::common::ProposalGeneratorBase</scope><name>~ProposalGeneratorBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

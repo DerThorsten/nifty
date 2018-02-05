@@ -1,0 +1,107 @@
+\hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{}\section{nifty\+:\+:graph\+:\+:opt\+:\+:higher\+\_\+order\+\_\+multicut\+:\+:Higher\+Order\+Multicut\+Objective$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ Class Template Reference}
+\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective$<$ G\+R\+A\+P\+H, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+P\+E $>$}}
+
+
+{\ttfamily \#include $<$higher\+\_\+order\+\_\+multicut\+\_\+objective.\+hxx$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type}
+\item 
+typedef Graph\+Type\+::template Node\+Map$<$ uint64\+\_\+t $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a4584ff3b56277da6d231c6e2c76d75c4}{Node\+Labels\+Type}
+\item 
+typedef W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}{Weight\+Type}
+\item 
+typedef \hyperlink{structnifty_1_1graph_1_1graph__maps_1_1EdgeMap}{graph\+\_\+maps\+::\+Edge\+Map}$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type}, \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}{Weight\+Type} $>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a8aaeea0d257df0c62eed37b07bcbd366}{Higher\+Order\+Multicut\+Objective} (const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type} \&g)
+\item 
+\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a10301046649fe1cee6813d1753768f80}{weights} ()
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_adc0bdf0b9ddf69332279d710dfd8c719}{graph} () const
+\item 
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map} \& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a785a3d68fcb9264cb61001cbd42cd977}{weights} () const
+\item 
+const std\+::vector$<$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor}{Higher\+Order\+Factor} $>$ \& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a81baae1ee2a1463b28e964f8c027960a}{higher\+Order\+Factors} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!Graph\+Type@{Graph\+Type}}
+\index{Graph\+Type@{Graph\+Type}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{Graph\+Type}{GraphType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+typedef G\+R\+A\+PH \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a4584ff3b56277da6d231c6e2c76d75c4}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a4584ff3b56277da6d231c6e2c76d75c4}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!Node\+Labels\+Type@{Node\+Labels\+Type}}
+\index{Node\+Labels\+Type@{Node\+Labels\+Type}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{Node\+Labels\+Type}{NodeLabelsType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+typedef Graph\+Type\+:: template Node\+Map$<$uint64\+\_\+t$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a4584ff3b56277da6d231c6e2c76d75c4}{Node\+Labels\+Type}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!Weights\+Map@{Weights\+Map}}
+\index{Weights\+Map@{Weights\+Map}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{Weights\+Map}{WeightsMap}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+typedef \hyperlink{structnifty_1_1graph_1_1graph__maps_1_1EdgeMap}{graph\+\_\+maps\+::\+Edge\+Map}$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type}, \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}{Weight\+Type}$>$ \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!Weight\+Type@{Weight\+Type}}
+\index{Weight\+Type@{Weight\+Type}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{Weight\+Type}{WeightType}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+typedef W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ac36de4a6a975540630cb89af6d5d83b2}{Weight\+Type}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a8aaeea0d257df0c62eed37b07bcbd366}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a8aaeea0d257df0c62eed37b07bcbd366}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!Higher\+Order\+Multicut\+Objective@{Higher\+Order\+Multicut\+Objective}}
+\index{Higher\+Order\+Multicut\+Objective@{Higher\+Order\+Multicut\+Objective}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{Higher\+Order\+Multicut\+Objective()}{HigherOrderMulticutObjective()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{Higher\+Order\+Multicut\+Objective} (\begin{DoxyParamCaption}\item[{const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_adc0bdf0b9ddf69332279d710dfd8c719}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_adc0bdf0b9ddf69332279d710dfd8c719}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!graph@{graph}}
+\index{graph@{graph}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{graph()}{graph()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a177204e42faa461d572976de69fbf3b9}{Graph\+Type}\& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a81baae1ee2a1463b28e964f8c027960a}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a81baae1ee2a1463b28e964f8c027960a}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!higher\+Order\+Factors@{higher\+Order\+Factors}}
+\index{higher\+Order\+Factors@{higher\+Order\+Factors}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{higher\+Order\+Factors()}{higherOrderFactors()}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+const std\+::vector$<$\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderFactor}{Higher\+Order\+Factor}$>$\& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::higher\+Order\+Factors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a10301046649fe1cee6813d1753768f80}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a10301046649fe1cee6813d1753768f80}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!weights@{weights}}
+\index{weights@{weights}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{weights()}{weights()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+\hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map}\& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::weights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a785a3d68fcb9264cb61001cbd42cd977}\label{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_a785a3d68fcb9264cb61001cbd42cd977}} 
+\index{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}!weights@{weights}}
+\index{weights@{weights}!nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective@{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}}
+\subsubsection{\texorpdfstring{weights()}{weights()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class G\+R\+A\+PH , class W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$ \\
+const \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective_ae3dca1bc16e023da893b0a69d01d6382}{Weights\+Map}\& \hyperlink{classnifty_1_1graph_1_1opt_1_1higher__order__multicut_1_1HigherOrderMulticutObjective}{nifty\+::graph\+::opt\+::higher\+\_\+order\+\_\+multicut\+::\+Higher\+Order\+Multicut\+Objective}$<$ G\+R\+A\+PH, W\+E\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $>$\+::weights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/tbeier/src/nifty/include/nifty/graph/opt/higher\+\_\+order\+\_\+multicut/\hyperlink{higher__order__multicut__objective_8hxx}{higher\+\_\+order\+\_\+multicut\+\_\+objective.\+hxx}\end{DoxyCompactItemize}

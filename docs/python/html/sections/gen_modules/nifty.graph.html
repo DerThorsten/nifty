@@ -1,21 +1,18 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>nifty.graph &#8212; Nifty 0.19.0 documentation</title>
-    
+    <title>nifty.graph &#8212; Nifty  documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.19.0',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,13 +22,13 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="nifty.graph.rag" href="nifty.graph.rag.html" />
     <link rel="prev" title="nifty.cgp" href="nifty.cgp.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -47,7 +44,7 @@
         <li class="right" >
           <a href="nifty.cgp.html" title="nifty.cgp"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" accesskey="U">Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
@@ -183,7 +180,7 @@ dense (bool): should the returned labeling be dense (default {True})</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 edgeWeights (numpy.ndarray): the edge weights</td>
 </tr>
@@ -198,7 +195,7 @@ edgeWeights (numpy.ndarray): the edge weights</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 edgeWeights (numpy.ndarray): the edge weights</td>
 </tr>
@@ -213,7 +210,7 @@ edgeWeights (numpy.ndarray): the edge weights</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 edgeWeights (numpy.ndarray): the edge weights</td>
 </tr>
@@ -231,33 +228,14 @@ edgeWeights (numpy.ndarray): the edge weights</td>
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
-<dt id="nifty.graph.ilpSettings">
-<code class="descclassname">nifty.graph.</code><code class="descname">ilpSettings</code><span class="sig-paren">(</span><em>relativeGap=0.0</em>, <em>absoluteGap=0.0</em>, <em>memLimit=-1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ilpSettings" title="Permalink to this definition">¶</a></dt>
-<dd><p>factory function to create <code class="xref py py-class docutils literal"><span class="pre">IlpBackendSettigns</span></code> .</p>
-<p>factory function to create <code class="xref py py-class docutils literal"><span class="pre">IlpBackendSettigns</span></code> .
-This settings might be consumed by ILP solvers
-as CPLEX GUROBI and GLPK.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>relativeGap</strong> (<em>float</em>) &#8211; relative optimality gap (default: {0.0})</li>
-<li><strong>absoluteGap</strong> (<em>float</em>) &#8211; absolute optimality gap (default: {0.0})</li>
-<li><strong>memLimit</strong> (<em>float</em>) &#8211; memory limit in mega-bites
-a value smaller as zero indicates no limit  (default: {-1.0})</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">ilpSettings</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal"><span class="pre">IlpBackendSettings</span></code></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dt id="nifty.graph.longRangeGridGraph">
+<code class="descclassname">nifty.graph.</code><code class="descname">longRangeGridGraph</code><span class="sig-paren">(</span><em>shape</em>, <em>offsets</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.longRangeGridGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.longRangeGridGraph3D">
+<code class="descclassname">nifty.graph.</code><code class="descname">longRangeGridGraph3D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.longRangeGridGraph3D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.nodeWeightedWatershedsSegmentation">
@@ -267,7 +245,7 @@ a value smaller as zero indicates no limit  (default: {-1.0})</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 nodeWeights (numpy.ndarray): the node weights</td>
 </tr>
@@ -282,7 +260,7 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 nodeWeights (numpy.ndarray): the node weights</td>
 </tr>
@@ -297,7 +275,7 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> &#8211; the input graph
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph</strong> – the input graph
 seeds (numpy.ndarray): the seeds
 nodeWeights (numpy.ndarray): the node weights</td>
 </tr>
@@ -308,6 +286,11 @@ nodeWeights (numpy.ndarray): the node weights</td>
 </tbody>
 </table>
 </dd></dl>
+
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.randomGraph">
+<code class="descclassname">nifty.graph.</code><code class="descname">randomGraph</code><span class="sig-paren">(</span><em>numberOfNodes</em>, <em>numberOfEdges</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.randomGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <div style='clear:both'></div><dl class="function">
 <dt id="nifty.graph.shortestPathMultiTargetParallel">
@@ -329,6 +312,11 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <code class="descclassname">nifty.graph.</code><code class="descname">undirectedGridGraph</code><span class="sig-paren">(</span><em>shape</em>, <em>simpleNh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.undirectedGridGraph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<div style='clear:both'></div><dl class="function">
+<dt id="nifty.graph.undirectedLongRangeGridGraph">
+<code class="descclassname">nifty.graph.</code><code class="descname">undirectedLongRangeGridGraph</code><span class="sig-paren">(</span><em>shape</em>, <em>offsets</em><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.undirectedLongRangeGridGraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <div style='clear:both'></div><div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
@@ -337,6 +325,11 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <dd><dl class="method">
 <dt id="nifty.graph.ComponentsUndirectedGraph.build">
 <code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGraph.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGraph.buildFromEdgeLabels">
+<code class="descname">buildFromEdgeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGraph.buildFromEdgeLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -360,6 +353,11 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromEdgeLabels">
+<code class="descname">buildFromEdgeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromEdgeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromNodeLabels">
 <code class="descname">buildFromNodeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph2DSimpleNh.buildFromNodeLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -380,6 +378,11 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromEdgeLabels">
+<code class="descname">buildFromEdgeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromEdgeLabels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromNodeLabels">
 <code class="descname">buildFromNodeLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.buildFromNodeLabels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -387,43 +390,6 @@ nodeWeights (numpy.ndarray): the node weights</td>
 <dl class="method">
 <dt id="nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.componentLabels">
 <code class="descname">componentLabels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.ComponentsUndirectedGridGraph3DSimpleNh.componentLabels" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<div style='clear:both'></div><dl class="class">
-<dt id="nifty.graph.Configuration">
-<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">Configuration</code><a class="headerlink" href="#nifty.graph.Configuration" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class show the compile Configuration
-Of the nifty python bindings</p>
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_CPLEX">
-<code class="descname">WITH_CPLEX</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_CPLEX" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_GLPK">
-<code class="descname">WITH_GLPK</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_GLPK" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_GUROBI">
-<code class="descname">WITH_GUROBI</code><em class="property"> = False</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_GUROBI" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_HDF5">
-<code class="descname">WITH_HDF5</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_HDF5" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_LP_MP">
-<code class="descname">WITH_LP_MP</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_LP_MP" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="nifty.graph.Configuration.WITH_QPBO">
-<code class="descname">WITH_QPBO</code><em class="property"> = True</em><a class="headerlink" href="#nifty.graph.Configuration.WITH_QPBO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -479,6 +445,11 @@ Of the nifty python bindings</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.EdgeContractionGraphUndirectedGraph.bfsEdges">
+<code class="descname">bfsEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.EdgeContractionGraphUndirectedGraph.bfsEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.EdgeContractionGraphUndirectedGraph.contractEdge">
 <code class="descname">contractEdge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.EdgeContractionGraphUndirectedGraph.contractEdge" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -511,7 +482,7 @@ Of the nifty python bindings</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) &#8211; a pair of nodes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) – a pair of nodes</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">edge index if edge is in graph, -1 otherwise.</td>
 </tr>
@@ -525,8 +496,8 @@ Of the nifty python bindings</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>u</strong> (<em>int</em>) &#8211; first node</li>
-<li><strong>v</strong> (<em>int</em>) &#8211; second node</li>
+<li><strong>u</strong> (<em>int</em>) – first node</li>
+<li><strong>v</strong> (<em>int</em>) – second node</li>
 </ul>
 </td>
 </tr>
@@ -548,7 +519,7 @@ Of the nifty python bindings</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) &#8211; array with pairs of nodes (Ex2)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) – array with pairs of nodes (Ex2)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array filed with edge indexes for all pairs
 of nodes which are in the graph and  -1 otherwise.</td>
@@ -582,6 +553,11 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <dl class="method">
 <dt id="nifty.graph.EdgeContractionGraphUndirectedGraph.nodeOfDeadEdge">
 <code class="descname">nodeOfDeadEdge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.EdgeContractionGraphUndirectedGraph.nodeOfDeadEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nifty.graph.EdgeContractionGraphUndirectedGraph.nodeUfd">
+<code class="descname">nodeUfd</code><a class="headerlink" href="#nifty.graph.EdgeContractionGraphUndirectedGraph.nodeUfd" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -622,7 +598,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the first endpoint of the edge.</td>
 </tr>
@@ -640,7 +616,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">pair of node indexes / enpoints of the edge.</td>
 </tr>
@@ -674,7 +650,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the second endpoint of the edge.</td>
 </tr>
@@ -754,6 +730,11 @@ of nodes which are in the graph and  -1 otherwise.</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.UndirectedGraph.bfsEdges">
+<code class="descname">bfsEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGraph.bfsEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGraph.deserialize">
 <code class="descname">deserialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGraph.deserialize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -791,7 +772,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) &#8211; a pair of nodes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) – a pair of nodes</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">edge index if edge is in graph, -1 otherwise.</td>
 </tr>
@@ -805,8 +786,8 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>u</strong> (<em>int</em>) &#8211; first node</li>
-<li><strong>v</strong> (<em>int</em>) &#8211; second node</li>
+<li><strong>u</strong> (<em>int</em>) – first node</li>
+<li><strong>v</strong> (<em>int</em>) – second node</li>
 </ul>
 </td>
 </tr>
@@ -828,7 +809,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) &#8211; array with pairs of nodes (Ex2)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) – array with pairs of nodes (Ex2)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array filed with edge indexes for all pairs
 of nodes which are in the graph and  -1 otherwise.</td>
@@ -890,6 +871,11 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="nifty.graph.UndirectedGraph.shrinkToFit">
+<code class="descname">shrinkToFit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGraph.shrinkToFit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGraph.u">
 <code class="descname">u</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGraph.u" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get first endpoint of an edge</p>
@@ -897,7 +883,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the first endpoint of the edge.</td>
 </tr>
@@ -915,7 +901,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">pair of node indexes / enpoints of the edge.</td>
 </tr>
@@ -949,7 +935,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the second endpoint of the edge.</td>
 </tr>
@@ -991,6 +977,11 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">UndirectedGridGraph2DSimpleNh</code><a class="headerlink" href="#nifty.graph.UndirectedGridGraph2DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><p>2Dimensional Grid Graph</p>
 <dl class="method">
+<dt id="nifty.graph.UndirectedGridGraph2DSimpleNh.bfsEdges">
+<code class="descname">bfsEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGridGraph2DSimpleNh.bfsEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGridGraph2DSimpleNh.coordianteToNode">
 <code class="descname">coordianteToNode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGridGraph2DSimpleNh.coordianteToNode" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1023,7 +1014,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) &#8211; a pair of nodes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) – a pair of nodes</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">edge index if edge is in graph, -1 otherwise.</td>
 </tr>
@@ -1037,8 +1028,8 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>u</strong> (<em>int</em>) &#8211; first node</li>
-<li><strong>v</strong> (<em>int</em>) &#8211; second node</li>
+<li><strong>u</strong> (<em>int</em>) – first node</li>
+<li><strong>v</strong> (<em>int</em>) – second node</li>
 </ul>
 </td>
 </tr>
@@ -1060,7 +1051,7 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) &#8211; array with pairs of nodes (Ex2)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) – array with pairs of nodes (Ex2)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array filed with edge indexes for all pairs
 of nodes which are in the graph and  -1 otherwise.</td>
@@ -1079,14 +1070,14 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; <p>the image
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) – <p>the image
 mode str: mode can be:</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8216;min&#8217;:  Minimum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;max&#8217;:  Maximum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;sum&#8217;:      Sum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;prod&#8217;: Product of the two image values at edges endpoints of coordinates.</li>
+<li>’min’:  Minimum of the two image values at edges endpoints of coordinates.</li>
+<li>’max’:  Maximum of the two image values at edges endpoints of coordinates.</li>
+<li>’sum’:      Sum of the two image values at edges endpoints of coordinates.</li>
+<li>’prod’: Product of the two image values at edges endpoints of coordinates.</li>
 </ul>
 </div></blockquote>
 </td>
@@ -1143,7 +1134,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the first endpoint of the edge.</td>
 </tr>
@@ -1161,7 +1152,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">pair of node indexes / enpoints of the edge.</td>
 </tr>
@@ -1195,7 +1186,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the second endpoint of the edge.</td>
 </tr>
@@ -1237,6 +1228,11 @@ mode str: mode can be:</p>
 <em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">UndirectedGridGraph3DSimpleNh</code><a class="headerlink" href="#nifty.graph.UndirectedGridGraph3DSimpleNh" title="Permalink to this definition">¶</a></dt>
 <dd><p>3Dimensional Grid Graph</p>
 <dl class="method">
+<dt id="nifty.graph.UndirectedGridGraph3DSimpleNh.bfsEdges">
+<code class="descname">bfsEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGridGraph3DSimpleNh.bfsEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="nifty.graph.UndirectedGridGraph3DSimpleNh.coordianteToNode">
 <code class="descname">coordianteToNode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedGridGraph3DSimpleNh.coordianteToNode" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1269,7 +1265,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) &#8211; a pair of nodes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>tuple</em>) – a pair of nodes</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">edge index if edge is in graph, -1 otherwise.</td>
 </tr>
@@ -1283,8 +1279,8 @@ mode str: mode can be:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>u</strong> (<em>int</em>) &#8211; first node</li>
-<li><strong>v</strong> (<em>int</em>) &#8211; second node</li>
+<li><strong>u</strong> (<em>int</em>) – first node</li>
+<li><strong>v</strong> (<em>int</em>) – second node</li>
 </ul>
 </td>
 </tr>
@@ -1306,7 +1302,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) &#8211; array with pairs of nodes (Ex2)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uv</strong> (<em>numpy.ndarray</em>) – array with pairs of nodes (Ex2)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array filed with edge indexes for all pairs
 of nodes which are in the graph and  -1 otherwise.</td>
@@ -1325,14 +1321,14 @@ of nodes which are in the graph and  -1 otherwise.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) &#8211; <p>the image
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>numpy.ndarray</em>) – <p>the image
 mode str: mode can be:</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8216;min&#8217;:  Minimum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;max&#8217;:  Maximum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;sum&#8217;:      Sum of the two image values at edges endpoints of coordinates.</li>
-<li>&#8216;prod&#8217;: Product of the two image values at edges endpoints of coordinates.</li>
+<li>’min’:  Minimum of the two image values at edges endpoints of coordinates.</li>
+<li>’max’:  Maximum of the two image values at edges endpoints of coordinates.</li>
+<li>’sum’:      Sum of the two image values at edges endpoints of coordinates.</li>
+<li>’prod’: Product of the two image values at edges endpoints of coordinates.</li>
 </ul>
 </div></blockquote>
 </td>
@@ -1389,7 +1385,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the first endpoint of the edge.</td>
 </tr>
@@ -1407,7 +1403,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">pair of node indexes / enpoints of the edge.</td>
 </tr>
@@ -1441,7 +1437,7 @@ mode str: mode can be:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) &#8211; edge index</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edge</strong> (<em>int</em>) – edge index</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node index of the second endpoint of the edge.</td>
 </tr>
@@ -1479,27 +1475,72 @@ mode str: mode can be:</p>
 <dd></dd></dl>
 
 <div style='clear:both'></div><dl class="class">
-<dt id="nifty.graph.partial">
-<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">partial</code><a class="headerlink" href="#nifty.graph.partial" title="Permalink to this definition">¶</a></dt>
-<dd><p>partial(func, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>keywords) - new function with partial application
-of the given arguments and keywords.</p>
-<dl class="attribute">
-<dt id="nifty.graph.partial.args">
-<code class="descname">args</code><a class="headerlink" href="#nifty.graph.partial.args" title="Permalink to this definition">¶</a></dt>
-<dd><p>tuple of arguments to future partial calls</p>
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D">
+<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">UndirectedLongRangeGridGraph2D</code><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.edgeOffsetIndex">
+<code class="descname">edgeOffsetIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.edgeOffsetIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.edgeValues">
+<code class="descname">edgeValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.edgeValues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.insertEdge">
+<code class="descname">insertEdge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.insertEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.insertEdges">
+<code class="descname">insertEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.insertEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.nodeFeatureDiffereces">
+<code class="descname">nodeFeatureDiffereces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.nodeFeatureDiffereces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph2D.nodeFeatureDiffereces2">
+<code class="descname">nodeFeatureDiffereces2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph2D.nodeFeatureDiffereces2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-<dl class="attribute">
-<dt id="nifty.graph.partial.func">
-<code class="descname">func</code><a class="headerlink" href="#nifty.graph.partial.func" title="Permalink to this definition">¶</a></dt>
-<dd><p>function object to use in future partial calls</p>
-</dd></dl>
+<div style='clear:both'></div><dl class="class">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D">
+<em class="property">class </em><code class="descclassname">nifty.graph.</code><code class="descname">UndirectedLongRangeGridGraph3D</code><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.edgeOffsetIndex">
+<code class="descname">edgeOffsetIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.edgeOffsetIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="attribute">
-<dt id="nifty.graph.partial.keywords">
-<code class="descname">keywords</code><a class="headerlink" href="#nifty.graph.partial.keywords" title="Permalink to this definition">¶</a></dt>
-<dd><p>dictionary of keyword arguments to future partial calls</p>
-</dd></dl>
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.edgeValues">
+<code class="descname">edgeValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.edgeValues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.insertEdge">
+<code class="descname">insertEdge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.insertEdge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.insertEdges">
+<code class="descname">insertEdges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.insertEdges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.nodeFeatureDiffereces">
+<code class="descname">nodeFeatureDiffereces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.nodeFeatureDiffereces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nifty.graph.UndirectedLongRangeGridGraph3D.nodeFeatureDiffereces2">
+<code class="descname">nodeFeatureDiffereces2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nifty.graph.UndirectedLongRangeGridGraph3D.nodeFeatureDiffereces2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1528,12 +1569,12 @@ of the given arguments and keywords.</p>
         <li class="right" >
           <a href="nifty.cgp.html" title="nifty.cgp"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty 0.19.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nifty  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../reference.html" >Nifty API Reference</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
     </div>
   </body>
 </html>
