@@ -41,4 +41,5 @@ build_script:
 
 test_script:
   - ctest --output-on-failure
-  
+  - nmake test
+  - nmake python-test
