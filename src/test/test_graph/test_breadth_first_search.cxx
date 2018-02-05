@@ -7,8 +7,8 @@
 
 void breadthFirstSearchTest()
 {
-    typedef nifty::graph::UndirectedGraph<>  Graph;
-    Graph g(6);
+    typedef nifty::graph::UndirectedGraph<>  GraphType;
+    GraphType g(6);
 
     //   0 | 1 |
     //   _   _ 
@@ -22,7 +22,7 @@ void breadthFirstSearchTest()
     auto e45 = g.insertEdge(4,5);
    
 
-    typedef nifty::graph::BreadthFirstSearch<Graph> Bfs;
+    typedef nifty::graph::BreadthFirstSearch<GraphType> Bfs;
 
     // single source single target
     {

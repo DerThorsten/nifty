@@ -9,6 +9,12 @@
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 
 
+#include <xtensor/xtensor.hpp>
+#include <xtensor/xlayout.hpp>
+#include <xtensor-python/pyarray.hpp>     // Numpy bindings
+#include <xtensor-python/pytensor.hpp>     // Numpy bindings
+
+
 namespace py = pybind11;
 
 
@@ -104,6 +110,108 @@ namespace agglo{
 
 
 
+
+    template<class CLUSTER_POLICY, class PY_AGGLO_CLS>
+    void exportAgglomerativeClusteringVisitors(
+        py::module & aggloModule,
+        const std::string & clusterPolicyBaseName,
+        PY_AGGLO_CLS & aggloCls
+    ){
+        typedef CLUSTER_POLICY ClusterPolicyType;
+        typedef typename ClusterPolicyType::GraphType GraphType;
+
+        typedef AgglomerativeClustering<ClusterPolicyType> AgglomerativeClusteringType;
+
+        const auto graphName = GraphName<GraphType>::name();
+        const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
+        //const auto aggloClsName = std::string("AgglomerativeClustering") + clusterPolicyClsName;
+
+
+        typedef DendrogramAgglomerativeClusteringVisitor<AgglomerativeClusteringType> DendrogramAgglomerativeClusteringVisitorType;
+
+        // dendrogram visitor
+        {   
+            typedef DendrogramAgglomerativeClusteringVisitorType VisitorType;
+            const auto visitorClsName = std::string("DendrogramAgglomerativeClusteringVisitor") 
+                + clusterPolicyClsName;
+
+            auto visitorCls = py::class_<VisitorType>(aggloModule, visitorClsName.c_str());
+
+            visitorCls
+                .def("dendrogramEncoding",[](
+                    VisitorType & visitor
+                ){
+                    typedef std::is_same<typename GraphType::NodeIdTag,  ContiguousTag> GraphHasContiguousNodeIds;
+                    static_assert( GraphHasContiguousNodeIds::value,
+                      "dendrogram visitor dendrogramEncoding works only for graphs with contiguous node ids"
+                    );
+                    //std::cout<<"a\n";
+
+                    const auto & encoding = visitor.dendrogramEncoding();
+                    // std::cout<<"encoding.size() "<<encoding.size()<<"\n";
+                    xt::pytensor<uint64_t,2> nodes = xt::ones<uint64_t>({std::size_t(encoding.size()),std::size_t(2)});
+                    //std::cout<<"b\n";
+                    xt::pytensor<double,1>   p = xt::ones<double>({encoding.size()});
+                    xt::pytensor<double,1>   s = xt::ones<double>({encoding.size()});
+                    //std::cout<<"c\n";
+                    uint64_t c = 0;
+                    for(const auto e : encoding){
+                        nodes(c,0) = std::get<0>(e);
+                        nodes(c,1) = std::get<1>(e);
+                        p(c) = std::get<2>(e);
+                        s(c) = std::get<3>(e);
+                        ++c;
+                    }
+                    // std::cout<<"d\n";
+                        
+                    return std::make_tuple(nodes, p, s);
+
+                })
+            ;
+
+        }
+
+
+
+
+        // addition function in agglo class
+        aggloCls.def("dendrogramVisitor",
+            [](
+                AgglomerativeClusteringType & cls
+            ){
+
+                typedef std::is_same<typename GraphType::NodeIdTag,  ContiguousTag> GraphHasContiguousNodeIds;
+                static_assert( GraphHasContiguousNodeIds::value,
+                  "dendrogram visitor works only for graphs with contiguous node ids"
+                );
+
+                return DendrogramAgglomerativeClusteringVisitorType(cls);
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0,1>()
+        )
+        .def("run", [](
+                AgglomerativeClusteringType * self,
+                DendrogramAgglomerativeClusteringVisitorType & visitor,
+                const bool verbose,
+                const int64_t printNth
+            ){
+                {
+                    py::gil_scoped_release allowThreds;
+                    self->run(visitor, verbose, printNth);
+                }
+            }
+            ,
+                py::arg("visitor"),
+                py::arg("verbose") = false,
+                py::arg("printNth") = 1
+            )
+        ;
+
+    }
+
+
+
     template<class CLUSTER_POLICY>
     void exportAgglomerativeClusteringTClusterPolicy(
         py::module & aggloModule,
@@ -118,21 +226,32 @@ namespace agglo{
         const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
         const auto aggloClsName = std::string("AgglomerativeClustering") + clusterPolicyClsName;
 
-        // cls
+
+
+
+
+
+
+
+
+
+        // the agglomerative cluster policy itself 
         auto aggloCls = py::class_<AgglomerativeClusteringType>(aggloModule, aggloClsName.c_str());
            
         aggloCls
             .def("run", [](
                 AgglomerativeClusteringType * self,
-                const bool verbose
+                const bool verbose,
+                const int64_t printNth
             ){
                 {
                     py::gil_scoped_release allowThreds;
-                    self->run(verbose);
+                    self->run(verbose, printNth);
                 }
             }
             ,
-                py::arg("verbose") = false
+                py::arg("verbose") = false,
+                py::arg("printNth") = 1
             )
 
             .def("result", [](
@@ -162,6 +281,11 @@ namespace agglo{
             py::arg("out")
             )
         ;
+
+        // visitors
+        exportAgglomerativeClusteringVisitors<CLUSTER_POLICY>(aggloModule, clusterPolicyBaseName, aggloCls);
+
+
 
         // additional functions which are only enabled if 
         // cluster policies enables ucm

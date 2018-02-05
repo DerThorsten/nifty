@@ -12,13 +12,13 @@ environment:
 install:
 - if [%BUILD_TYPE%]==[MSVC_64] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
 - if [%BUILD_TYPE%]==[MSVC_64] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64] conda create -y --name nifty python=3 numpy boost hdf5 glpk
+- if [%BUILD_TYPE%]==[MSVC_64] conda create -y --name nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
 # NOTE: need to use "call" because otherwise it won't work within an if block.
 - if [%BUILD_TYPE%]==[MSVC_64] call activate nifty
 
 - if [%BUILD_TYPE%]==[MSVC_64_Python] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
 - if [%BUILD_TYPE%]==[MSVC_64_Python] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk
+- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
 # NOTE: need to use "call" because otherwise it won't work within an if block.
 - if [%BUILD_TYPE%]==[MSVC_64_Python] call activate nifty
 

@@ -81,7 +81,7 @@ namespace graph{
             py::arg("graph"),
             py::arg("nodeLabels"),
             py::arg("dense")=true,
-            py::arg("ignoreBackground")=true,
+            py::arg("ignoreBackground")=false,
             "compute connected component labels of a node labeling\n\n"
             ""
             "All nodes which have zero as nodeLabel will keep a zero"
@@ -95,8 +95,7 @@ namespace graph{
             "   numpy.ndarray : connected components labels"
         );
 
-
-
+      
 
 
 
@@ -126,6 +125,12 @@ namespace graph{
             nifty::marray::PyView<uint64_t,1> labels
         ){
             self.buildFromLabels(labels);
+        })
+        .def("buildFromEdgeLabels",[](
+            ComponentsType & self,
+            nifty::marray::PyView<uint8_t,1> labels
+        ){
+            self.buildFromEdgeLabels(labels);
         })
         .def("componentLabels",[](
             ComponentsType & self

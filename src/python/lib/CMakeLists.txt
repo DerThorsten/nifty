@@ -59,14 +59,11 @@ macro(addPythonModule)
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
       target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
     endif()
-
     #endif()
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
 
     #message(STATUS ********Module: ${MODULE_NAME})
     #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
-
-
 
     # link additional libraries
     target_link_libraries(_${MODULE_NAME}

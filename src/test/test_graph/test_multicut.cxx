@@ -28,15 +28,15 @@ void randomizedMulticutTest()
 
 
     typedef double WeightType;
-    typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::UndirectedGraph<> GraphType;
+    typedef nifty::graph::opt::multicut::MulticutObjective<GraphType, WeightType> ObjectiveType;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<ObjectiveType> VerboseVisitor;
 
 
 
     // create a grid graph
     const size_t s = 15;
-    Graph g(s*s);
+    GraphType g(s*s);
     for(auto y=0; y<s; ++y)
     for(auto x=0; x<s; ++x){
         auto u = x + y*s;
@@ -52,7 +52,7 @@ void randomizedMulticutTest()
 
 
     // create an objective 
-    Objective objective(g);
+    ObjectiveType objective(g);
     auto & weights = objective.weights(); 
 
     // fill the objective with values
@@ -64,11 +64,11 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
-        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
         NodeLabelsType nodeLabels(g, 0);
@@ -81,11 +81,11 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
-        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
         NodeLabelsType nodeLabels(g, 0);
@@ -98,11 +98,11 @@ void randomizedMulticutTest()
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         // optimize 
         Solver solver(objective);
-        nifty::graph::graph_maps::EdgeMap<Graph, uint8_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint8_t> outputEdgeLabels(g,0);
         
         VerboseVisitor visitor; 
         NodeLabelsType nodeLabels(g, 0);
@@ -123,9 +123,9 @@ void simpleMulticutTest()
 
 
     typedef double WeightType;
-    typedef nifty::graph::UndirectedGraph<> Graph;
-    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, WeightType> Objective;
-    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<Objective> VerboseVisitor;
+    typedef nifty::graph::UndirectedGraph<> GraphType;
+    typedef nifty::graph::opt::multicut::MulticutObjective<GraphType, WeightType> ObjectiveType;
+    typedef nifty::graph::opt::multicut::MulticutVerboseVisitor<ObjectiveType> VerboseVisitor;
 
 
 
@@ -136,7 +136,7 @@ void simpleMulticutTest()
     auto node = [&](uint64_t x, uint64_t y){
         return x + y*sx;
     };
-    Graph g(sx*sy);
+    GraphType g(sx*sy);
     for(auto y=0; y<sy; ++y)
     for(auto x=0; x<sx; ++x){
         auto u = node(x, y);
@@ -152,7 +152,7 @@ void simpleMulticutTest()
 
 
     // create an objective 
-    Objective objective(g);
+    ObjectiveType objective(g);
     auto & weights = objective.weights(); 
 
     // fill the objective with values
@@ -166,7 +166,7 @@ void simpleMulticutTest()
         weights[e] = -10.0;
     }
 
-    typename Graph::EdgeMap<uint16_t> shouldSolution(g,0);
+    typename GraphType::EdgeMap<uint16_t> shouldSolution(g,0);
     for(size_t y=0; y<sy; ++y){
         auto e = g.findEdge( node(3, y), node(3+1, y)  );
         shouldSolution[e] = 1;
@@ -179,12 +179,12 @@ void simpleMulticutTest()
     {
         std::cout<<"opt gurobi \n";
         typedef nifty::ilp_backend::Gurobi IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         
         typedef typename Solver::NodeLabelsType NodeLabelsType;
         Solver solver(objective);
 
-        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint16_t> outputEdgeLabels(g,0);
 
         VerboseVisitor visitor; 
         NodeLabelsType nodeLabels(g, 0);
@@ -203,12 +203,12 @@ void simpleMulticutTest()
     {
         std::cout<<"opt cplex \n";
         typedef nifty::ilp_backend::Cplex IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
-        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint16_t> outputEdgeLabels(g,0);
 
 
 
@@ -228,12 +228,12 @@ void simpleMulticutTest()
     {
         std::cout<<"opt glpk \n";
         typedef nifty::ilp_backend::Glpk IlpSolver;
-        typedef nifty::graph::opt::multicut::MulticutIlp<Objective, IlpSolver> Solver;
+        typedef nifty::graph::opt::multicut::MulticutIlp<ObjectiveType, IlpSolver> Solver;
         typedef typename Solver::NodeLabelsType NodeLabelsType;
 
 
         Solver solver(objective);
-        nifty::graph::graph_maps::EdgeMap<Graph, uint16_t> outputEdgeLabels(g,0);
+        nifty::graph::graph_maps::EdgeMap<GraphType, uint16_t> outputEdgeLabels(g,0);
 
 
 

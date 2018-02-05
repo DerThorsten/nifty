@@ -17,18 +17,19 @@ namespace multicut{
     class MulticutAndres : public MulticutBase<OBJECTIVE>
     {
     public: 
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
         typedef MulticutBase<OBJECTIVE> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
-        typedef andres::graph::Graph<> Graph;
+        typedef andres::graph::Graph<> AGraphType;
 
-        MulticutAndres(const Objective & objective);
+        MulticutAndres(const ObjectiveType & objective);
 
         virtual void optimize(NodeLabelsType & nodelabels, VisitorBaseType * visitor){}
 
-        virtual const Objective & objective() const {return objective_;}
+        virtual const ObjectiveType & objective() const {return objective_;}
         virtual const NodeLabelsType & currentBestNodeLabels() {return *currentBest_;}
         virtual std::string name() const {return "MulticutAndres";}
         
@@ -36,18 +37,18 @@ namespace multicut{
         void nodeLabelsToEdgeLabels(std::vector<char> & edgeLabels);
         void edgeLabelsToNodeLabels(const std::vector<char> & edgeLabels);
         NodeLabelsType * currentBest_;
-        Graph graph_;
+        AGraphType graph_;
 
     private:
         void initGraph();
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         ufd::Ufd<uint64_t> ufd_;
     };
 
 
     template<class OBJECTIVE>
     MulticutAndres<OBJECTIVE>::MulticutAndres(
-        const Objective & objective
+        const ObjectiveType & objective
     ) : currentBest_(nullptr),
         graph_(objective.graph().numberOfNodes()),
         objective_(objective),
@@ -95,16 +96,16 @@ namespace multicut{
     {
     public:
         
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef MulticutAndres<OBJECTIVE> Base;
         typedef typename Base::NodeLabelsType NodeLabelsType;
         typedef typename Base::VisitorBaseType VisitorBaseType;
         
         struct SettingsType {};
-        MulticutAndresGreedyAdditive(const Objective & objective, const SettingsType & settings = SettingsType());
+        MulticutAndresGreedyAdditive(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const {return Base::objective();}
+        virtual const ObjectiveType & objective() const {return Base::objective();}
         virtual const NodeLabelsType & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
         virtual std::string name() const {return "MulticutAndresGreedyAdditive";}
 
@@ -112,7 +113,7 @@ namespace multicut{
 
     template<class OBJECTIVE>
     MulticutAndresGreedyAdditive<OBJECTIVE>::
-    MulticutAndresGreedyAdditive(const Objective & objective, const SettingsType &)
+    MulticutAndresGreedyAdditive(const ObjectiveType & objective, const SettingsType &)
     : Base(objective)
     {}
 
@@ -137,7 +138,7 @@ namespace multicut{
     {
     public:
         
-        typedef OBJECTIVE Objective;
+        typedef OBJECTIVE ObjectiveType;
         typedef MulticutAndres<OBJECTIVE> Base;
         typedef typename Base::NodeLabelsType NodeLabelsType;
         typedef typename Base::VisitorBaseType VisitorBaseType;
@@ -152,10 +153,10 @@ namespace multicut{
             bool greedyWarmstart{true};
         };
 
-        MulticutAndresKernighanLin(const Objective & objective, const SettingsType & settings = SettingsType());
+        MulticutAndresKernighanLin(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const {return Base::objective();}
+        virtual const ObjectiveType & objective() const {return Base::objective();}
         virtual const NodeLabelsType & currentBestNodeLabels() {return Base::currentBestNodeLabels();}
         virtual std::string name() const {return "MulticutAndresKernighanLin";}
 
@@ -166,7 +167,7 @@ namespace multicut{
 
     template<class OBJECTIVE>
     MulticutAndresKernighanLin<OBJECTIVE>::
-    MulticutAndresKernighanLin(const Objective & objective, const SettingsType & settings)
+    MulticutAndresKernighanLin(const ObjectiveType & objective, const SettingsType & settings)
     : Base(objective),
       settings_(settings),
       klSettings_()

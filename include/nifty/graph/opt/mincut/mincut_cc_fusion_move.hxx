@@ -21,9 +21,9 @@ namespace mincut{
     template<class OBJECTIVE>
     class MincutCcFusionMove{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::Graph Graph;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         
 
         typedef UndirectedGraph<> FmGraph;
@@ -38,7 +38,7 @@ namespace mincut{
             std::shared_ptr<FmMcFactoryBase> mincutFactory;
         };
 
-        MincutCcFusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
+        MincutCcFusionMove(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             settings_(settings),
@@ -206,8 +206,8 @@ namespace mincut{
         }
 
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::ufd::Ufd< > ufd_;
         NodeLabelsType nodeToDense_;

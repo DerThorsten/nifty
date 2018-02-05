@@ -65,7 +65,7 @@ namespace tools{
             .def_property_readonly("blockShift",&BlockingType::blockShift)
             .def_property_readonly("blocksPerAxis",&BlockingType::blocksPerAxis)
             .def_property_readonly("numberOfBlocks",&BlockingType::numberOfBlocks)
-
+            
 
             .def("getBlock", &BlockingType::getBlock)
 

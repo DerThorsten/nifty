@@ -31,12 +31,12 @@ namespace mincut{
 
 
 
-PYBIND11_PLUGIN(_mincut) {
+PYBIND11_MODULE(_mincut, mincutModule) {
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module mincutModule("_mincut", "mincut submodule of nifty.graph");
+    mincutModule.doc() = "mincut submodule of nifty.graph";
     
     using namespace nifty::graph::opt::mincut;
 
@@ -49,6 +49,6 @@ PYBIND11_PLUGIN(_mincut) {
     exportMincutGreedyAdditive(mincutModule);
     #endif
     exportMincutCcFusionMoveBased(mincutModule);
-    return mincutModule.ptr();
+
 }
 

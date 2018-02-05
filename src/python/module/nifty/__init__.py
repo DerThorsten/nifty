@@ -39,6 +39,12 @@ class Timer:
         self.verbose = verbose
 
     def __enter__(self):
+
+        if self.verbose:
+            if self.name is not None:
+                print(self.name,"...")
+
+
         self.start = time.clock()
         return self
 

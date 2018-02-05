@@ -4,6 +4,10 @@
 # will be set by this script
 
 
+find_package(pybind11 REQUIRED)
+include_directories(${pybind11_INCLUDE_DIRS})
+
+
 if(NUMPY_FIND_QUIETLY)
   find_package(PythonInterp)
 else()
@@ -14,7 +18,8 @@ endif()
 if (PYTHON_EXECUTABLE)
   # write a python script that finds the numpy path
   file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/FindNumpyPath.py
-      "try: import numpy; print numpy.get_include()\nexcept:pass\n")
+      "from __future__ import print_function\n"
+      "try: import numpy; print(numpy.get_include())\nexcept:pass\n")
 
   # execute the find script
   exec_program("${PYTHON_EXECUTABLE}" ${CMAKE_CURRENT_BINARY_DIR}
@@ -24,6 +29,11 @@ elseif(_numpy_out)
   message(STATUS "Python executable not found.")
 endif(PYTHON_EXECUTABLE)
 
+
+
+
+
+
 find_path(PYTHON_NUMPY_INCLUDE_DIR numpy/arrayobject.h
   "${NUMPY_PATH}"
   "${PYTHON_INCLUDE_PATH}"
@@ -31,6 +41,8 @@ find_path(PYTHON_NUMPY_INCLUDE_DIR numpy/arrayobject.h
   /usr/include/python2.6/
   /usr/include/python2.5/
   /usr/include/python2.4/)
+
+#message(STATUS "the numpy path is: ${NUMPY_PATH}")
 
 if(PYTHON_NUMPY_INCLUDE_DIR)
   set(PYTHON_NUMPY_FOUND 1 CACHE INTERNAL "Python numpy found")

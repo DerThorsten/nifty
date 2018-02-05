@@ -7,8 +7,8 @@
 
 void shortestPathBellmanFordTest()
 {
-    typedef nifty::graph::SimpleDirectedGraph<>  Graph;
-    Graph g(6);
+    typedef nifty::graph::SimpleDirectedGraph<>  GraphType;
+    GraphType g(6);
 
     //   0 | 1 |
     //   _   _ 
@@ -22,7 +22,7 @@ void shortestPathBellmanFordTest()
     auto e45 = g.insertArc(4,5);
     std::vector<float> ew = {10.0,2.0,3.0,4.0,20.0,1.0};
 
-    typedef nifty::graph::ShortestPathBellmanFord<Graph,float> Sp;
+    typedef nifty::graph::ShortestPathBellmanFord<GraphType,float> Sp;
 
     NIFTY_TEST_OP(g.numberOfEdges(),==,6);
     NIFTY_TEST_OP(g.numberOfNodes(),==,6);

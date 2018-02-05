@@ -30,9 +30,9 @@ namespace lifted_multicut{
     template<class OBJECTIVE>
     class FusionMove{
     public:
-        typedef OBJECTIVE Objective;
-        typedef typename Objective::GraphType GraphType;
-        typedef typename Objective::LiftedGraphType LiftedGraphType;
+        typedef OBJECTIVE ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename ObjectiveType::LiftedGraphType LiftedGraphType;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
         
 
@@ -47,7 +47,7 @@ namespace lifted_multicut{
             std::shared_ptr<FmLmcFactoryBase> lmcFactory;
         };
 
-        FusionMove(const Objective & objective, const SettingsType & settings = SettingsType())
+        FusionMove(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
         :   objective_(objective),
             graph_(objective.graph()),
             liftedGraph_(objective_.liftedGraph()),
@@ -203,7 +203,7 @@ namespace lifted_multicut{
         }
 
 
-        const Objective & objective_;
+        const ObjectiveType & objective_;
         const GraphType & graph_;
         const LiftedGraphType & liftedGraph_;
         SettingsType settings_;

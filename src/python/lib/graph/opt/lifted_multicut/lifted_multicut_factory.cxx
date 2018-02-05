@@ -50,6 +50,15 @@ namespace lifted_multicut{
                 LiftedMulticutObjectiveName<ObjectiveType>::name()
             );
         }
+        {
+            typedef nifty::graph::UndirectedGridGraph<3,true> GraphType;
+            typedef LiftedMulticutObjective<GraphType, double> ObjectiveType;
+            typedef LiftedMulticutBase<ObjectiveType> SolverBaseType;
+            nifty::graph::opt::common::exportSolverFactory<SolverBaseType>(
+                module, 
+                LiftedMulticutObjectiveName<ObjectiveType>::name()
+            );
+        }
     }
 
 } // namespace nifty::graph::opt::lifted_multicut

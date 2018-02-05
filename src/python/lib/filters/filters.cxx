@@ -10,16 +10,15 @@ namespace filters{
 }
 
     
-PYBIND11_PLUGIN(_filters) {
+PYBIND11_MODULE(_filters, filtersModule) {
     py::options options;
     options.disable_function_signatures();
     
-    py::module filtersModule("_filters","filters submodule");
+    filtersModule.doc() = "filters submodule";
     
     using namespace nifty::filters;
 
     exportAffinities(filtersModule);
     exportGaussianCurvature(filtersModule);
 
-    return filtersModule.ptr();
 }

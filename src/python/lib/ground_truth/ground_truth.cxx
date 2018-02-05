@@ -26,12 +26,12 @@ namespace ground_truth{
 
 
 
-PYBIND11_PLUGIN(_ground_truth) {
+PYBIND11_MODULE(_ground_truth, groundTruthModule) {
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module groundTruthModule("_ground_truth", "ground truth submodule of nifty python bindings");
+    groundTruthModule.doc() = ("ground truth submodule of nifty python bindings");
 
     using namespace nifty::ground_truth;
 
@@ -41,5 +41,5 @@ PYBIND11_PLUGIN(_ground_truth) {
     exportPartitionComparison(groundTruthModule);
     exportSegToLiftedEdges(groundTruthModule);
     exportSegToEdges(groundTruthModule);
-    return groundTruthModule.ptr();
+
 }

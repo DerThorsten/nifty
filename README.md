@@ -58,7 +58,7 @@ Features (Highlights):
         * Perturbed Random Seed Watershed Proposal Generator
         * Perturbed Greedy Additive Clustering Proposal Generator
     * Kernighan-Lin Algorithm with Joins (Keuper et al 2015)
-
+    * Message Passing for the Minimum Cost Multicut Problem (Swoboda 2016)
 
 * Lifted Multicut: (Andres et al. 2015, Keuper et al 2015)
     * Kernighan-Lin Algorithm with Joins (Keuper et al 2015)
@@ -70,6 +70,11 @@ Features (Highlights):
     * Fusion Moves for Lifted Multicuts (Beier et al. 2016)
         * Perturbed Random Seed Watershed Proposal Generator
         * Perturbed Greedy Additive Clustering Proposal Generator
+    * Message Passing for the Minimum Cost Multicut Problem (Swoboda 2016)
+
+
+* Mincut/Maxcut:
+    * QPBO 
 
 * Agglomerative Clustering
     * Easy to extend / Custom cluster policies
@@ -79,8 +84,7 @@ Features (Highlights):
     * Union Find Data Structure
     * Histogram
 
-* Coming Eventually =):
-    * MinStCut:
+* Coming Eventually:
     * MultiwayCut:
     * ModifiedMultiwayCut:
     * LiftedModifiedMultiwayCut:
