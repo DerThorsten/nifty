@@ -35,7 +35,6 @@ PYBIND11_MODULE(_hdf5, hdf5Module) {
     exportHdf5Array(hdf5Module);
     //exportHdf5BlockwiseWatershed(hdf5Module);
     exportBenchmark(hdf5Module);
-    return hdf5Module.ptr();
 }
 
 #endif
