@@ -18,7 +18,7 @@ if(BUILD_PYTHON_TEST)
     endif()
 
     
-endif()
+
 
 
 include(PythonLibTest)
@@ -45,7 +45,7 @@ if(NOSETESTS_PATH)
         graph/lifted_multicut/test_lifted_multicut_objective.py
         graph/lifted_multicut/test_lifted_multicut_solvers.py
         graph/lifted_multicut/test_lifted_graph_features.py
-        graph/multicut/test_multicut_solvers.py
+        graph/multicut/test_mincut_solvers.py
         cgp/test_cgp.py
     )
     add_dependencies(python-test-core python-module)
@@ -56,3 +56,4 @@ endif()
 
 
 
+endif()
