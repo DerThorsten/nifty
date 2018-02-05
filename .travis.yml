@@ -4,30 +4,16 @@ sudo: required
 # cache:
 #   directories:
 #   - $HOME/.cache/pip
-# addons:
-#   apt:
-#     sources:
-#       - ubuntu-toolchain-r-test
-#       - deadsnakes
-#       #- boost-latest/ppa
-#       #- george-edison55/precise-backports #cmake-3.x
-#       #- kubuntu-backports # cmake 2.8.12
-#     packages:
-#       - g++-4.8
-#       - g++-4.8-multilib
-#       - gcc-6
-#       - g++-6
-#       - g++-multilib
-#       - python-nose
-#       - python3-nose
-#       - python3.5
-#       - python3.5-dev
-#       - python3.5-venv
-#       - libhdf5-serial-dev
-#       - libboost-all-dev
-#       - libglpk-dev
-#       - cmake
-#       - libboost-test-dev 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - deadsnakes
+      #- boost-latest/ppa
+      #- george-edison55/precise-backports #cmake-3.x
+      #- kubuntu-backports # cmake 2.8.12
+    packages:
+      - cmake
 
 matrix:
   include:
