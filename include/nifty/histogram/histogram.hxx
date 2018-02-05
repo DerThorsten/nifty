@@ -59,7 +59,7 @@ namespace histogram{
             const T maxVal = 1,
             const size_t bincount = 40
         )
-        :   counts_(bincount),
+        :   counts_(bincount,0),
             minVal_(minVal),
             maxVal_(maxVal),
             binWidth_((maxVal-minVal)/T(bincount)),
@@ -187,6 +187,7 @@ namespace histogram{
             quantiles(*this,&q,&q+1, &ret);
             return ret;
         }
+
     private:
 
         double fbinToValue(double fbin)const{
