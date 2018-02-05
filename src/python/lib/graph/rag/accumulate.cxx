@@ -124,7 +124,7 @@ namespace graph{
             const int numberOfThreads
         ){
 
-            typename xt::pytensor<DATA_T, 2>::shape_type ShapeType shape = {int64_t(rag.edgeIdUpperBound()+1), int64_t(2)};
+            typename xt::pytensor<DATA_T, 2>::shape_type shape = {int64_t(rag.edgeIdUpperBound()+1), int64_t(2)};
             xt::pytensor<DATA_T, 2> out(shape);
             {
                 py::gil_scoped_release allowThreads;

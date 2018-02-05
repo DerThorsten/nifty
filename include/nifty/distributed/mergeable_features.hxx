@@ -158,7 +158,7 @@ namespace distributed {
         // get the shapes
         Shape3Type shape;
         CoordType blockShape;
-        for(unsigned axis = 0; ++axis; axis < 3) {
+        for(unsigned axis = 0; axis < 3; ++axis) {
             shape[axis] = roiEnd[axis] - roiBegin[axis];
             blockShape[axis] = shape[axis];
         }
@@ -303,7 +303,6 @@ namespace distributed {
     ///
 
 
-    // TODO additional serialization arguments
     inline void extractBlockFeaturesFromBoundaryMaps(const std::string & groupPath,
                                                      const std::string & blockPrefix,
                                                      const std::string & dataPath,
@@ -315,7 +314,6 @@ namespace distributed {
                                                      float dataMin=0, float dataMax=1) {
 
         // TODO could also use the std::bind pattern and std::function
-        // TODO capture additional arguments that we need for serialization
         auto accumulator = [dataMin, dataMax](
                 const Graph & graph,
                 std::unique_ptr<z5::Dataset> dataDs,
@@ -337,7 +335,6 @@ namespace distributed {
     }
 
 
-    // TODO additional serialization arguments
     inline void extractBlockFeaturesFromAffinityMaps(const std::string & groupPath,
                                                      const std::string & blockPrefix,
                                                      const std::string & dataPath,

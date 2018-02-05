@@ -22,7 +22,7 @@ namespace distributed {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromBoundaryMaps(groupPath, blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,
-                                                 dataMax, dataMin);
+                                                 dataMin, dataMax);
 
         }, py::arg("groupPath"), py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
@@ -44,7 +44,7 @@ namespace distributed {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromAffinityMaps(groupPath, blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,
-                                                 offsets, dataMax, dataMin);
+                                                 offsets, dataMin, dataMax);
 
         }, py::arg("groupPath"), py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
