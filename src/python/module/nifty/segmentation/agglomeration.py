@@ -1,10 +1,10 @@
 import numpy as np
-from .base_segmenter import SegmenterFromCosts
+from .base import Segmenter
 
 import nifty.graph.agglo as nagglo
 
 
-class AgglomerationBase(SegmenterFromCosts):
+class AgglomerationBase(Segmenter):
     def __init__(self, use_sizes=False):
         self.use_sizes = use_sizes
 

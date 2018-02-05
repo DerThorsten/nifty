@@ -1,10 +1,11 @@
-from .base_segmenter import SegmenterFromCosts
+from .base import Segmenter
 from .... import Configuration
 
 import numpy as np
 import nifty.graph.opt.multicut as nmc
 
 
+# TODO different exponent for edge weighting ?
 def transform_probabilities_to_costs(probabilities, beta=.5, edge_sizes=None):
     p_min = 0.001
     p_max = 1. - p_min
@@ -19,16 +20,25 @@ def transform_probabilities_to_costs(probabilities, beta=.5, edge_sizes=None):
     return costs
 
 
-class Multicut(SegmenterFromCosts):
+class Multicut(Segmenter):
     solvers = ["greedy-additive", "kernighan-lin", "fusion-moves", "ilp"]
 
-    def __init__(self, solver, **solver_options):
-        super(SegmenterFromCosts, self).__init__()
+    def __init__(self, solver, beta=.5, weight_edges=True, **solver_options):
         assert solver in self.solvers
         if solver == "ilp":
             assert self._have_ilp()
         self.solver = solver
+        assert 0. < beta < 1.
+        self.beta = beta
+        self.weight_edges = weight_edges
         self.solver_options = solver_options
+
+    def probabilities_to_costs(self, probabilities, edge_sizes=None):
+        if self.weight_edges:
+            assert edge_sizes is not None
+            return transform_probabilities_to_costs(probabilities, self.beta, edge_sizes)
+        else:
+            return transform_probabilities_to_costs(probabilities, self.beta)
 
     @staticmethod
     def _have_ilp():
