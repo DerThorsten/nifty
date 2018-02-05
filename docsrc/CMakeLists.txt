@@ -2,7 +2,9 @@
 # Documentation
 #-------------------------------------------------------------------------------------------------------------------
 if(BUILD_DOCS)
-    add_custom_target(doc )
+    find_package(Doxygen)
+    
+    add_custom_target(doc)
     add_subdirectory(cpp)
     add_subdirectory(python)
 

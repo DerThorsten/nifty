@@ -56,6 +56,7 @@ if(BUILD_NIFTY_PYTHON AND BUILD_PYTHON_DOCS)
         if(BUILD_DOCS)
             if(DOXYGEN_FOUND)
                     add_dependencies(python-doc cpp-doc-xml)
+            else(DOXYGEN_FOUND)
             endif(DOXYGEN_FOUND)
         endif(BUILD_DOCS)
 
