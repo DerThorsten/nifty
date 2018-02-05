@@ -32,7 +32,7 @@ install:
   - conda config --add channels conda-forge --force
   - conda install gtest cmake -c conda-forge 
   - conda install xtl==0.4.0 -c QuantStack
-  - conda install nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
+  - conda install python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
   - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
   - nmake test_nifty
   - cd test
