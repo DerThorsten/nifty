@@ -314,7 +314,7 @@ class TestCgp2d(unittest.TestCase):
             assertEq = self.assertEqual
             shape = (4, 3)
             size = shape[0]*shape[1]
-            labels = numpy.random.randint(0, 4,size=size).reshape(shape)
+            labels = numpy.random.randint(1, 5,size=size).reshape(shape)
 
             #print(labels)
 
@@ -344,5 +344,7 @@ class TestCgp2d(unittest.TestCase):
                 geos = [geometryFS,geometryF,geometryS,geometry]
             except:
                 print(cc)
+                print("labels")
+                print(labels)
                 import sys
                 sys.exit()

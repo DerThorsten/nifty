@@ -8,9 +8,9 @@ namespace graph{
     template<class GRAPH>
     class DirectedGraphView{
     public:
-        typedef GRAPH Graph;
+        typedef GRAPH GraphType;
     private:    
-        const Graph & graph_;
+        const GraphType & graph_;
     };
 
 } // namespace nifty::graph

@@ -1,6 +1,3 @@
-
-
-
 import unittest
 import nifty
 import nifty.graph

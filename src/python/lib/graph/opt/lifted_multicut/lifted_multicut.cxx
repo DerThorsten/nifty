@@ -1,4 +1,11 @@
 #include <pybind11/pybind11.h>
+
+
+
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
 #include <iostream>
 
 namespace py = pybind11;
@@ -18,10 +25,12 @@ namespace lifted_multicut{
     void exportLiftedMulticutKernighanLin(py::module &);
     void exportLiftedMulticutIlp(py::module &);
     void exportLiftedMulticutMp(py::module &);
-    //void exportLiftedMulticutAndresKernighanLin(py::module &);
+    void exportLiftedMulticutAndresKernighanLin(py::module &);
     void exportLiftedMulticutAndresGreedyAdditive(py::module &);
     void exportFusionMoveBased(py::module &);
     void exportLiftedGraphFeatures(py::module &);
+    void exportPixelWiseLmcStuff(py::module &);
+    void exportChainedSolvers(py::module &);
 
 }
 } // namespace nifty::graph::opt
@@ -30,13 +39,14 @@ namespace lifted_multicut{
 
 
 
-PYBIND11_PLUGIN(_lifted_multicut) {
+PYBIND11_MODULE(_lifted_multicut, liftedMulticutModule) {
 
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module liftedMulticutModule("_lifted_multicut", "lifted_multicut submodule of nifty.graph");
+    liftedMulticutModule.doc() = "lifted_multicut submodule of nifty.graph";
     
     using namespace nifty::graph::opt::lifted_multicut;
 
@@ -47,14 +57,14 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutGreedyAdditive(liftedMulticutModule);
     exportLiftedMulticutKernighanLin(liftedMulticutModule);
     exportLiftedMulticutIlp(liftedMulticutModule);
-    //exportLiftedMulticutAndresKernighanLin(liftedMulticutModule);
+    exportLiftedMulticutAndresKernighanLin(liftedMulticutModule);
     exportLiftedMulticutAndresGreedyAdditive(liftedMulticutModule);
     exportFusionMoveBased(liftedMulticutModule);
     exportLiftedGraphFeatures(liftedMulticutModule);
-    
+    exportPixelWiseLmcStuff(liftedMulticutModule);
+    exportChainedSolvers(liftedMulticutModule);
     #ifdef WITH_LP_MP
     exportLiftedMulticutMp(liftedMulticutModule);
     #endif
 
-    return liftedMulticutModule.ptr();
 }

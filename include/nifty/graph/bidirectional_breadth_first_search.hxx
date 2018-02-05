@@ -98,10 +98,10 @@ namespace graph{
         };
         typedef std::deque<uint64_t> DequeType; //
     public:
-        typedef GRAPH Graph;
-        typedef typename Graph:: template NodeMap<int64_t> Parents;
+        typedef GRAPH GraphType;
+        typedef typename GraphType:: template NodeMap<int64_t> Parents;
 
-        BidirectionalBreadthFirstSearch(const Graph & graph)
+        BidirectionalBreadthFirstSearch(const GraphType & graph)
         :   graph_(graph),
             parents_(graph){
 
@@ -112,7 +112,7 @@ namespace graph{
             const int64_t source,
             const int64_t target
         ){
-            DefaultSubgraphMask<Graph> subgraphMask;
+            DefaultSubgraphMask<GraphType> subgraphMask;
             return this->runSingleSourceSingleTarget(source,target,subgraphMask);
         }
 
@@ -225,7 +225,7 @@ namespace graph{
     private:
 
 
-        const Graph & graph_;
+        const GraphType & graph_;
         Parents parents_;
         std::array< std::queue<uint64_t> , 2> queues_;
         DequeType path_;

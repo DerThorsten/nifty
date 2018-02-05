@@ -1,5 +1,11 @@
 #include <pybind11/pybind11.h>
+
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
 #include <iostream>
+
 
 namespace py = pybind11;
 
@@ -12,6 +18,7 @@ namespace graph{
 
     void exportUndirectedListGraph(py::module &);
     void exportUndirectedGridGraph(py::module &);
+    void exportUndirectedLongRangeGridGraph(py::module &);
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
     void exportShortestPathDijkstra(py::module &);
     void exportConnectedComponents(py::module &);
@@ -21,12 +28,14 @@ namespace graph{
 }
 
 
-PYBIND11_PLUGIN(_graph) {
+PYBIND11_MODULE(_graph, module) {
 
+    xt::import_numpy();
+    
     py::options options;
     options.disable_function_signatures();
     
-    py::module module("_graph", "graph submodule of nifty");
+    module.doc() = "graph submodule of nifty";
 
     using namespace nifty::graph;
 
@@ -34,11 +43,12 @@ PYBIND11_PLUGIN(_graph) {
 
     exportUndirectedListGraph(module);
     exportUndirectedGridGraph(module);
+    exportUndirectedLongRangeGridGraph(module);
     exportEdgeContractionGraphUndirectedGraph(module);
     exportShortestPathDijkstra(module);
     exportConnectedComponents(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
-    return module.ptr();
+
 }
 

@@ -21,12 +21,12 @@ namespace cgp{
 }
 
 
-PYBIND11_PLUGIN(_cgp) {
+PYBIND11_MODULE(_cgp, cgpModule) {
 
     py::options options;
     options.disable_function_signatures();
 
-    py::module cgpModule("_cgp", "cgp submodule of nifty");
+    cgpModule.doc() = "cgp submodule of nifty";
 
     using namespace nifty::cgp;
 
@@ -35,5 +35,4 @@ PYBIND11_PLUGIN(_cgp) {
     exportGeometry(cgpModule);
     exportFeatures(cgpModule);
 
-    return cgpModule.ptr();
 }

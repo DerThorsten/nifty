@@ -16,14 +16,14 @@ template<class OBJECTIVE>
 class PyMulticutBase : public MulticutBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using MulticutFactory<Objective>::MulticutFactory;
+    // using MulticutFactory<ObjectiveType>::MulticutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef MulticutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef MulticutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
-    typedef typename Graph:: template EdgeMap<uint8_t>  EdgeLabels;
-    typedef typename Graph:: template NodeMap<uint64_t> NodeLabelsType;
+    typedef MulticutBase<ObjectiveType> McBase;
+    typedef typename ObjectiveType::GraphType GraphType;
+    typedef typename GraphType:: template EdgeMap<uint8_t>  EdgeLabels;
+    typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
 
 
     /* Trampoline (need one for each virtual function) */
@@ -52,9 +52,9 @@ public:
         );
     }
 
-    const Objective & objective() const {
+    const ObjectiveType & objective() const {
         PYBIND11_OVERLOAD_PURE(
-            const Objective & ,    /* Return type */
+            const ObjectiveType & ,    /* Return type */
             McBase,                /* Parent class */
             objective              /* Name of function */
         );

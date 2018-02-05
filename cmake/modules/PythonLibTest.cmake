@@ -1,27 +1,3 @@
-# Custom cmake target for running nosetests on compiled libraries.
-#
-# This creates a custom target for running nosetests with the intent of
-# verifying a compiled library using interpreted Python unit tests. It is
-# meant to be used in addition to, not in lieu of, compiled unit test code.
-# This can be particularly useful for math-heavy code where a compiled unit
-# test could be quite cumbersome. The Python test code is responsible for
-# importing the libraries (probably using ctypes).
-#
-# Usage: 
-# 
-#   add_python_test_target(TARGET_NAME LIBRARY_DEPENDENCY SOURCE_FILES)
-#
-# Released into the public domain. No warranty implied.
-
-if(NOT PYBIND11_PYTHON_VERSION)
-  set(PYBIND11_PYTHON_VERSION "" CACHE STRING "Python version to use for compiling modules")
-endif()
-
-set(Python_ADDITIONAL_VERSIONS 3.7 3.6 3.5 3.4)
-find_package(PythonLibsNew ${PYBIND11_PYTHON_VERSION} REQUIRED)
-
-
-
 
 #message(PYTHON_VERSION_MAJOR ${PYTHON_VERSION_MAJOR})
 if(PYTHON_VERSION_MAJOR STREQUAL "2")

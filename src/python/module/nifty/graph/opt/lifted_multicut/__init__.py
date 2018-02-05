@@ -4,6 +4,8 @@ from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
 from .. import Configuration
+import nifty.tools
+import numpy
 
 __all__ = []
 for key in __lifted_multicut.__dict__.keys():
@@ -13,6 +15,54 @@ for key in __lifted_multicut.__dict__.keys():
         __lifted_multicut.__dict__[key].__module__='nifty.graph.opt.lifted_multicut'
     except:
         pass
+
+
+class PixelWiseLmcObjective(object):
+    def __init__(self, weights, offsets):
+
+
+        self.weights = weights 
+        self.offsets = offsets
+
+        if(self.offsets.shape[1] == 2):
+            assert weights.shape[2] == offsets.shape[0]
+            self.shape = weights.shape[0:2]
+            self.n_variables = self.shape[0]*self.shape[1]
+            self.ndim = 2
+            self._obj = PixelWiseLmcObjective2D(self.weights, self.offsets)
+        elif (self.offsets.shape[1] == 3):
+            self.shape = weights.shape[0:3]
+            self.n_variables = self.shape[0]*self.shape[1]*self.shape[2]
+            self.ndim = 3
+            assert weights.shape[3] == offsets.shape[0]
+            self._obj = PixelWiseLmcObjective3D(self.weights, self.offsets)
+        else:
+            raise NotImplementedError("PixelWiseLmcObjective is only implemented for 2D and 3D images")
+
+    def optimize(self,factory, labels=None):
+        if labels is None:
+            labels = numpy.arange(self.n_variables).reshape(self.shape)
+        return self._obj.optimize(factory, labels)
+
+
+
+
+
+    def evaluate(self, labels):
+        return self._obj.evaluate(labels)
+
+    def cpp_obj(self):
+        return self._obj
+
+
+def pixelWiseLmcObjective(weights, offsets):
+    return PixelWiseLmcObjective(weights, offsets)
+
+
+
+
+
+
 
 
 def __extendLiftedMulticutObj(objectiveCls, objectiveName):
@@ -47,6 +97,9 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         s =  getSettings(baseName)
         F =  getCls(baseName + "Factory" ,objectiveName)
         return s,F
+        
+    def factoryClsName(baseName):
+        return baseName + "Factory" + objectiveName
 
 
     O = objectiveCls
@@ -55,6 +108,37 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
         V = getLmcCls("LiftedMulticutVerboseVisitor")
         return V(visitNth)
     O.verboseVisitor = staticmethod(verboseVisitor)
+
+
+
+    def chainedSolversFactory(factories):
+        s,F = getSettingsAndFactoryCls("ChainedSolvers")
+        s.factories = factories
+        return F(s)
+    O.chainedSolversFactory = staticmethod(chainedSolversFactory)
+
+    O.chainedSolversFactory.__doc__ = """ create an instance of :class:`%s`
+
+        Chain multiple solvers
+        such that each successor is warm-started with
+        its predecessor solver.
+
+    Warning:
+        The solvers should be able to be warm started.
+
+    Args:
+        weightStopCond (float): stop clustering when the highest
+            weight in cluster-graph is lower as this value (default: {0.0})
+        nodeNumStopCond: stop clustering when a cluster-graph
+            reached a certain number of nodes.
+            Numbers smaller 1 are interpreted as fraction
+            of the graphs number of nodes.
+            If nodeNumStopCond is smaller 0 this
+            stopping condition is ignored  (default: {-1})
+    Returns:
+        %s : multicut factory
+    """%(factoryClsName("ChainedSolvers"),factoryClsName("ChainedSolvers"))
+
 
 
 
@@ -231,6 +315,9 @@ __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGraph,
     "LiftedMulticutObjectiveUndirectedGraph")
 
 __extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh,
+    "LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh")
+
+__extendLiftedMulticutObj(LiftedMulticutObjectiveUndirectedGridGraph3DSimpleNh,
     "LiftedMulticutObjectiveUndirectedGridGraph2DSimpleNh")
 
 del __extendLiftedMulticutObj

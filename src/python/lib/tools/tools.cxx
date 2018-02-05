@@ -17,12 +17,12 @@ namespace tools{
 }
 
 
-PYBIND11_PLUGIN(_tools) {
+PYBIND11_MODULE(_tools, toolsModule) {
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module toolsModule("_tools", "tools submodule of nifty");
+    toolsModule.doc() = "tools submodule of nifty";
 
     using namespace nifty::tools;
 
@@ -31,5 +31,4 @@ PYBIND11_PLUGIN(_tools) {
     exportTake(toolsModule);
     exportChangeablePriorityQueue(toolsModule);
     
-    return toolsModule.ptr();
 }

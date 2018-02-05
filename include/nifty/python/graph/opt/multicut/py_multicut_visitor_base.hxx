@@ -20,12 +20,12 @@ template<class OBJECTIVE>
 class PyMulticutVisitorBase : public MulticutVisitorBase<OBJECTIVE> {
 public:
     /* Inherit the constructors */
-    // using MulticutFactory<Objective>::MulticutFactory;
+    // using MulticutFactory<ObjectiveType>::MulticutFactory;
 
-    typedef OBJECTIVE Objective;
+    typedef OBJECTIVE ObjectiveType;
     typedef MulticutVisitorBase<OBJECTIVE> VisitorBaseType;
-    typedef MulticutBase<Objective> McBase;
-    typedef typename Objective::Graph Graph;
+    typedef MulticutBase<ObjectiveType> McBase;
+    typedef typename ObjectiveType::GraphType GraphType;
 
 
 

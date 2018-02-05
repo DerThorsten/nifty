@@ -1,0 +1,17 @@
+# NIFTY cmake module
+# This module sets the following variables in your project::
+#
+#   NIFTY_FOUND - true if NIFTY found on the system
+#   NIFTY_INCLUDE_DIR  - the directory containing NIFTY headers
+#   NIFTY_INCLUDE_DIRS - the directory containing NIFTY headers
+#   NIFTY_LIBRARY - EMPTY
+#   NIFTY_LIBRARIES - EMPTY
+@PACKAGE_INIT@
+
+set(PN NIFTY)
+set_and_check(${PN}_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_INCLUDEDIR@")
+set_and_check(${PN}_INCLUDE_DIRS ${${PN}_INCLUDE_DIR})
+set_and_check(${PN}_LIBRARY      "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_LIBDIR@"/qpbo)
+set(${PN}_LIBRARY "")
+set(${PN}_LIBRARIES ${${PN}_LIBRARY})
+check_required_components(${PN})

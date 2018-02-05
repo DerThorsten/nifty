@@ -4,6 +4,7 @@
 #include <array>
 
 
+#include "nifty/histogram/histogram.hxx"
 #include "nifty/tools/changable_priority_queue.hxx"
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"
@@ -48,6 +49,7 @@ public:
 
         float threshold{0.5};
         bool verbose{false};
+        int bincount{40};
     };
     typedef EdgeContractionGraph<GraphType, SelfType>   EdgeContractionGraphType;
 
@@ -56,7 +58,8 @@ private:
 
     // internal types
     const static size_t NumberOfBins = 20;
-    typedef std::array<float, NumberOfBins> HistogramType;     
+    typedef nifty::histogram::Histogram<float> HistogramType;
+    //typedef std::array<float, NumberOfBins> HistogramType;     
     typedef typename GRAPH:: template EdgeMap<HistogramType> EdgeHistogramMap;
 
 
@@ -156,7 +159,7 @@ MalaClusterPolicy(
     settings_(settings),
     edgeContractionGraph_(graph, *this),
     pq_(graph.edgeIdUpperBound()+1),
-    histograms_(graph),
+    histograms_(graph, HistogramType(0,1,settings.bincount)),
     time_(0)
 {
     graph_.forEachEdge([&](const uint64_t edge){
@@ -171,15 +174,13 @@ MalaClusterPolicy(
         edgeSizes_[edge] = size;
 
         // put in histogram
-        auto bin = std::min(size_t(val*float(NumberOfBins)), size_t(NumberOfBins-1));
-        auto & hist = histograms_[edge];
-        std::fill(hist.begin(), hist.end(), 0.0);
-        hist[bin] = size;
+        histograms_[edge].insert(val, size);
 
         // put in pq
         pq_.push(edge, val);
 
     });
+
     graph_.forEachNode([&](const uint64_t node){
         nodeSizes_[node] = nodeSizes[node];
     });
@@ -249,10 +250,7 @@ mergeEdges(
     // merging the histogram is just adding
     auto & ha = histograms_[aliveEdge];
     auto & hd = histograms_[deadEdge];
-    edgeSizes_[aliveEdge] += edgeSizes_[deadEdge];
-    for(auto bin=0; bin<NumberOfBins; ++bin){
-        ha[bin] += hd[bin];
-    }
+    ha.merge(hd);
     pq_.push(aliveEdge, histogramToMedian(aliveEdge));
 }
 
@@ -271,37 +269,11 @@ MalaClusterPolicy<GRAPH, ENABLE_UCM>::
 histogramToMedian(
     const uint64_t edge
 ) const{
-    const auto & hist = histograms_[edge];
-    auto bin=0;
-    auto fbin=0.0f;
-
-    auto halfSize = edgeSizes_[edge] / 2.0;
-    auto accSize  = 0.0;
-    while(true){
-        auto newAccSize = accSize + hist[bin];
-        if(bin == NumberOfBins-1){
-            return 1.0;
-        }
-        else if(newAccSize > halfSize){
-            // interpolate the median
-            // by first interpolating the
-            // float bin index 
-            const auto dLow  = halfSize - accSize;
-            const auto dHigh = newAccSize - halfSize;
-
-            const auto wHigh = dLow / (dLow+dHigh);
-            const auto wLow  = 1.0 - wHigh;
-
-            return   (float(bin)  /float(NumberOfBins))*wLow 
-                   + (float(bin+1)/float(NumberOfBins))*wHigh;
-        }
-        accSize = newAccSize;
-        ++bin;
-    }
-    // we should not come here, but 
-    // compilers might be sissies about that
-    // and warn
-    return 1.0;
+    // todo optimize me
+    float median;
+    const float rank=0.5;
+    nifty::histogram::quantiles(histograms_[edge],&rank,&rank+1,&median);
+    return median;
 }
 
 

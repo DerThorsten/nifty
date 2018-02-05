@@ -24,22 +24,22 @@ namespace multicut{
      * @tparam     OBJECTIVE  { description }
      */
     template<class PROPPOSAL_GEN>
-    class FusionMoveBased : public MulticutBase<typename PROPPOSAL_GEN::Objective >
+    class FusionMoveBased : public MulticutBase<typename PROPPOSAL_GEN::ObjectiveType >
     {
     public: 
 
-        typedef typename PROPPOSAL_GEN::Objective Objective;
-        typedef typename Objective::Graph Graph;
-        typedef MulticutBase<Objective> BaseType;
+        typedef typename PROPPOSAL_GEN::ObjectiveType ObjectiveType;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef MulticutBase<ObjectiveType> BaseType;
         typedef typename BaseType::VisitorBaseType VisitorBaseType;
         typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
 
-        typedef FusionMove<Objective> FusionMoveType;
+        typedef FusionMove<ObjectiveType> FusionMoveType;
         typedef PROPPOSAL_GEN ProposalGen;
         typedef typename ProposalGen::SettingsType ProposalGenSettings;
         typedef typename FusionMoveType::SettingsType FusionMoveSettings;
-        typedef typename Graph:: template EdgeMap<double> EdgeWeights;
+        typedef typename GraphType:: template EdgeMap<double> EdgeWeights;
     public:
 
         struct SettingsType{
@@ -54,10 +54,10 @@ namespace multicut{
         };
 
 
-        FusionMoveBased(const Objective & objective, const SettingsType & settings = SettingsType());
+        FusionMoveBased(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
         ~FusionMoveBased();
         virtual void optimize(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
-        virtual const Objective & objective() const;
+        virtual const ObjectiveType & objective() const;
 
 
         virtual const NodeLabelsType & currentBestNodeLabels( ){
@@ -77,8 +77,8 @@ namespace multicut{
         void optimizeParallel(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
         void optimizeSerial(NodeLabelsType & nodeLabels, VisitorBaseType * visitor);
 
-        const Objective & objective_;
-        const Graph & graph_;
+        const ObjectiveType & objective_;
+        const GraphType & graph_;
         SettingsType settings_;
         nifty::parallel::ParallelOptions parallelOptions_;
 
@@ -94,7 +94,7 @@ namespace multicut{
     template<class PROPPOSAL_GEN>
     FusionMoveBased<PROPPOSAL_GEN>::
     FusionMoveBased(
-        const Objective & objective, 
+        const ObjectiveType & objective, 
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -374,7 +374,7 @@ namespace multicut{
     }
 
     template< class PROPPOSAL_GEN>
-    const typename FusionMoveBased<PROPPOSAL_GEN>::Objective &
+    const typename FusionMoveBased<PROPPOSAL_GEN>::ObjectiveType &
     FusionMoveBased<PROPPOSAL_GEN>::
     objective()const{
         return objective_;

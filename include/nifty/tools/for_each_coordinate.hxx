@@ -7,6 +7,12 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 
+
+
+
+
+
+
 namespace nifty{
 namespace tools{
 
@@ -173,10 +179,10 @@ namespace tools{
             }
         }
         else{
-            for(coord[3]=shapeBegin[0]; coord[3]<shapeEnd[3]; ++coord[3])
-            for(coord[2]=shapeBegin[1]; coord[2]<shapeEnd[2]; ++coord[2])
-            for(coord[1]=shapeBegin[2]; coord[1]<shapeEnd[1]; ++coord[1])
-            for(coord[0]=shapeBegin[3]; coord[0]<shapeEnd[0]; ++coord[0]){
+            for(coord[3]=shapeBegin[3]; coord[3]<shapeEnd[3]; ++coord[3])
+            for(coord[2]=shapeBegin[2]; coord[2]<shapeEnd[2]; ++coord[2])
+            for(coord[1]=shapeBegin[1]; coord[1]<shapeEnd[1]; ++coord[1])
+            for(coord[0]=shapeBegin[0]; coord[0]<shapeEnd[0]; ++coord[0]){
                 f(coord);
             }
         }

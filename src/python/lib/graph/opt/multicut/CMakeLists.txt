@@ -18,10 +18,10 @@ SET(MOD_SOURCES
         kernighan_lin.cxx
 )
 
-if(WITH_LP_MP)
-    SET(MOD_LIBS    ${MOD_LIBS} ${HDF5_LIBRARIES} )#llgl)
-    SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
-endif(WITH_LP_MP)
+# if(WITH_LP_MP)
+#     SET(MOD_LIBS    ${MOD_LIBS} ${HDF5_LIBRARIES} )#llgl)
+#     SET(MOD_SOURCES ${MOD_SOURCES} multicut_mp.cxx)
+# endif(WITH_LP_MP)
 
 addPythonModule(
     NESTED_NAME 
@@ -31,3 +31,5 @@ addPythonModule(
     LIBRRARIES
         ${MOD_LIBS}
 )
+
+target_link_libraries(_multicut PUBLIC ${MOD_LIBS} )

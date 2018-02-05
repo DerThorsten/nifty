@@ -15,10 +15,8 @@ namespace opt{
 
 
 
-PYBIND11_PLUGIN(_opt) {
-    py::module optModule("_opt", "opt submodule of nifty.graph");
-    
+PYBIND11_MODULE(_opt, module) {
+    module.doc() =  "_opt", "opt submodule of nifty.graph";
     using namespace nifty::graph::opt;
-    return optModule.ptr();
 }
 

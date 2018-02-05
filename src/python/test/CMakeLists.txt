@@ -18,7 +18,7 @@ if(BUILD_PYTHON_TEST)
     endif()
 
     
-endif()
+
 
 
 include(PythonLibTest)
@@ -39,10 +39,13 @@ if(NOSETESTS_PATH)
         graph/agglo/test_agglo.py
         graph/mincut/test_mincut_objective.py
         graph/mincut/test_mincut_solvers.py
-        graph/multicut/test_multicut_solvers.py
+        graph/minstcut/test_minstcut_objective.py
+        graph/minstcut/test_minstcut_solvers.py
+        #graph/minstcut/test_minstcut_maxflow.py
         graph/lifted_multicut/test_lifted_multicut_objective.py
         graph/lifted_multicut/test_lifted_multicut_solvers.py
         graph/lifted_multicut/test_lifted_graph_features.py
+        graph/multicut/test_mincut_solvers.py
         cgp/test_cgp.py
     )
     add_dependencies(python-test-core python-module)
@@ -53,3 +56,4 @@ endif()
 
 
 
+endif()

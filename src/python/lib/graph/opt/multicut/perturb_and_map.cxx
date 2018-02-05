@@ -26,9 +26,9 @@ namespace multicut{
     template<class OBJECTIVE>
     void exportPerturbAndMapT(py::module & multicutModule) {
         typedef OBJECTIVE ObjectiveType;
-        typedef typename ObjectiveType::Graph Graph;
-        typedef typename Graph:: template EdgeMap<double>   EdgeState;
-        typedef typename Graph:: template NodeMap<uint64_t> NodeLabels;
+        typedef typename ObjectiveType::GraphType GraphType;
+        typedef typename GraphType:: template EdgeMap<double>   EdgeState;
+        typedef typename GraphType:: template NodeMap<uint64_t> NodeLabels;
         typedef PerturbAndMap<ObjectiveType> PerturbAndMapType;
         typedef typename PerturbAndMapType::SettingsType PerturbAndMapSettingsType;
 

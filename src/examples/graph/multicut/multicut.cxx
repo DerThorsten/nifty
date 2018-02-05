@@ -1,4 +1,4 @@
-#include "examples_common.hxx"
+//#include "examples_common.hxx"
 
 #include <iostream>
 #include "nifty/tools/runtime_check.hxx"
@@ -21,8 +21,8 @@ int main( int argc , char *argv[] ){
     //   3 - 4 - 5
     // 
     // 
-    typedef nifty::graph::UndirectedGraph<> Graph;
-    Graph graph(6);
+    typedef nifty::graph::UndirectedGraph<> GraphType;
+    GraphType graph(6);
 
     // inserte edges 
     graph.insertEdge(0,1);  
@@ -35,7 +35,7 @@ int main( int argc , char *argv[] ){
 
     // create multicut objective
     // do not add more edges to graph after creating the mc objective
-    typedef nifty::graph::opt::multicut::MulticutObjective<Graph, float> MulticutObjective;
+    typedef nifty::graph::opt::multicut::MulticutObjective<GraphType, float> MulticutObjective;
     MulticutObjective objective(graph);
 
     // Set edge weights 

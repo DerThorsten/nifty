@@ -5,14 +5,8 @@
 #include <map>
 #include <boost/version.hpp>
 
-// for strange reason travis does not find the boost flat set
-#ifdef WITHIN_TRAVIS
-#include <set>
-#define __setimpl std::set
-#else
-#include <boost/container/flat_set.hpp>
-#define __setimpl boost::container::flat_set
-#endif
+#include <nifty/container/boost_flat_set.hxx>
+
 
 
 #include <boost/iterator/counting_iterator.hpp>
@@ -73,7 +67,7 @@ protected:
     typedef EDGE_INTERANL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
-    typedef nifty::container::FlatSet<NodeAdjacency> NodeStorage;
+    typedef nifty::container::BoostFlatSet<NodeAdjacency> NodeStorage;
     typedef std::pair<EdgeInternalType,EdgeInternalType> EdgeStorage;
 public:
     typedef detail_graph::SimpleGraphNodeIter NodeIter;
@@ -141,6 +135,15 @@ public:
         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const;
 
+
+    void shrinkToFit(){
+        edges_.shrink_to_fit();
+        #ifndef WITHIN_TRAVIS
+        for(auto & nodeAdj : nodes_){
+            nodeAdj.shrink_to_fit();
+        }
+        #endif
+    }
 protected:
 
     bool insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v);

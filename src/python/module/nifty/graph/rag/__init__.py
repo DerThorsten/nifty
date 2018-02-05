@@ -17,8 +17,8 @@ for key in __rag.__dict__.keys():
 
 
 def gridRag(labels, numberOfThreads=-1, serialization = None):
-    labels = numpy.require(labels ,dtype='uint32')
 
+    labels = labels if numpy.issubdtype(labels.dtype, numpy.unsignedinteger) else numpy.require(labels, dtype=numpy.uint64)
 
     if labels.ndim == 2:
         if serialization is None:
