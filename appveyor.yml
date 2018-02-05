@@ -1,47 +1,49 @@
+build: false
+
+platform:
+  - x64
+  - x86
+
+image:
+  - Visual Studio 2017
+  - Visual Studio 2015 
+
 environment:
   matrix:
-    - BUILD_TYPE: "MSVC_64"
-      COMPILER: msvc-20-seh
-      PLATFORM: "x64"
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    - BUILD_TYPE: "MSVC_64_Python"
-      COMPILER: msvc-20-seh
-      PLATFORM: "x64"
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-  global:
-    PLATFORMTOOLSET: "v141"
+    - MINICONDA: C:\nifty-conda
+
+init:
+  - "ECHO %MINICONDA%"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCARGUMENT=%PLATFORM% 
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x64" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x86" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+  - echo "%VCVARPATH% %VCARGUMENT%"
+  - "%VCVARPATH% %VCARGUMENT%"
+  - ps: if($env:Platform -eq "x64"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe' C:\Miniconda.exe; echo "Done"}
+  - ps: if($env:Platform -eq "x86"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86.exe' C:\Miniconda.exe; echo "Done"}
+  - cmd: C:\Miniconda.exe /S /D=C:\nifty-conda
+  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library\\bin;%PATH%"
 
 install:
-- if [%BUILD_TYPE%]==[MSVC_64] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
-- if [%BUILD_TYPE%]==[MSVC_64] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64] conda create -y --name nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
-# NOTE: need to use "call" because otherwise it won't work within an if block.
-- if [%BUILD_TYPE%]==[MSVC_64] call activate nifty
-
-- if [%BUILD_TYPE%]==[MSVC_64_Python] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
-- if [%BUILD_TYPE%]==[MSVC_64_Python] conda config --add channels conda-forge --force
-- if [%BUILD_TYPE%]==[MSVC_64_Python] conda create -y --name nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
-# NOTE: need to use "call" because otherwise it won't work within an if block.
-- if [%BUILD_TYPE%]==[MSVC_64_Python] call activate nifty
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda config --add channels conda-forge --force
+  - conda install gtest cmake -c conda-forge 
+  - conda install xtl==0.4.0 -c QuantStack
+  - conda install nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
+  - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
+  - nmake test_nifty
+  - cd test
 
 build_script:
-- if [%BUILD_TYPE%]==[MSVC_64] git submodule update --init --recursive
-- if [%BUILD_TYPE%]==[MSVC_64] mkdir build
-- if [%BUILD_TYPE%]==[MSVC_64] cd build
-- if [%BUILD_TYPE%]==[MSVC_64] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no ..
-- if [%BUILD_TYPE%]==[MSVC_64] cmake --build . --config Release
 
-- if [%BUILD_TYPE%]==[MSVC_64_Python] git submodule update --init --recursive
-- if [%BUILD_TYPE%]==[MSVC_64_Python] mkdir build
-- if [%BUILD_TYPE%]==[MSVC_64_Python] cd build
-- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
-- if [%BUILD_TYPE%]==[MSVC_64_Python] cmake --build . --config Release
+- git submodule update --init --recursive
+- mkdir build
+- cd build
+- cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
+- cmake --build . --config Release
 
 test_script:
-- if [%BUILD_TYPE%]==[MSVC_64] ctest --output-on-failure
-
-# Enable this to be able to login to the build worker. You can use the
-# `remmina` program in Ubuntu, use the login information that the line below
-# prints into the log.
-# on_finish:
-# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+- ctest --output-on-failure
