@@ -18,6 +18,7 @@ namespace merge_rules{
             return std::string("ArithmeticMean");
         }
     };
+
     template<class G, class T>
     class ArithmeticMeanEdgeMap{
     public:
@@ -89,11 +90,17 @@ namespace merge_rules{
 
 
     struct GeneralizedMeanSettings{
-        double p = {1.0};
+        GeneralizedMeanSettings(const double p = 1.0)
+        : p(p){
+        }
+
+
         auto name()const{
             return std::string("GeneralizedMean") + std::string("[q=") + std::to_string(p) + std::string("]");
         }
+        double p;
     };
+
     template<class G, class T>
     class  GeneralizedMeanEdgeMap{
     public:
@@ -190,6 +197,7 @@ namespace merge_rules{
             return std::string("SmoothMax") + std::string("[q=") + std::to_string(p) + std::string("]");
         }
     };
+
     template<class G, class T>
     class  SmoothMaxEdgeMap{
     public:
@@ -288,6 +296,7 @@ namespace merge_rules{
             return ss.str();
         }
     };
+
     template<class G, class T>
     class  RankOrderEdgeMap{
     public:
@@ -424,6 +433,7 @@ namespace merge_rules{
             return std::string("Min");
         }
     };
+
     template<class G, class T>
     class MinEdgeMap{
     public:

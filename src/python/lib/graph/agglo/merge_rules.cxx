@@ -17,22 +17,28 @@ namespace agglo{
 
     void exportMergeRules(py::module & aggloModule) {
         
-
-        py::class_<merge_rules::ArithmeticMeanSettings>(aggloModule, "ArithmeticMeanSettings")
-            .def(py::init<>())
-            .def("__str__",[](const merge_rules::ArithmeticMeanSettings & self){
-                return self.name();
-            })
-        ;
+                #if 0
+        // py::class_<merge_rules::ArithmeticMeanSettings>(aggloModule, "ArithmeticMeanSettings")
+        //     .def(py::init<>())
+        //     .def("__str__",[](const merge_rules::ArithmeticMeanSettings & self){
+        //         return self.name();
+        //     })
+        // ;
 
         py::class_<merge_rules::GeneralizedMeanSettings>(aggloModule, "GeneralizedMeanSettings")
+
+            // .def(
+            //     py::init([](double val) { return new merge_rules::GeneralizedMeanSettings(val); })
+            // )
+
             .def(py::init<double>(),
-                py::arg("p")=1.0
+               py::arg("p")=1.0
             )
             .def("__str__",[](const merge_rules::GeneralizedMeanSettings & self){
                 return self.name();
             })
         ;
+
 
 
         py::class_<merge_rules::SmoothMaxSettings>(aggloModule, "SmoothMaxSettings")
@@ -67,6 +73,7 @@ namespace agglo{
                 return self.name();
             })
         ;
+        #endif
     }
 
 } // end namespace agglo

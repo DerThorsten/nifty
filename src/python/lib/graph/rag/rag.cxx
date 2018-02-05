@@ -18,12 +18,12 @@ namespace graph{
 }
 
 
-PYBIND11_PLUGIN(_rag) {
+PYBIND11_MODULE(_rag, ragModule) {
 
     py::options options;
     options.disable_function_signatures();
         
-    py::module ragModule("_rag", "rag submodule of nifty.graph");
+    ragModule.doc() = "rag submodule of nifty.graph";
 
     using namespace nifty::graph;
 
@@ -32,6 +32,5 @@ PYBIND11_PLUGIN(_rag) {
     exportProjectToPixels(ragModule);
     exportAccumulate(ragModule);
 
-    return ragModule.ptr();
 }
 

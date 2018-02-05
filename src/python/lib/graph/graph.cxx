@@ -28,14 +28,14 @@ namespace graph{
 }
 
 
-PYBIND11_PLUGIN(_graph) {
+PYBIND11_MODULE(_graph, module) {
 
     xt::import_numpy();
     
     py::options options;
     options.disable_function_signatures();
     
-    py::module module("_graph", "graph submodule of nifty");
+    module.doc() = "graph submodule of nifty";
 
     using namespace nifty::graph;
 
@@ -49,6 +49,6 @@ PYBIND11_PLUGIN(_graph) {
     exportConnectedComponents(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
-    return module.ptr();
+
 }
 

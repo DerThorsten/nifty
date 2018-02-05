@@ -18,7 +18,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 
 
 struct Configuration{
-
+    
 };
 
 
@@ -64,6 +64,7 @@ PYBIND11_MODULE(_nifty, module){
             }
         });
     #endif
+
 
     // \TODO move to another header
     py::class_<Configuration>(module, "Configuration",

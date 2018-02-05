@@ -46,9 +46,10 @@ requirements:
     - boost >=1.55.0
     - python
     - hdf5 >=1.8.0
-    - numpy
-    - xtensor
-    - xtensor-python
+    - numpy 
+    - xtensor =0.15.1
+    - xtensor-python=0.17*
+    - pybind11=2.2.1
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
     {% endif %}

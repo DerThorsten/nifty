@@ -39,14 +39,14 @@ namespace lifted_multicut{
 
 
 
-PYBIND11_PLUGIN(_lifted_multicut) {
+PYBIND11_MODULE(_lifted_multicut, liftedMulticutModule) {
 
     xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module liftedMulticutModule("_lifted_multicut", "lifted_multicut submodule of nifty.graph");
+    liftedMulticutModule.doc() = "lifted_multicut submodule of nifty.graph";
     
     using namespace nifty::graph::opt::lifted_multicut;
 
@@ -67,5 +67,4 @@ PYBIND11_PLUGIN(_lifted_multicut) {
     exportLiftedMulticutMp(liftedMulticutModule);
     #endif
 
-    return liftedMulticutModule.ptr();
 }
