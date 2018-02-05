@@ -22,11 +22,16 @@ struct Configuration{
 };
 
 
-PYBIND11_PLUGIN(_nifty) {
+
+
+PYBIND11_MODULE(_nifty, module){
+
 
     py::options options;
     options.disable_function_signatures();
-    py::module module("_nifty", "nifty python bindings");
+
+    module.doc() = "nifty python bindings";
+
 
 
 
@@ -112,8 +117,6 @@ PYBIND11_PLUGIN(_nifty) {
             return false;
             #endif
         }
-        )
-        
-        ;
-    return module.ptr();
+        );
+
 }
