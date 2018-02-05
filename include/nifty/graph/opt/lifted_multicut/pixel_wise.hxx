@@ -414,7 +414,7 @@ namespace lifted_multicut{
             // 
             auto e_a = objective_.evaluate(labels_a);
             auto e_b = objective_.evaluate(labels_b);
-            this->do_it(res, [&](
+            this->_build_(res, [&](
                 const auto & cc_node_labels,
                 const auto & cc_energy
             ){
@@ -466,7 +466,7 @@ namespace lifted_multicut{
 
             // 
            
-            this->do_it(res, [&](
+            this->_build_(res, [&](
                 const auto & cc_node_labels,
                 const auto & cc_energy
             ){
@@ -600,7 +600,7 @@ namespace lifted_multicut{
 
 
         template<class F>
-        auto do_it(
+        auto _build_(
             xt::xtensor<uint64_t, DIM, xt::layout_type::row_major> & res,
             F && f
         ){
@@ -769,7 +769,7 @@ namespace lifted_multicut{
             // 
             auto e_a = objective_.evaluate(labels_a);
             auto e_b = objective_.evaluate(labels_b);
-            this->do_it(res, [&](
+            this->_build_(res, [&](
                 const auto & cc_node_labels,
                 const auto & cc_energy
             ){
@@ -807,11 +807,6 @@ namespace lifted_multicut{
             ufd_.reset();
 
             const auto & shape = objective_.shape();
-
-
-
-
-
             typename xt::xtensor<int, DIM>::shape_type reshape{
                 size_t(shape[0]), size_t(shape[1]),size_t(shape[2])
             };
@@ -823,7 +818,7 @@ namespace lifted_multicut{
 
             // 
            
-            this->do_it(res, [&](
+            this->_build_(res, [&](
                 const auto & cc_node_labels,
                 const auto & cc_energy
             ){
@@ -984,7 +979,7 @@ namespace lifted_multicut{
 
 
         template<class F>
-        auto do_it(
+        auto _build_(
             xt::xtensor<int, DIM, xt::layout_type::row_major> & res,
             F && f
         ){
@@ -994,9 +989,6 @@ namespace lifted_multicut{
             const auto & offsets = objective_.offsets();
             const auto & weights = objective_.weights();
             const auto & n_offsets = objective_.n_offsets();
-            // const auto & labels_a = e_labels_a.derived_cast();
-            // const auto & labels_b = e_labels_b.derived_cast();
-
 
             // make map dense   
             const auto cc_n_variables = ufd_.numberOfSets();
@@ -1009,7 +1001,6 @@ namespace lifted_multicut{
                     ++res_iter;
                 }   
             }
-
 
 
             
