@@ -1,13 +1,15 @@
 environment:
   matrix:
     - BUILD_TYPE: "MSVC_64"
-      COMPILER: msvc-19-seh
+      COMPILER: msvc-20-seh
       PLATFORM: "x64"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     - BUILD_TYPE: "MSVC_64_Python"
       COMPILER: msvc-20-seh
       PLATFORM: "x64"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
   global:
-    PLATFORMTOOLSET: "v140"
+    PLATFORMTOOLSET: "v141"
 
 install:
 - if [%BUILD_TYPE%]==[MSVC_64] set PATH=C:\Miniconda36-x64\Scripts;%PATH%
