@@ -1,10 +1,10 @@
 environment:
   matrix:
     - BUILD_TYPE: "MSVC_64"
-      COMPILER: MSVC15
+      COMPILER: msvc-19-seh
       PLATFORM: "x64"
     - BUILD_TYPE: "MSVC_64_Python"
-      COMPILER: MSVC15
+      COMPILER: msvc-19-seh
       PLATFORM: "x64"
   global:
     PLATFORMTOOLSET: "v140"
