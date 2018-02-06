@@ -2,11 +2,12 @@ build: false
 
 platform:
   - x64
-  - x86
+  #- x86
+
 
 image:
-  - Visual Studio 2017
-  - Visual Studio 2015 
+  - Visual Studio 2015
+  #- Visual Studio 2015 
 
 environment:
   matrix:
@@ -30,20 +31,16 @@ install:
   - conda update -q conda
   - conda info -a
   - conda config --add channels conda-forge --force
-  - conda install gtest cmake -c conda-forge 
-  - conda install xtl==0.4.0 -c QuantStack
-  - conda install nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
-  - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
-  - nmake test_nifty
-  - cd test
+  - conda install python=3 cmake numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
+  #- cmake -G "NMake Makefiles" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
 
 build_script:
 
-- git submodule update --init --recursive
-- mkdir build
-- cd build
-- cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
-- cmake --build . --config Release
+  - git submodule update --init --recursive
+  - cmake -G "NMake Makefiles" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  .
+  - cmake --build . --config Release
 
 test_script:
-- ctest --output-on-failure
+  - ctest --output-on-failure
+  - nmake test
+  - nmake python-test
