@@ -121,12 +121,12 @@ namespace distributed {
                                              const std::string & blockStoragePath) {
         // the number of features is hard-coded to 10 for now
         const std::vector<size_t> zero2Coord({0, 0});
-        xt::xtensor<float, 2> values(Shape2Type({accumulators.size(), 10}));
+        xt::xtensor<FeatureType, 2> values(Shape2Type({accumulators.size(), 10}));
         EdgeIndexType edgeId = 0;
 
         for(const auto & accumulator : accumulators) {
             // get the values from this accumulator
-            const auto mean = replaceIfNotFinite(acc::get<acc::Mean>(accumulator), 0.0);
+            const FeatureType mean = replaceIfNotFinite(acc::get<acc::Mean>(accumulator), 0.0);
 
             values(edgeId, 0) = mean;
             values(edgeId, 1) = replaceIfNotFinite(acc::get<acc::Variance>(accumulator), 0.0);
@@ -140,8 +140,8 @@ namespace distributed {
 
         // serialize the features to z5 (TODO chunking / compression ?!)
         std::vector<size_t> shape = {accumulators.size(), 10};
-        auto ds = z5::createDataset(blockStoragePath, "float32", shape, shape, false);
-        z5::multiarray::writeSubarray<float>(ds, values, zero2Coord.begin());
+        auto ds = z5::createDataset(blockStoragePath, "float64", shape, shape, false);
+        z5::multiarray::writeSubarray<FeatureType>(ds, values, zero2Coord.begin());
     }
 
 
@@ -384,14 +384,14 @@ namespace distributed {
 
 
     inline void loadBlockFeatures(const std::string & blockFeaturePath,
-                                  xt::xtensor<float, 2> & features) {
+                                  xt::xtensor<FeatureType, 2> & features) {
         const std::vector<size_t> zero2Coord({0, 0});
         auto featDs = z5::openDataset(blockFeaturePath);
-        z5::multiarray::readSubarray<float>(featDs, features, zero2Coord.begin());
+        z5::multiarray::readSubarray<FeatureType>(featDs, features, zero2Coord.begin());
     }
 
 
-    inline void mergeFeaturesForSingleEdge(const xt::xtensor<float, 2> & tmpFeatures, xt::xtensor<float, 2> & targetFeatures,
+    inline void mergeFeaturesForSingleEdge(const xt::xtensor<FeatureType, 2> & tmpFeatures, xt::xtensor<FeatureType, 2> & targetFeatures,
                                            const EdgeIndexType tmpId, const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
         //// debugging
@@ -404,22 +404,22 @@ namespace distributed {
         if(hasFeatures[targetId]) {
 
             // index 9 is the count
-            const auto nSamplesA = targetFeatures(targetId, 9);
-            const auto nSamplesB = tmpFeatures(tmpId, 9);
-            const auto nSamplesTot = nSamplesA + nSamplesB;
-            const auto ratioA = nSamplesA / nSamplesTot;
-            const auto ratioB = nSamplesB / nSamplesTot;
+            const FeatureType nSamplesA = targetFeatures(targetId, 9);
+            const FeatureType nSamplesB = tmpFeatures(tmpId, 9);
+            const FeatureType nSamplesTot = nSamplesA + nSamplesB;
+            const FeatureType ratioA = nSamplesA / nSamplesTot;
+            const FeatureType ratioB = nSamplesB / nSamplesTot;
 
             // merge the mean
-            const float meanA = targetFeatures(targetId, 0);
-            const float meanB = tmpFeatures(tmpId, 0);
-            const float newMean = ratioA * meanA + ratioB * meanB;
+            const FeatureType meanA = targetFeatures(targetId, 0);
+            const FeatureType meanB = tmpFeatures(tmpId, 0);
+            const FeatureType newMean = ratioA * meanA + ratioB * meanB;
             targetFeatures(targetId, 0) = newMean;
 
             // merge the variance (feature id 1)
             // see https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
-            const float varA = targetFeatures(targetId, 1);
-            const float varB = tmpFeatures(tmpId, 1);
+            const FeatureType varA = targetFeatures(targetId, 1);
+            const FeatureType varB = tmpFeatures(tmpId, 1);
             targetFeatures(targetId, 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
             targetFeatures(targetId, 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
 
@@ -472,8 +472,8 @@ namespace distributed {
         // initialize per thread data
         const size_t nThreads = threadpool.nThreads();
         struct PerThreadData {
-            xt::xtensor<float, 2> features;
-            xt::xtensor<float, 2> tmpFeatures;
+            xt::xtensor<FeatureType, 2> features;
+            xt::xtensor<FeatureType, 2> tmpFeatures;
             std::vector<bool> edgeHasFeatures;
         };
         std::vector<PerThreadData> perThreadDataVector(nThreads);
@@ -548,7 +548,7 @@ namespace distributed {
         // serialize the edge features
         auto dsOut = z5::openDataset(featuresOut);
         const std::vector<size_t> zero2Coord({0, 0});
-        z5::multiarray::writeSubarray<float>(dsOut, features, zero2Coord.begin());
+        z5::multiarray::writeSubarray<FeatureType>(dsOut, features, zero2Coord.begin());
     }
 
 
