@@ -39,12 +39,12 @@ namespace multicut{
 }
 }
 
-PYBIND11_PLUGIN(_multicut) {
+PYBIND11_MODULE(_multicut, multicutModule) {
 
     py::options options;
     options.disable_function_signatures();
     
-    py::module multicutModule("_multicut", "multicut submodule of nifty.graph");
+    multicutModule.doc() = "multicut submodule of nifty.graph";
     
     using namespace nifty::graph::opt::multicut;
 
@@ -66,8 +66,6 @@ PYBIND11_PLUGIN(_multicut) {
     #ifdef WITH_LP_MP
     //exportMulticutMp(multicutModule);
     #endif
-    
-    
-    return multicutModule.ptr();
+
 }
 

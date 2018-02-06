@@ -84,6 +84,7 @@ namespace graph{
                     return edges;
                 }
             )
+            .def("shrinkToFit",&GraphType::shrinkToFit)
         ;
 
         graphModule.def("longRangeGridGraph3D",

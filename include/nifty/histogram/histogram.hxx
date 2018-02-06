@@ -59,7 +59,7 @@ namespace histogram{
             const T maxVal = 1,
             const size_t bincount = 40
         )
-        :   counts_(bincount),
+        :   counts_(bincount,0),
             minVal_(minVal),
             maxVal_(maxVal),
             binWidth_((maxVal-minVal)/T(bincount)),
@@ -149,10 +149,12 @@ namespace histogram{
             sum_ += w;
         }
 
-        void normalize(){
-            for(auto & v: counts_)
+        void normalize(const BincountType & targetSum ){
+            for(auto & v: counts_){
                 v/=sum_;
-            sum_ = 1.0;
+                v *= targetSum;
+            }
+            sum_ = targetSum;
         }
 
         void clear(){
@@ -160,7 +162,11 @@ namespace histogram{
                 v = 0;
             sum_ = 0.0;
         }
-
+        void clearCounts(){
+            for(auto & v: counts_)
+                v = 0;
+            sum_ = 0.0;
+        }
         double binToValue(const double fbin)const{
             return this->fbinToValue(fbin);
         }
@@ -181,6 +187,7 @@ namespace histogram{
             quantiles(*this,&q,&q+1, &ret);
             return ret;
         }
+
     private:
 
         double fbinToValue(double fbin)const{

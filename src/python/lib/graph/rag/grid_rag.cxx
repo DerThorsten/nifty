@@ -20,7 +20,6 @@ namespace graph{
 
     using namespace py;
 
-    // FIXME switch to xtensor
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT

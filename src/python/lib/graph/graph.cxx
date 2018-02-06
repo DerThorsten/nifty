@@ -49,4 +49,3 @@ PYBIND11_MODULE(_graph, module) {
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
 }
-

@@ -4,6 +4,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 project(NIFTY)
 set(${PROJECT_NAME}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+
+
+
 #-------------------------------------------------------------------------------------------------------------------
 # Version
 #-------------------------------------------------------------------------------------------------------------------
@@ -20,6 +23,7 @@ set(${PROJECT_NAME}_VERSION
 message(STATUS "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}")
 
 
+# ADD_DEFINITIONS(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 include(CheckCXXCompilerFlag)
 

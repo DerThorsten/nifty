@@ -26,6 +26,8 @@ except ImportError:
 if Configuration.WITH_Z5:
     import nifty.z5
 
+    labels = labels if numpy.issubdtype(labels.dtype, numpy.unsignedinteger) else numpy.require(labels, dtype=numpy.uint64)
+
 
 def gridRag(labels,
             numberOfLabels,

@@ -16,7 +16,7 @@
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 
 
-#include "nifty/graph/agglo/cluster_policies/fixation_cluster_policy.hxx"
+#include "nifty/graph/agglo/cluster_policies/dual_cluster_policy.hxx"
 #include "nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx"
 
 namespace py = pybind11;
@@ -33,7 +33,7 @@ namespace agglo{
 
 
     template<class GRAPH, class ACC_0, class ACC_1,bool WITH_UCM>
-    void exportfixationClusterPolicyTT(py::module & aggloModule) {
+    void exportDualClusterPolicyTT(py::module & aggloModule) {
         
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
@@ -43,8 +43,8 @@ namespace agglo{
 
         {   
             // name and type of cluster operator
-            typedef FixationClusterPolicy<GraphType, ACC_0, ACC_1, WITH_UCM> ClusterPolicyType;
-            const auto clusterPolicyBaseName = std::string("FixationClusterPolicy") +  withUcmStr;
+            typedef DualClusterPolicy<GraphType, ACC_0, ACC_1, WITH_UCM> ClusterPolicyType;
+            const auto clusterPolicyBaseName = std::string("DualClusterPolicy") +  withUcmStr;
             const auto clusterPolicyBaseName2 = clusterPolicyBaseName + ACC_0::staticName() + ACC_1::staticName();
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName + ACC_0::staticName() + ACC_1::staticName();
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
@@ -68,12 +68,14 @@ namespace agglo{
                     const typename ClusterPolicyType::Acc0SettingsType updateRule0,
                     const typename ClusterPolicyType::Acc1SettingsType updateRule1,
                     const bool zeroInit,
+                    const double stopPriority,
                     const uint64_t numberOfNodesStop
                 ){
                     typename ClusterPolicyType::SettingsType s;
                     s.numberOfNodesStop = numberOfNodesStop;
                     s.updateRule0 = updateRule0;
                     s.updateRule1 = updateRule1;
+                    s.stopPriority = stopPriority;
                     s.zeroInit = zeroInit;
                     auto ptr = new ClusterPolicyType(graph, mergePrios, notMergePrios, isLocalEdge, edgeSizes, s);
                     return ptr;
@@ -88,6 +90,7 @@ namespace agglo{
                 py::arg("updateRule0"),
                 py::arg("updateRule1"),
                 py::arg("zeroInit") = false,
+                py::arg("stopPriority") = 0.5,
                 py::arg("numberOfNodesStop") = 1
             );
 
@@ -97,55 +100,55 @@ namespace agglo{
     }
 
 
-    template<class GRAPH, class ACC_0, class ACC_1>
-    void exportfixationClusterPolicyT(py::module & aggloModule) {
-        exportfixationClusterPolicyTT<GRAPH, ACC_0, ACC_1, false>(aggloModule);
-        //exportfixationClusterPolicy<GRAPH, ACC_0, ACC_1, true >(aggloModule);
-    }
+    //emplate<class GRAPH, class ACC_0, class ACC_1>
+    //oid exportDualClusterPolicyT(py::module & aggloModule) {
+    //   exportDualClusterPolicyTT<GRAPH, ACC_0, ACC_1, false>(aggloModule);
+    //   //exportfixationClusterPolicy<GRAPH, ACC_0, ACC_1, true >(aggloModule);
+    //
 
 
 
     template<class GRAPH, class ACC_0>
-    void exportfixationClusterPolicyOuter(py::module & aggloModule) {
+    void exportDualClusterPolicyOuter(py::module & aggloModule) {
         typedef GRAPH GraphType;
 
-        typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
-        typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
-        typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
-        typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
-        typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
-        typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
+        typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+        typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+        typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+        typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+        typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+        typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
         
 
-        exportfixationClusterPolicyTT<GraphType, ACC_0, ArithmeticMeanAcc,  false>(aggloModule);
-        exportfixationClusterPolicyTT<GraphType, ACC_0, GeneralizedMeanAcc, false>(aggloModule);
-        exportfixationClusterPolicyTT<GraphType, ACC_0, SmoothMaxAcc,       false>(aggloModule);
-        exportfixationClusterPolicyTT<GraphType, ACC_0, RankOrderAcc,       false>(aggloModule);
-        exportfixationClusterPolicyTT<GraphType, ACC_0, MaxAcc,             false>(aggloModule);
-        exportfixationClusterPolicyTT<GraphType, ACC_0, MinAcc,             false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, ArithmeticMeanAcc,  false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, GeneralizedMeanAcc, false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, SmoothMaxAcc,       false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, RankOrderAcc,       false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, MaxAcc,             false>(aggloModule);
+        exportDualClusterPolicyTT<GraphType, ACC_0, MinAcc,             false>(aggloModule);
     }
 
 
-    void exportFixationAgglomerativeClustering(py::module & aggloModule) {
+    void exportDualAgglomerativeClustering(py::module & aggloModule) {
         {
             typedef PyUndirectedGraph GraphType;
 
 
 
-            typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
-            typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
-            typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
-            typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
-            typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
-            typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
+            typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+            typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+            typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+            typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+            typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+            typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
 
 
-            exportfixationClusterPolicyOuter<GraphType, ArithmeticMeanAcc >(aggloModule);
-            exportfixationClusterPolicyOuter<GraphType, SmoothMaxAcc      >(aggloModule);
-            exportfixationClusterPolicyOuter<GraphType, GeneralizedMeanAcc>(aggloModule);
-            exportfixationClusterPolicyOuter<GraphType, RankOrderAcc      >(aggloModule);
-            exportfixationClusterPolicyOuter<GraphType, MaxAcc            >(aggloModule);
-            exportfixationClusterPolicyOuter<GraphType, MinAcc            >(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, ArithmeticMeanAcc >(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, SmoothMaxAcc      >(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, GeneralizedMeanAcc>(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, RankOrderAcc      >(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, MaxAcc            >(aggloModule);
+            exportDualClusterPolicyOuter<GraphType, MinAcc            >(aggloModule);
 
 
         }

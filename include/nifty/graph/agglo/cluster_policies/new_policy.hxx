@@ -19,9 +19,9 @@ namespace agglo{
 template<
     class GRAPH,bool ENABLE_UCM
 >
-class GeneralizedMeanFixationClusterPolicy{
+class NewPolicy{
 
-    typedef GeneralizedMeanFixationClusterPolicy<
+    typedef NewPolicy<
         GRAPH, ENABLE_UCM
     > SelfType;
 
@@ -59,6 +59,7 @@ public:
         bool zeroInit = false;
         double p0{1.0};
         double p1{1.0};
+        double gamma{0.9}
         uint64_t numberOfNodesStop{1};
         //uint64_t numberOfBins{40};
     };
@@ -77,7 +78,7 @@ private:
 public:
 
     template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE, class EDGE_SIZES>
-    GeneralizedMeanFixationClusterPolicy(const GraphType &, 
+    NewPolicy(const GraphType &, 
                               const MERGE_PRIOS & , 
                               const NOT_MERGE_PRIOS &,
                               const IS_LOCAL_EDGE &,
@@ -161,8 +162,8 @@ private:
 
 template<class GRAPH, bool ENABLE_UCM>
 template<class MERGE_PRIOS, class NOT_MERGE_PRIOS, class IS_LOCAL_EDGE,class EDGE_SIZES>
-inline GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
-GeneralizedMeanFixationClusterPolicy(
+inline NewPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy(
     const GraphType & graph,
     const MERGE_PRIOS & mergePrios,
     const NOT_MERGE_PRIOS & notMergePrios,
@@ -205,14 +206,14 @@ GeneralizedMeanFixationClusterPolicy(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline std::pair<uint64_t, double> 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 edgeToContractNext() const {    
     return std::pair<uint64_t, double>(edgeToContractNext_,edgeToContractNextMergePrio_) ;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline bool 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 isDone()     {
     if(edgeContractionGraph_.numberOfNodes() <= settings_.numberOfNodesStop){
         //std::cout<<"done a1\n";
@@ -248,7 +249,7 @@ isDone()     {
 
 template<class GRAPH, bool ENABLE_UCM>
 inline double 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 pqMergePrio(
     const uint64_t edge
 ) const {
@@ -257,7 +258,7 @@ pqMergePrio(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 contractEdge(
     const uint64_t edgeToContract
 ){
@@ -266,15 +267,15 @@ contractEdge(
 }
 
 template<class GRAPH, bool ENABLE_UCM>
-inline typename GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+inline typename NewPolicy<GRAPH, ENABLE_UCM>::EdgeContractionGraphType & 
+NewPolicy<GRAPH, ENABLE_UCM>::
 edgeContractionGraph(){
     return edgeContractionGraph_;
 }
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 mergeNodes(
     const uint64_t aliveNode, 
     const uint64_t deadNode
@@ -284,7 +285,7 @@ mergeNodes(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 mergeEdges(
     const uint64_t aliveEdge, 
     const uint64_t deadEdge
@@ -427,7 +428,7 @@ mergeEdges(
 
 template<class GRAPH, bool ENABLE_UCM>
 inline void 
-GeneralizedMeanFixationClusterPolicy<GRAPH, ENABLE_UCM>::
+NewPolicy<GRAPH, ENABLE_UCM>::
 contractEdgeDone(
     const uint64_t edgeToContract
 ){

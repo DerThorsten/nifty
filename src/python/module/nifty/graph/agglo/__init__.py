@@ -15,6 +15,27 @@ for key in __agglo.__dict__.keys():
 from ...tools import makeDense as __makeDense
 
 
+def updatRule(name, **kwargs):
+    if name == 'max':
+        return MaxSettings()
+    elif name == 'min':
+        return MinSettings()
+    elif name == 'mean':
+        return ArithmeticMeanSettings()
+    elif name in ['gmean', 'generalized_mean']:
+        p = kwargs.get('p',1.0)
+        return GeneralizedMeanSettings(p=float(p))
+    elif name in ['smax', 'smooth_max']:
+        p = kwargs.get('p',0.0)
+        return SmoothMaxSettings(p=float(p))
+    elif name in ['rank','quantile', 'rank_order']:
+        q = kwargs.get('q',0.5)
+        numberOfBins = kwargs.get('numberOfBins',40)
+        return RankOrderSettings(q=float(q), numberOfBins=int(numberOfBins))
+    else:
+        return NotImplementedError("not yet implemented")
+
+
 # def fixationClusterPolicy(graph, 
 #     mergePrios=None,
 #     notMergePrios=None,

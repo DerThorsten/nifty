@@ -15,7 +15,7 @@
 #include "nifty/graph/graph_maps.hxx"
 #include "nifty/graph/agglo/agglomerative_clustering.hxx"
 #include "nifty/graph/agglo/cluster_policies/lifted_edge_weighted_cluster_policy2.hxx"
-
+#include "nifty/graph/agglo/cluster_policies/detail/merge_rules.hxx"
 
 
 namespace py = pybind11;
@@ -30,7 +30,7 @@ namespace agglo{
   
 
 
-    template<class GRAPH, bool WITH_UCM>
+    template<class GRAPH, class ACC, bool WITH_UCM>
     void exportLiftedAgglomerativeClusteringPolicyT(py::module & aggloModule) {
         
         typedef GRAPH GraphType;
@@ -41,15 +41,16 @@ namespace agglo{
 
         {   
             // name and type of cluster operator
-            typedef LiftedGraphEdgeWeightedClusterPolicy<GraphType,WITH_UCM> ClusterPolicyType;
+            typedef LiftedGraphEdgeWeightedClusterPolicy<GraphType, ACC, WITH_UCM> ClusterPolicyType;
             const auto clusterPolicyBaseName = std::string("LiftedGraphEdgeWeightedClusterPolicy") +  withUcmStr;
             const auto clusterPolicyClsName = clusterPolicyBaseName + graphName;
+            const auto clusterPolicyBaseName2 = clusterPolicyBaseName + ACC::staticName();
             const auto clusterPolicyFacName = lowerFirst(clusterPolicyBaseName);
 
             // the cluster operator cls
-            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyClsName.c_str())
-                .def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
-                .def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
+            py::class_<ClusterPolicyType>(aggloModule, clusterPolicyBaseName2.c_str())
+                //.def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
+                //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
             ;
         
 
@@ -57,46 +58,34 @@ namespace agglo{
             aggloModule.def(clusterPolicyFacName.c_str(),
                 [](
                     const GraphType & graph,
-                    const PyViewFloat1 & edgeIndicators,
+                    const PyViewFloat1 & mergePrios,
+                    const PyViewUInt8_1 & isLocalEdge,
                     const PyViewFloat1 & edgeSizes,
-                    const PyViewUInt8_1 & isLiftedEdge,
-                    const PyViewFloat1 & nodeSizes,
-                    const std::string stopConditionType,
                     const double stopPriority,
-                    const uint64_t stopNodeNumber
-                
+                    const typename ClusterPolicyType::AccSettingsType updateRule,
+                    const uint64_t numberOfNodesStop
                 ){
-                    typedef typename ClusterPolicyType::SettingsType SettingsType;
-                    SettingsType s;
-                    if(stopConditionType == std::string("priority") ){
-                        s.stopConditionType = SettingsType::PRIORITY;
-                    }
-                    else if(stopConditionType == std::string("numberOfNodes")){
-                        s.stopConditionType = SettingsType::NODE_NUMBER;
-                    }
-                    else{
-                        throw std::runtime_error("wrong stopConditionType: must "
-                            "be \"priority\" or must be \"stopNodeNumber\" or ");
-                    }
+                    typename ClusterPolicyType::SettingsType s;
                     s.stopPriority = stopPriority;
-                    s.stopNodeNumber = stopNodeNumber;
-                    auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, isLiftedEdge, nodeSizes, s);
+                    s.numberOfNodesStop = numberOfNodesStop;
+                    s.updateRule = updateRule;
+
+                    auto ptr = new ClusterPolicyType(graph, mergePrios, isLocalEdge, edgeSizes, s);
                     return ptr;
                 },
                 py::return_value_policy::take_ownership,
                 py::keep_alive<0,1>(), // graph
                 py::arg("graph"),
-                py::arg("edgeIndicators"),
+                py::arg("mergePrios"),
+                py::arg("isMergeEdge"),
                 py::arg("edgeSizes"),
-                py::arg("isLiftedEdge"),
-                py::arg("nodeSizes"),
-                py::arg("stopConditionType") = std::string("priority"),
                 py::arg("stopPriority") = 0.5,
-                py::arg("stopNodeNumber") = 0
+                py::arg("updateRule") = typename ACC::SettingsType(),
+                py::arg("numberOfNodesStop") = 1
             );
 
             // export the agglomerative clustering functionality for this cluster operator
-            exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName);
+            exportAgglomerativeClusteringTClusterPolicy<ClusterPolicyType>(aggloModule, clusterPolicyBaseName2);
         }
     }
 
@@ -108,9 +97,20 @@ namespace agglo{
         {
             typedef PyUndirectedGraph GraphType;
 
-            
-            exportLiftedAgglomerativeClusteringPolicyT<GraphType, false>(aggloModule);
-            exportLiftedAgglomerativeClusteringPolicyT<GraphType, true>(aggloModule);
+            typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+            typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+            typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+            typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+            typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+            typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+
+
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  ArithmeticMeanAcc,  false>(aggloModule);
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  GeneralizedMeanAcc, false>(aggloModule);
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  SmoothMaxAcc,       false>(aggloModule);
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  RankOrderAcc,       false>(aggloModule);
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  MaxAcc,             false>(aggloModule);
+            exportLiftedAgglomerativeClusteringPolicyT<GraphType,  MinAcc,             false>(aggloModule);
 
          
         }
