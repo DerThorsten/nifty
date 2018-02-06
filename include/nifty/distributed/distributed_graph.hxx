@@ -63,7 +63,7 @@ namespace distributed {
         void initGraph() {
             // iterate over the edges we have
             NodeType u, v;
-            EdgeIndexType edgeId;
+            EdgeIndexType edgeId = 0;
             for(const auto & edge : edges_) {
                 u = edge.first;
                 v = edge.second;

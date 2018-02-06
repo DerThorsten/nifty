@@ -49,7 +49,7 @@ namespace distributed {
         }, py::arg("groupPath"), py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
            py::arg("labelPath"), py::arg("labelKey"),
-           py::arg("blockIds"), py::arg("offsets"), py::arg("tmpFeatureStorage"),
+           py::arg("blockIds"), py::arg("tmpFeatureStorage"), py::arg("offsets"),
            py::arg("dataMin")=0., py::arg("dataMax")=1.);
 
 

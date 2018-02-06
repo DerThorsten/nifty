@@ -179,20 +179,17 @@ namespace distributed {
         }
 
         // accumulate
-        CoordType coord2;
-        NodeType lU, lV;
-        float fU, fV;
-        EdgeIndexType edge;
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
-            lU = xtensor::read(labels, coord.asStdArray());
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            CoordType coord2;
             for(size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){
-                    lV = xtensor::read(labels, coord2.asStdArray());
+                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
                     if(lU != lV){
-                        edge = graph.findEdge(lU, lV);
-                        fU = xtensor::read(data, coord.asStdArray());
-                        fV = xtensor::read(data, coord.asStdArray());
+                        const EdgeIndexType edge = graph.findEdge(lU, lV);
+                        const float fU = xtensor::read(data, coord.asStdArray());
+                        const float fV = xtensor::read(data, coord2.asStdArray());
                         accumulators[edge].updatePassN(fU, pass);
                         accumulators[edge].updatePassN(fV, pass);
                     }
@@ -226,7 +223,7 @@ namespace distributed {
         // get the shapes with halos
         std::vector<size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
         const auto & volumeShape = labelsDs->shape();
-        for(unsigned axis = 0; ++axis; axis < 3) {
+        for(unsigned axis = 0; axis < 3; ++axis) {
             beginWithHalo[axis] = std::max(roiBegin[axis] - haloBegin[axis], 0UL);
             endWithHalo[axis] = std::min(roiEnd[axis] + haloEnd[axis], volumeShape[axis]);
             affsBegin[axis + 1] = beginWithHalo[axis];
@@ -238,7 +235,7 @@ namespace distributed {
         Shape4Type affShape;
         CoordType blockShape;
         AffCoordType affBlockShape;
-        for(unsigned axis = 0; ++axis; axis < 3) {
+        for(unsigned axis = 0; axis < 3; ++axis) {
             shape[axis] = endWithHalo[axis] - beginWithHalo[axis];
             blockShape[axis] = shape[axis];
             affShape[axis + 1] = shape[axis];
