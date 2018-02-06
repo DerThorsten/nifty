@@ -29,7 +29,7 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFlat",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, 3> data,
+            const xt::pytensor<DATA_T, 3> & data,
             const double minVal,
             const double maxVal,
             const int zDirection,

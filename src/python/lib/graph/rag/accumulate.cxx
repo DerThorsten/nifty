@@ -26,8 +26,8 @@ namespace graph{
         ragModule.def("accumulateAffinities",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM+1> affinities,
-            xt::pytensor<int, 2> offsets
+            const xt::pytensor<DATA_T, DIM+1> & affinities,
+            const xt::pytensor<int, 2> & offsets
         ){
             const auto & labels = rag.labels();
             const auto & shape = rag.shape();
@@ -119,7 +119,7 @@ namespace graph{
         ragModule.def("accumulateEdgeMeanAndLength",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM> data,
+            const xt::pytensor<DATA_T, DIM> & data,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
@@ -172,7 +172,7 @@ namespace graph{
         ragModule.def("accumulateMeanAndLength",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM> data,
+            const xt::pytensor<DATA_T, DIM> & data,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads,
             const bool saveMemory
@@ -237,7 +237,7 @@ namespace graph{
         ragModule.def("accumulateStandartFeatures",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM> data,
+            const xt::pytensor<DATA_T, DIM> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,
@@ -307,7 +307,7 @@ namespace graph{
         ragModule.def("accumulateNodeStandartFeatures",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM> data,
+            const xt::pytensor<DATA_T, DIM> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,
@@ -337,7 +337,7 @@ namespace graph{
         ragModule.def("accumulateEdgeStandartFeatures",
         [](
             const RAG & rag,
-            xt::pytensor<DATA_T, DIM> data,
+            const xt::pytensor<DATA_T, DIM> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,

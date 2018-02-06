@@ -27,7 +27,7 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA & data,
+            const DATA & data,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int zDirection,
@@ -71,7 +71,7 @@ namespace graph{
         ragModule.def("accumulateEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA & data,
+            const DATA & data,
             FEATURES & outXY,
             FEATURES & outZ,
             const bool keepXYOnly,
@@ -122,7 +122,7 @@ namespace graph{
         ragModule.def("accumulateSkipEdgeFeaturesFromFilters",
         [](
             const RAG & rag,
-            DATA & data,
+            const DATA & data,
             const std::vector<std::pair<size_t,size_t>> & skipEdges,
             const std::vector<size_t> & skipRanges,
             const std::vector<size_t> & skipStarts,

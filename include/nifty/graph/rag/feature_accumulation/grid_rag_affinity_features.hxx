@@ -1,24 +1,21 @@
 #pragma once
 
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
-#include "nifty/graph/rag/feature_accumulation/lifted_nh.hxx"
+// lifted extraction is not supported for now
+// #include "nifty/graph/rag/feature_accumulation/lifted_nh.hxx"
 
-// accumulate features for flat superpixels with normal rag
 
 namespace nifty{
 namespace graph{
 
 
-// TODO parallelize properly
-// TODO use block storage mechanism to make out of core
 template<class EDGE_ACC_CHAIN, class RAG, class AFFINITIES, class F>
-void accumulateAffninitiesWithAccChain(
-    const RAG & rag,
-    const AFFINITIES & affinities,
-    parallel::ThreadPool & threadpool,
-    F && f,
-    const AccOptions & accOptions = AccOptions()
-){
+void accumulateAffninitiesWithAccChain(const RAG & rag,
+                                       const AFFINITIES & affinities,
+                                       const std::vector<std::array<int, 3>> & offsets,
+                                       parallel::ThreadPool & threadpool,
+                                       F && f,
+                                       const AccOptions & accOptions = AccOptions()){
     typedef array::StaticArray<int64_t, 3> Coord3;
     typedef array::StaticArray<int64_t, 4> Coord4;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -27,13 +24,13 @@ void accumulateAffninitiesWithAccChain(
     typedef std::vector<EdgeAccChainType> AccChainVectorType;
     typedef std::vector<AccChainVectorType> ThreadAccChainVectorType;
 
-    const auto & labels = rag.labelsProxy().labels();
+    const auto & labels = rag.labels();
 
     Coord3 shape;
     Coord4 affShape;
     affShape[0] = affinities.shape()[0];
     for(int d = 0; d < 3; ++d) {
-        shape[d] = labels.shape(d);
+        shape[d] = labels.shape()[d];
         affShape[d] = affinities.shape()[d+1];
     }
 
@@ -58,38 +55,28 @@ void accumulateAffninitiesWithAccChain(
         }
     });
 
-    // axes and reanges for local nhood
-    // TODO don't hardcode the affinity direction
-    std::array<int, 3> axes({0, 1, 2});
-    std::array<int, 3> ranges({-1, -1, -1});
-
     int pass = 1;
 
-    size_t nLinks = affinities.size();
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
+    // parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
+    tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
 
-        Coord4 affCoord;
         Coord3 cU, cV;
         VigraCoord vc;
-
-        // FIXME FIXME FIXME does xtensor support unravel index in this fashion ?
-        affinities.indexToCoordinates(linkId, affCoord.begin());
-        auto axis  = axes[affCoord[0]];
-        auto range = ranges[affCoord[0]];
+        const auto & offset = offsets[cU[0]];
 
         for(int d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
-            cV[d] = affCoord[d+1];
+            cV[d] = affCoord[d+1] + offset[d];
+            // range check
+            if(cV[d] < 0 || cV[d] >= shape[d]) {
+                return;
+            }
         }
-        cV[axis] += range;
-        // range check
-        if(cV[axis] >= shape[axis] || cV[axis] < 0) {
-            return;
-        }
-        auto u = labels(cU.asStdArray());
-        auto v = labels(cV.asStdArray());
+
+        const auto u = xtensor::read(labels, cU.asStdArray());
+        const auto v = xtensor::read(labels, cV.asStdArray());
 
         // only do stuff if the labels are different
         if(u != v) {
@@ -100,9 +87,12 @@ void accumulateAffninitiesWithAccChain(
                 vc = cU[d];
             }
 
-            auto val = xtensor::read(affinities, affCoord.asStdArray());
-            auto e = rag.findEdge(u, v);
-            thisAccumulators[e].updatePassN(val, vc, pass);
+            const auto val = xtensor::read(affinities, affCoord.asStdArray());
+            const int64_t e = rag.findEdge(u, v);
+            // For long range affinities, edge might not be in the rag
+            if(e != -1) {
+                thisAccumulators[e].updatePassN(val, vc, pass);
+            }
         }
     });
 
@@ -124,12 +114,12 @@ template<class RAG, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateAffinities(
     const RAG & rag,
     const AFFINITIES & affinities,
-    const double minVal,
-    const double maxVal,
+    const std::vector<std::array<int, 3>> & offsets,
     xt::xexpression<FEATURE_ARRAY> & featuresExp,
+    const double minVal = 0.,
+    const double maxVal = 1.,
     const int numberOfThreads = -1
 ){
-    // TODO check that affinity channels and lnh axes and ranges agree
     // check that shapes off affs and labels agree
     namespace acc = vigra::acc;
 
@@ -170,33 +160,25 @@ void accumulateAffinities(
         });
     };
 
-    accumulateAffninitiesWithAccChain<AccChainType>(
-        rag,
-        affinities,
-        threadpool,
-        accumulate,
-        AccOptions(minVal, maxVal)
-    );
+    accumulateAffninitiesWithAccChain<AccChainType>(rag,
+                                                    affinities,
+                                                    offsets,
+                                                    threadpool,
+                                                    accumulate,
+                                                    AccOptions(minVal, maxVal));
 }
 
 
-
-
-
-
-
-// TODO parallelize properly
-// TODO use block storage mechanism to make out of core
+// lifted extraction is not supported for now
+/*
 template<class EDGE_ACC_CHAIN, class RAG, class LNH, class AFFINITIES, class F_LOCAL, class F_LIFTED>
-void accumulateLongRangeAffninitiesWithAccChain(
-    const RAG & rag,
-    const LNH & lnh,
-    const AFFINITIES & affinities,
-    parallel::ThreadPool & threadpool,
-    F_LOCAL && f_local,
-    F_LIFTED && f_lifted,
-    const AccOptions & accOptions = AccOptions()
-){
+void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
+                                                const LNH & lnh,
+                                                const AFFINITIES & affinities,
+                                                parallel::ThreadPool & threadpool,
+                                                F_LOCAL && f_local,
+                                                F_LIFTED && f_lifted,
+                                                const AccOptions & accOptions = AccOptions()){
     typedef array::StaticArray<int64_t, 3> Coord3;
     typedef array::StaticArray<int64_t, 4> Coord4;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -407,6 +389,7 @@ void accumulateLongRangeAffinities(
         AccOptions(minVal, maxVal)
     );
 }
+*/
 
 
 }

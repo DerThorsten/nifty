@@ -19,7 +19,7 @@ namespace graph{
         ragModule.def("accumulateEdgeStandardFeatures",
         [](
             const RAG & rag,
-            DATA & data,
+            const DATA & data,
             const bool keepXYOnly,
             const bool keepZOnly,
             const int zDirection,
@@ -56,7 +56,7 @@ namespace graph{
         ragModule.def("accumulateEdgeStandardFeatures",
         [](
             const RAG & rag,
-            DATA & data,
+            const DATA & data,
             FEATURES & outXY,
             FEATURES & outZ,
             const bool keepXYOnly,

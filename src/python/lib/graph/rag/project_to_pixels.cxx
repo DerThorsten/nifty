@@ -26,7 +26,7 @@ namespace graph{
         ragModule.def("projectScalarNodeDataToPixels",
            [](
                 const GridRag<DATA_DIM, LABELS> & rag,
-                const xt::pytensor<T, 1> nodeData,
+                const xt::pytensor<T, 1> & nodeData,
                 const int numberOfThreads
            ){
                 typedef typename xt::pytensor<T, DATA_DIM>::shape_type ShapeType;
@@ -50,7 +50,7 @@ namespace graph{
         ragModule.def("projectScalarNodeDataToPixels",
            [](
                 const GridRagStacked2D<LABELS> & rag,
-                const xt::pytensor<T, 1> nodeData,
+                const xt::pytensor<T, 1> & nodeData,
                 const int numberOfThreads
            ){
                 typedef typename xt::pytensor<T, 3>::shape_type ShapeType;
@@ -74,7 +74,7 @@ namespace graph{
         ragModule.def("projectScalarNodeDataToPixels",
            [](
                 const GridRagStacked2D<LABELS> & rag,
-                const xt::pytensor<T, 1> nodeData,
+                const xt::pytensor<T, 1> & nodeData,
                 PIXEL_DATA & pixelData,
                 const int numberOfThreads
            ){

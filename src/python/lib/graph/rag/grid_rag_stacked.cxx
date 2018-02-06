@@ -125,7 +125,7 @@ namespace graph{
                 return out;
             })
 
-            .def("deserialize",[](GridRagType & self, xt::pytensor<uint64_t, 1> serialization) {
+            .def("deserialize",[](GridRagType & self, const xt::pytensor<uint64_t, 1> & serialization) {
                     auto startPtr = &serialization(0);
                     auto lastElement = &serialization(serialization.size()-1);
                     auto d = lastElement - startPtr + 1;
@@ -180,7 +180,7 @@ namespace graph{
         ragModule.def(facName.c_str(),
             [](const LabelsType & labels,
                const int64_t numberOfLabels,
-               xt::pytensor<uint64_t, 1> serialization,
+               const xt::pytensor<uint64_t, 1> & serialization,
                const int64_t ignoreLabel
             ){
                 auto startPtr = &serialization(0);
