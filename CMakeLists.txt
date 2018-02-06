@@ -236,7 +236,7 @@ if(WITH_Z5)
     add_definitions(-DWITH_Z5)
 
     include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/src")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/include")
     set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
 
     # z5 compression libraries
