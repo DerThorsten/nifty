@@ -21,9 +21,10 @@ namespace distributed {
         acc::Variance,    // 1
         Quantiles,        // 7
         acc::Count        // 1
-    > FeaturesType;
-    //typedef acc::StandAloneAccumulatorChain<3, float, FeaturesType> AccumulatorChain;
-    typedef acc::AccumulatorChain<float, FeaturesType> AccumulatorChain;
+    > FeatureSelection;
+    
+    typedef double FeatureType;
+    typedef acc::AccumulatorChain<FeatureType, FeatureSelection> AccumulatorChain;
 
     typedef std::vector<AccumulatorChain> AccumulatorVector;
     typedef vigra::HistogramOptions HistogramOptions;
@@ -122,9 +123,11 @@ namespace distributed {
         const std::vector<size_t> zero2Coord({0, 0});
         xt::xtensor<float, 2> values(Shape2Type({accumulators.size(), 10}));
         EdgeIndexType edgeId = 0;
+
         for(const auto & accumulator : accumulators) {
             // get the values from this accumulator
             const auto mean = replaceIfNotFinite(acc::get<acc::Mean>(accumulator), 0.0);
+
             values(edgeId, 0) = mean;
             values(edgeId, 1) = replaceIfNotFinite(acc::get<acc::Variance>(accumulator), 0.0);
             const auto & quantiles = acc::get<Quantiles>(accumulator);
@@ -150,7 +153,7 @@ namespace distributed {
                                       const std::vector<size_t> & roiBegin,
                                       const std::vector<size_t> & roiEnd,
                                       const std::string & blockStoragePath,
-                                      float dataMin, float dataMax) {
+                                      FeatureType dataMin, FeatureType dataMax) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<float, 3> DataArray;
@@ -188,8 +191,8 @@ namespace distributed {
                     const NodeType lV = xtensor::read(labels, coord2.asStdArray());
                     if(lU != lV){
                         const EdgeIndexType edge = graph.findEdge(lU, lV);
-                        const float fU = xtensor::read(data, coord.asStdArray());
-                        const float fV = xtensor::read(data, coord2.asStdArray());
+                        const FeatureType fU = xtensor::read(data, coord.asStdArray());
+                        const FeatureType fV = xtensor::read(data, coord2.asStdArray());
                         accumulators[edge].updatePassN(fU, pass);
                         accumulators[edge].updatePassN(fV, pass);
                     }
@@ -212,7 +215,7 @@ namespace distributed {
                                       const std::vector<OffsetType> & offsets,
                                       const std::vector<size_t> & haloBegin,
                                       const std::vector<size_t> & haloEnd,
-                                      float dataMin, float dataMax) {
+                                      FeatureType dataMin, FeatureType dataMax) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<float, 4> DataArray;
@@ -224,7 +227,7 @@ namespace distributed {
         std::vector<size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
         const auto & volumeShape = labelsDs->shape();
         for(unsigned axis = 0; axis < 3; ++axis) {
-            beginWithHalo[axis] = std::max(roiBegin[axis] - haloBegin[axis], 0UL);
+            beginWithHalo[axis] = std::max(static_cast<int64_t>(roiBegin[axis]) - static_cast<int64_t>(haloBegin[axis]), 0L);
             endWithHalo[axis] = std::min(roiEnd[axis] + haloEnd[axis], volumeShape[axis]);
             affsBegin[axis + 1] = beginWithHalo[axis];
         }
@@ -247,7 +250,7 @@ namespace distributed {
         // load data and labels
         DataArray affs(affShape);
         LabelArray labels(shape);
-        z5::multiarray::readSubarray<float>(dataDs, affs, affs.begin());
+        z5::multiarray::readSubarray<float>(dataDs, affs, affsBegin.begin());
         z5::multiarray::readSubarray<NodeType>(labelsDs, labels, beginWithHalo.begin());
 
         // create nifty accumulator vector
@@ -260,12 +263,9 @@ namespace distributed {
         }
 
         // accumulate
-        CoordType coord, coord2;
-        NodeType lU, lV;
-        EdgeIndexType edge;
-
         nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
 
+            CoordType coord, coord2;
             // the 0th affinitiy coordinate gives the channel index
             const auto & offset = offsets[affCoord[0]];
             for(unsigned axis = 0; axis < 3; ++axis) {
@@ -278,12 +278,12 @@ namespace distributed {
                 }
             }
 
-            lU = xtensor::read(labels, coord.asStdArray());
-            lV = xtensor::read(labels, coord2.asStdArray());
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            const NodeType lV = xtensor::read(labels, coord2.asStdArray());
             if(lU != lV){
                 // for long range affinites, the uv pair may not be part of the region graph
                 // so we need to check if the edge actually exists
-                edge = graph.findEdge(lU, lV);
+                const EdgeIndexType edge = graph.findEdge(lU, lV);
                 if(edge != -1) {
                     accumulators[edge].updatePassN(xtensor::read(affs, affCoord.asStdArray()), pass);
                 }
@@ -308,7 +308,7 @@ namespace distributed {
                                                      const std::string & labelKey,
                                                      const std::vector<size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
-                                                     float dataMin=0, float dataMax=1) {
+                                                     FeatureType dataMin=0, FeatureType dataMax=1) {
 
         // TODO could also use the std::bind pattern and std::function
         auto accumulator = [dataMin, dataMax](
@@ -394,6 +394,13 @@ namespace distributed {
     inline void mergeFeaturesForSingleEdge(const xt::xtensor<float, 2> & tmpFeatures, xt::xtensor<float, 2> & targetFeatures,
                                            const EdgeIndexType tmpId, const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
+        //// debugging
+        //if(tmpFeatures(tmpId, 9) == 0) {
+        //    std::cout << "Num samples is zero for " << tmpId << std::endl;
+        //    std::cout <<  tmpFeatures(tmpId, 9) << std::endl;
+        //    throw std::runtime_error("Invalid");
+        //}
+
         if(hasFeatures[targetId]) {
 
             // index 9 is the count
@@ -436,7 +443,17 @@ namespace distributed {
                 targetFeatures(targetId, featId) = tmpFeatures(tmpId, featId);
             }
             hasFeatures[targetId] = true;
+
         }
+
+        //// debugging
+        //for(auto featId = 0; featId < 10; ++featId) {
+        //    if(std::isinf(targetFeatures(targetId, featId)) || std::isnan(targetFeatures(targetId, featId))) {
+        //        std::cout << "Feat is nan /  inf " << targetFeatures(targetId, featId) << std::endl;
+        //        std::cout << "For feat " << targetId << " " << featId << std::endl;
+        //        throw std::runtime_error("NaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman");
+        //    }
+        //}
     }
 
 
@@ -471,7 +488,8 @@ namespace distributed {
         const size_t nBlocks = blockIds.size();
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockIndex){
 
-            auto blockId = blockIds[blockIndex];
+            const size_t blockId = blockIds[blockIndex];
+
             auto & perThreadData = perThreadDataVector[tId];
             auto & features = perThreadData.features;
             auto & hasFeatures = perThreadData.edgeHasFeatures;
@@ -505,8 +523,9 @@ namespace distributed {
                 if(edgeId >= edgeIdBegin && edgeId < edgeIdEnd) {
                     // find the corresponding ids in the dense block edges
                     // and in the dense edge range
-                    auto rangeEdgeId = edgeId - edgeIdBegin;
-                    auto blockEdgeId = toDenseBlockId[edgeId];
+                    const EdgeIndexType rangeEdgeId = edgeId - edgeIdBegin;
+                    const EdgeIndexType blockEdgeId = toDenseBlockId[edgeId];
+
                     mergeFeaturesForSingleEdge(blockFeatures, features, blockEdgeId, rangeEdgeId, hasFeatures);
                 }
             }
@@ -520,12 +539,12 @@ namespace distributed {
             for(int threadId = 1; threadId < nThreads; ++threadId) {
                 auto & perThreadData = perThreadDataVector[threadId];
                 if(perThreadData.edgeHasFeatures[edgeId]) {
-                    mergeFeaturesForSingleEdge(features, perThreadData.features, edgeId, edgeId, hasFeatureVector);
+                    mergeFeaturesForSingleEdge(perThreadData.features, features, edgeId, edgeId, hasFeatureVector);
                 }
             }
         });
 
-        // TODO we coudl parallelize this over the out chunks
+        // TODO we could parallelize this over the out chunks
         // serialize the edge features
         auto dsOut = z5::openDataset(featuresOut);
         const std::vector<size_t> zero2Coord({0, 0});

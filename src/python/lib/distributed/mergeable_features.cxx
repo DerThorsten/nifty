@@ -18,7 +18,7 @@ namespace distributed {
                                                               const std::string & labelKey,
                                                               const std::vector<size_t> & blockIds,
                                                               const std::string & tmpFeatureStorage,
-                                                              float dataMin, float dataMax) {
+                                                              FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromBoundaryMaps(groupPath, blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,
@@ -40,7 +40,7 @@ namespace distributed {
                                                               const std::vector<size_t> & blockIds,
                                                               const std::string & tmpFeatureStorage,
                                                               const std::vector<OffsetType> & offsets,
-                                                              float dataMin, float dataMax) {
+                                                              FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromAffinityMaps(groupPath, blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,

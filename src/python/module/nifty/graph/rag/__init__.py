@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 
-import os
 from .. import Configuration
 
 import numpy
@@ -22,11 +21,6 @@ try:
     WITH_H5PY = True
 except ImportError:
     WITH_H5PY = False
-
-if Configuration.WITH_Z5:
-    import nifty.z5
-
-    labels = labels if numpy.issubdtype(labels.dtype, numpy.unsignedinteger) else numpy.require(labels, dtype=numpy.uint64)
 
 
 def gridRag(labels,
@@ -59,7 +53,7 @@ def gridRag(labels,
                            numberOfLabels=numberOfLabels,
                            numberOfThreads=int(numberOfThreads))
         else:
-            return factory(labelsProxy,
+            return factory(labels,
                            numberOfLabels=numberOfLabels,
                            serialization=serialization)
 
