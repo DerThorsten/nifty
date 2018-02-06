@@ -395,37 +395,19 @@ namespace graph{
 
     void exportGridRag(py::module & ragModule) {
 
-        exportExpilictGridRagT<2, uint8_t>(ragModule, "ExplicitLabelsGridRag2D_uint8", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint8_t>(ragModule, "ExplicitLabelsGridRag3D_uint8", "explicitLabelsGridRag3D");
-
-        exportExpilictGridRagT<2, uint16_t>(ragModule, "ExplicitLabelsGridRag2D_uint16", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint16_t>(ragModule, "ExplicitLabelsGridRag3D_uint16", "explicitLabelsGridRag3D");
-
-        exportExpilictGridRagT<2, uint32_t>(ragModule, "ExplicitLabelsGridRag2D_uint32", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, uint32_t>(ragModule, "ExplicitLabelsGridRag3D_uint32", "explicitLabelsGridRag3D");
 
         exportExpilictGridRagT<2, uint64_t>(ragModule, "ExplicitLabelsGridRag2D", "explicitLabelsGridRag2D");
         exportExpilictGridRagT<3, uint64_t>(ragModule, "ExplicitLabelsGridRag3D", "explicitLabelsGridRag3D");
 
-        exportExpilictGridRagT<2, int8_t>(ragModule, "ExplicitLabelsGridRag2D_int8", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, int8_t>(ragModule, "ExplicitLabelsGridRag3D_int8", "explicitLabelsGridRag3D");
+       
 
-        exportExpilictGridRagT<2, int16_t>(ragModule, "ExplicitLabelsGridRag2D_int16", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, int16_t>(ragModule, "ExplicitLabelsGridRag3D_int16", "explicitLabelsGridRag3D");
-
-        exportExpilictGridRagT<2, int32_t>(ragModule, "ExplicitLabelsGridRag2D_int32", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, int32_t>(ragModule, "ExplicitLabelsGridRag3D_int32", "explicitLabelsGridRag3D");
-
-        exportExpilictGridRagT<2, int64_t>(ragModule, "ExplicitLabelsGridRag2D_int64", "explicitLabelsGridRag2D");
-        exportExpilictGridRagT<3, int64_t>(ragModule, "ExplicitLabelsGridRag3D_int64", "explicitLabelsGridRag3D");
-
-        exportExplicitGridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
+        exportExplicitGridRagStacked2D<uint64_t>(ragModule, "GridRagStacked2DExplicit", "gridRagStacked2DExplicitImpl");
 
         #ifdef WITH_HDF5
-        exportHdf5GridRagT<2, uint32_t>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
-        exportHdf5GridRagT<3, uint32_t>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
+        exportHdf5GridRagT<2, uint64_t>(ragModule, "GridRagHdf5Labels2D", "gridRag2DHdf5");
+        exportHdf5GridRagT<3, uint64_t>(ragModule, "GridRagHdf5Labels3D", "gridRag3DHdf5");
 
-        exportHdf5GridRagStacked2D<uint32_t>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
+        exportHdf5GridRagStacked2D<uint64_t>(ragModule, "GridRagStacked2DHdf5", "gridRagStacked2DHdf5Impl");
         #endif
     }
 

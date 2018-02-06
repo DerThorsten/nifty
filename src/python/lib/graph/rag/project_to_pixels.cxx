@@ -50,8 +50,8 @@ namespace graph{
 
     void exportProjectToPixels(py::module & ragModule) {
 
-        typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
-        typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+        typedef ExplicitLabelsGridRag<2, uint64_t> ExplicitLabelsGridRag2D;
+        typedef ExplicitLabelsGridRag<3, uint64_t> ExplicitLabelsGridRag3D;
 
 
 

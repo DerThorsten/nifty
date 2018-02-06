@@ -49,15 +49,15 @@ namespace graph{
 
         // exportGridRagAccumulateLabels
         {
-            typedef ExplicitLabelsGridRag<2, uint32_t> ExplicitLabelsGridRag2D;
-            typedef ExplicitLabelsGridRag<3, uint32_t> ExplicitLabelsGridRag3D;
+            typedef ExplicitLabelsGridRag<2, uint64_t> ExplicitLabelsGridRag2D;
+            typedef ExplicitLabelsGridRag<3, uint64_t> ExplicitLabelsGridRag3D;
             // accumulate labels
-            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
-            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint64_t, 2>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint64_t, 3>(ragModule);
 
             // accumulate labels
-            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
-            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint64_t, 2>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint64_t, 3>(ragModule);
 
 
         }
