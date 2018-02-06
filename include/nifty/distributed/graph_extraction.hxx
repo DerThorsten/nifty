@@ -441,11 +441,10 @@ namespace distributed {
 
 
     inline void mergeSubgraphs(const std::string & pathToGraph,
-                        const std::string & blockGroup,
-                        const std::string & blockPrefix,
-                        const std::vector<size_t> & blockIds,
-                        const std::string & outKey,
-                        const int numberOfThreads=1) {
+                               const std::string & blockPrefix,
+                               const std::vector<size_t> & blockIds,
+                               const std::string & outKey,
+                               const int numberOfThreads=1) {
         // TODO we should try unordered sets again here
         NodeSet nodes;
         EdgeSet edges;
@@ -454,16 +453,12 @@ namespace distributed {
         std::vector<size_t> roiBegin({10000000, 10000000, 10000000});
         std::vector<size_t> roiEnd({0, 0, 0});
 
-        // iterate over the blocks and insert the nodes and edges
-        auto graphPath = fs::path(pathToGraph);
-        graphPath /= blockGroup;
-
         if(numberOfThreads == 1) {
-            mergeSubgraphsSingleThreaded(graphPath, blockPrefix, blockIds,
+            mergeSubgraphsSingleThreaded(pathToGraph, blockPrefix, blockIds,
                                          nodes, edges,
                                          roiBegin, roiEnd);
         } else {
-            mergeSubgraphsMultiThreaded(graphPath, blockPrefix,
+            mergeSubgraphsMultiThreaded(pathToGraph, blockPrefix,
                                         blockIds, nodes, edges,
                                         roiBegin, roiEnd,
                                         numberOfThreads);
@@ -478,7 +473,6 @@ namespace distributed {
 
     inline void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
-                    const std::string & blockGroup,
                     const std::string & blockPrefix,
                     const std::vector<size_t> & blockIds,
                     const int numberOfThreads=1) {
@@ -491,10 +485,6 @@ namespace distributed {
         fs::path graphPath(pathToGraph);
         graphPath /= graphKey;
         loadEdges(graphPath.string(), edges, 0);
-
-        // open the top group of all the graph blocks
-        auto blockTopPath = fs::path(pathToGraph);
-        blockTopPath /= blockGroup;
 
         // iterate over the blocks and insert the nodes and edges
         // construct threadpool
@@ -509,7 +499,7 @@ namespace distributed {
 
             // open the group associated with the sub-graph corresponding to this block
             const std::string blockKey = blockPrefix + std::to_string(blockId);
-            fs::path blockPath = blockTopPath;
+            fs::path blockPath(pathToGraph);
             blockPath /= blockKey;
 
             // load the block edges
@@ -551,13 +541,12 @@ namespace distributed {
 
     inline void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
-                    const std::string & blockGroup,
                     const std::string & blockPrefix,
                     const size_t numberOfBlocks,
                     const int numberOfThreads=1) {
         std::vector<size_t> blockIds(numberOfBlocks);
         std::iota(blockIds.begin(), blockIds.end(), 0);
-        mapEdgeIds(pathToGraph, graphKey, blockGroup, blockPrefix, blockIds, numberOfThreads);
+        mapEdgeIds(pathToGraph, graphKey,blockPrefix, blockIds, numberOfThreads);
     }
 
 }

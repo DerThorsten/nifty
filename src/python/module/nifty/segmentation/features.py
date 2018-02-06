@@ -3,7 +3,7 @@ from .base import ProblemExtractor
 
 
 # TODO
-STAT_TO_INDEX = {'mean': 0}
+STAT_TO_INDEX = {'mean': 0, 'min': 2}
 
 
 # TODO

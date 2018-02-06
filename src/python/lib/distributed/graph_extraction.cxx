@@ -35,46 +35,41 @@ namespace distributed {
 
         module.def("mergeSubgraphs", [](
             const std::string & pathToGraph,
-            const std::string & blockGroup,
             const std::string & blockPrefix,
             const std::vector<size_t> & blockIds,
             const std::string & outKey,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mergeSubgraphs(pathToGraph, blockGroup,
-                           blockPrefix, blockIds,
+            mergeSubgraphs(pathToGraph, blockPrefix, blockIds,
                            outKey, numberOfThreads);
-        }, py::arg("pathToGraph"), py::arg("blockGroup"),
-           py::arg("blockPrefix"), py::arg("blockIds"),
+        }, py::arg("pathToGraph"), py::arg("blockPrefix"), py::arg("blockIds"),
            py::arg("outKey"), py::arg("numberOfThreads")=1);
 
 
         module.def("mapEdgeIds", [](
             const std::string & pathToGraph,
             const std::string & graphGroup,
-            const std::string & blockGroup,
             const std::string & blockPrefix,
             const std::vector<size_t> & blockIds,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mapEdgeIds(pathToGraph, graphGroup, blockGroup, blockPrefix, blockIds, numberOfThreads);
-        }, py::arg("pathToGraph"), py::arg("graphGroup"), py::arg("blockGroup"),
+            mapEdgeIds(pathToGraph, graphGroup, blockPrefix, blockIds, numberOfThreads);
+        }, py::arg("pathToGraph"), py::arg("graphGroup"),
            py::arg("blockPrefix"), py::arg("blockIds"), py::arg("numberOfThreads")=1);
 
 
         module.def("mapEdgeIdsForAllBlocks", [](
             const std::string & pathToGraph,
             const std::string & graphGroup,
-            const std::string & blockGroup,
             const std::string & blockPrefix,
             const size_t numberOfBlocks,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mapEdgeIds(pathToGraph, graphGroup, blockGroup, blockPrefix, numberOfBlocks, numberOfThreads);
-        }, py::arg("pathToGraph"), py::arg("graphGroup"), py::arg("blockGroup"),
+            mapEdgeIds(pathToGraph, graphGroup, blockPrefix, numberOfBlocks, numberOfThreads);
+        }, py::arg("pathToGraph"), py::arg("graphGroup"),
            py::arg("blockPrefix"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
 
 
@@ -100,6 +95,7 @@ namespace distributed {
         }, py::arg("pathToGraph"));
 
 
+        // TODO load and return as pytensor to avoid data copy 
         module.def("loadNodes", [](const std::string & pathToGraph) {
             std::vector<uint64_t> nodes;
             {

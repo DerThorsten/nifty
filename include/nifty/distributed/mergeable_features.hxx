@@ -390,32 +390,32 @@ namespace distributed {
                                   xt::xtensor<float, 2> & features) {
         const std::vector<size_t> zero2Coord({0, 0});
         auto featDs = z5::openDataset(blockFeaturePath);
-        z5::multiarray::writeSubarray<float>(featDs, features, zero2Coord.begin());
+        z5::multiarray::readSubarray<float>(featDs, features, zero2Coord.begin());
     }
 
 
-    inline void mergeFeaturesForSingleEdge(xt::xtensor<float, 2> & tmpFeatures, xt::xtensor<float, 2> & targetFeatures,
+    inline void mergeFeaturesForSingleEdge(const xt::xtensor<float, 2> & tmpFeatures, xt::xtensor<float, 2> & targetFeatures,
                                            const EdgeIndexType tmpId, const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
         if(hasFeatures[targetId]) {
 
             // index 9 is the count
-            auto nSamplesA = targetFeatures(targetId, 9);
-            auto nSamplesB = tmpFeatures(tmpId, 9);
-            auto nSamplesTot = nSamplesA + nSamplesB;
-            auto ratioA = nSamplesA / nSamplesTot;
-            auto ratioB = nSamplesB / nSamplesTot;
+            const auto nSamplesA = targetFeatures(targetId, 9);
+            const auto nSamplesB = tmpFeatures(tmpId, 9);
+            const auto nSamplesTot = nSamplesA + nSamplesB;
+            const auto ratioA = nSamplesA / nSamplesTot;
+            const auto ratioB = nSamplesB / nSamplesTot;
 
             // merge the mean
-            float meanA = targetFeatures(targetId, 0);
-            float meanB = tmpFeatures(tmpId, 0);
-            float newMean = ratioA * meanA + ratioB * meanB;
+            const float meanA = targetFeatures(targetId, 0);
+            const float meanB = tmpFeatures(tmpId, 0);
+            const float newMean = ratioA * meanA + ratioB * meanB;
             targetFeatures(targetId, 0) = newMean;
 
             // merge the variance (feature id 1)
             // see https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
-            float varA = targetFeatures(targetId, 1);
-            float varB = tmpFeatures(tmpId, 1);
+            const float varA = targetFeatures(targetId, 1);
+            const float varB = tmpFeatures(tmpId, 1);
             targetFeatures(targetId, 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
             targetFeatures(targetId, 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
 
@@ -485,14 +485,14 @@ namespace distributed {
             std::vector<EdgeIndexType> blockEdgeIndices;
             loadEdgeIndices(blockGraphPath, blockEdgeIndices);
             const size_t nEdgesBlock = blockEdgeIndices.size();
+
+            // get mapping to dense edge ids for this block
             std::unordered_map<EdgeIndexType, EdgeIndexType> toDenseBlockId;
             size_t denseBlockId = 0;
             for(EdgeIndexType edgeId : blockEdgeIndices) {
                 toDenseBlockId[edgeId] = denseBlockId;
                 ++denseBlockId;
             }
-
-            // generate mapping of global id to dense id in the block
 
             // load features for the block
             // first resize the tmp features, if necessary
