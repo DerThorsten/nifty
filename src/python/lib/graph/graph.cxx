@@ -2,7 +2,6 @@
 
 #define FORCE_IMPORT_ARRAY
 #include "xtensor-python/pyarray.hpp"
-#include "xtensor-python/pyvectorize.hpp"
 
 #include <iostream>
 
