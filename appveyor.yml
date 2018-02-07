@@ -12,6 +12,7 @@ image:
 environment:
   matrix:
     - MINICONDA: C:\nifty-conda
+      CXXFLAGS: /std:c++14 /permissive-
 
 init:
   # - "ECHO %MINICONDA%"
