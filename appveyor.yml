@@ -24,14 +24,15 @@ init:
   - ps: if($env:Platform -eq "x64"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe' C:\Miniconda.exe; echo "Done"}
   - ps: if($env:Platform -eq "x86"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86.exe' C:\Miniconda.exe; echo "Done"}
   - cmd: C:\Miniconda.exe /S /D=C:\nifty-conda
-  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library\\bin;%PATH%"
+  - activate nifty
+  #- "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library\\bin;%PATH%"
 
 install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
   - conda config --add channels conda-forge --force
-  - conda install python=3 cmake numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
+  - conda create -y --name nifty python=3 cmake numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
   #- cmake -G "NMake Makefiles" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
 
 build_script:
