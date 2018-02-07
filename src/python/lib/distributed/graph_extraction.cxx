@@ -105,6 +105,18 @@ namespace distributed {
             return nodes;
         }, py::arg("pathToGraph"));
 
+
+        module.def("nodeLabelingToPixels", [](const std::string & labelsPath,
+                                              const std::string & outPath,
+                                              const xt::xtensor<NodeType, 1> & nodeLabeling,
+                                              const std::vector<size_t> & blockIds,
+                                              const std::vector<size_t> & blockShape) {
+            py::gil_scoped_release allowThreads;
+            nodeLabelingToPixels(labelsPath, outPath, nodeLabeling, blockIds, blockShape);
+        }, py::arg("labelsPath"), py::arg("outPath"),
+           py::arg("nodeLabeling"), py::arg("blockIds"),
+           py::arg("blockShape"));
+
     }
 
 }

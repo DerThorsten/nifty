@@ -546,7 +546,7 @@ namespace distributed {
                     const int numberOfThreads=1) {
         std::vector<size_t> blockIds(numberOfBlocks);
         std::iota(blockIds.begin(), blockIds.end(), 0);
-        mapEdgeIds(pathToGraph, graphKey,blockPrefix, blockIds, numberOfThreads);
+        mapEdgeIds(pathToGraph, graphKey, blockPrefix, blockIds, numberOfThreads);
     }
 
 }
