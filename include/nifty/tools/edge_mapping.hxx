@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <vector>
+#include <boost/functional/hash.hpp>
 
 #include "nifty/xtensor/xtensor.hxx"
 #include "nifty/parallel/threadpool.hxx"
@@ -20,17 +21,18 @@ public:
     typedef std::pair<NodeType, NodeType> UvType;
     typedef std::vector<UvType> UvVectorType;
 
-    EdgeMapping(const size_t numberOfEdges, const int nThreads=-1)
-        : oldToNewEdges_(numberOfEdges), newUvIds_(), threadpool_(nThreads)
-    {}
+    template<class UV_ARRAY, class NODE_ARRAY>
+    EdgeMapping(const xt::xexpression<UV_ARRAY> & uvIds,
+                const xt::xexpression<NODE_ARRAY> & nodeLabeling,
+                const int nThreads=-1)
+    {
+        initializeMapping(uvIds, nodeLabeling, nThreads);
+    }
 
-    template<class ARRAY>
-    void initializeMapping(const xt::xexpression<ARRAY> &, const std::vector<NodeType> &);
+    template<class VALARRAY>
+    void mapEdgeValues(const xt::xexpression<VALARRAY> &, xt::xexpression<VALARRAY> &, const int) const;
 
-    template<class T>
-    void mapEdgeValues(const std::vector<T> &, std::vector<T> &) const;
-
-    const UvVectorType & getNewUvIds() const
+    const UvVectorType & newUvIds() const
     {return newUvIds_;}
 
     void getNewEdgeIds(const std::vector<EdgeType> &, std::vector<EdgeType> &) const;
@@ -38,144 +40,119 @@ public:
     size_t numberOfNewEdges() const
     {return newUvIds_.size();}
 
+
 private:
 
-    //std::map<EdgeType, std::vector<EdgeType>> newToOldEdges_;
-    std::vector<EdgeType> oldToNewEdges_;
-    UvVectorType newUvIds_;
-    mutable parallel::ThreadPool threadpool_;
+    template<class UV_ARRAY, class NODE_ARRAY>
+    void initializeMapping(const xt::xexpression<UV_ARRAY> & uvIdsExp,
+                           const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
+                           const int numberOfThreads) {
+        const auto & uvIds = uvIdsExp.derived_cast();
+        const auto & nodeLabeling = nodeLabelingExp.derived_cast();
+
+        const size_t nEdges = uvIds.shape()[0];
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+        const size_t nThreads = threadpool.nThreads();
+
+        // find new uv-ids
+        typedef boost::hash<UvType> Hash;
+        std::unordered_map<UvType, size_t, Hash> uvNewToIndex;
+        {
+            // use normal map because we want to have ordered keys
+            typedef std::set<UvType> UvSet;
+            std::vector<UvSet> perThreadData(threadpool.nThreads());
+
+            nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeType edgeId) {
+                const NodeType u = uvIds(edgeId, 0);
+                const NodeType v = uvIds(edgeId, 1);
+                const NodeType uNew = nodeLabeling(u);
+                const NodeType vNew = nodeLabeling(v);
+                if(uNew == vNew) {
+                    return;
+                }
+                perThreadData[tId].insert(std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew)));
+            });
+
+            // merge
+            auto & uvSet = perThreadData[0];
+            for(int tId = 1; tId < nThreads; ++tId) {
+                uvSet.insert(perThreadData[tId].begin(), perThreadData[tId].end());
+            }
+
+            newUvIds_.resize(uvSet.size());
+            size_t ii = 0;
+            for(const auto & uv: uvSet) {
+                newUvIds_[ii] = uv;
+                uvNewToIndex[uv] = ii;
+                ++ii;
+            }
+        }
+
+        // get the edge mapping
+        {
+            edgeMapping_.resize(nEdges);
+
+            nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeType edgeId) {
+                const NodeType uNew = nodeLabeling(edgeId, 0);
+                const NodeType vNew = nodeLabeling(edgeId, 1);
+                if(uNew == vNew) {
+                    edgeMapping_[edgeId] = -1;
+                    return;
+                }
+                const auto uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
+                const auto newEdgeId = uvNewToIndex[uvNew];
+                edgeMapping_[edgeId] = newEdgeId;
+            });
+        }
+
+    }
+
+    std::vector<EdgeType> edgeMapping_;
+    std::vector<UvType> newUvIds_;
 };
 
 
-// TODO parallelize ?!
+// TODO different mapping functions
 template<class EDGE_TYPE, class NODE_TYPE>
-template<class ARRAY>
-void EdgeMapping<EDGE_TYPE, NODE_TYPE>::initializeMapping(const xt::xexpression<ARRAY> & uvIdsExp, const std::vector<NodeType> & oldToNewNodes)
-{
+template<class VALARRAY>
+void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALARRAY> & edgeValuesExp,
+                                                      xt::xexpression<VALARRAY> & newEdgeValuesExp,
+                                                      const int numberOfThreads) const {
 
-    /*
-    NodeType uNew, vNew;
-    UvType uvNew;
-    std::map<UvType, EdgeType> indexMap;
-    EdgeType index = 0;
+    typedef typename VALARRAY::value_type ValueType;
+    const auto & edgeValues = edgeValuesExp.derived_cast();
+    auto & newEdgeValues = newEdgeValuesExp.derived_cast();
 
-    for(EdgeType i = 0; i < uvIds.shape(0); ++i) {
-        uNew = oldToNewNodes[uvIds(i,0)];
-        vNew = oldToNewNodes[uvIds(i,1)];
+    NIFTY_CHECK_OP(edgeValues.shape()[0], ==, edgeMapping_.size(), "Wrong Input size");
 
-        if(uNew == vNew) {
-            oldToNewEdges_[i] = -1;
-            continue;
-        }
-
-        uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
-
-        auto e = indexMap.insert(std::make_pair(uvNew, index));
-        if(e.second) {
-            newUvIds_.push_back(uvNew);
-            ++index;
-        }
-
-        oldToNewEdges_[i] = e.first->second;
-    }
-    */
-
-    const auto & uvIds = uvIdsExp.derived_cast();
-
-    typedef std::vector< std::pair<UvType, EdgeType> > newUvToOldEdgeVector;
-    std::vector<newUvToOldEdgeVector> threadVectors(threadpool_.nThreads());
-    // TODO try unordered set, but need custom hash
-    std::vector<std::set<UvType>> threadSets(threadpool_.nThreads());
-
-    // find new uv ids in parallel
-    parallel::parallel_foreach(threadpool_, uvIds.shape()[0], [&](const int tId, const EdgeType edgeId){
-        NodeType uNew = oldToNewNodes[uvIds(edgeId, 0)];
-        NodeType vNew = oldToNewNodes[uvIds(edgeId, 1)];
-
-        if(uNew == vNew) {
-            //NOTE this is threadsafe, because we are looping over edgeId in parralel
-            oldToNewEdges_[edgeId] = -1;
-            return;
-        }
-
-        //
-        auto & thisVector = threadVectors[tId];
-        auto & thisSet = threadSets[tId];
-        auto uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
-        thisVector.emplace_back( std::make_pair(uvNew, edgeId) );
-        thisSet.insert(uvNew);
-
-    });
-
-    // insert the uv-ids into newUvIds
-
-    // TODO benchmark
-
-    // TODO via std::unique
-
-    //// via set TODO unordered
-    std::set<UvType> uvNewTmp;
-    for(size_t t = 0; t < threadpool_.nThreads(); ++t) {
-        const auto & thisSet = threadSets[t];
-        uvNewTmp.insert(thisSet.begin(), thisSet.end());
-    }
-    newUvIds_.resize(uvNewTmp.size());
-    std::copy(uvNewTmp.begin(), uvNewTmp.end(), newUvIds_.begin());
-
-    // construct a lut for the new uv-ids
-    // TODO hashmap ?!
-    std::map<UvType, EdgeType> lut;
-    for(EdgeType newEdgeId = 0; newEdgeId < newUvIds_.size(); ++newEdgeId) {
-        lut[newUvIds_[newEdgeId]] = newEdgeId;
-    }
-
-    // find old to new edges in parallel by going over the unique new uv-ids
-    parallel::parallel_foreach(threadpool_, threadpool_.nThreads(), [&](const int tId, const int t){
-
-        const auto & thisVec = threadVectors[t];
-        EdgeType newEdgeId;
-        for(const auto & elem: thisVec) {
-            newEdgeId = lut[elem.first];
-            // NOTE: this is thread safe, because every old edge id (== elem.second) only occurs once
-            oldToNewEdges_[elem.second] = newEdgeId;
-        }
-
-    });
-
-}
-
-
-template<class EDGE_TYPE, class NODE_TYPE>
-template<class T>
-void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(
-        const std::vector<T> & edgeValues, std::vector<T> & newEdgeValues) const {
-
-    NIFTY_CHECK_OP(edgeValues.size(),==,oldToNewEdges_.size(),"Wrong Input size");
-
-    newEdgeValues.clear();
-    newEdgeValues.resize(newUvIds_.size(), 0);
+    nifty::parallel::ThreadPool threadpool(numberOfThreads);
+    const size_t nThreads = threadpool.nThreads();
 
     // initialise the thread data
-    std::vector<std::vector<T>> threadVecs(threadpool_.nThreads());
-    parallel::parallel_foreach(threadpool_, threadpool_.nThreads(), [&](const int t, const int i){
-        threadVecs[i] = std::vector<T>(newUvIds_.size(), 0);
+    std::vector<std::vector<ValueType>> perThreadData(nThreads);
+    parallel::parallel_foreach(threadpool, nThreads, [&](const int t, const int i){
+        if(i != 0) {
+            perThreadData[i] = std::vector<ValueType>(newUvIds_.size(), 0);
+        }
     });
 
     // extract the new edge values in parallel over the old edges
-    parallel::parallel_foreach(threadpool_, edgeValues.size(), [&](const int tId, const int edgeId){
-        const int64_t newEdge = oldToNewEdges_[edgeId];
+    parallel::parallel_foreach(threadpool, edgeValues.size(), [&](const int tId, const int edgeId){
+        const int64_t newEdge = edgeMapping_[edgeId];
         if(newEdge != -1) {
-            auto & newVals = threadVecs[tId];
-            newVals[newEdge] += edgeValues[edgeId];
+            ValueType * val = &newEdgeValues(newEdge);
+            if(tId != 0) {
+                val = &perThreadData[tId][newEdge];
+            }
+            *val += edgeValues(edgeId);
         }
     });
 
     // write to the out vector in parallel over the new edges
-    parallel::parallel_foreach(threadpool_, newEdgeValues.size(), [&](const int tId, const int newEdgeId){
-        auto & destValue = newEdgeValues[newEdgeId];
-        for(int t = 0; t < threadpool_.nThreads(); ++t) {
-            auto & srcValues = threadVecs[t];
-            destValue += srcValues[newEdgeId];
+    parallel::parallel_foreach(threadpool, newEdgeValues.size(), [&](const int tId, const int newEdgeId){
+        auto & val = newEdgeValues(newEdgeId);
+        for(int t = 1; t < nThreads; ++t) {
+            val += perThreadData[t][newEdgeId];
         }
     });
 
@@ -183,12 +160,12 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(
 
 
 template<class EDGE_TYPE, class NODE_TYPE>
-void EdgeMapping<EDGE_TYPE, NODE_TYPE>::getNewEdgeIds(
-        const std::vector<EdgeType> & edgeIds, std::vector<EdgeType> & newEdgeIds) const {
+void EdgeMapping<EDGE_TYPE, NODE_TYPE>::getNewEdgeIds(const std::vector<EdgeType> & edgeIds,
+                                                      std::vector<EdgeType> & newEdgeIds) const {
 
     newEdgeIds.clear();
     for(auto oldEdge : edgeIds) {
-        auto newEdge = oldToNewEdges_[oldEdge];
+        const auto newEdge = edgeMapping_[oldEdge];
         if(newEdge != -1) {
             newEdgeIds.push_back(newEdge);
         }
@@ -197,30 +174,6 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::getNewEdgeIds(
     std::sort(newEdgeIds.begin(), newEdgeIds.end());
     auto edgeIt = std::unique(newEdgeIds.begin(), newEdgeIds.end());
     newEdgeIds.erase(edgeIt, newEdgeIds.end());
-
-    // FIXME this is buggy !
-    //std::vector<std::set<EdgeType>> threadSets(threadpool_.nThreads());
-
-    //// find new edges in parallel
-    //parallel::parallel_foreach(threadpool_, edgeIds.size(), [&](const int tId, const int edgeId){
-    //    auto newEdge = oldToNewEdges_[edgeId];
-    //    if(newEdge != -1) {
-    //        auto & thisSet = threadSets[tId];
-    //        thisSet.insert(newEdge);
-    //    }
-    //});
-
-    //// merge the edge sets
-    //auto & destSet = threadSets[0];
-    //for(int tId = 1; tId < threadpool_.nThreads(); ++tId) {
-    //    const auto & srcSet = threadSets[tId];
-    //    destSet.insert(srcSet.begin(), srcSet.end());
-    //}
-
-    //// write edge values to out vector
-    //newEdgeIds.resize(destSet.size());
-    //std::copy(destSet.begin(), destSet.end(), newEdgeIds.begin());
-
 }
 
 

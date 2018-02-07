@@ -1,6 +1,8 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+#include "xtensor-python/pytensor.hpp"
+
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/graph_tools.hxx"
 #include "nifty/python/converter.hxx"
@@ -95,20 +97,25 @@ namespace distributed {
         }, py::arg("pathToGraph"));
 
 
-        // TODO load and return as pytensor to avoid data copy 
         module.def("loadNodes", [](const std::string & pathToGraph) {
-            std::vector<uint64_t> nodes;
+            std::vector<NodeType> nodes;
             {
                 py::gil_scoped_release allowThreads;
                 loadNodes(pathToGraph, nodes, 0);
             }
-            return nodes;
+            typename xt::pytensor<NodeType, 1>::shape_type shape = {static_cast<int64_t>(nodes.size())};
+            xt::pytensor<NodeType, 1> array(shape);
+            {
+                py::gil_scoped_release allowThreads;
+                std::copy(nodes.begin(), nodes.end(), array.begin());
+            }
+            return array;
         }, py::arg("pathToGraph"));
 
 
         module.def("nodeLabelingToPixels", [](const std::string & labelsPath,
                                               const std::string & outPath,
-                                              const xt::xtensor<NodeType, 1> & nodeLabeling,
+                                              const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const std::vector<size_t> & blockIds,
                                               const std::vector<size_t> & blockShape) {
             py::gil_scoped_release allowThreads;

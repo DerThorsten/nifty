@@ -30,8 +30,7 @@ namespace graph{
             )
             .def("insertEdge",&GraphType::insertEdge)
             .def("insertEdges",
-                [](GraphType & g, const xt::pytensor<uint64_t, 1> & array) {
-                    NIFTY_CHECK_OP(array.dimension(),==,2,"wrong dimensions");
+                [](GraphType & g, const xt::pytensor<uint64_t, 2> & array) {
                     NIFTY_CHECK_OP(array.shape()[1],==,2,"wrong shape");
                     for(size_t i=0; i<array.shape()[0]; ++i){
                         g.insertEdge(array(i,0), array(i,1));

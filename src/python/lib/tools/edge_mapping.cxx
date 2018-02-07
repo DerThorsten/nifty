@@ -19,48 +19,45 @@ namespace tools{
 
         typedef EdgeMapping<EdgeType, NodeType> MappingType;
         py::class_<MappingType>(toolsModule, "EdgeMapping")
-            .def(py::init<size_t>())
-
-            .def("initializeMapping",
-                [](MappingType & self, const xt::pytensor<EdgeType, 2> & uvIds, const std::vector<NodeType> & oldToNewNodes) {
-                    {
-                        py::gil_scoped_release allowThreads;
-                        self.initializeMapping(uvIds, oldToNewNodes);
-                    }
-                }
-            )
+            .def(py::init<const xt::pytensor<EdgeType, 2> &,
+                          const xt::pytensor<NodeType, 1> &,
+                          const int>(), py::arg("uvIds"), py::arg("nodeLabeling"), py::arg("numberOfThreads")=-1)
 
             .def("mapEdgeValues",
-                [](const MappingType & self, const std::vector<float> & edgeValues) {
-                    std::vector<float> newEdgeValues;
+                [](const MappingType & self, const xt::pytensor<float, 1> & edgeValues, const int numberOfThreads) {
+                    typename xt::pytensor<float, 1>::shape_type shape = {static_cast<int64_t>(self.numberOfNewEdges())};
+                    xt::pytensor<float, 1 >newEdgeValues(shape);
                     {
                         py::gil_scoped_release allowThreads;
-                        self.mapEdgeValues(edgeValues, newEdgeValues);
+                        self.mapEdgeValues(edgeValues, newEdgeValues, numberOfThreads);
                     }
                     return newEdgeValues;
-                }
+                }, py::arg("edgeValues"), py::arg("numberOfThreads")=-1
             )
 
-            .def("getNewUvIds",
-                [](const MappingType & self) {
+            .def("newUvIds",
+                [](const MappingType & self,
+                   const int numberOfThreads) {
 
                     typedef typename xt::pytensor<EdgeType, 2>::shape_type ShapeType;
-                    ShapeType shape{(int64_t)self.numberOfNewEdges(), 2L};
+                    const int64_t nNew = self.numberOfNewEdges();
+                    ShapeType shape{nNew, 2L};
                     xt::pytensor<EdgeType, 2> newUvIds(shape);
 
                     {
                         py::gil_scoped_release allowThreads;
-                        const auto & newUvIdsInternal = self.getNewUvIds();
+                        const auto & newUvIdsInternal = self.newUvIds();
 
-                        // this could also be parallelized
-                        for(size_t i = 0; i < self.numberOfNewEdges(); ++i) {
+                        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+
+                        parallel::parallel_foreach(threadpool, nNew, [&](const int tId, const size_t i) {
                             newUvIds(i, 0) = newUvIdsInternal[i].first;
                             newUvIds(i, 1) = newUvIdsInternal[i].second;
-                        }
+                        });
                     }
 
                     return newUvIds;
-                }
+                }, py::arg("numberOfThreads")=-1
             )
 
             .def("getNewEdgeIds",
@@ -71,14 +68,14 @@ namespace tools{
                         self.getNewEdgeIds(edgeIds, newEdgeIds);
                     }
                     return newEdgeIds;
-                }
+                }, py::arg("edgeIds")
             )
             ;
     }
 
 
     void exportEdgeMapping(py::module & toolsModule) {
-        exportEdgeMappingT<int64_t, int64_t>(toolsModule);
+        exportEdgeMappingT<int64_t, uint64_t>(toolsModule);
     }
 
 }
