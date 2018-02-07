@@ -2,9 +2,9 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+#include <cmath>
 #include "xtensor-python/pyarray.hpp"
 #include "xtensor-python/pytensor.hpp"
-#include "xtensor-python/pyvectorize.hpp"
 
 #include <cstddef>
 //#include "nifty/python/converter.hxx"

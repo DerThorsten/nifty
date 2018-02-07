@@ -1,8 +1,12 @@
 #pragma once
 
+
+#include <cmath>
+
 #include "xtensor/xexpression.hpp"
 #include "xtensor/xview.hpp"
 #include "xtensor/xmath.hpp"
+
 
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/array/arithmetic_array.hxx"
