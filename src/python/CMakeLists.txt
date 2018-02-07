@@ -21,9 +21,7 @@ IF(NOT DEFINED PYTHON_MODULE_INSTALL_DIR OR PYTHON_MODULE_INSTALL_DIR MATCHES "^
 
     execute_process(
       COMMAND "${PYTHON_EXECUTABLE}" -c 
-       "from __future__ import print_function
-        from distutils import sysconfig as sc
-        print(sc.get_python_lib(prefix='', plat_specific=True))"
+       "from __future__ import print_function;from distutils import sysconfig as sc;print(sc.get_python_lib(prefix='', plat_specific=True))"
       OUTPUT_VARIABLE PYTHON_SITE
       OUTPUT_STRIP_TRAILING_WHITESPACE)
 
