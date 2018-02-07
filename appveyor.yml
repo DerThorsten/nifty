@@ -38,7 +38,7 @@ install:
 build_script:
 
   - git submodule update --init --recursive
-  - cmake -G "Visual Studio 14 2017 Win64"  -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  .
+  - cmake -G "Visual Studio 15 2017 Win64"  -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=yes -DBUILD_CPP_EXAMPLES=yes -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  .
   - cmake --build . --config Release
 
 test_script:
