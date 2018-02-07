@@ -56,9 +56,9 @@ macro(addPythonModule)
         ${ADD_PY_MOD_SOURCES}
     )
     #if (APPLE AND NOT ${CMAKE_BUILD_TYPE} MATCHES Debug)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-      target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
-    endif()
+    # if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    #   target_compile_options(_${MODULE_NAME} PRIVATE "-fvisibility=default")
+    # endif()
     #endif()
     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
 
