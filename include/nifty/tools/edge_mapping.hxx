@@ -60,9 +60,12 @@ private:
         {
             // use normal map because we want to have ordered keys
             typedef std::set<UvType> UvSet;
-            std::vector<UvSet> perThreadData(threadpool.nThreads());
+            std::vector<UvSet> perThreadData(nThreads);
 
-            nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeType edgeId) {
+            nifty::parallel::parallel_foreach(threadpool,
+                                              nEdges,
+                                              [&](const int tId, const EdgeType edgeId) {
+                //
                 const NodeType u = uvIds(edgeId, 0);
                 const NodeType v = uvIds(edgeId, 1);
                 const NodeType uNew = nodeLabeling(u);
@@ -70,7 +73,8 @@ private:
                 if(uNew == vNew) {
                     return;
                 }
-                perThreadData[tId].insert(std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew)));
+                perThreadData[tId].insert(std::make_pair(std::min(uNew, vNew),
+                                                         std::max(uNew, vNew)));
             });
 
             // merge
@@ -92,15 +96,20 @@ private:
         {
             edgeMapping_.resize(nEdges);
 
-            nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeType edgeId) {
-                const NodeType uNew = nodeLabeling(edgeId, 0);
-                const NodeType vNew = nodeLabeling(edgeId, 1);
+            nifty::parallel::parallel_foreach(threadpool,
+                                              nEdges,
+                                              [&](const int tId, const EdgeType edgeId) {
+                //
+                const NodeType u = uvIds(edgeId, 0);
+                const NodeType v = uvIds(edgeId, 1);
+                const NodeType uNew = nodeLabeling(u);
+                const NodeType vNew = nodeLabeling(v);
                 if(uNew == vNew) {
                     edgeMapping_[edgeId] = -1;
                     return;
                 }
-                const auto uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
-                const auto newEdgeId = uvNewToIndex[uvNew];
+                const UvType uvNew = std::make_pair(std::min(uNew, vNew), std::max(uNew, vNew));
+                const EdgeType newEdgeId = uvNewToIndex[uvNew];
                 edgeMapping_[edgeId] = newEdgeId;
             });
         }
@@ -125,6 +134,14 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
 
     NIFTY_CHECK_OP(edgeValues.shape()[0], ==, edgeMapping_.size(), "Wrong Input size");
 
+    for(size_t edgeId = 0; edgeId < edgeMapping_.size(); ++edgeId) {
+        const int64_t newEdge = edgeMapping_[edgeId];
+        if(newEdge != -1) {
+            newEdgeValues(newEdge) += edgeValues(edgeId);
+        }
+    }
+
+    /*
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
     const size_t nThreads = threadpool.nThreads();
 
@@ -155,6 +172,7 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
             val += perThreadData[t][newEdgeId];
         }
     });
+    */
 
 }
 

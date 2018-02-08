@@ -26,7 +26,7 @@ namespace tools{
             .def("mapEdgeValues",
                 [](const MappingType & self, const xt::pytensor<float, 1> & edgeValues, const int numberOfThreads) {
                     typename xt::pytensor<float, 1>::shape_type shape = {static_cast<int64_t>(self.numberOfNewEdges())};
-                    xt::pytensor<float, 1 >newEdgeValues(shape);
+                    xt::pytensor<float, 1> newEdgeValues = xt::zeros<float>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self.mapEdgeValues(edgeValues, newEdgeValues, numberOfThreads);
