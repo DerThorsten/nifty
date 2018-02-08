@@ -24,15 +24,58 @@ namespace tools{
                           const int>(), py::arg("uvIds"), py::arg("nodeLabeling"), py::arg("numberOfThreads")=-1)
 
             .def("mapEdgeValues",
-                [](const MappingType & self, const xt::pytensor<float, 1> & edgeValues, const int numberOfThreads) {
+                [](const MappingType & self,
+                    const xt::pytensor<float, 1> & edgeValues,
+                    const std::string & accumulation,
+                    const int numberOfThreads) {
+
+                    //
                     typename xt::pytensor<float, 1>::shape_type shape = {static_cast<int64_t>(self.numberOfNewEdges())};
-                    xt::pytensor<float, 1> newEdgeValues = xt::zeros<float>(shape);
+
+                    float initialValue;
+                    if(accumulation == "sum" || accumulation == "mean") {
+                        initialValue = 0;
+                    } else if(accumulation == "max") {
+                        initialValue = std::numeric_limits<float>::min(); // lowest float value
+                    } else if(accumulation == "min") {
+                        initialValue = std::numeric_limits<float>::max(); // highest float value
+                    } else {
+                        throw std::runtime_error("Invalid accumulation function: " + accumulation);
+                    }
+
+                    xt::pytensor<float, 1> newEdgeValues = xt::pytensor<float, 1>(shape, initialValue);
                     {
                         py::gil_scoped_release allowThreads;
-                        self.mapEdgeValues(edgeValues, newEdgeValues, numberOfThreads);
+                        if(accumulation == "sum" || accumulation == "mean") {
+                            self.mapEdgeValues(edgeValues,
+                                               newEdgeValues,
+                                               [](const float * acc, float * val){*val += *acc;},
+                                               initialValue,
+                                               numberOfThreads);
+                        } else if(accumulation == "max") {
+                            self.mapEdgeValues(edgeValues,
+                                               newEdgeValues,
+                                               [](const float * acc, float * val){*val = std::max(*val, *acc);},
+                                               initialValue,
+                                               numberOfThreads);
+                        } else if(accumulation == "min") {
+                            self.mapEdgeValues(edgeValues,
+                                               newEdgeValues,
+                                               [](const float * acc, float * val){*val = std::min(*val, *acc);},
+                                               initialValue,
+                                               numberOfThreads);
+                        }
+
+                        // for mean accumulation, we need to divide by the edge counts
+                        if(accumulation == "mean") {
+                            auto & edgeCounts = self.newEdgeCounts();
+                            for(size_t ii = 0; ii < edgeCounts.size(); ++ii) {
+                                newEdgeValues(ii) /= edgeCounts[ii];
+                            }
+                        }
                     }
                     return newEdgeValues;
-                }, py::arg("edgeValues"), py::arg("numberOfThreads")=-1
+                }, py::arg("edgeValues"), py::arg("accumulation"), py::arg("numberOfThreads")=-1
             )
 
             .def("newUvIds",

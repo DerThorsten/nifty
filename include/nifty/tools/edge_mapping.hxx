@@ -29,8 +29,12 @@ public:
         initializeMapping(uvIds, nodeLabeling, nThreads);
     }
 
-    template<class VALARRAY>
-    void mapEdgeValues(const xt::xexpression<VALARRAY> &, xt::xexpression<VALARRAY> &, const int) const;
+    template<class VALARRAY, class F>
+    void mapEdgeValues(const xt::xexpression<VALARRAY> &,
+                       xt::xexpression<VALARRAY> &,
+                       F &&,
+                       const typename VALARRAY::value_type,
+                       const int) const;
 
     const UvVectorType & newUvIds() const
     {return newUvIds_;}
@@ -40,6 +44,8 @@ public:
     size_t numberOfNewEdges() const
     {return newUvIds_.size();}
 
+    const std::vector<size_t> & newEdgeCounts() const
+    {return edgeCounts_;}
 
 private:
 
@@ -59,8 +65,8 @@ private:
         std::unordered_map<UvType, size_t, Hash> uvNewToIndex;
         {
             // use normal map because we want to have ordered keys
-            typedef std::set<UvType> UvSet;
-            std::vector<UvSet> perThreadData(nThreads);
+            typedef std::map<UvType, size_t> UvMap;
+            std::vector<UvMap> perThreadData(nThreads);
 
             nifty::parallel::parallel_foreach(threadpool,
                                               nEdges,
@@ -73,21 +79,38 @@ private:
                 if(uNew == vNew) {
                     return;
                 }
-                perThreadData[tId].insert(std::make_pair(std::min(uNew, vNew),
-                                                         std::max(uNew, vNew)));
+                auto & uvMap = perThreadData[tId];
+                const UvType uvNew = std::make_pair(std::min(uNew, vNew),
+                                                    std::max(uNew, vNew));
+                auto mapIt = uvMap.find(uvNew);
+                if(mapIt == uvMap.end()) {
+                    uvMap[uvNew] = 1;
+                } else {
+                    mapIt->second += 1;
+                }
             });
 
             // merge
-            auto & uvSet = perThreadData[0];
+            auto & uvMap = perThreadData[0];
             for(int tId = 1; tId < nThreads; ++tId) {
-                uvSet.insert(perThreadData[tId].begin(), perThreadData[tId].end());
+                const auto & uvMap2 = perThreadData[tId];
+                for(const auto & uv2 : uvMap2) {
+                    auto mapIt = uvMap.find(uv2.first);
+                    if(mapIt == uvMap.end()) {
+                       uvMap[uv2.first] = uv2.second;
+                    } else {
+                        mapIt->second += uv2.second;
+                    }
+                }
             }
 
-            newUvIds_.resize(uvSet.size());
+            newUvIds_.resize(uvMap.size());
+            edgeCounts_.resize(uvMap.size(), 0);
             size_t ii = 0;
-            for(const auto & uv: uvSet) {
-                newUvIds_[ii] = uv;
-                uvNewToIndex[uv] = ii;
+            for(const auto & uv: uvMap) {
+                newUvIds_[ii] = uv.first;
+                edgeCounts_[ii] = uv.second;
+                uvNewToIndex[uv.first] = ii;
                 ++ii;
             }
         }
@@ -118,14 +141,16 @@ private:
 
     std::vector<EdgeType> edgeMapping_;
     std::vector<UvType> newUvIds_;
+    std::vector<size_t> edgeCounts_;
 };
 
 
-// TODO different mapping functions
 template<class EDGE_TYPE, class NODE_TYPE>
-template<class VALARRAY>
+template<class VALARRAY, class F>
 void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALARRAY> & edgeValuesExp,
                                                       xt::xexpression<VALARRAY> & newEdgeValuesExp,
+                                                      F && accumulator,
+                                                      const typename VALARRAY::value_type initialValue,
                                                       const int numberOfThreads) const {
 
     typedef typename VALARRAY::value_type ValueType;
@@ -134,14 +159,6 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
 
     NIFTY_CHECK_OP(edgeValues.shape()[0], ==, edgeMapping_.size(), "Wrong Input size");
 
-    for(size_t edgeId = 0; edgeId < edgeMapping_.size(); ++edgeId) {
-        const int64_t newEdge = edgeMapping_[edgeId];
-        if(newEdge != -1) {
-            newEdgeValues(newEdge) += edgeValues(edgeId);
-        }
-    }
-
-    /*
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
     const size_t nThreads = threadpool.nThreads();
 
@@ -149,7 +166,7 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
     std::vector<std::vector<ValueType>> perThreadData(nThreads);
     parallel::parallel_foreach(threadpool, nThreads, [&](const int t, const int i){
         if(i != 0) {
-            perThreadData[i] = std::vector<ValueType>(newUvIds_.size(), 0);
+            perThreadData[i] = std::vector<ValueType>(newUvIds_.size(), initialValue);
         }
     });
 
@@ -161,18 +178,19 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
             if(tId != 0) {
                 val = &perThreadData[tId][newEdge];
             }
-            *val += edgeValues(edgeId);
+            accumulator(&edgeValues(edgeId), val);
+            // *val += edgeValues(edgeId);
         }
     });
 
     // write to the out vector in parallel over the new edges
     parallel::parallel_foreach(threadpool, newEdgeValues.size(), [&](const int tId, const int newEdgeId){
-        auto & val = newEdgeValues(newEdgeId);
+        ValueType * val = &newEdgeValues(newEdgeId);
         for(int t = 1; t < nThreads; ++t) {
-            val += perThreadData[t][newEdgeId];
+            accumulator(&perThreadData[t][newEdgeId], val);
+            // val += perThreadData[t][newEdgeId];
         }
     });
-    */
 
 }
 
