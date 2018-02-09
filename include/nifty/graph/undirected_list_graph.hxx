@@ -5,12 +5,10 @@
 #include <map>
 #include <boost/version.hpp>
 
-#include <nifty/container/boost_flat_set.hxx>
-
-
-
 #include <boost/iterator/counting_iterator.hpp>
+#include <xtensor/xtensor.hpp>
 
+#include "nifty/container/boost_flat_set.hxx"
 #include "nifty/container/flat_set.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
@@ -130,10 +128,13 @@ public:
     template<class ITER>
     void deserialize(ITER & iter);
 
-    UndirectedGraph<EdgeInternalType,NodeInteralType> extractSubgraphFromNodes(
-        const std::vector<NODE_INTERNAL_TYPE> & nodeList,
-        std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
-        std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const;
+    template<class NODE_ARRAY>
+    void  extractSubgraphFromNodes(
+        const xt::xexpression<NODE_ARRAY> &,
+        std::vector<EDGE_INTERANL_TYPE> &,
+        std::vector<EDGE_INTERANL_TYPE> &,
+        UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE> &
+        ) const;
 
     // extract all the edges that connect nodes in the node list
     void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
@@ -466,17 +467,17 @@ insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
 }
 
 template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE>
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
-extractSubgraphFromNodes(
-        const std::vector<NODE_INTERNAL_TYPE> & nodeList,
-        std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
-        std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut) const {
+template<class NODE_ARRAY>
+void UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
+                         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
+                         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut,
+                         UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE> & subgraphOut) const {
 
+    const auto & nodeList = nodeListExp.derived_cast();
     std::unordered_map<NodeInteralType, NodeInteralType> nodeMapping;
-    for(size_t i = 0; i < nodeList.size(); ++i) {
-        // globalToLocalNodes.insert( std::make_pair(nodeList[i], NodeInteralType(i)) );
-        nodeMapping[nodeList[i]] = i;
+    for(size_t i = 0; i < nodeList.shape()[0]; ++i) {
+        nodeMapping[nodeList(i)] = i;
     }
 
     for(auto u : nodeList) {
@@ -499,16 +500,14 @@ extractSubgraphFromNodes(
     }
 
     // get number of nodes
-    uint64_t numberOfNodes = nodeList.size();
-    UndirectedGraph<EdgeInternalType, NodeInteralType> subgraphOut(numberOfNodes);
+    uint64_t numberOfNodes = nodeList.shape()[0];
+    subgraphOut.assign(numberOfNodes, innerEdgesOut.size());
 
     // get the local uv - ids
     for(std::size_t i = 0; i < innerEdgesOut.size(); ++i) {
         auto uv = this->uv(innerEdgesOut[i]);
         subgraphOut.insertEdge(nodeMapping[uv.first], nodeMapping[uv.second]);
     }
-
-    return subgraphOut;
 }
 
 } // namespace nifty::graph

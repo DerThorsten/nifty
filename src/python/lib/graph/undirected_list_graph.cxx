@@ -58,18 +58,34 @@ namespace graph{
                     g.deserialize(startPtr);
                 }
             )
-            // TODO use pytensor instead of vectors
             .def("extractSubgraphFromNodes",
-                []( GraphType & g, const std::vector<int64_t> & nodeList) {
-                // []( GraphType & g, const xt::pytensor<int64_t, 1> & nodeList) {
+                 []( GraphType & g, const xt::pytensor<uint64_t, 1> & nodeList) {
                     std::vector<int64_t> innerEdgesVec;
                     std::vector<int64_t> outerEdgesVec;
                     GraphType subgraph;
                     {
                         py::gil_scoped_release allowThreads;
-                        subgraph = g.extractSubgraphFromNodes(nodeList, innerEdgesVec, outerEdgesVec);
+                        g.extractSubgraphFromNodes(nodeList,
+                                                   innerEdgesVec,
+                                                   outerEdgesVec,
+                                                   subgraph);
                     }
-                    return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
+                    typedef typename xt::pytensor<int64_t, 1>::shape_type ShapeType;
+                    ShapeType innerShape = {static_cast<int64_t>(innerEdgesVec.size())};
+                    xt::pytensor<int64_t, 1> innerEdges(innerShape);
+                    ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
+                    xt::pytensor<int64_t, 1> outerEdges(outerShape);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                            innerEdges(i) = innerEdgesVec[i];
+                        }
+                        for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                            outerEdges(i) = outerEdgesVec[i];
+                        }
+
+                    }
+                    return std::make_tuple(innerEdges, outerEdges, subgraph);
                 }
             )
             .def("edgesFromNodeList",
