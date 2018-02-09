@@ -88,7 +88,9 @@ namespace distributed {
     }
 
 
-    inline bool loadEdgeIndices(const std::string & graphPath, std::vector<EdgeIndexType> & edgeIndices) {
+    inline bool loadEdgeIndices(const std::string & graphPath,
+                                std::vector<EdgeIndexType> & edgeIndices,
+                                const size_t offset) {
         const std::vector<size_t> zero1Coord({0});
         const std::vector<std::string> keys = {"numberOfEdges"};
 
@@ -109,8 +111,8 @@ namespace distributed {
         Shape1Type idShape({idDs->shape(0)});
         xt::xtensor<EdgeIndexType, 1> tmpIds(idShape);
         z5::multiarray::readSubarray<EdgeIndexType>(idDs, tmpIds, zero1Coord.begin());
-        edgeIndices.resize(idShape[0]);
-        std::copy(tmpIds.begin(), tmpIds.end(), edgeIndices.begin());
+        edgeIndices.resize(idShape[0] + edgeIndices.size());
+        std::copy(tmpIds.begin(), tmpIds.end(), edgeIndices.begin() + offset);
         return true;
     }
 

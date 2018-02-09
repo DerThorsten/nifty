@@ -124,6 +124,55 @@ namespace distributed {
            py::arg("nodeLabeling"), py::arg("blockIds"),
            py::arg("blockShape"));
 
+
+        module.def("nodesToBLocks", [](const std::string & graphBlockPrefix,
+                                       const std::string & outNodePrefix,
+                                       const size_t numberOfBlocks,
+                                       const size_t numberOfNodes,
+                                       const int numberOfThreads){
+            py::gil_scoped_release allowThreads;
+            nodesToBlocks(graphBlockPrefix, outNodePrefix, numberOfBlocks, numberOfNodes, numberOfThreads);
+
+        }, py::arg("graphBlockPrefix"), py::arg("outNodePrefix"),
+           py::arg("numberOfBlocks"), py::arg("numberOfNodes"),
+           py::arg("numberOfThreads")=-1);
+
+
+        module.def("extractSubgraphFromNodes", [](const xt::pytensor<uint64_t, 1> & nodes,
+                                                  const std::string & nodeStoragePrefix,
+                                                  const std::string & graphBlockPrefix) {
+            //
+            nifty::graph::UndirectedGraph<EdgeIndexType, NodeType> subgraph;
+            std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
+            {
+                py::gil_scoped_release allowThreads;
+                extractSubgraphFromNodes(nodes, nodeStoragePrefix, graphBlockPrefix,
+                                         subgraph, innerEdgesVec, outerEdgesVec);
+            }
+
+            //
+            typedef typename xt::pytensor<EdgeIndexType, 1>::shape_type ShapeType;
+            ShapeType innerShape = {static_cast<int64_t>(innerEdgesVec.size())};
+            xt::pytensor<EdgeIndexType, 1> innerEdges(innerShape);
+
+            ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
+            xt::pytensor<EdgeIndexType, 1> outerEdges(outerShape);
+
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                    innerEdges(i) = innerEdgesVec[i];
+                }
+                for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                    outerEdges(i) = outerEdgesVec[i];
+                }
+
+            }
+            return std::make_tuple(innerEdges, outerEdges, subgraph);
+
+
+        }, py::arg("nodes"), py::arg("nodeStoragePrefix"), py::arg("graphBlockPrefix"));
+
     }
 
 }

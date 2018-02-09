@@ -26,10 +26,21 @@ namespace distributed {
 
         // API: we can construct the graph from blocks that were extracted via `extractGraphFromRoi`
         // or `mergeSubgraphs` from `region_graph.hxx`
-        // TODO we should support extraction from multiple ROI's at some point
 
         Graph(const std::string & blockPath) {
             loadEdges(blockPath, edges_, 0);
+            initGraph();
+        }
+
+        Graph(const std::vector<std::string> & blockPaths) {
+            // load all the edges in the blocks
+            for(const auto & blockPath : blockPaths) {
+                loadEdges(blockPath, edges_, edges_.size());
+            }
+            // make the edges unique
+            std::sort(edges_.begin(), edges_.end());
+            edges_.resize(std::unique(edges_.begin(), edges_.end()) - edges_.begin());
+            // init the graph
             initGraph();
         }
 
@@ -52,6 +63,11 @@ namespace distributed {
             }
             // otherwise we have found the edge and return the edge id
             return vIt->second;
+        }
+
+        // get the node adjacency
+        const NodeAdjacency & nodeAdjacency(const NodeType node) const {
+            return nodes_.at(node);
         }
 
         // number of nodes and edges

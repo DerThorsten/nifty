@@ -492,7 +492,7 @@ namespace distributed {
             // load edge ids for the block
             const std::string blockGraphPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
-            loadEdgeIndices(blockGraphPath, blockEdgeIndices);
+            loadEdgeIndices(blockGraphPath, blockEdgeIndices, 0);
             const size_t nEdgesBlock = blockEdgeIndices.size();
 
             // get mapping to dense edge ids for this block
@@ -560,7 +560,7 @@ namespace distributed {
 
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
-            bool haveEdges = loadEdgeIndices(blockPath, blockEdgeIndices);
+            bool haveEdges = loadEdgeIndices(blockPath, blockEdgeIndices, 0);
             if(!haveEdges) {
                 return;
             }
@@ -609,6 +609,8 @@ namespace distributed {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
+        // TODO we might want to replace this with a global "edgesToBLocks"
+        // and then just load the block ids for the relevant edges here
         // find the relevant blocks, that have overlap with our edge ids
         std::vector<size_t> blockIds;
         findRelevantBlocks(graphBlockPrefix, numberOfBlocks,
