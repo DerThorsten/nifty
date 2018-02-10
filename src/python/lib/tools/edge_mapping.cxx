@@ -78,14 +78,13 @@ namespace tools{
                 }, py::arg("edgeValues"), py::arg("accumulation"), py::arg("numberOfThreads")=-1
             )
 
-            .def("newUvIds",
-                [](const MappingType & self,
-                   const int numberOfThreads) {
+            .def("newUvIds", [](const MappingType & self,
+                                const int numberOfThreads) {
 
-                    typedef typename xt::pytensor<EdgeType, 2>::shape_type ShapeType;
+                    typedef typename xt::pytensor<NodeType, 2>::shape_type ShapeType;
                     const int64_t nNew = self.numberOfNewEdges();
                     ShapeType shape{nNew, 2L};
-                    xt::pytensor<EdgeType, 2> newUvIds(shape);
+                    xt::pytensor<NodeType, 2> newUvIds(shape);
 
                     {
                         py::gil_scoped_release allowThreads;
@@ -102,6 +101,25 @@ namespace tools{
                     return newUvIds;
                 }, py::arg("numberOfThreads")=-1
             )
+
+            .def("edgeMapping", [](const MappingType & self,
+                                   const int numberOfThreads) {
+                    typedef typename xt::pytensor<EdgeType, 1>::shape_type ShapeType;
+                    ShapeType shape = {static_cast<int64_t>(self.numberOfEdges())};
+                    xt::pytensor<EdgeType, 1> edgeMapping(shape);
+
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & edgeMappingInternal = self.edgeMapping();
+                        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+
+                        parallel::parallel_foreach(threadpool, edgeMappingInternal.size(), [&](const int tId, const size_t i) {
+                            edgeMapping(i) = edgeMappingInternal[i];
+                        });
+                    }
+
+                    return edgeMapping;
+            }, py::arg("numberOfThreads")=-1)
 
             .def("getNewEdgeIds",
                 [](const MappingType & self, const std::vector<EdgeType> & edgeIds) {

@@ -109,8 +109,8 @@ namespace distributed {
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
         const size_t nThreads = threadpool.nThreads();
         std::vector<NodeBlockStorage> perThreadData(nThreads);
-        nifty::parallel::parallel_foreach(threadpool, nThreads, [&perThreadData, numberOfBlocks](const int tId, const int threadId) {
-            perThreadData[threadId] = NodeBlockStorage(numberOfBlocks);
+        nifty::parallel::parallel_foreach(threadpool, nThreads, [&perThreadData, numberOfNodes](const int tId, const int threadId) {
+            perThreadData[threadId] = NodeBlockStorage(numberOfNodes);
         });
 
         // map nodes to blocks multithreaded
@@ -151,10 +151,213 @@ namespace distributed {
 
     // TODO change node storage to hdf5
     template<class NODE_ARRAY>
+    inline void nodesToBlocksWithLabeling(const size_t numberOfNewNodes,
+                                          const nifty::tools::Blocking<3> & blocking,
+                                          const nifty::tools::Blocking<3> & newBlocking,
+                                          const std::string & graphBlockPrefix,
+                                          const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
+                                          const std::string & nodeOutPrefix,
+                                          std::vector<std::set<NodeType>> & blockNodeStorage,
+                                          nifty::parallel::ThreadPool & threadpool) {
+
+        typedef std::set<size_t> BlockStorage;
+        typedef std::vector<BlockStorage> NodeBlockStorage;
+        const auto & nodeLabeling = nodeLabelingExp.derived_cast();
+
+        // make per thread data
+        const size_t nThreads = threadpool.nThreads();
+        std::vector<NodeBlockStorage> perThreadData(nThreads);
+        nifty::parallel::parallel_foreach(threadpool, nThreads, [&perThreadData, numberOfNewNodes](const int tId, const int threadId) {
+            perThreadData[threadId] = NodeBlockStorage(numberOfNewNodes);
+        });
+
+        std::cout << "Nodes to blocks - AAA" << std::endl;
+        // map nodes to blocks multithreaded
+        const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
+        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
+            // out data
+            auto & newBlockNodes = blockNodeStorage[blockId];
+            auto & nodeVector = perThreadData[tId];
+
+            // find the relevant old blocks
+            const auto & newBlock = newBlocking.getBlock(blockId);
+            std::vector<size_t> oldBlockIds;
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), {0, 0, 0}, oldBlockIds);
+
+            // iterate over the old blocks and write out all the nodes
+            for(auto oldBlockId : oldBlockIds) {
+                const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+                std::vector<NodeType> blockNodes;
+                loadNodes(blockPath, blockNodes, 0);
+                for(NodeType node : blockNodes) {
+                    const auto newNode = nodeLabeling(node);
+                    nodeVector[newNode].insert(blockId);
+                    newBlockNodes.insert(newNode);
+                }
+            }
+        });
+        
+        std::cout << "Nodes to blocks - BBB" << std::endl;
+        // merge the results
+        auto & nodeVector = perThreadData[0];
+        nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
+            auto & blockStorage = nodeVector[node];
+            for(int threadId = 1; threadId < nThreads; ++threadId) {
+                const auto & threadStorage = perThreadData[threadId][node];
+                blockStorage.insert(threadStorage.begin(), threadStorage.end());
+            }
+        });
+
+        std::cout << "Nodes to blocks - CCC" << std::endl;
+        // TODO maybe we should write this as hdf5, because for a
+        // large number of nodes, this will create a lot of files
+        // write each node vector to its own dataset
+        const std::vector<size_t> chunk = {0};
+        nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
+            const std::string nodePath = nodeOutPrefix + std::to_string(node);
+            const auto & blockStorage = nodeVector[node];
+            std::vector<size_t> blockVector(blockStorage.begin(), blockStorage.end());
+            const std::vector<size_t> shape = {blockVector.size()};
+            auto nodeDs = z5::createDataset(nodePath, "uint64", shape, shape, false);
+            nodeDs->writeChunk(chunk, &blockVector[0]);
+        });
+        std::cout << "Nodes to blocks - DDD" << std::endl;
+    }
+
+
+    template<class NODE_ARRAY, class EDGE_ARRAY>
+    inline void serializeMergedGraph(const std::string & graphBlockPrefix,
+                                     const CoordType & shape,
+                                     const CoordType & blockShape,
+                                     const CoordType & newBlockShape,
+                                     const size_t numberOfNewNodes,
+                                     const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
+                                     const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
+                                     const std::string & nodeOutPrefix,
+                                     const std::string & graphOutPrefix,
+                                     const int numberOfThreads) {
+
+        const auto & nodeLabeling = nodeLabelingExp.derived_cast();
+        const auto & edgeLabeling = edgeLabelingExp.derived_cast();
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+
+        const CoordType roiBegin = {0, 0, 0};
+        nifty::tools::Blocking<3> blocking(roiBegin, shape, blockShape);
+        nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
+
+        const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
+        std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
+        // load new nodes and serialize the new node to block assignment
+        std::cout << "Run nodes to blocks ..." << std::endl;
+        nodesToBlocksWithLabeling(numberOfNewNodes,
+                                  blocking,
+                                  newBlocking,
+                                  graphBlockPrefix,
+                                  nodeLabelingExp,
+                                  nodeOutPrefix,
+                                  blockNodeStorage,
+                                  threadpool);
+        std::cout << "... done" << std::endl;
+
+        // serialize the merged sub-graphs
+        const std::vector<size_t> zero1Coord({0});
+        const std::vector<size_t> zero2Coord({0, 0});
+        std::cout << "Run graph serialization ..." << std::endl;
+        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
+            // create the out group
+            const std::string outPath = graphOutPrefix + std::to_string(blockId);
+            z5::handle::Group group(outPath);
+            z5::createGroup(group, false);
+
+            // get the new block node ids and serialize them
+            const auto & blockNodes = blockNodeStorage[blockId];
+            std::vector<size_t> nodeShape = {blockNodes.size()};
+            auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeShape, false);
+            Shape1Type nodeSerShape = {blockNodes.size()};
+            Tensor1 nodeSer(nodeSerShape);
+            size_t i = 0;
+            for(const auto node : blockNodes) {
+                nodeSer(i) = node;
+                ++i;
+            }
+            z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
+
+            // find the relevant old blocks
+            const auto & newBlock = newBlocking.getBlock(blockId);
+            std::vector<size_t> oldBlockIds;
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), {0, 0, 0}, oldBlockIds);
+
+            // iterate over the old blocks and load all edges and edge ods
+            std::map<EdgeIndexType, EdgeType> newEdges;
+            for(auto oldBlockId : oldBlockIds) {
+                const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+                std::vector<EdgeType> subEdges;
+                std::vector<EdgeIndexType> subEdgeIds;
+                loadEdges(blockPath, subEdges, 0);
+                loadEdgeIndices(blockPath, subEdgeIds, 0);
+
+                // map edges and edge ids to the merged graph and serialize
+                for(size_t ii = 0; ii < subEdges.size(); ++ii) {
+                    const auto newEdgeId = edgeLabeling(subEdgeIds[ii]);
+                    if(newEdgeId != -1) {
+                        const EdgeType & uv = subEdges[ii];
+                        const NodeType newU = nodeLabeling(uv.first);
+                        const NodeType newV = nodeLabeling(uv.second);
+                        newEdges[newEdgeId] = std::make_pair(newU, newV);
+                    }
+                }
+            }
+
+            const size_t nNewNodes = blockNodes.size();
+            const size_t nNewEdges = newEdges.size();
+            // serialize the new edges and the new edge ids
+            if(nNewEdges > 0) {
+
+                Shape2Type edgeSerShape = {nNewEdges, 2};
+                Tensor2 edgeSer(edgeSerShape);
+
+                Shape1Type edgeIdSerShape = {nNewEdges};
+                Tensor1 edgeIdSer(edgeIdSerShape);
+
+                size_t i = 0;
+                for(const auto & edge : newEdges) {
+                    edgeIdSer(i) = edge.first;
+                    edgeSer(i, 0) = edge.second.first;
+                    edgeSer(i, 1) = edge.second.second;
+                    ++i;
+                }
+
+                // serialize the edges
+                std::vector<size_t> edgeShape = {nNewEdges, 2};
+                auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
+                z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
+
+                // serialize the edge ids
+                std::vector<size_t> edgeIdShape = {nNewEdges};
+                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64", edgeIdShape, edgeIdShape, false);
+                z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer, zero1Coord.begin());
+            }
+
+            // serialize metadata (number of edges and nodes and position of the block)
+            nlohmann::json attrs;
+            attrs["numberOfNodes"] = nNewNodes;
+            attrs["numberOfEdges"] = nNewEdges;
+            // TODO ideally we would get the rois from the prev. graph block too, but I am too lazy right now
+            // attrs["roiBegin"] = std::vector<size_t>(roiBegin.begin(), roiBegin.end());
+            // attrs["roiEnd"] = std::vector<size_t>(roiEnd.begin(), roiEnd.end());
+
+            z5::writeAttributes(group, attrs);
+        });
+        std::cout << "... done" << std::endl;
+    }
+
+
+    // TODO change node storage to hdf5
+    template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
                                          const std::string & nodeStoragePrefix,
                                          const std::string & graphBlockPrefix,
-                                         nifty::graph::UndirectedGraph<EdgeIndexType, NodeType> & graphOut,
+                                         std::vector<EdgeType> & uvIdsOut,
                                          std::vector<EdgeIndexType> & innerEdgesOut,
                                          std::vector<EdgeIndexType> & outerEdgesOut) {
         //
@@ -173,24 +376,15 @@ namespace distributed {
             blocks.insert(nodeBlockIds.begin(), nodeBlockIds.end());
         }
 
-        // extract the (distributed) graph
+        // extract the (distributed) graph and edge ids
         std::vector<std::string> blockList;
         for(auto block : blocks) {
             blockList.emplace_back(graphBlockPrefix + std::to_string(block));
         }
-        const Graph g(blockList);
-
-        // extract the global edge ids associated with this graph from the blocks
         std::vector<EdgeIndexType> edgeIds;
-        for(auto block : blocks) {
-            const std::string graphPath = graphBlockPrefix + std::to_string(block);
-            loadEdgeIndices(graphPath, edgeIds, edgeIds.size());
-        }
-        // make the edge ids unique
-        std::sort(edgeIds.begin(), edgeIds.end());
-        edgeIds.resize(std::unique(edgeIds.begin(), edgeIds.end()) - edgeIds.begin());
+        const Graph g(blockList, edgeIds);
 
-        // extract the subgraph (as nifty undirected graph)
+        // extract the subgraph uv-ids (with dense node labels)
         // as well as inner and outer edges associated with the node list
 
         // first find the mapping to dense node index
@@ -200,7 +394,6 @@ namespace distributed {
         }
 
         // then iterate over the adjacency and extract inner and outer edges
-        std::vector<EdgeType> edges;
         for(const NodeType u : nodes) {
             const auto & uAdjacency = g.nodeAdjacency(u);
             for(const auto & adj : uAdjacency) {
@@ -211,22 +404,14 @@ namespace distributed {
                 if(nodeMapping.find(v) != nodeMapping.end()) {
                     // we will encounter inner edges twice, so we only add them for u < v
                     if(u < v) {
-                        innerEdgesOut.push_back(edge);
-                        edges.emplace_back(std::make_pair(u, v));
+                        innerEdgesOut.push_back(edgeIds[edge]);
+                        uvIdsOut.emplace_back(std::make_pair(nodeMapping[u], nodeMapping[v]));
                     }
-                    else {
-                        // outer edges occur only once by construction
-                        outerEdgesOut.push_back(edge);
-                    }
+                } else {
+                    // outer edges occur only once by construction
+                    outerEdgesOut.push_back(edgeIds[edge]);
                 }
             }
-        }
-
-        // construct the output graph
-        graphOut.assign(nodes.shape()[0], innerEdgesOut.size());
-        for(std::size_t i = 0; i < innerEdgesOut.size(); ++i) {
-            const auto & uv = edges[i];
-            graphOut.insertEdge(nodeMapping[uv.first], nodeMapping[uv.second]);
         }
     }
 

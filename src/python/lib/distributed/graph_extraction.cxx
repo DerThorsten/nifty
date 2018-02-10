@@ -125,7 +125,7 @@ namespace distributed {
            py::arg("blockShape"));
 
 
-        module.def("nodesToBLocks", [](const std::string & graphBlockPrefix,
+        module.def("nodesToBlocks", [](const std::string & graphBlockPrefix,
                                        const std::string & outNodePrefix,
                                        const size_t numberOfBlocks,
                                        const size_t numberOfNodes,
@@ -142,12 +142,12 @@ namespace distributed {
                                                   const std::string & nodeStoragePrefix,
                                                   const std::string & graphBlockPrefix) {
             //
-            nifty::graph::UndirectedGraph<EdgeIndexType, NodeType> subgraph;
             std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
+            std::vector<EdgeType> uvIdsVec;
             {
                 py::gil_scoped_release allowThreads;
                 extractSubgraphFromNodes(nodes, nodeStoragePrefix, graphBlockPrefix,
-                                         subgraph, innerEdgesVec, outerEdgesVec);
+                                         uvIdsVec, innerEdgesVec, outerEdgesVec);
             }
 
             //
@@ -158,6 +158,10 @@ namespace distributed {
             ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
             xt::pytensor<EdgeIndexType, 1> outerEdges(outerShape);
 
+            typedef typename xt::pytensor<NodeType, 2>::shape_type UvShapeType;
+            UvShapeType uvShape = {static_cast<int64_t>(uvIdsVec.size()), 2L};
+            xt::pytensor<NodeType, 2> uvIds(uvShape);
+
             {
                 py::gil_scoped_release allowThreads;
                 for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
@@ -166,13 +170,43 @@ namespace distributed {
                 for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
                     outerEdges(i) = outerEdgesVec[i];
                 }
+                for(size_t i = 0; i < uvIdsVec.size(); ++i) {
+                    uvIds(i, 0) = uvIdsVec[i].first;
+                    uvIds(i, 1) = uvIdsVec[i].second;
+                }
 
             }
-            return std::make_tuple(innerEdges, outerEdges, subgraph);
+            return std::make_tuple(innerEdges, outerEdges, uvIds);
 
 
         }, py::arg("nodes"), py::arg("nodeStoragePrefix"), py::arg("graphBlockPrefix"));
 
+
+        module.def("serializeMergedGraph", [](const std::string & graphBlockPrefix,
+                                              const CoordType & shape,
+                                              const CoordType & blockShape,
+                                              const CoordType & newBlockShape,
+                                              const size_t numberOfNewNodes,
+                                              const xt::pytensor<NodeType, 1> & nodeLabeling,
+                                              const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
+                                              const std::string & nodeOutPrefix,
+                                              const std::string & graphOutPrefix,
+                                              const int numberOfThreads) {
+            py::gil_scoped_release allowThreads;
+            serializeMergedGraph(graphBlockPrefix, shape,
+                                 blockShape, newBlockShape,
+                                 numberOfNewNodes,
+                                 nodeLabeling, edgeLabeling,
+                                 nodeOutPrefix, graphOutPrefix,
+                                 numberOfThreads);
+        }, py::arg("graphBlockPrefix"),
+           py::arg("shape"),
+           py::arg("blockShape"),
+           py::arg("newBlockShape"),
+           py::arg("numberOfNewNodes"),
+           py::arg("nodeLabeling"), py::arg("edgeLabeling"),
+           py::arg("nodeOutPrefix"), py::arg("graphOutPrefix"),
+           py::arg("numberOfThreads")=-1);
     }
 
 }

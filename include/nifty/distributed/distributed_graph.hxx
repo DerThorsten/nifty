@@ -17,7 +17,7 @@ namespace distributed {
         // private graph typedefs
 
         // NodeAdjacency: maps nodes that are adjacent to a given node to the corresponding edge-id
-        typedef std::unordered_map<NodeType, EdgeIndexType> NodeAdjacency;
+        typedef std::map<NodeType, EdgeIndexType> NodeAdjacency;
         // NodeStorage: storage of the adjacency for all nodes
         typedef std::unordered_map<NodeType, NodeAdjacency> NodeStorage;
         // EdgeStorage: dense storage of pairs of edges
@@ -32,14 +32,44 @@ namespace distributed {
             initGraph();
         }
 
-        Graph(const std::vector<std::string> & blockPaths) {
-            // load all the edges in the blocks
+        // This is a bit weird (constructor with side effects....)
+        // but I don't want the edge id mapping to be part of this class
+        Graph(const std::vector<std::string> & blockPaths,
+              std::vector<EdgeIndexType> & edgeIdsOut) {
+
+            // load all the edges and edge-id mapping in the blocks
+            // to tmp objects
+            std::vector<EdgeType> edgesTmp;
+            std::vector<EdgeIndexType> edgeIdsTmp;
             for(const auto & blockPath : blockPaths) {
-                loadEdges(blockPath, edges_, edges_.size());
+                loadEdges(blockPath, edgesTmp, edgesTmp.size());
+                loadEdgeIndices(blockPath, edgeIdsTmp, edgeIdsTmp.size());
             }
-            // make the edges unique
-            std::sort(edges_.begin(), edges_.end());
+
+            // get the indices that would sort the edge uv's
+            // (we need to sort the edge uvs AND the edgeIds in the same manner here)
+            std::vector<size_t> indices(edgesTmp.size());
+            std::iota(indices.begin(), indices.end(), 0);
+            std::sort(indices.begin(), indices.end(), [&](const size_t a, const size_t b){
+                return edgesTmp[a] < edgesTmp[b];
+            });
+
+            // copy tmp edges in sorted order
+            edges_.resize(edgesTmp.size());
+            for(size_t ii = 0; ii < edges_.size(); ++ii) {
+                edges_[ii] = edgesTmp[indices[ii]];
+            }
+            // make edges unique
             edges_.resize(std::unique(edges_.begin(), edges_.end()) - edges_.begin());
+
+            // copy tmp edge ids to the out vector in sorted order
+            edgeIdsOut.resize(edgeIdsTmp.size());
+            for(size_t ii = 0; ii < edgeIdsOut.size(); ++ii) {
+                edgeIdsOut[ii] = edgeIdsTmp[indices[ii]];
+            }
+            // make edge ids unique
+            edgeIdsOut.resize(std::unique(edgeIdsOut.begin(), edgeIdsOut.end()) - edgeIdsOut.begin());
+
             // init the graph
             initGraph();
         }

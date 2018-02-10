@@ -39,10 +39,16 @@ public:
     const UvVectorType & newUvIds() const
     {return newUvIds_;}
 
+    const std::vector<EdgeType> & edgeMapping() const
+    {return edgeMapping_;}
+
     void getNewEdgeIds(const std::vector<EdgeType> &, std::vector<EdgeType> &) const;
 
     size_t numberOfNewEdges() const
     {return newUvIds_.size();}
+
+    size_t numberOfEdges() const
+    {return edgeMapping_.size();}
 
     const std::vector<size_t> & newEdgeCounts() const
     {return edgeCounts_;}
