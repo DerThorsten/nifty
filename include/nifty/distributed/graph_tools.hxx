@@ -171,7 +171,6 @@ namespace distributed {
             perThreadData[threadId] = NodeBlockStorage(numberOfNewNodes);
         });
 
-        std::cout << "Nodes to blocks - AAA" << std::endl;
         // map nodes to blocks multithreaded
         const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
         nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
@@ -182,22 +181,22 @@ namespace distributed {
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
             std::vector<size_t> oldBlockIds;
-            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), {0, 0, 0}, oldBlockIds);
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(),
+                                              {0L, 0L, 0L}, oldBlockIds);
 
             // iterate over the old blocks and write out all the nodes
             for(auto oldBlockId : oldBlockIds) {
                 const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
                 std::vector<NodeType> blockNodes;
                 loadNodes(blockPath, blockNodes, 0);
-                for(NodeType node : blockNodes) {
-                    const auto newNode = nodeLabeling(node);
+                for(const NodeType node : blockNodes) {
+                    const NodeType newNode = nodeLabeling(node);
                     nodeVector[newNode].insert(blockId);
                     newBlockNodes.insert(newNode);
                 }
             }
         });
-        
-        std::cout << "Nodes to blocks - BBB" << std::endl;
+
         // merge the results
         auto & nodeVector = perThreadData[0];
         nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
@@ -208,7 +207,6 @@ namespace distributed {
             }
         });
 
-        std::cout << "Nodes to blocks - CCC" << std::endl;
         // TODO maybe we should write this as hdf5, because for a
         // large number of nodes, this will create a lot of files
         // write each node vector to its own dataset
@@ -221,7 +219,6 @@ namespace distributed {
             auto nodeDs = z5::createDataset(nodePath, "uint64", shape, shape, false);
             nodeDs->writeChunk(chunk, &blockVector[0]);
         });
-        std::cout << "Nodes to blocks - DDD" << std::endl;
     }
 
 
@@ -248,7 +245,6 @@ namespace distributed {
         const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
         std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
         // load new nodes and serialize the new node to block assignment
-        std::cout << "Run nodes to blocks ..." << std::endl;
         nodesToBlocksWithLabeling(numberOfNewNodes,
                                   blocking,
                                   newBlocking,
@@ -257,12 +253,10 @@ namespace distributed {
                                   nodeOutPrefix,
                                   blockNodeStorage,
                                   threadpool);
-        std::cout << "... done" << std::endl;
 
         // serialize the merged sub-graphs
         const std::vector<size_t> zero1Coord({0});
         const std::vector<size_t> zero2Coord({0, 0});
-        std::cout << "Run graph serialization ..." << std::endl;
         nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
             // create the out group
             const std::string outPath = graphOutPrefix + std::to_string(blockId);
@@ -285,7 +279,8 @@ namespace distributed {
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
             std::vector<size_t> oldBlockIds;
-            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), {0, 0, 0}, oldBlockIds);
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(),
+                                              {0L, 0L, 0L}, oldBlockIds);
 
             // iterate over the old blocks and load all edges and edge ods
             std::map<EdgeIndexType, EdgeType> newEdges;
@@ -348,7 +343,6 @@ namespace distributed {
 
             z5::writeAttributes(group, attrs);
         });
-        std::cout << "... done" << std::endl;
     }
 
 
