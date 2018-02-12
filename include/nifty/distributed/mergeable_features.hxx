@@ -504,7 +504,7 @@ namespace distributed {
             // first resize the tmp features, if necessary
             const std::string blockFeaturePath = featureBlockPrefix + std::to_string(blockId);
             if(blockFeatures.shape()[0] != nEdgesBlock) {
-                blockFeatures.reshape({nEdgesBlock, 10});
+                blockFeatures.resize({nEdgesBlock, 10});
             }
             loadBlockFeatures(blockFeaturePath, blockFeatures);
 
