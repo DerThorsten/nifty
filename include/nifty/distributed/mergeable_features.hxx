@@ -42,8 +42,7 @@ namespace distributed {
 
 
     template<class FEATURE_ACCUMULATOR>
-    inline void extractBlockFeaturesImpl(const std::string & groupPath,
-                                         const std::string & blockPrefix,
+    inline void extractBlockFeaturesImpl(const std::string & blockPrefix,
                                          const std::string & dataPath,
                                          const std::string & dataKey,
                                          const std::string & labelPath,
@@ -54,32 +53,30 @@ namespace distributed {
 
         fs::path dataSetPath(dataPath);
         dataSetPath /= dataKey;
-        auto data = z5::openDataset(dataSetPath.string());
 
         fs::path labelsSetPath(labelPath);
         labelsSetPath /= labelKey;
-        auto labels = z5::openDataset(labelsSetPath.string());
 
         const std::vector<std::string> keys = {"roiBegin", "roiEnd"};
-
-        std::vector<size_t> roiBegin(3);
-        std::vector<size_t> roiEnd(3);
 
         // make path to the feature storage
         fs::path featureStorage(tmpFeatureStorage);
         fs::path blockStoragePath;
 
-        fs::path blockPath;
-        std::string blockKey;
         for(auto blockId : blockIds) {
 
+            // we move the unique ptr, so after the loop it will be null
+            // hence we need to create the unique-ptr in each loop again.
+            // TODO the proper way to do this would be with shared_ptrs,
+            // but for this some of the API needs to change
+            auto data = z5::openDataset(dataSetPath.string());
+            auto labels = z5::openDataset(labelsSetPath.string());
+
             // get the path to the subgraph
-            blockKey = blockPrefix + std::to_string(blockId);
-            blockPath = fs::path(groupPath);
-            blockPath /= blockKey;
+            const std::string blockPath = blockPrefix + std::to_string(blockId);
 
             // load the graph
-            Graph graph(blockPath.string());
+            Graph graph(blockPath);
 
             // continue if we don't have edges in this graph
             if(graph.numberOfEdges() == 0) {
@@ -87,13 +84,15 @@ namespace distributed {
             }
 
             // load the bounding box
-            z5::handle::Group group(blockPath.string());
+            z5::handle::Group group(blockPath);
             nlohmann::json j;
             z5::readAttributes(group, keys, j);
 
             const auto & jBegin = j[keys[0]];
             const auto & jEnd = j[keys[1]];
 
+            std::vector<size_t> roiBegin(3);
+            std::vector<size_t> roiEnd(3);
             for(unsigned axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = jBegin[axis];
                 roiEnd[axis] = jEnd[axis];
@@ -300,8 +299,7 @@ namespace distributed {
     ///
 
 
-    inline void extractBlockFeaturesFromBoundaryMaps(const std::string & groupPath,
-                                                     const std::string & blockPrefix,
+    inline void extractBlockFeaturesFromBoundaryMaps(const std::string & blockPrefix,
                                                      const std::string & dataPath,
                                                      const std::string & dataKey,
                                                      const std::string & labelPath,
@@ -324,7 +322,7 @@ namespace distributed {
                                   dataMin, dataMax);
         };
 
-        extractBlockFeaturesImpl(groupPath, blockPrefix,
+        extractBlockFeaturesImpl(blockPrefix,
                                  dataPath, dataKey,
                                  labelPath, labelKey,
                                  blockIds, tmpFeatureStorage,
@@ -332,8 +330,7 @@ namespace distributed {
     }
 
 
-    inline void extractBlockFeaturesFromAffinityMaps(const std::string & groupPath,
-                                                     const std::string & blockPrefix,
+    inline void extractBlockFeaturesFromAffinityMaps(const std::string & blockPrefix,
                                                      const std::string & dataPath,
                                                      const std::string & dataKey,
                                                      const std::string & labelPath,
@@ -370,7 +367,7 @@ namespace distributed {
                                   dataMin, dataMax);
         };
 
-        extractBlockFeaturesImpl(groupPath, blockPrefix,
+        extractBlockFeaturesImpl(blockPrefix,
                                  dataPath, dataKey,
                                  labelPath, labelKey,
                                  blockIds, tmpFeatureStorage,
