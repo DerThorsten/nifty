@@ -217,16 +217,19 @@ namespace tools{
             for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
 
                 // get coordinates of the current bock
-                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                // FIXME the version with halo is broken if halo is all 0's !
+                // const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & block = getBlock(blockId);
                 const auto & begin = block.begin();
                 const auto & end   = block.end();
 
                 // check for each dimension whether the current block has overlap with the roi
                 std::vector<bool> enclosedInDim(DIM, false);
-                for( auto d = 0; d < DIM; ++d) {
+                for(auto d = 0; d < DIM; ++d) {
                     if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
                         enclosedInDim[d] = true;
                     }
+
                 }
 
                 // if all dimentsions have overlap, push back the block id

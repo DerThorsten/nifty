@@ -9,18 +9,18 @@
 
 namespace nifty{
 namespace hdf5{
-    
+
     using namespace marray::hdf5;
 
 
     struct CacheSettings{
 
-        CacheSettings( 
+        CacheSettings(
             const int   hashTabelSize_ = 977,
             const int   nBytes_ = 36000000,
             const float rddc_ = 1.0
         )
-        : 
+        :
         hashTabelSize( hashTabelSize_),
         nBytes( nBytes_),
         rddc( rddc_){

@@ -64,7 +64,7 @@ namespace graph{
         );
         */
 
-        ragModule.def("featuresFromLocalAffinities",
+        ragModule.def("accumulateAffinityStandartFeatures",
         [](
             const RAG & rag,
             const xt::pytensor<float, DIM+1> & affinities,
@@ -84,7 +84,7 @@ namespace graph{
         }, py::arg("rag"),
            py::arg("affinities"),
            py::arg("offsets"),
-           py::arg("min")=0., py::arg("max")=0.,
+           py::arg("min")=0., py::arg("max")=1.,
            py::arg("numberOfThreads")=-1
         );
     }

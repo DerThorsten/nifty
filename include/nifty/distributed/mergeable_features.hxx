@@ -22,7 +22,7 @@ namespace distributed {
         Quantiles,        // 7
         acc::Count        // 1
     > FeatureSelection;
-    
+
     typedef double FeatureType;
     typedef acc::AccumulatorChain<FeatureType, FeatureSelection> AccumulatorChain;
 
@@ -341,7 +341,7 @@ namespace distributed {
                                                      const std::vector<size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
                                                      const std::vector<OffsetType> & offsets,
-                                                     float dataMin=0, float dataMax=1) {
+                                                     FeatureType dataMin=0, FeatureType dataMax=1) {
         // calculate max halos from the offsets
         std::vector<size_t> haloBegin(3), haloEnd(3);
         for(const auto & offset : offsets) {
@@ -394,12 +394,6 @@ namespace distributed {
     inline void mergeFeaturesForSingleEdge(const xt::xtensor<FeatureType, 2> & tmpFeatures, xt::xtensor<FeatureType, 2> & targetFeatures,
                                            const EdgeIndexType tmpId, const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
-        //// debugging
-        //if(tmpFeatures(tmpId, 9) == 0) {
-        //    std::cout << "Num samples is zero for " << tmpId << std::endl;
-        //    std::cout <<  tmpFeatures(tmpId, 9) << std::endl;
-        //    throw std::runtime_error("Invalid");
-        //}
 
         if(hasFeatures[targetId]) {
 
@@ -479,8 +473,8 @@ namespace distributed {
         std::vector<PerThreadData> perThreadDataVector(nThreads);
         nifty::parallel::parallel_foreach(threadpool, nThreads, [&](const int t, const int tId){
             auto & ptd = perThreadDataVector[tId];
-            ptd.features = xt::xtensor<float, 2>(fShape);
-            ptd.tmpFeatures = xt::xtensor<float, 2>(tmpInit);
+            ptd.features = xt::xtensor<FeatureType, 2>(fShape);
+            ptd.tmpFeatures = xt::xtensor<FeatureType, 2>(tmpInit);
             ptd.edgeHasFeatures = std::vector<bool>(nEdges, false);
         });
 
@@ -498,7 +492,7 @@ namespace distributed {
             // load edge ids for the block
             const std::string blockGraphPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
-            loadEdgeIndices(blockGraphPath, blockEdgeIndices);
+            loadEdgeIndices(blockGraphPath, blockEdgeIndices, 0);
             const size_t nEdgesBlock = blockEdgeIndices.size();
 
             // get mapping to dense edge ids for this block
@@ -566,7 +560,7 @@ namespace distributed {
 
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
-            bool haveEdges = loadEdgeIndices(blockPath, blockEdgeIndices);
+            bool haveEdges = loadEdgeIndices(blockPath, blockEdgeIndices, 0);
             if(!haveEdges) {
                 return;
             }
@@ -615,6 +609,8 @@ namespace distributed {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
+        // TODO we might want to replace this with a global "edgesToBLocks"
+        // and then just load the block ids for the relevant edges here
         // find the relevant blocks, that have overlap with our edge ids
         std::vector<size_t> blockIds;
         findRelevantBlocks(graphBlockPrefix, numberOfBlocks,
