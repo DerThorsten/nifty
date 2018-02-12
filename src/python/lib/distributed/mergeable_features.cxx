@@ -10,8 +10,7 @@ namespace distributed {
 
     void exportMergeableFeatures(py::module & module) {
 
-        module.def("extractBlockFeaturesFromBoundaryMaps", [](const std::string & groupPath,
-                                                              const std::string & blockPrefix,
+        module.def("extractBlockFeaturesFromBoundaryMaps", [](const std::string & blockPrefix,
                                                               const std::string & dataPath,
                                                               const std::string & dataKey,
                                                               const std::string & labelPath,
@@ -20,19 +19,18 @@ namespace distributed {
                                                               const std::string & tmpFeatureStorage,
                                                               FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
-            extractBlockFeaturesFromBoundaryMaps(groupPath, blockPrefix, dataPath, dataKey,
+            extractBlockFeaturesFromBoundaryMaps(blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,
                                                  dataMin, dataMax);
 
-        }, py::arg("groupPath"), py::arg("blockPrefix"),
+        }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("blockIds"), py::arg("tmpFeatureStorage"),
            py::arg("dataMin")=0., py::arg("dataMax")=1.);
 
 
-        module.def("extractBlockFeaturesFromAffinityMaps", [](const std::string & groupPath,
-                                                              const std::string & blockPrefix,
+        module.def("extractBlockFeaturesFromAffinityMaps", [](const std::string & blockPrefix,
                                                               const std::string & dataPath,
                                                               const std::string & dataKey,
                                                               const std::string & labelPath,
@@ -42,11 +40,11 @@ namespace distributed {
                                                               const std::vector<OffsetType> & offsets,
                                                               FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
-            extractBlockFeaturesFromAffinityMaps(groupPath, blockPrefix, dataPath, dataKey,
+            extractBlockFeaturesFromAffinityMaps(blockPrefix, dataPath, dataKey,
                                                  labelPath, labelKey, blockIds, tmpFeatureStorage,
                                                  offsets, dataMin, dataMax);
 
-        }, py::arg("groupPath"), py::arg("blockPrefix"),
+        }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("blockIds"), py::arg("tmpFeatureStorage"), py::arg("offsets"),
@@ -70,7 +68,7 @@ namespace distributed {
                                numberOfThreads);
 
         }, py::arg("graphBlockPrefix"), py::arg("featureBlockPrefix"),
-           py::arg("featuresOut"), py::arg("numberOfBLocks"), py::arg("edgeIdBegin"),
+           py::arg("featuresOut"), py::arg("numberOfBlocks"), py::arg("edgeIdBegin"),
            py::arg("edgeIdEnd"), py::arg("numberOfThreads")=1);
     }
 
