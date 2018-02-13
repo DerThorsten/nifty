@@ -119,14 +119,15 @@ namespace graph{
         exportGridRagCoordinatesT<2, Rag2d>(module, "Explicit2d");
         exportGridRagCoordinatesT<3, Rag3d>(module, "Explicit3d");
 
-        // hdf5
-        #ifdef WITH_HDF5
-        {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            exportGridRagCoordinatesT<3, StackedRagUInt32>(module, "StackedRag3d");
-        }
-        #endif
+        // FIXME need hdf5 with xtensor support for this to work
+        // // hdf5
+        // #ifdef WITH_HDF5
+        // {
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+        //     typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+        //     exportGridRagCoordinatesT<3, StackedRagUInt32>(module, "StackedRag3d");
+        // }
+        // #endif
     }
 
 }

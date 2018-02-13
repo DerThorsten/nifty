@@ -126,27 +126,27 @@ namespace distributed {
 
 
         module.def("nodesToBlocks", [](const std::string & graphBlockPrefix,
-                                       const std::string & outNodePrefix,
+                                       const std::string & outNodePath,
                                        const size_t numberOfBlocks,
                                        const size_t numberOfNodes,
                                        const int numberOfThreads){
             py::gil_scoped_release allowThreads;
-            nodesToBlocks(graphBlockPrefix, outNodePrefix, numberOfBlocks, numberOfNodes, numberOfThreads);
+            nodesToBlocks(graphBlockPrefix, outNodePath, numberOfBlocks, numberOfNodes, numberOfThreads);
 
-        }, py::arg("graphBlockPrefix"), py::arg("outNodePrefix"),
+        }, py::arg("graphBlockPrefix"), py::arg("outNodePath"),
            py::arg("numberOfBlocks"), py::arg("numberOfNodes"),
            py::arg("numberOfThreads")=-1);
 
 
         module.def("extractSubgraphFromNodes", [](const xt::pytensor<uint64_t, 1> & nodes,
-                                                  const std::string & nodeStoragePrefix,
+                                                  const std::string & nodeStoragePath,
                                                   const std::string & graphBlockPrefix) {
             //
             std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
             std::vector<EdgeType> uvIdsVec;
             {
                 py::gil_scoped_release allowThreads;
-                extractSubgraphFromNodes(nodes, nodeStoragePrefix, graphBlockPrefix,
+                extractSubgraphFromNodes(nodes, nodeStoragePath, graphBlockPrefix,
                                          uvIdsVec, innerEdgesVec, outerEdgesVec);
             }
 
@@ -179,7 +179,7 @@ namespace distributed {
             return std::make_tuple(innerEdges, outerEdges, uvIds);
 
 
-        }, py::arg("nodes"), py::arg("nodeStoragePrefix"), py::arg("graphBlockPrefix"));
+        }, py::arg("nodes"), py::arg("nodeStoragePath"), py::arg("graphBlockPrefix"));
 
 
         module.def("serializeMergedGraph", [](const std::string & graphBlockPrefix,
@@ -189,7 +189,7 @@ namespace distributed {
                                               const size_t numberOfNewNodes,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
-                                              const std::string & nodeOutPrefix,
+                                              const std::string & nodeOutPath,
                                               const std::string & graphOutPrefix,
                                               const int numberOfThreads) {
             py::gil_scoped_release allowThreads;
@@ -197,7 +197,7 @@ namespace distributed {
                                  blockShape, newBlockShape,
                                  numberOfNewNodes,
                                  nodeLabeling, edgeLabeling,
-                                 nodeOutPrefix, graphOutPrefix,
+                                 nodeOutPath, graphOutPrefix,
                                  numberOfThreads);
         }, py::arg("graphBlockPrefix"),
            py::arg("shape"),
@@ -205,7 +205,7 @@ namespace distributed {
            py::arg("newBlockShape"),
            py::arg("numberOfNewNodes"),
            py::arg("nodeLabeling"), py::arg("edgeLabeling"),
-           py::arg("nodeOutPrefix"), py::arg("graphOutPrefix"),
+           py::arg("nodeOutPath"), py::arg("graphOutPrefix"),
            py::arg("numberOfThreads")=-1);
     }
 

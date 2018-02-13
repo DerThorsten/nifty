@@ -143,28 +143,30 @@ namespace graph{
             exportAccumulateEdgeStandardFeaturesInCoreT<StackedRagUInt32, FloatArray>(ragModule);
             exportAccumulateEdgeStandardFeaturesInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
         }
+
+        // FIXME need hdf5 with xtensor support for this to work
         // hdf5
-        #ifdef WITH_HDF5
-        {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+        // #ifdef WITH_HDF5
+        // {
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+        //     typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
 
-            typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
-            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+        //     typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
+        //     typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
 
-            typedef nifty::hdf5::Hdf5Array<float> FloatArray;
-            typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
+        //     typedef nifty::hdf5::Hdf5Array<float> FloatArray;
+        //     typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
-            // out of core
-            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
-            exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
-            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
-            //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
+        //     // out of core
+        //     exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, FloatArray>(ragModule);
+        //     exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, FloatArray>(ragModule);
+        //     //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt32, UInt8Array>(ragModule);
+        //     //exportAccumulateEdgeStandardFeaturesOutOfCoreT<StackedRagUInt64, UInt8Array>(ragModule);
 
-            exportGetSkipEdgeLengthsT<StackedRagUInt32>(ragModule);
-            exportGetSkipEdgeLengthsT<StackedRagUInt64>(ragModule);
-        }
-        #endif
+        //     exportGetSkipEdgeLengthsT<StackedRagUInt32>(ragModule);
+        //     exportGetSkipEdgeLengthsT<StackedRagUInt64>(ragModule);
+        // }
+        // #endif
 
         //z5
         #ifdef WITH_Z5

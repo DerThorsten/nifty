@@ -115,23 +115,24 @@ namespace graph{
                                                 "ExplicitLabelsGridRag3D64",
                                                 "explicitLabelsGridRag3D64");
 
+        // FIXME need hdf5 with xtensor support for this to work
         // export grid rag with hdf5 labels
-        #ifdef WITH_HDF5
-        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels2D;
-        exportGridRagT<2, Hdf5Labels2D>(ragModule,
-                                        "GridRag2DHdf5",
-                                        "gridRag2DHdf5");
+        //#ifdef WITH_HDF5
+        //typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels2D;
+        //exportGridRagT<2, Hdf5Labels2D>(ragModule,
+        //                                "GridRag2DHdf5",
+        //                                "gridRag2DHdf5");
 
-        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels3D32;
-        exportGridRagT<3, Hdf5Labels3D32>(ragModule,
-                                          "GridRag3DHdf532",
-                                          "gridRag3DHdf532");
+        //typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels3D32;
+        //exportGridRagT<3, Hdf5Labels3D32>(ragModule,
+        //                                  "GridRag3DHdf532",
+        //                                  "gridRag3DHdf532");
 
-        typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels3D64;
-        exportGridRagT<3, Hdf5Labels3D64>(ragModule,
-                                          "GridRag3DHdf564",
-                                          "gridRag3DHdf564");
-        #endif
+        //typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels3D64;
+        //exportGridRagT<3, Hdf5Labels3D64>(ragModule,
+        //                                  "GridRag3DHdf564",
+        //                                  "gridRag3DHdf564");
+        //#endif
 
         // export with z5 labels
         #ifdef WITH_Z5
