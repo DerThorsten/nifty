@@ -139,15 +139,14 @@ namespace distributed {
         });
 
         // we use hdf5 here, because n5 would result in too many files (1 file per node)
-        const auto h5File = nifty::hdf5::openFile(outNodePath);
         const std::vector<size_t> zero1Coord({0});
+        const auto h5File = nifty::hdf5::createFile(outNodePath);
         nifty::parallel::parallel_foreach(threadpool, numberOfNodes, [&](const int tId, const NodeType node){
             const std::string nodeKey = "node_" + std::to_string(node);
             const auto & blockVector = nodeVector[node];
             const std::vector<size_t> shape = {blockVector.size()};
             auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
-                                                           shape.begin(), shape.end(),
-                                                           shape.begin());
+                                                           shape.begin(), shape.end());
             // FIXME change hdf5 to xtensor backend
             marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
             for(size_t ii = 0; ii < shape[0]; ++ii) {
@@ -155,6 +154,7 @@ namespace distributed {
             }
             nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
         });
+        nifty::hdf5::closeFile(h5File);
     }
 
 
@@ -216,7 +216,7 @@ namespace distributed {
         });
 
         // we use hdf5 here, because n5 would result in too many files (1 file per node)
-        const auto h5File = nifty::hdf5::openFile(nodeOutPath);
+        const auto h5File = nifty::hdf5::createFile(nodeOutPath);
         const std::vector<size_t> zero1Coord({0});
         nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
 
@@ -226,8 +226,7 @@ namespace distributed {
 
             const std::vector<size_t> shape = {blockVector.size()};
             auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
-                                                           shape.begin(), shape.end(),
-                                                           shape.begin());
+                                                           shape.begin(), shape.end());
             // FIXME change hdf5 to xtensor backend
             marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
             for(size_t ii = 0; ii < shape[0]; ++ii) {
@@ -235,6 +234,7 @@ namespace distributed {
             }
             nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
         });
+        nifty::hdf5::closeFile(h5File);
     }
 
 
@@ -385,6 +385,7 @@ namespace distributed {
             nodeDs.readSubarray(zero1Coord.begin(), nodeBlockIds);
             blocks.insert(nodeBlockIds.begin(), nodeBlockIds.end());
         }
+        nifty::hdf5::closeFile(h5File);
 
         // extract the (distributed) graph and edge ids
         std::vector<std::string> blockList;

@@ -36,7 +36,7 @@ namespace hdf5{
     createFile
     (
         const std::string& filename,
-        const CacheSettings & cacheSettings,
+        const CacheSettings & cacheSettings=CacheSettings(),
         HDF5Version hdf5version = DEFAULT_HDF5_VERSION
     )
     {

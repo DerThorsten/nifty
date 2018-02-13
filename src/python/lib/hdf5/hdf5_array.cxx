@@ -49,18 +49,6 @@ namespace hdf5{
             .def_property_readonly("chunkShape", [](const Hdf5ArrayType & array){
                 return array.chunkShape();
             })
-            .def("setOffsetFront",[](
-                Hdf5ArrayType & array,
-                std::vector<size_t> offsetFront
-            ){
-                return array.setOffsetFront(offsetFront.begin());
-            })
-            .def("setOffsetBack",[](
-                Hdf5ArrayType & array,
-                std::vector<size_t> offsetBack
-            ){
-                return array.setOffsetBack(offsetBack.begin());
-            })
             .def("readSubarray",[](
                 const Hdf5ArrayType & array,
                 std::vector<size_t> roiBegin,
