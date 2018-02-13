@@ -5,6 +5,10 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
+// FIXME we should change hdf5 to xtensor backend
+#include "nifty/hdf5/hdf5.hxx"
+#include "nifty/hdf5/hdf5_array.hxx"
+
 namespace nifty {
 namespace distributed {
 
@@ -95,9 +99,8 @@ namespace distributed {
     }
 
 
-    // TODO change node storage to hdf5
     inline void nodesToBlocks(const std::string & graphBlockPrefix,
-                              const std::string & outNodePrefix,
+                              const std::string & outNodePath,
                               const size_t numberOfBlocks,
                               const size_t numberOfNodes,
                               const int numberOfThreads) {
@@ -135,28 +138,33 @@ namespace distributed {
             std::sort(blockVector.begin(), blockVector.end());
         });
 
-        // TODO maybe we should write this as hdf5, because for a
-        // large number of nodes, this will create a lot of files
-        // write each node vector to its own dataset
-        const std::vector<size_t> chunk = {0};
+        // we use hdf5 here, because n5 would result in too many files (1 file per node)
+        const auto h5File = nifty::hdf5::openFile(outNodePath);
+        const std::vector<size_t> zero1Coord({0});
         nifty::parallel::parallel_foreach(threadpool, numberOfNodes, [&](const int tId, const NodeType node){
-            const std::string nodePath = outNodePrefix + std::to_string(node);
+            const std::string nodeKey = "node_" + std::to_string(node);
             const auto & blockVector = nodeVector[node];
             const std::vector<size_t> shape = {blockVector.size()};
-            auto nodeDs = z5::createDataset(nodePath, "uint64", shape, shape, false);
-            nodeDs->writeChunk(chunk, &blockVector[0]);
+            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
+                                                           shape.begin(), shape.end(),
+                                                           shape.begin());
+            // FIXME change hdf5 to xtensor backend
+            marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
+            for(size_t ii = 0; ii < shape[0]; ++ii) {
+                blockArray(ii) = blockVector[ii];
+            }
+            nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
         });
     }
 
 
-    // TODO change node storage to hdf5
     template<class NODE_ARRAY>
     inline void nodesToBlocksWithLabeling(const size_t numberOfNewNodes,
                                           const nifty::tools::Blocking<3> & blocking,
                                           const nifty::tools::Blocking<3> & newBlocking,
                                           const std::string & graphBlockPrefix,
                                           const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
-                                          const std::string & nodeOutPrefix,
+                                          const std::string & nodeOutPath,
                                           std::vector<std::set<NodeType>> & blockNodeStorage,
                                           nifty::parallel::ThreadPool & threadpool) {
 
@@ -207,17 +215,25 @@ namespace distributed {
             }
         });
 
-        // TODO maybe we should write this as hdf5, because for a
-        // large number of nodes, this will create a lot of files
-        // write each node vector to its own dataset
-        const std::vector<size_t> chunk = {0};
+        // we use hdf5 here, because n5 would result in too many files (1 file per node)
+        const auto h5File = nifty::hdf5::openFile(nodeOutPath);
+        const std::vector<size_t> zero1Coord({0});
         nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
-            const std::string nodePath = nodeOutPrefix + std::to_string(node);
+
+            const std::string nodeKey = "node_" + std::to_string(node);
             const auto & blockStorage = nodeVector[node];
             std::vector<size_t> blockVector(blockStorage.begin(), blockStorage.end());
+
             const std::vector<size_t> shape = {blockVector.size()};
-            auto nodeDs = z5::createDataset(nodePath, "uint64", shape, shape, false);
-            nodeDs->writeChunk(chunk, &blockVector[0]);
+            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
+                                                           shape.begin(), shape.end(),
+                                                           shape.begin());
+            // FIXME change hdf5 to xtensor backend
+            marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
+            for(size_t ii = 0; ii < shape[0]; ++ii) {
+                blockArray(ii) = blockVector[ii];
+            }
+            nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
         });
     }
 
@@ -346,10 +362,9 @@ namespace distributed {
     }
 
 
-    // TODO change node storage to hdf5
     template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
-                                         const std::string & nodeStoragePrefix,
+                                         const std::string & nodeStorage,
                                          const std::string & graphBlockPrefix,
                                          std::vector<EdgeType> & uvIdsOut,
                                          std::vector<EdgeIndexType> & innerEdgesOut,
@@ -358,15 +373,16 @@ namespace distributed {
         const auto & nodes = nodesExp.derived_cast();
 
         // find all blocks that have overlap with the nodes
-        std::vector<size_t> chunk = {0};
         std::set<size_t> blocks;
+        const auto h5File = nifty::hdf5::openFile(nodeStorage);
+        const std::vector<size_t> zero1Coord({0});
+
         for(const NodeType node : nodes) {
-            const std::string nodePath = nodeStoragePrefix + std::to_string(node);
-            // TODO change node storage to hdf5
-            auto nodeDs = z5::openDataset(nodePath);
-            const size_t nBlocks = nodeDs->maxChunkShape()[0]; // we only have a single chunk, so this is fine
-            std::vector<size_t> nodeBlockIds(nBlocks);
-            nodeDs->readChunk(chunk, &nodeBlockIds[0]);
+            const std::string nodeKey = "node_" + std::to_string(node);
+            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey);
+            nifty::marray::Marray<NodeType> nodeBlockIds(nodeDs.shape().begin(), nodeDs.shape().end());
+
+            nodeDs.readSubarray(zero1Coord.begin(), nodeBlockIds);
             blocks.insert(nodeBlockIds.begin(), nodeBlockIds.end());
         }
 

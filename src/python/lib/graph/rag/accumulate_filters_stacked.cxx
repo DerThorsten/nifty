@@ -168,24 +168,25 @@ namespace graph{
             exportAccumulateEdgeFeaturesFromFiltersInCoreT<StackedRagUInt32, UInt8Array>(ragModule);
         }
 
-        //hdf5
-        #ifdef WITH_HDF5
-        {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+        // FIXME need hdf5 with xtensor support for this to work
+        // //hdf5
+        // #ifdef WITH_HDF5
+        // {
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+        //     typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
 
-            typedef nifty::hdf5::Hdf5Array<float> FloatArray;
-            typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
+        //     typedef nifty::hdf5::Hdf5Array<float> FloatArray;
+        //     typedef nifty::hdf5::Hdf5Array<uint8_t> UInt8Array;
 
-            // out of core
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray, FloatArray>(ragModule);
-            exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array, FloatArray>(ragModule);
+        //     // out of core
+        //     exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, FloatArray, FloatArray>(ragModule);
+        //     exportAccumulateEdgeFeaturesFromFiltersOutOfCoreT<StackedRagUInt32, UInt8Array, FloatArray>(ragModule);
 
-            // export skipEdgeFeatures
-            //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
-            //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
-        }
-        #endif
+        //     // export skipEdgeFeatures
+        //     //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, FloatArray>(ragModule);
+        //     //exportAccumulateSkipEdgeFeaturesFromFiltersT<StackedRagUInt32, UInt8Array>(ragModule);
+        // }
+        // #endif
 
         //z5
         #ifdef WITH_Z5

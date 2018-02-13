@@ -158,40 +158,41 @@ namespace graph{
                 exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, double>(ragModule);
             }
 
+            // FIXME need hdf5 with xtensor support for this to work
             // hdf5
-            #ifdef WITH_HDF5
-            {
-                typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+            // #ifdef WITH_HDF5
+            // {
+            //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
 
-                // exports for uint 32 rag
-                typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     uint32_t,
-                                                                     UInt32Data>(ragModule);
+            //     // exports for uint 32 rag
+            //     typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Data;
+            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
+            //                                                          uint32_t,
+            //                                                          UInt32Data>(ragModule);
 
-                typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     uint64_t,
-                                                                     UInt64Data>(ragModule);
+            //     typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Data;
+            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
+            //                                                          uint64_t,
+            //                                                          UInt64Data>(ragModule);
 
-                typedef nifty::hdf5::Hdf5Array<float> FloatData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     float,
-                                                                     FloatData>(ragModule);
+            //     typedef nifty::hdf5::Hdf5Array<float> FloatData;
+            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
+            //                                                          float,
+            //                                                          FloatData>(ragModule);
 
-                typedef nifty::hdf5::Hdf5Array<double> DoubleData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     double,
-                                                                     DoubleData>(ragModule);
+            //     typedef nifty::hdf5::Hdf5Array<double> DoubleData;
+            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
+            //                                                          double,
+            //                                                          DoubleData>(ragModule);
 
-                exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-                                                       uint32_t,
-                                                       UInt32Data>(ragModule);
-                exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-                                                       uint64_t,
-                                                       UInt64Data>(ragModule);
-            }
-            #endif
+            //     exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
+            //                                            uint32_t,
+            //                                            UInt32Data>(ragModule);
+            //     exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
+            //                                            uint64_t,
+            //                                            UInt64Data>(ragModule);
+            // }
+            // #endif
 
             // z5
             #ifdef WITH_Z5

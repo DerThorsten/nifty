@@ -69,7 +69,7 @@ namespace hdf5{
     openFile
     (
         const std::string& filename,
-        const CacheSettings & cacheSettings,
+        const CacheSettings & cacheSettings=CacheSettings(),
         FileAccessMode fileAccessMode = READ_ONLY,
         HDF5Version hdf5version = DEFAULT_HDF5_VERSION
     )

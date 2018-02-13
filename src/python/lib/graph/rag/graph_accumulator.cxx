@@ -140,28 +140,29 @@ namespace graph{
             exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
         }
 
+        // FIXME need hdf5 with xtensor support for this to work
         // hdf5 stacked rag
-        #ifdef WITH_HDF5
-        {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-            typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
-            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+        // #ifdef WITH_HDF5
+        // {
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+        //     typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
+        //     typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+        //     typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
 
-            typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
-            typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
+        //     typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
 
-            // accumulate labels
-            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
-            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
-            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
-            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
+        //     // accumulate labels
+        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
+        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
+        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
+        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
 
-            // getSkipEdgesForSlice
-            exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
-            //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
-        }
-        #endif
+        //     // getSkipEdgesForSlice
+        //     exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
+        //     //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
+        // }
+        // #endif
 
         //n5 stacked rag
         #ifdef WITH_Z5

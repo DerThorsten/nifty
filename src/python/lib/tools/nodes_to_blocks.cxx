@@ -41,15 +41,16 @@ namespace tools{
 
     void exportNodesToBlocks(py::module & toolsModule) {
 
+        // FIXME need hdf5 with xtensor support for this to work
         // export for hdf5
-        #ifdef WITH_HDF5
-        {
-            typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Array32;
-            typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Array64;
-            exportNodesToBlocksStackedT<Hdf5Array32>(toolsModule);
-            exportNodesToBlocksStackedT<Hdf5Array64>(toolsModule);
-        }
-        #endif
+        // #ifdef WITH_HDF5
+        // {
+        //     typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Array32;
+        //     typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Array64;
+        //     exportNodesToBlocksStackedT<Hdf5Array32>(toolsModule);
+        //     exportNodesToBlocksStackedT<Hdf5Array64>(toolsModule);
+        // }
+        // #endif
 
         // export for z5
         #ifdef WITH_Z5

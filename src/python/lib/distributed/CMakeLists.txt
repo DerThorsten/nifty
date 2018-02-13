@@ -8,7 +8,8 @@ addPythonModule(
         distributed_graph.cxx
         mergeable_features.cxx
     LIBRRARIES
-        ${FASTFILTERS_LIBRARY}
+        ${HDF5_LIBRARIES} 
+        # ${FASTFILTERS_LIBRARY}
         ${Z5_COMPRESSION_LIBRARIES}
         ${Boost_FILESYSTEM_LIBRARY}    
         ${Boost_SYSTEM_LIBRARY}    

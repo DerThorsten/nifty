@@ -419,12 +419,13 @@ namespace graph{
             exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
 
-            #ifdef WITH_HDF5
-            typedef nifty::hdf5::Hdf5Array<uint32_t> H5Labels
-            typedef GridRag<3, H5Labels> RagH53d;
-            //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
-            exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
-            #endif
+            // FIXME need hdf5 with xtensor support for this to work
+            // #ifdef WITH_HDF5
+            // typedef nifty::hdf5::Hdf5Array<uint32_t> H5Labels
+            // typedef GridRag<3, H5Labels> RagH53d;
+            // //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
+            // exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
+            // #endif
 
         }
     }
