@@ -5,10 +5,6 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
-// FIXME we should change hdf5 to xtensor backend
-#include "nifty/hdf5/hdf5.hxx"
-#include "nifty/hdf5/hdf5_array.hxx"
-
 namespace nifty {
 namespace distributed {
 
@@ -99,92 +95,31 @@ namespace distributed {
     }
 
 
-    inline void nodesToBlocks(const std::string & graphBlockPrefix,
-                              const std::string & outNodePath,
-                              const size_t numberOfBlocks,
-                              const size_t numberOfNodes,
-                              const int numberOfThreads) {
+    template<class NODE_ARRAY, class EDGE_ARRAY>
+    inline void serializeMergedGraph(const std::string & graphBlockPrefix,
+                                     const CoordType & shape,
+                                     const CoordType & blockShape,
+                                     const CoordType & newBlockShape,
+                                     const size_t numberOfNewNodes,
+                                     const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
+                                     const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
+                                     const std::string & graphOutPrefix,
+                                     const int numberOfThreads) {
 
-        typedef std::vector<size_t> BlockStorage;
-        typedef std::vector<BlockStorage> NodeBlockStorage;
-
-        // make per thread data
-        nifty::parallel::ThreadPool threadpool(numberOfThreads);
-        const size_t nThreads = threadpool.nThreads();
-        std::vector<NodeBlockStorage> perThreadData(nThreads);
-        nifty::parallel::parallel_foreach(threadpool, nThreads, [&perThreadData, numberOfNodes](const int tId, const int threadId) {
-            perThreadData[threadId] = NodeBlockStorage(numberOfNodes);
-        });
-
-        // map nodes to blocks multithreaded
-        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId, const size_t blockId){
-            std::vector<NodeType> blockNodes;
-            const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
-            loadNodes(blockPath, blockNodes, 0);
-            auto & nodeVector = perThreadData[tId];
-            for(NodeType node : blockNodes) {
-                nodeVector[node].push_back(blockId);
-            }
-        });
-
-        // merge the results
-        auto & nodeVector = perThreadData[0];
-        nifty::parallel::parallel_foreach(threadpool, numberOfNodes, [&](const int tId, const NodeType node){
-            auto & blockVector = nodeVector[node];
-            for(int threadId = 1; threadId < nThreads; ++threadId) {
-                const auto & threadVector = perThreadData[threadId][node];
-                blockVector.insert(blockVector.end(), threadVector.begin(), threadVector.end());
-            }
-            std::sort(blockVector.begin(), blockVector.end());
-        });
-
-        // we use hdf5 here, because n5 would result in too many files (1 file per node)
-        const std::vector<size_t> zero1Coord({0});
-        const auto h5File = nifty::hdf5::createFile(outNodePath);
-        nifty::parallel::parallel_foreach(threadpool, numberOfNodes, [&](const int tId, const NodeType node){
-            const std::string nodeKey = "node_" + std::to_string(node);
-            const auto & blockVector = nodeVector[node];
-            const std::vector<size_t> shape = {blockVector.size()};
-            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
-                                                           shape.begin(), shape.end());
-            // FIXME change hdf5 to xtensor backend
-            marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
-            for(size_t ii = 0; ii < shape[0]; ++ii) {
-                blockArray(ii) = blockVector[ii];
-            }
-            nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
-        });
-        nifty::hdf5::closeFile(h5File);
-    }
-
-
-    template<class NODE_ARRAY>
-    inline void nodesToBlocksWithLabeling(const size_t numberOfNewNodes,
-                                          const nifty::tools::Blocking<3> & blocking,
-                                          const nifty::tools::Blocking<3> & newBlocking,
-                                          const std::string & graphBlockPrefix,
-                                          const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
-                                          const std::string & nodeOutPath,
-                                          std::vector<std::set<NodeType>> & blockNodeStorage,
-                                          nifty::parallel::ThreadPool & threadpool) {
-
-        typedef std::set<size_t> BlockStorage;
-        typedef std::vector<BlockStorage> NodeBlockStorage;
         const auto & nodeLabeling = nodeLabelingExp.derived_cast();
+        const auto & edgeLabeling = edgeLabelingExp.derived_cast();
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
-        // make per thread data
-        const size_t nThreads = threadpool.nThreads();
-        std::vector<NodeBlockStorage> perThreadData(nThreads);
-        nifty::parallel::parallel_foreach(threadpool, nThreads, [&perThreadData, numberOfNewNodes](const int tId, const int threadId) {
-            perThreadData[threadId] = NodeBlockStorage(numberOfNewNodes);
-        });
+        const CoordType roiBegin = {0, 0, 0};
+        nifty::tools::Blocking<3> blocking(roiBegin, shape, blockShape);
+        nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
 
-        // map nodes to blocks multithreaded
         const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
+        std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
+
+        // load new nodes
         nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
-            // out data
             auto & newBlockNodes = blockNodeStorage[blockId];
-            auto & nodeVector = perThreadData[tId];
 
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
@@ -199,76 +134,10 @@ namespace distributed {
                 loadNodes(blockPath, blockNodes, 0);
                 for(const NodeType node : blockNodes) {
                     const NodeType newNode = nodeLabeling(node);
-                    nodeVector[newNode].insert(blockId);
                     newBlockNodes.insert(newNode);
                 }
             }
         });
-
-        // merge the results
-        auto & nodeVector = perThreadData[0];
-        nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
-            auto & blockStorage = nodeVector[node];
-            for(int threadId = 1; threadId < nThreads; ++threadId) {
-                const auto & threadStorage = perThreadData[threadId][node];
-                blockStorage.insert(threadStorage.begin(), threadStorage.end());
-            }
-        });
-
-        // we use hdf5 here, because n5 would result in too many files (1 file per node)
-        const auto h5File = nifty::hdf5::createFile(nodeOutPath);
-        const std::vector<size_t> zero1Coord({0});
-        nifty::parallel::parallel_foreach(threadpool, numberOfNewNodes, [&](const int tId, const NodeType node){
-
-            const std::string nodeKey = "node_" + std::to_string(node);
-            const auto & blockStorage = nodeVector[node];
-            std::vector<size_t> blockVector(blockStorage.begin(), blockStorage.end());
-
-            const std::vector<size_t> shape = {blockVector.size()};
-            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey,
-                                                           shape.begin(), shape.end());
-            // FIXME change hdf5 to xtensor backend
-            marray::Marray<NodeType> blockArray(shape.begin(), shape.end());
-            for(size_t ii = 0; ii < shape[0]; ++ii) {
-                blockArray(ii) = blockVector[ii];
-            }
-            nodeDs.writeSubarray(zero1Coord.begin(), blockArray);
-        });
-        nifty::hdf5::closeFile(h5File);
-    }
-
-
-    template<class NODE_ARRAY, class EDGE_ARRAY>
-    inline void serializeMergedGraph(const std::string & graphBlockPrefix,
-                                     const CoordType & shape,
-                                     const CoordType & blockShape,
-                                     const CoordType & newBlockShape,
-                                     const size_t numberOfNewNodes,
-                                     const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
-                                     const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
-                                     const std::string & nodeOutPrefix,
-                                     const std::string & graphOutPrefix,
-                                     const int numberOfThreads) {
-
-        const auto & nodeLabeling = nodeLabelingExp.derived_cast();
-        const auto & edgeLabeling = edgeLabelingExp.derived_cast();
-        nifty::parallel::ThreadPool threadpool(numberOfThreads);
-
-        const CoordType roiBegin = {0, 0, 0};
-        nifty::tools::Blocking<3> blocking(roiBegin, shape, blockShape);
-        nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
-
-        const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
-        std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
-        // load new nodes and serialize the new node to block assignment
-        nodesToBlocksWithLabeling(numberOfNewNodes,
-                                  blocking,
-                                  newBlocking,
-                                  graphBlockPrefix,
-                                  nodeLabelingExp,
-                                  nodeOutPrefix,
-                                  blockNodeStorage,
-                                  threadpool);
 
         // serialize the merged sub-graphs
         const std::vector<size_t> zero1Coord({0});
@@ -364,32 +233,71 @@ namespace distributed {
 
     template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
-                                         const std::string & nodeStorage,
                                          const std::string & graphBlockPrefix,
+                                         const CoordType & shape,
+                                         const CoordType & blockShape,
+                                         const size_t startBlockId,
                                          std::vector<EdgeType> & uvIdsOut,
                                          std::vector<EdgeIndexType> & innerEdgesOut,
                                          std::vector<EdgeIndexType> & outerEdgesOut) {
         //
         const auto & nodes = nodesExp.derived_cast();
 
+        // TODO refactor this part
+        nifty::tools::Blocking<3> blocking({0L, 0L, 0L}, shape, blockShape);
+
         // find all blocks that have overlap with the nodes
-        std::set<size_t> blocks;
-        const auto h5File = nifty::hdf5::openFile(nodeStorage);
-        const std::vector<size_t> zero1Coord({0});
-
-        for(const NodeType node : nodes) {
-            const std::string nodeKey = "node_" + std::to_string(node);
-            auto nodeDs = nifty::hdf5::Hdf5Array<NodeType>(h5File, nodeKey);
-            nifty::marray::Marray<NodeType> nodeBlockIds(nodeDs.shape().begin(), nodeDs.shape().end());
-
-            nodeDs.readSubarray(zero1Coord.begin(), nodeBlockIds);
-            blocks.insert(nodeBlockIds.begin(), nodeBlockIds.end());
+        // beginning from the start block id and adding all neighbors, until nodes are no
+        // longer present
+        std::vector<size_t> blockVector = {startBlockId};
+        const std::vector<bool> dirs = {false, true};
+        std::queue<int64_t> blockQueue;
+        // first, we enqueue all the neighboring blocks to the start block
+        for(unsigned axis = 0; axis < 3; ++axis) {
+            for(const bool lower : dirs) {
+                const int64_t neighborId = blocking.getNeighborId(startBlockId, axis, lower);
+                if(neighborId != -1) {
+                    blockQueue.push(neighborId);
+                }
+            }
         }
-        nifty::hdf5::closeFile(h5File);
+
+        while(!blockQueue.empty()) {
+            const int64_t blockId = blockQueue.front();
+            blockQueue.pop();
+            std::vector<NodeType> blockNodes;
+            const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
+            // load the nodes in this block
+            loadNodes(blockPath, blockNodes, 0);
+            bool haveNode = false;
+
+            // iterate over the node list and check if any of them is in the block
+            for(const NodeType node: nodes) {
+                // the node lists are sorted, hence we can use binary search
+                auto it = std::lower_bound(blockNodes.begin(), blockNodes.begin(), node);
+                if(it != blockNodes.end()) {
+                    haveNode = true;
+                    break;
+                }
+            }
+
+            if(haveNode) {
+                blockVector.push_back(blockId);
+                // enqueue the neighbors
+                for(unsigned axis = 0; axis < 3; ++axis) {
+                    for(const bool lower : dirs) {
+                        const int64_t neighborId = blocking.getNeighborId(blockId, axis, lower);
+                        if(neighborId != -1) {
+                            blockQueue.push(neighborId);
+                        }
+                    }
+                }
+            }
+        }
 
         // extract the (distributed) graph and edge ids
         std::vector<std::string> blockList;
-        for(auto block : blocks) {
+        for(auto block : blockVector) {
             blockList.emplace_back(graphBlockPrefix + std::to_string(block));
         }
         std::vector<EdgeIndexType> edgeIds;
