@@ -250,6 +250,8 @@ namespace distributed {
         // beginning from the start block id and adding all neighbors, until nodes are no
         // longer present
         std::vector<size_t> blockVector = {startBlockId};
+        std::unordered_set<int64_t> blocksProcessed;
+
         const std::vector<bool> dirs = {false, true};
         std::queue<int64_t> blockQueue;
         // first, we enqueue all the neighboring blocks to the start block
@@ -258,9 +260,11 @@ namespace distributed {
                 const int64_t neighborId = blocking.getNeighborId(startBlockId, axis, lower);
                 if(neighborId != -1) {
                     blockQueue.push(neighborId);
+                    blocksProcessed.insert(neighborId);
                 }
             }
         }
+
 
         while(!blockQueue.empty()) {
             const int64_t blockId = blockQueue.front();
@@ -288,7 +292,10 @@ namespace distributed {
                     for(const bool lower : dirs) {
                         const int64_t neighborId = blocking.getNeighborId(blockId, axis, lower);
                         if(neighborId != -1) {
-                            blockQueue.push(neighborId);
+                            if(blocksProcessed.find(neighborId) == blocksProcessed.end()) {
+                                blockQueue.push(neighborId);
+                                blocksProcessed.insert(neighborId);
+                            }
                         }
                     }
                 }
