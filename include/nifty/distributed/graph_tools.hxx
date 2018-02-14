@@ -251,6 +251,7 @@ namespace distributed {
         // longer present
         std::vector<size_t> blockVector = {startBlockId};
         std::unordered_set<int64_t> blocksProcessed;
+        blocksProcessed.insert(startBlockId);
 
         const std::vector<bool> dirs = {false, true};
         std::queue<int64_t> blockQueue;
@@ -265,10 +266,15 @@ namespace distributed {
             }
         }
 
-
         while(!blockQueue.empty()) {
             const int64_t blockId = blockQueue.front();
             blockQueue.pop();
+
+            // check if we have already looked at this block
+            if(blocksProcessed.find(blockId) != blocksProcessed.end()) {
+                continue;
+            }
+
             std::vector<NodeType> blockNodes;
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             // load the nodes in this block
@@ -285,17 +291,16 @@ namespace distributed {
                 }
             }
 
+            // mark this block as processed
+            blocksProcessed.insert(blockId);
             if(haveNode) {
-                blockVector.push_back(blockId);
                 // enqueue the neighbors
                 for(unsigned axis = 0; axis < 3; ++axis) {
                     for(const bool lower : dirs) {
                         const int64_t neighborId = blocking.getNeighborId(blockId, axis, lower);
                         if(neighborId != -1) {
-                            if(blocksProcessed.find(neighborId) == blocksProcessed.end()) {
-                                blockQueue.push(neighborId);
-                                blocksProcessed.insert(neighborId);
-                            }
+                            blockVector.push_back(blockId);
+                            blockQueue.push(neighborId);
                         }
                     }
                 }
