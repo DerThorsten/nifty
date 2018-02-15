@@ -212,7 +212,7 @@ if [[ "$WITH_GUROBI" != "" ]]; then
         fi
 
         # Rename the nifty package to 'nifty_with_gurobi'
-        cd "${PREFIX}/lib/pythoni${PY_VER}/site-packages/"
+        cd "${PREFIX}/lib/python${PY_VER}/site-packages/"
         mv nifty nifty_with_gurobi
     )
 fi
