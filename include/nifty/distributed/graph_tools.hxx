@@ -231,6 +231,9 @@ namespace distributed {
     }
 
 
+    // we have to look at surprisingly many blocks, which makes
+    // this function pretty inefficient to
+    // FIXME I am not 100 % sure if this is not due to some bug
     template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
                                          const std::string & graphBlockPrefix,
@@ -261,7 +264,6 @@ namespace distributed {
                 const int64_t neighborId = blocking.getNeighborId(startBlockId, axis, lower);
                 if(neighborId != -1) {
                     blockQueue.push(neighborId);
-                    blocksProcessed.insert(neighborId);
                 }
             }
         }
@@ -284,7 +286,7 @@ namespace distributed {
             // iterate over the node list and check if any of them is in the block
             for(const NodeType node: nodes) {
                 // the node lists are sorted, hence we can use binary search
-                auto it = std::lower_bound(blockNodes.begin(), blockNodes.begin(), node);
+                auto it = std::lower_bound(blockNodes.begin(), blockNodes.end(), node);
                 if(it != blockNodes.end()) {
                     haveNode = true;
                     break;
@@ -293,13 +295,14 @@ namespace distributed {
 
             // mark this block as processed
             blocksProcessed.insert(blockId);
+            // if we have one of the nodes, push back the block id and
+            // enqueue the neighbors
             if(haveNode) {
-                // enqueue the neighbors
+                blockVector.push_back(blockId);
                 for(unsigned axis = 0; axis < 3; ++axis) {
                     for(const bool lower : dirs) {
                         const int64_t neighborId = blocking.getNeighborId(blockId, axis, lower);
                         if(neighborId != -1) {
-                            blockVector.push_back(blockId);
                             blockQueue.push(neighborId);
                         }
                     }
@@ -312,6 +315,8 @@ namespace distributed {
         for(auto block : blockVector) {
             blockList.emplace_back(graphBlockPrefix + std::to_string(block));
         }
+        std::set<size_t> unBlocks(blockVector.begin(), blockVector.end());
+
         std::vector<EdgeIndexType> edgeIds;
         const Graph g(blockList, edgeIds);
 
@@ -326,6 +331,7 @@ namespace distributed {
 
         // then iterate over the adjacency and extract inner and outer edges
         for(const NodeType u : nodes) {
+
             const auto & uAdjacency = g.nodeAdjacency(u);
             for(const auto & adj : uAdjacency) {
                 const NodeType v = adj.first;

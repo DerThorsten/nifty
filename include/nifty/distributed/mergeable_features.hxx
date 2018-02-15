@@ -506,6 +506,7 @@ namespace distributed {
             if(blockFeatures.shape()[0] != nEdgesBlock) {
                 blockFeatures.resize({nEdgesBlock, 10});
             }
+
             loadBlockFeatures(blockFeaturePath, blockFeatures);
 
             // iterate over the edges in this block and merge edge features if they are in our edge range

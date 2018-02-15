@@ -100,6 +100,45 @@ namespace distributed {
             return nodes_.at(node);
         }
 
+
+        // extract the subgraph uv-ids (with dense node labels)
+        // as well as inner and outer edges associated with the node list
+        template<class NODE_ARRAY>
+        void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
+                                      std::vector<EdgeType> & uvIdsOut,
+                                      std::vector<EdgeIndexType> & innerEdgesOut,
+                                      std::vector<EdgeIndexType> & outerEdgesOut) const {
+            const auto & nodes = nodesExp.derived_cast();
+
+            // first find the mapping to dense node index
+            std::unordered_map<NodeType, NodeType> nodeMapping;
+            for(size_t i = 0; i < nodes.size(); ++i) {
+                nodeMapping[nodes(i)] = i;
+            }
+
+            // then iterate over the adjacency and extract inner and outer edges
+            for(const NodeType u : nodes) {
+
+                const auto & uAdjacency = nodes_.at(u);
+                for(const auto & adj : uAdjacency) {
+                    const NodeType v = adj.first;
+                    const EdgeIndexType edge = adj.second;
+                    // we do the look-up in the node-mapping instead of the node-list, because it's a hash-map
+                    // (and thus faster than array lookup)
+                    if(nodeMapping.find(v) != nodeMapping.end()) {
+                        // we will encounter inner edges twice, so we only add them for u < v
+                        if(u < v) {
+                            innerEdgesOut.push_back(edge);
+                            uvIdsOut.emplace_back(std::make_pair(nodeMapping[u], nodeMapping[v]));
+                        }
+                    } else {
+                        // outer edges occur only once by construction
+                        outerEdgesOut.push_back(edge);
+                    }
+                }
+            }
+        }
+
         // number of nodes and edges
         size_t numberOfNodes() const {return nodes_.size();}
         size_t numberOfEdges() const {return edges_.size();}

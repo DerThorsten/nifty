@@ -33,7 +33,48 @@ namespace distributed {
                 }
                 return out;
             })
-        ;
+
+            .def("extractSubgraphFromNodes", [](const Graph & self, const xt::pytensor<uint64_t, 1> & nodes) {
+                //
+                std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
+                std::vector<EdgeType> uvIdsVec;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.extractSubgraphFromNodes(nodes, uvIdsVec, innerEdgesVec, outerEdgesVec);
+                }
+
+                //
+                typedef typename xt::pytensor<EdgeIndexType, 1>::shape_type ShapeType;
+                ShapeType innerShape = {static_cast<int64_t>(innerEdgesVec.size())};
+                xt::pytensor<EdgeIndexType, 1> innerEdges(innerShape);
+
+                ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
+                xt::pytensor<EdgeIndexType, 1> outerEdges(outerShape);
+
+                typedef typename xt::pytensor<NodeType, 2>::shape_type UvShapeType;
+                UvShapeType uvShape = {static_cast<int64_t>(uvIdsVec.size()), 2L};
+                xt::pytensor<NodeType, 2> uvIds(uvShape);
+
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                        innerEdges(i) = innerEdgesVec[i];
+                    }
+                    for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                        outerEdges(i) = outerEdgesVec[i];
+                    }
+                    for(size_t i = 0; i < uvIdsVec.size(); ++i) {
+                        uvIds(i, 0) = uvIdsVec[i].first;
+                        uvIds(i, 1) = uvIdsVec[i].second;
+                    }
+
+                }
+                return std::make_tuple(innerEdges, outerEdges, uvIds);
+
+
+            }, py::arg("nodes"))
+
+            ;
 
 
     }
