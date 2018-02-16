@@ -31,7 +31,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
     affShape[0] = affinities.shape()[0];
     for(int d = 0; d < 3; ++d) {
         shape[d] = labels.shape()[d];
-        affShape[d] = affinities.shape()[d+1];
+        affShape[d+1] = affinities.shape()[d+1];
     }
 
     // only single threaded for now
@@ -59,12 +59,11 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
 
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    // parallel_foreach(threadpool, nLinks, [&](int tid, int linkId) {
     tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
 
         Coord3 cU, cV;
         VigraCoord vc;
-        const auto & offset = offsets[cU[0]];
+        const auto & offset = offsets[affCoord[0]];
 
         for(int d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
@@ -133,7 +132,7 @@ void accumulateAffinities(
         acc::Variance,    //1
         Quantiles         //7
     > SelectType;
-    typedef acc::StandAloneAccumulatorChain<3, float, SelectType> AccChainType;
+    typedef acc::StandAloneAccumulatorChain<3, double, SelectType> AccChainType;
 
     auto & features = featuresExp.derived_cast();
 
