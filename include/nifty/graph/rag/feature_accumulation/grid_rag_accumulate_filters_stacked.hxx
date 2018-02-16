@@ -645,7 +645,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 auto & storageFeats = storage.features;
                 std::array<size_t, 2> storageBegin{0, 0};
                 std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
-                storageFeats.reshape(storageShape);
+                storageFeats.resize(storageShape);
 
                 xt::slice_vector slice(featuresTemp);
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
@@ -667,7 +667,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 auto & storageFeats = storage.features;
                 std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
                 std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
-                storageFeats.reshape(storageShape);
+                storageFeats.resize(storageShape);
 
                 xt::slice_vector slice(featuresTemp);
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
@@ -694,7 +694,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 auto & storageFeats = storage.features;
                 std::array<size_t, 2> storageBegin{0, 0};
                 std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
-                storageFeats.reshape(storageShape);
+                storageFeats.resize(storageShape);
 
                 xt::slice_vector slice(featuresTemp);
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
@@ -716,7 +716,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 auto & storageFeats = storage.features;
                 std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
                 std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
-                storageFeats.reshape(storageShape);
+                storageFeats.resize(storageShape);
 
                 xt::slice_vector slice(featuresTemp);
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);

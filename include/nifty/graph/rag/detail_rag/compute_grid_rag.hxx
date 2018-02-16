@@ -75,7 +75,7 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
         std::vector<size_t> arrayShape(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
         std::vector<PerThreadData> perThreadDataVec(nThreads);
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
-            perThreadDataVec[i].blockLabels.reshape(arrayShape);
+            perThreadDataVec[i].blockLabels.resize(arrayShape);
             perThreadDataVec[i].adjacency.resize(rag.numberOfLabels());
         });
 
