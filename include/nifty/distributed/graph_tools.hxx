@@ -76,7 +76,7 @@ namespace distributed {
                 }
             }
             if(needsResize) {
-                labels.reshape(actualBlockShape);
+                labels.resize(actualBlockShape);
             }
 
             // get labels and do the mapping

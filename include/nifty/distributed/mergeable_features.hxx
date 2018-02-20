@@ -479,6 +479,7 @@ namespace distributed {
         const size_t nBlocks = blockIds.size();
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockIndex){
 
+
             const size_t blockId = blockIds[blockIndex];
 
             auto & perThreadData = perThreadDataVector[tId];
@@ -539,8 +540,8 @@ namespace distributed {
         // TODO we could parallelize this over the out chunks
         // serialize the edge features
         auto dsOut = z5::openDataset(featuresOut);
-        const std::vector<size_t> zero2Coord({0, 0});
-        z5::multiarray::writeSubarray<FeatureType>(dsOut, features, zero2Coord.begin());
+        const std::vector<size_t> featOffset({edgeIdBegin, 0});
+        z5::multiarray::writeSubarray<FeatureType>(dsOut, features, featOffset.begin());
     }
 
 
@@ -565,6 +566,10 @@ namespace distributed {
 
             // first we check, if the block has overlap with at least one of our edges
             // (and thus if it is relevant) by a simple range check
+            // this is a bit tricky, because we have a dense input edge id range,
+            // however the id range in the block is not dense.
+            // hence, we project to a dense range in the block, which is fine for 
+            // just determining whether we have overlap
 
             auto minmax = std::minmax_element(blockEdgeIndices.begin(), blockEdgeIndices.end());
             EdgeIndexType blockMinEdge = *minmax.first;
@@ -607,9 +612,7 @@ namespace distributed {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
-        // TODO we might want to replace this with a global "edgesToBLocks"
-        // and then just load the block ids for the relevant edges here
-        // find the relevant blocks, that have overlap with our edge ids
+        // find all the blocks that contain edges in the current range
         std::vector<size_t> blockIds;
         findRelevantBlocks(graphBlockPrefix, numberOfBlocks,
                            edgeIdBegin, edgeIdEnd, threadpool,
