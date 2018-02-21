@@ -8,20 +8,22 @@ namespace py = pybind11;
 namespace nifty {
 namespace distributed {
 
-    void exportMergeableFeatures(py::module & module) {
+    template<class T>
+    void exportMergeableFeaturesT(py::module & module, const std::string & typeName) {
 
-        module.def("extractBlockFeaturesFromBoundaryMaps", [](const std::string & blockPrefix,
-                                                              const std::string & dataPath,
-                                                              const std::string & dataKey,
-                                                              const std::string & labelPath,
-                                                              const std::string & labelKey,
-                                                              const std::vector<size_t> & blockIds,
-                                                              const std::string & tmpFeatureStorage,
-                                                              FeatureType dataMin, FeatureType dataMax) {
+        const std::string fuName1 = "extractBlockFeaturesFromBoundaryMaps" + typeName;
+        module.def(fuName1.c_str(), [](const std::string & blockPrefix,
+                                       const std::string & dataPath,
+                                       const std::string & dataKey,
+                                       const std::string & labelPath,
+                                       const std::string & labelKey,
+                                       const std::vector<size_t> & blockIds,
+                                       const std::string & tmpFeatureStorage,
+                                       FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
-            extractBlockFeaturesFromBoundaryMaps(blockPrefix, dataPath, dataKey,
-                                                 labelPath, labelKey, blockIds, tmpFeatureStorage,
-                                                 dataMin, dataMax);
+            extractBlockFeaturesFromBoundaryMaps<T>(blockPrefix, dataPath, dataKey,
+                                                    labelPath, labelKey, blockIds, tmpFeatureStorage,
+                                                    dataMin, dataMax);
 
         }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
@@ -30,19 +32,20 @@ namespace distributed {
            py::arg("dataMin")=0., py::arg("dataMax")=1.);
 
 
-        module.def("extractBlockFeaturesFromAffinityMaps", [](const std::string & blockPrefix,
-                                                              const std::string & dataPath,
-                                                              const std::string & dataKey,
-                                                              const std::string & labelPath,
-                                                              const std::string & labelKey,
-                                                              const std::vector<size_t> & blockIds,
-                                                              const std::string & tmpFeatureStorage,
-                                                              const std::vector<OffsetType> & offsets,
-                                                              FeatureType dataMin, FeatureType dataMax) {
+        const std::string fuName2 = "extractBlockFeaturesFromAffinityMaps" + typeName;
+        module.def(fuName2.c_str(), [](const std::string & blockPrefix,
+                                       const std::string & dataPath,
+                                       const std::string & dataKey,
+                                       const std::string & labelPath,
+                                       const std::string & labelKey,
+                                       const std::vector<size_t> & blockIds,
+                                       const std::string & tmpFeatureStorage,
+                                       const std::vector<OffsetType> & offsets,
+                                       FeatureType dataMin, FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
-            extractBlockFeaturesFromAffinityMaps(blockPrefix, dataPath, dataKey,
-                                                 labelPath, labelKey, blockIds, tmpFeatureStorage,
-                                                 offsets, dataMin, dataMax);
+            extractBlockFeaturesFromAffinityMaps<T>(blockPrefix, dataPath, dataKey,
+                                                    labelPath, labelKey, blockIds, tmpFeatureStorage,
+                                                    offsets, dataMin, dataMax);
 
         }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
@@ -51,6 +54,10 @@ namespace distributed {
            py::arg("dataMin")=0., py::arg("dataMax")=1.);
 
 
+    }
+
+
+    void exportFeatureMerging(py::module & module) {
         module.def("mergeFeatureBlocks", [](const std::string & graphBlockPrefix,
                                             const std::string & featureBlockPrefix,
                                             const std::string & featuresOut,
@@ -72,6 +79,12 @@ namespace distributed {
            py::arg("edgeIdEnd"), py::arg("numberOfThreads")=1);
     }
 
+
+    void exportMergeableFeatures(py::module & module) {
+        exportMergeableFeaturesT<uint8_t>(module, "_uint8");
+        exportMergeableFeaturesT<float>(module, "_float32");
+        exportFeatureMerging(module);
+    }
 
 }
 }

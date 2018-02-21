@@ -144,8 +144,8 @@ namespace distributed {
     }
 
 
-    // TODO arguments for serializaation
     // accumulate simple boundary map
+    template<class InputType>
     inline void accumulateBoundaryMap(const Graph & graph,
                                       std::unique_ptr<z5::Dataset> dataDs,
                                       std::unique_ptr<z5::Dataset> labelsDs,
@@ -155,7 +155,7 @@ namespace distributed {
                                       FeatureType dataMin, FeatureType dataMax) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
-        typedef xt::xtensor<float, 3> DataArray;
+        typedef xt::xtensor<InputType, 3> DataArray;
 
         // get the shapes
         Shape3Type shape;
@@ -168,7 +168,7 @@ namespace distributed {
         // load data and labels
         DataArray data(shape);
         LabelArray labels(shape);
-        z5::multiarray::readSubarray<float>(dataDs, data, roiBegin.begin());
+        z5::multiarray::readSubarray<InputType>(dataDs, data, roiBegin.begin());
         z5::multiarray::readSubarray<NodeType>(labelsDs, labels, roiBegin.begin());
 
         // create nifty accumulator vector
@@ -179,25 +179,49 @@ namespace distributed {
         for(auto & accumulator : accumulators) {
             accumulator.setHistogramOptions(histogramOpts);
         }
+        
+        const bool byteInput = typeid(InputType) == typeid(uint8_t);
 
         // accumulate
-        nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
-            const NodeType lU = xtensor::read(labels, coord.asStdArray());
-            CoordType coord2;
-            for(size_t axis = 0; axis < 3; ++axis){
-                makeCoord2(coord, coord2, axis);
-                if(coord2[axis] < blockShape[axis]){
-                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                    if(lU != lV){
-                        const EdgeIndexType edge = graph.findEdge(lU, lV);
-                        const FeatureType fU = xtensor::read(data, coord.asStdArray());
-                        const FeatureType fV = xtensor::read(data, coord2.asStdArray());
-                        accumulators[edge].updatePassN(fU, pass);
-                        accumulators[edge].updatePassN(fV, pass);
+        if(byteInput) {
+            nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
+                const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                CoordType coord2;
+                for(size_t axis = 0; axis < 3; ++axis){
+                    makeCoord2(coord, coord2, axis);
+                    if(coord2[axis] < blockShape[axis]){
+                        const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                        if(lU != lV){
+                            const EdgeIndexType edge = graph.findEdge(lU, lV);
+                            const auto fU = xtensor::read(data, coord.asStdArray());
+                            const auto fV = xtensor::read(data, coord2.asStdArray());
+                            FeatureType fUf = static_cast<FeatureType>(fU);
+                            FeatureType fVf = static_cast<FeatureType>(fV);
+                            accumulators[edge].updatePassN(fUf / 255., pass);
+                            accumulators[edge].updatePassN(fVf / 255., pass);
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else {
+            nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
+                const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                CoordType coord2;
+                for(size_t axis = 0; axis < 3; ++axis){
+                    makeCoord2(coord, coord2, axis);
+                    if(coord2[axis] < blockShape[axis]){
+                        const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                        if(lU != lV){
+                            const EdgeIndexType edge = graph.findEdge(lU, lV);
+                            const auto fU = xtensor::read(data, coord.asStdArray());
+                            const auto fV = xtensor::read(data, coord2.asStdArray());
+                            accumulators[edge].updatePassN(fU, pass);
+                            accumulators[edge].updatePassN(fV, pass);
+                        }
+                    }
+                }
+            });
+        }
 
         // serialize the accumulators
         serializeDefaultEdgeFeatures(accumulators, blockStoragePath);
@@ -205,6 +229,7 @@ namespace distributed {
 
 
     // accumulate affinity maps
+    template<class InputType>
     inline void accumulateAffinityMap(const Graph & graph,
                                       std::unique_ptr<z5::Dataset> dataDs,
                                       std::unique_ptr<z5::Dataset> labelsDs,
@@ -217,7 +242,7 @@ namespace distributed {
                                       FeatureType dataMin, FeatureType dataMax) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
-        typedef xt::xtensor<float, 4> DataArray;
+        typedef xt::xtensor<InputType, 4> DataArray;
         typedef typename DataArray::shape_type Shape4Type;
 
         typedef nifty::array::StaticArray<int64_t, 4> AffCoordType;
@@ -249,7 +274,7 @@ namespace distributed {
         // load data and labels
         DataArray affs(affShape);
         LabelArray labels(shape);
-        z5::multiarray::readSubarray<float>(dataDs, affs, affsBegin.begin());
+        z5::multiarray::readSubarray<InputType>(dataDs, affs, affsBegin.begin());
         z5::multiarray::readSubarray<NodeType>(labelsDs, labels, beginWithHalo.begin());
 
         // create nifty accumulator vector
@@ -261,33 +286,70 @@ namespace distributed {
             accumulator.setHistogramOptions(histogramOpts);
         }
 
-        // accumulate
-        nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
+        const bool byteInput = typeid(InputType) == typeid(uint8_t);
 
-            CoordType coord, coord2;
-            // the 0th affinitiy coordinate gives the channel index
-            const auto & offset = offsets[affCoord[0]];
-            for(unsigned axis = 0; axis < 3; ++axis) {
-                coord[axis] = affCoord[axis + 1];
-                coord2[axis] = affCoord[axis + 1] + offset[axis];
+        // We need different accumulation for byte and float input
+        if(byteInput) {
+            // accumulate
+            nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
 
-                // bounds check
-                if(coord2[axis] < 0 || coord2[axis] > blockShape[axis]) {
-                    return;
+                CoordType coord, coord2;
+                // the 0th affinitiy coordinate gives the channel index
+                const auto & offset = offsets[affCoord[0]];
+                for(unsigned axis = 0; axis < 3; ++axis) {
+                    coord[axis] = affCoord[axis + 1];
+                    coord2[axis] = affCoord[axis + 1] + offset[axis];
+
+                    // bounds check
+                    if(coord2[axis] < 0 || coord2[axis] > blockShape[axis]) {
+                        return;
+                    }
                 }
-            }
 
-            const NodeType lU = xtensor::read(labels, coord.asStdArray());
-            const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-            if(lU != lV){
-                // for long range affinites, the uv pair may not be part of the region graph
-                // so we need to check if the edge actually exists
-                const EdgeIndexType edge = graph.findEdge(lU, lV);
-                if(edge != -1) {
-                    accumulators[edge].updatePassN(xtensor::read(affs, affCoord.asStdArray()), pass);
+                const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                if(lU != lV){
+                    // for long range affinites, the uv pair may not be part of the region graph
+                    // so we need to check if the edge actually exists
+                    const EdgeIndexType edge = graph.findEdge(lU, lV);
+                    if(edge != -1) {
+                        uint8_t data = xtensor::read(affs, affCoord.asStdArray());
+                        FeatureType dataF = static_cast<FeatureType>(data) / 255.;
+                        accumulators[edge].updatePassN(dataF, pass);
+                    }
                 }
-            }
-        });
+            });
+        }
+        else {
+            // accumulate
+            nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
+
+                CoordType coord, coord2;
+                // the 0th affinitiy coordinate gives the channel index
+                const auto & offset = offsets[affCoord[0]];
+                for(unsigned axis = 0; axis < 3; ++axis) {
+                    coord[axis] = affCoord[axis + 1];
+                    coord2[axis] = affCoord[axis + 1] + offset[axis];
+
+                    // bounds check
+                    if(coord2[axis] < 0 || coord2[axis] > blockShape[axis]) {
+                        return;
+                    }
+                }
+
+                const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                if(lU != lV){
+                    // for long range affinites, the uv pair may not be part of the region graph
+                    // so we need to check if the edge actually exists
+                    const EdgeIndexType edge = graph.findEdge(lU, lV);
+                    if(edge != -1) {
+                        accumulators[edge].updatePassN(xtensor::read(affs, affCoord.asStdArray()), pass);
+                    }
+                }
+            });
+
+        }
 
         // serialize the accumulators
         serializeDefaultEdgeFeatures(accumulators, blockStoragePath);
@@ -299,6 +361,7 @@ namespace distributed {
     ///
 
 
+    template<class InputType>
     inline void extractBlockFeaturesFromBoundaryMaps(const std::string & blockPrefix,
                                                      const std::string & dataPath,
                                                      const std::string & dataKey,
@@ -317,9 +380,9 @@ namespace distributed {
                 const std::vector<size_t> & roiEnd,
                 const std::string & blockStoragePath) {
 
-            accumulateBoundaryMap(graph, std::move(dataDs), std::move(labelsDs),
-                                  roiBegin, roiEnd, blockStoragePath,
-                                  dataMin, dataMax);
+            accumulateBoundaryMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
+                                             roiBegin, roiEnd, blockStoragePath,
+                                             dataMin, dataMax);
         };
 
         extractBlockFeaturesImpl(blockPrefix,
@@ -330,6 +393,7 @@ namespace distributed {
     }
 
 
+    template<class InputType>
     inline void extractBlockFeaturesFromAffinityMaps(const std::string & blockPrefix,
                                                      const std::string & dataPath,
                                                      const std::string & dataKey,
@@ -361,10 +425,10 @@ namespace distributed {
                 const std::vector<size_t> & roiEnd,
                 const std::string & blockStoragePath) {
 
-            accumulateAffinityMap(graph, std::move(dataDs), std::move(labelsDs),
-                                  roiBegin, roiEnd, blockStoragePath,
-                                  offsets, haloBegin, haloEnd,
-                                  dataMin, dataMax);
+            accumulateAffinityMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
+                                             roiBegin, roiEnd, blockStoragePath,
+                                             offsets, haloBegin, haloEnd,
+                                             dataMin, dataMax);
         };
 
         extractBlockFeaturesImpl(blockPrefix,
