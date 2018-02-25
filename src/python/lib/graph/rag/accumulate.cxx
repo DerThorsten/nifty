@@ -398,25 +398,25 @@ namespace graph{
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
 
-            exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
+            //exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
 
-            exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
+            //exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);
 
-            exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
+            //exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
 
-            exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
+            //exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
 
-            exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
+            //exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeStandartFeatures<3, Rag3d, float>(ragModule);
 
-            exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
+            //exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricNodeFeatures<3, Rag3d, float>(ragModule);
 
-            exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
+            //exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
 
             // FIXME need hdf5 with xtensor support for this to work
