@@ -344,7 +344,8 @@ namespace graph{
             const int numberOfThreads
         ){
             typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
+            typename NumpyArrayType::shape_type shape = {int64_t(rag.edgeIdUpperBound()+1), 9L};
+            NumpyArrayType edgeOut(shape);
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, numberOfThreads);
@@ -390,6 +391,7 @@ namespace graph{
 
     void exportAccumulate(py::module & ragModule) {
 
+        // FIXME the overloads are broken and don't allow to use 3d arrays
         //explicit
         {
             typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
@@ -410,7 +412,7 @@ namespace graph{
             //exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
+            // exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeStandartFeatures<3, Rag3d, float>(ragModule);
 
             //exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);

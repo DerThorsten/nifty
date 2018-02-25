@@ -124,6 +124,12 @@ namespace tools{
             }
         }
 
+        void blockGridPosition(const uint64_t blockId, VectorType & gridPosition) const {
+            for(unsigned ii = 0; ii < DIM; ++ii) {
+                gridPosition[ii] = getBlockAxisPosition(blockId, ii);
+            }
+        }
+
         int64_t getNeighborId(const uint64_t blockId, const unsigned axis, const bool lower) const {
 
             const auto blockPosAtAxis = getBlockAxisPosition(blockId, axis);
