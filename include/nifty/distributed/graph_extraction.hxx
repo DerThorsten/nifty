@@ -199,9 +199,10 @@ namespace distributed {
         z5::createGroup(group, false);
 
         // serialize the graph (edges and nodes)
-        // TODO should we additionally chunk / compress this ?
-        std::vector<size_t> nodeShape({nNodes});
-        auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeShape, false);
+        // TODO should we additionally compress this ?
+        std::vector<size_t> nodeShape = {nNodes};
+        std::vector<size_t> nodeChunks = {std::min(nNodes, 2*262144UL)};
+        auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeChunks, false);
         Shape1Type nodeSerShape({nNodes});
         Tensor1 nodeSer(nodeSerShape);
         size_t i = 0;
@@ -211,9 +212,11 @@ namespace distributed {
         }
         z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
 
+        // TODO writing needs to be parallelized
         if(nEdges > 0) {
-            std::vector<size_t> edgeShape({nEdges, 2});
-            auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
+            std::vector<size_t> edgeShape = {nEdges, 2};
+            std::vector<size_t> edgeChunks = {std::min(nEdges, 262144UL), 2};
+            auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeChunks, false);
             Shape2Type edgeSerShape({nEdges, 2});
             Tensor2 edgeSer(edgeSerShape);
             i = 0;
