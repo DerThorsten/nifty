@@ -121,6 +121,17 @@ namespace tools{
                 return std::make_tuple(ret, blockABegin, blockAEnd, blockBBegin, blockBEnd);
             })
 
+            .def("blockGridPosition", [](
+                    const BlockingType & self,
+                    const uint64_t blockIndex) {
+                VectorType gridPosition;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.blockGridPosition(blockIndex, gridPosition);
+                }
+                return gridPosition;
+            }, py::arg("blockIndex"))
+
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
                     const size_t blockIndex,
@@ -130,6 +141,7 @@ namespace tools{
                 },
                 py::arg("blockIndex"),py::arg("halo")
             )
+
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
                     const size_t blockIndex,
