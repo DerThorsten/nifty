@@ -46,6 +46,7 @@ requirements:
     - boost >=1.63.0
     - python {{PY_VER}}*
     - hdf5 >=1.8.17
+    - numpy {{NPY_VER}}*
     - xtensor
     - xtensor-python
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
@@ -61,7 +62,7 @@ requirements:
     - boost >=1.63.0
     - python {{PY_VER}}*
     - hdf5 >=1.8.17
-    - numpy
+    - numpy {{NPY_VER}}*
     - fastfilters
     - scikit-image
     - scipy
