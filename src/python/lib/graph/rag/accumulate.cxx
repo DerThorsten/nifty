@@ -416,8 +416,8 @@ namespace graph{
 
         //explicit
         {
-            typedef ExplicitLabelsGridRag<2, uint32_t> Rag2d;
-            typedef ExplicitLabelsGridRag<3, uint32_t> Rag3d;
+            typedef ExplicitLabelsGridRag<2, uint64_t> Rag2d;
+            typedef ExplicitLabelsGridRag<3, uint64_t> Rag3d;
 
             exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
@@ -447,7 +447,7 @@ namespace graph{
 
 
             #ifdef WITH_HDF5
-            typedef GridRag<3, Hdf5Labels<3, uint32_t>  >  RagH53d;
+            typedef GridRag<3, Hdf5Labels<3, uint64_t>  >  RagH53d;
             //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
             exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t >(ragModule);
             #endif
