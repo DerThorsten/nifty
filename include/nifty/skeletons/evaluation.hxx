@@ -34,7 +34,9 @@ namespace skeletons {
         std::vector<size_t> zeroCoord = {0, 0};
 
         // open the segmentation dataset and get the shape and chunks
+        // std::cout << "open segmentation" << std::endl;
         auto segmentation = z5::openDataset(segmentationPath);
+        // std::cout << "done" << std::endl;
         const size_t nChunks = segmentation->numberOfChunks();
 
         // get chunk strides for conversion from n-dim chunk indices to
@@ -236,6 +238,7 @@ namespace skeletons {
         // threadpool
         parallel::ThreadPool threadpool(numberOfThreads);
 
+        // std::cout << "AAA" << std::endl;
         // group the skeleton parts by the chunks of the segmentation
         // dataset they fall into
         SkeletonBlockStorage skeletonsToBlocks;
@@ -246,10 +249,12 @@ namespace skeletons {
                             threadpool, skeletonsToBlocks,
                             nonEmptyChunks);
 
+        // std::cout << "BBB" << std::endl;
         // extract the node assignments for all blocks in parallel
         const size_t nThreads = threadpool.nThreads();
         std::vector<SkeletonDictionary> perThreadData(nThreads);
 
+        // std::cout << "CCC" << std::endl;
         const size_t nChunks = nonEmptyChunks.size();
         parallel::parallel_foreach(threadpool, nChunks, [&](const int tid, const size_t chunkIndex){
             const size_t chunkId = nonEmptyChunks[chunkIndex];
@@ -262,6 +267,7 @@ namespace skeletons {
             out.insert(std::make_pair(skeletonId, SkeletonNodeAssignment()));
         }
 
+        // std::cout << "DDD" << std::endl;
         // merge the node assignments for all skeletons
         const size_t nSkeletons = skeletonIds.size();
         parallel::parallel_foreach(threadpool, nSkeletons, [&](const int tid, const size_t skeletonIndex) {

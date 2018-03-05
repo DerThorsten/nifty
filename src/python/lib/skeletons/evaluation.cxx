@@ -22,6 +22,7 @@ namespace skeletons {
                 getSkeletonNodeAssignments(segmentationPath, skeletonTopFolder,
                                            skeletonIds, numberOfThreads, out);
             }
+            return out;
 
         }, py::arg("segmentationPath"), py::arg("skeletonTopFolder"),
            py::arg("skeletonIds"), py::arg("numberOfThreads")=-1
