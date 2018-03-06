@@ -9,7 +9,7 @@ import z5py
 
 class TestSkeletons(unittest.TestCase):
 
-    def _setUp(self):
+    def setUp(self):
         self.assertTrue(nifty.Configuration.WITH_Z5)
         if not os.path.exists('./tmp'):
             os.mkdir('./tmp')
@@ -46,7 +46,7 @@ class TestSkeletons(unittest.TestCase):
         c2 = g2.create_dataset('coordinates', shape=skel2.shape, chunks=skel2.shape, dtype='uint64')
         c2[:] = skel2
 
-    def _tearDown(self):
+    def tearDown(self):
         if os.path.exists('./tmp'):
             rmtree('./tmp')
 

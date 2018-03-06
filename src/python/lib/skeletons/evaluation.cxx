@@ -18,10 +18,10 @@ namespace skeletons {
             .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const int>())
             //
             .def("getNodeAssignments", [](const SelfType & self){return self.getNodeAssignments();})
-            .def("computeSplitScore", [](const SelfType & self, const int numberOfThreads){
+            .def("computeSplitScores", [](const SelfType & self, const int numberOfThreads){
                 std::map<size_t, double> out;
-                self.computeSplitScore(out, numberOfThreads);
-                // can't lift gil because we mess with pytthon exposed objects internally
+                self.computeSplitScores(out, numberOfThreads);
+                // can't lift gil because we mess with python exposed objects internally
                 //{
                 //    py::gil_scoped_release allowThreads;
                 //    self.computeSplitScore(out, numberOfThreads);
@@ -29,10 +29,10 @@ namespace skeletons {
                 return out;
             }, py::arg("numberOfThreads")=-1)
             //
-            .def("computeSplitRunlength", [](const SelfType & self, const std::array<double, 3> & resolution, const int numberOfThreads){
+            .def("computeSplitRunlengths", [](const SelfType & self, const std::array<double, 3> & resolution, const int numberOfThreads){
                 std::map<size_t, double> skeletonRunlens;
                 std::map<size_t, std::map<size_t, double>> fragmentRunlens;
-                self.computeSplitRunlength(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);
+                self.computeSplitRunlengths(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);
                 // can't lift gil because we mess with pytthon exposed objects internally
                 //{
                 //    py::gil_scoped_release allowThreads;
@@ -44,7 +44,7 @@ namespace skeletons {
             .def("computeExplicitMerges", [](const SelfType & self, const int numberOfThreads) {
                 std::map<size_t, std::vector<size_t>> out;
                 self.computeExplicitMerges(out, numberOfThreads);
-
+                return out;
             }, py::arg("numberOfThreads")=-1)
             //
             .def("computeHeuristicMerges", [](const SelfType & self,
