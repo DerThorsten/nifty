@@ -1,5 +1,9 @@
 #include "boost/geometry.hpp"
 #include "boost/geometry/index/rtree.hpp"
+#include "boost/serialization/map.hpp"
+#include "boost/serialization/unordered_map.hpp"
+#include "boost/archive/binary_iarchive.hpp"
+#include "boost/archive/binary_oarchive.hpp"
 
 #include "nifty/z5/z5.hxx"
 #include "nifty/parallel/threadpool.hxx"
@@ -51,7 +55,15 @@ namespace skeletons {
     // API
     public:
 
-        // TODO constructor from serialization
+        // constructor from serialization
+        SkeletonMetrics(const std::string & segmentationPath,
+                        const std::string & skeletonTopFolder,
+                        const std::vector<size_t> & skeletonIds,
+                        const std::string & dictSerialization) : segmentationPath_(segmentationPath),
+                                                                 skeletonTopFolder_(skeletonTopFolder),
+                                                                 skeletonIds_(skeletonIds){
+            deserialize(dictSerialization);
+        }
 
         // constructor from data
         SkeletonMetrics(const std::string & segmentationPath,
@@ -83,6 +95,19 @@ namespace skeletons {
                                     const double,
                                     std::map<size_t, std::vector<size_t>> &,
                                     const int) const;
+
+        // serialize and deserialize node dictionary with boost::serialization
+        void serialize(const std::string & path) const {
+            std::ofstream os(path.c_str(), std::ofstream::out | std::ofstream::binary);
+            boost::archive::binary_oarchive oarch(os);
+            oarch << skeletonDict_;
+        }
+
+        void deserialize(const std::string & path) {
+            std::ifstream is(path.c_str(), std::ifstream::in | std::ifstream::binary);
+            boost::archive::binary_iarchive iarch(is);
+            iarch >> skeletonDict_;
+        }
 
 
     // private methods
@@ -746,7 +771,6 @@ namespace skeletons {
                                 }
                             }
                         }
-                        // throw std::runtime_error("Blub");
                     }
                 }
             }

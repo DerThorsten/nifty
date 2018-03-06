@@ -16,6 +16,7 @@ namespace skeletons {
         // TODO lift gil for init with call wrapper
         py::class_<SelfType>(module, "SkeletonMetrics")
             .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const int>())
+            .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const std::string &>())
             //
             .def("getNodeAssignments", [](const SelfType & self){return self.getNodeAssignments();})
             .def("computeSplitScores", [](const SelfType & self, const int numberOfThreads){
@@ -55,6 +56,11 @@ namespace skeletons {
                 self.computeHeuristicMerges(resolution, maxDistance, out, numberOfThreads);
                 return out;
             }, py::arg("resolution"), py::arg("maxDistance"), py::arg("numberOfThreads")=-1)
+            //
+            .def("serialize", [](const SelfType & self,
+                                 const std::string & serializationPath){
+                self.serialize(serializationPath);
+            }, py::arg("serializationPath"))
         ;
     }
 

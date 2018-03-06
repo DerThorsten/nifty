@@ -172,7 +172,7 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost 1.63.0 COMPONENTS system filesystem REQUIRED)
+find_package(Boost 1.63.0 COMPONENTS system filesystem serialization REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 MESSAGE(STATUS ${Boost_INCLUDE_DIRS})
 
