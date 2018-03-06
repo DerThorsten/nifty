@@ -11,42 +11,154 @@ namespace fs = boost::filesystem;
 namespace nifty {
 namespace skeletons {
 
-    //
-    // TODO maybe refactor this as a class ?
+    // TODO support ROI -> not sure if this should be done in here
+    // or when extracting skeletons (but even then, we at least need
+    // a coordinate offset if we don't want to copy labels)
+    class SkeletonMetrics {
 
-    // store coordinates of a single (sub-) skeleton
-    typedef xt::xtensor<size_t, 2> CoordinateArray;
-    typedef typename CoordinateArray::shape_type ArrayShape;
-    // store tmp coordinates as vector
-    typedef std::vector<size_t> CoordinateVector;
-    // store (sub-) skeleton id to coordinates assignment
-    typedef std::map<size_t, CoordinateArray> SkeletonStorage;
-    // store (sub-) skeletons for all blocks
-    typedef std::map<size_t, SkeletonStorage> SkeletonBlockStorage;
-    // assignmet of skeleton nodes to segmentation nodes
-    typedef std::unordered_map<size_t, size_t> SkeletonNodeAssignment;
-    typedef std::map<size_t, SkeletonNodeAssignment> SkeletonDictionary;
+    // typedefs
+    public:
+        // store coordinates of a single (sub-) skeleton
+        typedef xt::xtensor<size_t, 2> CoordinateArray;
+        typedef typename CoordinateArray::shape_type ArrayShape;
+        // store tmp coordinates as vector
+        typedef std::vector<size_t> CoordinateVector;
+        // store (sub-) skeleton id to coordinates assignment
+        typedef std::map<size_t, CoordinateArray> SkeletonStorage;
+        // store (sub-) skeletons for all blocks
+        typedef std::map<size_t, SkeletonStorage> SkeletonBlockStorage;
+        // assignmet of skeleton nodes to segmentation nodes
+        typedef std::unordered_map<size_t, size_t> SkeletonNodeAssignment;
+        typedef std::map<size_t, SkeletonNodeAssignment> SkeletonDictionary;
 
-    // typefs for boost r-tree
-    typedef bg::model::point<size_t, 3, bg::cs::cartesian> Point;
-    // typedef bg::model::box<Point> Box;
-    typedef std::pair<Point, size_t> TreeValue;
+        // typefs for boost r-tree
+        typedef bg::model::point<size_t, 3, bg::cs::cartesian> Point;
+        // typedef bg::model::box<Point> Box;
+        typedef std::pair<Point, size_t> TreeValue;
 
+
+    // private members
+    private:
+        std::string segmentationPath_;
+        std::string skeletonTopFolder_;
+        // we might consider holding this as a reference,
+        // but for now this is so little data that a copy doesn't matter
+        std::vector<size_t> skeletonIds_;
+        SkeletonDictionary skeletonDict_;
+        // TODO node labelngs
+
+
+    // API
+    public:
+
+        // TODO constructor from serialization
+
+        // constructor from data
+        SkeletonMetrics(const std::string & segmentationPath,
+                        const std::string & skeletonTopFolder,
+                        const std::vector<size_t> & skeletonIds,
+                        const int numberOfThreads) : segmentationPath_(segmentationPath),
+                                                     skeletonTopFolder_(skeletonTopFolder),
+                                                     skeletonIds_(skeletonIds){
+            init(numberOfThreads);
+        }
+
+        // expose node assignement
+        const SkeletonDictionary & getNodeAssignments() const {
+            return skeletonDict_;
+        }
+
+        // compute the split score
+        void computeSplitScore(std::map<size_t, double> &, const size_t) const;
+
+        // compute the split run-length
+        void computeSplitRunlength(const std::array<double, 3> &,
+                                   std::map<size_t, double> &,
+                                   std::map<size_t, std::map<size_t, double>> &,
+                                   const size_t) const;
+        // compute the explicit merges
+        void computeExplicitMerges(std::map<size_t, std::vector<size_t>> &, const int) const;
+        // compute the heuristic merges
+        void computeHeuristicMerges(const std::array<double, 3> &,
+                                    const double,
+                                    std::map<size_t, std::vector<size_t>> &,
+                                    const int) const;
+
+
+    // private methods
+    private:
+        // initialize the metrics class from data
+        void init(const size_t numberOfThreads);
+        // group skeleton to blocks (= chunks of the segmentation)
+        void groupSkeletonBlocks(SkeletonBlockStorage &, std::vector<size_t> &, parallel::ThreadPool &);
+        // extract the node assignment for a single block
+        void extractNodeAssignmentsForBlock(const size_t, const SkeletonStorage & skeletons, SkeletonDictionary &);
+        // build r-trees for merge heuristics
+        template<class TREE>
+        void buildRTrees(const std::array<double, 3> &,
+                         std::unordered_map<size_t, TREE> &,
+                         parallel::ThreadPool &) const;
+        //
+        void getSkeletonsToLabel(std::unordered_map<size_t, std::set<size_t>> &,
+                                 std::vector<size_t> &,
+                                 parallel::ThreadPool &p) const;
+    };
+
+
+    void SkeletonMetrics::init(const size_t numberOfThreads) {
+
+        parallel::ThreadPool tp(numberOfThreads);
+
+        // group the skeleton parts by the chunks of the segmentation
+        // dataset they fall into
+        SkeletonBlockStorage skeletonsToBlocks;
+        std::vector<size_t> nonEmptyChunks;
+        groupSkeletonBlocks(skeletonsToBlocks, nonEmptyChunks, tp);
+
+        // extract the node assignments for all blocks in parallel
+        const size_t nThreads = tp.nThreads();
+        std::vector<SkeletonDictionary> perThreadData(nThreads);
+
+        const size_t nChunks = nonEmptyChunks.size();
+        parallel::parallel_foreach(tp, nChunks, [&](const int tid, const size_t chunkIndex){
+            const size_t chunkId = nonEmptyChunks[chunkIndex];
+            auto & threadData = perThreadData[tid];
+            extractNodeAssignmentsForBlock(chunkId, skeletonsToBlocks[chunkId], threadData);
+        });
+
+        // initialize the skeleton dictionary
+        for(const size_t skeletonId : skeletonIds_) {
+            skeletonDict_.insert(std::make_pair(skeletonId, SkeletonNodeAssignment()));
+        }
+
+        // merge the node assignments for all skeletons
+        const size_t nSkeletons = skeletonIds_.size();
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tid, const size_t skeletonIndex) {
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            auto & nodeAssignment = skeletonDict_[skeletonId];
+            // iterate over all threads and
+            for(size_t t = 0; t < nThreads; ++t) {
+                const auto & threadData = perThreadData[t];
+                auto skelIt = threadData.find(skeletonId);
+                if(skelIt == threadData.end()) {
+                    continue;
+                }
+                // could use merge implementation if we had C++ 17 ;(
+                nodeAssignment.insert(skelIt->second.begin(), skelIt->second.end());
+            }
+        });
+
+    }
 
     // TODO de-spaghettify
-    inline void groupSkeletonBlocks(const std::string & segmentationPath,
-                                    const std::string & skeletonTopFolder,
-                                    const std::vector<size_t> & skeletonIds,
-                                    parallel::ThreadPool & threadpool,
-                                    SkeletonBlockStorage & out,
-                                    std::vector<size_t> & nonEmptyChunks) {
+    void SkeletonMetrics::groupSkeletonBlocks(SkeletonBlockStorage & out,
+                                              std::vector<size_t> & nonEmptyChunks,
+                                              parallel::ThreadPool & tp) {
 
         std::vector<size_t> zeroCoord = {0, 0};
 
         // open the segmentation dataset and get the shape and chunks
-        // std::cout << "open segmentation" << std::endl;
-        auto segmentation = z5::openDataset(segmentationPath);
-        // std::cout << "done" << std::endl;
+        auto segmentation = z5::openDataset(segmentationPath_);
         const size_t nChunks = segmentation->numberOfChunks();
 
         // get chunk strides for conversion from n-dim chunk indices to
@@ -56,17 +168,17 @@ namespace skeletons {
 
         // go over all skeletons in parallel
         // and extract the sub skeletons for each block
-        const size_t nSkeletons = skeletonIds.size();
-        const size_t nThreads = threadpool.nThreads();
+        const size_t nSkeletons = skeletonIds_.size();
+        const size_t nThreads = tp.nThreads();
 
         // temporary block data for the threads
         std::vector<SkeletonBlockStorage> perThreadData(nThreads);
 
         // go over all skeletons in parallel and extract the parts overlapping with chunks
-        parallel::parallel_foreach(threadpool, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
             // open the coordinate dataset for this particular skeleton
-            const size_t skeletonId = skeletonIds[skeletonIndex];
-            fs::path skeletonPath(skeletonTopFolder);
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            fs::path skeletonPath(skeletonTopFolder_);
             skeletonPath /= std::to_string(skeletonId);
             skeletonPath /= "coordinates";
             auto coordinateSet = z5::openDataset(skeletonPath.string());
@@ -160,7 +272,7 @@ namespace skeletons {
         }
 
         // go over all non-empty blocks in parallel and assemble all the sub-skeletons
-        parallel::parallel_foreach(threadpool, nNonEmpty, [&](const int tId, const size_t nonEmptyIndex){
+        parallel::parallel_foreach(tp, nNonEmpty, [&](const int tId, const size_t nonEmptyIndex){
             const size_t chunkId = nonEmptyChunks[nonEmptyIndex];
             auto & outChunk = out[chunkId];
 
@@ -174,18 +286,14 @@ namespace skeletons {
                 outChunk.insert(threadIt->second.begin(), threadIt->second.end());
             }
         });
-
     }
 
 
-    inline void extractNodeAssignmentsForBlock(const std::string & segmentationPath,
-                                               const size_t chunkId,
-                                               const SkeletonStorage & skeletons,
-                                               SkeletonDictionary & out) {
-        // std::vector<size_t> zeroCoord = {0, 0, 0};
-
+    inline void SkeletonMetrics::extractNodeAssignmentsForBlock(const size_t chunkId,
+                                                                const SkeletonStorage & skeletons,
+                                                                SkeletonDictionary & out) {
         // open the segmentation dataset and get the shape and chunks
-        auto segmentation = z5::openDataset(segmentationPath);
+        auto segmentation = z5::openDataset(segmentationPath_);
         const size_t nChunks = segmentation->numberOfChunks();
 
         // we could do all that outside of the function only once,
@@ -234,168 +342,325 @@ namespace skeletons {
                                                                    skelCoordinates(point, 3));
             }
         }
-
     }
 
 
-    // TODO support ROI
-    inline void getSkeletonNodeAssignments(const std::string & segmentationPath,
-                                           const std::string & skeletonTopFolder,
-                                           const std::vector<size_t> & skeletonIds,
-                                           parallel::ThreadPool & threadpool,
-                                           SkeletonDictionary & out) {
-        // std::cout << "AAA" << std::endl;
-        // group the skeleton parts by the chunks of the segmentation
-        // dataset they fall into
-        SkeletonBlockStorage skeletonsToBlocks;
-        std::vector<size_t> nonEmptyChunks;
-        groupSkeletonBlocks(segmentationPath,
-                            skeletonTopFolder,
-                            skeletonIds,
-                            threadpool, skeletonsToBlocks,
-                            nonEmptyChunks);
+    void SkeletonMetrics::getSkeletonsToLabel(std::unordered_map<size_t, std::set<size_t>> & labelsPerSkeleton,
+                                              std::vector<size_t> & labels,
+                                              parallel::ThreadPool & tp) const {
 
-        // std::cout << "BBB" << std::endl;
-        // extract the node assignments for all blocks in parallel
-        const size_t nThreads = threadpool.nThreads();
-        std::vector<SkeletonDictionary> perThreadData(nThreads);
-
-        // std::cout << "CCC" << std::endl;
-        const size_t nChunks = nonEmptyChunks.size();
-        parallel::parallel_foreach(threadpool, nChunks, [&](const int tid, const size_t chunkIndex){
-            const size_t chunkId = nonEmptyChunks[chunkIndex];
-            auto & threadData = perThreadData[tid];
-            extractNodeAssignmentsForBlock(segmentationPath, chunkId, skeletonsToBlocks[chunkId], threadData);
-        });
-
-        // initialize the skeletons
-        for(const size_t skeletonId : skeletonIds) {
-            out.insert(std::make_pair(skeletonId, SkeletonNodeAssignment()));
-        }
-
-        // std::cout << "DDD" << std::endl;
-        // merge the node assignments for all skeletons
-        const size_t nSkeletons = skeletonIds.size();
-        parallel::parallel_foreach(threadpool, nSkeletons, [&](const int tid, const size_t skeletonIndex) {
-            const size_t skeletonId = skeletonIds[skeletonIndex];
-            auto & nodeAssignment = out[skeletonId];
-            // iterate over all threads and
-            for(size_t t = 0; t < nThreads; ++t) {
-                const auto & threadData = perThreadData[t];
-                auto skelIt = threadData.find(skeletonId);
-                if(skelIt == threadData.end()) {
-                    continue;
-                }
-                // could use merge implementation if we had C++ 17 ;(
-                nodeAssignment.insert(skelIt->second.begin(), skelIt->second.end());
+        // find the unique labels for each skeleton
+        const size_t nSkeletons = skeletonIds_.size();
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            auto & skelLabels = labelsPerSkeleton[skeletonId];
+            const auto & nodeAssignments = skeletonDict_.at(skeletonId);
+            for(const auto & assignment : nodeAssignments) {
+                skelLabels.insert(assignment.second);
             }
         });
+
+        // find the unique labels
+        std::set<size_t> labelsTmp;
+        for(const auto & skelLabels : labelsPerSkeleton) {
+            // would be nice to have CPP 17 with optimized merge
+            labelsTmp.insert(skelLabels.second.begin(), skelLabels.second.end());
+        }
+        labels.resize(labelsTmp.size());
+        std::copy(labelsTmp.begin(), labelsTmp.end(), labels.begin());
+    }
+
+
+    // compute the split score
+    void SkeletonMetrics::computeSplitScore(std::map<size_t, double> & splitScores, const size_t numberOfThreads) const {
+
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // prepare the output data
+        const size_t nSkeletons = skeletonIds_.size();
+        splitScores.clear();
+        for(auto skeletonId : skeletonIds_) {
+            splitScores[skeletonId] = 0.;
+        }
+
+        // extract the split scores in parallel
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            const auto & nodeAssignments = skeletonDict_.at(skeletonId);
+            auto & splitScore = splitScores[skeletonId];
+
+            // load the skeleton edges
+            fs::path skeletonPath(skeletonTopFolder_);
+            skeletonPath /= std::to_string(skeletonId);
+            skeletonPath /= "edges";
+            auto edgeSet = z5::openDataset(skeletonPath.string());
+            const size_t nEdges = edgeSet->shape(0);
+
+            // load the edge data
+            ArrayShape coordShape = {nEdges, edgeSet->shape(1)};
+            CoordinateArray edges(coordShape);
+            z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+
+            // to find the split score, iterate over the edges
+            // the best split score is one -> only add up edges that connect the same
+            // segmentation ids
+            for(size_t edgeId = 0; edgeId < nEdges; ++edgeId) {
+                const size_t nodeA = nodeAssignments.at(edges(edgeId, 0));
+                const size_t nodeB = nodeAssignments.at(edges(edgeId, 1));
+                if(nodeA == nodeB) {
+                    splitScore += 1;
+                }
+            }
+            // normalize by the number of edges
+            splitScore /= nEdges;
+        });
+    }
+
+
+    void SkeletonMetrics::computeSplitRunlength(const std::array<double, 3> & resolution,
+                                                std::map<size_t, double> & skeletonRunlens,
+                                                std::map<size_t, std::map<size_t, double>> & fragmentRunlens,
+                                                const size_t numberOfThreads) const {
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // initialize the outputs
+        const size_t nSkeletons = skeletonIds_.size();
+        skeletonRunlens.clear();
+        fragmentRunlens.clear();
+        for(auto skeletonId : skeletonIds_) {
+            skeletonRunlens[skeletonId] = 0.;
+            fragmentRunlens[skeletonId] = std::map<size_t, double>();
+        }
+
+        // iterate over the skelton ids in parallel
+        // and extract the runlengths for the skeltons and the
+        // fragments that have overlap with the skeleton
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex) {
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            auto & runlen = skeletonRunlens[skeletonId];
+            auto & fragLens = fragmentRunlens[skeletonId];
+            const auto & nodeAssignments = skeletonDict_.at(skeletonId);
+
+            // path to the skeleton group
+            fs::path skeletonPath(skeletonTopFolder_);
+            skeletonPath /= std::to_string(skeletonId);
+
+            // load the coordinates
+            fs::path coordinatePath(skeletonPath);
+            coordinatePath /= "coordinates";
+            auto coordinateSet = z5::openDataset(coordinatePath.string());
+            const size_t nPoints = coordinateSet->shape(0);
+            ArrayShape coordShape = {nPoints, coordinateSet->shape(1)};
+            CoordinateArray coords(coordShape);
+            z5::multiarray::readSubarray<uint64_t>(coordinateSet, coords, zeroCoord.begin());
+
+            // get mapping from node-id to (dense) coordinate index
+            std::unordered_map<size_t, size_t> nodeToIndex;
+            for(size_t ii = 0; ii < coords.size(); ++ii) {
+                nodeToIndex[coords[0]] = ii;
+            }
+
+            // load the edges
+            fs::path edgePath(skeletonPath);
+            edgePath /= "edges";
+            auto edgeSet = z5::openDataset(skeletonPath.string());
+            const size_t nEdges = edgeSet->shape(0);
+            ArrayShape edgeShape = {nEdges, edgeSet->shape(1)};
+            CoordinateArray edges(edgeShape);
+            z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+
+            // iterate over the edges and sum up runlens
+            for(size_t edgeId = 0; edgeId < nEdges ;++edgeId) {
+
+                const size_t nodeA = nodeAssignments.at(edges(edgeId, 0));
+                const size_t nodeB = nodeAssignments.at(edges(edgeId, 1));
+                const size_t coordIdA = nodeToIndex[edges(edgeId, 0)];
+                const size_t coordIdB = nodeToIndex[edges(edgeId, 1)];
+
+                // caclulate the length of this edge (= euclidean distacne of nodes)
+                double len = 0;
+                double diff = 0;
+                for(unsigned d = 0; d < 3; ++d) {
+                    // 0 enrty in coordinates is the node id !
+                    diff = (coords(coordIdA, d + 1) - coords(coordIdB, d + 1)) * resolution[d];
+                    len += diff * diff;
+                }
+                len = std::sqrt(len);
+
+                // add up the length
+                runlen += len;
+                if(nodeA == nodeB) {
+                    auto fragIt = fragLens.find(nodeA);
+                    if(fragIt == fragLens.end()) {
+                        fragLens.insert(fragIt, std::make_pair(nodeA, len));
+                    }
+                    else {
+                        fragIt->second += len;
+                    }
+                }
+            }
+        });
+    }
+
+
+    void SkeletonMetrics::computeExplicitMerges(std::map<size_t, std::vector<size_t>> & out,
+                                                const int numberOfThreads) const {
+
+        parallel::ThreadPool tp(numberOfThreads);
+        const size_t nThreads = tp.nThreads();
+
+        std::unordered_map<size_t, std::set<size_t>> labelsPerSkeleton;
+        std::vector<size_t> labels;
+        getSkeletonsToLabel(labelsPerSkeleton, labels, tp);
+        const size_t nLabels = labels.size();
+
+        // iterate over the unique labels in parallel, and see whether the
+        // label is in more than one segment
+        std::vector<std::map<size_t, std::vector<size_t>>> perThreadData(nThreads);
+
+        parallel::parallel_foreach(tp, nLabels, [&](const int tId, const size_t labelIndex){
+            const size_t labelId = labels[labelIndex];
+            std::vector<size_t> skeletonsWithLabel;
+            for(auto skelId : skeletonIds_) {
+                const auto & skelLabels = labelsPerSkeleton[skelId];
+                if(skelLabels.find(labelId) != skelLabels.end()) {
+                    skeletonsWithLabel.push_back(skelId);
+                }
+            }
+
+            // we only mark a skeleton as having a merge, if more than one label contains it
+            if(skeletonsWithLabel.size() > 1) {
+                auto & threadData = perThreadData[tId];
+
+                for(const size_t skelId : skeletonsWithLabel) {
+                    auto skelIt = threadData.find(skelId);
+                    if(skelIt == threadData.end()) {
+                        threadData.insert(skelIt, std::make_pair(skelId, std::vector<size_t>({labelId})));
+                    } else {
+                        skelIt->second.push_back(labelId);
+                    }
+                }
+            }
+        });
+
+        // write data to output
+        for(int thread = 0; thread < nThreads; ++thread) {
+            auto & threadData = perThreadData[thread];
+            // would prefer merge but C++ 17
+            out.insert(threadData.begin(), threadData.end());
+        }
     }
 
 
     template<class TREE>
-    inline void buildRTrees(const std::string & skeletonFolder,
-                            const std::vector<size_t> & skeletonIds,
-                            std::map<size_t, TREE> & out) {
+    void SkeletonMetrics::buildRTrees(const std::array<double, 3> & resolution,
+                                      std::unordered_map<size_t, TREE> & out,
+                                      parallel::ThreadPool & tp) const {
+        std::vector<size_t> zeroCoord = {0, 0};
+        const size_t nSkeletons = skeletonIds_.size();
+        for(auto skelId : skeletonIds_) {
+            out[skelId] = TREE();
+        }
 
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId,
+                                                        const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            auto & tree = out[skeletonId];
 
+            // load the coordinates
+            fs::path skeletonPath(skeletonTopFolder_);
+            skeletonPath /= std::to_string(skeletonId);
+            skeletonPath /= "coordinates";
+            auto coordinateSet = z5::openDataset(skeletonPath.string());
+            const size_t nPoints = coordinateSet->shape(0);
+            ArrayShape coordShape = {nPoints, coordinateSet->shape(1)};
+            CoordinateArray coords(coordShape);
+            z5::multiarray::readSubarray<uint64_t>(coordinateSet, coords, zeroCoord.begin());
+
+            // insert all the coordinates into the rtrees
+            for(size_t coordId = 0; coordId < nPoints; ++coordId) {
+                // NOTE: first coordinate entry is skeleton node id
+                Point p(coords(coordId, 1) * resolution[0],
+                        coords(coordId, 2) * resolution[1],
+                        coords(coordId, 3) * resolution[2]);
+                tree.insert(p);
+            }
+        });
     }
 
 
-    // TODO return value
-    // TODO support labeling for the semgnetation (different funtion)
-    inline void falseMergeHeuristic(const std::string & segmentationPath,
-                                    const std::string & skeletonFolder,
-                                    const std::vector<size_t> & skeletonIds,
-                                    const SkeletonDictionary & skeletonDict,
-                                    const double maximumDistance,
-                                    parallel::ThreadPool & tp) {
-        // find the label to skeleton assignment
+    void SkeletonMetrics::computeHeuristicMerges(const std::array<double, 3> & resolution,
+                                                 const double maxDistance,
+                                                 std::map<size_t, std::vector<size_t>> & out,
+                                                 const int numberOfThreads) const {
+        parallel::ThreadPool tp(numberOfThreads);
+        const size_t nThreads = tp.nThreads();
 
-        // build a kd tree for each skeleton
-        
-        // loop over all pixel (by looping over all chunks)
-        // for each pixel, check if this label belongs to any skeleton
-        // if so, search the nearest skeleton node in the KD-Tree and check
-        // if we are out of the (heuristic) distance to the skeleton
+        const size_t nSkeletons = skeletonIds_.size();
 
-    }
+        // first build the RTrees
+        // TODO if this should be a performance issue, try some KDTree impl
+        // TODO or try different algorithm parameters (2nd template argument)
+        typedef bgi::rtree<Point, bgi::linear<16>> RTree;
+        std::unordered_map<size_t, RTree> trees;
+        buildRTrees(resolution, trees, tp);
 
+        // TODO refactor
+        // compute the unique labels and a mapping of label to skeleton
+        // we only need skeletons that contain just a single label, because the others
+        // are marked as false merges already
+        std::unordered_map<size_t, std::set<size_t>> labelsPerSkeleton;
+        std::vector<size_t> labels;
+        getSkeletonsToLabel(labelsPerSkeleton, labels, tp);
+        // find the labels which have no explicit merges
+        // TODO
 
-    // For now, we do all this in python. We can still do it in cpp if this becomes a 
-    // bottleneck
-    /*
-    // TODO debugging to find the split edges (maybe do this in python, all this is not too much overhead)
-    // TODO take into account the edge length to compute the actual run-length -> this should be a seperate function !
-    void computeSplitScore(const std::string & skeletonTopFolder,
-                           const std::vector<size_t> & skeletonIds,
-                           const SkeletonDictionary & skeletonDict,
-                           parallel::ThreadPool & tp,
-                           std::map<size_t, double> & splitsOut) {
-            std::vector<size_t> zeroCoord = {0, 0};
-            // make entries in the output map
-            splitsOut.clear();
-            for(auto skelId : skeletonIds) {
-                splitsOut[skelId] = 0.;
+        // open the segmentation dataset and get the shape and chunks
+        auto segmentation = z5::openDataset(segmentationPath_);
+        const size_t nChunks = segmentation->numberOfChunks();
+        // get chunk strides for conversion from n-dim chunk indices to
+        // a flat chunk index
+        const auto & chunksPerDimension = segmentation->chunksPerDimension();
+        std::vector<size_t> chunkStrides = {chunksPerDimension[1] * chunksPerDimension[2], chunksPerDimension[2], 1};
+
+        // iterate over all chunks and check for segments that
+        // are false merges according to our heuristic
+        parallel::parallel_foreach(tp, nChunks, [&](const int tId, const size_t chunkId) {
+            // go from the chunk id to chunk index vector
+            std::vector<size_t> chunkIds(3);
+            size_t tmpIdx = chunkId;
+            for(unsigned dim = 0; dim < 3; ++dim) {
+                chunkIds[dim] = tmpIdx / chunkStrides[dim];
+                tmpIdx -= chunkIds[dim] * chunkStrides[dim];
             }
 
-            const size_t nSkeletons = skeletonIds.size();
-            parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex) {
-                const size_t skeletonId = skeletonIds[skeletonIndex];
-                const auto & nodeAssignment = skeletonDict.at(skeletonId);
-                auto & out = splitsOut[skeletonId];
+            // load the chunk data
+            std::vector<size_t> chunkOffset;
+            segmentation->getChunkOffset(chunkIds, chunkOffset);
+            std::vector<size_t> chunkShape;
+            segmentation->getChunkShape(chunkIds, chunkShape);
 
-                // load the skeleton edges
-                fs::path skeletonPath(skeletonTopFolder);
-                skeletonPath /= std::to_string(skeletonId);
-                skeletonPath /= "edges";
-                auto edgeSet = z5::openDataset(skeletonPath.string());
-                const size_t nEdges = edgeSet->shape(0);
-                // load the edge data
-                ArrayShape edgeShape = {nEdges, edgeSet->shape(1)};
-                CoordinateArray edges(edgeShape);
-                z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+            typedef typename xt::xtensor<uint64_t, 3> ::shape_type LabelsShape;
+            LabelsShape labelsShape = {chunkShape[0], chunkShape[1], chunkShape[2]};
+            xt::xtensor<uint64_t, 3> labels(labelsShape);
+            z5::multiarray::readSubarray<uint64_t>(segmentation, labels, chunkOffset.begin());
 
-                for(size_t ii = 0; ii < nEdges; ++ii) {
-                    auto nodeA = edges(ii, 0);
-                    auto nodeB = edges(ii, 1);
-                    // we count the percentage of correctly assigned edges
-                    if(nodeAssignment.at(nodeA) == nodeAssignment.at(nodeB)) {
-                        out += 1;
+            // iterate over all pixels
+            for(size_t z = 0; z < labelsShape[0]; ++z) {
+                for(size_t y = 0; y < labelsShape[1]; ++y) {
+                    for(size_t x = 0; x < labelsShape[2]; ++x) {
+                        const uint64_t label = labels(z, y, x);
+                        // if this label is ot in the labels that are in our
+                        // skeletons, we continue
                     }
                 }
-                out /= nEdges;
-            });
+            }
+
+
+        });
     }
-
-
-    // TODO distance heuristics ?!
-    // TODO debugging to find the split edges (maybe do this in python, all this is not too much overhead)
-    void computeMergeScore() {
-
-    }
-
-
-    // TODO enable labeling of node assignment, e.g. for multicut results
-    // TODO make different metrics available / switchable
-    // TODO enable serialization of expensive parts (split score ?!)
-    void computeMetrics(const std::string & segmentationPath,
-                        const std::string & skeletonTopFolder,
-                        const std::vector<size_t> & skeletonIds,
-                        const int numberOfThreads) {
-        // threadpool
-        parallel::ThreadPool tp(numberOfThreads);
-
-        SkeletonDictionary skeletonDict;
-        getSkeletonNodeAssignments(segmentationPath, skeletonTopFolder, skeletonIds,
-                                   tp, skeletonDict);
-
-        // get the split score
-        std::map<size_t, double> splitsOut;
-        computeSplitScore(skeletonTopFolder, skeletonIds, skeletonDict, tp, splitsOut);
-
-    }
-    */
 
 }
 }

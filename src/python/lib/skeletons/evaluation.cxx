@@ -11,41 +11,51 @@ namespace skeletons {
 
     void exportEvaluation(py::module & module) {
 
-        module.def("getSkeletonNodeAssignments", [](const std::string & segmentationPath,
-                                                    const std::string & skeletonTopFolder,
-                                                    const std::vector<size_t> & skeletonIds,
-                                                    const int numberOfThreads){
-            py::gil_scoped_release allowThreads;
-            SkeletonDictionary out;
-            {
-                // threadpool
-                parallel::ThreadPool tp(numberOfThreads);
-                getSkeletonNodeAssignments(segmentationPath, skeletonTopFolder,
-                                           skeletonIds, tp, out);
-            }
-            return out;
+        typedef SkeletonMetrics SelfType;
 
-        }, py::arg("segmentationPath"), py::arg("skeletonTopFolder"),
-           py::arg("skeletonIds"), py::arg("numberOfThreads")=-1
-        );
+        // TODO lift gil for init with call wrapper
+        py::class_<SelfType>(module, "SkeletonMetrics")
+            .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const int>())
+            //
+            .def("getNodeAssignments", [](const SelfType & self){return self.getNodeAssignments();})
+            .def("computeSplitScore", [](const SelfType & self, const int numberOfThreads){
+                std::map<size_t, double> out;
+                self.computeSplitScore(out, numberOfThreads);
+                // can't lift gil because we mess with pytthon exposed objects internally
+                //{
+                //    py::gil_scoped_release allowThreads;
+                //    self.computeSplitScore(out, numberOfThreads);
+                //}
+                return out;
+            }, py::arg("numberOfThreads")=-1)
+            //
+            .def("computeSplitRunlength", [](const SelfType & self, const std::array<double, 3> & resolution, const int numberOfThreads){
+                std::map<size_t, double> skeletonRunlens;
+                std::map<size_t, std::map<size_t, double>> fragmentRunlens;
+                self.computeSplitRunlength(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);
+                // can't lift gil because we mess with pytthon exposed objects internally
+                //{
+                //    py::gil_scoped_release allowThreads;
+                //    self.computeSplitRunlength(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);
+                //}
+                return std::make_pair(skeletonRunlens, fragmentRunlens);
+            }, py::arg("resolution"), py::arg("numberOfThreads")=-1)
+            //
+            .def("computeExplicitMerges", [](const SelfType & self, const int numberOfThreads) {
+                std::map<size_t, std::vector<size_t>> out;
+                self.computeExplicitMerges(out, numberOfThreads);
 
-
-        // module.def("computeMetrics", [](const std::string & segmentationPath,
-        //                                 const std::string & skeletonTopFolder,
-        //                                 const std::vector<size_t> & skeletonIds,
-        //                                 const int numberOfThreads){
-        //     py::gil_scoped_release allowThreads;
-        //     std::map<size_t, float> out;
-        //     {
-        //         computeMetrics(segmentationPath, skeletonTopFolder,
-        //                        skeletonIds, numberOfThreads, out);
-        //     }
-        //     return out;
-
-        // }, py::arg("segmentationPath"), py::arg("skeletonTopFolder"),
-        //    py::arg("skeletonIds"), py::arg("numberOfThreads")=-1
-        // );
-
+            }, py::arg("numberOfThreads")=-1)
+            //
+            .def("computeHeuristicMerges", [](const SelfType & self,
+                                              const std::array<double, 3> & resolution,
+                                              const double maxDistance,
+                                              const int numberOfThreads) {
+                std::map<size_t, std::vector<size_t>> out;
+                self.computeHeuristicMerges(resolution, maxDistance, out, numberOfThreads);
+                return out;
+            }, py::arg("resolution"), py::arg("maxDistance"), py::arg("numberOfThreads")=-1)
+        ;
     }
 
 }
