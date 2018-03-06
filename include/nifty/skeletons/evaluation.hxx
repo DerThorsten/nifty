@@ -713,12 +713,13 @@ namespace skeletons {
                         const size_t skeletonId = candidateIt->second;
                         const auto & tree = trees[skeletonId];
                         // build the search box around this point
-                        Point pQuery(static_cast<size_t>(z * resolution[0]),
-                                     static_cast<size_t>(y * resolution[1]),
-                                     static_cast<size_t>(x * resolution[2]));
-                        Point pMin(static_cast<size_t>(pQuery.get<0>() - maxDistance),
-                                   static_cast<size_t>(pQuery.get<1>() - maxDistance),
-                                   static_cast<size_t>(pQuery.get<2>() - maxDistance));
+                        Point pQuery(static_cast<size_t>((z + chunkOffset[0]) * resolution[0]),
+                                     static_cast<size_t>((y + chunkOffset[1]) * resolution[1]),
+                                     static_cast<size_t>((x + chunkOffset[2]) * resolution[2]));
+                        Point pMin(static_cast<size_t>(std::max(pQuery.get<0>() - maxDistance, 0.)),
+                                   static_cast<size_t>(std::max(pQuery.get<1>() - maxDistance, 0.)),
+                                   static_cast<size_t>(std::max(pQuery.get<2>() - maxDistance, 0.)));
+                        // getting bigger than shape here does not hurt
                         Point pMax(static_cast<size_t>(pQuery.get<0>() + maxDistance),
                                    static_cast<size_t>(pQuery.get<1>() + maxDistance),
                                    static_cast<size_t>(pQuery.get<2>() + maxDistance));
@@ -745,6 +746,7 @@ namespace skeletons {
                                 }
                             }
                         }
+                        // throw std::runtime_error("Blub");
                     }
                 }
             }
