@@ -1,6 +1,11 @@
+#include "boost/geometry.hpp"
+#include "boost/geometry/index/rtree.hpp"
+
 #include "nifty/z5/z5.hxx"
 #include "nifty/parallel/threadpool.hxx"
 
+namespace bg = boost::geometry;
+namespace bgi = boost::geometry::index;
 
 namespace fs = boost::filesystem;
 namespace nifty {
@@ -21,6 +26,11 @@ namespace skeletons {
     // assignmet of skeleton nodes to segmentation nodes
     typedef std::unordered_map<size_t, size_t> SkeletonNodeAssignment;
     typedef std::map<size_t, SkeletonNodeAssignment> SkeletonDictionary;
+
+    // typefs for boost r-tree
+    typedef bg::model::point<size_t, 3, bg::cs::cartesian> Point;
+    // typedef bg::model::box<Point> Box;
+    typedef std::pair<Point, size_t> TreeValue;
 
 
     // TODO de-spaghettify
@@ -229,15 +239,11 @@ namespace skeletons {
 
 
     // TODO support ROI
-    // TODO output data (probably 'SkeletonDictionary')
     inline void getSkeletonNodeAssignments(const std::string & segmentationPath,
                                            const std::string & skeletonTopFolder,
                                            const std::vector<size_t> & skeletonIds,
-                                           const int numberOfThreads,
+                                           parallel::ThreadPool & threadpool,
                                            SkeletonDictionary & out) {
-        // threadpool
-        parallel::ThreadPool threadpool(numberOfThreads);
-
         // std::cout << "AAA" << std::endl;
         // group the skeleton parts by the chunks of the segmentation
         // dataset they fall into
@@ -285,6 +291,111 @@ namespace skeletons {
             }
         });
     }
+
+
+    template<class TREE>
+    inline void buildRTrees(const std::string & skeletonFolder,
+                            const std::vector<size_t> & skeletonIds,
+                            std::map<size_t, TREE> & out) {
+
+
+    }
+
+
+    // TODO return value
+    // TODO support labeling for the semgnetation (different funtion)
+    inline void falseMergeHeuristic(const std::string & segmentationPath,
+                                    const std::string & skeletonFolder,
+                                    const std::vector<size_t> & skeletonIds,
+                                    const SkeletonDictionary & skeletonDict,
+                                    const double maximumDistance,
+                                    parallel::ThreadPool & tp) {
+        // find the label to skeleton assignment
+
+        // build a kd tree for each skeleton
+        
+        // loop over all pixel (by looping over all chunks)
+        // for each pixel, check if this label belongs to any skeleton
+        // if so, search the nearest skeleton node in the KD-Tree and check
+        // if we are out of the (heuristic) distance to the skeleton
+
+    }
+
+
+    // For now, we do all this in python. We can still do it in cpp if this becomes a 
+    // bottleneck
+    /*
+    // TODO debugging to find the split edges (maybe do this in python, all this is not too much overhead)
+    // TODO take into account the edge length to compute the actual run-length -> this should be a seperate function !
+    void computeSplitScore(const std::string & skeletonTopFolder,
+                           const std::vector<size_t> & skeletonIds,
+                           const SkeletonDictionary & skeletonDict,
+                           parallel::ThreadPool & tp,
+                           std::map<size_t, double> & splitsOut) {
+            std::vector<size_t> zeroCoord = {0, 0};
+            // make entries in the output map
+            splitsOut.clear();
+            for(auto skelId : skeletonIds) {
+                splitsOut[skelId] = 0.;
+            }
+
+            const size_t nSkeletons = skeletonIds.size();
+            parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex) {
+                const size_t skeletonId = skeletonIds[skeletonIndex];
+                const auto & nodeAssignment = skeletonDict.at(skeletonId);
+                auto & out = splitsOut[skeletonId];
+
+                // load the skeleton edges
+                fs::path skeletonPath(skeletonTopFolder);
+                skeletonPath /= std::to_string(skeletonId);
+                skeletonPath /= "edges";
+                auto edgeSet = z5::openDataset(skeletonPath.string());
+                const size_t nEdges = edgeSet->shape(0);
+                // load the edge data
+                ArrayShape edgeShape = {nEdges, edgeSet->shape(1)};
+                CoordinateArray edges(edgeShape);
+                z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+
+                for(size_t ii = 0; ii < nEdges; ++ii) {
+                    auto nodeA = edges(ii, 0);
+                    auto nodeB = edges(ii, 1);
+                    // we count the percentage of correctly assigned edges
+                    if(nodeAssignment.at(nodeA) == nodeAssignment.at(nodeB)) {
+                        out += 1;
+                    }
+                }
+                out /= nEdges;
+            });
+    }
+
+
+    // TODO distance heuristics ?!
+    // TODO debugging to find the split edges (maybe do this in python, all this is not too much overhead)
+    void computeMergeScore() {
+
+    }
+
+
+    // TODO enable labeling of node assignment, e.g. for multicut results
+    // TODO make different metrics available / switchable
+    // TODO enable serialization of expensive parts (split score ?!)
+    void computeMetrics(const std::string & segmentationPath,
+                        const std::string & skeletonTopFolder,
+                        const std::vector<size_t> & skeletonIds,
+                        const int numberOfThreads) {
+        // threadpool
+        parallel::ThreadPool tp(numberOfThreads);
+
+        SkeletonDictionary skeletonDict;
+        getSkeletonNodeAssignments(segmentationPath, skeletonTopFolder, skeletonIds,
+                                   tp, skeletonDict);
+
+        // get the split score
+        std::map<size_t, double> splitsOut;
+        computeSplitScore(skeletonTopFolder, skeletonIds, skeletonDict, tp, splitsOut);
+
+    }
+    */
 
 }
 }

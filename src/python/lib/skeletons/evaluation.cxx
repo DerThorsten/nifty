@@ -11,7 +11,6 @@ namespace skeletons {
 
     void exportEvaluation(py::module & module) {
 
-        // TODO actually we want to expose other functionality
         module.def("getSkeletonNodeAssignments", [](const std::string & segmentationPath,
                                                     const std::string & skeletonTopFolder,
                                                     const std::vector<size_t> & skeletonIds,
@@ -19,14 +18,33 @@ namespace skeletons {
             py::gil_scoped_release allowThreads;
             SkeletonDictionary out;
             {
+                // threadpool
+                parallel::ThreadPool tp(numberOfThreads);
                 getSkeletonNodeAssignments(segmentationPath, skeletonTopFolder,
-                                           skeletonIds, numberOfThreads, out);
+                                           skeletonIds, tp, out);
             }
             return out;
 
         }, py::arg("segmentationPath"), py::arg("skeletonTopFolder"),
            py::arg("skeletonIds"), py::arg("numberOfThreads")=-1
         );
+
+
+        // module.def("computeMetrics", [](const std::string & segmentationPath,
+        //                                 const std::string & skeletonTopFolder,
+        //                                 const std::vector<size_t> & skeletonIds,
+        //                                 const int numberOfThreads){
+        //     py::gil_scoped_release allowThreads;
+        //     std::map<size_t, float> out;
+        //     {
+        //         computeMetrics(segmentationPath, skeletonTopFolder,
+        //                        skeletonIds, numberOfThreads, out);
+        //     }
+        //     return out;
+
+        // }, py::arg("segmentationPath"), py::arg("skeletonTopFolder"),
+        //    py::arg("skeletonIds"), py::arg("numberOfThreads")=-1
+        // );
 
     }
 
