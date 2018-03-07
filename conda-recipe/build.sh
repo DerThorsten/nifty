@@ -21,6 +21,14 @@ else
     export DYLIB="so"
 fi
 
+# Check which gcxx abi to use; for compatibility with libs build with gcc < 5:
+if [[ -z ${DO_NOT_BUILD_WITH_CXX11_ABI} ]]; then
+    CXX_ABI_ARGS="-DBUILD_WITH_CXX11_ABI=ON"
+else
+    # use the old ABI
+    CXX_ABI_ARGS="-DBUILD_WITH_CXX11_ABI=OFF"
+fi
+
 # Pre-define special flags, paths, etc. if we're building with CPLEX support.
 if [[ "$WITH_CPLEX" == "" ]]; then
     CPLEX_ARGS=""
@@ -155,6 +163,7 @@ cmake .. \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
         -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
+        ${CXX_ABI_ARGS} \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=ON \

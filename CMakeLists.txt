@@ -23,8 +23,6 @@ set(${PROJECT_NAME}_VERSION
 message(STATUS "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}")
 
 
-# ADD_DEFINITIONS(-D_GLIBCXX_USE_CXX11_ABI=0)
-
 include(CheckCXXCompilerFlag)
 
 
@@ -42,7 +40,7 @@ option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
 
-option(BUILD_CPP_TEST_WITH_GLIBCXX_CXX11_ABI OFF)
+option(BUILD_WITH_GLIBCXX_CXX11_ABI "Use stdlibcxx11, for gcc >= 5, disable for gcc < 5" ON)
 
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
@@ -56,6 +54,13 @@ option(REMOVE_SOME_WARNINGS "Remove some annoying warnings" ON)
 if(MSVC)
     # Disable autolinking on MSVC.
     add_definitions(-DBOOST_ALL_NO_LIB)
+endif()
+
+if(BUILD_WITH_GLIBCXX_CXX11_ABI)
+    ADD_DEFINITIONS(-D_GLIBCXX_USE_CXX11_ABI=1)
+else()
+    # Use old ABI, for compatibility with GCC < 5
+    ADD_DEFINITIONS(-D_GLIBCXX_USE_CXX11_ABI=0)
 endif()
 
 # from externals..
