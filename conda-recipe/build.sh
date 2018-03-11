@@ -23,10 +23,10 @@ fi
 
 # Check which gcxx abi to use; for compatibility with libs build with gcc < 5:
 if [[ -z ${DO_NOT_BUILD_WITH_CXX11_ABI} ]]; then
-    CXX_ABI_ARGS="-DBUILD_WITH_CXX11_ABI=ON"
+    CXX_ABI_ARGS="-DBUILD_WITH_GLIBCXX_CXX11_ABI=ON"
 else
     # use the old ABI
-    CXX_ABI_ARGS="-DBUILD_WITH_CXX11_ABI=OFF"
+    CXX_ABI_ARGS="-DBUILD_WITH_GLIBCXX_CXX11_ABI=OFF"
 fi
 
 # Pre-define special flags, paths, etc. if we're building with CPLEX support.
