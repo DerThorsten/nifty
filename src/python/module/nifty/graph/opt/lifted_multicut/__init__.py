@@ -4,7 +4,6 @@ from ._lifted_multicut import *
 from functools import partial
 from ..multicut import ilpSettings
 from .. import Configuration
-import nifty.tools
 import numpy
 
 __all__ = []
