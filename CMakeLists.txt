@@ -84,22 +84,21 @@ endif()
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     add_definitions(-fext-numeric-literals)
 endif()
+
 #-------------------------------------------------------------------------------------------------------------------
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
-# FIXME c++14 checks are broken!?!
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+include(CheckCXXCompilerFlag)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
     CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
     if (HAS_CPP14_FLAG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+    else()
+        message(FATAL_ERROR "Unsupported compiler -- C++14 support required!")
     endif()
-endif()
+endif()   
+
 
 # WITH_LP_MP needs special treatment since
 # it requires C++ 14 and used OpenMP
@@ -109,7 +108,6 @@ if(WITH_LP_MP)
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
         set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     endif()
-
 endif()
 
 
