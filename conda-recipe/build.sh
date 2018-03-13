@@ -10,6 +10,10 @@ if [[ "$WITH_CPLEX" == "0" ]]; then
     WITH_CPLEX=""
 fi
 
+if [[ "$WITH_GUROBI" == "0" ]]; then
+    WITH_GUROBI=""
+fi
+
 # Platform-specific dylib extension
 if [ $(uname) == "Darwin" ]; then
     export CC=clang
