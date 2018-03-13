@@ -23,8 +23,7 @@ namespace ho_multicut{
 
     };
 
-    #endif
-} // namespace nifty::graph::opt::ho_multicut
+} // namespace nifty::graph::opt::multicut
 } // namespace nifty::graph::opt
 } // namespace graph
 } // namespace nifty

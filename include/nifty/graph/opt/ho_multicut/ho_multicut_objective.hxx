@@ -36,12 +36,11 @@ namespace ho_multicut{
 
         }
 
-
-
         std::size_t arity()const{
             return edgeIds_.size();
         }
-        const std::vector<uint64_t> & edgeIds()const{
+
+        const auto& edgeIds()const{
             return edgeIds_;
         }
 
@@ -87,7 +86,7 @@ namespace ho_multicut{
         void addHigherOrderFactor(
             const ARRAY & array, 
             const VI & vi
-        ) const
+        )
         {
             higherOrderFactors_.emplace_back(array, vi);
         }

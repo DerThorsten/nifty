@@ -2,12 +2,16 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 
 #include <boost/format.hpp>
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/opt/ho_multicut/ho_multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
+
+#include "xtensor-python/pyarray.hpp"
+//#include "xtensor-python/pyarray.hpp"
 
 namespace py = pybind11;
 
@@ -77,25 +81,34 @@ namespace ho_multicut{
             .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
                 return objective.evalNodeLabels(array);
             })
+            .def("addHigherOrderFactor",
+            [](
+                ObjectiveType & objective,
+                xt::pyarray<double> valueTable,
+                std::vector<uint64_t> edges
+            )
+            {
+                objective.addHigherOrderFactor(valueTable, edges);
+            })
         ;
 
 
-        // hoMulticutModule.def("multicutObjective",
-        //     [](const GraphType & graph,  nifty::marray::PyView<double> array){
-        //         NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
-        //         NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
+        hoMulticutModule.def("hoMulticutObjective",
+            [](const GraphType & graph,  nifty::marray::PyView<double> array){
+                NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
+                NIFTY_CHECK_OP(array.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
                 
-        //         auto obj = new ObjectiveType(graph);
-        //         auto & weights = obj->weights();
-        //         graph.forEachEdge([&](int64_t edge){
-        //             weights[edge] += array(edge);
-        //         });
-        //         return obj;
-        //     },
-        //     py::return_value_policy::take_ownership,
-        //     py::keep_alive<0, 1>(),
-        //     py::arg("graph"),py::arg("weights")  
-        // );
+                auto obj = new ObjectiveType(graph);
+                auto & weights = obj->weights();
+                graph.forEachEdge([&](int64_t edge){
+                    weights[edge] += array(edge);
+                });
+                return obj;
+            },
+            py::return_value_policy::take_ownership,
+            py::keep_alive<0, 1>(),
+            py::arg("graph"),py::arg("weights")  
+        );
     }
 
     void exportHoMulticutObjective(py::module & hoMulticutModule) {

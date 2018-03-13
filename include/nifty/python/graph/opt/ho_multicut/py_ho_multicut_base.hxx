@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nifty/graph/opt/multicut/ho_multicut_base.hxx"
+#include "nifty/graph/opt/ho_multicut/ho_multicut_base.hxx"
 
 namespace nifty {
 namespace graph {

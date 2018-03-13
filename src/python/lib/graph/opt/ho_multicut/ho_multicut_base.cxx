@@ -4,12 +4,12 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/opt/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/opt/ho_multicut/ho_multicut_objective.hxx"
 
 #include "nifty/python/converter.hxx"
 
 
-#include "nifty/python/graph/opt/multicut/py_multicut_base.hxx"
+#include "nifty/python/graph/opt/ho_multicut/py_ho_multicut_base.hxx"
 
 
 
@@ -19,31 +19,31 @@ namespace py = pybind11;
 namespace nifty{
 namespace graph{
 namespace opt{
-namespace multicut{
+namespace ho_multicut{
 
     using namespace py;
     //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
     template<class OBJECTIVE>
-    void exportMulticutBaseT(py::module & multicutModule) {
+    void exportHoMulticutBaseT(py::module & hoMulticutModule) {
 
 
         typedef OBJECTIVE ObjectiveType;
-        typedef PyMulticutBase<ObjectiveType> PyMcBase;
-        typedef MulticutBase<ObjectiveType> McBase;
-        typedef MulticutEmptyVisitor<ObjectiveType> EmptyVisitor;
-        typedef MulticutVisitorBase<ObjectiveType> McVisitorBase;
+        typedef PyHoMulticutBase<ObjectiveType> PyMcBase;
+        typedef HoMulticutBase<ObjectiveType> McBase;
+        typedef HoMulticutEmptyVisitor<ObjectiveType> EmptyVisitor;
+        typedef HoMulticutVisitorBase<ObjectiveType> McVisitorBase;
         //PYBIND11_DECLARE_HOLDER_TYPE(McBase, std::shared_ptr<McBase>);
 
 
-        const auto objName = MulticutObjectiveName<ObjectiveType>::name();
-        const auto clsName = std::string("MulticutBase") + objName;
+        const auto objName = HoMulticutObjectiveName<ObjectiveType>::name();
+        const auto clsName = std::string("HoMulticutBase") + objName;
         // base factory
         py::class_<
             McBase,
             std::unique_ptr<McBase>,
             PyMcBase
-        > mcBase(multicutModule, clsName.c_str());
+        > mcBase(hoMulticutModule, clsName.c_str());
 
         mcBase
             .def(py::init<>())
@@ -162,21 +162,16 @@ namespace multicut{
         ;
     }
 
-    void exportMulticutBase(py::module & multicutModule) {
+    void exportHoMulticutBase(py::module & hoMulticutModule) {
 
         {
             typedef PyUndirectedGraph GraphType;
-            typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutBaseT<ObjectiveType>(multicutModule);
-        }
-        {
-            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
-            typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutBaseT<ObjectiveType>(multicutModule);
+            typedef HoMulticutObjective<GraphType, double> ObjectiveType;
+            exportHoMulticutBaseT<ObjectiveType>(hoMulticutModule);
         }
     }
 
-} // namespace nifty::graph::opt::multicut
+} // namespace nifty::graph::opt::ho_multicut
 } // namespace nifty::graph::opt
 }
 }

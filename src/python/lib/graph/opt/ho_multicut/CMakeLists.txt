@@ -3,10 +3,11 @@ SET(MOD_LIBS ${NIFTY_LP_SOLVER_LIBS})
 SET(MOD_SOURCES
         ho_multicut.cxx
         ho_multicut_objective.cxx
-        # ho_multicut_visitor_base.cxx
-        # ho_multicut_base.cxx
-        # ho_multicut_factory.cxx
-        # ho_multicut_ilp.cxx
+        ho_multicut_visitor_base.cxx
+        ho_multicut_base.cxx
+        ho_multicut_factory.cxx
+        ho_multicut_ilp.cxx
+        
         # ho_multicut_decomposer.cxx
         # ho_multicut_greedy_additive.cxx
         # ho_multicut_andres.cxx

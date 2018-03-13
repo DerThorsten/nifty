@@ -1,0 +1,49 @@
+build: false
+
+platform:
+  - x64
+  - x86
+
+image:
+  - Visual Studio 2017
+  - Visual Studio 2015 
+
+environment:
+  matrix:
+    - MINICONDA: C:\nifty-conda
+
+init:
+  - "ECHO %MINICONDA%"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCARGUMENT=%PLATFORM% 
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x64" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x86" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+  - echo "%VCVARPATH% %VCARGUMENT%"
+  - "%VCVARPATH% %VCARGUMENT%"
+  - ps: if($env:Platform -eq "x64"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe' C:\Miniconda.exe; echo "Done"}
+  - ps: if($env:Platform -eq "x86"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86.exe' C:\Miniconda.exe; echo "Done"}
+  - cmd: C:\Miniconda.exe /S /D=C:\nifty-conda
+  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library\\bin;%PATH%"
+
+install:
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda config --add channels conda-forge --force
+  - conda install gtest cmake -c conda-forge 
+  - conda install xtl==0.4.0 -c QuantStack
+  - conda install nifty python=3 numpy boost hdf5 glpk pybind11 xtensor xtensor-python nose boost hdf5 scikit-image numpy
+  - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
+  - nmake test_nifty
+  - cd test
+
+build_script:
+
+- git submodule update --init --recursive
+- mkdir build
+- cd build
+- cmake -G "Visual Studio 14 2015 Win64" -DBUILD_NIFTY_PYTHON=yes -DBUILD_CPP_TEST=no -DBUILD_CPP_EXAMPLES=no -DWITH_GLPK=yes -DWITH_HDF5=yes -DWITH_LP_MP=no -DWITH_QPBO=no  ..
+- cmake --build . --config Release
+
+test_script:
+- ctest --output-on-failure

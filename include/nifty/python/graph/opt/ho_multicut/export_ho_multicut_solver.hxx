@@ -22,7 +22,7 @@ namespace opt{
 namespace ho_multicut{
 
     template<class SOLVER>
-    py::class_<typename SOLVER::SettingsType>  exportHoHoMulticutSolver(
+    py::class_<typename SOLVER::SettingsType>  exportHoMulticutSolver(
         py::module & hoHoMulticutModule,
         const std::string & solverName,
         nifty::graph::opt::SolverDocstringHelper docHelper = nifty::graph::opt::SolverDocstringHelper()

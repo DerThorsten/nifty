@@ -4,7 +4,7 @@
 
 
 // concrete solvers for concrete factories
-#include "nifty/graph/opt/multicut/multicut_ilp.hxx"
+#include "nifty/graph/opt/ho_multicut/ho_multicut_ilp.hxx"
 
 #ifdef WITH_GUROBI
 #include "nifty/ilp_backend/gurobi.hxx"
@@ -20,10 +20,10 @@
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
-#include "nifty/python/graph/opt/multicut/multicut_objective.hxx"
+#include "nifty/python/graph/opt/ho_multicut/ho_multicut_objective.hxx"
 #include "nifty/python/converter.hxx"
 #include "nifty/python/graph/opt/solver_docstring.hxx"
-#include "nifty/python/graph/opt/multicut/export_multicut_solver.hxx"
+#include "nifty/python/graph/opt/ho_multicut/export_ho_multicut_solver.hxx"
 
 namespace py = pybind11;
 
@@ -32,10 +32,10 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace opt{
-namespace multicut{
+namespace ho_multicut{
     
     template<class OBJECTIVE, class BACKEND>
-    void exportMulticutIlpWithBackendT(py::module & multicutModule, const std::string & backendName){
+    void exportHoMulticutIlpWithBackendT(py::module & hoMulticutModule, const std::string & backendName){
 
 
 
@@ -46,9 +46,9 @@ namespace multicut{
         // DOCSTRING HELPER
         ///////////////////////////////////////////////////////////////
         nifty::graph::opt::SolverDocstringHelper docHelper;
-        docHelper.objectiveName = "multicut objective"; 
-        docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
-        docHelper.name = "multicut ilp " + backendName; 
+        docHelper.objectiveName = "ho multicut objective"; 
+        docHelper.objectiveClsName = HoMulticutObjectiveName<OBJECTIVE>::name();
+        docHelper.name = "ho multicut ilp " + backendName; 
         docHelper.mainText =  
             "Find a global optimal solution by a cutting plane ILP solver\n"
             "as described in :cite:`Kappes-2011` \n"
@@ -64,13 +64,13 @@ namespace multicut{
         
         typedef OBJECTIVE ObjectiveType;
         typedef BACKEND IlpSolver;
-        typedef MulticutIlp<ObjectiveType, IlpSolver> Solver;
+        typedef HoMulticutIlp<ObjectiveType, IlpSolver> Solver;
         
         typedef typename Solver::SettingsType SettingsType;        
-        const auto solverName = std::string("MulticutIlp") + backendName;
-        // todo exportMulticutSolver should be in the correct namespace
+        const auto solverName = std::string("HoMulticutIlp") + backendName;
+        // todo exportHoMulticutSolver should be in the correct namespace
 
-        nifty::graph::opt::multicut::exportMulticutSolver<Solver>(multicutModule, solverName.c_str(), docHelper)
+        nifty::graph::opt::ho_multicut::exportHoMulticutSolver<Solver>(hoMulticutModule, solverName.c_str(), docHelper)
 
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
@@ -83,42 +83,32 @@ namespace multicut{
     }
 
     template<class OBJECTIVE>
-    void exportMulticutIlpT(py::module & multicutModule) {
+    void exportHoMulticutIlpT(py::module & hoMulticutModule) {
         typedef OBJECTIVE ObjectiveType;
         #ifdef WITH_CPLEX
-            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Cplex>(multicutModule, "Cplex");
+            exportHoMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Cplex>(hoMulticutModule, "Cplex");
         #endif
         #ifdef WITH_GUROBI
-            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Gurobi>(multicutModule, "Gurobi");
+            exportHoMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Gurobi>(hoMulticutModule, "Gurobi");
         #endif
         #ifdef WITH_GLPK
-            exportMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Glpk>(multicutModule, "Glpk");
+            exportHoMulticutIlpWithBackendT<ObjectiveType, ilp_backend::Glpk>(hoMulticutModule, "Glpk");
         #endif   
         
     }
     
-    void exportMulticutIlp(py::module & multicutModule){
+    void exportHoMulticutIlp(py::module & hoMulticutModule){
         
         py::options options;
         options.disable_function_signatures();
                 
-        py::class_<ilp_backend::IlpBackendSettings>(multicutModule, "IlpBackendSettings")
-            .def(py::init<>())
-            .def_readwrite("relativeGap", &ilp_backend::IlpBackendSettings::relativeGap)
-            .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
-            .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
-        ;
+
 
         {
             typedef PyUndirectedGraph GraphType;
-            typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutIlpT<ObjectiveType>(multicutModule);
-        }
-        {
-            typedef PyContractionGraph<PyUndirectedGraph> GraphType;
-            typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutIlpT<ObjectiveType>(multicutModule);
-        }     
+            typedef HoMulticutObjective<GraphType, double> ObjectiveType;
+            exportHoMulticutIlpT<ObjectiveType>(hoMulticutModule);
+        }  
     }
 } // namespace nifty::graph::opt::multicut
 } // namespace nifty::graph::opt
