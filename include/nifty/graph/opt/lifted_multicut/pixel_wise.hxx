@@ -1093,7 +1093,42 @@ namespace lifted_multicut{
     };
 
 
+    // template<class D_AFF, class D_OFFSET>
+    // auto normalize2D(
+    //     const xt::xexpression<D_AFF>     & e_weights,
+    //     const xt::xexpression<D_OFFSET>  & e_offsets
+    // ){
+    //     const auto & weights = e_weights.derived_cast();
+    //     const auto & offsets = e_labels_b.derived_cast();
 
+    //     std::array<int, 2> shape(weights.shape(0), weights.shape(1));
+    //     const auto n_weights = offsets.shape(0);
+
+
+    //     typename xt::xtensor<int, 2>::shape_type sym_shape{
+    //         std::size_t(shape[0]), std::size_t(shape[1]), std::size_t(n_weights*2)
+    //     };
+    //     xt::xtensor<int, DIM, xt::layout_type::row_major> sym_weights(sym_shape);
+
+
+    //     // symmetrizing
+    //     for(int x=0; x<shape[0]; ++x)
+    //     for(int y=0; y<shape[1]; ++y){
+
+    //         for(int c=0; c<n_weights; ++c){
+    //             const auto xx = x + offsets(c, 0);
+    //             const auto yy = y + offsets(c, 1);
+
+    //             const auto w = weights(x, y, c);
+    //             res(x, y, c) = w;
+
+    //             if(xx>=0 && yy>=0 && xx<shape[0] && yy<shape[1]){
+    //                 res(x, y, c + weights) = w;
+    //             }
+    //         }
+    //     }
+
+    // }
 
 
 } // namespace lifted_multicut

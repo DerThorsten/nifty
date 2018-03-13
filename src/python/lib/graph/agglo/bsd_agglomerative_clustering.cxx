@@ -131,7 +131,7 @@ namespace agglo{
     }
 
 
-    void exportDualAgglomerativeClustering(module);(py::module & aggloModule) {
+    void exportDualAgglomerativeClustering(py::module & aggloModule) {
         {
             typedef PyUndirectedGraph GraphType;
 

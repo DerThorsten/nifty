@@ -18,7 +18,7 @@ namespace agglo{
     void exportAgglomerativeClustering(py::module &);    
     void exportFixationAgglomerativeClustering(py::module &);    
     void exportDualAgglomerativeClustering(py::module &);    
-    void exportBsdAgglomerativeClustering(py::module &);    
+    //void exportBsdAgglomerativeClustering(py::module &);    
     void exportLiftedAgglomerativeClusteringPolicy(py::module &);    
 }
 }
@@ -41,7 +41,7 @@ PYBIND11_MODULE(_agglo, module) {
     exportAgglomerativeClustering(module);
     exportFixationAgglomerativeClustering(module);
     exportDualAgglomerativeClustering(module);
-    exportBsdAgglomerativeClustering(module);
+    //exportBsdAgglomerativeClustering(module);
     exportLiftedAgglomerativeClusteringPolicy(module);
 
 }

@@ -22,3 +22,5 @@ add_subdirectory(mincut)
 add_subdirectory(minstcut)
 add_subdirectory(multicut)
 add_subdirectory(lifted_multicut)
+
+add_subdirectory(ho_multicut)
