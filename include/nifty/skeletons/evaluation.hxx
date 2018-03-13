@@ -40,6 +40,12 @@ namespace skeletons {
         typedef bg::model::box<Point> Box;
         typedef std::pair<Point, size_t> TreeValue;
 
+        // stores the distances to boundary pixels for all nodes of a given skeleton
+        typedef std::unordered_map<size_t, std::vector<double>> NodeDistanceStatistics;
+        
+        // stores the node distance statistics for all skeletons
+        typedef std::unordered_map<size_t, NodeDistanceStatistics> SkeletonDistanceStatistics;
+
 
     // private members
     private:
@@ -95,6 +101,11 @@ namespace skeletons {
                                     const double,
                                     std::map<size_t, std::vector<size_t>> &,
                                     const int) const;
+
+        // compute the distance statistics over all
+        void computeDistanceStatistics(const std::array<double, 3> &,
+                                       SkeletonDistanceStatistics &,
+                                       const int) const;
 
         // serialize and deserialize node dictionary with boost::serialization
         void serialize(const std::string & path) const {
@@ -618,7 +629,7 @@ namespace skeletons {
                 Point p(coords(coordId, 1) * resolution[0],
                         coords(coordId, 2) * resolution[1],
                         coords(coordId, 3) * resolution[2]);
-                tree.insert(p);
+                tree.insert(std::make_pair(p, coords(coordId, 0)));
             }
         });
     }
@@ -684,7 +695,7 @@ namespace skeletons {
         // first build the RTrees
         // TODO if this should be a performance issue, try some KDTree impl
         // TODO or try different algorithm parameters (2nd template argument)
-        typedef bgi::rtree<Point, bgi::linear<16>> RTree;
+        typedef bgi::rtree<TreeValue, bgi::linear<16>> RTree;
         std::unordered_map<size_t, RTree> trees;
         buildRTrees(resolution, trees, tp);
 
@@ -751,7 +762,7 @@ namespace skeletons {
                         Box boundingBox(pMin, pMax);
                         // see if any skeleton points lie within the maximum radius of this point
                         auto treeIt = tree.qbegin(bgi::within(boundingBox) &&
-                                                  bgi::satisfies([&](const Point & v){return bg::distance(v, pQuery) < maxDistance;}));
+                                                  bgi::satisfies([&](const TreeValue & v){return bg::distance(v.first, pQuery) < maxDistance;}));
                         const bool inMaxDist = treeIt != tree.qend();
                         // if we are not in the max distance, we mark this label as merge
                         // and remove it from the candidate labels
@@ -774,9 +785,142 @@ namespace skeletons {
                     }
                 }
             }
-
-
         });
+    }
+        
+    // compute the distance statistics for all skeleton nodes
+    void SkeletonMetrics::computeDistanceStatistics(const std::array<double, 3> & resolution,
+                                                    SkeletonMetrics::SkeletonDistanceStatistics & out,
+                                                    const int numberOfThreads) const {
+
+        typedef typename xt::xtensor<uint64_t, 3> ::shape_type LabelsShape;
+        parallel::ThreadPool tp(numberOfThreads);
+        const size_t nThreads = tp.nThreads();
+
+        const size_t nSkeletons = skeletonIds_.size();
+
+        // first build the RTrees
+        // TODO if this should be a performance issue, try some KDTree impl
+        // TODO or try different algorithm parameters (2nd template argument)
+        typedef bgi::rtree<TreeValue, bgi::linear<16>> RTree;
+        std::unordered_map<size_t, RTree> trees;
+        buildRTrees(resolution, trees, tp);
+
+        // compute the unique labels and a mapping of label to skeleton
+        std::unordered_map<size_t, size_t> candidateLabels;
+        getLabelsWithoutExplicitMerge(candidateLabels, tp);
+
+        // open the segmentation dataset and get the shape and chunks
+        auto segmentation = z5::openDataset(segmentationPath_);
+        const size_t nChunks = segmentation->numberOfChunks();
+        // get chunk strides for conversion from n-dim chunk indices to
+        // a flat chunk index
+        const auto & chunksPerDimension = segmentation->chunksPerDimension();
+        std::vector<size_t> chunkStrides = {chunksPerDimension[1] * chunksPerDimension[2], chunksPerDimension[2], 1};
+
+        // initialize the output data
+        for(const auto skelId : skeletonIds_) {
+            out[skelId] = NodeDistanceStatistics();
+        }
+
+        // mutex for insertions in the out data
+        std::mutex mut;
+
+        // TODO to be completely precise, we would need to check out an overlap of 1 
+        // which however makes it necessary to load 4 chunks instead of just 1
+        // with the correct definition of boundary, it is even 7 chunks instead of 1 !
+
+        // iterate over all chunks and find the distance of boundary pixels to skeleton nodes
+        parallel::parallel_foreach(tp, nChunks, [&](const int tId, const size_t chunkId) {
+            // go from the chunk id to chunk index vector
+            std::vector<size_t> chunkIds(3);
+            size_t tmpIdx = chunkId;
+            for(unsigned dim = 0; dim < 3; ++dim) {
+                chunkIds[dim] = tmpIdx / chunkStrides[dim];
+                tmpIdx -= chunkIds[dim] * chunkStrides[dim];
+            }
+
+            // load the chunk data
+            std::vector<size_t> chunkOffset;
+            segmentation->getChunkOffset(chunkIds, chunkOffset);
+            std::vector<size_t> chunkShape;
+            segmentation->getChunkShape(chunkIds, chunkShape);
+
+            LabelsShape labelsShape = {chunkShape[0], chunkShape[1], chunkShape[2]};
+            xt::xtensor<uint64_t, 3> labels(labelsShape);
+            z5::multiarray::readSubarray<uint64_t>(segmentation, labels, chunkOffset.begin());
+
+            // iterate over all pixels
+            for(size_t z = 0; z < labelsShape[0]; ++z) {
+                for(size_t y = 0; y < labelsShape[1]; ++y) {
+                    for(size_t x = 0; x < labelsShape[2]; ++x) {
+                        const uint64_t label = labels(z, y, x);
+                        // check if this label is in the candidate labels. if not continue
+                        auto candidateIt = candidateLabels.find(label);
+                        if(candidateIt == candidateLabels.end()) {
+                            continue;
+                        }
+
+                        // check if this point is a boundary pixel, if not continue
+                        bool isBoundary = false;
+                        for(unsigned dim = 0; dim < 3; ++dim) {
+                            std::vector<size_t> coordinate = {z, y, x};
+                            // find boundary pixel to upper coordinate
+                            if(coordinate[dim] + 1 < labelsShape[dim]) {
+                                coordinate[dim] += 1;
+                                const uint64_t otherLabel = labels(coordinate[0], coordinate[1], coordinate[2]);
+                                if(otherLabel != label) {
+                                    isBoundary = true;
+                                    break;
+                                }
+                            }
+                            // find boundary pixel to lower coordinate
+                            if(coordinate[dim] - 1 > 0) {
+                                coordinate[dim] -= 1;
+                                const uint64_t otherLabel = labels(coordinate[0], coordinate[1], coordinate[2]);
+                                if(otherLabel != label) {
+                                    isBoundary = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if(!isBoundary) {
+                            continue;
+                        }
+
+                        // if this is a candidate label, get skeleton-id check for a tree-point in the vicinity
+                        const size_t skeletonId = candidateIt->second;
+                        const auto & tree = trees[skeletonId];
+                        // make the query point
+                        Point pQuery(static_cast<size_t>((z + chunkOffset[0]) * resolution[0]),
+                                     static_cast<size_t>((y + chunkOffset[1]) * resolution[1]),
+                                     static_cast<size_t>((x + chunkOffset[2]) * resolution[2]));
+                        // find the nearest skeleton point to this pixel
+                        auto treeIt = tree.qbegin(bgi::nearest(pQuery, 1));
+                        const size_t skeletonNode = treeIt->second;
+                        // find the distacne
+                        const double distance = bg::distance(pQuery, treeIt->first);
+
+                        // TODO keep locks here or perThread data and merge output later 
+                        // instead ?
+                        // insert the distance into the output
+                        
+                        {
+                            std::lock_guard<std::mutex> guard(mut);
+                            auto & skelOut = out[skeletonId];
+                            auto outIt = skelOut.find(skeletonNode);
+                            if(outIt == skelOut.end()) {
+                                skelOut.insert(outIt, std::make_pair(skeletonNode, std::vector<double>({distance})));
+                            } else {
+                                outIt->second.push_back(distance);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+
     }
 
 }

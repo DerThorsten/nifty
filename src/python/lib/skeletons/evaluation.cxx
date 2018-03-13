@@ -57,6 +57,14 @@ namespace skeletons {
                 return out;
             }, py::arg("resolution"), py::arg("maxDistance"), py::arg("numberOfThreads")=-1)
             //
+            .def("computeDistanceStatistics", [](const SelfType & self,
+                                                 const std::array<double, 3> & resolution,
+                                                 const int numberOfThreads) {
+                SelfType::SkeletonDistanceStatistics out;
+                self.computeDistanceStatistics(resolution, out, numberOfThreads);
+                return out;
+            }, py::arg("resolution"), py::arg("numberOfThreads")=-1)
+            //
             .def("serialize", [](const SelfType & self,
                                  const std::string & serializationPath){
                 self.serialize(serializationPath);
