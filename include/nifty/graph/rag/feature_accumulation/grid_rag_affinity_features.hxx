@@ -169,7 +169,6 @@ void accumulateAffinities(
 
 
 // lifted extraction is not supported for now
-/*
 template<class EDGE_ACC_CHAIN, class RAG, class LNH, class AFFINITIES, class F_LOCAL, class F_LIFTED>
 void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
                                                 const LNH & lnh,
@@ -186,14 +185,14 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
     typedef std::vector<EdgeAccChainType>   AccChainVectorType;
     typedef std::vector<AccChainVectorType> ThreadAccChainVectorType;
 
-    const auto & labels = rag.labelsProxy().labels();
+    const auto & labels = rag.labels();
 
     Coord3 shape;
     Coord4 affShape;
-    affShape[0] = affinities.shape(0);
+    affShape[0] = affinities.shape()[0];
     for(int d = 0; d < 3; ++d) {
-        shape[d] = labels.shape(d);
-        affShape[d] = affinities.shape(d+1);
+        shape[d] = labels.shape()[d];
+        affShape[d+1] = shape[d];
     }
 
     size_t nLocal = rag.edgeIdUpperBound() + 1;
@@ -229,39 +228,28 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         }
     });
 
-    // offsets from the lifted nhood
     const auto & offsets = lnh.offsets();
-    int pass = 1;
-    size_t nLinks = affinities.size();
+    const int pass = 1;
+
     // iterate over all affinity links and accumulate the associated
     // affinity edges
-    parallel_foreach(threadpool, nLinks, [&](int tid, size_t linkId) {
+    tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
 
-        // define all the coordinates we will need
-        Coord4 affCoord;
         Coord3 cU, cV;
         VigraCoord vc;
+        const auto & offset = offsets[affCoord[0]];
 
-        affinities.indexToCoordinates(linkId, affCoord.begin());
-        size_t channelId = affCoord[0];
-        const auto & offset = offsets[channelId];
-
-        bool outOfRange = false;
-        for(size_t d = 0; d < 3; ++d) {
+        for(int d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
             cV[d] = affCoord[d+1] + offset[d];
             // range check
-            if(cV[d] >= shape[d] || cV[d] < 0) {
-                outOfRange = true;
-                break;
+            if(cV[d] < 0 || cV[d] >= shape[d]) {
+                return;
             }
         }
-        if(outOfRange) {
-            return;
-        }
 
-        auto u = labels(cU.asStdArray());
-        auto v = labels(cV.asStdArray());
+        const auto u = xtensor::read(labels, cU.asStdArray());
+        const auto v = xtensor::read(labels, cV.asStdArray());
 
         // only do stuff if the labels are different
         if(u != v) {
@@ -271,7 +259,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
                 vc = cU[d];
             }
 
-            auto val = affinities(affCoord.asStdArray());
+            const auto val = xtensor::read(affinities, affCoord.asStdArray());
             auto e = rag.findEdge(u, v);
             if(e != -1) {
                 auto & thisAccumulators = localEdgeAccumulators[tid];
@@ -388,7 +376,6 @@ void accumulateLongRangeAffinities(
         AccOptions(minVal, maxVal)
     );
 }
-*/
 
 
 }

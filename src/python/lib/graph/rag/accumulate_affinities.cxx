@@ -7,6 +7,7 @@
 
 #include "nifty/graph/rag/grid_rag.hxx"
 #include "nifty/graph/rag/feature_accumulation/grid_rag_affinity_features.hxx"
+#include "nifty/graph/rag/feature_accumulation/lifted_nh.hxx"
 
 
 namespace py = pybind11;
@@ -21,8 +22,6 @@ namespace graph{
     void exportAccumulateAffinityFeaturesT(
         py::module & ragModule
     ){
-        // features for lifted nh not supported right now
-        /*
         ragModule.def("computeFeaturesAndNhFromAffinities",
         [](
             const RAG & rag,
@@ -45,7 +44,7 @@ namespace graph{
             xt::pytensor<float, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,  outLocal, outLifted, numberOfThreads);
+                accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1., outLocal, outLifted, numberOfThreads);
             }
             xt::pytensor<uint32_t, 2> lnhOut({nLifted, int64_t(2)});
             {
@@ -62,7 +61,6 @@ namespace graph{
         py::arg("offsets"),
         py::arg("numberOfThreads")= -1
         );
-        */
 
         ragModule.def("accumulateAffinityStandartFeatures",
         [](

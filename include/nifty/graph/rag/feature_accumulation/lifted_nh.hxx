@@ -13,7 +13,6 @@ class LiftedNh : public UndirectedGraph<>{
 // TODO
 // - make ready for 2d stacked
 // - out of core
-// - switch to more general offset description
 public:
     typedef RAG Rag;
     typedef UndirectedGraph<> BaseType;
@@ -51,34 +50,23 @@ void LiftedNh<RAG>::initLiftedNh(
 ) {
 
     //typedef tools::BlockStorage<LabelType> LabelStorage;
-    const auto & labels = rag.labelsProxy().labels();
+    const auto & labels = rag.labels();
 
     // set the number of nodes in the graph == number of labels
-    auto numberOfLabels = rag.labelsProxy().numberOfLabels();
+    auto numberOfLabels = rag.numberOfLabels();
     BaseType::assign(numberOfLabels);
     Coord3 shape;
-    for(size_t d = 0; d < 3; ++d) {
-        shape[d] = labels.shape(d);
+    Coord4 affShape;
+    affShape[0] = offsets_.size();
+    for(int d = 0; d < 3; ++d) {
+        shape[d] = labels.shape()[d];
+        affShape[d+1] = labels.shape()[d];
     }
 
     // TODO parallelize properly
     // threadpool and actual number of threads
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
     const size_t nThreads = threadpool.nThreads();
-
-    // number of links = number of channels * number of pixels
-    size_t nLinks = offsets_.size() * labels.size();
-
-    // FIXME super dirty hack to get the index to offsets translator from marray
-    Coord4 affShape;
-    affShape[0] = offsets_.size();
-    for(size_t d = 0; d < 3; ++d) {
-        affShape[d+1] = shape[d];
-    }
-
-    // FIXME skip init
-    //marray::Marray<int8_t> fakeAffinities(marray::InitializationSkipping, affShape.begin(), affShape.end());
-    marray::Marray<int8_t> fakeAffinities(affShape.begin(), affShape.end());
 
     // per thread data for adjacencies
     struct PerThread{
@@ -89,36 +77,22 @@ void LiftedNh<RAG>::initLiftedNh(
         threadAdjacencies[threadId].adjacency.resize(numberOfLabels);
     });
 
-    //
-    // iterate over the links and insert the corresponding uv pairs into the NH
-    //
-    parallel::parallel_foreach(threadpool, nLinks, [&](int tid, size_t linkId){
+    tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
 
-        // the coordiantes we will need
-        Coord4 affCoord;
         Coord3 cU, cV;
+        const auto & offset = offsets_[affCoord[0]];
 
-        fakeAffinities.indexToCoordinates(linkId, affCoord.begin());
-        auto channelId = affCoord[0];
-
-        const auto & offset = offsets_[channelId];
-
-        bool outOfRange = false;
-        for(size_t d = 0; d < 3; ++d) {
+        for(int d = 0; d < 3; ++d) {
             cU[d] = affCoord[d+1];
             cV[d] = affCoord[d+1] + offset[d];
             // range check
-            if(cV[d] >= shape[d] || cV[d] < 0) {
-                outOfRange = true;
-                break;
+            if(cV[d] < 0 || cV[d] >= shape[d]) {
+                return;
             }
         }
-        if(outOfRange) {
-            return;
-        }
 
-        auto u = labels(cU.asStdArray());
-        auto v = labels(cV.asStdArray());
+        const auto u = xtensor::read(labels, cU.asStdArray());
+        const auto v = xtensor::read(labels, cV.asStdArray());
 
         // only do stuff if the labels are different
         if(u != v) {
