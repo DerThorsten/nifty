@@ -400,8 +400,8 @@ namespace graph{
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
 
-            exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
-            //exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
+            //exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
+            exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
 
             //exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);

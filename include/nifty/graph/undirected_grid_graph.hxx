@@ -8,6 +8,7 @@
 #include "andres/graph/grid-graph.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/graph_tags.hxx"
@@ -304,7 +305,7 @@ public:
     }
 
 
-    // FIXME this can probably be done more effiicently
+    // TODO parallelize
     /**
      * @brief convert an affinity map with DIM+1 dimension to an edge map
      * @details convert an affinity map with DIM+1 dimension to an edge map
@@ -316,10 +317,8 @@ public:
      * @return [description]
      */
     template<class AFFINITIES, class EDGE_MAP>
-    void affinitiesToEdgeMap(
-        const AFFINITIES & affinities,
-        EDGE_MAP & edgeMap
-    )const{
+    void affinitiesToEdgeMap(const AFFINITIES & affinities,
+                             EDGE_MAP & edgeMap) const {
         NIFTY_CHECK_OP(affinities.shape(0), ==, DIM, "wrong number of affinity channels")
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape(d), "wrong shape")
@@ -327,7 +326,7 @@ public:
 
         typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
 
-        CoordinateType cU,cV;
+        CoordinateType cU, cV;
         for(const auto edge : this->edges()){
 
             const auto uv = this->uv(edge);
@@ -354,11 +353,11 @@ public:
 
 
     template<class AFFINITIES, class EDGE_MAP, class ITER>
-    void longRangeAffinitiesToLiftedEdges(
-        const AFFINITIES & affinities,
-        EDGE_MAP & edgeMap,
-        ITER offsetsBegin
-    ) const {
+    void longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
+                                          EDGE_MAP & edgeMap,
+                                          ITER offsetsBegin,
+                                          const int numberOfThreads=-1) const {
+        //
         typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape(d), "wrong shape")
@@ -366,42 +365,51 @@ public:
         size_t affLen = affinities.shape(0);
         std::vector<std::vector<int>> offsets(offsetsBegin, offsetsBegin + affLen);
 
-        AffinityCoordType affCoord;
-        CoordinateType cU, cV;
+        AffinityCoordType affShape;
+        affShape[0] = affLen;
+        for(unsigned d = 0; d < DIM; ++d) {
+            affShape[d + 1] = shape(d);
+        }
 
-        // iterate over the affinties
-        for(size_t edgeId = 0; edgeId < affinities.size(); ++edgeId) {
-            affinities.indexToCoordinates(edgeId, affCoord.begin());
-            auto & offset = offsets[affCoord[0]];
-
+        // TODO need to pre-allocate output or merge for parralel
+        // parallel::ThreadPool tp(numberOfThreads);
+        // tools::parallelForEachCoordinate(tp, affShape, [&](const int tId, const AffinityCoordType affCoord) {
+        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
+            const auto & offset = offsets[affCoord[0]];
+            CoordinateType cU, cV;
             bool outOfRange = false;
-            for(size_t d = 0; d < DIM; ++d) {
-                cU[d] = affCoord[d+1];
-                cV[d] = affCoord[d+1] + offset[d];
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cU[d] = affCoord[d + 1];
+                cV[d] = affCoord[d + 1] + offset[d];
                 // range check
                 if(cV[d] >= shape(d) || cV[d] < 0) {
                     outOfRange = true;
                     break;
                 }
             }
+
             if(outOfRange) {
-                continue;
+                return;
             }
-            size_t u = coordianteToNode(cU);
-            size_t v = coordianteToNode(cV);
-            size_t u_ = std::min(u,v);
-            size_t v_ = std::max(u,v);
-            if(u_ > numberOfNodes()) {
-                std::cout << "u is out of range " << u_ << " " << numberOfNodes() << std::endl;
-                throw std::runtime_error("Out of node range");
-            }
-            if(v_ > numberOfNodes()) {
-                std::cout << "v is out of range " << v_ << " " << numberOfNodes() << std::endl;
-                throw std::runtime_error("Out of node range");
-            }
-            edgeMap.emplace(std::make_pair(u_, v_),
-                                           affinities(affCoord.asStdArray()));
-        }
+
+            const size_t u = coordianteToNode(cU);
+            const size_t v = coordianteToNode(cV);
+            const size_t u_ = std::min(u, v);
+            const size_t v_ = std::max(u, v);
+
+            // debiggomg
+            // if(u_ > numberOfNodes()) {
+            //     std::cout << "u is out of range " << u_ << " " << numberOfNodes() << std::endl;
+            //     throw std::runtime_error("Out of node range");
+            // }
+            // if(v_ > numberOfNodes()) {
+            //     std::cout << "v is out of range " << v_ << " " << numberOfNodes() << std::endl;
+            //     throw std::runtime_error("Out of node range");
+            // }
+            // TODO use xtensor::read for xt
+            edgeMap.emplace(std::make_pair(u_, v_), affinities(affCoord.asStdArray()));
+        });
     }
 
 
