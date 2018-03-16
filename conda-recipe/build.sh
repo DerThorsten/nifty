@@ -187,8 +187,18 @@ make -j${CPU_COUNT}
 ## Install to prefix
 cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_VER}/site-packages/
 
+# the * here is necessary, because the .so file is created with some extension
+# suffix, to indicate the python abi version (something like _nifty.cpython-m36)
+shopt -s nullglob
+NIFTY_MODULE_SO_TMP=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty*.so
+shopt -u nullglob
 
-NIFTY_MODULE_SO=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty.so
+if [[ ${#NIFTY_MODULE_SO_TMP[@]} != 1 ]]; then
+    echo "NO UNIQUE NIFTY MODULE FOUND!"
+    exit 123
+else
+    NIFTY_MODULE_SO=${NIFTY_MODULE_SO_TMP[0]}
+fi
 
 ##
 ## Rename the python module entirely, and change cplex lib install names.
