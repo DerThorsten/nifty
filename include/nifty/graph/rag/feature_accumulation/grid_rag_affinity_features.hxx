@@ -86,7 +86,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
                 vc = cU[d];
             }
 
-            const auto val = xtensor::read(affinities, affCoord.asStdArray());
+            const double val = xtensor::read(affinities, affCoord.asStdArray());
             const int64_t e = rag.findEdge(u, v);
             // For long range affinities, edge might not be in the rag
             if(e != -1) {
@@ -108,7 +108,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
 }
 
 
-// 9 features
+// 10 features
 template<class RAG, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateAffinities(
     const RAG & rag,
@@ -125,12 +125,12 @@ void accumulateAffinities(
     typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
     typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
 
-    // TODO need to accumulate edge size here as well !!!
     typedef acc::Select<
         acc::DataArg<1>,
         acc::Mean,        //1
         acc::Variance,    //1
-        Quantiles         //7
+        Quantiles,        //7
+        acc::Count        //1
     > SelectType;
     typedef acc::StandAloneAccumulatorChain<3, double, SelectType> AccChainType;
 
@@ -156,6 +156,7 @@ void accumulateAffinities(
             features(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
             for(auto qi=0; qi<7; ++qi)
                 features(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+            features(edge, 9) = replaceIfNotFinite(get<acc::Count>(chain), 0.);
         });
     };
 
@@ -259,7 +260,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
                 vc = cU[d];
             }
 
-            const auto val = xtensor::read(affinities, affCoord.asStdArray());
+            const double val = xtensor::read(affinities, affCoord.asStdArray());
             auto e = rag.findEdge(u, v);
             if(e != -1) {
                 auto & thisAccumulators = localEdgeAccumulators[tid];
@@ -321,7 +322,7 @@ void accumulateLongRangeAffinities(
         Quantiles,        // 7
         acc::Count        // 1
     > SelectType;
-    typedef acc::StandAloneAccumulatorChain<3, float, SelectType> AccChainType;
+    typedef acc::StandAloneAccumulatorChain<3, double, SelectType> AccChainType;
     auto & localFeatures = localFeaturesExp.derived_cast();
     auto & liftedFeatures = liftedFeaturesExp.derived_cast();
 
@@ -345,6 +346,7 @@ void accumulateLongRangeAffinities(
             localFeatures(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
             for(auto qi=0; qi<7; ++qi)
                 localFeatures(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+            localFeatures(edge, 9) = replaceIfNotFinite(get<acc::Count>(chain), 0.);
         });
     };
 
@@ -363,6 +365,7 @@ void accumulateLongRangeAffinities(
             liftedFeatures(edge, 1) = replaceIfNotFinite(get<acc::Variance>(chain), 0.0);
             for(auto qi=0; qi<7; ++qi)
                 liftedFeatures(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
+            liftedFeatures(edge, 9) = replaceIfNotFinite(get<acc::Count>(chain), 0.);
         });
     };
 

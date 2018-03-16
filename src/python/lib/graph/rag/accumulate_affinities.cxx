@@ -40,8 +40,8 @@ namespace graph{
 
             int64_t nLocal  = rag.edgeIdUpperBound() + 1;
             int64_t nLifted = lnh.edgeIdUpperBound() + 1;
-            xt::pytensor<float, 2> outLocal({nLocal, int64_t(10)});
-            xt::pytensor<float, 2> outLifted({nLifted, int64_t(10)});
+            xt::pytensor<double, 2> outLocal({nLocal, int64_t(10)});
+            xt::pytensor<double, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1., outLocal, outLifted, numberOfThreads);
@@ -72,8 +72,8 @@ namespace graph{
         ){
 
             int64_t nEdges = rag.numberOfEdges();
-            typename xt::pytensor<float, 2>::shape_type shape = {nEdges, int64_t(9)};
-            xt::pytensor<float, 2> out(shape);
+            typename xt::pytensor<double, 2>::shape_type shape = {nEdges, int64_t(10)};
+            xt::pytensor<double, 2> out(shape);
             {
                 py::gil_scoped_release allowThreads;
                 accumulateAffinities(rag, affinities, offsets, out, min, max, numberOfThreads);
