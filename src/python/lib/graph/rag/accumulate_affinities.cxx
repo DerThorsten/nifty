@@ -38,21 +38,31 @@ namespace graph{
                 rag, offsets.begin(), offsets.end(), numberOfThreads
             );
 
-            int64_t nLocal  = rag.edgeIdUpperBound() + 1;
-            int64_t nLifted = lnh.edgeIdUpperBound() + 1;
+            const int64_t nLocal  = rag.numberOfEdges();
+            int64_t nLifted = lnh.numberOfEdges();
+
+            bool haveLifted = true;
+            if(nLifted == 0) {
+                nLifted += 1;
+                haveLifted = false;
+            }
+
             xt::pytensor<double, 2> outLocal({nLocal, int64_t(10)});
             xt::pytensor<double, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1., outLocal, outLifted, numberOfThreads);
             }
-            xt::pytensor<uint32_t, 2> lnhOut({nLifted, int64_t(2)});
-            {
+            xt::pytensor<int64_t, 2> lnhOut({nLifted, int64_t(2)});
+            if(haveLifted){
                 py::gil_scoped_release allowThreads;
                 for(size_t e = 0; e < nLifted; ++e) {
                     lnhOut(e, 0) = lnh.u(e);
                     lnhOut(e, 1) = lnh.v(e);
                 }
+            } else {
+                lnhOut(0, 0) = -1;
+                lnhOut(0, 1) = -1;
             }
             return std::make_tuple(lnhOut, outLocal, outLifted);
         },
