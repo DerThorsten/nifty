@@ -125,15 +125,6 @@ namespace graph{
                 py::arg("affinities")
             )
 
-            // expected input:
-            // affinties: array of shape [nChannels, volShape]
-            // ranges: list with nChannels entries, each entry determining the range of the corresponding
-            // affinty channel
-            // axes: list with nChannels entries, each entry determining the axes of the corresponding
-            // affinity channel
-            // Example:
-            // 2d affinties with alternating xy-channels
-            // with range 2, 4, 8 in xy (and negative direction convention) have
             .def("liftedProblemFromLongRangeAffinities",
                 [](const GraphType & g,
                    xt::pytensor<float, DIM+1> affinities,
@@ -163,13 +154,57 @@ namespace graph{
                                                                      liftedFeatures,
                                                                      offsets);
                     }
-                    ShapeType actualLiftedShape = {nLifted};
-                    liftedFeatures.resize(actualLiftedShape);
-                    UvShape actualUvShape = {nLifted, 2};
-                    liftedUvs.resize(actualUvShape);
-                    return std::make_tuple(localFeatures, liftedUvs, liftedFeatures);
+                    // FIXME resizing zeros out everything
+                    // ShapeType actualLiftedShape = {nLifted};
+                    // liftedFeatures.resize(actualLiftedShape);
+                    // UvShape actualUvShape = {nLifted, 2};
+                    // liftedUvs.resize(actualUvShape);
+                    return std::make_tuple(nLifted, localFeatures, liftedUvs, liftedFeatures);
                 },
                 py::arg("affinities"), py::arg("offsets")
+            )
+
+            .def("liftedProblemFromLongRangeAffinitiesWithStrides",
+                [](const GraphType & g,
+                   xt::pytensor<float, DIM+1> affinities,
+                   const std::vector<std::vector<int>> & offsets,
+                   const std::vector<int> & strides) {
+
+                    // upper bound for the number of lifted edges
+                    // we assume that first DIM channels are direct nhood channels
+                    const auto & shape = affinities.shape();
+                    int64_t nLiftedTot = (shape[0] - DIM) * std::accumulate(shape.begin() + 1, shape.end(), 1, std::multiplies<int64_t>());
+
+                    // initialize all the output
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType localShape = {static_cast<int64_t>(g.edgeIdUpperBound() + 1)};
+                    ShapeType liftedShape = {nLiftedTot};
+                    typedef typename xt::pytensor<uint64_t, 2>::shape_type UvShape;
+                    UvShape uvShape = {nLiftedTot, 2};
+
+                    xt::pytensor<float, 1> localFeatures(localShape);
+                    xt::pytensor<float, 1> liftedFeatures(liftedShape);
+                    xt::pytensor<uint64_t, 2> liftedUvs(uvShape);
+                    int64_t nLifted;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        nLifted = g.longRangeAffinitiesToLiftedEdges(affinities,
+                                                                     localFeatures,
+                                                                     liftedUvs,
+                                                                     liftedFeatures,
+                                                                     offsets,
+                                                                     strides);
+                    }
+
+                    // FIXME resize zeros out everything
+                    // ShapeType actualLiftedShape = {nLifted};
+                    // liftedFeatures.resize(actualLiftedShape);
+                    // UvShape actualUvShape = {nLifted, 2};
+                    // liftedUvs.resize(actualUvShape);
+
+                    return std::make_tuple(nLifted, localFeatures, liftedUvs, liftedFeatures);
+                },
+                py::arg("affinities"), py::arg("offsets"), py::arg("strides")
             )
         ;
 

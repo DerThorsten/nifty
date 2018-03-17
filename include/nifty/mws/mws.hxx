@@ -168,8 +168,6 @@ namespace mws {
                 // otherwise, insert the mutex
                 insert_mutex(u, v, rv, ufd, mutexes);
                 insert_mutex(v, u, ru, ufd, mutexes);
-                // insert_mutex_edge(u, mutex_id, mutexes);
-                // insert_mutex_edge(v, mutex_id, mutexes);
 
             } else {
 
@@ -194,7 +192,6 @@ namespace mws {
                 if(!have_mutex) {
                     ufd.merge(u, v);
                     merge_mutexes(u, v, ufd, mutexes);
-                    //merge_mutex_edges(u, v, mutexes);
                 }
 
             }
