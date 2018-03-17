@@ -4,7 +4,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-
+#include "xtensor-python/pytensor.hpp"
 #include "boost/format.hpp"
 
 #include "nifty/graph/undirected_grid_graph.hxx"
@@ -49,11 +49,13 @@ namespace graph{
             .def("imageToEdgeMap",
                 [](
                     const GraphType & g,
-                    nifty::marray::PyView<float, DIM> image,
+                    const xt::pytensor<float, DIM> & image,
                     const std::string & functorType
                 ){
 
-                    nifty::marray::PyView<float> out({g.edgeIdUpperBound()+1});
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType shape = {g.edgeIdUpperBound() + 1};
+                    xt::pytensor<float, 1> out(shape);
 
                     if(functorType == std::string("min")){
                         struct {
@@ -112,9 +114,11 @@ namespace graph{
             .def("affinitiesToEdgeMap",
                 [](
                     const GraphType & g,
-                    nifty::marray::PyView<float, DIM+1> affinities
+                    xt::pytensor<float, DIM + 1> affinities
                 ){
-                    nifty::marray::PyView<float> out({g.edgeIdUpperBound()+1});
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType shape = {g.edgeIdUpperBound() + 1};
+                    xt::pytensor<float, 1> out(shape);
                     g.affinitiesToEdgeMap(affinities, out);
                     return out;
                 },
@@ -130,65 +134,43 @@ namespace graph{
             // Example:
             // 2d affinties with alternating xy-channels
             // with range 2, 4, 8 in xy (and negative direction convention) have
-            // ranges = [-2, -2, -4, -4, -8, -8]
-            // axes   = [ 0,  1,  0,  1,  0,  1]
             .def("liftedProblemFromLongRangeAffinities",
-                [](
-                    const GraphType & g,
-                    nifty::marray::PyView<float, DIM+1> affinities,
-                    const std::vector<std::vector<int>> & offsets
-                ) {
-                    std::map<std::pair<size_t, size_t>, float> edgeMap;
+                [](const GraphType & g,
+                   xt::pytensor<float, DIM+1> affinities,
+                   const std::vector<std::vector<int>> & offsets) {
+
+                    // upper bound for the number of lifted edges
+                    // we assume that first DIM channels are direct nhood channels
+                    const auto & shape = affinities.shape();
+                    int64_t nLiftedTot = (shape[0] - DIM) * std::accumulate(shape.begin() + 1, shape.end(), 1, std::multiplies<int64_t>());
+
+                    // initialize all the output
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType localShape = {static_cast<int64_t>(g.edgeIdUpperBound() + 1)};
+                    ShapeType liftedShape = {nLiftedTot};
+                    typedef typename xt::pytensor<uint64_t, 2>::shape_type UvShape;
+                    UvShape uvShape = {nLiftedTot, 2};
+
+                    xt::pytensor<float, 1> localFeatures(localShape);
+                    xt::pytensor<float, 1> liftedFeatures(liftedShape);
+                    xt::pytensor<uint64_t, 2> liftedUvs(uvShape);
+                    int64_t nLifted;
                     {
                         py::gil_scoped_release allowThreads;
-                        g.longRangeAffinitiesToLiftedEdges(affinities, edgeMap, offsets.begin());
+                        nLifted = g.longRangeAffinitiesToLiftedEdges(affinities,
+                                                                     localFeatures,
+                                                                     liftedUvs,
+                                                                     liftedFeatures,
+                                                                     offsets);
                     }
-                    return edgeMap;
+                    ShapeType actualLiftedShape = {nLifted};
+                    liftedFeatures.resize(actualLiftedShape);
+                    UvShape actualUvShape = {nLifted, 2};
+                    liftedUvs.resize(actualUvShape);
+                    return std::make_tuple(localFeatures, liftedUvs, liftedFeatures);
                 },
                 py::arg("affinities"), py::arg("offsets")
             )
-
-
-            //.def("uvIds",
-            //    [](GraphType & g) {
-            //        nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
-            //        for(const auto edge : g.edges()){
-            //            const auto uv = g.uv(edge); 
-            //            out(edge,0) = uv.first;
-            //            out(edge,1) = uv.second;
-            //        }
-            //        return out;
-            //    }
-            //)
-            //.def("serialize",
-            //    [](const GraphType & g) {
-            //        nifty::marray::PyView<uint64_t> out({g.serializationSize()});
-            //        auto ptr = &out(0);
-            //        g.serialize(ptr);
-            //        return out;
-            //    }
-            //)
-            //.def("deserialize",
-            //    [](GraphType & g, nifty::marray::PyView<uint64_t,1> serialization) {
-            //        auto  startPtr = &serialization(0);
-            //        auto  lastElement = &serialization(serialization.size()-1);
-            //        auto d = lastElement - startPtr + 1;
-            //        NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
-            //        g.deserialize(startPtr);
-            //    }
-            //)
-            //.def("extractSubgraphFromNodes",
-            //    []( GraphType & g, const marray::PyView<int64_t,1> nodeList) {
-            //        std::vector<int64_t> innerEdgesVec;  
-            //        std::vector<int64_t> outerEdgesVec;  
-            //        GraphType subgraph;
-            //        {
-            //            py::gil_scoped_release allowThreads;
-            //            subgraph = g.extractSubgraphFromNodes(nodeList, innerEdgesVec, outerEdgesVec);
-            //        }
-            //        return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
-            //    }
-            //)
         ;
 
         // export the base graph API (others might derive)

@@ -98,8 +98,9 @@ namespace tools{
                 xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
                 {
                     py::gil_scoped_release allowThreads;
-                    for(int i = 0; i < tmp.size(); ++i)
+                    for(int i = 0; i < tmp.size(); ++i) {
                         out(i) = tmp[i];
+                    }
                 }
                 return out;
             }, py::arg("roiBegin"), py::arg("roiEnd"), py::arg("blockHalo"))

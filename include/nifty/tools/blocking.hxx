@@ -257,29 +257,20 @@ namespace tools{
 
             idsOut.clear();
 
-            // lambda to check whether two values are in range
-            auto valueInRange = [](T value, T min, T max) {
-                return (value >= min) && (value <= max);
-            };
+            VectorType minChunkIds;
+            VectorType maxChunkIds;
+            // determine the position in chunks
+            for(unsigned ii = 0; ii < DIM; ++ii) {
+                minChunkIds[ii] = floor(roiBegin[ii] / blockShape_[ii]);
+                maxChunkIds[ii] = ceil(roiEnd[ii] / blockShape_[ii]) + 1;
+            }
 
-            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
-
-                // get coordinates of the current bock
-                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
-                const auto & begin = block.begin();
-                const auto & end   = block.end();
-
-                // check for each dimension whether the current block has overlap with the roi
-                std::vector<bool> overlapInDim(DIM, false);
-                for( auto d = 0; d < DIM; ++d) {
-                    if( valueInRange(roiBegin[d], begin[d], end[d]) || valueInRange(begin[d], roiBegin[d], roiEnd[d]) ) {
-                        overlapInDim[d] = true;
+            // FIXME this only works for 3D, implement this dimension independent !
+            for(size_t chunkX = minChunkIds[0]; chunkX < maxChunkIds[0]; ++ chunkX) {
+                for(size_t chunkY = minChunkIds[1]; chunkY < maxChunkIds[1]; ++ chunkY) {
+                    for(size_t chunkZ = minChunkIds[2]; chunkZ < maxChunkIds[2]; ++ chunkZ) {
+                        idsOut.push_back(blocksPerAxisStrides_[0] * chunkX + blocksPerAxisStrides_[1] * chunkY + blocksPerAxisStrides_[2] * chunkZ);
                     }
-                }
-
-                // if all dimentsions have overlap, push back the block id
-                if(std::all_of(overlapInDim.begin(), overlapInDim.end(), [](bool i){return i;})) {
-                    idsOut.push_back(blockId);
                 }
             }
         }
