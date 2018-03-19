@@ -42,6 +42,7 @@ build:
   script_env:
      - WITH_CPLEX
      - CPLEX_ROOT_DIR
+     - CPLEX_WIN_VERSION # [win]
      - WITH_GUROBI
      - GUROBI_ROOT_DIR
      - DO_NOT_BUILD_WITH_CXX11_ABI # [linux]
