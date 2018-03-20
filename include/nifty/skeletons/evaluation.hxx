@@ -42,7 +42,7 @@ namespace skeletons {
 
         // stores the distances to boundary pixels for all nodes of a given skeleton
         typedef std::unordered_map<size_t, std::vector<double>> NodeDistanceStatistics;
-        
+
         // stores the node distance statistics for all skeletons
         typedef std::unordered_map<size_t, NodeDistanceStatistics> SkeletonDistanceStatistics;
 
@@ -444,20 +444,38 @@ namespace skeletons {
             // load the edge data
             ArrayShape coordShape = {nEdges, edgeSet->shape(1)};
             CoordinateArray edges(coordShape);
-            z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+            z5::multiarray::readSubarray<int64_t>(edgeSet, edges, zeroCoord.begin());
+
+            size_t nActualEdges = 0;
 
             // to find the split score, iterate over the edges
             // the best split score is one -> only add up edges that connect the same
             // segmentation ids
             for(size_t edgeId = 0; edgeId < nEdges; ++edgeId) {
-                const size_t nodeA = nodeAssignments.at(edges(edgeId, 0));
-                const size_t nodeB = nodeAssignments.at(edges(edgeId, 1));
+                const int64_t skelA = edges(edgeId, 0);
+                const int64_t skelB = edges(edgeId, 1);
+
+                // check for invalid edges
+                if(skelA == -1 || skelB == -1) {
+                    continue;
+                }
+
+                // check if parent is not in the nodes we have
+                // (this might happen for extracted subvolumes)
+                auto nodeIt = nodeAssignments.find(skelB);
+                if(nodeIt == nodeAssignments.end()) {
+                    continue;
+                }
+                const size_t nodeB = nodeIt->second;
+                const size_t nodeA = nodeAssignments.at(skelA);
+
                 if(nodeA == nodeB) {
                     splitScore += 1;
                 }
+                ++nActualEdges;
             }
             // normalize by the number of edges
-            splitScore /= nEdges;
+            splitScore /= nActualEdges;
         });
     }
 
@@ -513,15 +531,30 @@ namespace skeletons {
             const size_t nEdges = edgeSet->shape(0);
             ArrayShape edgeShape = {nEdges, edgeSet->shape(1)};
             CoordinateArray edges(edgeShape);
-            z5::multiarray::readSubarray<uint64_t>(edgeSet, edges, zeroCoord.begin());
+            z5::multiarray::readSubarray<int64_t>(edgeSet, edges, zeroCoord.begin());
 
             // iterate over the edges and sum up runlens
             for(size_t edgeId = 0; edgeId < nEdges ;++edgeId) {
 
-                const size_t nodeA = nodeAssignments.at(edges(edgeId, 0));
-                const size_t nodeB = nodeAssignments.at(edges(edgeId, 1));
-                const size_t coordIdA = nodeToIndex[edges(edgeId, 0)];
-                const size_t coordIdB = nodeToIndex[edges(edgeId, 1)];
+                const int64_t skelA = edges(edgeId, 0);
+                const int64_t skelB = edges(edgeId, 1);
+
+                // check for invalid edges
+                if(skelA == -1 || skelB == -1) {
+                    continue;
+                }
+
+                // check if parent is not in the nodes we have
+                // (this might happen for extracted subvolumes)
+                auto nodeIt = nodeAssignments.find(skelB);
+                if(nodeIt == nodeAssignments.end()) {
+                    continue;
+                }
+                const size_t nodeB = nodeIt->second;
+                const size_t nodeA = nodeAssignments.at(skelA);
+
+                const size_t coordIdA = nodeToIndex[skelA];
+                const size_t coordIdB = nodeToIndex[skelB];
 
                 // caclulate the length of this edge (= euclidean distacne of nodes)
                 double len = 0.;
@@ -592,8 +625,15 @@ namespace skeletons {
         // write data to output
         for(int thread = 0; thread < nThreads; ++thread) {
             auto & threadData = perThreadData[thread];
-            // would prefer merge but C++ 17
-            out.insert(threadData.begin(), threadData.end());
+            // would prefer merge but C++ 17 ...
+            for(const auto & elem : threadData) {
+                auto outIt = out.find(elem.first);
+                if(outIt == out.end()) {
+                    out.insert(elem);
+                } else {
+                    outIt->second.insert(outIt->second.end(), elem.second.begin(), elem.second.end());
+                }
+            }
         }
     }
 
