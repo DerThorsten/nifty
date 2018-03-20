@@ -4,6 +4,8 @@ cd build
 REM ----------------------------------------------------------------------
 IF NOT DEFINED WITH_CPLEX (SET WITH_CPLEX=0)
 IF NOT DEFINED WITH_GUROBI (SET WITH_GUROBI=0)
+IF NOT DEFINED CPLEX_ROOT_DIR (SET CPLEX_ROOT_DIR="")
+IF NOT DEFINED GUROBI_ROOT_DIR (SET GUROBI_ROOT_DIR="")
 IF %WITH_CPLEX% == "" (SET WITH_CPLEX=0)
 IF %WITH_GUROBI% == "" (SET WITH_GUROBI=0)
 
@@ -41,7 +43,7 @@ IF "%WITH_GUROBI%" == "1" (
 
 IF "%WITH_CPLEX%" == "1" (
     :: ensure single double quotes with :"=
-    SET OPTIMIZER_ARGS=-DWITH_CPLEX=ON -DCPLEX_ROOT_DIR=%CPLEX_ROOT_DIR% -DCPLEX_WIN_VERSION=%CPLEX_WIN_VERSION%
+    SET OPTIMIZER_ARGS=-DWITH_CPLEX=ON -DCPLEX_ROOT_DIR="%CPLEX_ROOT_DIR:"=%" -DCPLEX_WIN_VERSION=%CPLEX_WIN_VERSION%
 )
 
 REM ----------------------------------------------------------------------
