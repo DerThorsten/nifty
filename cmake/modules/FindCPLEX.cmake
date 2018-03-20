@@ -63,7 +63,7 @@ if(WIN32)
 
   set(CPLEX_WIN_BITNESS ${CPLEX_WIN_BITNESS} CACHE STRING "On Windows: x86 or x64 (32bit resp. 64bit)")
 
-  MESSAGE(STATUS "CPLEX: using Visual Studio ${CPLEX_WIN_VS_VERSION} ${CPLEX_WIN_BITNESS} at '${VISUAL_STUDIO_PATH}'")
+  MESSAGE(STATUS "FindCPLEX: using Visual Studio ${CPLEX_WIN_VS_VERSION} ${CPLEX_WIN_BITNESS} at '${VISUAL_STUDIO_PATH}'")
 
   if(NOT CPLEX_WIN_LINKAGE)
     set(CPLEX_WIN_LINKAGE mda CACHE STRING "CPLEX linkage variant on Windows. One of these: mda (dll, release), mdd (dll, debug), mta (static, release), mtd (static, debug)")
@@ -71,6 +71,7 @@ if(WIN32)
 
   # now, generate platform string
   set(CPLEX_WIN_PLATFORM "${CPLEX_WIN_BITNESS}_windows_vs${CPLEX_WIN_VS_VERSION}/stat_${CPLEX_WIN_LINKAGE}")
+  MESSAGE(STATUS "FindCPLEX: using platform string ${CPLEX_WIN_PLATFORM}")
 
 else()
 
@@ -135,10 +136,7 @@ FIND_LIBRARY(CPLEX_CONCERT_LIBRARY
 message(STATUS "CONCERT Library: ${CPLEX_CONCERT_LIBRARY}")
 
 if(WIN32)
-    FIND_PATH(CPLEX_BIN_DIR
-      cplex${CPLEX_WIN_VERSION}.dll
-          HINTS ${CPLEX_ROOT_DIR}/cplex/bin/${CPLEX_WIN_PLATFORM} #windows
-      )
+  set(CPLEX_BIN_DIR CPLEX_STUIDO_BINARIES${CPLEX_WIN_VERSION})
 else()
     FIND_PATH(CPLEX_BIN_DIR
       cplex
@@ -165,6 +163,3 @@ IF(CPLEX_FOUND)
 ENDIF(CPLEX_FOUND)
 
 MARK_AS_ADVANCED(CPLEX_LIBRARY CPLEX_INCLUDE_DIR CPLEX_ILOCPLEX_LIBRARY CPLEX_CONCERT_INCLUDE_DIR CPLEX_CONCERT_LIBRARY)
-
-
-
