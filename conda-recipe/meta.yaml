@@ -1,15 +1,19 @@
+# WITH_CPLEX and WITH_GUROBI are exclusive options to be set with environment
+# variables. To be active, they should be set to a value of 1
 {% if not WITH_CPLEX is defined %}
-  {% set WITH_CPLEX = False %}
+  {% set WITH_CPLEX = 0 %}
 {% endif %}
+{% set WITH_CPLEX = WITH_CPLEX|int %}
 
 {% if not WITH_GUROBI is defined %}
-  {% set WITH_GUROBI = False %}
+  {% set WITH_GUROBI = 0 %}
 {% endif %}
+{% set WITH_GUROBI = WITH_GUROBI|int %}
 
 package:
-  {% if WITH_CPLEX %}
+  {% if WITH_CPLEX == 1 %}
     name: nifty-with-cplex
-  {% elif WITH_GUROBI %}
+  {% elif WITH_GUROBI == 1 %}
     name: nifty-with-gurobi
   {% else %}
     name: nifty
@@ -32,14 +36,16 @@ source:
     - patches/vigra-std-threading-detection.patch
 
 build:
-  number: 0
+  number: 1
   string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
   script_env:
      - WITH_CPLEX
      - CPLEX_ROOT_DIR
+     - CPLEX_WIN_VERSION # [win]
      - WITH_GUROBI
      - GUROBI_ROOT_DIR
+     - GUROBI_LIB_WIN # [win]
      - DO_NOT_BUILD_WITH_CXX11_ABI # [linux]
 
 requirements:

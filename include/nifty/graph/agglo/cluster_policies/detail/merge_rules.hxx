@@ -39,7 +39,7 @@ namespace merge_rules{
         template<class VALUES, class WEIGHTS>
         ArithmeticMeanEdgeMap(
             const GraphType & g,
-            const VALUES & values, 
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  values_(g),
@@ -78,7 +78,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
             weights_[targetEdge] = weight;
         }
-        
+
         T operator[](const uint64_t edge)const{
             return values_[edge];
         }
@@ -121,7 +121,7 @@ namespace merge_rules{
         template<class VALUES, class WEIGHTS>
          GeneralizedMeanEdgeMap(
             const GraphType & g,
-            const VALUES & values, 
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  values_(g),
@@ -180,7 +180,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
             weights_[targetEdge] = weight;
         }
-        
+
         T operator[](const uint64_t edge)const{
             return values_[edge];
         }
@@ -192,7 +192,8 @@ namespace merge_rules{
 
 
     struct SmoothMaxSettings{
-        double p = {1.0};
+        double p;
+        SmoothMaxSettings(double p = 1.0) : p(p){ }
         auto name()const{
             return std::string("SmoothMax") + std::string("[q=") + std::to_string(p) + std::string("]");
         }
@@ -217,7 +218,7 @@ namespace merge_rules{
         template<class VALUES, class WEIGHTS>
          SmoothMaxEdgeMap(
             const GraphType & g,
-            const VALUES & values, 
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  values_(g),
@@ -276,7 +277,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
             weights_[targetEdge] = weight;
         }
-        
+
         T operator[](const uint64_t edge)const{
             return values_[edge];
         }
@@ -287,9 +288,9 @@ namespace merge_rules{
     };
 
     struct RankOrderSettings{
-        double q = {0.5};
-        uint16_t numberOfBins = {50};
-
+        double q;
+        uint16_t numberOfBins;
+        RankOrderSettings(double q = 0.5, uint16_t numberOfBins = 50) : q(q), numberOfBins(numberOfBins) { }
         auto name()const{
             std::stringstream ss;
             ss<<"RankOrderEdgeMap [q="<<q<<" #bins="<<numberOfBins<<"]";
@@ -318,7 +319,7 @@ namespace merge_rules{
         template<class VALUES, class WEIGHTS>
          RankOrderEdgeMap(
             const GraphType & g,
-            const VALUES & values, 
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  histogram_(g),
@@ -362,7 +363,7 @@ namespace merge_rules{
             hist.clearCounts();
             hist.insert(value, weight);
         }
-        
+
         T operator[](const uint64_t edge)const{
             return histogram_[edge].rank(settings_.q);
         }
@@ -396,8 +397,8 @@ namespace merge_rules{
 
         template<class VALUES, class WEIGHTS>
         MaxEdgeMap(
-            const GraphType & g, 
-            const VALUES & values, 
+            const GraphType & g,
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  values_(g)
@@ -453,8 +454,8 @@ namespace merge_rules{
 
         template<class VALUES, class WEIGHTS>
         MinEdgeMap(
-            const GraphType & g, 
-            const VALUES & values, 
+            const GraphType & g,
+            const VALUES & values,
             const WEIGHTS & weights,
             const SettingsType & settings = SettingsType()
         ):  values_(g)

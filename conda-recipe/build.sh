@@ -10,6 +10,10 @@ if [[ "$WITH_CPLEX" == "0" ]]; then
     WITH_CPLEX=""
 fi
 
+if [[ "$WITH_GUROBI" == "0" ]]; then
+    WITH_GUROBI=""
+fi
+
 # Platform-specific dylib extension
 if [ $(uname) == "Darwin" ]; then
     export CC=clang
@@ -19,14 +23,10 @@ else
     export CC=gcc
     export CXX=g++
     export DYLIB="so"
-fi
-
-# Check which gcxx abi to use; for compatibility with libs build with gcc < 5:
-if [[ -z ${DO_NOT_BUILD_WITH_CXX11_ABI} ]]; then
-    CXX_ABI_ARGS="-DBUILD_WITH_GLIBCXX_CXX11_ABI=ON"
-else
-    # use the old ABI
-    CXX_ABI_ARGS="-DBUILD_WITH_GLIBCXX_CXX11_ABI=OFF"
+    # Check which gcxx abi to use; for compatibility with libs build with gcc < 5:
+    if [[ ${DO_NOT_BUILD_WITH_CXX11_ABI} == '1' ]]; then
+        CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0 ${CXXFLAGS}"
+    fi
 fi
 
 # Pre-define special flags, paths, etc. if we're building with CPLEX support.
@@ -163,7 +163,6 @@ cmake .. \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
         -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
-        ${CXX_ABI_ARGS} \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=ON \
@@ -188,8 +187,18 @@ make -j${CPU_COUNT}
 ## Install to prefix
 cp -r ${SRC_DIR}/build/python/nifty ${PREFIX}/lib/python${PY_VER}/site-packages/
 
+# the * here is necessary, because the .so file is created with some extension
+# suffix, to indicate the python abi version (something like _nifty.cpython-m36)
+shopt -s nullglob
+NIFTY_MODULE_SO_TMP=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty*.so
+shopt -u nullglob
 
-NIFTY_MODULE_SO=${PREFIX}/lib/python${PY_VER}/site-packages/nifty/_nifty.so
+if [[ ${#NIFTY_MODULE_SO_TMP[@]} != 1 ]]; then
+    echo "NO UNIQUE NIFTY MODULE FOUND!"
+    exit 123
+else
+    NIFTY_MODULE_SO=${NIFTY_MODULE_SO_TMP[0]}
+fi
 
 ##
 ## Rename the python module entirely, and change cplex lib install names.
