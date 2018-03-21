@@ -12,6 +12,7 @@ namespace py = pybind11;
 namespace nifty {
 namespace nz5 {
     void exportDatasetWrappers(py::module &);
+    void exportUpsampling(py::module &);
 }
 }
 
@@ -23,4 +24,5 @@ PYBIND11_MODULE(_z5, module) {
 
     using namespace nifty::nz5;
     exportDatasetWrappers(module);
+    exportUpsampling(module);
 }
