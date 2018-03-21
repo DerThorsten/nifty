@@ -143,6 +143,8 @@ namespace distributed {
         size_t numberOfNodes() const {return nodes_.size();}
         size_t numberOfEdges() const {return edges_.size();}
 
+        const EdgeStorage & edges() const {return edges_;}
+
     private:
         // init the graph from the edges
         void initGraph() {
