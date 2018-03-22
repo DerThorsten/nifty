@@ -89,6 +89,7 @@ FIND_PATH(CPLEX_INCLUDE_DIR
         ENV C_PLUS_INCLUDE_PATH
         ENV INCLUDE_PATH
   )
+message(STATUS "CPLEX Include dir: ${CPLEX_INCLUDE_DIR}")
 
 FIND_PATH(CPLEX_CONCERT_INCLUDE_DIR
   ilconcert/iloenv.h
@@ -98,9 +99,10 @@ FIND_PATH(CPLEX_CONCERT_INCLUDE_DIR
         ENV C_PLUS_INCLUDE_PATH
         ENV INCLUDE_PATH
   )
+message(STATUS "CONCERT Include dir: ${CPLEX_CONCERT_INCLUDE_DIR}")
 
 FIND_LIBRARY(CPLEX_LIBRARY
-  NAMES cplex${CPLEX_WIN_VERSION} cplex
+  NAMES cplex${CPLEX_WIN_VERSION} cplex${CPLEX_WIN_VERSION}0 cplex
   HINTS ${CPLEX_ROOT_DIR}/cplex/lib/${CPLEX_WIN_PLATFORM} #windows
         ${CPLEX_ROOT_DIR}/cplex/lib/x86-64_debian4.0_4.1/static_pic #unix
         ${CPLEX_ROOT_DIR}/cplex/lib/x86-64_sles10_4.1/static_pic #unix
