@@ -87,7 +87,7 @@ namespace skeletons {
         }
 
         // compute the split score
-        void computeSplitScores(std::map<size_t, double> &, const size_t) const;
+        void computeSplitScores(std::map<size_t, double> &, const int) const;
 
         // compute the split run-length
         void computeSplitRunlengths(const std::array<double, 3> &,
@@ -106,6 +106,10 @@ namespace skeletons {
         void computeDistanceStatistics(const std::array<double, 3> &,
                                        SkeletonDistanceStatistics &,
                                        const int) const;
+
+        // merge nodes belonging to false splits
+        void mergeFalseSplitNodes(std::map<size_t, std::set<std::pair<size_t, size_t>>> &,
+                                  const int) const;
 
         // serialize and deserialize node dictionary with boost::serialization
         void serialize(const std::string & path) const {
@@ -416,7 +420,7 @@ namespace skeletons {
 
 
     // compute the split score
-    void SkeletonMetrics::computeSplitScores(std::map<size_t, double> & splitScores, const size_t numberOfThreads) const {
+    void SkeletonMetrics::computeSplitScores(std::map<size_t, double> & splitScores, const int numberOfThreads) const {
 
         parallel::ThreadPool tp(numberOfThreads);
         std::vector<size_t> zeroCoord = {0, 0};
@@ -469,6 +473,11 @@ namespace skeletons {
                 const size_t nodeB = nodeIt->second;
                 const size_t nodeA = nodeAssignments.at(skelA);
 
+                // check for ignore label
+                if(nodeA == 0 || nodeB == 0) {
+                    continue;
+                }
+
                 if(nodeA == nodeB) {
                     splitScore += 1;
                 }
@@ -477,6 +486,72 @@ namespace skeletons {
             // normalize by the number of edges
             splitScore /= nActualEdges;
         });
+    }
+
+
+    void SkeletonMetrics::mergeFalseSplitNodes(std::map<size_t, std::set<std::pair<size_t, size_t>>> & mergeNodes,
+                                               const int numberOfThreads) const {
+
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // prepare the output data
+        const size_t nSkeletons = skeletonIds_.size();
+        mergeNodes.clear();
+        for(const size_t skelId : skeletonIds_) {
+            mergeNodes[skelId] = std::set<std::pair<size_t, size_t>>();
+        }
+
+        // extract the split scores in parallel
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            const auto & nodeAssignments = skeletonDict_.at(skeletonId);
+            auto & mergeNode = mergeNodes[skeletonId];
+
+            // load the skeleton edges
+            fs::path skeletonPath(skeletonTopFolder_);
+            skeletonPath /= std::to_string(skeletonId);
+            skeletonPath /= "edges";
+            auto edgeSet = z5::openDataset(skeletonPath.string());
+            const size_t nEdges = edgeSet->shape(0);
+
+            // load the edge data
+            ArrayShape coordShape = {nEdges, edgeSet->shape(1)};
+            CoordinateArray edges(coordShape);
+            z5::multiarray::readSubarray<int64_t>(edgeSet, edges, zeroCoord.begin());
+
+            // to find the split score, iterate over the edges
+            // the best split score is one -> only add up edges that connect the same
+            // segmentation ids
+            for(size_t edgeId = 0; edgeId < nEdges; ++edgeId) {
+                const int64_t skelA = edges(edgeId, 0);
+                const int64_t skelB = edges(edgeId, 1);
+
+                // check for invalid edges
+                if(skelA == -1 || skelB == -1) {
+                    continue;
+                }
+
+                // check if parent is not in the nodes we have
+                // (this might happen for extracted subvolumes)
+                auto nodeIt = nodeAssignments.find(skelB);
+                if(nodeIt == nodeAssignments.end()) {
+                    continue;
+                }
+                const size_t nodeB = nodeIt->second;
+                const size_t nodeA = nodeAssignments.at(skelA);
+
+                // check for ignore label
+                if(nodeA == 0 || nodeB == 0) {
+                    continue;
+                }
+
+                if(nodeA != nodeB) {
+                    mergeNode.emplace(nodeA, nodeB);
+                }
+            }
+        });
+
     }
 
 
@@ -553,6 +628,11 @@ namespace skeletons {
                 const size_t nodeB = nodeIt->second;
                 const size_t nodeA = nodeAssignments.at(skelA);
 
+                // check for ignore label
+                if(nodeA == 0 || nodeB == 0) {
+                    continue;
+                }
+
                 const size_t coordIdA = nodeToIndex[skelA];
                 const size_t coordIdB = nodeToIndex[skelB];
 
@@ -599,6 +679,12 @@ namespace skeletons {
 
         parallel::parallel_foreach(tp, nLabels, [&](const int tId, const size_t labelIndex){
             const size_t labelId = labels[labelIndex];
+
+            // we skip the ignore label
+            if(labelId == 0) {
+                return;
+            }
+
             std::vector<size_t> skeletonsWithLabel;
             for(auto skelId : skeletonIds_) {
                 const auto & skelLabels = labelsPerSkeleton[skelId];
@@ -700,7 +786,7 @@ namespace skeletons {
                 }
             }
 
-            // we only writout labels that don't have an explicit merge, i.e. are only contained in a 
+            // we only writout labels that don't have an explicit merge, i.e. are only contained in a
             // single skeleton
             if(skeletonsWithLabel.size() == 1) {
                 // for thread 0, we write directly to the out data
@@ -716,7 +802,7 @@ namespace skeletons {
         // merge the results into the out data (Note that thread 0 is already `out`)
         for(int thread = 1; thread < nThreads; ++thread) {
             auto & threadData = perThreadData[thread];
-            // would prefer merge but C++ 17 ... 
+            // would prefer merge but C++ 17 ...
             out.insert(threadData.begin(), threadData.end());
         }
     }
@@ -780,6 +866,12 @@ namespace skeletons {
                 for(size_t y = 0; y < labelsShape[1]; ++y) {
                     for(size_t x = 0; x < labelsShape[2]; ++x) {
                         const uint64_t label = labels(z, y, x);
+
+                        // we skip the ignore label
+                        if(label == 0) {
+                            continue;
+                        }
+
                         // check if this label is in the candidate labels. if not continue
                         auto candidateIt = candidateLabels.find(label);
                         if(candidateIt == candidateLabels.end()) {
@@ -896,6 +988,12 @@ namespace skeletons {
                 for(size_t y = 0; y < labelsShape[1]; ++y) {
                     for(size_t x = 0; x < labelsShape[2]; ++x) {
                         const uint64_t label = labels(z, y, x);
+
+                        // we skip the ignore label
+                        if(label == 0) {
+                            continue;
+                        }
+
                         // check if this label is in the candidate labels. if not continue
                         auto candidateIt = candidateLabels.find(label);
                         if(candidateIt == candidateLabels.end()) {
@@ -945,7 +1043,7 @@ namespace skeletons {
                         // TODO keep locks here or perThread data and merge output later 
                         // instead ?
                         // insert the distance into the output
-                        
+
                         {
                             std::lock_guard<std::mutex> guard(mut);
                             auto & skelOut = out[skeletonId];
@@ -960,8 +1058,6 @@ namespace skeletons {
                 }
             }
         });
-        
-
     }
 
 }

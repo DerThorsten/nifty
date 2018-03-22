@@ -69,6 +69,12 @@ namespace skeletons {
                                  const std::string & serializationPath){
                 self.serialize(serializationPath);
             }, py::arg("serializationPath"))
+            //
+            .def("mergeFalseSplitNodes", [](const SelfType & self, const int numberOfThreads){
+                std::map<size_t, std::set<std::pair<size_t, size_t>>> out;
+                self.mergeFalseSplitNodes(out, numberOfThreads);
+                return out;
+            }, py::arg("numberOfThreads")=-1)
         ;
     }
 
