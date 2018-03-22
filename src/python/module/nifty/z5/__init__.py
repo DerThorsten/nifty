@@ -50,3 +50,11 @@ if Configuration.WITH_Z5:
 
         else:
             raise RuntimeError("Datatype %s not supported!" % (str(dtype),))
+
+
+    # TODO infer datatype from the dataset
+    def nearestUpsampling(dtype, inPath, samplingFactor, outPath, numberOfThreads=-1):
+        if numpy.dtype(dtype) == numpy.dtype("uint8"):
+            nearestUpsamplingUint8(inPath, samplingFactor, outPath, numberOfThreads)
+        else:
+            raise RuntimeError("Datatype %s not supported!" % (str(dtype),))

@@ -827,7 +827,8 @@ namespace skeletons {
             }
         });
     }
-        
+
+
     // compute the distance statistics for all skeleton nodes
     void SkeletonMetrics::computeDistanceStatistics(const std::array<double, 3> & resolution,
                                                     SkeletonMetrics::SkeletonDistanceStatistics & out,

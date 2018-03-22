@@ -179,7 +179,7 @@ namespace distributed {
         for(auto & accumulator : accumulators) {
             accumulator.setHistogramOptions(histogramOpts);
         }
-        
+
         const bool byteInput = typeid(InputType) == typeid(uint8_t);
 
         // accumulate
