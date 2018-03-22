@@ -34,6 +34,24 @@ namespace distributed {
                 return out;
             })
 
+            .def("uvIds", [](const Graph & self){
+                typedef xt::pytensor<NodeType, 2> OutType;
+                typedef typename OutType::shape_type OutShape;
+                OutShape shape = {static_cast<int64_t>(self.numberOfEdges()), 2L};
+                OutType out(shape);
+                {
+                    const auto & edges = self.edges();
+                    py::gil_scoped_release allowThreads;
+                    size_t edgeId = 0;
+                    for(const auto edge : edges) {
+                        out(edgeId, 0) = edge.first;
+                        out(edgeId, 1) = edge.second;
+                        ++edgeId;
+                    }
+                }
+                return out;
+            })
+
             .def("extractSubgraphFromNodes", [](const Graph & self, const xt::pytensor<uint64_t, 1> & nodes) {
                 //
                 std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
