@@ -86,8 +86,19 @@ namespace skeletons {
             return skeletonDict_;
         }
 
-        // compute the split score
+        // get edges that contain splits
+        void getSplitEdges(std::map<size_t, std::vector<bool>> &, const int numberOfThreads) const;
+        // get edges that contain merges
+        void getMergeEdges(std::map<size_t, std::vector<bool>> &,
+                           std::map<size_t, size_t> &,
+                           const int numberOfThreads) const;
+
+        // compute the split, merge and summary (google) score
         void computeSplitScores(std::map<size_t, double> &, const int) const;
+        void computeExplicitMergeScores(std::map<size_t, double> &,
+                                        std::map<size_t, size_t> &,
+                                        const int) const;
+        void computeGoogleScore(double &, double &, double &, size_t &, const int) const;
 
         // compute the split run-length
         void computeSplitRunlengths(const std::array<double, 3> &,
@@ -419,24 +430,23 @@ namespace skeletons {
     }
 
 
-    // compute the split score
-    void SkeletonMetrics::computeSplitScores(std::map<size_t, double> & splitScores, const int numberOfThreads) const {
+    void SkeletonMetrics::getSplitEdges(std::map<size_t, std::vector<bool>> & splitEdges, const int numberOfThreads) const {
 
         parallel::ThreadPool tp(numberOfThreads);
         std::vector<size_t> zeroCoord = {0, 0};
 
         // prepare the output data
         const size_t nSkeletons = skeletonIds_.size();
-        splitScores.clear();
-        for(auto skeletonId : skeletonIds_) {
-            splitScores[skeletonId] = 0.;
+        splitEdges.clear();
+        for(const size_t skelId : skeletonIds_) {
+            splitEdges[skelId] = std::vector<bool>();
         }
 
         // extract the split scores in parallel
         parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
             const size_t skeletonId = skeletonIds_[skeletonIndex];
             const auto & nodeAssignments = skeletonDict_.at(skeletonId);
-            auto & splitScore = splitScores[skeletonId];
+            auto & splitEdge = splitEdges[skeletonId];
 
             // load the skeleton edges
             fs::path skeletonPath(skeletonTopFolder_);
@@ -449,8 +459,6 @@ namespace skeletons {
             ArrayShape coordShape = {nEdges, edgeSet->shape(1)};
             CoordinateArray edges(coordShape);
             z5::multiarray::readSubarray<int64_t>(edgeSet, edges, zeroCoord.begin());
-
-            size_t nActualEdges = 0;
 
             // to find the split score, iterate over the edges
             // the best split score is one -> only add up edges that connect the same
@@ -477,14 +485,38 @@ namespace skeletons {
                 if(nodeA == 0 || nodeB == 0) {
                     continue;
                 }
-
-                if(nodeA == nodeB) {
-                    splitScore += 1;
-                }
-                ++nActualEdges;
+                splitEdge.push_back(nodeA != nodeB);
             }
-            // normalize by the number of edges
-            splitScore /= nActualEdges;
+        });
+
+
+    }
+
+
+    // compute the split score
+    void SkeletonMetrics::computeSplitScores(std::map<size_t, double> & splitScores, const int numberOfThreads) const {
+
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // prepare the output data
+        const size_t nSkeletons = skeletonIds_.size();
+        splitScores.clear();
+        for(auto skeletonId : skeletonIds_) {
+            splitScores[skeletonId] = 0.;
+        }
+
+        std::map<size_t, std::vector<bool>> splitEdges;
+        getSplitEdges(splitEdges, numberOfThreads);
+
+        // extract the split scores in parallel
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+            const auto & splitEdge = splitEdges[skeletonId];
+            auto & splitScore = splitScores[skeletonId];
+
+            splitScore = std::accumulate(splitEdge.begin(), splitEdge.end(), 0.);
+            splitScore /= splitEdge.size();
         });
     }
 
@@ -721,6 +753,184 @@ namespace skeletons {
                 }
             }
         }
+    }
+
+
+    void SkeletonMetrics::getMergeEdges(std::map<size_t, std::vector<bool>> & mergeEdges,
+                                        std::map<size_t, size_t> & mergePoints,
+                                        const int numberOfThreads) const {
+
+        std::map<size_t, std::vector<size_t>> mergeLabels;
+        computeExplicitMerges(mergeLabels, numberOfThreads);
+
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // prepare the output data
+        const size_t nSkeletons = skeletonIds_.size();
+        mergeEdges.clear();
+        mergePoints.clear();
+        for(const auto & mergePair : mergeLabels) {
+            mergeEdges[mergePair.first] = std::vector<bool>();
+            mergePoints[mergePair.first] = 0;
+        }
+
+        // extract the merge edges in parallel
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+
+            // check if this skeleton has a merge
+            auto mergeIt = mergeLabels.find(skeletonId);
+            if(mergeIt == mergeLabels.end()) {
+                return;
+            }
+            const auto & labelsWithMerge = mergeIt->second;
+
+            const auto & nodeAssignments = skeletonDict_.at(skeletonId);
+            auto & mergeEdge = mergeEdges[skeletonId];
+
+            // load the skeleton edges
+            fs::path skeletonPath(skeletonTopFolder_);
+            skeletonPath /= std::to_string(skeletonId);
+            skeletonPath /= "edges";
+            auto edgeSet = z5::openDataset(skeletonPath.string());
+            const size_t nEdges = edgeSet->shape(0);
+
+            // load the edge data
+            ArrayShape coordShape = {nEdges, edgeSet->shape(1)};
+            CoordinateArray edges(coordShape);
+            z5::multiarray::readSubarray<int64_t>(edgeSet, edges, zeroCoord.begin());
+
+            // to find the split score, iterate over the edges
+            // the best split score is one -> only add up edges that connect the same
+            // segmentation ids
+            for(size_t edgeId = 0; edgeId < nEdges; ++edgeId) {
+                const int64_t skelA = edges(edgeId, 0);
+                const int64_t skelB = edges(edgeId, 1);
+
+                // check for invalid edges
+                if(skelA == -1 || skelB == -1) {
+                    continue;
+                }
+
+                // check if parent is not in the nodes we have
+                // (this might happen for extracted subvolumes)
+                auto nodeIt = nodeAssignments.find(skelB);
+                if(nodeIt == nodeAssignments.end()) {
+                    continue;
+                }
+                const size_t nodeB = nodeIt->second;
+                const size_t nodeA = nodeAssignments.at(skelA);
+
+                // check for ignore label
+                if(nodeA == 0 || nodeB == 0) {
+                    continue;
+                }
+
+                // check if this edge is a merge edge (i.e. both nodes belong to (the same) merge label)
+                // or if it is a merge point (i.e. transition to a merge label)
+                bool hasMerge = false;
+                if(nodeA == nodeB) {
+                    if(std::find(labelsWithMerge.begin(), labelsWithMerge.end(), nodeA) != labelsWithMerge.end()) {
+                        hasMerge = true;
+                    }
+                } else {
+                    bool isMergeA = std::find(labelsWithMerge.begin(), labelsWithMerge.end(), nodeA) != labelsWithMerge.end();
+                    bool isMergeB = std::find(labelsWithMerge.begin(), labelsWithMerge.end(), nodeB) != labelsWithMerge.end();
+                    if(isMergeA || isMergeB) {
+                        ++mergePoints[skeletonId];
+                    }
+                }
+
+                mergeEdge.push_back(hasMerge);
+            }
+        });
+    }
+
+
+    void SkeletonMetrics::computeExplicitMergeScores(std::map<size_t, double> & mergeScores,
+                                                     std::map<size_t, size_t> & mergePoints,
+                                                     const int numberOfThreads) const {
+        parallel::ThreadPool tp(numberOfThreads);
+        std::vector<size_t> zeroCoord = {0, 0};
+
+        // prepare the output data
+        const size_t nSkeletons = skeletonIds_.size();
+        mergeScores.clear();
+        for(auto skeletonId : skeletonIds_) {
+            mergeScores[skeletonId] = 0.;
+        }
+
+        std::map<size_t, std::vector<bool>> mergeEdges;
+        getMergeEdges(mergeEdges, mergePoints, numberOfThreads);
+
+        // extract the merge scores in parallel
+        parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
+            const size_t skeletonId = skeletonIds_[skeletonIndex];
+
+            auto mergeIt = mergeEdges.find(skeletonId);
+            if(mergeIt == mergeEdges.end()) {
+                return;
+            }
+
+            const auto & mergeEdge = mergeIt->second;
+            auto & mergeScore = mergeScores[skeletonId];
+
+            mergeScore = std::accumulate(mergeEdge.begin(), mergeEdge.end(), 0.);
+            mergeScore /= mergeEdge.size();
+        });
+    }
+
+
+    void SkeletonMetrics::computeGoogleScore(double & correctScore, double & splitScore, double & mergeScore,
+                                             size_t & totalMergePoints, const int numberOfThreads) const {
+        std::map<size_t, std::vector<bool>> splitEdges;
+        getSplitEdges(splitEdges, numberOfThreads);
+        std::map<size_t, std::vector<bool>> mergeEdges;
+        std::map<size_t, size_t> mergePoints;
+        getMergeEdges(mergeEdges, mergePoints, numberOfThreads);
+
+        size_t nEdges = 0;
+        correctScore = 0.;
+        splitScore = 0.;
+        mergeScore = 0.;
+        totalMergePoints = 0;
+
+        for(const size_t skeletonId : skeletonIds_) {
+            const auto & splitEdge = splitEdges[skeletonId];
+            auto mergeIt = mergeEdges.find(skeletonId);
+            if(mergeIt == mergeEdges.end()) {
+
+                for(const bool split : splitEdge) {
+                    if(split) {
+                        ++splitScore;
+                    } else {
+                        ++correctScore;
+                    }
+                }
+
+            } else {
+                const auto & mergeEdge = mergeIt->second;
+
+                for(size_t edge = 0; edge < splitEdge.size(); ++edge) {
+                    if(splitEdge[edge]) {
+                        ++splitScore;
+                    } else if(mergeEdge[edge]) {
+                        ++mergeScore;
+                    } else {
+                        ++correctScore;
+                    }
+                }
+                totalMergePoints += mergePoints[skeletonId];
+
+            }
+
+            nEdges += splitEdge.size();
+        }
+
+        correctScore /= nEdges;
+        splitScore /= nEdges;
+        mergeScore /= nEdges;
     }
 
 

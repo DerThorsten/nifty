@@ -48,6 +48,20 @@ namespace skeletons {
                 return out;
             }, py::arg("numberOfThreads")=-1)
             //
+            .def("computeExplicitMergeScores", [](const SelfType & self, const int numberOfThreads) {
+                std::map<size_t, double> mergeScore;
+                std::map<size_t, size_t> mergePoints;
+                self.computeExplicitMergeScores(mergeScore, mergePoints, numberOfThreads);
+                return std::make_pair(mergeScore, mergePoints);
+            }, py::arg("numberOfThreads")=-1)
+            //
+            .def("computeGoogleScore", [](const SelfType & self, const int numberOfThreads) {
+                double correctScore, splitScore, mergeScore;
+                size_t mergePoints;
+                self.computeGoogleScore(correctScore, splitScore, mergeScore, mergePoints, numberOfThreads);
+                return std::make_tuple(correctScore, splitScore, mergeScore, mergePoints);
+            }, py::arg("numberOfThreads")=-1)
+            //
             .def("computeHeuristicMerges", [](const SelfType & self,
                                               const std::array<double, 3> & resolution,
                                               const double maxDistance,
