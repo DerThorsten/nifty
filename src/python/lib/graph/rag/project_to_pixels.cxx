@@ -9,6 +9,9 @@
 #include "nifty/graph/rag/project_to_pixels.hxx"
 #include "nifty/graph/rag/project_to_pixels_stacked.hxx"
 
+// still need this for python bindings of nifty::ArrayExtender
+#include "nifty/python/converter.hxx"
+
 
 namespace py = pybind11;
 
@@ -40,6 +43,30 @@ namespace graph{
                 return pixelData;
            },
            py::arg("graph"),py::arg("nodeData"),py::arg("numberOfThreads")=-1
+        );
+    }
+
+
+    template<class LABELS, class T, class PIXEL_DATA, std::size_t DATA_DIM>
+    void exportProjectScalarNodeDataToPixelsOutOfCoreT(py::module & ragModule){
+
+        ragModule.def("projectScalarNodeDataToPixels",
+           [](
+                const GridRag<DATA_DIM, LABELS> & rag,
+                const xt::pytensor<T, 1> & nodeData,
+                PIXEL_DATA & pixelData,
+                nifty::array::StaticArray<int64_t, DATA_DIM> blockShape,
+                const int numberOfThreads
+           ){
+                py::gil_scoped_release allowThreads;
+                projectScalarNodeDataToPixelsOutOfCore(rag, nodeData, pixelData,
+                                                       blockShape, numberOfThreads);
+           },
+           py::arg("graph"),
+           py::arg("nodeData"),
+           py::arg("pixelData"),
+           py::arg("blockShape"),
+           py::arg("numberOfThreads")=-1
         );
     }
 
@@ -133,21 +160,31 @@ namespace graph{
             typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
 
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
 
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint64_t, 2>(ragModule);
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint64_t, 3>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint64_t, 2>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint64_t, 3>(ragModule);
 
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, float, 2>(ragModule);
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, float, 3>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, float, 2>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, float, 3>(ragModule);
 
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, double, 2>(ragModule);
-            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, double, 3>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, double, 2>(ragModule);
+            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, double, 3>(ragModule);
         }
+
+        // z5
+        #ifdef WITH_Z5
+        {
+            typedef nifty::nz5::DatasetWrapper<uint64_t> LabelsUInt64;
+            exportProjectScalarNodeDataToPixelsOutOfCoreT<LabelsUInt64, uint64_t,
+                                                          LabelsUInt64, 3>(ragModule);
+        }
+        #endif
 
         // exportScalarNodeDataToPixelsStacked
         {
+            /*
             // explicit
             {
                 typedef xt::pytensor<uint32_t, 3> LabelsUInt32;
@@ -157,6 +194,7 @@ namespace graph{
                 exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, float>(ragModule);
                 exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, double>(ragModule);
             }
+            */
 
             // FIXME need hdf5 with xtensor support for this to work
             // hdf5
@@ -194,13 +232,14 @@ namespace graph{
             // }
             // #endif
 
+            /*
             // z5
             #ifdef WITH_Z5
             {
                 typedef nifty::nz5::DatasetWrapper<uint32_t> LabelsUInt32;
                 typedef nifty::nz5::DatasetWrapper<uint64_t> LabelsUInt64;
 
-                // exports for uinr 32 rag
+                // exports for uint 32 rag
                 typedef nifty::nz5::DatasetWrapper<uint32_t> UInt32Data;
                 exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
                                                                      uint32_t,
@@ -250,6 +289,7 @@ namespace graph{
                 //                                       UInt64Data>(ragModule);
             }
             #endif
+            */
         }
     }
 

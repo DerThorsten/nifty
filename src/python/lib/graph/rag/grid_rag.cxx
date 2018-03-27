@@ -136,11 +136,12 @@ namespace graph{
 
         // export with z5 labels
         #ifdef WITH_Z5
-        typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels2D;
-        exportGridRagT<2, Z5Labels2D>(ragModule,
-                                      "GridRag2DZ5",
-                                      "gridRag2DZ5");
-        //
+        // 2D out of core rags don't make much sense
+        // typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels2D;
+        // exportGridRagT<2, Z5Labels2D>(ragModule,
+        //                               "GridRag2DZ5",
+        //                               "gridRag2DZ5");
+
         typedef nifty::nz5::DatasetWrapper<uint32_t> Z5Labels3D32;
         exportGridRagT<3, Z5Labels3D32>(ragModule,
                                         "GridRag3DZ532",

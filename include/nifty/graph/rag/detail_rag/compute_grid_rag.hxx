@@ -70,8 +70,6 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
 
-        // FIXME xarrays can't be constructed with the nifty shape type
-        // we should get rid of it....
         std::vector<size_t> arrayShape(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
         std::vector<PerThreadData> perThreadDataVec(nThreads);
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
