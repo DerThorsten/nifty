@@ -2,6 +2,7 @@
 #include <pybind11/stl.h>
 
 #include "nifty/skeletons/evaluation.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 
 namespace py = pybind11;
@@ -88,6 +89,35 @@ namespace skeletons {
                 std::map<size_t, std::set<std::pair<size_t, size_t>>> out;
                 self.mergeFalseSplitNodes(out, numberOfThreads);
                 return out;
+            }, py::arg("numberOfThreads")=-1)
+            // hacky export of group skeletons to blocks ...
+            .def("groupSkeletonBlocks", [](SelfType & self, const int numberOfThreads){
+                parallel::ThreadPool tp(numberOfThreads);
+
+                // group the skeleton parts by the chunks of the segmentation
+                // dataset they fall into
+                SelfType::SkeletonBlockStorage skeletonsToBlocks;
+                std::vector<size_t> nonEmptyChunks;
+                self.groupSkeletonBlocks(skeletonsToBlocks, nonEmptyChunks, tp);
+
+                // need to copy to pytensor to return this to python
+                typedef xt::pytensor<size_t, 2> OutArray;
+                typedef typename OutArray::shape_type ArrayShape;
+                typedef std::map<size_t, OutArray> OutStorage;
+                typedef std::map<size_t, OutStorage> OutBlockStorage;
+
+                // TODO should be parallelized
+                OutBlockStorage out;
+                for(const auto & blockItem : skeletonsToBlocks) {
+                    out[blockItem.first] = OutStorage();
+                    auto & currentOut = out[blockItem.first];
+                    for(const auto & skelItem : blockItem.second) {
+                        ArrayShape shape = {skelItem.second.shape()[0], skelItem.second.shape()[1]};
+                        currentOut[skelItem.first] = OutArray(shape);
+                        std::copy(skelItem.second.begin(), skelItem.second.end(), currentOut[skelItem.first].begin());
+                    }
+                }
+                return std::make_tuple(nonEmptyChunks, out);
             }, py::arg("numberOfThreads")=-1)
         ;
     }

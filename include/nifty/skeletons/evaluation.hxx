@@ -135,13 +135,13 @@ namespace skeletons {
             iarch >> skeletonDict_;
         }
 
+        // group skeleton to blocks (= chunks of the segmentation)
+        void groupSkeletonBlocks(SkeletonBlockStorage &, std::vector<size_t> &, parallel::ThreadPool &);
 
     // private methods
     private:
         // initialize the metrics class from data
         void init(const size_t numberOfThreads);
-        // group skeleton to blocks (= chunks of the segmentation)
-        void groupSkeletonBlocks(SkeletonBlockStorage &, std::vector<size_t> &, parallel::ThreadPool &);
         // extract the node assignment for a single block
         void extractNodeAssignmentsForBlock(const size_t, const SkeletonStorage & skeletons, SkeletonDictionary &);
         // build r-trees for merge heuristics
