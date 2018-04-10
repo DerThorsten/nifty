@@ -12,6 +12,10 @@
 #include "nifty/graph/detail/contiguous_indices.hxx"
 #include "nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx"
 
+
+#include <xtensor/xarray.hpp>
+#include <xtensor/xstrided_view.hpp>
+
 namespace nifty{
 namespace graph{
 namespace opt{
@@ -35,14 +39,14 @@ namespace ho_multicut{
     \breathe
     **Corresponding Python Classes and their template Instantiations**:
         
-    *   :class:`nifty.graph.opt.multicut.MulticutIlpCplexMulticutObjectiveUndirectedGraph` 
+    *   :class:`nifty.graph.opt.multicut.HoMulticutIlpCplexMulticutObjectiveUndirectedGraph` 
     
         *  **OBJECTIVE** : 
         
 
             **C++:** :cpp:class:`nifty::graph::opt::multicut::MulticutObjective`
 
-            **Python:** :class:`nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
+            **Python:** :class:`nifty.graph.opt.multicut.HoMulticutObjectiveUndirectedGraph` 
             
 
         *  **ILP_SOLVER** : 
@@ -53,7 +57,7 @@ namespace ho_multicut{
 
             **Python:** - 
 
-    *   :class:`nifty.graph.opt.multicut.MulticutIlpGlpkMulticutObjectiveUndirectedGraph` 
+    *   :class:`nifty.graph.opt.multicut.HoMulticutIlpGlpkMulticutObjectiveUndirectedGraph` 
 
         *  **OBJECTIVE** : 
         
@@ -61,7 +65,7 @@ namespace ho_multicut{
             **C++:** :cpp:class:`nifty::graph::opt::multicut::MulticutObjective`
         
 
-            **Python:** :class:`nifty.graph.opt.multicut.MulticutObjectiveUndirectedGraph` 
+            **Python:** :class:`nifty.graph.opt.multicut.HoMulticutObjectiveUndirectedGraph` 
             
         *  **ILP_SOLVER** :  
           
@@ -439,21 +443,21 @@ namespace ho_multicut{
             if(f.arity() < 2){
                 throw std::runtime_error("arity must be >=2");
             }
-            else if(f.arity() == 2){
-
-                //const auto e0 = edgeIds[0];
-                //const auto e1 = edgeIds[1];
-
-                costs[lp_var + 0 ] = valueTable(0,0);
-                costs[lp_var + 1 ] = valueTable(0,1);
-                costs[lp_var + 2 ] = valueTable(1,0);
-                costs[lp_var + 3 ] = valueTable(1,1);
-
-                lp_var += 4;
-            }
+            //else if(f.arity() == 2){
+            //    costs[lp_var + 0 ] = valueTable(0,0);
+            //    costs[lp_var + 1 ] = valueTable(0,1);
+            //    costs[lp_var + 2 ] = valueTable(1,0);
+            //    costs[lp_var + 3 ] = valueTable(1,1);
+            //    lp_var += 4;
+            //}
             else{
-                throw std::runtime_error("arity must be ==2 atm");
+                for(auto iter=valueTable.begin(); iter!=valueTable.end(); ++iter,++lp_var){
+                    costs[lp_var ] = *iter;
+                }
             }
+            //else{
+            //    throw std::runtime_error("arity must be ==2 atm");
+            //}
         }   
         std::cout<<"C\n";
         ilpSolver_->initModel(n_lp_vars, costs.data());
@@ -517,12 +521,43 @@ namespace ho_multicut{
                 lp_var += 4;
             }
             else{
-                throw std::runtime_error("arity must be ==2 atm");
+
+                std::vector<size_t> shape(f.arity(), 2);
+                auto lpVarArray = xt::xarray<int>::from_shape({valueTable.size()});
+                lpVarArray = xt::arange<int>(lp_var, lp_var+valueTable.size());
+                lpVarArray.reshape(shape);
+
+                std::vector<int> vars;
+                std::vector<float> coeffs;
+
+                for(auto e=0; e<f.arity(); ++e){
+                    auto edgeId = edgeIds[e];
+                    for(auto l=0; l<2; ++l){
+                        auto lpVarEdge = l==0 ? edgeId : edgeId + graph_.numberOfEdges(); 
+
+                        vars.clear();
+                        coeffs.clear();
+
+                        vars.push_back(lpVarEdge);
+                        coeffs.push_back(-1.0);
+
+                        xt::slice_vector sv(f.arity(), xt::all());
+                        sv[e] = l;
+
+                        auto view = xt::dynamic_view(lpVarArray, sv);
+
+                        vars.insert(vars.end(), view.begin(), view.end());
+                        coeffs.insert(coeffs.end(), view.size(), 1.0 );
+
+                        ilpSolver_->addConstraint(vars.begin(), vars.end(), coeffs.begin(), 0.0, 0.0);
+
+                    }
+                }
+                lp_var += valueTable.size();
             }
         }   
 
         std::cout<<"G\n";
-
         
 
     }
