@@ -29,6 +29,7 @@ def make_overseg(rgb):
     gmag = gmag.squeeze()
 
 
+
     rag = nrag.gridRag(overseg)
 
 
@@ -48,7 +49,7 @@ def make_overseg(rgb):
     clusterPolicy = nagglo.edgeWeightedClusterPolicy(
         graph=rag, edgeIndicators=meanEdgeStrength,
         edgeSizes=edgeSizes, nodeSizes=nodeSizes,
-        numberOfNodesStop=50, sizeRegularizer=0.2)
+        numberOfNodesStop=20, sizeRegularizer=0.2)
 
     # run agglomerative clustering
     agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy) 
@@ -178,13 +179,14 @@ def computeFeatures(rgb, rag):
 
 
 
-f = "/home/tbeier/datasets/BSR/BSDS500/data/images/train/108073.jpg"
+f = "/home/tbeier/datasets/BSR/BSDS500/data/images/train/66075.jpg"
 rgb  = vigra.impex.readImage(f).astype('float32')
 
 
 rgb = numpy.swapaxes(rgb, 0,1)
 
 overseg = make_overseg(rgb)
+showseg(rgb, overseg)
 rag = nrag.gridRag(overseg)
 
 
@@ -195,7 +197,7 @@ edge_features, node_features = nrag.accumulateMeanAndLength(
 meanEdgeStrength = edge_features[:,0]
 edgeSizes = edge_features[:,1]
 
-w = numpy.exp(-0.1*meanEdgeStrength) - 0.9
+w = numpy.exp(-0.1*meanEdgeStrength) - 0.6
 
 print(w.min(), w.max())
 #w *=-1.0
@@ -215,7 +217,7 @@ eFeat /= numpy.max(eFeat,axis=1)[:,None]
 
 
 
-knn = sklearn.neighbors.NearestNeighbors(n_neighbors=8)
+knn = sklearn.neighbors.NearestNeighbors(n_neighbors=5)
 knn.fit(eFeat)
 
 potts =  numpy.zeros([2,2])
@@ -254,7 +256,7 @@ for e in range(rag.numberOfEdges):
 #sys.exit()
 
 
-vt3,vt4 = make_j_prio(v3=1.3, v4=0.2)
+vt3,vt4 = make_j_prio(v3=0.3, v4=0.2)
 
 for edges in find_j_edges(rag=rag, overseg=overseg):
 

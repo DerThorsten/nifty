@@ -459,10 +459,10 @@ namespace ho_multicut{
             //    throw std::runtime_error("arity must be ==2 atm");
             //}
         }   
-        std::cout<<"C\n";
+
         ilpSolver_->initModel(n_lp_vars, costs.data());
 
-        std::cout<<"D\n";
+      
 
         // add constraints for unaries
         for(uint64_t e : graph_.edges()){
@@ -470,11 +470,11 @@ namespace ho_multicut{
             const std::array<float, 2>     coeff{1.0f, 1.0f};
             ilpSolver_->addConstraint(vars.begin(), vars.end(), coeff.begin(), 1.0, 1.0);
         }
-        std::cout<<"E\n";
+
         // add cost for higher order factors
         lp_var = 2 * graph_.numberOfEdges();
 
-        std::cout<<"F\n";
+
         for(const auto& f: objective_.higherOrderFactors()){
             const auto& valueTable  = f.valueTable();
             const auto& edgeIds  = f.edgeIds();
@@ -556,10 +556,6 @@ namespace ho_multicut{
                 lp_var += valueTable.size();
             }
         }   
-
-        std::cout<<"G\n";
-        
-
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
