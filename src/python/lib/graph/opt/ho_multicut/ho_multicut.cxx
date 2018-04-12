@@ -25,6 +25,8 @@ namespace ho_multicut{
 
 
     void exportHoMulticutIlp(py::module &);
+    void exportHoMulticutDualDecomposition(py::module &);
+
 
 }
 }
@@ -48,7 +50,7 @@ PYBIND11_MODULE(_ho_multicut, hoMulticutModule) {
     exportHoMulticutVisitorBase(hoMulticutModule);
     exportHoMulticutBase(hoMulticutModule);
     exportHoMulticutIlp(hoMulticutModule);
-
+    exportHoMulticutDualDecomposition(hoMulticutModule);
     #ifdef WITH_LP_MP
     //exportMulticutMp(multicutModule);
     #endif

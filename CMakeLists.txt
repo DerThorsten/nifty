@@ -228,11 +228,11 @@ endif()
 
 
 #-------------------------------------------------------------------------------------------------------------------
-# find maxflow
+# find zgm
 #-------------------------------------------------------------------------------------------------------------------
-find_package(MAXFLOW  REQUIRED)
-include_directories(${MAXFLOW_INCLUDE_DIRS})
-MESSAGE( STATUS ${MAXFLOW_INCLUDE_DIRS})
+find_package(zgm  REQUIRED)
+include_directories(${zgm_INCLUDE_DIRS})
+MESSAGE( STATUS ${zgm_INCLUDE_DIRS})
 
 
 
