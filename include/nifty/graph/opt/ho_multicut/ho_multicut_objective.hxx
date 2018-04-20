@@ -24,7 +24,7 @@ namespace ho_multicut{
             const VI & vi
         )
         :   valueTable_(array),
-            edgeIds_(vi){
+            edgeIds_(vi.begin(), vi.end()){
 
         }
 
@@ -96,19 +96,34 @@ namespace ho_multicut{
 
             WeightType sum(0);
 
+
+            auto is_cut = [&](auto edge)
+            {
+                const auto uv = graph_.uv(edge);
+                return nodeLabels[uv.first] != nodeLabels[uv.second];
+            };
+
+
             // unaries
             for(const auto edge: graph_.edges()){
-                const auto uv = graph_.uv(edge);
-                
-                if(nodeLabels[uv.first] != nodeLabels[uv.second]){
+                if(is_cut(edge)){
                     sum += weights_[edge];
                 }
             }
-
+            std::vector<uint8_t> fac_state;
             for(const auto& f : higherOrderFactors_){
                 const auto& vt = f.valueTable();
                 const auto& edges = f.edgeIds();
+                fac_state.resize(edges.size());
+                auto i=0;
+                for(auto e: edges)
+                {
+                    fac_state[i] = is_cut(e);
+                    ++i;
+                }
+                sum += vt[fac_state];
             }
+
             return sum;
         }
 

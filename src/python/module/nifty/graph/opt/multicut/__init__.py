@@ -32,7 +32,7 @@ for key in _multicut.__dict__.keys():
 
 
 
-def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
+def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0, timeLimit=-1.0):
     """factory function to create :class:`IlpBackendSettigns` .
 
     factory function to create :class:`IlpBackendSettigns` .
@@ -52,7 +52,7 @@ def ilpSettings(relativeGap=0.0, absoluteGap=0.0, memLimit=-1.0):
     s.relativeGap = float(relativeGap)
     s.absoluteGap = float(absoluteGap)
     s.memLimit = float(memLimit)
-
+    s.timeLimit = float(timeLimit)
     return s
 
 

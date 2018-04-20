@@ -49,7 +49,7 @@ def make_overseg(rgb):
     clusterPolicy = nagglo.edgeWeightedClusterPolicy(
         graph=rag, edgeIndicators=meanEdgeStrength,
         edgeSizes=edgeSizes, nodeSizes=nodeSizes,
-        numberOfNodesStop=10, sizeRegularizer=0.2)
+        numberOfNodesStop=300, sizeRegularizer=1.6)
 
     # run agglomerative clustering
     agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy) 
@@ -62,72 +62,9 @@ def make_overseg(rgb):
 
     return seg.astype('uint64')
 
-def make_j_prio(v2=0.0, v3=1.0, v4=1.0):
-
-    vt3 = numpy.zeros([2,2,2])
-    vt4 = numpy.zeros([2,2,2,2])
-
-    for x0 in range(2):
-        for x1 in range(2):
-            for x2 in range(2):
-                for x3 in range(2): 
-                    s = x0 + x1 + x2 + x3
-
-                    if s == 0:
-                        vt4[x0, x1, x2, x3] = 0.0
-                    if s == 2:
-                        vt4[x0, x1, x2, x3] = v2
-                    if s == 3:
-                        vt4[x0, x1, x2, x3] = v3
-                    if s == 4:
-                        vt4[x0, x1, x2, x3] = v3
-
-    for x0 in range(2):
-        for x1 in range(2):
-            for x2 in range(2):
-
-                s = x0 + x1 + x2 
-
-                if s == 0:
-                    vt3[x0, x1, x2] = 0.0
-                if s == 2:
-                    vt3[x0, x1, x2] = v2
-                if s == 3:
-                    vt3[x0, x1, x2] = v3
-                if s == 4:
-                    vt3[x0, x1, x2] = v3
-
-    return vt3, vt4
-
-def find_j_edges(rag, overseg):
-    assert overseg.min() == 0 
-
-    tgrid = ncgp.TopologicalGrid2D(overseg+1)
-
-    bounds = tgrid.extractCellsBounds()
-    bounds0 = bounds[0]
-    bounds1 = bounds[1]
-    print(bounds[0])
 
 
 
-    def cell1ToEdge(cell1Label):
-        assert cell1Label >=1
-        a,b = numpy.array(bounds1[int(cell1Label)-1])
-        assert a>=1 
-        assert b>=1
-        return rag.findEdge(a-1, b-1)
-
-    res = []
-    for i in range(tgrid.numberOfCells[0]):
-        
-        cell1Labels = numpy.array(bounds0[i])
-        edges = [cell1ToEdge(c) for c in cell1Labels]
-
-        res.append(edges)
-
-
-    return res
 
 def makePotts(d):
 
@@ -160,33 +97,59 @@ def computeFeatures(rgb, rag):
 
     for c in range(3):
         # accumulate features from raw data
-        fRawEdge, fRawNode = nrag.accumulateStandartFeatures(rag=rag, data=rgb[:,:,c],
-            minVal=0.0, maxVal=255.0, numberOfThreads=1)
-        feats.append(fRawEdge)
-        feats.append(nodeToEdgeFeat(fRawNode))
+        gray = rgb[:,:,c] 
+        channels_raw = [
+            gray,
+            vigra.filters.gaussianGradientMagnitude(gray, 0.5).squeeze(),
+            #vigra.filters.gaussianGradientMagnitude(gray, 1.5).squeeze(),
+            #vigra.filters.hessianOfGaussianEigenvalues(gray, 0.3),
+            #vigra.filters.hessianOfGaussianEigenvalues(gray, 0.6),
+            #vigra.filters.structureTensorEigenvalues(gray, 0.3, 1.0),
+            vigra.filters.structureTensorEigenvalues(gray, 0.6, 1.5),
+            vigra.filters.structureTensorEigenvalues(gray, 1.6, 3.5),
+        ]
+        channels = []
+        for channel in channels_raw:
+            if channel.ndim == 2:
+                channels.append(channel)
+            elif channel.ndim == 3:
+                for c in range(channel.shape[2]):
+                    channels.append(channel[...,c])
+
+        
+        for channel in channels:
+            mi = float(channel.min())
+            channel -= mi 
+            ma = float(channel.max())
+            channel /= ma
+
+            fRawEdge, fRawNode = nrag.accumulateStandartFeatures(rag=rag, data=rgb[:,:,c],
+                minVal=0.0,  maxVal=1.0, numberOfThreads=1)
+            feats.append(fRawEdge)
+            #feats.append(nodeToEdgeFeat(fRawNode))
 
 
     # accumulate node and edge features from
     # superpixels geometry 
-    fGeoEdge = nrag.accumulateGeometricEdgeFeatures(rag=rag, numberOfThreads=1)
-    feats.append(fGeoEdge)
+    #fGeoEdge = nrag.accumulateGeometricEdgeFeatures(rag=rag, numberOfThreads=1)
+    #feats.append(fGeoEdge)
 
-    fGeoNode = nrag.accumulateGeometricNodeFeatures(rag=rag, numberOfThreads=1)
-    feats.append(nodeToEdgeFeat(fGeoNode))
+    #fGeoNode = nrag.accumulateGeometricNodeFeatures(rag=rag, numberOfThreads=1)
+    #feats.append(nodeToEdgeFeat(fGeoNode))
 
     return numpy.concatenate(feats, axis=1)
 
 
 
 
-f = "/home/tbeier/datasets/BSR/BSDS500/data/images/train/66075.jpg"
+f = "/home/tbeier/datasets/BSR/BSDS500/data/images/val/21077.jpg"
 rgb  = vigra.impex.readImage(f).astype('float32')
 
 
 rgb = numpy.swapaxes(rgb, 0,1)
 
 overseg = make_overseg(rgb)
-showseg(rgb, overseg)
+#showseg(rgb, overseg)
 rag = nrag.gridRag(overseg)
 
 
@@ -197,12 +160,12 @@ edge_features, node_features = nrag.accumulateMeanAndLength(
 meanEdgeStrength = edge_features[:,0]
 edgeSizes = edge_features[:,1]
 
-w = numpy.exp(-0.1*meanEdgeStrength) - 0.6
+w = numpy.exp(-0.1*meanEdgeStrength) - 0.3
 
 print(w.min(), w.max())
 #w *=-1.0
 
-print("weights",w)
+
 
 #w = numpy.random.rand(rag.numberOfEdges) - 0.5
 
@@ -217,60 +180,71 @@ eFeat /= numpy.max(eFeat,axis=1)[:,None]
 
 
 
-knn = sklearn.neighbors.NearestNeighbors(n_neighbors=5)
+knn = sklearn.neighbors.NearestNeighbors(n_neighbors=20)
 knn.fit(eFeat)
 
 potts =  numpy.zeros([2,2])
-potts[1,0] = 0.1
-potts[0,1] = 0.1
+potts[1,0] = 1
+potts[0,1] = 1
 
 
 
 bla = set()
+c = 0
 for e in range(rag.numberOfEdges):
-    d = knn.kneighbors(eFeat[e,:][None,:], return_distance=False)
-    d = d[d!=e]
+    dist, ind  = knn.kneighbors(eFeat[e,:][None,:], return_distance=True)
+    dist = dist.squeeze()
+    ind = ind.squeeze()
 
+    #print("dist",dist.shape, "ind",ind.shape)
     
-    for e2 in d:
-        key = tuple([min(e,e2),max(e2,e)])
-        if key not in bla:
+    for e2,d in zip(ind,dist):
 
-            obj.addHigherOrderFactor(potts, [e, e2])
-            bla.add(key)
+        #print(ind,e2)
+        if e2 < e:
 
-
-
-# for e_a in range(rag.numberOfEdges):
-#     for e_b in range(e_a+1, rag.numberOfEdges):
-
-#         if e_a != e_b:
-
-#             d = pdist[e_a, e_b]
-#             if d < 0.05:
-#                 vt = makePotts(d)
-#                 obj.addHigherOrderFactor(vt, [e_a, e_b])
-#                 print("d",pdist[e_a, e_b])
-
-
-#sys.exit()
-
-
-vt3,vt4 = make_j_prio(v3=0.3, v4=0.2)
-
-for edges in find_j_edges(rag=rag, overseg=overseg):
-
-    if len(edges) == 3:
-        obj.addHigherOrderFactor(vt3, edges)
-
-    if len(edges) == 4:
-        obj.addHigherOrderFactor(vt4, edges)
+            key = tuple([min(e,e2),max(e2,e)])
+            if key not in bla:
+                #print("E",e, "E2",e2, "D",d)
+                cost = numpy.exp(-30.001*d)
+                if c < 8:
+                    print("d",d,"cost",cost)
+                c +=1
+                obj.addHigherOrderFactor(potts*cost*1.0 , [e, e2])
+                bla.add(key)
 
 
 
 
 
-factory = obj.hoMulticutIlpFactory()
+if True:
+
+    factory = obj.hoMulticutIlpFactory(
+        integralHo=False,
+        ilp=True,
+        timeLimit=800.0,
+        ilpSolverSettings=nifty.graph.opt.ho_multicut.ilpSettings(
+            relativeGap=0.0,
+            #timeLimit=3
+        )
+    )
+else:
+
+    ilpFactory = obj.hoMulticutIlpFactory(
+        integralHo=False,
+        ilp=True,
+        ilpSolverSettings=nifty.graph.opt.ho_multicut.ilpSettings(
+            relativeGap=0.1,
+            timeLimit=5.0
+        )
+    )
+    obj.fusionMoveSettings(hoMcFactory=ilpFactory)
+    factory = obj.hoMulticutDualDecompositionFactory(
+        crfSolver='graphcut',
+        numberOfIterations=100, stepSize=1.1,
+        absoluteGap=0.1)
+
+
 solver = factory.create(obj)
 arg = solver.optimize(obj.verboseVisitor())
 

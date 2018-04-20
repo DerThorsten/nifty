@@ -12,6 +12,9 @@
 namespace nifty {
 namespace ilp_backend{
     
+
+
+
 class Cplex {
 public:
     typedef IlpBackendSettings SettingsType;
@@ -25,6 +28,7 @@ public:
     
 
     void initModel(const size_t, const double*);
+    void initModel(std::initializer_list<std::pair<VariableType, std::size_t>> nVars, const double*);
 
     template<class Iterator>
     void setStart(Iterator);
@@ -34,9 +38,15 @@ public:
     void optimize();
     double label(const size_t) const;
 
+    uint64_t numberOfVariables()
+    {
+        return nVariables_;
+    }
     static std::string name(){
         return std::string("Cplex");
     }
+
+
     
     template<class OBJECTIVE_ITERATOR>
     void changeObjective(
@@ -62,6 +72,12 @@ public:
         obj_.setLinearCoefs(x_,obj);
     }
 
+    void setTimeLimit(double timeLimit)
+    {
+        if(timeLimit > 0.0)
+            cplex_.setParam(IloCplex::TiLim, timeLimit);
+    }
+
 private:
    SettingsType         settings_;
    uint64_t         nVariables_;
@@ -72,6 +88,7 @@ private:
    IloObjective     obj_;
    IloNumArray      sol_;
    IloCplex         cplex_;
+   bool onlyContinous_;
 };
 
 inline Cplex::Cplex(const SettingsType & settings) 
@@ -83,19 +100,23 @@ inline Cplex::Cplex(const SettingsType & settings)
     c_(),
     obj_(),
     sol_(),
-    cplex_()
+    cplex_(),
+    onlyContinous_(false)
 {
     
 }
 
-
-
-
 inline void
 Cplex::initModel(
-    const size_t numberOfVariables,
+    std::initializer_list<std::pair<VariableType, std::size_t>> nVars,
     const double* coefficients
 ) {
+    onlyContinous_ = false;
+    std::size_t numberOfVariables = 0;
+    for(auto sizeAndType : nVars)
+    {
+        numberOfVariables += sizeAndType.second;
+    }
     nVariables_ = numberOfVariables;
     if(nVariables_>=1){
         try{
@@ -111,7 +132,25 @@ Cplex::initModel(
             sol_   = IloNumArray(env_,N);
             // set variables and objective
             //std::cout<<"add var\n";
-            x_.add(IloNumVarArray(env_, N, 0, 1, ILOBOOL));
+            onlyContinous_ = true;
+            for(auto sizeAndType : nVars)
+            {
+                IloInt nToAdd = sizeAndType.second;
+                if(sizeAndType.first == VariableType::continous)
+                {
+                    x_.add(IloNumVarArray(env_, nToAdd, 0, 1, ILOFLOAT));
+                }
+                else if(sizeAndType.first == VariableType::discrete)
+                {
+                    onlyContinous_ = false;
+                    x_.add(IloNumVarArray(env_, nToAdd, 0, 1, ILOINT));
+                }
+                else if(sizeAndType.first == VariableType::binary)
+                {
+                    onlyContinous_ = false;
+                    x_.add(IloNumVarArray(env_, nToAdd, 0, 1, ILOBOOL));
+                }
+            }
 
             //std::cout<<"create obj\n";
             IloNumArray    obj(env_,N);
@@ -134,6 +173,8 @@ Cplex::initModel(
             if(settings_.memLimit > 0.0)
                 cplex_.setParam(IloCplex::TreLim,settings_.memLimit*1024.0);
 
+            if(settings_.timeLimit > 0.0)
+                cplex_.setParam(IloCplex::TiLim,settings_.timeLimit);
 
             cplex_.setParam(IloCplex::Threads, settings_.numberOfThreads);
             // cplex_.setParam(IloCplex::EpAGap,0);
@@ -173,12 +214,17 @@ Cplex::initModel(
         catch (const std::exception & e) {
             throw std::runtime_error(std::string("error in initModel ")+e.what());
         }
-
     }
+}
 
 
 
-
+inline void
+Cplex::initModel(
+    const size_t numberOfVariables,
+    const double* coefficients
+) {
+    this->initModel({std::make_pair(VariableType::binary, numberOfVariables)}, coefficients);
 }
 
 inline void
@@ -262,25 +308,29 @@ inline void
 Cplex::setStart(
     Iterator valueIterator
 ) {
-    if(nVariables_>=1){
-        for (auto i = 0; i < nVariables_; ++i) {
-            sol_[i] = *valueIterator;
-            //std::cout<<i<<" x_ "<<x_[i]<<" sol "<<sol_[i]<<"\n";
-            ++valueIterator;
-        }
-        try{
-            cplex_.addMIPStart(x_, sol_);
-        }
-        catch (IloException& e) {
-            const std::string msg = e.getMessage();
-            e.end();
-            throw std::runtime_error(std::string("error in setStart: ")+msg);
-        }
-        catch (const std::runtime_error & e) {
-           throw std::runtime_error(std::string("error in setStart ")+e.what());
-        }
-        catch (const std::exception & e) {
-           throw std::runtime_error(std::string("error in setStart ")+e.what());
+
+    if(!onlyContinous_)
+    {
+        if(nVariables_>=1){
+            for (auto i = 0; i < nVariables_; ++i) {
+                sol_[i] = *valueIterator;
+                //std::cout<<i<<" x_ "<<x_[i]<<" sol "<<sol_[i]<<"\n";
+                ++valueIterator;
+            }
+            try{
+                cplex_.addMIPStart(x_, sol_);
+            }
+            catch (IloException& e) {
+                const std::string msg = e.getMessage();
+                e.end();
+                throw std::runtime_error(std::string("error in setStart: ")+msg);
+            }
+            catch (const std::runtime_error & e) {
+               throw std::runtime_error(std::string("error in setStart ")+e.what());
+            }
+            catch (const std::exception & e) {
+               throw std::runtime_error(std::string("error in setStart ")+e.what());
+            }
         }
     }
     

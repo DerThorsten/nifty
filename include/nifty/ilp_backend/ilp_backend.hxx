@@ -5,6 +5,15 @@
 namespace nifty {
 namespace ilp_backend{
 
+
+    enum class VariableType
+    {
+        continous,
+        discrete,
+        binary
+    };
+
+
     struct IlpBackendSettings{
         
         enum PreSolver {
@@ -23,6 +32,7 @@ namespace ilp_backend{
             LP_SOLVER_DEFAULT
         };
 
+        double timeLimit = {-1.0};
         double memLimit = {-1.0};
         double relativeGap{0.0};
         double absoluteGap{0.0};

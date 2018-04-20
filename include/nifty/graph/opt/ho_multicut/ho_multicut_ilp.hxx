@@ -9,11 +9,14 @@
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/graph/bidirectional_breadth_first_search.hxx"
 #include "nifty/ilp_backend/ilp_backend.hxx"
+#include "nifty/tools/timer.hxx"
 #include "nifty/graph/detail/contiguous_indices.hxx"
 #include "nifty/graph/detail/node_labels_to_edge_labels_iterator.hxx"
 
 
 #include <xtensor/xarray.hpp>
+#include <xtensor/xtensor.hpp>
+#include <xtensor/xbuilder.hpp>
 #include <xtensor/xstrided_view.hpp>
 
 namespace nifty{
@@ -130,18 +133,21 @@ namespace ho_multicut{
         struct SubgraphWithCut {
             SubgraphWithCut(
                 const IlpSovler& ilpSolver, 
-                const DenseIds & denseIds
+                const DenseIds & denseIds,
+                const float cutBias
             )
                 :   ilpSolver_(ilpSolver),
-                    denseIds_(denseIds)
+                    denseIds_(denseIds),
+                    cutBias_(cutBias)
             {}
             bool useNode(const size_t v) const
                 { return true; }
             bool useEdge(const size_t e) const
-                { return ilpSolver_.label(e) == 1; }
+                { return ilpSolver_.label(e) > 0.5 + cutBias_; }
 
             const IlpSovler & ilpSolver_;
             const DenseIds & denseIds_;
+            float cutBias_;
         };
 
     public:
@@ -156,13 +162,18 @@ namespace ho_multicut{
 
         
 
+
             /**
-             *  \brief  Maximum allowed cutting plane iterations 
-             *  \details  Maximum allowed cutting plane iteration.
-             *  A value of zero will be interpreted as an unlimited
-             *  number of iterations.
+             *  \brief  enforce integral solutions 
+             *  \details  (solution will be optimal only if true)
              */
-            size_t numberOfIterations{0};   
+            bool ilp{true}; 
+
+            /**
+             *  \brief  enforce integral solutions 
+             *  \details  (solution will be optimal only if true)
+             */
+            bool integralHo{false}; 
 
             /**
              *  \brief Explicitly add constrains for cycle of length three.
@@ -187,6 +198,11 @@ namespace ho_multicut{
              *   absolute gaps can be specified
              */
             IlpSettingsType ilpSettings{};
+
+            double cutBias{0.0000001};
+            double timeLimit{-1.0};
+            int maxIterations{-1};
+
         };
 
         virtual ~HoMulticutIlp(){
@@ -289,7 +305,7 @@ namespace ho_multicut{
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){  
 
-        //std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
+        ////std::cout<<"nStartConstraints "<<addedConstraints_<<"\n";
         VisitorProxyType visitorProxy(visitor);
 
         visitorProxy.addLogNames({"violatedConstraints"});
@@ -303,10 +319,31 @@ namespace ho_multicut{
             // auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
             //ilpSolver_->setStart(edgeLabelIter);
 
-            for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
+            nifty::tools::Timer timer;
+            double elapsedTime = 0.0;
 
+
+            for (size_t i = 0; settings_.maxIterations <= -1 || i < settings_.maxIterations; ++i){
+
+                timer.start();
                 // solve ilp
+
+                if(settings_.timeLimit > 0)
+                {
+                    auto rest = settings_.timeLimit - elapsedTime;
+                    if(rest <= 0.0)
+                        break;
+                    else
+                        ilpSolver_->setTimeLimit(rest);
+                }
+
                 ilpSolver_->optimize();
+                timer.stop();
+                elapsedTime += timer.elapsedSeconds();
+                timer.reset();
+
+
+
 
                 // find violated constraints
                 auto nViolated = addCycleInequalities();
@@ -342,7 +379,7 @@ namespace ho_multicut{
     addCycleInequalities(
     ){
 
-        components_.build(SubgraphWithCut(*ilpSolver_, denseIds_));
+        components_.build(SubgraphWithCut(*ilpSolver_, denseIds_, settings_.cutBias));
 
         // search for violated non-chordal cycles and add corresp. inequalities
         size_t nCycle = 0;
@@ -351,14 +388,14 @@ namespace ho_multicut{
 
         auto lpEdge = graph_.numberOfEdges();
         for (auto edge : graph_.edges()){
-            if (ilpSolver_->label(lpEdge) > 0.5){
+            if (ilpSolver_->label(lpEdge) > (0.5 - settings_.cutBias)){
 
                 auto v0 = graph_.u(edge);
                 auto v1 = graph_.v(edge);
 
                 if (components_.areConnected(v0, v1)){   
 
-                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(*ilpSolver_, denseIds_));
+                    auto hasPath = bibfs_.runSingleSourceSingleTarget(v0, v1, SubgraphWithCut(*ilpSolver_, denseIds_, settings_.cutBias));
                     NIFTY_CHECK(hasPath,"damn");
                     const auto & path = bibfs_.path();
                     NIFTY_CHECK_OP(path.size(),>,0,"");
@@ -393,12 +430,74 @@ namespace ho_multicut{
     repairSolution(
         NodeLabelsType & nodeLabels
     ){
-        if(graph_.numberOfEdges()!= 0 ){
-            for (auto node: graph_.nodes()){
-                nodeLabels[node] = components_.componentLabel(node);
+
+        auto edgeIsCut = [&](auto edge)
+        {
+            const auto uv = graph_.uv(edge);
+            return nodeLabels[uv.first] != nodeLabels[uv.second];
+        };
+
+
+        if(settings_.ilp){
+            if(graph_.numberOfEdges()!= 0 ){
+
+                for (auto node: graph_.nodes()){
+                    nodeLabels[node] = components_.componentLabel(node);
+                }
+
+                std::vector<double> repaired(ilpSolver_->numberOfVariables());
+                auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
+                uint64_t c = 0;
+                for(auto edge : graph_.edges())
+                {
+                    const auto isCut = edgeIsCut(edge);
+
+                    // is NOT cut indicator
+                    repaired[c]  = double(!isCut);
+                    // is     cut indicator
+                    repaired[c + graph_.numberOfEdges()]  = double(isCut);
+                }
+                ++c;
+                
+                for(const auto& f: objective_.higherOrderFactors()){
+                    const auto& edgeIds  = f.edgeIds();
+                    const auto arity = f.arity();
+                    
+                    const auto&  vt=  f.valueTable();
+                    const auto& shape = vt.shape();
+
+                    
+
+                    if(arity == 2){
+                        xt::xtensor<uint8_t, 2> tmp = xt::zeros<uint8_t>(shape);
+                        tmp(edgeIsCut(edgeIds[0]), edgeIsCut(edgeIds[0])) = 1;
+                        for(auto val : tmp)
+                        {
+                            repaired[c] = double(val);
+                            ++c;
+                        }
+
+                    }
+                    else
+                    {
+                        xt::xarray<uint8_t> tmp = xt::zeros<uint8_t>(shape);
+                        std::vector<uint8_t> edgeState(arity);
+                        for(auto a=0; a<arity; ++a)
+                        {
+                            edgeState[a] = edgeIsCut(edgeIds[a]);
+                        }
+                        tmp[edgeState] = 1;
+                        for(auto val : tmp)
+                        {
+                            repaired[c] = double(val);
+                            ++c;
+                        }
+                    }
+
+                }
+
+                ilpSolver_->setStart(repaired.begin());
             }
-            //auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
-            //ilpSolver_->setStart(edgeLabelIter);
         }
     }
 
@@ -406,15 +505,16 @@ namespace ho_multicut{
     void HoMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     initializeIlp(){
 
-        std::cout<<"A\n";
 
         // count needed variables
-        uint64_t n_lp_vars = 2 * graph_.numberOfEdges();
-        for(const auto& f: objective_.higherOrderFactors()){
-            n_lp_vars += f.valueTable().size();
-        }   
+        uint64_t unary_vars = 1 * graph_.numberOfEdges();
+        uint64_t ho_vars = 1 * graph_.numberOfEdges();
 
-        std::cout<<"B\n";
+        for(const auto& f: objective_.higherOrderFactors()){
+            ho_vars += f.valueTable().size();
+        }   
+        uint64_t n_lp_vars = unary_vars + ho_vars;
+
 
         // setup cost vector for unaries
         std::vector<double> costs(n_lp_vars, 0.0);
@@ -432,7 +532,6 @@ namespace ho_multicut{
                 costs[e+graph_.numberOfEdges()] = weights[e];
             }
         }
-        std::cout<<"C\n";
 
         // add cost for higher order factors
         uint64_t lp_var = 2 * graph_.numberOfEdges();
@@ -460,8 +559,34 @@ namespace ho_multicut{
             //}
         }   
 
-        ilpSolver_->initModel(n_lp_vars, costs.data());
-
+        //std::cout<<"init ilp\n";
+        if(!settings_.ilp)
+        {
+            ilpSolver_->initModel(
+                {std::make_pair(ilp_backend::VariableType::continous, n_lp_vars)}, 
+                costs.data()
+            );
+        }
+        else if(!settings_.integralHo)
+        {
+            ilpSolver_->initModel(
+                {
+                    std::make_pair(ilp_backend::VariableType::binary, unary_vars),
+                    std::make_pair(ilp_backend::VariableType::continous, ho_vars),
+                }, 
+                costs.data()
+            );
+        }
+        else
+        {
+            ilpSolver_->initModel(
+                {
+                    std::make_pair(ilp_backend::VariableType::binary, n_lp_vars)
+                }, 
+                costs.data()
+            );
+        }
+        //std::cout<<"init done..addc constraints\n";
       
 
         // add constraints for unaries
@@ -556,13 +681,16 @@ namespace ho_multicut{
                 lp_var += valueTable.size();
             }
         }   
+
+        //std::cout<<"iaddc constraints done\n";
+      
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
     void HoMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addThreeCyclesConstraintsExplicitly(
     ){
-        //std::cout<<"add three cyckes\n";
+        ////std::cout<<"add three cyckes\n";
         std::array<size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
@@ -570,7 +698,7 @@ namespace ho_multicut{
         if(!settings_.addOnlyViolatedThreeCyclesConstraints){
             for(const auto & tce : threeCycles){
                 for(auto i=0; i<3; ++i){
-                    variables[i] = denseIds_[tce[i]];
+                    variables[i] = denseIds_[tce[i]] + graph_.numberOfEdges(); 
                 }
                 for(auto i=0; i<3; ++i){
                     for(auto j=0; j<3; ++j){
@@ -602,7 +730,7 @@ namespace ho_multicut{
                 if(nNeg == 1){
                     for(auto i=0; i<3; ++i){
                         coefficients[i] = 1.0;
-                        variables[i] = denseIds_[tce[i]];
+                        variables[i] = denseIds_[tce[i]] + graph_.numberOfEdges(); 
                     }
                     coefficients[negIndex] = -1.0;
                     ilpSolver_->addConstraint(variables.begin(), variables.begin() + 3, 
@@ -611,8 +739,8 @@ namespace ho_multicut{
                 }
             }
         }
-        //std::cout<<"add three done\n";
-        //std::cout<<"added "<<c<<" explicit constraints\n";
+        ////std::cout<<"add three done\n";
+        ////std::cout<<"added "<<c<<" explicit constraints\n";
     }
 
 

@@ -4,7 +4,6 @@
 #include <memory>
 #include <unordered_set>
 
-#include "nifty/graph/opt/ho_multicut/ho_multicut_greedy_additive.hxx"
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/graph/opt/ho_multicut/ho_multicut_base.hxx"
@@ -15,8 +14,14 @@
 namespace nifty{
 namespace graph{
 namespace opt{
-namespace multicut{
+namespace ho_multicut{
 
+
+
+    namespace detail_fm
+    {
+
+    }
 
     template<class OBJECTIVE>
     class FusionMove{
@@ -28,13 +33,13 @@ namespace multicut{
 
         typedef UndirectedGraph<> FmGraph;
         typedef HoMulticutObjective<FmGraph, double> FmObjective;
-        typedef HoMulticutBase<FmObjective> FmMcBase;
-        typedef nifty::graph::opt::common::SolverFactoryBase<FmMcBase> FmMcFactoryBase;
+        typedef HoMulticutBase<FmObjective> FmHoMcBase;
+        typedef nifty::graph::opt::common::SolverFactoryBase<FmHoMcBase> FmHoMcFactoryBase;
         typedef HoMulticutEmptyVisitor<FmObjective> FmEmptyVisitor;
-        typedef typename  FmMcBase::NodeLabelsType FmNodeLabelsType;
+        typedef typename  FmHoMcBase::NodeLabelsType FmNodeLabelsType;
 
         struct SettingsType{
-            std::shared_ptr<FmMcFactoryBase> mcFactory;
+            std::shared_ptr<FmHoMcFactoryBase> hoMcFactory;
         };
 
         FusionMove(const ObjectiveType & objective, const SettingsType & settings = SettingsType())
@@ -44,10 +49,8 @@ namespace multicut{
             ufd_(objective.graph().nodeIdUpperBound()+1),
             nodeToDense_(objective.graph())
         {
-            if(!bool(settings_.mcFactory)){
-                typedef HoMulticutGreedyAdditive<FmObjective> FmSolver;
-                typedef nifty::graph::opt::common::SolverFactory<FmSolver> FmFactory;
-                settings_.mcFactory = std::make_shared<FmFactory>();
+            if(!bool(settings_.hoMcFactory)){
+                throw std::runtime_error("hoMcFactory may not be empty");
             }
         }
 
@@ -101,17 +104,21 @@ namespace multicut{
             for(auto i=0; i<proposals.size(); ++i){
                 const auto p = proposals[i];
                 const auto e = objective_.evalNodeLabels(*p);
+                std::cout<<"p"<<i<<" "<<e<<"\n";
                 if(e < eMin){
                     eMin = e;
                     eMinIndex = i;
                 }
             }
-            const auto eResult = objective_.evalNodeLabels(*result);            
+            const auto eResult = objective_.evalNodeLabels(*result);
+            std::cout<<"r"<<"  "<<eResult<<"\n";            
             if(eMin < eResult){
                 for(auto node : graph_.nodes()){
                     result->operator[](node) = proposals[eMinIndex]->operator[](node);
                 }
             }
+            const auto eResult2 = objective_.evalNodeLabels(*result);
+            std::cout<<"r2"<<" "<<eResult2<<"\n"; 
         }
 
     private:
@@ -157,9 +164,9 @@ namespace multicut{
             }
             else{
 
+
+
                 NIFTY_CHECK_OP(fmGraph.numberOfEdges(),>,0,"");
-
-
                 FmObjective fmObjective(fmGraph);
                 auto & fmWeights = fmObjective.weights();
                 for(auto edge : graph_.edges()){
@@ -177,9 +184,18 @@ namespace multicut{
                     }
                 }
 
+
+                this->addHigherOrderFactors(fmObjective);
+
+
+
+
+
+
+
                 //std::cout<<"fm solve\n";
                 // solve that thin
-                auto solverPtr = settings_.mcFactory->create(fmObjective);
+                auto solverPtr = settings_.hoMcFactory->create(fmObjective);
                 FmNodeLabelsType fmLabels(fmGraph);
                 FmEmptyVisitor fmVisitor;
                 //std::cout<<"opt\n";
@@ -206,6 +222,112 @@ namespace multicut{
             }
         }
 
+
+        void addHigherOrderFactors(
+            FmObjective & fmObjective
+        )
+        {
+            typedef std::vector<uint64_t> EdgeIdKey; 
+
+            const auto& fmGraph = fmObjective.graph();
+            auto& fmWeights = fmObjective.weights();
+
+            std::vector<uint8_t>  edgeState;
+            EdgeIdKey fmEdges;
+            
+
+            std::map<EdgeIdKey, xt::xarray<float> > edgeIdToVt;
+
+            for(const auto & fac : objective_.higherOrderFactors())
+            {   
+                // input
+                const auto& edgeIds = fac.edgeIds();
+                const auto& vt = fac.valueTable();
+                const auto& arity = fac.arity();
+
+                // state of edges 
+                // and edge mapping
+
+                auto n_fixed = 0;
+                auto n_free = 0;
+                edgeState.resize(arity);
+                fmEdges.resize(arity);
+
+                for(std::size_t i=0; i<arity; ++i)
+                {
+                    const auto edge = edgeIds[i];
+                    const auto uv = graph_.uv(edge);
+                    const auto lu = nodeToDense_[ufd_.find(uv.first)];
+                    const auto lv = nodeToDense_[ufd_.find(uv.second)];
+                    const auto isCut = (lu != lv);
+                    edgeState[i] = isCut;
+                    if(isCut)
+                    {
+                        fmEdges[i] = fmGraph.findEdge(lu, lv);
+                        ++n_free;
+                    }
+                    else
+                    {
+                        //0fmEdges[i] = -1;
+                        ++n_fixed;
+                    }
+                }
+                //std::cout<<"free/fixed "<<n_free<<"/"<<n_fixed<<"\n";
+
+                if(arity == 2)
+                {
+
+                    if(n_fixed == 0)
+                    {
+                        // factors stays the same but could there might be a factor like this already
+                        auto it = edgeIdToVt.find(fmEdges);
+                        if(it == edgeIdToVt.end())
+                        {
+                            edgeIdToVt.insert(std::make_pair(fmEdges, vt));
+                        }
+                        else
+                        {
+                            auto& existingVt = it->second;
+                            existingVt += vt;
+                        }
+                        
+                    }
+                    else if(n_fixed == 1)
+                    {   
+                        // first is alive
+                        if(edgeState[0] == 1)
+                        {
+                            NIFTY_CHECK_OP(edgeState[1], ==, 0, "internal error");
+                            const auto e0 = vt(0,0);
+                            const auto e1 = vt(1,0);  
+                            const auto w = (e1 - e0);
+                            fmWeights[fmEdges[0]] += w;
+                        }
+                        // second alive
+                        else
+                        {
+                            NIFTY_CHECK_OP(edgeState[0], ==, 0, "internal error");
+                            NIFTY_CHECK_OP(edgeState[1], ==, 1, "internal error");
+                            const auto e0 = vt(0,0);
+                            const auto e1 = vt(0,1);  
+                            const auto w = (e1 - e0);
+                            fmWeights[fmEdges[1]] += w;
+                        }   
+                    }
+                }
+            }
+
+            // add all ho factors
+            for(const auto& kv : edgeIdToVt)
+            {
+                const auto edgeIds = kv.first;
+                const auto vt = kv.second;
+                fmObjective.addHigherOrderFactor(vt, edgeIds);
+            }
+
+
+            std::cout<<"reduced: "<<objective_.higherOrderFactors().size()<<" "<<fmObjective.higherOrderFactors().size()<<"\n";
+        }
 
         const ObjectiveType & objective_;
         const GraphType & graph_;

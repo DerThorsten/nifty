@@ -73,12 +73,17 @@ namespace ho_multicut{
         nifty::graph::opt::ho_multicut::exportHoMulticutSolver<Solver>(hoMulticutModule, solverName.c_str(), docHelper)
 
             .def(py::init<>())
-            .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+            //.def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
             //.def_readwrite("verbose", &SettingsType::verbose)
             //.def_readwrite("verboseIlp", &SettingsType::verboseIlp)
             .def_readwrite("addThreeCyclesConstraints", &SettingsType::addThreeCyclesConstraints)
             .def_readwrite("addOnlyViolatedThreeCyclesConstraints", &SettingsType::addOnlyViolatedThreeCyclesConstraints)
             .def_readwrite("ilpSettings",&SettingsType::ilpSettings)
+            .def_readwrite("ilp",&SettingsType::ilp)
+            .def_readwrite("integralHo",&SettingsType::integralHo)
+            .def_readwrite("ilpSettings",&SettingsType::ilpSettings)
+            .def_readwrite("timeLimit", &SettingsType::timeLimit)
+            .def_readwrite("maxIterations", &SettingsType::maxIterations)
         ; 
     }
 

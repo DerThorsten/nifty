@@ -67,14 +67,26 @@ namespace ho_multicut{
         const auto solverName = std::string("HoMulticutDualDecomposition");
         // todo exportHoMulticutSolver should be in the correct namespace
 
-        nifty::graph::opt::ho_multicut::exportHoMulticutSolver<Solver>(hoMulticutModule, solverName.c_str(), docHelper)
+        auto settingsCls = nifty::graph::opt::ho_multicut::exportHoMulticutSolver<Solver>(hoMulticutModule, solverName.c_str(), docHelper)
 
             .def(py::init<>())
             .def_readwrite("numberOfIterations", &SettingsType::numberOfIterations)
+            .def_readwrite("stepSize", &SettingsType::stepSize)
+            .def_readwrite("submodelMcFactory", &SettingsType::submodelMcFactory)
+            .def_readwrite("crfSolver", &SettingsType::crf_solver)
+            .def_readwrite("absoluteGap", &SettingsType::absoluteGap)
+            .def_readwrite("fusionMoveSettings", &SettingsType::fusionMoveSetting)
         ; 
+
+        py::enum_<typename SettingsType::crf_solver_type>(settingsCls, "crf_solver_type")
+            .value("graphcut",  SettingsType::crf_solver_type::graphcut)
+            .value("qpbo",      SettingsType::crf_solver_type::qpbo)
+            .export_values()
+        ;
     }
 
     void exportHoMulticutDualDecomposition(py::module & hoMulticutModule){
+
         
         py::options options;
         options.disable_function_signatures();

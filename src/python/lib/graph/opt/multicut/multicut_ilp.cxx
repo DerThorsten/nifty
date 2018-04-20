@@ -107,6 +107,7 @@ namespace multicut{
             .def_readwrite("relativeGap", &ilp_backend::IlpBackendSettings::relativeGap)
             .def_readwrite("absoluteGap", &ilp_backend::IlpBackendSettings::absoluteGap)
             .def_readwrite("memLimit",  &ilp_backend::IlpBackendSettings::memLimit)
+            .def_readwrite("timeLimit", &ilp_backend::IlpBackendSettings::timeLimit)
         ;
 
         {

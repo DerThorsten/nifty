@@ -1,5 +1,5 @@
 
-SET(MOD_LIBS ${NIFTY_LP_SOLVER_LIBS})
+SET(MOD_LIBS ${NIFTY_LP_SOLVER_LIBS} ${zgm_LIBRARIES})
 SET(MOD_SOURCES
         ho_multicut.cxx
         ho_multicut_objective.cxx
@@ -11,7 +11,7 @@ SET(MOD_SOURCES
         # ho_multicut_decomposer.cxx
         # ho_multicut_greedy_additive.cxx
         # ho_multicut_andres.cxx
-        # fusion_move_based.cxx
+        fusion_move.cxx
         # cc_fusion_move_based.cxx
         # perturb_and_map.cxx
         # chained_solvers.cxx

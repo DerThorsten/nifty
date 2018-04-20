@@ -66,14 +66,29 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
+    def fusionMoveSettings(hoMcFactory=None):
+        if hoMcFactory is None:
+            if Configuration.WITH_CPLEX:
+                hoMcFactory = HoMulticutObjectiveUndirectedGraph.hoMulticutIlpCplexFactory()
+            else:
+                raise RuntimeError("this needs cplex")
+
+        s = getSettings('FusionMove')
+        s.hoMcFactory = hoMcFactory
+        return s
+    O.fusionMoveSettings = staticmethod(fusionMoveSettings)
 
  
 
 
     def hoMulticutIlpFactory(addThreeCyclesConstraints=True,
-                            addOnlyViolatedThreeCyclesConstraints=True,
-                            ilpSolverSettings=None,
-                            ilpSolver = None):
+                             addOnlyViolatedThreeCyclesConstraints=True,
+                             ilpSolverSettings=None,
+                             ilpSolver=None,
+                             integralHo=False,
+                             ilp=True,
+                             timeLimit=-1.0,
+                             maxIterations=-1):
         # default solver:
         if ilpSolver is None and Configuration.WITH_CPLEX:
             ilpSolver = 'cplex'
@@ -108,6 +123,10 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         if ilpSolverSettings is None:
             ilpSolverSettings = ilpSettings()
         s.ilpSettings = ilpSolverSettings
+        s.integralHo = bool(integralHo)
+        s.ilp = bool(ilp)
+        s.timeLimit = float(timeLimit)
+        s.maxIterations = int(maxIterations)
         return F(s)
 
     O.hoMulticutIlpFactory = staticmethod(hoMulticutIlpFactory)
@@ -151,8 +170,35 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
+    def hoMulticutDualDecompositionFactory(
+        numberOfIterations=100, submodelMcFactory=None, 
+        stepSize=0.1,crfSolver='graphcut',
+        absoluteGap=0.0000001,
+        fusionMove=None
+        ):
 
 
+        s,F = getSettingsAndFactoryCls("HoMulticutDualDecomposition")
+       
+
+        if submodelMcFactory is None:
+            submodelMcFactory = graphCls.MulticutObjective.multicutIlpFactory()
+
+        s.submodelMcFactory = submodelMcFactory
+        s.stepSize = float(stepSize)
+        s.absoluteGap = float(absoluteGap)
+        s.numberOfIterations = int(numberOfIterations)
+        if crfSolver == 'graphcut':
+            s.crfSolver = s.graphcut
+        elif crfSolver == 'qpbo':
+            s.crfSolver = s.qpbo
+
+        if fusionMove is None:
+            fusionMove = fusionMoveSettings()
+        s.fusionMoveSettings = fusionMove
+        return F(s)
+
+    O.hoMulticutDualDecompositionFactory = staticmethod(hoMulticutDualDecompositionFactory)
 
 
 
