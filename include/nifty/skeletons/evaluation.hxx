@@ -122,6 +122,10 @@ namespace skeletons {
         void mergeFalseSplitNodes(std::map<size_t, std::set<std::pair<size_t, size_t>>> &,
                                   const int) const;
 
+        // for each skeleton with explicit merge(s), find the nodes that are assigned to
+        // the label id(s) that contain the merge
+        void getNodesInFalseMergeLabels(std::map<size_t, std::vector<size_t>> &, const int) const;
+
         // serialize and deserialize node dictionary with boost::serialization
         void serialize(const std::string & path) const {
             std::ofstream os(path.c_str(), std::ofstream::out | std::ofstream::binary);
@@ -156,6 +160,9 @@ namespace skeletons {
         //
         void getLabelsWithoutExplicitMerge(std::unordered_map<size_t, size_t> &,
                                            parallel::ThreadPool &) const;
+        //
+        void mapLabelsToSkeletons(std::unordered_map<size_t, std::vector<size_t>> &, 
+                                  parallel::ThreadPool &) const;
     };
 
 
@@ -515,8 +522,16 @@ namespace skeletons {
             const auto & splitEdge = splitEdges[skeletonId];
             auto & splitScore = splitScores[skeletonId];
 
+            // we might have no edges, because they were all
+            // filtered out
+            if(splitEdge.size() == 0) {
+                return;
+            }
+
             splitScore = std::accumulate(splitEdge.begin(), splitEdge.end(), 0.);
+            // std::cout << "Skeleton: " << skeletonId << " n-splits: " << splitScore << " n-edges: " << splitEdge.size() << std::endl;
             splitScore /= splitEdge.size();
+
         });
     }
 
@@ -756,10 +771,14 @@ namespace skeletons {
     }
 
 
+    // determine the edges that are part of an (explicit) merge
     void SkeletonMetrics::getMergeEdges(std::map<size_t, std::vector<bool>> & mergeEdges,
                                         std::map<size_t, size_t> & mergePoints,
                                         const int numberOfThreads) const {
 
+        // first, get the labels that are part of a merge
+        // merge labels will contain a mapping from skeleton ids
+        // to label ids that contain that skeleton
         std::map<size_t, std::vector<size_t>> mergeLabels;
         computeExplicitMerges(mergeLabels, numberOfThreads);
 
@@ -780,6 +799,7 @@ namespace skeletons {
             const size_t skeletonId = skeletonIds_[skeletonIndex];
 
             // check if this skeleton has a merge
+            // and get the segmentation labels that contain the merge
             auto mergeIt = mergeLabels.find(skeletonId);
             if(mergeIt == mergeLabels.end()) {
                 return;
@@ -896,6 +916,7 @@ namespace skeletons {
         mergeScore = 0.;
         totalMergePoints = 0;
 
+        // iterate over all skeletons
         for(const size_t skeletonId : skeletonIds_) {
             const auto & splitEdge = splitEdges[skeletonId];
             auto mergeIt = mergeEdges.find(skeletonId);
@@ -996,7 +1017,7 @@ namespace skeletons {
                 }
             }
 
-            // we only writout labels that don't have an explicit merge, i.e. are only contained in a
+            // we only write out labels that don't have an explicit merge, i.e. are only contained in a
             // single skeleton
             if(skeletonsWithLabel.size() == 1) {
                 // for thread 0, we write directly to the out data
@@ -1015,6 +1036,48 @@ namespace skeletons {
             // would prefer merge but C++ 17 ...
             out.insert(threadData.begin(), threadData.end());
         }
+    }
+
+
+    //
+    void SkeletonMetrics::mapLabelsToSkeletons(std::unordered_map<size_t, std::vector<size_t>> & out,
+                                               parallel::ThreadPool & tp) const {
+        std::unordered_map<size_t, std::set<size_t>> labelsPerSkeleton;
+        std::vector<size_t> labels;
+        getSkeletonsToLabel(labelsPerSkeleton, labels, tp);
+
+        // iterate over the unique labels in parallel and find the labels which don't have
+        // an explicit merge
+        const size_t nThreads = tp.nThreads();
+        std::vector<std::unordered_map<size_t, std::vector<size_t>>> perThreadData(nThreads);
+
+        const size_t nLabels = labels.size();
+        parallel::parallel_foreach(tp, nLabels, [&](const int tId, const size_t labelIndex){
+            const size_t labelId = labels[labelIndex];
+            std::vector<size_t> skeletonsWithLabel;
+            for(auto skelId : skeletonIds_) {
+                const auto & skelLabels = labelsPerSkeleton[skelId];
+                if(skelLabels.find(labelId) != skelLabels.end()) {
+                    skeletonsWithLabel.push_back(skelId);
+                }
+            }
+
+            // for thread 0, we write directly to the out data
+            if(tId == 0) {
+                out[labelId] = std::vector<size_t>(skeletonsWithLabel.begin(), skeletonsWithLabel.end());
+            } else {
+                auto & threadData = perThreadData[tId];
+                threadData[labelId] = std::vector<size_t>(skeletonsWithLabel.begin(), skeletonsWithLabel.end());
+            }
+        });
+
+        // merge the results into the out data (Note that thread 0 is already `out`)
+        for(int thread = 1; thread < nThreads; ++thread) {
+            auto & threadData = perThreadData[thread];
+            // would prefer merge but C++ 17 ...
+            out.insert(threadData.begin(), threadData.end());
+        }
+
     }
 
 
@@ -1150,8 +1213,14 @@ namespace skeletons {
         buildRTrees(resolution, trees, tp);
 
         // compute the unique labels and a mapping of label to skeleton
-        std::unordered_map<size_t, size_t> candidateLabels;
-        getLabelsWithoutExplicitMerge(candidateLabels, tp);
+
+        // old impl, only taking skeletons without merge into accout
+        // std::unordered_map<size_t, size_t> candidateLabels;
+        // getLabelsWithoutExplicitMerge(candidateLabels, tp);
+
+        // new impl for all skeletons
+        std::unordered_map<size_t, std::vector<size_t>> candidateLabels;
+        mapLabelsToSkeletons(candidateLabels, tp);
 
         // open the segmentation dataset and get the shape and chunks
         auto segmentation = z5::openDataset(segmentationPath_);
@@ -1237,6 +1306,9 @@ namespace skeletons {
                             continue;
                         }
 
+                        // old impl with unambiguous mapping of labels to skeletons
+
+                        /*
                         // if this is a candidate label, get skeleton-id check for a tree-point in the vicinity
                         const size_t skeletonId = candidateIt->second;
                         const auto & tree = trees[skeletonId];
@@ -1264,11 +1336,65 @@ namespace skeletons {
                                 outIt->second.push_back(distance);
                             }
                         }
+                        */
+
+                        // new impl, where label can map to more than a single skeleton
+                        const auto & skeletonIds = candidateIt->second;
+                        for(const size_t skeletonId : skeletonIds) {
+                            const auto & tree = trees[skeletonId];
+                            // make the query point
+                            Point pQuery(static_cast<size_t>((z + chunkOffset[0]) * resolution[0]),
+                                         static_cast<size_t>((y + chunkOffset[1]) * resolution[1]),
+                                         static_cast<size_t>((x + chunkOffset[2]) * resolution[2]));
+                            // find the nearest skeleton point to this pixel
+                            auto treeIt = tree.qbegin(bgi::nearest(pQuery, 1));
+                            const size_t skeletonNode = treeIt->second;
+                            // find the distacne
+                            const double distance = bg::distance(pQuery, treeIt->first);
+
+                            // insert the distance into the output
+                            {
+                                std::lock_guard<std::mutex> guard(mut);
+                                auto & skelOut = out[skeletonId];
+                                auto outIt = skelOut.find(skeletonNode);
+                                if(outIt == skelOut.end()) {
+                                    skelOut.insert(outIt, std::make_pair(skeletonNode, std::vector<double>({distance})));
+                                } else {
+                                    outIt->second.push_back(distance);
+                                }
+                            }
+                        }
                     }
                 }
             }
         });
     }
+
+
+    void SkeletonMetrics::getNodesInFalseMergeLabels(std::map<size_t, std::vector<size_t>> & out,
+                                                     const int numberOfThreads) const {
+        std::map<size_t, std::vector<size_t>> skeletonsWithExplicitMerge;
+        computeExplicitMerges(skeletonsWithExplicitMerge, numberOfThreads);
+
+        for(const auto & skelWithMerge : skeletonsWithExplicitMerge) {
+            const size_t skelId = skelWithMerge.first;
+            const auto & mergeLabelIds = skelWithMerge.second;
+            const auto & nodeAssignment = skeletonDict_.at(skelId);
+
+            std::vector<size_t> falseMergeNodes;
+            for(const auto & nodePair : nodeAssignment) {
+                const size_t nodeId = nodePair.first;
+                const size_t labelId = nodePair.second;
+                if(std::find(mergeLabelIds.begin(), mergeLabelIds.end(), labelId) != mergeLabelIds.end()) {
+                    falseMergeNodes.push_back(nodeId);
+                }
+            }
+            out.insert(std::make_pair(skelId, falseMergeNodes));
+        }
+
+    }
+
+
 
 }
 }
