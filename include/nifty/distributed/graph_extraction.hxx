@@ -185,10 +185,10 @@ namespace distributed {
                         const NODES & nodes,
                         const EDGES & edges,
                         const COORD & roiBegin,
-                        const COORD & roiEnd) {
+                        const COORD & roiEnd,
+                        const int numberOfThreads=1,
+                        const std::string & compression="raw") {
 
-        const std::vector<size_t> zero1Coord({0});
-        const std::vector<size_t> zero2Coord({0, 0});
         const size_t nNodes = nodes.size();
         const size_t nEdges = edges.size();
 
@@ -198,34 +198,72 @@ namespace distributed {
         z5::handle::Group group(graphPath.string());
         z5::createGroup(group, false);
 
-        // serialize the graph (edges and nodes)
-        // TODO should we additionally compress this ?
+        // threadpool for parallel writing
+        parallel::ThreadPool tp(numberOfThreads);
+
+        // serialize the graph (nodes)
         std::vector<size_t> nodeShape = {nNodes};
         std::vector<size_t> nodeChunks = {std::min(nNodes, 2*262144UL)};
-        auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeChunks, false);
-        Shape1Type nodeSerShape({nNodes});
-        Tensor1 nodeSer(nodeSerShape);
-        size_t i = 0;
-        for(const auto node : nodes) {
-            nodeSer(i) = node;
-            ++i;
-        }
-        z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
+        // FIXME For some reason only raw compression works,
+        // because the precompiler flags for activating compression schemes
+        // are not properly set (although we can read datasets with compression,
+        // so this doesn't make much sense)
+        auto dsNodes = z5::createDataset(group, "nodes",
+                                         "uint64", nodeShape,
+                                         nodeChunks, false,
+                                         compression);
 
-        // TODO writing needs to be parallelized
+        const size_t numberNodeChunks = dsNodes->numberOfChunks();
+        parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId, const size_t chunkId){
+            const size_t nodeStart = chunkId * nodeChunks[0];
+            const size_t nodeStop = std::min((chunkId + 1) * nodeChunks[0], nodeShape[0]);
+
+            const size_t nNodesChunk = nodeStop - nodeStart;
+            Shape1Type nodeSerShape({nNodesChunk});
+            Tensor1 nodeSer(nodeSerShape);
+
+            auto nodeIt = nodes.begin();
+            std::advance(nodeIt, nodeStart);
+            for(size_t i = 0; i < nNodesChunk; i++, nodeIt++) {
+                nodeSer(i) = *nodeIt;
+            }
+
+            const std::vector<size_t> nodeOffset({nodeStart});
+            z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, nodeOffset.begin());
+        });
+
+        // serialize the graph (edges)
         if(nEdges > 0) {
             std::vector<size_t> edgeShape = {nEdges, 2};
             std::vector<size_t> edgeChunks = {std::min(nEdges, 262144UL), 2};
-            auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeChunks, false);
-            Shape2Type edgeSerShape({nEdges, 2});
-            Tensor2 edgeSer(edgeSerShape);
-            i = 0;
-            for(const auto & edge : edges) {
-                edgeSer(i, 0) = edge.first;
-                edgeSer(i, 1) = edge.second;
-                ++i;
-            }
-            z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
+            // FIXME For some reason only raw compression works,
+            // because the precompiler flags for activating compression schemes
+            // are not properly set (although we can read datasets with compression,
+            // so this doesn't make much sense)
+            auto dsEdges = z5::createDataset(group, "edges", "uint64",
+                                             edgeShape, edgeChunks, false,
+                                             compression);
+            const size_t numberEdgeChunks = dsEdges->numberOfChunks();
+
+            parallel::parallel_foreach(tp, numberEdgeChunks, [&](const int tId,
+                                                                 const size_t chunkId){
+                const size_t edgeStart = chunkId * edgeChunks[0];
+                const size_t edgeStop = std::min((chunkId + 1) * edgeChunks[0], edgeShape[0]);
+
+                const size_t nEdgesChunk = edgeStop - edgeStart;
+                Shape2Type edgeSerShape({nEdgesChunk, 2});
+                Tensor2 edgeSer(edgeSerShape);
+
+                auto edgeIt = edges.begin();
+                std::advance(edgeIt, edgeStart);
+                for(size_t i = 0; i < nEdgesChunk; i++, edgeIt++) {
+                    edgeSer(i, 0) = edgeIt->first;
+                    edgeSer(i, 1) = edgeIt->second;
+                }
+
+                const std::vector<size_t> edgeOffset({edgeStart, 0});
+                z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, edgeOffset.begin());
+            });
         }
 
         // serialize metadata (number of edges and nodes and position of the block)
@@ -469,10 +507,16 @@ namespace distributed {
                                         numberOfThreads);
         }
 
+        // we can only use compression for
+        // big enough blocks (too small chunks will result in zlib error)
+        // as a proxy we use the number of threads to determine if we use compression
+        std::string compression = (numberOfThreads > 1) ? "gzip" : "raw";
         // serialize the merged graph
         serializeGraph(pathToGraph, outKey,
                        nodes, edges,
-                       roiBegin, roiEnd);
+                       roiBegin, roiEnd,
+                       numberOfThreads,
+                       compression);
     }
 
 
