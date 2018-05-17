@@ -63,6 +63,13 @@ def take(relabeling, toRelabel):
 
 
 
+def takeDict(relabeling, toRelabel):
+    shape = toRelabel.shape
+    toRelabelFlat = toRelabel.ravel()
+    return _tools._takeDict(relabeling, toRelabelFlat).reshape(shape)
+
+
+
 
 def getSlicing(begin, end):
     return [slice(b,e) for b,e in zip(begin,end)]
