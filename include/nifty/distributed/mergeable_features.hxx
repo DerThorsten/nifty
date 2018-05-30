@@ -609,16 +609,20 @@ namespace distributed {
 
 
     inline void findRelevantBlocks(const std::string & graphBlockPrefix,
-                                   const size_t numberOfBlocks,
+                                   const std::vector<size_t> & blockIds,
                                    const size_t edgeIdBegin,
                                    const size_t edgeIdEnd,
                                    nifty::parallel::ThreadPool & threadpool,
-                                   std::vector<size_t> & blockIds) {
+                                   std::vector<size_t> & relevantBlocks) {
 
         const size_t nThreads = threadpool.nThreads();
         std::vector<std::set<size_t>> perThreadData(nThreads);
 
-        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId, const int blockId) {
+        const size_t numberOfBlocks = blockIds.size();
+
+        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId, const int blockIndex) {
+
+            const size_t blockId = blockIds[blockIndex];
 
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
@@ -654,14 +658,38 @@ namespace distributed {
         });
 
         // merge the relevant blocks
-        auto & blockIdsSet = perThreadData[0];
+        auto & relevantBlocksSet = perThreadData[0];
         for(int tId = 1; tId < nThreads; ++tId) {
-            blockIdsSet.insert(perThreadData[tId].begin(), perThreadData[tId].end());
+            relevantBlocksSet.insert(perThreadData[tId].begin(), perThreadData[tId].end());
         }
 
         // write to the out vector
-        blockIds.resize(blockIdsSet.size());
-        std::copy(blockIdsSet.begin(), blockIdsSet.end(), blockIds.begin());
+        relevantBlocks.resize(relevantBlocksSet.size());
+        std::copy(relevantBlocksSet.begin(), relevantBlocksSet.end(), relevantBlocks.begin());
+    }
+
+
+    inline void mergeFeatureBlocks(const std::string & graphBlockPrefix,
+                                   const std::string & featureBlockPrefix,
+                                   const std::string & featuresOut,
+                                   const std::vector<size_t> & blockIds,
+                                   const size_t edgeIdBegin,
+                                   const size_t edgeIdEnd,
+                                   const int numberOfThreads=1) {
+        // construct threadpool
+        nifty::parallel::ThreadPool threadpool(numberOfThreads);
+
+        // find all the blocks that contain edges in the current range
+        std::vector<size_t> relevantBlocks;
+        findRelevantBlocks(graphBlockPrefix, blockIds,
+                           edgeIdBegin, edgeIdEnd, threadpool,
+                           relevantBlocks);
+
+        // merge all edges in the edge range
+        mergeEdgeFeaturesForBlocks(graphBlockPrefix, featureBlockPrefix,
+                                   edgeIdBegin, edgeIdEnd,
+                                   relevantBlocks,
+                                   threadpool, featuresOut);
     }
 
 
@@ -672,20 +700,16 @@ namespace distributed {
                                    const size_t edgeIdBegin,
                                    const size_t edgeIdEnd,
                                    const int numberOfThreads=1) {
-        // construct threadpool
-        nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
-        // find all the blocks that contain edges in the current range
-        std::vector<size_t> blockIds;
-        findRelevantBlocks(graphBlockPrefix, numberOfBlocks,
-                           edgeIdBegin, edgeIdEnd, threadpool,
-                           blockIds);
-
-        // merge all edges in the edge range
-        mergeEdgeFeaturesForBlocks(graphBlockPrefix, featureBlockPrefix,
-                                   edgeIdBegin, edgeIdEnd,
-                                   blockIds,
-                                   threadpool, featuresOut);
+        std::vector<size_t> blockIds(numberOfBlocks);
+        std::iota(blockIds.begin(), blockIds.end(), 0);
+        mergeFeatureBlocks(graphBlockPrefix,
+                           featureBlockPrefix,
+                           featuresOut,
+                           blockIds,
+                           edgeIdBegin,
+                           edgeIdEnd,
+                           numberOfThreads);
     }
 
 

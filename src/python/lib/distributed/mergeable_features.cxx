@@ -61,10 +61,30 @@ namespace distributed {
         module.def("mergeFeatureBlocks", [](const std::string & graphBlockPrefix,
                                             const std::string & featureBlockPrefix,
                                             const std::string & featuresOut,
-                                            const size_t numberOfBlocks,
+                                            const std::vector<size_t> & blockIds,
                                             const size_t edgeIdBegin,
                                             const size_t edgeIdEnd,
                                             const int numberOfThreads) {
+            py::gil_scoped_release allowThreads;
+            mergeFeatureBlocks(graphBlockPrefix,
+                               featureBlockPrefix,
+                               featuresOut,
+                               blockIds,
+                               edgeIdBegin,
+                               edgeIdEnd,
+                               numberOfThreads);
+
+        }, py::arg("graphBlockPrefix"), py::arg("featureBlockPrefix"),
+           py::arg("featuresOut"), py::arg("blockIds"), py::arg("edgeIdBegin"),
+           py::arg("edgeIdEnd"), py::arg("numberOfThreads")=1);
+
+        module.def("mergeAllFeatureBlocks", [](const std::string & graphBlockPrefix,
+                                               const std::string & featureBlockPrefix,
+                                               const std::string & featuresOut,
+                                               const size_t numberOfBlocks,
+                                               const size_t edgeIdBegin,
+                                               const size_t edgeIdEnd,
+                                               const int numberOfThreads) {
             py::gil_scoped_release allowThreads;
             mergeFeatureBlocks(graphBlockPrefix,
                                featureBlockPrefix,
