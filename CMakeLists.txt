@@ -238,28 +238,38 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_Z5)
     add_definitions(-DWITH_Z5)
+    option(WITH_BLOSC ON)
+    option(WITH_BZIP2 ON)
+    option(WITH_ZLIB ON)
 
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/include")
     set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
-
     # z5 compression libraries
     SET(Z5_COMPRESSION_LIBRARIES "")
 
-    find_package(BLOSC REQUIRED)
-    include_directories(${BLOSC_INCLUDE_DIR})
-    add_definitions(-DWITH_BLOSC)
-    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BLOSC_LIBRARIES}")
+    if(WITH_BLOSC)
+        find_package(BLOSC REQUIRED)
+        include_directories(${BLOSC_INCLUDE_DIR})
+        add_definitions(-DWITH_BLOSC)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BLOSC_LIBRARIES}")
+    endif()
 
-    find_package(ZLIB REQUIRED)
-    include_directories(ZLIB_INCLUDE_DIRS)
-    add_definitions(-DWITH_ZLIB)
-    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${ZLIB_LIBRARIES}")
+    if(WITH_ZLIB)
+        find_package(ZLIB REQUIRED)
+        include_directories(ZLIB_INCLUDE_DIRS)
+        add_definitions(-DWITH_ZLIB)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${ZLIB_LIBRARIES}")
+    endif()
 
-    find_package(BZip2 REQUIRED)
-    include_directories(BZIP2_INCLUDE_DIRS)
-    add_definitions(-DWITH_BZIP2)
-    SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BZIP2_LIBRARIES}")
+    if(WITH_BZIP2)
+        find_package(BZip2 REQUIRED)
+        include_directories(BZIP2_INCLUDE_DIRS)
+        add_definitions(-DWITH_BZIP2)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BZIP2_LIBRARIES}")
+    endif()
+
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/include")
+
 endif()
 
 
