@@ -22,6 +22,7 @@ namespace tools{
     void exportSleep(py::module &);
     void exportChangeablePriorityQueue(py::module &);
     void exportMapDictionaryToArray(py::module &);
+    void exportMergeHelper(py::module &);
 }
 }
 
@@ -45,4 +46,5 @@ PYBIND11_MODULE(_tools, toolsModule) {
     exportSleep(toolsModule);
     exportChangeablePriorityQueue(toolsModule);
     exportMapDictionaryToArray(toolsModule);
+    exportMergeHelper(toolsModule);
 }

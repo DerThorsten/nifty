@@ -48,5 +48,29 @@ namespace graph{
     }
 
 
+    template<size_t DIM, class GRAPH_LABELS, class NODE_MAP>
+    void findZExtendedNodes(const GridRag<DIM, GRAPH_LABELS> & graph, NODE_MAP & extendedNodes){
+        typedef std::array<int64_t, DIM> Coord;
+        typedef typename GridRag<DIM, GRAPH_LABELS>::value_type LabelType;
+
+        const auto & labels = graph.labels();
+        const auto & shape = graph.shape();
+
+        std::vector<std::set<size_t>> zCoordinates(graph.numberOfNodes());
+
+        nifty::tools::forEachCoordinate(shape, [&](const Coord & coord){
+            const auto node = xtensor::read(labels, coord);
+            const size_t z = coord[0];
+            zCoordinates[node].insert(z);
+        });
+
+        for(LabelType nodeId = 0; nodeId < graph.numberOfNodes(); ++nodeId) {
+            if(zCoordinates[nodeId].size() > 1) {
+                extendedNodes.push_back(nodeId);
+            }
+        }
+    }
+
+
 } // end namespace graph
 } // end namespace nifty

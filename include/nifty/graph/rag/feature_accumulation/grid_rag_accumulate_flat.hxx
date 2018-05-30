@@ -167,7 +167,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
     const auto passesRequired = (perThreadAccChainVector.front()).front().passesRequired();
     for(auto pass = 1; pass <= passesRequired; ++pass) {
-        std::cout << "Pass " << pass << " / " << passesRequired << std::endl;
+        // std::cout << "Pass " << pass << " / " << passesRequired << std::endl;
 
         // label and data storages
         LabelBlockStorage  labelsAStorage(threadpool, sliceShape3, actualNumberOfThreads);

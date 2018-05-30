@@ -12,6 +12,7 @@ addPythonModule(
         edge_mapping.cxx
         sleep.cxx
         map_dict.cxx
+        merge_helper.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES}
         ${Z5_COMPRESSION_LIBRARIES}

@@ -208,12 +208,14 @@ namespace distributed {
         // because the precompiler flags for activating compression schemes
         // are not properly set (although we can read datasets with compression,
         // so this doesn't make much sense)
+        // std::cout << "Writing " << nNodes << " nodes to " << pathToGraph << std::endl;
         auto dsNodes = z5::createDataset(group, "nodes",
                                          "uint64", nodeShape,
                                          nodeChunks, false,
                                          compression);
 
         const size_t numberNodeChunks = dsNodes->numberOfChunks();
+        // std::cout << "Serialize nodes" << std::endl;
         parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId, const size_t chunkId){
             const size_t nodeStart = chunkId * nodeChunks[0];
             const size_t nodeStop = std::min((chunkId + 1) * nodeChunks[0], nodeShape[0]);
@@ -231,9 +233,12 @@ namespace distributed {
             const std::vector<size_t> nodeOffset({nodeStart});
             z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, nodeOffset.begin());
         });
+        // std::cout << "done" << std::endl;
 
         // serialize the graph (edges)
+        // std::cout << "Serialize edges" << std::endl;
         if(nEdges > 0) {
+            // std::cout << "Writing " << nEdges << " edges to " << pathToGraph << std::endl;
             std::vector<size_t> edgeShape = {nEdges, 2};
             std::vector<size_t> edgeChunks = {std::min(nEdges, 262144UL), 2};
             // FIXME For some reason only raw compression works,
@@ -265,6 +270,7 @@ namespace distributed {
                 z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, edgeOffset.begin());
             });
         }
+        // std::cout << "done" << std::endl;
 
         // serialize metadata (number of edges and nodes and position of the block)
         nlohmann::json attrs;
@@ -377,6 +383,7 @@ namespace distributed {
 
             // load nodes and edgees
             loadNodes(blockPath.string(), nodes);
+            // std::cout << "Loaded nodes from " << blockId << " now have " << nodes.size() << std::endl;
             loadEdges(blockPath.string(), edges);
 
             // read the rois from attributes
@@ -425,6 +432,7 @@ namespace distributed {
         // merge nodes and edges multi threaded
         size_t nBlocks = blockIds.size();
         const std::vector<std::string> keys({"roiBegin", "roiEnd"});
+        // std::cout << "Merging subgraphs ..." << std::endl;
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid, const int blockIndex){
 
             // get the thread data
@@ -480,6 +488,7 @@ namespace distributed {
                 roiEnd[axis] = std::max(roiEnd[axis], static_cast<size_t>(threadEnd[axis]));
             }
         }
+        // std::cout << "done" << std::endl;
     }
 
 

@@ -119,7 +119,14 @@ namespace skeletons {
                 }
                 return std::make_tuple(nonEmptyChunks, out);
             }, py::arg("numberOfThreads")=-1)
-        ;
+            //
+            .def("getNodesInFalseMergeLabels", [](const SelfType & self, const int numberOfThreads) {
+                std::map<size_t, std::vector<size_t>> out;
+                self.getNodesInFalseMergeLabels(out, numberOfThreads);
+                return out;
+            }, py::arg("numberOfThreads")=-1)
+
+            ;
     }
 
 }

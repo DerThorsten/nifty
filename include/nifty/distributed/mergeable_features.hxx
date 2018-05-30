@@ -543,7 +543,6 @@ namespace distributed {
         const size_t nBlocks = blockIds.size();
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockIndex){
 
-
             const size_t blockId = blockIds[blockIndex];
 
             auto & perThreadData = perThreadDataVector[tId];

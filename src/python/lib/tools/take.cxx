@@ -52,6 +52,29 @@ namespace tools{
             }
             return out;
         }, py::arg("relabeling"), py::arg("toRelabel"));
+
+        toolsModule.def("_unique",
+        [](const xt::pytensor<T, 1> & values) {
+            std::unordered_set<T> uniques;
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t ii = 0; ii < values.shape()[0]; ++ii) {
+                    uniques.insert(values(ii));
+                }
+            }
+            typedef typename xt::pytensor<T, 1>::shape_type Shape;
+            Shape shape = {uniques.size()};
+            xt::pytensor<T, 1> out = xt::zeros<T>(shape);
+            {
+                py::gil_scoped_release allowThreads;
+                size_t ii = 0;
+                for(const T val: uniques) {
+                    out(ii) = val;
+                    ++ii;
+                }
+            }
+            return out;
+        }, py::arg("values"));
     }
 
 
