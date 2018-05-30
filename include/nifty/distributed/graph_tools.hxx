@@ -100,6 +100,7 @@ namespace distributed {
                                      const CoordType & shape,
                                      const CoordType & blockShape,
                                      const CoordType & newBlockShape,
+                                     const std::vector<size_t> & newBlockIds,
                                      const size_t numberOfNewNodes,
                                      const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
                                      const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
@@ -114,11 +115,13 @@ namespace distributed {
         nifty::tools::Blocking<3> blocking(roiBegin, shape, blockShape);
         nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
 
-        const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
+        // const size_t numberOfNewBlocks = newBlocking.numberOfBlocks();
+        const size_t numberOfNewBlocks = newBlockIds.size();
         std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
 
         // load new nodes
-        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
+        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockIndex){
+            const size_t blockId = newBlockIds[blockIndex];
             auto & newBlockNodes = blockNodeStorage[blockId];
 
             // find the relevant old blocks

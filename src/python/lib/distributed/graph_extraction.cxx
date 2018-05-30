@@ -177,6 +177,7 @@ namespace distributed {
                                               const CoordType & shape,
                                               const CoordType & blockShape,
                                               const CoordType & newBlockShape,
+                                              const std::vector<size_t> & newBlockIds,
                                               const size_t numberOfNewNodes,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
@@ -185,7 +186,7 @@ namespace distributed {
             py::gil_scoped_release allowThreads;
             serializeMergedGraph(graphBlockPrefix, shape,
                                  blockShape, newBlockShape,
-                                 numberOfNewNodes,
+                                 newBlockIds, numberOfNewNodes,
                                  nodeLabeling, edgeLabeling,
                                  graphOutPrefix,
                                  numberOfThreads);
@@ -193,6 +194,7 @@ namespace distributed {
            py::arg("shape"),
            py::arg("blockShape"),
            py::arg("newBlockShape"),
+           py::arg("newBlockIds"),
            py::arg("numberOfNewNodes"),
            py::arg("nodeLabeling"), py::arg("edgeLabeling"),
            py::arg("graphOutPrefix"),
