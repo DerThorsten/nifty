@@ -51,6 +51,27 @@ namespace graph{
         );
     }
 
+
+    template<class RAG, class T, std::size_t DATA_DIM>
+    void exportFindZExtendedNodesT(py::module & ragModule){
+
+        ragModule.def("findZExtendedNodes",
+            [](
+                const RAG & rag
+            ){
+                std::vector<T> extendedNodes;
+                {
+                    py::gil_scoped_release allowThreads;
+                    findZExtendedNodes(rag, extendedNodes);
+                }
+                return extendedNodes;
+
+            },
+            py::arg("graph")
+        );
+    }
+
+
     template<class RAG, class DATA>
     void exportGridRagStackedAccumulateLabelsT(py::module & ragModule){
 
@@ -126,6 +147,7 @@ namespace graph{
             // FIXME overloads are broken
             // exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
             exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+            exportFindZExtendedNodesT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
         }
 
         // explicit stacked rag

@@ -161,16 +161,16 @@ namespace graph{
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
 
             // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
 
             // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint64_t, 2>(ragModule);
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint64_t, 3>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint64_t, 3>(ragModule);
 
             // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, float, 2>(ragModule);
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, float, 3>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, float, 3>(ragModule);
 
             // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, double, 2>(ragModule);
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, double, 3>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, double, 3>(ragModule);
         }
 
         // z5
