@@ -249,19 +249,50 @@ namespace graph{
                 "Returns:\n"
                 "   tuple : pair of node indexes / enpoints of the edge."
             )
-
-            .def("bfsEdges",[](G & g, const std::size_t maxDistance){
+            .def("graphNeighbourhood",[](
+                G & g, 
+                const std::size_t maxDistance,
+                const bool suppressGraphEdges
+            ){
 
 
                 BreadthFirstSearch<G> bfs(g);
                 std::vector<std::pair<uint64_t, uint64_t>> pairs;
                 g.forEachNode([&](const uint64_t sourceNode){
-                    bfs.graphNeighbourhood(sourceNode, maxDistance,
 
-                        [&](const uint64_t targetNode, const uint64_t ){
-                            pairs.emplace_back(sourceNode, targetNode);
-                        }
-                    );
+                    //if(sourceNode < 10)
+                    //    std::cout<<"sourceNode "<<sourceNode<<"\n";
+                    if(suppressGraphEdges)
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t ){
+                                if(sourceNode < targetNode )
+                                {
+                                    if(g.findEdge(sourceNode, targetNode) == -1)
+                                    {
+                                        //NIFTY_CHECK_OP(targetNode,<,g.nodeIdUpperBound(),"");
+                                        //NIFTY_CHECK_OP(sourceNode,<,g.nodeIdUpperBound(),"");
+                                        //if(sourceNode < 10)
+                                        //    std::cout<<"    t "<<targetNode<<"\n";
+                                        pairs.emplace_back(sourceNode, targetNode);
+                                    }
+                                }
+                            }
+                        );
+                    }
+                    else
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t ){
+                                if(sourceNode<targetNode)
+                                {
+                                    pairs.emplace_back(sourceNode, targetNode);
+                                }
+                            }
+                        );
+                    }
+
+
                 });
 
                 nifty::marray::PyView<uint64_t> out({uint64_t(pairs.size()), uint64_t(2)});
@@ -270,11 +301,127 @@ namespace graph{
                 for(const auto & uv : pairs){
                     out(c,0) = uv.first;
                     out(c,1) = uv.second;
+                    ++c;
                 }
                 return out;
 
             }, 
-                py::arg("maxDistance")
+                py::arg("maxDistance"),
+                py::arg("suppressGraphEdges") = false
+            )
+            .def("graphNeighbourhoodAndDistance",[](
+                G & g, 
+                const std::size_t maxDistance,
+                const bool suppressGraphEdges
+            ){
+
+
+                BreadthFirstSearch<G> bfs(g);
+                std::vector<std::pair<uint64_t, uint64_t>> pairs;
+                std::vector<uint64_t> dist;
+                g.forEachNode([&](const uint64_t sourceNode){
+
+                    //if(sourceNode < 10)
+                    //    std::cout<<"sourceNode "<<sourceNode<<"\n";
+                    if(suppressGraphEdges)
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t d){
+                                if(sourceNode < targetNode )
+                                {
+                                    if(g.findEdge(sourceNode, targetNode) == -1)
+                                    {
+                                        //NIFTY_CHECK_OP(targetNode,<,g.nodeIdUpperBound(),"");
+                                        //NIFTY_CHECK_OP(sourceNode,<,g.nodeIdUpperBound(),"");
+                                        //if(sourceNode < 10)
+                                        //    std::cout<<"    t "<<targetNode<<"\n";
+                                        pairs.emplace_back(sourceNode, targetNode);
+                                        dist.push_back(d);
+                                    }
+                                }
+                            }
+                        );
+                    }
+                    else
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t d){
+                                if(sourceNode<targetNode)
+                                {
+                                    pairs.emplace_back(sourceNode, targetNode);
+                                    dist.push_back(d);
+                                }
+                            }
+                        );
+                    }
+
+
+                });
+
+                nifty::marray::PyView<uint64_t> out({uint64_t(pairs.size()), uint64_t(2)});
+                nifty::marray::PyView<uint64_t> d({uint64_t(pairs.size())});
+                auto c=0;
+                for(const auto & uv : pairs){
+                    out(c,0) = uv.first;
+                    out(c,1) = uv.second;
+                    d(c) = dist[c];
+                    ++c;
+                }
+                return std::make_pair(out, d);
+
+            }, 
+                py::arg("maxDistance"),
+                py::arg("suppressGraphEdges") = false
+            )
+            .def("bfsEdges",[](
+                G & g, 
+                const std::size_t maxDistance,
+                const bool suppressGraphEdges
+            ){
+                std::cout<<"nifty deprecated: bfsEdges is deprecated: use graphNeighbourhood\n";
+
+                BreadthFirstSearch<G> bfs(g);
+                std::vector<std::pair<uint64_t, uint64_t>> pairs;
+                g.forEachNode([&](const uint64_t sourceNode){
+
+                    //std::cout<<"sourceNode "<<sourceNode<<"\n";
+                    if(suppressGraphEdges)
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t ){
+                                if(g.findEdge(sourceNode, targetNode) == -1)
+                                {
+                                    //std::cout<<"    t "<<targetNode<<"\n";
+                                    pairs.emplace_back(sourceNode, targetNode);
+                                }
+                            }
+                        );
+                    }
+                    else
+                    {
+                        bfs.graphNeighbourhood(sourceNode, maxDistance,
+                            [&](const uint64_t targetNode, const uint64_t ){
+                                pairs.emplace_back(sourceNode, targetNode);
+                            }
+                        );
+                    }
+
+
+                });
+
+                nifty::marray::PyView<uint64_t> out({uint64_t(pairs.size()), uint64_t(2)});
+
+                auto c=0;
+                for(const auto & uv : pairs){
+                    out(c,0) = uv.first;
+                    out(c,1) = uv.second;
+                    ++c;
+                }
+                return out;
+
+            }, 
+                py::arg("maxDistance"),
+                py::arg("suppressGraphEdges") = false
             )
             .def("uvIds",
                 [](G & g) {

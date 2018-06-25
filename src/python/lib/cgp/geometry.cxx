@@ -61,6 +61,13 @@ namespace cgp{
                 }
                 return cArray;
             })
+            .def("sizes", [](const CLS & self){
+                nifty::marray::PyView<uint64_t> cArray({self.size()});
+                for(auto i=0; i<self.size(); ++i){
+                    cArray(i) = self[i].size();
+                }
+                return cArray;
+            })
         ;
     }
 
@@ -81,6 +88,17 @@ namespace cgp{
 
             const std::string clsNameVec = std::string("Cells0GeometryVector2D");
             auto clsVec = py::class_<Cells0GeometryVector2D>(m, clsNameVec.c_str());
+            clsVec.def("__array__",[](
+                const Cells0GeometryVector2D & self  
+            ){
+                nifty::marray::PyView<uint64_t> cArray({self.size(), std::size_t(2)});
+
+                for(auto i=0; i<self.size(); ++i){
+                    cArray(i,0) = self[i][0][0];
+                    cArray(i,1) = self[i][0][1];
+                }
+                return cArray;
+            });
             exportCellGeometryVector<Cells0GeometryVector2D>(m, clsVec);
 
         }

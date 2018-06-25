@@ -17,6 +17,7 @@ namespace cgp{
     // FIXME this does not build right now because it
     // pulls in boost::math which is not c++14 ready (at least not in boost 1.61)
     void exportFeatures(py::module &);
+    void exportCnnRepresentation(py::module &);
 }
 }
 
@@ -34,5 +35,6 @@ PYBIND11_MODULE(_cgp, cgpModule) {
     exportBounds(cgpModule);
     exportGeometry(cgpModule);
     exportFeatures(cgpModule);
+    exportCnnRepresentation(cgpModule);
 
 }

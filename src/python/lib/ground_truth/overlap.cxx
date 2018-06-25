@@ -151,6 +151,33 @@ namespace ground_truth{
                 }
                 return std::make_pair(olIndices, olCounts);
             },py::arg("index"),py::arg("sorted") = false)
+
+            .def(
+                "transferCutProbabilities",
+                [](
+                    const OverlapType & self,
+                    const nifty::marray::PyView<uint64_t, 2> & uv_reference,
+                    //const nifty::marray::PyView<float, 1>    & w_reference,
+                    const nifty::marray::PyView<uint64_t, 2> & uv_groundtruth,
+                    const nifty::marray::PyView<float, 1>    & p_groundtruth
+                    //const nifty::marray::PyView<float, 1>    & w_groundtruth
+                )
+                {
+                    nifty::marray::PyView<float> out({uv_reference.shape(0)});
+                    nifty::marray::PyView<float> w_out({uv_reference.shape(0)});
+                    self.transferCutProbabilities(
+                        uv_reference,
+                        //w_reference,
+                        uv_groundtruth,
+                        p_groundtruth,
+                        // w_groundtruth,
+                        out,
+                        w_out
+                    );
+
+                    return std::make_pair(out, w_out);
+                }
+            )
         ;
         
     }

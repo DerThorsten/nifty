@@ -7,5 +7,6 @@ addPythonModule(
         bounds.cxx
         geometry.cxx
         features.cxx
+        cnn_representation.cxx
 )
 

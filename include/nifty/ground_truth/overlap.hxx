@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <unordered_map>
+#include <map>
 
 #include "nifty/marray/marray.hxx"
 #include "nifty/array/arithmetic_array.hxx"
@@ -174,8 +175,107 @@ namespace ground_truth{
             const auto & ol = overlaps_[u];
             return ol.find(LabelType(0)) != ol.end();
         }
+        const auto overlap(const LabelType u)const{
+            return overlaps_[u];
+        }
+
+    
+
+        float transferCutProbabilities(
+            const marray::View<uint64_t> & uv_reference,
+            const marray::View<uint64_t> & uv_groundtruth,
+            const marray::View<float>    & p_groundtruth,
+            marray::View<float>          & out,
+            marray::View<float>          & w_out
+        )const
+        {
+
+            typedef std::pair<uint64_t, uint64_t> uv_pair;
+            typedef std::map<uv_pair, uint64_t> map_type;
 
 
+            // fill map
+            map_type meassurement_map;
+            for(uint64_t i=0; i<uv_groundtruth.shape(0); ++i)
+            {
+                const auto u = uv_groundtruth(i,0);
+                const auto v = uv_groundtruth(i,1);
+                const auto uv = u < v? uv_pair(u,v) : uv_pair(v,u);
+                meassurement_map[uv] = i;
+            }
+
+
+            for(uint64_t i=0; i<uv_reference.shape(0); ++i)
+            {
+                const auto u = uv_reference(i,0);
+                const auto v = uv_reference(i,1);
+                const auto uv = u < v? uv_pair(u,v) : uv_pair(v,u);
+
+                const auto & olU = overlaps_[u];
+                const auto & olV = overlaps_[v];
+                const auto sU = float(counts_[u]);
+                const auto sV = float(counts_[v]);
+
+
+       
+
+                auto acc_p1 = 0.0;
+                auto acc_w = 0.0;
+
+                for(const auto & keyAndSizeU : olU)
+                for(const auto & keyAndSizeV : olV)
+                {
+
+                    auto keyU =  keyAndSizeU.first;
+                    auto rSizeU = float(keyAndSizeU.second)/sU;
+                    auto keyV =  keyAndSizeV.first;
+                    auto rSizeV = float(keyAndSizeV.second)/sV;
+
+
+                    if(keyU != keyV)
+                    {
+                        const auto gt_uv = keyU < keyV? 
+                            uv_pair(keyU, keyV) : uv_pair(keyV, keyU);
+
+                        // here we need to check if 
+                        // there is a gt meassurement
+                        // between keyU keyV
+                        auto find_res = meassurement_map.find(gt_uv);
+
+                        if(find_res != meassurement_map.end())
+                        {
+                            const auto mi = find_res->second;
+                            //std::cout<<"MI "<<mi<<"\n";-
+                            NIFTY_CHECK_OP(mi,<,p_groundtruth.shape(0),"");
+                            const auto w =  (rSizeU * rSizeV);
+                            NIFTY_CHECK_OP(p_groundtruth(mi), <=, 1.0,"");
+                            acc_w += w;
+                            acc_p1 += w*p_groundtruth(mi);
+
+                        }
+                        else{
+                            
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                //NIFTY_CHECK_OP(acc_w, <=, 1.00000001,"");
+                acc_w = std::min(1.0, acc_w);
+                if(acc_w <= 0.00001)
+                {
+                    w_out(i) = 0.0;
+                    out(i) = 0.0;
+                }
+                else{
+                    const auto p_mean = acc_p1/acc_w;
+                    out(i) = p_mean;
+                    w_out(i) = acc_w;
+                }
+            }
+        }
 
     private:
 
@@ -219,6 +319,8 @@ namespace ground_truth{
         std::vector<CountType> counts_;
         std::vector<MapType>   overlaps_;
     };
+
+
 
 
 } // end namespace nifty::ground_truth

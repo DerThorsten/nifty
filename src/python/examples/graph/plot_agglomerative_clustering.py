@@ -49,7 +49,7 @@ edgeStrength = skimage.filters.sobel(smoothed)
 # length of each boundary and 
 print(edgeStrength.shape, overseg.shape)
 edge_features, node_features = nifty.graph.rag.accumulateMeanAndLength(
-    rag, edgeStrength, [512,512],0)
+    rag, edgeStrength, [10,10],1)
 meanEdgeStrength = edge_features[:,0]
 edgeSizes = edge_features[:,1]
 nodeSizes = node_features[:,1]
