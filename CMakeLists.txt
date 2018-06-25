@@ -230,9 +230,9 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find zgm
 #-------------------------------------------------------------------------------------------------------------------
-find_package(zgm  REQUIRED)
-include_directories(${zgm_INCLUDE_DIRS})
-MESSAGE( STATUS ${zgm_INCLUDE_DIRS})
+# find_package(zgm  REQUIRED)
+# include_directories(${zgm_INCLUDE_DIRS})
+# MESSAGE( STATUS ${zgm_INCLUDE_DIRS})
 
 
 
