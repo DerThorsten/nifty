@@ -71,6 +71,9 @@ namespace ground_truth{
 
 
 
+        bool differentMaxOverlap(const LabelType u, const LabelType v)const{
+            return maxOverlappingLabel(u) != maxOverlappingLabel(v);
+        }
 
 
         double differentOverlap(const LabelType u, const LabelType v)const{

@@ -51,7 +51,18 @@ namespace ground_truth{
 
                 return out;
             })
+            .def("differentMaxOverlaps",[](
+                const OverlapType & self,
+                nifty::marray::PyView<uint64_t> uv
+            ){
+                nifty::marray::PyView<uint8_t> out({uv.shape(0)});
 
+                for(auto i=0; i<uv.shape(0); ++i){
+                    out(i) = self.differentMaxOverlap(uv(i,0),uv(i,1));
+                }
+
+                return out;
+            })
             .def("bleeding",[](
                 const OverlapType & self,
                 nifty::marray::PyView<uint64_t> ids
