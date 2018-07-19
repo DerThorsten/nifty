@@ -1,3 +1,4 @@
+#ifdef WITH_Z5
 #include <pybind11/pybind11.h>
 
 #define FORCE_IMPORT_ARRAY
@@ -33,4 +34,4 @@ PYBIND11_MODULE(_skeletons, module) {
     using namespace nifty::skeletons;
     exportEvaluation(module);
 }
-
+#endif

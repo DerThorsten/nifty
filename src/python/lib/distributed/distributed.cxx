@@ -1,3 +1,4 @@
+#ifdef WITH_Z5
 #include <pybind11/pybind11.h>
 
 #define FORCE_IMPORT_ARRAY
@@ -37,4 +38,4 @@ PYBIND11_MODULE(_distributed, module) {
     exportDistributedGraph(module);
     exportMergeableFeatures(module);
 }
-
+#endif
