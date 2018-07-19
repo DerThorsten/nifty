@@ -590,9 +590,9 @@ namespace graph{
                 // write the aligned features - if any exist
                 if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
                     // get view to the aligned features
-                    xt::slice_vector sliceAligned(featuresTemp);
+                    xt::slice_vector sliceAligned;
                     xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
-                    auto featuresAligned = xt::dynamic_view(featuresTemp, sliceAligned);
+                    auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
                     // find global beginning and end for block aligned edges
                     FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
@@ -615,9 +615,9 @@ namespace graph{
                     std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
                     storageFeats.resize(storageShape);
 
-                    xt::slice_vector slice(featuresTemp);
+                    xt::slice_vector slice;
                     xtensor::sliceFromOffset(slice, storageBegin, storageShape);
-                    const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                    const auto overhangView = xt::strided_view(featuresTemp, slice);
                     storageFeats = overhangView;
 
                     storage.hasData = true;
@@ -637,9 +637,9 @@ namespace graph{
                     std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
                     storageFeats.resize(storageShape);
 
-                    xt::slice_vector slice(featuresTemp);
+                    xt::slice_vector slice;
                     xtensor::sliceFromOffset(slice, storageBegin, storageShape);
-                    const auto overhangView = xt::dynamic_view(featuresTemp, slice);
+                    const auto overhangView = xt::strided_view(featuresTemp, slice);
                     storageFeats = overhangView;
 
                     storage.hasData = true;

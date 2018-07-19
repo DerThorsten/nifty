@@ -35,7 +35,7 @@ namespace xtensor {
     inline auto squeezedView(xt::xexpression<ARRAY> & arrayExp) {
         auto & array = arrayExp.derived_cast();
         auto & shape = array.shape();
-        xt::slice_vector squeeze(array);
+        xt::slice_vector squeeze;
         for(const auto s : shape) {
             if(s == 1) {
                 squeeze.push_back(1);
@@ -43,7 +43,7 @@ namespace xtensor {
                 squeeze.push_back(xt::all());
             }
         }
-        return xt::dynamic_view(array, squeeze);
+        return xt::strided_view(array, squeeze);
     }
 
 
@@ -99,9 +99,9 @@ namespace tools {
         auto & subarray = subarrayExpression.derived_cast();
 
         // get the view in the array
-        xt::slice_vector slice(array);
+        xt::slice_vector slice;
         xtensor::sliceFromRoi(slice, beginCoord, endCoord);
-        const auto view = xt::dynamic_view(array, slice);
+        const auto view = xt::strided_view(array, slice);
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
@@ -119,9 +119,9 @@ namespace tools {
         auto & data = dataExpression.derived_cast();
 
         // get the view in the array
-        xt::slice_vector slice(array);
+        xt::slice_vector slice;
         xtensor::sliceFromRoi(slice, beginCoord, endCoord);
-        auto view = xt::dynamic_view(array, slice);
+        auto view = xt::strided_view(array, slice);
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...

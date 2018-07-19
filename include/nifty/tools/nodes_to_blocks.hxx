@@ -76,9 +76,9 @@ namespace tools{
                     blockShape[d] = blockShape3d[d+1];
                 }
 
-                xt::slice_vector slice(subsegSqueezed);
+                xt::slice_vector slice;
                 xtensor::sliceFromOffset(slice, blockBegin, blockShape);
-                auto blockView = xt::dynamic_view(subsegSqueezed, slice);
+                auto blockView = xt::strided_view(subsegSqueezed, slice);
                 uniques(blockView, blockUniques);
                 // check whether the block is already in the map, extend if it is, inser otherwise
                 // insertion method from http://stackoverflow.com/questions/97050/stdmap-insert-or-stdmap-find

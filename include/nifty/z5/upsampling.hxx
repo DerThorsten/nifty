@@ -104,11 +104,11 @@ namespace nz5 {
                 // std::cout << "C2" << std::endl;
                 auto & chunkArray = chunkIt->second;
                 // std::cout << "C3" << std::endl;
-                xt::slice_vector offsetSlice(chunkArray);
+                xt::slice_vector offsetSlice;
                 // std::cout << "C4" << std::endl;
                 xtensor::sliceFromOffset(offsetSlice, offsetInChunk, shapeInRequest);
                 // std::cout << "C5" << std::endl;
-                auto view = xt::dynamic_view(chunkArray, offsetSlice);
+                auto view = xt::strided_view(chunkArray, offsetSlice);
                 // std::cout << "C6" << std::endl;
                 // std::cout << view.shape()[0] << " " << view.shape()[1] << " " << view.shape()[2] << std::endl;
                 view = val;
