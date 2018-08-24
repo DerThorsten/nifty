@@ -11,6 +11,7 @@
 namespace nifty{
 namespace nz5 {
 
+    // TODO this should be moved to z5 itself
     // TODO make n-dimensional
     // we just support simple nearest upsampling
     template<class T>
@@ -73,7 +74,8 @@ namespace nz5 {
             }
 
             std::vector<std::vector<size_t>> chunkIds;
-            dsOut->getChunkRequests(pixBegin, pixShape, chunkIds);
+            const auto & chunking = dsOut->chunking();
+            chunking.getBlocksOverlappingRoi(pixBegin, pixShape, chunkIds);
 
             // std::cout << "BBB" << std::endl;
             for(const auto & chunkId : chunkIds) {
@@ -97,8 +99,8 @@ namespace nz5 {
                 // find the local coordinates in the chunk and write the value and mask
                 std::vector<size_t> offsetInRequest, shapeInRequest, offsetInChunk;
                 // std::cout << "C1" << std::endl;
-                dsOut->getCoordinatesInRequest(chunkId, pixBegin, pixShape,
-                                               offsetInRequest, shapeInRequest, offsetInChunk);
+                chunking.getCoordinatesInRoi(chunkId, pixBegin, pixShape,
+                                             offsetInRequest, shapeInRequest, offsetInChunk);
                 // std::cout << offsetInChunk[0] << " " << offsetInChunk[1] << " " << offsetInChunk[2] << std::endl;
                 // std::cout << shapeInRequest[0] << " " << shapeInRequest[1] << " " << shapeInRequest[2] << std::endl;
                 // std::cout << "C2" << std::endl;

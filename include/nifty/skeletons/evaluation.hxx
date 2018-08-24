@@ -235,6 +235,8 @@ namespace skeletons {
         // temporary block data for the threads
         std::vector<SkeletonBlockStorage> perThreadData(nThreads);
 
+        const auto & chunking = segmentation->chunking();
+
         // go over all skeletons in parallel and extract the parts overlapping with chunks
         parallel::parallel_foreach(tp, nSkeletons, [&](const int tId, const size_t skeletonIndex){
             // open the coordinate dataset for this particular skeleton
@@ -257,7 +259,7 @@ namespace skeletons {
                 CoordinateVector coordinate = {coords(point, 1), coords(point, 2), coords(point, 3)};
                 // get the indices of this chunk and concert them to a flat index
                 std::vector<size_t> chunkIds;
-                segmentation->coordinateToChunkId(coordinate, chunkIds);
+                chunking.coordinateToBlockCoordinate(coordinate, chunkIds);
                 size_t chunkId = 0;
                 for(unsigned dim = 0; dim < 3; ++dim) {
                     chunkId += chunkIds[dim] * chunkStrides[dim];
