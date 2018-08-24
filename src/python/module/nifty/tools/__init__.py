@@ -90,7 +90,9 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
         blockShift = [0]*ndim
 
 
-    if ndim == 2:
+    if ndim == 1:
+        blockingCls = Blocking1d
+    elif ndim == 2:
         blockingCls = Blocking2d
     elif ndim == 3:
         blockingCls = Blocking3d

@@ -188,6 +188,7 @@ namespace tools{
 
 
     void exportBlocking(py::module & toolsModule) {
+        exportBlockingT<1>(toolsModule);
         exportBlockingT<2>(toolsModule);
         exportBlockingT<3>(toolsModule);
     }
