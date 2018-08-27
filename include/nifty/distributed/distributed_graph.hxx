@@ -68,7 +68,8 @@ namespace distributed {
                 edgeIdsOut[ii] = edgeIdsTmp[indices[ii]];
             }
             // make edge ids unique
-            edgeIdsOut.resize(std::unique(edgeIdsOut.begin(), edgeIdsOut.end()) - edgeIdsOut.begin());
+            edgeIdsOut.resize(std::unique(edgeIdsOut.begin(),
+                                          edgeIdsOut.end()) - edgeIdsOut.begin());
 
             // init the graph
             initGraph();

@@ -186,6 +186,7 @@ namespace distributed {
                         const EDGES & edges,
                         const COORD & roiBegin,
                         const COORD & roiEnd,
+                        const bool ignoreLabel=false,
                         const int numberOfThreads=1,
                         const std::string & compression="raw") {
 
@@ -216,7 +217,8 @@ namespace distributed {
 
         const size_t numberNodeChunks = dsNodes->numberOfChunks();
         // std::cout << "Serialize nodes" << std::endl;
-        parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId, const size_t chunkId){
+        parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId,
+                                                             const size_t chunkId){
             const size_t nodeStart = chunkId * nodeChunks[0];
             const size_t nodeStop = std::min((chunkId + 1) * nodeChunks[0], nodeShape[0]);
 
@@ -278,6 +280,7 @@ namespace distributed {
         attrs["numberOfEdges"] = nEdges;
         attrs["roiBegin"] = std::vector<size_t>(roiBegin.begin(), roiBegin.end());
         attrs["roiEnd"] = std::vector<size_t>(roiEnd.begin(), roiEnd.end());
+        attrs["ignoreLabel"] = ignoreLabel;
 
         z5::writeAttributes(group, attrs);
     }
@@ -300,7 +303,8 @@ namespace distributed {
                              const COORD & roiBegin,
                              const COORD & roiEnd,
                              NodeSet & nodes,
-                             EdgeSet & edges) {
+                             EdgeSet & edges,
+                             const bool ignoreLabel=false) {
 
         // open the n5 label dataset
         auto path = fs::path(pathToLabels);
@@ -326,11 +330,20 @@ namespace distributed {
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
 
             lU = xtensor::read(labels, coord.asStdArray());
+            // skip zero if we have an ignoreLabel
+            if(ignoreLabel && lU == 0) {
+                return;
+            }
+
             nodes.insert(lU);
             for(size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){
                     lV = xtensor::read(labels, coord2.asStdArray());
+                    // skip zero if we have an ignoreLabel
+                    if(ignoreLabel && lV == 0) {
+                        return;
+                    }
                     if(lU != lV){
                         edges.insert(std::make_pair(std::min(lU, lV), std::max(lU, lV)));
                     }
@@ -347,17 +360,20 @@ namespace distributed {
                                      const COORD & roiBegin,
                                      const COORD & roiEnd,
                                      const std::string & pathToGraph,
-                                     const std::string & keyToRoi) {
+                                     const std::string & keyToRoi,
+                                     const bool ignoreLabel=false) {
         // extract graph nodes and edges from roi
         NodeSet nodes;
         EdgeSet edges;
         extractGraphFromRoi(pathToLabels, keyToLabels,
                             roiBegin, roiEnd,
-                            nodes, edges);
+                            nodes, edges,
+                            ignoreLabel);
         // serialize the graph
         serializeGraph(pathToGraph, keyToRoi,
                        nodes, edges,
-                       roiBegin, roiEnd);
+                       roiBegin, roiEnd,
+                       ignoreLabel);
     }
 
 
@@ -367,7 +383,8 @@ namespace distributed {
                                              NodeSet & nodes,
                                              EdgeSet & edges,
                                              std::vector<size_t> & roiBegin,
-                                             std::vector<size_t> & roiEnd) {
+                                             std::vector<size_t> & roiEnd,
+                                             bool & ignoreLabel) {
         nlohmann::json j;
         const std::vector<std::string> keys({"roiBegin", "roiEnd"});
 
@@ -383,7 +400,6 @@ namespace distributed {
 
             // load nodes and edgees
             loadNodes(blockPath.string(), nodes);
-            // std::cout << "Loaded nodes from " << blockId << " now have " << nodes.size() << std::endl;
             loadEdges(blockPath.string(), edges);
 
             // read the rois from attributes
@@ -395,9 +411,15 @@ namespace distributed {
             const auto & blockEnd = j[keys[1]];
 
             for(int axis = 0; axis < 3; ++axis) {
-                roiBegin[axis] = std::min(roiBegin[axis], static_cast<size_t>(blockBegin[axis]));
-                roiEnd[axis] = std::max(roiEnd[axis], static_cast<size_t>(blockEnd[axis]));
+                roiBegin[axis] = std::min(roiBegin[axis],
+                                          static_cast<size_t>(blockBegin[axis]));
+                roiEnd[axis] = std::max(roiEnd[axis],
+                                        static_cast<size_t>(blockEnd[axis]));
             }
+
+            // TODO we should make sure that the ignore label 
+            // is consistent along blocks
+            ignoreLabel = j["ignoreLabel"];
         }
 
     }
@@ -410,6 +432,7 @@ namespace distributed {
                                             EdgeSet & edges,
                                             std::vector<size_t> & roiBegin,
                                             std::vector<size_t> & roiEnd,
+                                            bool & ignoreLabel,
                                             const int numberOfThreads) {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
@@ -421,6 +444,7 @@ namespace distributed {
             std::vector<size_t> roiEnd;
             NodeSet nodes;
             EdgeSet edges;
+            bool ignoreLabel;
         };
         std::vector<PerThreadData> threadData(nThreads);
         for(int t = 0; t < nThreads; ++t) {
@@ -433,18 +457,15 @@ namespace distributed {
         size_t nBlocks = blockIds.size();
         const std::vector<std::string> keys({"roiBegin", "roiEnd"});
         // std::cout << "Merging subgraphs ..." << std::endl;
-        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid, const int blockIndex){
+        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
+                                                                   const int blockIndex){
 
             // get the thread data
             auto blockId = blockIds[blockIndex];
-            auto * threadNodes = &threadData[tid].nodes;
-            auto * threadEdges = &threadData[tid].edges;
             // for thread 0, we use the input sets instead of our thread data
             // to avoid one sequential merge in the end
-            if(tid == 0) {
-                threadNodes = &nodes;
-                threadEdges = &edges;
-            }
+            auto & threadNodes = (tid == 0) ? nodes : threadData[tid].nodes;
+            auto & threadEdges = (tid == 0) ? edges : threadData[tid].edges;
             auto & threadBegin = threadData[tid].roiBegin;
             auto & threadEnd = threadData[tid].roiEnd;
 
@@ -454,8 +475,8 @@ namespace distributed {
             blockPath /= blockKey;
 
             // load nodes and edgees
-            loadNodes(blockPath.string(), *threadNodes);
-            loadEdges(blockPath.string(), *threadEdges);
+            loadNodes(blockPath.string(), threadNodes);
+            loadEdges(blockPath.string(), threadEdges);
 
             // read the rois from attributes
             nlohmann::json j;
@@ -467,9 +488,12 @@ namespace distributed {
             const auto & blockEnd = j[keys[1]];
 
             for(int axis = 0; axis < 3; ++axis) {
-                threadBegin[axis] = std::min(threadBegin[axis], static_cast<size_t>(blockBegin[axis]));
-                threadEnd[axis] = std::max(threadEnd[axis], static_cast<size_t>(blockEnd[axis]));
+                threadBegin[axis] = std::min(threadBegin[axis],
+                                             static_cast<size_t>(blockBegin[axis]));
+                threadEnd[axis] = std::max(threadEnd[axis],
+                                           static_cast<size_t>(blockEnd[axis]));
             }
+            threadData[tid].ignoreLabel = j["ignoreLabel"];
         });
 
         // merge into final nodes and edges
@@ -484,11 +508,15 @@ namespace distributed {
             const auto & threadBegin = threadData[tid].roiBegin;
             const auto & threadEnd = threadData[tid].roiEnd;
             for(int axis = 0; axis < 3; ++axis) {
-                roiBegin[axis] = std::min(roiBegin[axis], static_cast<size_t>(threadBegin[axis]));
-                roiEnd[axis] = std::max(roiEnd[axis], static_cast<size_t>(threadEnd[axis]));
+                roiBegin[axis] = std::min(roiBegin[axis],
+                                          static_cast<size_t>(threadBegin[axis]));
+                roiEnd[axis] = std::max(roiEnd[axis],
+                                        static_cast<size_t>(threadEnd[axis]));
             }
         }
-        // std::cout << "done" << std::endl;
+
+        // TODO should check for ignore label consistency
+        ignoreLabel = threadData[0].ignoreLabel;
     }
 
 
@@ -504,15 +532,18 @@ namespace distributed {
         // FIXME should use some max uint value here
         std::vector<size_t> roiBegin({10000000, 10000000, 10000000});
         std::vector<size_t> roiEnd({0, 0, 0});
+        bool ignoreLabel;
 
         if(numberOfThreads == 1) {
             mergeSubgraphsSingleThreaded(pathToGraph, blockPrefix, blockIds,
                                          nodes, edges,
-                                         roiBegin, roiEnd);
+                                         roiBegin, roiEnd,
+                                         ignoreLabel);
         } else {
             mergeSubgraphsMultiThreaded(pathToGraph, blockPrefix,
                                         blockIds, nodes, edges,
                                         roiBegin, roiEnd,
+                                        ignoreLabel,
                                         numberOfThreads);
         }
 
@@ -524,16 +555,17 @@ namespace distributed {
         serializeGraph(pathToGraph, outKey,
                        nodes, edges,
                        roiBegin, roiEnd,
+                       ignoreLabel,
                        numberOfThreads,
                        compression);
     }
 
 
     inline void mapEdgeIds(const std::string & pathToGraph,
-                    const std::string & graphKey,
-                    const std::string & blockPrefix,
-                    const std::vector<size_t> & blockIds,
-                    const int numberOfThreads=1) {
+                           const std::string & graphKey,
+                           const std::string & blockPrefix,
+                           const std::vector<size_t> & blockIds,
+                           const int numberOfThreads=1) {
 
         const std::vector<size_t> zero1Coord({0});
         // we load the edges into a vector, because
@@ -551,7 +583,8 @@ namespace distributed {
         size_t nBlocks = blockIds.size();
 
         // handle all the blocks in parallel
-        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid, const int blockIndex){
+        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
+                                                                   const int blockIndex){
 
             auto blockId = blockIds[blockIndex];
 

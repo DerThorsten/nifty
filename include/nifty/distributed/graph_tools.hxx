@@ -120,7 +120,9 @@ namespace distributed {
         std::vector<std::set<NodeType>> blockNodeStorage(numberOfNewBlocks);
 
         // load new nodes
-        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockIndex){
+        nifty::parallel::parallel_foreach(threadpool,
+                                          numberOfNewBlocks, [&](const int tId,
+                                                                 const size_t blockIndex){
             const size_t blockId = newBlockIds[blockIndex];
             auto & newBlockNodes = blockNodeStorage[blockId];
 
@@ -145,7 +147,9 @@ namespace distributed {
         // serialize the merged sub-graphs
         const std::vector<size_t> zero1Coord({0});
         const std::vector<size_t> zero2Coord({0, 0});
-        nifty::parallel::parallel_foreach(threadpool, numberOfNewBlocks, [&](const int tId, const size_t blockId){
+        nifty::parallel::parallel_foreach(threadpool,
+                                          numberOfNewBlocks, [&](const int tId,
+                                                                 const size_t blockId){
             // create the out group
             const std::string outPath = graphOutPrefix + std::to_string(blockId);
             z5::handle::Group group(outPath);
@@ -154,7 +158,8 @@ namespace distributed {
             // get the new block node ids and serialize them
             const auto & blockNodes = blockNodeStorage[blockId];
             std::vector<size_t> nodeShape = {blockNodes.size()};
-            auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeShape, false);
+            auto dsNodes = z5::createDataset(group, "nodes", "uint64",
+                                             nodeShape, nodeShape, false);
             Shape1Type nodeSerShape = {blockNodes.size()};
             Tensor1 nodeSer(nodeSerShape);
             size_t i = 0;
@@ -212,13 +217,16 @@ namespace distributed {
 
                 // serialize the edges
                 std::vector<size_t> edgeShape = {nNewEdges, 2};
-                auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape, false);
+                auto dsEdges = z5::createDataset(group, "edges", "uint64",
+                                                 edgeShape, edgeShape, false);
                 z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
 
                 // serialize the edge ids
                 std::vector<size_t> edgeIdShape = {nNewEdges};
-                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64", edgeIdShape, edgeIdShape, false);
-                z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer, zero1Coord.begin());
+                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64",
+                                                   edgeIdShape, edgeIdShape, false);
+                z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer,
+                                                             zero1Coord.begin());
             }
 
             // serialize metadata (number of edges and nodes and position of the block)

@@ -20,10 +20,12 @@ namespace distributed {
                                        const std::string & labelKey,
                                        const std::vector<size_t> & blockIds,
                                        const std::string & tmpFeatureStorage,
-                                       FeatureType dataMin, FeatureType dataMax) {
+                                       const FeatureType dataMin,
+                                       const FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromBoundaryMaps<T>(blockPrefix, dataPath, dataKey,
-                                                    labelPath, labelKey, blockIds, tmpFeatureStorage,
+                                                    labelPath, labelKey, blockIds,
+                                                    tmpFeatureStorage,
                                                     dataMin, dataMax);
 
         }, py::arg("blockPrefix"),
@@ -42,11 +44,13 @@ namespace distributed {
                                        const std::vector<size_t> & blockIds,
                                        const std::string & tmpFeatureStorage,
                                        const std::vector<OffsetType> & offsets,
-                                       FeatureType dataMin, FeatureType dataMax) {
+                                       const FeatureType dataMin,
+                                       const FeatureType dataMax) {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromAffinityMaps<T>(blockPrefix, dataPath, dataKey,
-                                                    labelPath, labelKey, blockIds, tmpFeatureStorage,
-                                                    offsets, dataMin, dataMax);
+                                                    labelPath, labelKey, blockIds,
+                                                    tmpFeatureStorage, offsets,
+                                                    dataMin, dataMax);
 
         }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),

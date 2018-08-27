@@ -90,6 +90,7 @@ namespace distributed {
 
             const auto & jBegin = j[keys[0]];
             const auto & jEnd = j[keys[1]];
+            const bool ignoreLabel = j["ignoreLabel"];
 
             std::vector<size_t> roiBegin(3);
             std::vector<size_t> roiEnd(3);
@@ -101,7 +102,9 @@ namespace distributed {
             // run the accumulator
             blockStoragePath = featureStorage;
             blockStoragePath /= "block_" + std::to_string(blockId);
-            accumulator(graph, std::move(data), std::move(labels), roiBegin, roiEnd, blockStoragePath.string());
+            accumulator(graph, std::move(data), std::move(labels),
+                        roiBegin, roiEnd, blockStoragePath.string(),
+                        ignoreLabel);
         }
     }
 
@@ -152,7 +155,9 @@ namespace distributed {
                                       const std::vector<size_t> & roiBegin,
                                       const std::vector<size_t> & roiEnd,
                                       const std::string & blockStoragePath,
-                                      FeatureType dataMin, FeatureType dataMax) {
+                                      const FeatureType dataMin,
+                                      const FeatureType dataMax,
+                                      const bool ignoreLabel) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 3> DataArray;
@@ -186,11 +191,17 @@ namespace distributed {
         if(byteInput) {
             nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
                 const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                if(lU == 0 && ignoreLabel) {
+                    return;
+                }
                 CoordType coord2;
                 for(size_t axis = 0; axis < 3; ++axis){
                     makeCoord2(coord, coord2, axis);
                     if(coord2[axis] < blockShape[axis]){
                         const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                        if(lV == 0 && ignoreLabel) {
+                            return;
+                        }
                         if(lU != lV){
                             const EdgeIndexType edge = graph.findEdge(lU, lV);
                             const auto fU = xtensor::read(data, coord.asStdArray());
@@ -206,11 +217,17 @@ namespace distributed {
         } else {
             nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
                 const NodeType lU = xtensor::read(labels, coord.asStdArray());
+                if(lU == 0 && ignoreLabel) {
+                    return;
+                }
                 CoordType coord2;
                 for(size_t axis = 0; axis < 3; ++axis){
                     makeCoord2(coord, coord2, axis);
                     if(coord2[axis] < blockShape[axis]){
                         const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                        if(lV == 0 && ignoreLabel) {
+                            return;
+                        }
                         if(lU != lV){
                             const EdgeIndexType edge = graph.findEdge(lU, lV);
                             const auto fU = xtensor::read(data, coord.asStdArray());
@@ -239,7 +256,9 @@ namespace distributed {
                                       const std::vector<OffsetType> & offsets,
                                       const std::vector<size_t> & haloBegin,
                                       const std::vector<size_t> & haloEnd,
-                                      FeatureType dataMin, FeatureType dataMax) {
+                                      const FeatureType dataMin,
+                                      const FeatureType dataMax,
+                                      const bool ignoreLabel) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 4> DataArray;
@@ -308,6 +327,11 @@ namespace distributed {
 
                 const NodeType lU = xtensor::read(labels, coord.asStdArray());
                 const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+
+                if(ignoreLabel && (lU == 0 || lV == 0)) {
+                    return;
+                }
+
                 if(lU != lV){
                     // for long range affinites, the uv pair may not be part of the region graph
                     // so we need to check if the edge actually exists
@@ -339,6 +363,11 @@ namespace distributed {
 
                 const NodeType lU = xtensor::read(labels, coord.asStdArray());
                 const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+
+                if(ignoreLabel && (lU == 0 || lV == 0)) {
+                    return;
+                }
+
                 if(lU != lV){
                     // for long range affinites, the uv pair may not be part of the region graph
                     // so we need to check if the edge actually exists
@@ -369,7 +398,8 @@ namespace distributed {
                                                      const std::string & labelKey,
                                                      const std::vector<size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
-                                                     FeatureType dataMin=0, FeatureType dataMax=1) {
+                                                     const FeatureType dataMin=0,
+                                                     const FeatureType dataMax=1) {
 
         // TODO could also use the std::bind pattern and std::function
         auto accumulator = [dataMin, dataMax](
@@ -378,11 +408,12 @@ namespace distributed {
                 std::unique_ptr<z5::Dataset> labelsDs,
                 const std::vector<size_t> & roiBegin,
                 const std::vector<size_t> & roiEnd,
-                const std::string & blockStoragePath) {
+                const std::string & blockStoragePath,
+                const bool ignoreLabel) {
 
             accumulateBoundaryMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
                                              roiBegin, roiEnd, blockStoragePath,
-                                             dataMin, dataMax);
+                                             dataMin, dataMax, ignoreLabel);
         };
 
         extractBlockFeaturesImpl(blockPrefix,
@@ -402,7 +433,8 @@ namespace distributed {
                                                      const std::vector<size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
                                                      const std::vector<OffsetType> & offsets,
-                                                     FeatureType dataMin=0, FeatureType dataMax=1) {
+                                                     const FeatureType dataMin=0,
+                                                     const FeatureType dataMax=1) {
         // calculate max halos from the offsets
         std::vector<size_t> haloBegin(3), haloEnd(3);
         for(const auto & offset : offsets) {
@@ -423,12 +455,13 @@ namespace distributed {
                 std::unique_ptr<z5::Dataset> labelsDs,
                 const std::vector<size_t> & roiBegin,
                 const std::vector<size_t> & roiEnd,
-                const std::string & blockStoragePath) {
+                const std::string & blockStoragePath,
+                const bool ignoreLabel) {
 
             accumulateAffinityMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
                                              roiBegin, roiEnd, blockStoragePath,
                                              offsets, haloBegin, haloEnd,
-                                             dataMin, dataMax);
+                                             dataMin, dataMax, ignoreLabel);
         };
 
         extractBlockFeaturesImpl(blockPrefix,

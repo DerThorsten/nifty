@@ -23,17 +23,20 @@ namespace distributed {
             const CoordinateType & roiBegin,
             const CoordinateType & roiEnd,
             const std::string & pathToGraph,
-            const std::string & keyToGraph
+            const std::string & keyToGraph,
+            const bool ignoreLabel
         ) {
 
             py::gil_scoped_release allowThreads;
             computeMergeableRegionGraph(pathToLabels, keyToLabels,
                                         roiBegin, roiEnd,
-                                        pathToGraph, keyToGraph);
+                                        pathToGraph, keyToGraph,
+                                        ignoreLabel);
 
         }, py::arg("pathToLabels"), py::arg("keyToLabels"),
            py::arg("roiBegin"), py::arg("roiEnd"),
-           py::arg("pathToGraph"), py::arg("keyToGraph"));
+           py::arg("pathToGraph"), py::arg("keyToGraph"),
+           py::arg("ignoreLabel")=false);
 
 
         module.def("mergeSubgraphs", [](
@@ -197,7 +200,8 @@ namespace distributed {
            py::arg("newBlockShape"),
            py::arg("newBlockIds"),
            py::arg("numberOfNewNodes"),
-           py::arg("nodeLabeling"), py::arg("edgeLabeling"),
+           py::arg("nodeLabeling"),
+           py::arg("edgeLabeling"),
            py::arg("graphOutPrefix"),
            py::arg("numberOfThreads")=-1);
     }
