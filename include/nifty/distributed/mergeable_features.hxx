@@ -57,7 +57,7 @@ namespace distributed {
         fs::path labelsSetPath(labelPath);
         labelsSetPath /= labelKey;
 
-        const std::vector<std::string> keys = {"roiBegin", "roiEnd"};
+        const std::vector<std::string> keys = {"roiBegin", "roiEnd", "ignoreLabel"};
 
         // make path to the feature storage
         fs::path featureStorage(tmpFeatureStorage);
@@ -90,7 +90,7 @@ namespace distributed {
 
             const auto & jBegin = j[keys[0]];
             const auto & jEnd = j[keys[1]];
-            const bool ignoreLabel = j["ignoreLabel"];
+            const bool ignoreLabel = j[keys[2]];
 
             std::vector<size_t> roiBegin(3);
             std::vector<size_t> roiEnd(3);

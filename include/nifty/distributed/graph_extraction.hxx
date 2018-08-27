@@ -385,14 +385,14 @@ namespace distributed {
                                              std::vector<size_t> & roiBegin,
                                              std::vector<size_t> & roiEnd,
                                              bool & ignoreLabel) {
-        nlohmann::json j;
-        const std::vector<std::string> keys({"roiBegin", "roiEnd"});
+        const std::vector<std::string> keys({"roiBegin", "roiEnd", "ignoreLabel"});
 
         fs::path blockPath;
         std::string blockKey;
 
         for(size_t blockId : blockIds) {
 
+            nlohmann::json j;
             // open the group associated with the sub-graph corresponding to this block
             blockKey = blockPrefix + std::to_string(blockId);
             blockPath = graphPath;
@@ -417,9 +417,9 @@ namespace distributed {
                                         static_cast<size_t>(blockEnd[axis]));
             }
 
-            // TODO we should make sure that the ignore label 
+            // TODO we should make sure that the ignore label
             // is consistent along blocks
-            ignoreLabel = j["ignoreLabel"];
+            ignoreLabel = j[keys[2]];
         }
 
     }
@@ -455,8 +455,8 @@ namespace distributed {
 
         // merge nodes and edges multi threaded
         size_t nBlocks = blockIds.size();
-        const std::vector<std::string> keys({"roiBegin", "roiEnd"});
-        // std::cout << "Merging subgraphs ..." << std::endl;
+        const std::vector<std::string> keys({"roiBegin", "roiEnd", "ignoreLabel"});
+
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
                                                                    const int blockIndex){
 
@@ -493,7 +493,7 @@ namespace distributed {
                 threadEnd[axis] = std::max(threadEnd[axis],
                                            static_cast<size_t>(blockEnd[axis]));
             }
-            threadData[tid].ignoreLabel = j["ignoreLabel"];
+            threadData[tid].ignoreLabel = j[keys[2]];
         });
 
         // merge into final nodes and edges
@@ -534,6 +534,7 @@ namespace distributed {
         std::vector<size_t> roiEnd({0, 0, 0});
         bool ignoreLabel;
 
+        std::cout << "start merge" << std::endl;
         if(numberOfThreads == 1) {
             mergeSubgraphsSingleThreaded(pathToGraph, blockPrefix, blockIds,
                                          nodes, edges,
@@ -546,6 +547,7 @@ namespace distributed {
                                         ignoreLabel,
                                         numberOfThreads);
         }
+        std::cout << "ignore label is " << ignoreLabel << std::endl;
 
         // we can only use compression for
         // big enough blocks (too small chunks will result in zlib error)
@@ -558,6 +560,7 @@ namespace distributed {
                        ignoreLabel,
                        numberOfThreads,
                        compression);
+        std::cout << "Done serializeing" << std::endl;
     }
 
 
