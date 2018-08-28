@@ -35,9 +35,8 @@ namespace tools{
         }, py::arg("relabeling"), py::arg("toRelabel"));
 
 
-
         toolsModule.def("_takeDict",
-        [](const std::map<T, T> & relabeling,
+        [](const std::unordered_map<T, T> & relabeling,
            const xt::pytensor<T, 1> & toRelabel
         ){
             typedef typename xt::pytensor<T, 1>::shape_type ShapeType;
@@ -53,6 +52,7 @@ namespace tools{
             return out;
         }, py::arg("relabeling"), py::arg("toRelabel"));
 
+
         toolsModule.def("_unique",
         [](const xt::pytensor<T, 1> & values) {
             std::unordered_set<T> uniques;
@@ -63,7 +63,7 @@ namespace tools{
                 }
             }
             typedef typename xt::pytensor<T, 1>::shape_type Shape;
-            Shape shape = {uniques.size()};
+            Shape shape = {static_cast<unsigned int>(uniques.size())};
             xt::pytensor<T, 1> out = xt::zeros<T>(shape);
             {
                 py::gil_scoped_release allowThreads;
@@ -75,6 +75,26 @@ namespace tools{
             }
             return out;
         }, py::arg("values"));
+
+
+        toolsModule.def("inflateLabeling",
+        [](const xt::pytensor<T, 1> & values, const xt::pytensor<T, 1> & labels, const T maxVal, const T fillVal){
+            const unsigned int nValues = maxVal + 1;
+            xt::pytensor<T, 1> out = xt::zeros<T>({nValues});
+            {
+                py::gil_scoped_release allowThreads;
+                T index = 0;
+                for(T consecVal = 0; consecVal < nValues; ++consecVal) {
+                    if(values[index] == consecVal) {
+                        out[consecVal] = labels[index];
+                        ++index;
+                    } else {
+                        out[consecVal] = fillVal;
+                    }
+                }
+            }
+            return out;
+        }, py::arg("values"), py::arg("labels"), py::arg("maxVal"), py::arg("fillVal")=0);
     }
 
 

@@ -1,15 +1,16 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include <pybind11/numpy.h>
 
 #include <iostream>
 
-#include "nifty/python/converter.hxx"
+#include <xtensor-python/pytensor.hpp>
 #include "nifty/ufd/ufd.hxx"
+
+namespace py = pybind11;
+
 
 namespace nifty{
 namespace ufd{
-
 
     template<class T>
     void exportUfdT(py::module & ufdModule, const std::string & clsName) {
@@ -43,9 +44,10 @@ namespace ufd{
                 "   element (int): Element.\n\n"
             )
             // find vectorized
-            .def("find", [](UfdType & self, const marray::PyView<T,1> indices) {
-                marray::PyView<IndexType,1> out({indices.shape(0)});
-                for(int i = 0; i < indices.shape(0); ++i)
+            .def("find", [](UfdType & self, const xt::pytensor<T, 1> & indices) {
+                const unsigned int n_indices = indices.shape()[0];
+                xt::pytensor<T, 1> out = xt::zeros<T>({n_indices});
+                for(int i = 0; i < n_indices; ++i)
                     out(i) = self.find(indices(i));
                 return out;
             },
@@ -55,9 +57,10 @@ namespace ufd{
                 "Args:\n"
                 "   element (int): Element.\n\n"
             )
-            .def("find", [](const UfdType & self, const marray::PyView<T,1> indices) {
-                marray::PyView<IndexType,1> out({indices.shape(0)});
-                for(int i = 0; i < indices.shape(0); ++i)
+            .def("find", [](const UfdType & self, const xt::pytensor<T, 1> & indices) {
+                const unsigned int n_indices = indices.shape()[0];
+                xt::pytensor<T, 1> out = xt::zeros<T>({n_indices});
+                for(int i = 0; i < n_indices; ++i)
                     out(i) = self.find(indices(i));
                 return out;
             },
@@ -78,9 +81,9 @@ namespace ufd{
                 "   element2 (int): Element in the first set.\n\n"
                 )
             // merge vectorized
-            .def("merge", [](UfdType & self, marray::PyView<T,2> mergeIndices) {
-                NIFTY_CHECK_OP(mergeIndices.shape(1),==,2,"We need pairs of indices for merging!")
-                for(int i = 0; i < mergeIndices.shape(0); ++i)
+            .def("merge", [](UfdType & self, const xt::pytensor<T, 2> & mergeIndices) {
+                // NIFTY_CHECK_OP(mergeIndices.shape()[1],==,2,"We need pairs of indices for merging!");
+                for(int i = 0; i < mergeIndices.shape()[0]; ++i)
                     self.merge(mergeIndices(i,0), mergeIndices(i,1));
             },
                 " Merge two elements\n\n"
@@ -111,7 +114,7 @@ namespace ufd{
                 "Detailed....TODO\n\n"
                 )
             .def("elementLabeling", [](const UfdType & self) {
-                marray::PyView<IndexType,1> out({self.numberOfElements()});
+                xt::pytensor<T, 1> out = xt::zeros<T>({self.numberOfElements()});
                 self.elementLabeling(&out(0));
                 return out;
             },

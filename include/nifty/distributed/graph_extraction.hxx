@@ -330,12 +330,13 @@ namespace distributed {
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
 
             lU = xtensor::read(labels, coord.asStdArray());
-            // skip zero if we have an ignoreLabel
+            nodes.insert(lU);
+
+            // skip edges to zero if we have an ignoreLabel
             if(ignoreLabel && lU == 0) {
                 return;
             }
 
-            nodes.insert(lU);
             for(size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){

@@ -18,3 +18,12 @@ def ufd(size, dtype='uint64'):
         return Ufd_UInt32(int(size))
     elif dtype == 'uint64':
         return Ufd_UInt64(int(size))
+
+
+def boost_ufd(elements, dtype='uint64'):
+    if dtype not in ['uint32','uint64']:
+        raise RuntimeError("dtype must be 'uint32' or 'uint64'")
+    if dtype == 'uint32':
+        return BoostUfd_UInt32(elements)
+    elif dtype == 'uint64':
+        return BoostUfd_UInt64(elements)
