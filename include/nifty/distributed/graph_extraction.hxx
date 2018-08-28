@@ -535,7 +535,6 @@ namespace distributed {
         std::vector<size_t> roiEnd({0, 0, 0});
         bool ignoreLabel;
 
-        std::cout << "start merge" << std::endl;
         if(numberOfThreads == 1) {
             mergeSubgraphsSingleThreaded(pathToGraph, blockPrefix, blockIds,
                                          nodes, edges,
@@ -548,7 +547,6 @@ namespace distributed {
                                         ignoreLabel,
                                         numberOfThreads);
         }
-        std::cout << "ignore label is " << ignoreLabel << std::endl;
 
         // we can only use compression for
         // big enough blocks (too small chunks will result in zlib error)
@@ -561,7 +559,6 @@ namespace distributed {
                        ignoreLabel,
                        numberOfThreads,
                        compression);
-        std::cout << "Done serializeing" << std::endl;
     }
 
 

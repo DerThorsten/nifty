@@ -485,49 +485,71 @@ namespace distributed {
     }
 
 
-    inline void mergeFeaturesForSingleEdge(const xt::xtensor<FeatureType, 2> & tmpFeatures, xt::xtensor<FeatureType, 2> & targetFeatures,
-                                           const EdgeIndexType tmpId, const EdgeIndexType targetId,
+    inline void mergeFeatType(const xt::xtensor<FeatureType, 2> & tmpFeatures,
+                              xt::xtensor<FeatureType, 2> & targetFeatures,
+                              const EdgeIndexType tmpId,  const EdgeIndexType targetId,
+                              const unsigned off,
+                              const FeatureType ratioA, const FeatureType ratioB) {
+        // merge the mean
+        const FeatureType meanA = targetFeatures(targetId, off);
+        const FeatureType meanB = tmpFeatures(tmpId, off);
+        const FeatureType newMean = ratioA * meanA + ratioB * meanB;
+        targetFeatures(targetId, off) = newMean;
+
+        // merge the variance (feature id 1), see
+        // https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
+        const FeatureType varA = targetFeatures(targetId, off + 1);
+        const FeatureType varB = tmpFeatures(tmpId, off + 1);
+        targetFeatures(targetId, off + 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
+        targetFeatures(targetId, off + 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
+
+        // merge the min (feature id 2)
+        targetFeatures(targetId, off + 2) = std::min(targetFeatures(targetId, off + 2),
+                                                     tmpFeatures(tmpId, off + 2));
+
+        // merge the quantiles (not min and max !) via weighted average
+        // this is not correct, but the best we can do for now
+        for(size_t featId = 3 + off; featId < 8 + off; ++featId) {
+            targetFeatures(targetId, featId) = ratioA * targetFeatures(targetId, featId) + ratioB * tmpFeatures(tmpId, featId);
+        }
+
+        // merge the max (feature id 8)
+        targetFeatures(targetId, off + 8) = std::max(targetFeatures(targetId, off + 8),
+                                                     tmpFeatures(tmpId, off + 8));
+    }
+
+
+    inline void mergeFeaturesForSingleEdge(const xt::xtensor<FeatureType, 2> & tmpFeatures,
+                                           xt::xtensor<FeatureType, 2> & targetFeatures,
+                                           const EdgeIndexType tmpId,
+                                           const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
 
+        const size_t nFeatures = tmpFeatures.shape()[1];
+        const size_t featsPerType = 9;
         if(hasFeatures[targetId]) {
 
-            // index 9 is the count
-            const FeatureType nSamplesA = targetFeatures(targetId, 9);
-            const FeatureType nSamplesB = tmpFeatures(tmpId, 9);
+            // last index is the count
+            const FeatureType nSamplesA = targetFeatures(targetId, nFeatures - 1);
+            const FeatureType nSamplesB = tmpFeatures(tmpId, nFeatures - 1);
             const FeatureType nSamplesTot = nSamplesA + nSamplesB;
             const FeatureType ratioA = nSamplesA / nSamplesTot;
             const FeatureType ratioB = nSamplesB / nSamplesTot;
 
-            // merge the mean
-            const FeatureType meanA = targetFeatures(targetId, 0);
-            const FeatureType meanB = tmpFeatures(tmpId, 0);
-            const FeatureType newMean = ratioA * meanA + ratioB * meanB;
-            targetFeatures(targetId, 0) = newMean;
-
-            // merge the variance (feature id 1)
-            // see https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
-            const FeatureType varA = targetFeatures(targetId, 1);
-            const FeatureType varB = tmpFeatures(tmpId, 1);
-            targetFeatures(targetId, 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
-            targetFeatures(targetId, 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
-
-            // merge the min (feature id 2)
-            targetFeatures(targetId, 2) = std::min(targetFeatures(targetId, 2), tmpFeatures(tmpId, 2));
-
-            // merge the quantiles (not min and max !) via weighted average
-            // this is not correct, but the best we can do for now
-            for(size_t featId = 3; featId < 8; ++featId) {
-                targetFeatures(targetId, featId) =  ratioA * targetFeatures(targetId, featId) + ratioB * tmpFeatures(tmpId, featId);
+            // merge each type of features in 9er steps
+            const size_t nFeatTypes = (nFeatures - 1) / featsPerType;
+            for(size_t featType = 0; featType < nFeatTypes; ++featType) {
+                mergeFeatType(tmpFeatures, targetFeatures,
+                              tmpId, targetId, featType * featsPerType,
+                              ratioA, ratioB);
             }
 
-            // merge the max (feature id 8)
-            targetFeatures(targetId, 8) = std::max(targetFeatures(targetId, 8), tmpFeatures(tmpId, 8));
-            // merge the count (feature id 9)
-            targetFeatures(targetId, 9) = nSamplesTot;
+            // merge the count (last feature index)
+            targetFeatures(targetId, nFeatures - 1) = nSamplesTot;
 
         } else {
 
-            for(size_t featId = 0; featId < 10; ++featId) {
+            for(size_t featId = 0; featId < nFeatures; ++featId) {
                 targetFeatures(targetId, featId) = tmpFeatures(tmpId, featId);
             }
             hasFeatures[targetId] = true;
@@ -549,13 +571,14 @@ namespace distributed {
                                            const std::string & featureBlockPrefix,
                                            const size_t edgeIdBegin,
                                            const size_t edgeIdEnd,
+                                           const size_t nFeatures,
                                            const std::vector<size_t> & blockIds,
                                            nifty::parallel::ThreadPool & threadpool,
                                            const std::string & featuresOut) {
         //
         const size_t nEdges = edgeIdEnd - edgeIdBegin;
-        Shape2Type fShape = {nEdges, 10};
-        Shape2Type tmpInit = {1, 10};
+        Shape2Type fShape = {nEdges, nFeatures};
+        Shape2Type tmpInit = {1, nFeatures};
 
         // initialize per thread data
         const size_t nThreads = threadpool.nThreads();
@@ -574,7 +597,8 @@ namespace distributed {
 
         // iterate over the block ids
         const size_t nBlocks = blockIds.size();
-        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId, const int blockIndex){
+        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId,
+                                                                   const int blockIndex){
 
             const size_t blockId = blockIds[blockIndex];
 
@@ -601,12 +625,13 @@ namespace distributed {
             // first resize the tmp features, if necessary
             const std::string blockFeaturePath = featureBlockPrefix + std::to_string(blockId);
             if(blockFeatures.shape()[0] != nEdgesBlock) {
-                blockFeatures.resize({nEdgesBlock, 10});
+                blockFeatures.resize({nEdgesBlock, nFeatures});
             }
 
             loadBlockFeatures(blockFeaturePath, blockFeatures);
 
-            // iterate over the edges in this block and merge edge features if they are in our edge range
+            // iterate over the edges in this block and merge edge features
+            // if they are in our edge range
             for(EdgeIndexType edgeId : blockEdgeIndices) {
                 // only merge if we are in the edge range
                 if(edgeId >= edgeIdBegin && edgeId < edgeIdEnd) {
@@ -615,7 +640,8 @@ namespace distributed {
                     const EdgeIndexType rangeEdgeId = edgeId - edgeIdBegin;
                     const EdgeIndexType blockEdgeId = toDenseBlockId[edgeId];
 
-                    mergeFeaturesForSingleEdge(blockFeatures, features, blockEdgeId, rangeEdgeId, hasFeatures);
+                    mergeFeaturesForSingleEdge(blockFeatures, features,
+                                               blockEdgeId, rangeEdgeId, hasFeatures);
                 }
             }
 
@@ -624,11 +650,13 @@ namespace distributed {
         // merge features for each edge
         auto & features = perThreadDataVector[0].features;
         auto & hasFeatureVector = perThreadDataVector[0].edgeHasFeatures;
-        nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId, const EdgeIndexType edgeId){
+        nifty::parallel::parallel_foreach(threadpool, nEdges, [&](const int tId,
+                                                                  const EdgeIndexType edgeId){
             for(int threadId = 1; threadId < nThreads; ++threadId) {
                 auto & perThreadData = perThreadDataVector[threadId];
                 if(perThreadData.edgeHasFeatures[edgeId]) {
-                    mergeFeaturesForSingleEdge(perThreadData.features, features, edgeId, edgeId, hasFeatureVector);
+                    mergeFeaturesForSingleEdge(perThreadData.features, features,
+                                               edgeId, edgeId, hasFeatureVector);
                 }
             }
         });
@@ -653,7 +681,8 @@ namespace distributed {
 
         const size_t numberOfBlocks = blockIds.size();
 
-        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId, const int blockIndex) {
+        nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId,
+                                                                          const int blockIndex) {
 
             const size_t blockId = blockIds[blockIndex];
 
@@ -718,33 +747,82 @@ namespace distributed {
                            edgeIdBegin, edgeIdEnd, threadpool,
                            relevantBlocks);
 
+        // get the number of features
+        const size_t nFeatures = z5::openDataset(featuresOut)->shape(1);
+
         // merge all edges in the edge range
         mergeEdgeFeaturesForBlocks(graphBlockPrefix, featureBlockPrefix,
-                                   edgeIdBegin, edgeIdEnd,
-                                   relevantBlocks,
-                                   threadpool, featuresOut);
+                                   edgeIdBegin, edgeIdEnd, nFeatures,
+                                   relevantBlocks, threadpool, featuresOut);
     }
 
 
-    inline void mergeFeatureBlocks(const std::string & graphBlockPrefix,
-                                   const std::string & featureBlockPrefix,
-                                   const std::string & featuresOut,
-                                   const size_t numberOfBlocks,
-                                   const size_t edgeIdBegin,
-                                   const size_t edgeIdEnd,
-                                   const int numberOfThreads=1) {
+    template<class INPUT, class LABELS, class FEATURES>
+    inline void accumulateInput(const Graph & graph,
+                                const xt::xexpression<INPUT> & inputExp,
+                                const xt::xexpression<LABELS> & labelsExp,
+                                const bool ignoreLabel,
+                                const bool withSize,
+                                const FeatureType dataMin,
+                                const FeatureType dataMax,
+                                xt::xexpression<FEATURES> & featuresExp) {
 
-        std::vector<size_t> blockIds(numberOfBlocks);
-        std::iota(blockIds.begin(), blockIds.end(), 0);
-        mergeFeatureBlocks(graphBlockPrefix,
-                           featureBlockPrefix,
-                           featuresOut,
-                           blockIds,
-                           edgeIdBegin,
-                           edgeIdEnd,
-                           numberOfThreads);
+        const auto & input = inputExp.derived_cast();
+        const auto & labels = labelsExp.derived_cast();
+        auto & features = featuresExp.derived_cast();
+
+        AccumulatorVector accumulators(graph.numberOfEdges());
+        const int pass = 1;
+        HistogramOptions histogramOpts;
+        histogramOpts = histogramOpts.setMinMax(dataMin, dataMax);
+        for(auto & accumulator : accumulators) {
+            accumulator.setHistogramOptions(histogramOpts);
+        }
+
+        CoordType shape;
+        std::copy(input.shape().begin(), input.shape().end(), shape.begin());
+
+        nifty::tools::forEachCoordinate(shape, [&](const CoordType & coord) {
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            if(lU == 0 && ignoreLabel) {
+                return;
+            }
+            CoordType coord2;
+            for(size_t axis = 0; axis < 3; ++axis){
+                makeCoord2(coord, coord2, axis);
+                if(coord2[axis] < shape[axis]){
+                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                    if(lV == 0 && ignoreLabel) {
+                        return;
+                    }
+                    if(lU != lV){
+                        const EdgeIndexType edge = graph.findEdge(lU, lV);
+                        const auto fU = xtensor::read(input, coord.asStdArray());
+                        const auto fV = xtensor::read(input, coord2.asStdArray());
+                        accumulators[edge].updatePassN(fU, pass);
+                        accumulators[edge].updatePassN(fV, pass);
+                    }
+                }
+            }
+        });
+
+        EdgeIndexType edgeId = 0;
+        for(const auto & accumulator : accumulators) {
+            // get the values from this accumulator
+            const FeatureType mean = replaceIfNotFinite(acc::get<acc::Mean>(accumulator), 0.0);
+
+            features(edgeId, 0) = mean;
+            features(edgeId, 1) = replaceIfNotFinite(acc::get<acc::Variance>(accumulator), 0.0);
+            const auto & quantiles = acc::get<Quantiles>(accumulator);
+            for(unsigned qi = 0; qi < 7; ++qi) {
+                features(edgeId, 2 + qi) = replaceIfNotFinite(quantiles[qi], mean);
+            }
+            if(withSize) {
+                features(edgeId, 9) = replaceIfNotFinite(acc::get<acc::Count>(accumulator), 0.0);
+            }
+            ++edgeId;
+        }
     }
-
 
 }
 }
