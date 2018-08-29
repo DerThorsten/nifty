@@ -29,6 +29,8 @@ namespace distributed {
     typedef std::vector<AccumulatorChain> AccumulatorVector;
     typedef vigra::HistogramOptions HistogramOptions;
 
+
+    typedef nifty::array::StaticArray<int64_t, 4> AffCoordType;
     typedef std::array<int, 3> OffsetType;
 
 
@@ -147,6 +149,78 @@ namespace distributed {
     }
 
 
+    template<class INPUT, class LABELS>
+    inline void accumulateBoundariesImplByte(const Graph & graph,
+                                             const xt::xtensor<INPUT, 3> & data,
+                                             const xt::xtensor<LABELS, 3> & labels,
+                                             const CoordType & blockShape,
+                                             const bool ignoreLabel,
+                                             AccumulatorVector & accumulators) {
+        const int pass = 1;
+        nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            if(lU == 0 && ignoreLabel) {
+                return;
+            }
+            CoordType coord2;
+            for(size_t axis = 0; axis < 3; ++axis){
+                makeCoord2(coord, coord2, axis);
+                if(coord2[axis] < blockShape[axis]){
+                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                    if(lV == 0 && ignoreLabel) {
+                        return;
+                    }
+                    if(lU != lV){
+                        const EdgeIndexType edge = graph.findEdge(lU, lV);
+                        const auto fU = xtensor::read(data, coord.asStdArray());
+                        const auto fV = xtensor::read(data, coord2.asStdArray());
+                        FeatureType fUf = static_cast<FeatureType>(fU);
+                        FeatureType fVf = static_cast<FeatureType>(fV);
+                        accumulators[edge].updatePassN(fUf / 255., pass);
+                        accumulators[edge].updatePassN(fVf / 255., pass);
+                    }
+                }
+            }
+        });
+    }
+
+
+    template<class INPUT, class LABELS>
+    inline void accumulateBoundariesImplFloat(const Graph & graph,
+                                              const INPUT & data,
+                                              const LABELS & labels,
+                                              const CoordType & blockShape,
+                                              const bool ignoreLabel,
+                                              AccumulatorVector & accumulators) {
+        const int pass = 1;
+        nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            if(lU == 0 && ignoreLabel) {
+                return;
+            }
+            CoordType coord2;
+            for(size_t axis = 0; axis < 3; ++axis){
+                makeCoord2(coord, coord2, axis);
+                if(coord2[axis] < blockShape[axis]){
+                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                    if(lV == 0 && ignoreLabel) {
+                        return;
+                    }
+                    if(lU != lV){
+                        const EdgeIndexType edge = graph.findEdge(lU, lV);
+                        const auto fU = xtensor::read(data, coord.asStdArray());
+                        const auto fV = xtensor::read(data, coord2.asStdArray());
+                        FeatureType fUf = static_cast<FeatureType>(fU);
+                        FeatureType fVf = static_cast<FeatureType>(fV);
+                        accumulators[edge].updatePassN(fUf, pass);
+                        accumulators[edge].updatePassN(fVf, pass);
+                    }
+                }
+            }
+        });
+    }
+
+
     // accumulate simple boundary map
     template<class InputType>
     inline void accumulateBoundaryMap(const Graph & graph,
@@ -178,7 +252,6 @@ namespace distributed {
 
         // create nifty accumulator vector
         AccumulatorVector accumulators(graph.numberOfEdges());
-        const int pass = 1;
         HistogramOptions histogramOpts;
         histogramOpts = histogramOpts.setMinMax(dataMin, dataMax);
         for(auto & accumulator : accumulators) {
@@ -189,59 +262,105 @@ namespace distributed {
 
         // accumulate
         if(byteInput) {
-            nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
-                const NodeType lU = xtensor::read(labels, coord.asStdArray());
-                if(lU == 0 && ignoreLabel) {
-                    return;
-                }
-                CoordType coord2;
-                for(size_t axis = 0; axis < 3; ++axis){
-                    makeCoord2(coord, coord2, axis);
-                    if(coord2[axis] < blockShape[axis]){
-                        const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                        if(lV == 0 && ignoreLabel) {
-                            return;
-                        }
-                        if(lU != lV){
-                            const EdgeIndexType edge = graph.findEdge(lU, lV);
-                            const auto fU = xtensor::read(data, coord.asStdArray());
-                            const auto fV = xtensor::read(data, coord2.asStdArray());
-                            FeatureType fUf = static_cast<FeatureType>(fU);
-                            FeatureType fVf = static_cast<FeatureType>(fV);
-                            accumulators[edge].updatePassN(fUf / 255., pass);
-                            accumulators[edge].updatePassN(fVf / 255., pass);
-                        }
-                    }
-                }
-            });
+            accumulateBoundariesImplByte(graph, data, labels, blockShape,
+                                         ignoreLabel, accumulators);
         } else {
-            nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
-                const NodeType lU = xtensor::read(labels, coord.asStdArray());
-                if(lU == 0 && ignoreLabel) {
-                    return;
-                }
-                CoordType coord2;
-                for(size_t axis = 0; axis < 3; ++axis){
-                    makeCoord2(coord, coord2, axis);
-                    if(coord2[axis] < blockShape[axis]){
-                        const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                        if(lV == 0 && ignoreLabel) {
-                            return;
-                        }
-                        if(lU != lV){
-                            const EdgeIndexType edge = graph.findEdge(lU, lV);
-                            const auto fU = xtensor::read(data, coord.asStdArray());
-                            const auto fV = xtensor::read(data, coord2.asStdArray());
-                            accumulators[edge].updatePassN(fU, pass);
-                            accumulators[edge].updatePassN(fV, pass);
-                        }
-                    }
-                }
-            });
+            accumulateBoundariesImplFloat(graph, data, labels, blockShape,
+                                          ignoreLabel, accumulators);
         }
 
         // serialize the accumulators
         serializeDefaultEdgeFeatures(accumulators, blockStoragePath);
+    }
+
+
+    template<class AFFS, class LABELS>
+    inline void accumulateAffinitiesImplByte(const Graph & graph,
+                                             const AFFS & affs,
+                                             const LABELS & labels,
+                                             const AffCoordType & affBlockShape,
+                                             const std::vector<OffsetType> & offsets,
+                                             const bool ignoreLabel,
+                                             AccumulatorVector & accumulators) {
+        const int pass = 1;
+        // accumulate
+        nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
+
+            CoordType coord, coord2;
+            // the 0th affinitiy coordinate gives the channel index
+            const auto & offset = offsets[affCoord[0]];
+            for(unsigned axis = 0; axis < 3; ++axis) {
+                coord[axis] = affCoord[axis + 1];
+                coord2[axis] = affCoord[axis + 1] + offset[axis];
+
+                // bounds check
+                if(coord2[axis] < 0 || coord2[axis] > affBlockShape[axis + 1]) {
+                    return;
+                }
+            }
+
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+
+            if(ignoreLabel && (lU == 0 || lV == 0)) {
+                return;
+            }
+
+            if(lU != lV){
+                // for long range affinites, the uv pair may not be part of the region graph
+                // so we need to check if the edge actually exists
+                const EdgeIndexType edge = graph.findEdge(lU, lV);
+                if(edge != -1) {
+                    uint8_t data = xtensor::read(affs, affCoord.asStdArray());
+                    FeatureType dataF = static_cast<FeatureType>(data) / 255.;
+                    accumulators[edge].updatePassN(dataF, pass);
+                }
+            }
+        });
+    }
+
+
+    template<class AFFS, class LABELS>
+    inline void accumulateAffinitiesImplFloat(const Graph & graph,
+                                              const AFFS & affs,
+                                              const LABELS & labels,
+                                              const AffCoordType & affBlockShape,
+                                              const std::vector<OffsetType> & offsets,
+                                              const bool ignoreLabel,
+                                              AccumulatorVector & accumulators) {
+        // accumulate
+        const int pass = 1;
+        nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
+
+            CoordType coord, coord2;
+            // the 0th affinitiy coordinate gives the channel index
+            const auto & offset = offsets[affCoord[0]];
+            for(unsigned axis = 0; axis < 3; ++axis) {
+                coord[axis] = affCoord[axis + 1];
+                coord2[axis] = affCoord[axis + 1] + offset[axis];
+
+                // bounds check
+                if(coord2[axis] < 0 || coord2[axis] > affBlockShape[axis + 1]) {
+                    return;
+                }
+            }
+
+            const NodeType lU = xtensor::read(labels, coord.asStdArray());
+            const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+
+            if(ignoreLabel && (lU == 0 || lV == 0)) {
+                return;
+            }
+
+            if(lU != lV){
+                // for long range affinites, the uv pair may not be part of the region graph
+                // so we need to check if the edge actually exists
+                const EdgeIndexType edge = graph.findEdge(lU, lV);
+                if(edge != -1) {
+                    accumulators[edge].updatePassN(xtensor::read(affs, affCoord.asStdArray()), pass);
+                }
+            }
+        });
     }
 
 
@@ -263,8 +382,6 @@ namespace distributed {
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 4> DataArray;
         typedef typename DataArray::shape_type Shape4Type;
-
-        typedef nifty::array::StaticArray<int64_t, 4> AffCoordType;
 
         // get the shapes with halos
         std::vector<size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
@@ -309,75 +426,14 @@ namespace distributed {
 
         // We need different accumulation for byte and float input
         if(byteInput) {
-            // accumulate
-            nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
-
-                CoordType coord, coord2;
-                // the 0th affinitiy coordinate gives the channel index
-                const auto & offset = offsets[affCoord[0]];
-                for(unsigned axis = 0; axis < 3; ++axis) {
-                    coord[axis] = affCoord[axis + 1];
-                    coord2[axis] = affCoord[axis + 1] + offset[axis];
-
-                    // bounds check
-                    if(coord2[axis] < 0 || coord2[axis] > blockShape[axis]) {
-                        return;
-                    }
-                }
-
-                const NodeType lU = xtensor::read(labels, coord.asStdArray());
-                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-
-                if(ignoreLabel && (lU == 0 || lV == 0)) {
-                    return;
-                }
-
-                if(lU != lV){
-                    // for long range affinites, the uv pair may not be part of the region graph
-                    // so we need to check if the edge actually exists
-                    const EdgeIndexType edge = graph.findEdge(lU, lV);
-                    if(edge != -1) {
-                        uint8_t data = xtensor::read(affs, affCoord.asStdArray());
-                        FeatureType dataF = static_cast<FeatureType>(data) / 255.;
-                        accumulators[edge].updatePassN(dataF, pass);
-                    }
-                }
-            });
+            accumulateAffinitiesImplByte(graph, affs, labels,
+                                         affBlockShape, offsets,
+                                         ignoreLabel, accumulators);
         }
         else {
-            // accumulate
-            nifty::tools::forEachCoordinate(affBlockShape, [&](const AffCoordType & affCoord) {
-
-                CoordType coord, coord2;
-                // the 0th affinitiy coordinate gives the channel index
-                const auto & offset = offsets[affCoord[0]];
-                for(unsigned axis = 0; axis < 3; ++axis) {
-                    coord[axis] = affCoord[axis + 1];
-                    coord2[axis] = affCoord[axis + 1] + offset[axis];
-
-                    // bounds check
-                    if(coord2[axis] < 0 || coord2[axis] > blockShape[axis]) {
-                        return;
-                    }
-                }
-
-                const NodeType lU = xtensor::read(labels, coord.asStdArray());
-                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-
-                if(ignoreLabel && (lU == 0 || lV == 0)) {
-                    return;
-                }
-
-                if(lU != lV){
-                    // for long range affinites, the uv pair may not be part of the region graph
-                    // so we need to check if the edge actually exists
-                    const EdgeIndexType edge = graph.findEdge(lU, lV);
-                    if(edge != -1) {
-                        accumulators[edge].updatePassN(xtensor::read(affs, affCoord.asStdArray()), pass);
-                    }
-                }
-            });
-
+            accumulateAffinitiesImplFloat(graph, affs, labels,
+                                          affBlockShape, offsets,
+                                          ignoreLabel, accumulators);
         }
 
         // serialize the accumulators
@@ -782,29 +838,8 @@ namespace distributed {
         CoordType shape;
         std::copy(input.shape().begin(), input.shape().end(), shape.begin());
 
-        nifty::tools::forEachCoordinate(shape, [&](const CoordType & coord) {
-            const NodeType lU = xtensor::read(labels, coord.asStdArray());
-            if(lU == 0 && ignoreLabel) {
-                return;
-            }
-            CoordType coord2;
-            for(size_t axis = 0; axis < 3; ++axis){
-                makeCoord2(coord, coord2, axis);
-                if(coord2[axis] < shape[axis]){
-                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                    if(lV == 0 && ignoreLabel) {
-                        return;
-                    }
-                    if(lU != lV){
-                        const EdgeIndexType edge = graph.findEdge(lU, lV);
-                        const auto fU = xtensor::read(input, coord.asStdArray());
-                        const auto fV = xtensor::read(input, coord2.asStdArray());
-                        accumulators[edge].updatePassN(fU, pass);
-                        accumulators[edge].updatePassN(fV, pass);
-                    }
-                }
-            }
-        });
+        accumulateBoundariesImplFloat(graph, input, labels, shape,
+                                      ignoreLabel, accumulators);
 
         EdgeIndexType edgeId = 0;
         for(const auto & accumulator : accumulators) {
