@@ -204,6 +204,18 @@ namespace distributed {
            py::arg("edgeLabeling"),
            py::arg("graphOutPrefix"),
            py::arg("numberOfThreads")=-1);
+
+
+        module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
+                                              const xt::pytensor<uint64_t, 3> & gt){
+            typedef std::unordered_map<uint64_t, size_t> OverlapType;
+            std::unordered_map<uint64_t, OverlapType> overlaps;
+            {
+                py::gil_scoped_release allowThreads;
+                computeLabelOverlaps(labels, gt, overlaps);
+            }
+            return overlaps;
+        }, py::arg("labels"), py::arg("gt"));
     }
 
 }

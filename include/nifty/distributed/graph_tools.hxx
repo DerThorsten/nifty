@@ -363,5 +363,30 @@ namespace distributed {
         }
     }
 
+
+    template<class LABELS, class VALUES, class OVERLAPS>
+    inline void computeLabelOverlaps(const xt::xexpression<LABELS> & labelsExp,
+                                     const xt::xexpression<VALUES> & valuesExp,
+                                     OVERLAPS & overlaps) {
+        const auto & labels = labelsExp.derived_cast();
+        const auto & values = valuesExp.derived_cast();
+
+        CoordType shape;
+        std::copy(labels.shape().begin(), labels.shape().end(), shape.begin());
+
+        nifty::tools::forEachCoordinate(shape, [&](const CoordType & coord){
+            const auto node = xtensor::read(labels, coord);
+            const auto l = xtensor::read(values, coord);
+            auto ovlpIt = overlaps.find(node);
+            if(ovlpIt == overlaps.end()) {
+                overlaps.emplace(node, std::unordered_map<uint64_t, size_t>{{l, 1}});
+            }
+            else {
+                // FIXME not sure how this can work
+                ovlpIt->second[l] += 1;
+            }
+        });
+    }
+
 }
 }
