@@ -72,7 +72,7 @@ namespace distributed {
 
             const unsigned int nEdges = graph.numberOfEdges();
             const unsigned int nFeatures = withSize ? 10 : 9;
-            xt::pytensor<float, 2> features({nEdges, nFeatures});
+            xt::pytensor<double, 2> features({nEdges, nFeatures});
             {
                 py::gil_scoped_release allowthreads;
                 accumulateInput(graph, input, labels,
