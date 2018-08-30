@@ -16,6 +16,7 @@ namespace ufd {
         // initialize from number of elements
         // for consecutive elements
         BoostUfd(const value_type size) : n_elements_(size),
+                                          upper_bound_(size),
                                           ranks_(n_elements_),
                                           parents_(n_elements_),
                                           sets_(&ranks_[0], &parents_[0]) {
@@ -26,11 +27,14 @@ namespace ufd {
 
 
         // initialize from element list for non-consecutive elements
+        // NOTE we need to set the ranks and the elements to the number of elements we would
+        // have if the elements were continuous (i.e. max + 1)
         template<class ELEMENTS>
-        BoostUfd(const xt::xexpression<ELEMENTS> & elements) : n_elements_(elements.derived_cast().size()),
-                                                               ranks_(n_elements_),
-                                                               parents_(n_elements_),
-                                                               sets_(&ranks_[0], &parents_[0]) {
+        BoostUfd(const xt::xexpression<ELEMENTS> & elements, const size_t upper_bound) : n_elements_(elements.derived_cast().size()),
+                                                                                         upper_bound_(upper_bound),
+                                                                                         ranks_(upper_bound_),
+                                                                                         parents_(upper_bound_),
+                                                                                         sets_(&ranks_[0], &parents_[0]) {
             const auto & elems = elements.derived_cast();
             for(const value_type elem : elems) {
                 sets_.make_set(elem);
@@ -55,6 +59,7 @@ namespace ufd {
 
     private:
         size_t n_elements_;
+        size_t upper_bound_;
         std::vector<value_type> ranks_;
         std::vector<value_type> parents_;
         boost::disjoint_sets<value_type*, value_type*> sets_;

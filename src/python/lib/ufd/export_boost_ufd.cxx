@@ -20,8 +20,8 @@ namespace ufd{
         typedef typename UfdType::value_type IndexType;
 
         py::class_<UfdType>(ufdModule, clsName.c_str())
-            .def(py::init<xt::pytensor<IndexType, 1>>(),
-               py::arg("elements"),
+            .def(py::init<xt::pytensor<IndexType, 1>, size_t>(),
+               py::arg("elements"), py::arg("upper_bound"),
                 "This function does bla bla bla. \n\n"
                 "Detailed....TODO"
             )
@@ -67,7 +67,7 @@ namespace ufd{
             .def("merge", [](UfdType & self, xt::pytensor<T, 2> & mergeIndices) {
                 // NIFTY_CHECK_OP(mergeIndices.shape(1),==,2,"We need pairs of indices for merging!")
                 for(int i = 0; i < mergeIndices.shape()[0]; ++i)
-                    self.merge(mergeIndices(i,0), mergeIndices(i,1));
+                    self.merge(mergeIndices(i, 0), mergeIndices(i, 1));
             },
                 " Merge two elements\n\n"
                 "Detailed....TODO\n\n"

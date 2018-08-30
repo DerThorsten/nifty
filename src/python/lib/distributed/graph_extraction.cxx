@@ -216,6 +216,37 @@ namespace distributed {
             }
             return overlaps;
         }, py::arg("labels"), py::arg("gt"));
+
+
+        module.def("computeMaximumLabelOverlap", [](const xt::pytensor<uint64_t, 3> & labels,
+                                                    const xt::pytensor<uint64_t, 3> & gt){
+            typedef std::unordered_map<uint64_t, size_t> OverlapType;
+            std::unordered_map<uint64_t, OverlapType> overlaps;
+            {
+                py::gil_scoped_release allowThreads;
+                computeLabelOverlaps(labels, gt, overlaps);
+            }
+            const size_t n_nodes = overlaps.size();
+            xt::pytensor<uint64_t, 1> max_overlaps = xt::zeros<uint64_t>({n_nodes});
+            {
+                py::gil_scoped_release allowThreads;
+                for(const auto & node_ovlp: overlaps) {
+                    const uint64_t node = node_ovlp.first;
+                    const auto & ovlp = node_ovlp.second;
+
+                    size_t max_ol = 0;
+                    uint64_t max_label = 0;
+                    for(const auto & elem: ovlp) {
+                        if(elem.second > max_ol) {
+                            max_ol = elem.second;
+                            max_label = elem.first;
+                        }
+                    }
+                    max_overlaps(node) = max_label;
+                }
+            }
+            return max_overlaps;
+        }, py::arg("labels"), py::arg("gt"));
     }
 
 }
