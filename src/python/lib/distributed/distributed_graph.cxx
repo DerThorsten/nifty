@@ -21,7 +21,8 @@ namespace distributed {
 
             .def("findEdge", &Graph::findEdge)   // TODO lift gil
 
-            .def("findEdges", [](const Graph & self, const xt::pytensor<NodeType, 2> uvs){
+            .def("findEdges", [](const Graph & self,
+                                 const xt::pytensor<NodeType, 2> uvs){
                 typedef xt::pytensor<EdgeIndexType, 1> OutType;
                 typedef typename OutType::shape_type OutShape;
                 OutShape shape = {uvs.shape()[0]};
@@ -41,8 +42,8 @@ namespace distributed {
                 OutShape shape = {static_cast<int64_t>(self.numberOfEdges()), 2L};
                 OutType out(shape);
                 {
-                    const auto & edges = self.edges();
                     py::gil_scoped_release allowThreads;
+                    const auto & edges = self.edges();
                     size_t edgeId = 0;
                     for(const auto edge : edges) {
                         out(edgeId, 0) = edge.first;
@@ -53,7 +54,25 @@ namespace distributed {
                 return out;
             })
 
-            .def("extractSubgraphFromNodes", [](const Graph & self, const xt::pytensor<uint64_t, 1> & nodes) {
+            .def("nodes", [](const Graph & self){
+                typedef xt::pytensor<NodeType, 1> OutType;
+                xt::pytensor<NodeType, 1> nodes = xt::zeros<NodeType>({self.numberOfNodes()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    std::set<NodeType> nodesTmp;
+                    self.nodes(nodesTmp);
+
+                    size_t nodeId = 0;
+                    for(const auto node : nodesTmp) {
+                        nodes(nodeId) = node;
+                        ++nodeId;
+                    }
+                }
+                return nodes;
+            })
+
+            .def("extractSubgraphFromNodes", [](const Graph & self,
+                                                const xt::pytensor<uint64_t, 1> & nodes) {
                 //
                 std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
                 std::vector<EdgeType> uvIdsVec;

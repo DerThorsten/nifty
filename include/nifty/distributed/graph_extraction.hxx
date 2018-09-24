@@ -74,7 +74,9 @@ namespace distributed {
     }
 
 
-    inline void loadNodes(const std::string & graphPath, std::vector<NodeType> & nodes, const size_t offset) {
+    inline void loadNodes(const std::string & graphPath,
+                          std::vector<NodeType> & nodes,
+                          const size_t offset) {
         const std::vector<size_t> zero1Coord({0});
         // get handle and dataset
         z5::handle::Group graph(graphPath);
@@ -85,6 +87,19 @@ namespace distributed {
         z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin());
         nodes.resize(nodes.size() + nodeShape[0]);
         std::copy(tmpNodes.begin(), tmpNodes.end(), nodes.begin() + offset);
+    }
+
+
+    template<class NODES>
+    inline void loadNodesToArray(const std::string & graphPath,
+                                 xt::xexpression<NODES> & nodesExp) {
+        auto & nodes = nodesExp.derived_cast();
+        const std::vector<size_t> zero1Coord({0});
+        // get handle and dataset
+        z5::handle::Group graph(graphPath);
+        auto nodeDs = z5::openDataset(graph, "nodes");
+        // read the nodes and inset them into the array
+        z5::multiarray::readSubarray<NodeType>(nodeDs, nodes, zero1Coord.begin());
     }
 
 
@@ -220,7 +235,8 @@ namespace distributed {
         parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId,
                                                              const size_t chunkId){
             const size_t nodeStart = chunkId * nodeChunks[0];
-            const size_t nodeStop = std::min((chunkId + 1) * nodeChunks[0], nodeShape[0]);
+            const size_t nodeStop = std::min((chunkId + 1) * nodeChunks[0],
+                                             nodeShape[0]);
 
             const size_t nNodesChunk = nodeStop - nodeStart;
             Shape1Type nodeSerShape({nNodesChunk});
@@ -233,7 +249,8 @@ namespace distributed {
             }
 
             const std::vector<size_t> nodeOffset({nodeStart});
-            z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, nodeOffset.begin());
+            z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer,
+                                                    nodeOffset.begin());
         });
         // std::cout << "done" << std::endl;
 
@@ -255,7 +272,8 @@ namespace distributed {
             parallel::parallel_foreach(tp, numberEdgeChunks, [&](const int tId,
                                                                  const size_t chunkId){
                 const size_t edgeStart = chunkId * edgeChunks[0];
-                const size_t edgeStop = std::min((chunkId + 1) * edgeChunks[0], edgeShape[0]);
+                const size_t edgeStop = std::min((chunkId + 1) * edgeChunks[0],
+                                                 edgeShape[0]);
 
                 const size_t nEdgesChunk = edgeStop - edgeStart;
                 Shape2Type edgeSerShape({nEdgesChunk, 2});
@@ -269,7 +287,8 @@ namespace distributed {
                 }
 
                 const std::vector<size_t> edgeOffset({edgeStart, 0});
-                z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, edgeOffset.begin());
+                z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer,
+                                                        edgeOffset.begin());
             });
         }
         // std::cout << "done" << std::endl;
@@ -286,7 +305,9 @@ namespace distributed {
     }
 
 
-    inline void makeCoord2(const CoordType & coord, CoordType & coord2, const size_t axis) {
+    inline void makeCoord2(const CoordType & coord,
+                           CoordType & coord2,
+                           const size_t axis) {
         coord2 = coord;
         coord2[axis] += 1;
     };
@@ -333,25 +354,26 @@ namespace distributed {
             nodes.insert(lU);
 
             // skip edges to zero if we have an ignoreLabel
-            if(ignoreLabel && lU == 0) {
+            if(ignoreLabel && (lU == 0)) {
                 return;
             }
 
             for(size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
+                // TODO we over-count edges at the block boundaries here
                 if(coord2[axis] < blockShape[axis]){
                     lV = xtensor::read(labels, coord2.asStdArray());
                     // skip zero if we have an ignoreLabel
-                    if(ignoreLabel && lV == 0) {
+                    if(ignoreLabel && (lV == 0)) {
                         return;
                     }
                     if(lU != lV){
-                        edges.insert(std::make_pair(std::min(lU, lV), std::max(lU, lV)));
+                        edges.insert(std::make_pair(std::min(lU, lV),
+                                     std::max(lU, lV)));
                     }
                 }
             }
         });
-
     }
 
 

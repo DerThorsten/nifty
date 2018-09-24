@@ -145,6 +145,11 @@ namespace distributed {
         size_t numberOfEdges() const {return edges_.size();}
 
         const EdgeStorage & edges() const {return edges_;}
+        void nodes(std::set<NodeType> & out) const{
+            for(auto nodeIt = nodes_.begin(); nodeIt != nodes_.end(); ++nodeIt) {
+                out.insert(nodeIt->first);
+            }
+        }
 
     private:
         // init the graph from the edges

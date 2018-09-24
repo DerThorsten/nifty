@@ -102,18 +102,18 @@ namespace distributed {
 
 
         module.def("loadNodes", [](const std::string & pathToGraph) {
-            std::vector<NodeType> nodes;
+            z5::handle::Group graph(pathToGraph);
+            const std::vector<std::string> keys = {"numberOfNodes"};
+            nlohmann::json j;
+            z5::readAttributes(graph, keys, j);
+            const int64_t nNodes = j[keys[0]];
+
+            xt::pytensor<NodeType, 1> nodes = xt::zeros<NodeType>({nNodes});
             {
                 py::gil_scoped_release allowThreads;
-                loadNodes(pathToGraph, nodes, 0);
+                loadNodesToArray(pathToGraph, nodes);
             }
-            typename xt::pytensor<NodeType, 1>::shape_type shape = {static_cast<int64_t>(nodes.size())};
-            xt::pytensor<NodeType, 1> array(shape);
-            {
-                py::gil_scoped_release allowThreads;
-                std::copy(nodes.begin(), nodes.end(), array.begin());
-            }
-            return array;
+            return nodes;
         }, py::arg("pathToGraph"));
 
 
