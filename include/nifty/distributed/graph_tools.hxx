@@ -5,6 +5,8 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
+namespace fs = boost::filesystem;
+
 namespace nifty {
 namespace distributed {
 
@@ -134,6 +136,14 @@ namespace distributed {
             // iterate over the old blocks and write out all the nodes
             for(auto oldBlockId : oldBlockIds) {
                 const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+
+
+                // if we are dealing with region of interests, the sub-graph might actually not exist
+                // so we need to check and skip if it does not exist.
+                if(!fs::exists(blockPath)) {
+                    continue;
+                }
+
                 std::vector<NodeType> blockNodes;
                 loadNodes(blockPath, blockNodes, 0);
                 for(const NodeType node : blockNodes) {
@@ -177,6 +187,13 @@ namespace distributed {
             std::map<EdgeIndexType, EdgeType> newEdges;
             for(auto oldBlockId : oldBlockIds) {
                 const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+
+                // if we are dealing with region of interests, the sub-graph might actually not exist
+                // so we need to check and skip if it does not exist.
+                if(!fs::exists(blockPath)) {
+                    continue;
+                }
+
                 std::vector<EdgeType> subEdges;
                 std::vector<EdgeIndexType> subEdgeIds;
                 loadEdges(blockPath, subEdges, 0);
