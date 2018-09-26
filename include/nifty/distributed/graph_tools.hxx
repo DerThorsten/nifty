@@ -129,8 +129,7 @@ namespace distributed {
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
             std::vector<size_t> oldBlockIds;
-            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(),
-                                              {0L, 0L, 0L}, oldBlockIds);
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), oldBlockIds);
 
             // iterate over the old blocks and write out all the nodes
             for(auto oldBlockId : oldBlockIds) {
@@ -172,8 +171,7 @@ namespace distributed {
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
             std::vector<size_t> oldBlockIds;
-            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(),
-                                              {0L, 0L, 0L}, oldBlockIds);
+            blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), oldBlockIds);
 
             // iterate over the old blocks and load all edges and edge ods
             std::map<EdgeIndexType, EdgeType> newEdges;

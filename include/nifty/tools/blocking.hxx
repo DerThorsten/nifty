@@ -213,18 +213,14 @@ namespace tools{
         void getBlockIdsInBoundingBox(
                 const VectorType & roiBegin,
                 const VectorType & roiEnd,
-                const VectorType & blockHalo,
                 std::vector<uint64_t> & idsOut) const {
 
             // TODO assert that the roi is in global roi
-
             idsOut.clear();
 
             for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
 
                 // get coordinates of the current bock
-                // FIXME the version with halo is broken if halo is all 0's !
-                // const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
                 const auto & block = getBlock(blockId);
                 const auto & begin = block.begin();
                 const auto & end   = block.end();
@@ -250,11 +246,9 @@ namespace tools{
         void getBlockIdsOverlappingBoundingBox(
                 const VectorType & roiBegin,
                 const VectorType & roiEnd,
-                const VectorType & blockHalo,
                 std::vector<uint64_t> & idsOut) const {
 
             // TODO assert that the roi is in global roi
-
             idsOut.clear();
 
             VectorType minChunkIds;
@@ -262,7 +256,10 @@ namespace tools{
             // determine the position in chunks
             for(unsigned ii = 0; ii < DIM; ++ii) {
                 minChunkIds[ii] = floor(roiBegin[ii] / blockShape_[ii]);
-                maxChunkIds[ii] = ceil(roiEnd[ii] / blockShape_[ii]) + 1;
+                maxChunkIds[ii] = ceil(roiEnd[ii] / blockShape_[ii]);
+                // increase the max if we have a singleton
+                if(minChunkIds[ii] == maxChunkIds[ii])
+                    ++maxChunkIds[ii];
             }
 
             // FIXME this only works for 3D, implement this dimension independent !
@@ -293,7 +290,6 @@ namespace tools{
                 return (value >= min) && (value <= max);
             };
 
-            // TODO use std::bitset instead ?
             // determine whether the query block starts inside block
             auto isLeft = [&](const BlockType & queryBlock, const BlockType & block) {
                 std::vector<bool> left(DIM, false);

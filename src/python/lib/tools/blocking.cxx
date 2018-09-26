@@ -67,13 +67,12 @@ namespace tools{
 
             .def("getBlockIdsInBoundingBox", [](const BlockingType & self,
                 const VectorType roiBegin,
-                const VectorType roiEnd,
-                const VectorType blockHalo) {
+                const VectorType roiEnd) {
 
                 std::vector<uint64_t> tmp;
                 {
                     py::gil_scoped_release allowThreads;
-                    self.getBlockIdsInBoundingBox(roiBegin, roiEnd, blockHalo, tmp);
+                    self.getBlockIdsInBoundingBox(roiBegin, roiEnd, tmp);
                 }
                 xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
                 {
@@ -83,17 +82,16 @@ namespace tools{
                     }
                 }
                 return out;
-            }, py::arg("roiBegin"), py::arg("roiEnd"), py::arg("blockHalo"))
+            }, py::arg("roiBegin"), py::arg("roiEnd"))
 
             .def("getBlockIdsOverlappingBoundingBox", [](const BlockingType & self,
                 const VectorType roiBegin,
-                const VectorType roiEnd,
-                const VectorType blockHalo) {
+                const VectorType roiEnd) {
 
                 std::vector<uint64_t> tmp;
                 {
                     py::gil_scoped_release allowThreads;
-                    self.getBlockIdsOverlappingBoundingBox(roiBegin, roiEnd, blockHalo, tmp);
+                    self.getBlockIdsOverlappingBoundingBox(roiBegin, roiEnd, tmp);
                 }
                 xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
                 {
@@ -103,7 +101,7 @@ namespace tools{
                     }
                 }
                 return out;
-            }, py::arg("roiBegin"), py::arg("roiEnd"), py::arg("blockHalo"))
+            }, py::arg("roiBegin"), py::arg("roiEnd"))
 
             .def("getLocalOverlaps", [](
                 const BlockingType & self,
