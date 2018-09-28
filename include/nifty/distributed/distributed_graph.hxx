@@ -27,7 +27,7 @@ namespace distributed {
         // API: we can construct the graph from blocks that were extracted via `extractGraphFromRoi`
         // or `mergeSubgraphs` from `region_graph.hxx`
 
-        Graph(const std::string & blockPath) {
+        Graph(const std::string & blockPath) : nodeMaxId_(0) {
             loadEdges(blockPath, edges_, 0);
             initGraph();
         }
@@ -143,11 +143,22 @@ namespace distributed {
         // number of nodes and edges
         size_t numberOfNodes() const {return nodes_.size();}
         size_t numberOfEdges() const {return edges_.size();}
+        size_t nodeMaxId() const {return nodeMaxId_;}
 
         const EdgeStorage & edges() const {return edges_;}
+
         void nodes(std::set<NodeType> & out) const{
             for(auto nodeIt = nodes_.begin(); nodeIt != nodes_.end(); ++nodeIt) {
                 out.insert(nodeIt->first);
+            }
+        }
+
+        void nodes(std::vector<NodeType> & out) const{
+            out.clear();
+            out.resize(numberOfNodes());
+            size_t nodeId = 0;
+            for(auto nodeIt = nodes_.begin(); nodeIt != nodes_.end(); ++nodeIt, ++nodeId) {
+                out[nodeId] = nodeIt->first;
             }
         }
 
@@ -156,6 +167,7 @@ namespace distributed {
         void initGraph() {
             // iterate over the edges we have
             NodeType u, v;
+            NodeType maxNode;
             EdgeIndexType edgeId = 0;
             for(const auto & edge : edges_) {
                 u = edge.first;
@@ -181,9 +193,16 @@ namespace distributed {
 
                 // increase the edge id
                 ++edgeId;
+
+                // update the node max id
+                maxNode = std::max(u, v);
+                if(maxNode > nodeMaxId_) {
+                    nodeMaxId_ = maxNode;
+                }
             }
         }
 
+        NodeType nodeMaxId_;
         NodeStorage nodes_;
         EdgeStorage edges_;
     };

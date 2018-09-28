@@ -247,6 +247,17 @@ namespace distributed {
             }
             return max_overlaps;
         }, py::arg("labels"), py::arg("gt"));
+
+        module.def("connectedComponents", [](const Graph & graph,
+                                             const xt::pytensor<bool, 1> & edgeLabels,
+                                             const bool ignoreLabel){
+            xt::pytensor<NodeType, 1> labels = xt::zeros<NodeType>({graph.nodeMaxId() + 1});
+            {
+                py::gil_scoped_release allowThreads;
+                connectedComponents(graph, edgeLabels, ignoreLabel, labels);
+            }
+            return labels;
+        }, py::arg("graph"), py::arg("edgeLabels"), py::arg("ignoreLabel"));
     }
 
 }
