@@ -106,11 +106,11 @@ namespace distributed {
                                      const CoordType & blockShape,
                                      const CoordType & newBlockShape,
                                      const std::vector<size_t> & newBlockIds,
-                                     const size_t numberOfNewNodes,
                                      const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
                                      const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
                                      const std::string & graphOutPrefix,
-                                     const int numberOfThreads) {
+                                     const int numberOfThreads,
+                                     const bool serializeEdges) {
 
         typedef std::set<NodeType> BlockNodeStorage;
 
@@ -161,10 +161,11 @@ namespace distributed {
             z5::createGroup(group, false);
 
             // serialize the new nodes
-            std::vector<size_t> nodeShape = {newBlockNodes.size()};
+            const size_t nNewNodes = newBlockNodes.size();
+            std::vector<size_t> nodeShape = {nNewNodes};
             auto dsNodes = z5::createDataset(group, "nodes", "uint64",
                                              nodeShape, nodeShape, false);
-            Shape1Type nodeSerShape = {newBlockNodes.size()};
+            Shape1Type nodeSerShape = {nNewNodes};
             Tensor1 nodeSer(nodeSerShape);
             size_t i = 0;
             for(const auto node : newBlockNodes) {
@@ -172,6 +173,14 @@ namespace distributed {
                 ++i;
             }
             z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
+
+            if(!serializeEdges) {
+                // serialize metadata (number of edges and nodes and position of the block)
+                nlohmann::json attrs;
+                attrs["numberOfNodes"] = nNewNodes;
+                z5::writeAttributes(group, attrs);
+                return;
+            }
 
             // iterate over the old blocks and load all edges and edge ids
             std::map<EdgeIndexType, EdgeType> newEdges;
@@ -201,7 +210,6 @@ namespace distributed {
                 }
             }
 
-            const size_t nNewNodes = newBlockNodes.size();
             const size_t nNewEdges = newEdges.size();
             // serialize the new edges and the new edge ids
             if(nNewEdges > 0) {
@@ -241,14 +249,13 @@ namespace distributed {
             // TODO ideally we would get the rois from the prev. graph block too, but I am too lazy right now
             // attrs["roiBegin"] = std::vector<size_t>(roiBegin.begin(), roiBegin.end());
             // attrs["roiEnd"] = std::vector<size_t>(roiEnd.begin(), roiEnd.end());
-
             z5::writeAttributes(group, attrs);
         });
     }
 
 
     // we have to look at surprisingly many blocks, which makes
-    // this function pretty inefficient to
+    // this function pretty inefficient
     // FIXME I am not 100 % sure if this is not due to some bug
     template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,

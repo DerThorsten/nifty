@@ -15,7 +15,8 @@ namespace distributed {
     void exportDistributedGraph(py::module & module) {
 
         py::class_<Graph>(module, "Graph")
-            .def(py::init<const std::string &>())
+            .def(py::init<const std::string &, const int>(),
+                 py::arg("path"), py::arg("numberOfThreads")=1)
             .def_property_readonly("numberOfNodes", &Graph::numberOfNodes)
             .def_property_readonly("numberOfEdges", &Graph::numberOfEdges)
 
@@ -72,13 +73,14 @@ namespace distributed {
             })
 
             .def("extractSubgraphFromNodes", [](const Graph & self,
-                                                const xt::pytensor<uint64_t, 1> & nodes) {
+                                                const xt::pytensor<uint64_t, 1> & nodes,
+                                                const bool allowInvalidNodes) {
                 //
                 std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
                 std::vector<EdgeType> uvIdsVec;
                 {
                     py::gil_scoped_release allowThreads;
-                    self.extractSubgraphFromNodes(nodes, uvIdsVec, innerEdgesVec, outerEdgesVec);
+                    self.extractSubgraphFromNodes(nodes, allowInvalidNodes, uvIdsVec, innerEdgesVec, outerEdgesVec);
                 }
 
                 //
@@ -110,11 +112,9 @@ namespace distributed {
                 return std::make_tuple(innerEdges, outerEdges, uvIds);
 
 
-            }, py::arg("nodes"))
+            }, py::arg("nodes"), py::arg("allowInvalidNodes")=false)
 
             ;
-
-
     }
 
 

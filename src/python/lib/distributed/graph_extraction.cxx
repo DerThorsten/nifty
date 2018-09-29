@@ -182,28 +182,28 @@ namespace distributed {
                                               const CoordType & blockShape,
                                               const CoordType & newBlockShape,
                                               const std::vector<size_t> & newBlockIds,
-                                              const size_t numberOfNewNodes,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
                                               const std::string & graphOutPrefix,
-                                              const int numberOfThreads) {
+                                              const int numberOfThreads,
+                                              const bool serializeEdges) {
             py::gil_scoped_release allowThreads;
             serializeMergedGraph(graphBlockPrefix, shape,
-                                 blockShape, newBlockShape,
-                                 newBlockIds, numberOfNewNodes,
+                                 blockShape, newBlockShape, newBlockIds,
                                  nodeLabeling, edgeLabeling,
                                  graphOutPrefix,
-                                 numberOfThreads);
+                                 numberOfThreads,
+                                 serializeEdges);
         }, py::arg("graphBlockPrefix"),
            py::arg("shape"),
            py::arg("blockShape"),
            py::arg("newBlockShape"),
            py::arg("newBlockIds"),
-           py::arg("numberOfNewNodes"),
            py::arg("nodeLabeling"),
            py::arg("edgeLabeling"),
            py::arg("graphOutPrefix"),
-           py::arg("numberOfThreads")=-1);
+           py::arg("numberOfThreads")=-1,
+           py::arg("serializeEdges")=true);
 
 
         module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,

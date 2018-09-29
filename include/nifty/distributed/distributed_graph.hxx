@@ -27,23 +27,24 @@ namespace distributed {
         // API: we can construct the graph from blocks that were extracted via `extractGraphFromRoi`
         // or `mergeSubgraphs` from `region_graph.hxx`
 
-        Graph(const std::string & blockPath) : nodeMaxId_(0) {
-            loadEdges(blockPath, edges_, 0);
+        Graph(const std::string & blockPath, const int nThreads=1) : nodeMaxId_(0) {
+            loadEdges(blockPath, edges_, 0, nThreads);
             initGraph();
         }
 
         // This is a bit weird (constructor with side effects....)
         // but I don't want the edge id mapping to be part of this class
         Graph(const std::vector<std::string> & blockPaths,
-              std::vector<EdgeIndexType> & edgeIdsOut) {
+              std::vector<EdgeIndexType> & edgeIdsOut,
+              const int nThreads=1) : nodeMaxId_(0) {
 
             // load all the edges and edge-id mapping in the blocks
             // to tmp objects
             std::vector<EdgeType> edgesTmp;
             std::vector<EdgeIndexType> edgeIdsTmp;
             for(const auto & blockPath : blockPaths) {
-                loadEdges(blockPath, edgesTmp, edgesTmp.size());
-                loadEdgeIndices(blockPath, edgeIdsTmp, edgeIdsTmp.size());
+                loadEdges(blockPath, edgesTmp, edgesTmp.size(), nThreads);
+                loadEdgeIndices(blockPath, edgeIdsTmp, edgeIdsTmp.size(), nThreads);
             }
 
             // get the indices that would sort the edge uv's
@@ -106,6 +107,7 @@ namespace distributed {
         // as well as inner and outer edges associated with the node list
         template<class NODE_ARRAY>
         void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
+                                      const bool allowInvalidNodes,
                                       std::vector<EdgeType> & uvIdsOut,
                                       std::vector<EdgeIndexType> & innerEdgesOut,
                                       std::vector<EdgeIndexType> & outerEdgesOut) const {
@@ -120,7 +122,19 @@ namespace distributed {
             // then iterate over the adjacency and extract inner and outer edges
             for(const NodeType u : nodes) {
 
-                const auto & uAdjacency = nodes_.at(u);
+                //const auto & uAdjacency = nodes_.at(u);
+                // we might allow invalid nodes
+                auto adjIt = nodes_.find(u);
+                if(adjIt == nodes_.end()) {
+                    if(allowInvalidNodes) {
+                        continue;
+                    } else {
+                        throw std::runtime_error("Invalid node in sub-graph extraction");
+                    }
+                }
+
+                const auto & uAdjacency = adjIt->second;
+
                 for(const auto & adj : uAdjacency) {
                     const NodeType v = adj.first;
                     const EdgeIndexType edge = adj.second;

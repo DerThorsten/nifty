@@ -61,7 +61,8 @@ namespace distributed {
 
 
     template<class NODES>
-    inline void loadNodes(const std::string & graphPath, NODES & nodes) {
+    inline void loadNodes(const std::string & graphPath,
+                          NODES & nodes) {
         const std::vector<size_t> zero1Coord({0});
         // get handle and dataset
         z5::handle::Group graph(graphPath);
@@ -76,7 +77,8 @@ namespace distributed {
 
     inline void loadNodes(const std::string & graphPath,
                           std::vector<NodeType> & nodes,
-                          const size_t offset) {
+                          const size_t offset,
+                          const int nThreads=1) {
         const std::vector<size_t> zero1Coord({0});
         // get handle and dataset
         z5::handle::Group graph(graphPath);
@@ -84,7 +86,7 @@ namespace distributed {
         // read the nodes and inset them into the node set
         Shape1Type nodeShape({nodeDs->shape(0)});
         Tensor1 tmpNodes(nodeShape);
-        z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin(), nThreads);
         nodes.resize(nodes.size() + nodeShape[0]);
         std::copy(tmpNodes.begin(), tmpNodes.end(), nodes.begin() + offset);
     }
@@ -92,20 +94,22 @@ namespace distributed {
 
     template<class NODES>
     inline void loadNodesToArray(const std::string & graphPath,
-                                 xt::xexpression<NODES> & nodesExp) {
+                                 xt::xexpression<NODES> & nodesExp,
+                                 const int nThreads=1) {
         auto & nodes = nodesExp.derived_cast();
         const std::vector<size_t> zero1Coord({0});
         // get handle and dataset
         z5::handle::Group graph(graphPath);
         auto nodeDs = z5::openDataset(graph, "nodes");
         // read the nodes and inset them into the array
-        z5::multiarray::readSubarray<NodeType>(nodeDs, nodes, zero1Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(nodeDs, nodes, zero1Coord.begin(), nThreads);
     }
 
 
     inline bool loadEdgeIndices(const std::string & graphPath,
                                 std::vector<EdgeIndexType> & edgeIndices,
-                                const size_t offset) {
+                                const size_t offset,
+                                const int nThreads=1) {
         const std::vector<size_t> zero1Coord({0});
         const std::vector<std::string> keys = {"numberOfEdges"};
 
@@ -125,7 +129,7 @@ namespace distributed {
         // read the nodes and inset them into the node set
         Shape1Type idShape({idDs->shape(0)});
         xt::xtensor<EdgeIndexType, 1> tmpIds(idShape);
-        z5::multiarray::readSubarray<EdgeIndexType>(idDs, tmpIds, zero1Coord.begin());
+        z5::multiarray::readSubarray<EdgeIndexType>(idDs, tmpIds, zero1Coord.begin(), nThreads);
         edgeIndices.resize(idShape[0] + edgeIndices.size());
         std::copy(tmpIds.begin(), tmpIds.end(), edgeIndices.begin() + offset);
         return true;
@@ -133,7 +137,8 @@ namespace distributed {
 
 
     template<class EDGES>
-    inline bool loadEdges(const std::string & graphPath, EDGES & edges) {
+    inline bool loadEdges(const std::string & graphPath,
+                          EDGES & edges) {
         const std::vector<size_t> zero2Coord({0, 0});
         const std::vector<std::string> keys = {"numberOfEdges"};
 
@@ -161,7 +166,10 @@ namespace distributed {
     }
 
 
-    inline bool loadEdges(const std::string & graphPath, std::vector<EdgeType> & edges, const size_t offset) {
+    inline bool loadEdges(const std::string & graphPath,
+                          std::vector<EdgeType> & edges,
+                          const size_t offset,
+                          const int nThreads=1) {
         const std::vector<size_t> zero2Coord({0, 0});
         const std::vector<std::string> keys = {"numberOfEdges"};
 
@@ -182,7 +190,7 @@ namespace distributed {
         // read the edges and inset them into the edge set
         Shape2Type edgeShape({edgeDs->shape(0), 2});
         Tensor2 tmpEdges(edgeShape);
-        z5::multiarray::readSubarray<NodeType>(edgeDs, tmpEdges, zero2Coord.begin());
+        z5::multiarray::readSubarray<NodeType>(edgeDs, tmpEdges, zero2Coord.begin(), nThreads);
         edges.resize(edges.size() + edgeShape[0]);
         for(size_t edgeId = 0; edgeId < edgeShape[0]; ++edgeId) {
             edges[edgeId + offset] = std::make_pair(tmpEdges(edgeId, 0), tmpEdges(edgeId, 1));
