@@ -62,19 +62,17 @@ namespace graph{
                  []( GraphType & g, const xt::pytensor<uint64_t, 1> & nodeList) {
                     std::vector<int64_t> innerEdgesVec;
                     std::vector<int64_t> outerEdgesVec;
-                    GraphType subgraph;
+                    std::vector<std::pair<uint64_t, uint64_t>> subUvsVec;
                     {
                         py::gil_scoped_release allowThreads;
                         g.extractSubgraphFromNodes(nodeList,
                                                    innerEdgesVec,
                                                    outerEdgesVec,
-                                                   subgraph);
+                                                   subUvsVec);
                     }
-                    typedef typename xt::pytensor<int64_t, 1>::shape_type ShapeType;
-                    ShapeType innerShape = {static_cast<int64_t>(innerEdgesVec.size())};
-                    xt::pytensor<int64_t, 1> innerEdges(innerShape);
-                    ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
-                    xt::pytensor<int64_t, 1> outerEdges(outerShape);
+                    xt::pytensor<int64_t, 1> innerEdges = xt::zeros<int64_t>({static_cast<int64_t>(innerEdgesVec.size())});
+                    xt::pytensor<int64_t, 1> outerEdges = xt::zeros<int64_t>({static_cast<int64_t>(outerEdgesVec.size())});
+                    xt::pytensor<uint64_t, 2> subUvs({static_cast<int64_t>(subUvsVec.size()), 2});
                     {
                         py::gil_scoped_release allowThreads;
                         for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
@@ -83,9 +81,13 @@ namespace graph{
                         for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
                             outerEdges(i) = outerEdgesVec[i];
                         }
+                        for(size_t i = 0; i < subUvsVec.size(); ++i) {
+                            subUvs(i, 0) = subUvsVec[i].first;
+                            subUvs(i, 1) = subUvsVec[i].second;
+                        }
 
                     }
-                    return std::make_tuple(innerEdges, outerEdges, subgraph);
+                    return std::make_tuple(innerEdges, outerEdges, subUvs);
                 }
             )
             .def("edgesFromNodeList",

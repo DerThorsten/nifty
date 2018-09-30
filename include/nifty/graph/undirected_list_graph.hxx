@@ -23,15 +23,15 @@ namespace graph{
 
 
 namespace detail_graph{
-    template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+    template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
     struct UndirectedGraphTypeHelper{
-        typedef EDGE_INTERANL_TYPE EdgeInternalType;
+        typedef EDGE_INTERNAL_TYPE EdgeInternalType;
         typedef NODE_INTERNAL_TYPE NodeInteralType;
         typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
         //typedef std::set<NodeAdjacency > NodeStorage;
         typedef nifty::container::FlatSet <NodeAdjacency> NodeStorage;
 
-        typedef std::pair<NodeInteralType,NodeInteralType> EdgeStorage;
+        typedef std::pair<NodeInteralType, NodeInteralType> EdgeStorage;
         typedef boost::counting_iterator<int64_t> NodeIter;
         typedef boost::counting_iterator<int64_t> EdgeIter;
         typedef typename NodeStorage::const_iterator AdjacencyIter;
@@ -51,18 +51,18 @@ namespace detail_graph{
 };
 
 
-template<class EDGE_INTERANL_TYPE = int64_t,
+template<class EDGE_INTERNAL_TYPE = int64_t,
          class NODE_INTERNAL_TYPE = int64_t>
 class UndirectedGraph : public
     UndirectedGraphBase<
-        UndirectedGraph<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>,
+        UndirectedGraph<EDGE_INTERNAL_TYPE,NODE_INTERNAL_TYPE>,
         detail_graph::SimpleGraphNodeIter,
         detail_graph::SimpleGraphEdgeIter,
-        typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERANL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
+        typename detail_graph::UndirectedGraphTypeHelper<EDGE_INTERNAL_TYPE,NODE_INTERNAL_TYPE>::AdjacencyIter
     >
 {
 protected:
-    typedef EDGE_INTERANL_TYPE EdgeInternalType;
+    typedef EDGE_INTERNAL_TYPE EdgeInternalType;
     typedef NODE_INTERNAL_TYPE NodeInteralType;
     typedef detail_graph::UndirectedAdjacency<int64_t,int64_t,NodeInteralType,EdgeInternalType> NodeAdjacency;
     typedef nifty::container::BoostFlatSet<NodeAdjacency> NodeStorage;
@@ -128,18 +128,17 @@ public:
     template<class ITER>
     void deserialize(ITER & iter);
 
-    template<class NODE_ARRAY>
-    void  extractSubgraphFromNodes(
+    template<class NODE_ARRAY, class EDGE_STORAGE>
+    void extractSubgraphFromNodes(
         const xt::xexpression<NODE_ARRAY> &,
-        std::vector<EDGE_INTERANL_TYPE> &,
-        std::vector<EDGE_INTERANL_TYPE> &,
-        UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE> &
-        ) const;
+        std::vector<EDGE_INTERNAL_TYPE> &,
+        std::vector<EDGE_INTERNAL_TYPE> &,
+        std::vector<EDGE_STORAGE> &) const;
 
     // extract all the edges that connect nodes in the node list
     void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
-            std::vector<EDGE_INTERANL_TYPE> & edges) {
-        std::unordered_set<EDGE_INTERANL_TYPE> edgesTmp;
+            std::vector<EDGE_INTERNAL_TYPE> & edges) {
+        std::unordered_set<EDGE_INTERNAL_TYPE> edgesTmp;
         NODE_INTERNAL_TYPE v;
         for(auto u : nodeList) {
             for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
@@ -177,8 +176,8 @@ protected:
 };
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 UndirectedGraph(const uint64_t numberOfNodes , const uint64_t reserveNumberOfEdges )
 :   nodes_(numberOfNodes),
     edges_()
@@ -186,9 +185,9 @@ UndirectedGraph(const uint64_t numberOfNodes , const uint64_t reserveNumberOfEdg
     edges_.reserve(reserveNumberOfEdges);
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 assign(const uint64_t numberOfNodes , const uint64_t reserveNumberOfEdges ){
     nodes_.clear();
     edges_.clear();
@@ -196,9 +195,9 @@ assign(const uint64_t numberOfNodes , const uint64_t reserveNumberOfEdges ){
     edges_.reserve(reserveNumberOfEdges);
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 insertEdge(const int64_t u, const int64_t v){
 
     const auto fres =  nodes_[u].find(NodeAdjacency(v));
@@ -216,25 +215,25 @@ insertEdge(const int64_t u, const int64_t v){
     }
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 u(const int64_t e)const{
     NIFTY_ASSERT_OP(e,<,numberOfEdges());
     return edges_[e].first;
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 v(const int64_t e)const{
     NIFTY_ASSERT_OP(e,<,numberOfEdges());
     return edges_[e].second;
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 findEdge(const int64_t u, const int64_t v)const{
     NIFTY_ASSERT_OP(u,<,numberOfNodes());
     NIFTY_ASSERT_OP(v,<,numberOfNodes());
@@ -245,99 +244,99 @@ findEdge(const int64_t u, const int64_t v)const{
         return -1;
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 nodeIdUpperBound() const{
     return numberOfNodes() == 0 ? 0 : numberOfNodes()-1;
 }
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 int64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 edgeIdUpperBound() const{
     return numberOfEdges() == 0 ? 0 : numberOfEdges()-1;
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 uint64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 numberOfEdges() const {
     return edges_.size();
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 uint64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 numberOfNodes() const{
     return nodes_.size();
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::NodeIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::NodeIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 nodesBegin()const{
     return NodeIter(0);
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::NodeIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::NodeIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 nodesEnd()const{
     return NodeIter(this->numberOfNodes());
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::EdgeIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::EdgeIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 edgesBegin()const{
     return EdgeIter(0);
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::EdgeIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::EdgeIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 edgesEnd()const{
     return EdgeIter(this->numberOfEdges());
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 adjacencyBegin(const int64_t node)const{
     NIFTY_ASSERT_OP(node,<,numberOfNodes());
     return nodes_[node].begin();
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 adjacencyEnd(const int64_t node)const{
     NIFTY_ASSERT_OP(node,<,numberOfNodes());
     return nodes_[node].end();
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
-typename UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
+typename UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::AdjacencyIter
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 adjacencyOutBegin(const int64_t node)const{
     return adjacencyBegin(node);
 }
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 std::pair<int64_t,int64_t>
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 uv(const int64_t e)const{
     const auto _uv = edges_[e];
     return std::pair<int64_t,int64_t>(_uv.first, _uv.second);
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 template<class F>
 void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 forEachEdge(F && f)const{
     for(uint64_t edge=0; edge< numberOfEdges(); ++edge){
         f(edge);
@@ -345,10 +344,10 @@ forEachEdge(F && f)const{
 }
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 template<class F>
 void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 forEachNode(F && f)const{
     for(uint64_t node=0; node< numberOfNodes(); ++node){
         f(node);
@@ -358,9 +357,9 @@ forEachNode(F && f)const{
 
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 uint64_t
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 serializationSize() const{
     uint64_t size = 0L;
     size += 2; // number of nodes;  number of edges
@@ -368,10 +367,10 @@ serializationSize() const{
     return size;
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 template<class ITER>
 void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 serialize(ITER & iter) const{
 
     *iter = this->numberOfNodes();
@@ -387,10 +386,10 @@ serialize(ITER & iter) const{
     }
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 template<class ITER>
 void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 deserialize(ITER & iter){
 
     const auto nNodes = *iter;
@@ -411,10 +410,10 @@ deserialize(ITER & iter){
 }
 
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 template<class PER_THREAD_DATA_VEC>
 inline void
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 mergeAdjacencies(
     PER_THREAD_DATA_VEC & perThreadDataVec,
     parallel::ThreadPool & threadpool
@@ -451,9 +450,9 @@ mergeAdjacencies(
     }
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE >
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE >
 bool
-UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
 
     const auto fres =  nodes_[u].find(NodeAdjacency(v));
@@ -466,27 +465,22 @@ insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
     }
 }
 
-template<class EDGE_INTERANL_TYPE, class NODE_INTERNAL_TYPE>
-template<class NODE_ARRAY>
-void UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE>::
+template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE>
+template<class NODE_ARRAY, class EDGE_STORAGE>
+void UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
-                         std::vector<EDGE_INTERANL_TYPE> & innerEdgesOut,
-                         std::vector<EDGE_INTERANL_TYPE> & outerEdgesOut,
-                         UndirectedGraph<EDGE_INTERANL_TYPE, NODE_INTERNAL_TYPE> & subgraphOut) const {
+                         std::vector<EDGE_INTERNAL_TYPE> & innerEdgesOut,
+                         std::vector<EDGE_INTERNAL_TYPE> & outerEdgesOut,
+                         std::vector<EDGE_STORAGE> & subUvs) const {
 
     const auto & nodeList = nodeListExp.derived_cast();
-    std::unordered_map<NodeInteralType, NodeInteralType> nodeMapping;
-    for(size_t i = 0; i < nodeList.shape()[0]; ++i) {
-        nodeMapping[nodeList(i)] = i;
-    }
+    std::unordered_set<NodeInteralType> nodeSet(nodeList.begin(), nodeList.end());
 
     for(auto u : nodeList) {
         for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
             auto v = adjacencyIt->node();
             auto e = adjacencyIt->edge();
-            // we do the look-up in the node-mapping instead of the node-list, because it's a hash-map
-            // (and thus faster than vector lookup)
-            if(nodeMapping.find(v) != nodeMapping.end()) {
+            if(nodeSet.find(v) != nodeSet.end()) {
                 // we will encounter inner edges twice, so we only add them for u < v
                 if(u < v) {
                     innerEdgesOut.push_back(e);
@@ -499,14 +493,12 @@ extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
         }
     }
 
-    // get number of nodes
-    uint64_t numberOfNodes = nodeList.shape()[0];
-    subgraphOut.assign(numberOfNodes, innerEdgesOut.size());
-
-    // get the local uv - ids
-    for(std::size_t i = 0; i < innerEdgesOut.size(); ++i) {
-        auto uv = this->uv(innerEdgesOut[i]);
-        subgraphOut.insertEdge(nodeMapping[uv.first], nodeMapping[uv.second]);
+    const auto & edges = edges_;
+    subUvs.resize(innerEdgesOut.size());
+    size_t eId = 0;
+    for(auto e : innerEdgesOut) {
+        subUvs[eId] = edges[e];
+        ++eId;
     }
 }
 
