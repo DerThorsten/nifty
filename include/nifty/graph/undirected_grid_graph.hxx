@@ -8,11 +8,13 @@
 #include "andres/graph/grid-graph.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/graph/undirected_graph_base.hxx"
 #include "nifty/graph/detail/adjacency.hxx"
 #include "nifty/graph/graph_tags.hxx"
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/array/arithmetic_array.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty{
@@ -297,11 +299,181 @@ public:
             CoordinateType cU,cV;
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
-            const auto uVal = image(cU.asStdArray());
-            const auto vVal = image(cU.asStdArray());
+            const auto uVal = xtensor::read(image, cU.asStdArray());
+            const auto vVal = xtensor::read(image, cU.asStdArray());
             edgeMap[edge] = binaryFunctor(uVal, vVal);
         }
     }
+
+
+    // TODO parallelize
+    /**
+     * @brief convert an affinity map with DIM+1 dimension to an edge map
+     * @details convert an affinity map with DIM+1 dimension to an edge map
+     * by assigning the affinity values to corresponding affinity values
+     *
+     * @param       image the input affinities
+     * @param[out]  the result edge map
+     *
+     * @return [description]
+     */
+    template<class AFFINITIES, class EDGE_MAP>
+    void affinitiesToEdgeMap(const AFFINITIES & affinities,
+                             EDGE_MAP & edgeMap) const {
+        NIFTY_CHECK_OP(affinities.shape()[0], ==, DIM, "wrong number of affinity channels")
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
+        }
+
+        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+
+        CoordinateType cU, cV;
+        for(const auto edge : this->edges()){
+
+            const auto uv = this->uv(edge);
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+
+            // find the correct affinity edge
+            AffinityCoordType affCoord;
+            for(size_t d = 0; d < DIM; ++d) {
+                auto diff = cU[d] - cV[d];
+                if(diff == 0) {
+                    affCoord[d + 1] = cU[d];
+                }
+                else {
+                    // TODO max for different direction convention
+                    affCoord[d + 1] = std::min(cU[d], cV[d]);
+                    affCoord[0] = d;
+                }
+            }
+
+            edgeMap[edge] = xtensor::read(affinities, affCoord.asStdArray());
+        }
+    }
+
+
+    template<class AFFINITIES, class LOCAL_FEATURES,
+             class LIFTED_UVS, class LIFTED_FEATURES>
+    size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
+                                            xt::xexpression<LOCAL_FEATURES> & localFeaturesExp,
+                                            xt::xexpression<LIFTED_UVS> & liftedUvsExp,
+                                            xt::xexpression<LIFTED_FEATURES> & liftedFeaturesExp,
+                                            const std::vector<std::vector<int>> & offsets) const {
+
+        auto & localFeatures = localFeaturesExp.derived_cast();
+        auto & liftedUvs = liftedUvsExp.derived_cast();
+        auto & liftedFeatures = liftedFeaturesExp.derived_cast();
+        //
+        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
+        }
+        size_t affLen = affinities.shape()[0];
+
+        AffinityCoordType affShape;
+        affShape[0] = affLen;
+        for(unsigned d = 0; d < DIM; ++d) {
+            affShape[d + 1] = shape(d);
+        }
+
+        size_t liftedEdgeId = 0;
+        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
+            const auto & offset = offsets[affCoord[0]];
+            CoordinateType cU, cV;
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cU[d] = affCoord[d + 1];
+                cV[d] = affCoord[d + 1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    return;
+                }
+            }
+
+            const size_t u = coordianteToNode(cU);
+            const size_t v = coordianteToNode(cV);
+
+            const size_t e = findEdge(u, v);
+            if(e == -1) {
+                liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
+                liftedUvs(liftedEdgeId, 0) = std::min(u, v);
+                liftedUvs(liftedEdgeId, 1) = std::max(u, v);
+                ++liftedEdgeId;
+            } else {
+                localFeatures(e) = xtensor::read(affinities, affCoord.asStdArray());
+            }
+
+        });
+        return liftedEdgeId;
+    }
+
+    template<class AFFINITIES, class LOCAL_FEATURES,
+             class LIFTED_UVS, class LIFTED_FEATURES>
+    size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
+                                            LOCAL_FEATURES & localFeatures,
+                                            LIFTED_UVS & liftedUvs,
+                                            LIFTED_FEATURES & liftedFeatures,
+                                            const std::vector<std::vector<int>> & offsets,
+                                            const std::vector<int> & strides) const {
+        //
+        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
+        }
+        size_t affLen = affinities.shape()[0];
+
+        AffinityCoordType affShape;
+        affShape[0] = affLen;
+        for(unsigned d = 0; d < DIM; ++d) {
+            affShape[d + 1] = shape(d);
+        }
+
+        size_t liftedEdgeId = 0;
+        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
+            const auto & offset = offsets[affCoord[0]];
+            CoordinateType cU, cV;
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cU[d] = affCoord[d + 1];
+                cV[d] = affCoord[d + 1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    return;
+                }
+            }
+
+            // check if we are in the strides for channels > DIM
+            if(affCoord[0] > DIM) {
+                bool inStride = true;
+                for(unsigned d = 0; d < DIM; ++d) {
+                    if(cU[d] % strides[d] != 0) {
+                        inStride = false;
+                        break;
+                    }
+                }
+                if(!inStride) {
+                    return;
+                }
+            }
+
+            const size_t u = coordianteToNode(cU);
+            const size_t v = coordianteToNode(cV);
+
+            const size_t e = findEdge(u, v);
+            if(e == -1) {
+                liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
+                liftedUvs(liftedEdgeId, 0) = std::min(u, v);
+                liftedUvs(liftedEdgeId, 1) = std::max(u, v);
+                ++liftedEdgeId;
+            } else {
+                localFeatures(e) = xtensor::read(affinities, affCoord.asStdArray());
+            }
+
+        });
+        return liftedEdgeId;
+    }
+
 
     /**
      * @brief convert an image with DIM dimension to an edge map
@@ -324,7 +496,7 @@ public:
     )const{
 
         for(auto d=0; d<DIM; ++d){
-            NIFTY_CHECK_OP(shape(d)*2-1, ==, image.shape(d),
+            NIFTY_CHECK_OP(shape(d)*2 - 1, ==, image.shape()[d],
                 "wrong shape foer image to interpixel edge map")
         }
 
@@ -333,9 +505,11 @@ public:
             CoordinateType cU,cV;
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
-            const auto uVal = image(cU.asStdArray());
+            // FIXME I don't understand what is going on here ?!
+            // But doesn't look right
+            const auto uVal = xtensor::read(image, cU.asStdArray());
             cU += cV;
-            edgeMap[edge] = image(cU.asStdArray());
+            edgeMap(edge) = xtensor::read(image, cU.asStdArray());
         }
     }
 

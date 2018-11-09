@@ -28,7 +28,8 @@ include(CheckCXXCompilerFlag)
 
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
-
+# Old ABI to be compatible with boost
+add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 
 
@@ -39,6 +40,7 @@ option(WITH_HDF5 OFF)
 option(WITH_FASTFILTERS OFF)
 option(WITH_LP_MP OFF)
 option(WITH_QPBO ON)
+option(WITH_Z5 OFF)
 
 option(BUILD_PYTHON_TEST OFF)
 option(BUILD_CPP_TEST ON)
@@ -80,16 +82,9 @@ endif()
 # check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-include(CheckCXXCompilerFlag)
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
-    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    if (HAS_CPP14_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-    else()
-        message(FATAL_ERROR "Unsupported compiler -- C++14 support required!")
-    endif()
-endif()   
-
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 # WITH_LP_MP needs special treatment since
 # it requires C++ 14 and used OpenMP
@@ -107,12 +102,11 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting build type to 'MinSizeRel' as none was specified.")
-    set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING "Choose the type of build." FORCE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
         "MinSizeRel" "RelWithDebInfo")
 endif()
 string(TOUPPER "${CMAKE_BUILD_TYPE}" U_CMAKE_BUILD_TYPE)
-
 
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -174,9 +168,9 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost  REQUIRED)
+find_package(Boost 1.63.0 COMPONENTS system filesystem serialization REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
-MESSAGE( STATUS ${Boost_INCLUDE_DIRS})
+MESSAGE(STATUS ${Boost_INCLUDE_DIRS})
 
 
 if(WITHIN_TRAVIS)
@@ -231,6 +225,47 @@ if(WITH_FASTFILTERS)
     find_package(FASTFILTERS REQUIRED)
     include_directories(${FASTFILTERS_INCLUDE_DIR})
     add_definitions(-DWITH_FASTFILTERS)
+endif()
+
+
+
+#-------------------------------------------------------------------------------------------------------------------
+# find z5
+#-------------------------------------------------------------------------------------------------------------------
+if(WITH_Z5)
+    add_definitions(-DWITH_Z5)
+    option(WITH_BLOSC ON)
+    option(WITH_BZIP2 ON)
+    option(WITH_ZLIB ON)
+
+    set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
+    # z5 compression libraries
+    SET(Z5_COMPRESSION_LIBRARIES "")
+
+    if(WITH_BLOSC)
+        find_package(BLOSC REQUIRED)
+        include_directories(${BLOSC_INCLUDE_DIR})
+        add_definitions(-DWITH_BLOSC)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BLOSC_LIBRARIES}")
+    endif()
+
+    if(WITH_ZLIB)
+        find_package(ZLIB REQUIRED)
+        include_directories(ZLIB_INCLUDE_DIRS)
+        add_definitions(-DWITH_ZLIB)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${ZLIB_LIBRARIES}")
+    endif()
+
+    if(WITH_BZIP2)
+        find_package(BZip2 REQUIRED)
+        include_directories(BZIP2_INCLUDE_DIRS)
+        add_definitions(-DWITH_BZIP2)
+        SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BZIP2_LIBRARIES}")
+    endif()
+
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
+    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/include")
+
 endif()
 
 

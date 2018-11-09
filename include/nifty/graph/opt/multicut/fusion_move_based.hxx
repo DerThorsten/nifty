@@ -19,14 +19,14 @@ namespace multicut{
     /**
      * @brief      Class for fusion move based inference for the multicut objective
      *             An implementation of \cite beier_15_funsion.
-     *             
-     *          
+     *
+     *
      * @tparam     OBJECTIVE  { description }
      */
     template<class PROPPOSAL_GEN>
     class FusionMoveBased : public MulticutBase<typename PROPPOSAL_GEN::ObjectiveType >
     {
-    public: 
+    public:
 
         typedef typename PROPPOSAL_GEN::ObjectiveType ObjectiveType;
         typedef typename ObjectiveType::GraphType GraphType;
@@ -148,7 +148,7 @@ namespace multicut{
             }
         }
         else{
-            if(parallelOptions_.getNumThreads() > 0){
+            if(parallelOptions_.getNumThreads() > 0){ // TODO FIXME isn't > 1 more appropriate here ?!
                 this->optimizeParallel(nodeLabels, visitor);
             }
             else{
@@ -207,7 +207,6 @@ namespace multicut{
                         auto eBestCopy = objective_.evalNodeLabels(bestCopy);
                         mtx.unlock(); 
 
-
                         NodeLabelsType res(graph_);
                         auto & fm = *(fusionMoves_[threadId]);
                         fm.fuse( {&proposal, &currentBest}, &res);
@@ -217,9 +216,9 @@ namespace multicut{
                         if(eFuse < eBestCopy){
                             currentBest = res;
                             bestEnergy = eFuse;
-                            proposals.push_back(res);
+                            //proposals.push_back(res);
                         }
-                        
+
                         mtx.unlock();
                     }
                     else{  // just keep this one and do not fuse with current best
@@ -232,34 +231,31 @@ namespace multicut{
                             currentBest = proposal;
                         }
                         proposals.push_back(proposal);
-                        mtx.unlock();       
-                    }   
+                        mtx.unlock();
+                    }
                 }
             );
-          
-            //std::cout<<"proposals size "<<proposals.size()<<"\n\n";
+
+            //std::cout<<"Generated "<<proposals.size() << " in parallel." << "\n";
             // recursive thing
             std::vector<NodeLabelsType> proposals2;
             size_t nFuse = settings_.fuseN;
 
-            if(!proposals.empty()){
+            if(!proposals.empty() && nFuse > 0){
                 while(proposals.size()!= 1){
                     //std::cout<<" aaa \n";
                     NIFTY_CHECK_OP(proposals.size(),>=,2,"");
                     nFuse = std::min(nFuse, proposals.size());
-
-
 
                     auto pSize = proposals.size() / nFuse;
                     if( proposals.size() % nFuse != 0){
                         ++pSize;
                     }
 
-                    nifty::parallel::parallel_foreach(threadPool_, 
+                    nifty::parallel::parallel_foreach(threadPool_,
                                                       pSize,
                     [&](const int threadId, const int ii){
 
-                
                         auto i = ii*nFuse;
 
                         std::vector<const NodeLabelsType*> toFuse;
@@ -273,7 +269,7 @@ namespace multicut{
                         auto & fm = *(fusionMoves_[threadId]);
 
                         fm.fuse(toFuse, &res);
-                
+
                         mtx.lock();
                         proposals2.push_back(res);
                         mtx.unlock();
@@ -287,6 +283,7 @@ namespace multicut{
             }
             //std::cout<<"doish\n";
             bestEnergy = objective_.evalNodeLabels(currentBest);
+
             // call the visitor and see if we need to continue
             if(visitor!= nullptr){
                 visitor->setLogValue(0,iterWithoutImprovement);
@@ -318,22 +315,19 @@ namespace multicut{
         VisitorProxyType visitorProxy(visitor);
 
         currentBest_ = &nodeLabels;
-       
+
         visitorProxy.addLogNames({"IterationWithoutImprovement"});
         visitorProxy.begin(this);
-        
+
         auto & currentBest = nodeLabels;
         auto bestEnergy = objective_.evalNodeLabels(currentBest);
-    
-
-
 
 
         std::vector<NodeLabelsType> proposals;
         auto iterWithoutImprovement = 0;
         for(auto iter=0; iter<settings_.numberOfIterations; ++iter){
             const auto oldBestEnergy = bestEnergy;
-        
+
             auto & pgen = *pgens_[0];
             auto & proposal = *solBufferIn_[0];
             pgen.generate(currentBest, proposal);
@@ -352,7 +346,7 @@ namespace multicut{
                     bestEnergy = eFuse;
                     currentBest = res;
                     iterWithoutImprovement = 0;
-                }   
+                }
                 else{
                     ++iterWithoutImprovement;
                 }
@@ -369,7 +363,7 @@ namespace multicut{
 
         //for(auto node : graph_.nodes())
         //    nodeLabels[node] = currentBest[node];
-        
+
         visitorProxy.end(this);
     }
 

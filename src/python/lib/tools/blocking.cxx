@@ -7,6 +7,7 @@
 
 #include "nifty/python/converter.hxx"
 #include "nifty/tools/blocking.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -47,16 +48,12 @@ namespace tools{
         const auto blockingClsStr = std::string("Blocking") + dimStr;
         py::class_<BlockingType>(toolsModule, blockingClsStr.c_str())
 
-            .def("__init__",
-                [](
-                    BlockingType & instance, 
-                    VectorType roiBegin,
-                    VectorType roiEnd,
-                    VectorType blockShape,
-                    VectorType blockShift
-                ){
-                    new (&instance) BlockingType(roiBegin, roiEnd, blockShape, blockShift);
-                }
+            .def(py::init([](VectorType roiBegin,
+                             VectorType roiEnd,
+                             VectorType blockShape,
+                             VectorType blockShift){
+                    return new BlockingType(roiBegin, roiEnd, blockShape, blockShift);
+                })
             )
 
             .def_property_readonly("roiBegin",&BlockingType::roiBegin)
@@ -65,9 +62,74 @@ namespace tools{
             .def_property_readonly("blockShift",&BlockingType::blockShift)
             .def_property_readonly("blocksPerAxis",&BlockingType::blocksPerAxis)
             .def_property_readonly("numberOfBlocks",&BlockingType::numberOfBlocks)
-            
 
             .def("getBlock", &BlockingType::getBlock)
+
+            .def("getBlockIdsInBoundingBox", [](const BlockingType & self,
+                const VectorType roiBegin,
+                const VectorType roiEnd) {
+
+                std::vector<uint64_t> tmp;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.getBlockIdsInBoundingBox(roiBegin, roiEnd, tmp);
+                }
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(int i = 0; i < tmp.size(); ++i) {
+                        out(i) = tmp[i];
+                    }
+                }
+                return out;
+            }, py::arg("roiBegin"), py::arg("roiEnd"))
+
+            .def("getBlockIdsOverlappingBoundingBox", [](const BlockingType & self,
+                const VectorType roiBegin,
+                const VectorType roiEnd) {
+
+                std::vector<uint64_t> tmp;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.getBlockIdsOverlappingBoundingBox(roiBegin, roiEnd, tmp);
+                }
+                xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({tmp.size()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(int i = 0; i < tmp.size(); ++i) {
+                        out(i) = tmp[i];
+                    }
+                }
+                return out;
+            }, py::arg("roiBegin"), py::arg("roiEnd"))
+
+            .def("getLocalOverlaps", [](
+                const BlockingType & self,
+                const size_t indexA,
+                const size_t indexB,
+                const VectorType blockHalo) {
+
+                VectorType blockABegin, blockBBegin, blockAEnd, blockBEnd;
+                bool ret;
+                {
+                    py::gil_scoped_release allowThreads;
+                    ret = self.getLocalOverlaps(indexA, indexB, blockHalo,
+                                                blockABegin, blockAEnd,
+                                                blockBBegin, blockBEnd);
+                }
+                return std::make_tuple(ret, blockABegin, blockAEnd, blockBBegin, blockBEnd);
+            })
+
+            .def("blockGridPosition", [](
+                    const BlockingType & self,
+                    const uint64_t blockIndex) {
+                VectorType gridPosition;
+                {
+                    py::gil_scoped_release allowThreads;
+                    self.blockGridPosition(blockIndex, gridPosition);
+                }
+                return gridPosition;
+            }, py::arg("blockIndex"))
 
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
@@ -78,6 +140,7 @@ namespace tools{
                 },
                 py::arg("blockIndex"),py::arg("halo")
             )
+
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
                     const size_t blockIndex,
@@ -108,11 +171,22 @@ namespace tools{
                 },
                 py::arg("block"),py::arg("haloBegin"),py::arg("haloEnd")
             )
+            .def("getNeighborId", [](
+                    const BlockingType & self,
+                    const uint64_t blockId,
+                    const unsigned axis,
+                    const bool lower
+            ){
+                return self.getNeighborId(blockId, axis, lower);
+             },
+             py::arg("blockId"), py::arg("axis"), py::arg("lower")
+            )
         ;
     }
 
 
     void exportBlocking(py::module & toolsModule) {
+        exportBlockingT<1>(toolsModule);
         exportBlockingT<2>(toolsModule);
         exportBlockingT<3>(toolsModule);
     }

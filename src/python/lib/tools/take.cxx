@@ -4,78 +4,105 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include <typeinfo> // to debug atm
+#include "xtensor-python/pytensor.hpp"
 
-#include "nifty/python/converter.hxx"
-#include "nifty/tools/make_dense.hxx"
-#include "nifty/tools/timer.hxx"
 
 namespace py = pybind11;
-
 
 
 namespace nifty{
 namespace tools{
 
-    template<class T, bool AUTO_CAST>
+    // TODO copies here are un-necessary, could also do in-place !
+    template<class T>
     void exportTakeT(py::module & toolsModule) {
 
-
         toolsModule.def("_take",
-        [](
-           nifty::marray::PyView<T,1,AUTO_CAST> relabeling,
-           nifty::marray::PyView<T,1,AUTO_CAST> toRelabel
+        [](const xt::pytensor<T, 1> & relabeling,
+           const xt::pytensor<T, 1> & toRelabel
         ){
-
-            nifty::tools::VerboseTimer timer(true);
-            timer.startAndPrint("out");
-            nifty::marray::PyView<T> out(toRelabel.shapeBegin(), toRelabel.shapeEnd());
-            timer.stopAndPrint().reset();
-
-
+            typedef typename xt::pytensor<T, 1>::shape_type ShapeType;
+            ShapeType shape;
+            shape[0] = toRelabel.shape()[0];
+            xt::pytensor<T, 1> out = xt::zeros<T>(shape);
             {
-
                 py::gil_scoped_release allowThreads;
-
-                std::cout<<"simpel out        "<<out.isSimple()<<"\n";
-                std::cout<<"simpel relabeling "<<relabeling.isSimple()<<"\n";
-                std::cout<<"simpel toRelabel  "<<toRelabel.isSimple()<<"\n";
-
-
-                timer.startAndPrint("work");
-                for(size_t i=0; i<toRelabel.shape(0); ++i){
+                for(size_t i = 0; i < shape[0]; ++i){
                     out(i) = relabeling(toRelabel(i));
                 }
-
-
-
-
-                //auto po = &out[0];
-                //auto pr = &relabeling[0];
-                //auto pt = & toRelabel[0];
-                //for(size_t i=0; i<toRelabel.shape(0); ++i){
-                //    po[i] = pr[pt[i]];
-                //}
-
-                timer.stopAndPrint().reset();
-                
             }
-            
             return out;
-        });
+        }, py::arg("relabeling"), py::arg("toRelabel"));
+
+
+        toolsModule.def("_takeDict",
+        [](const std::unordered_map<T, T> & relabeling,
+           const xt::pytensor<T, 1> & toRelabel
+        ){
+            typedef typename xt::pytensor<T, 1>::shape_type ShapeType;
+            ShapeType shape;
+            shape[0] = toRelabel.shape()[0];
+            xt::pytensor<T, 1> out = xt::zeros<T>(shape);
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t i = 0; i < shape[0]; ++i){
+                    out(i) = relabeling.at(toRelabel(i));
+                }
+            }
+            return out;
+        }, py::arg("relabeling"), py::arg("toRelabel"));
+
+
+        toolsModule.def("_unique",
+        [](const xt::pytensor<T, 1> & values) {
+            std::unordered_set<T> uniques;
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t ii = 0; ii < values.shape()[0]; ++ii) {
+                    uniques.insert(values(ii));
+                }
+            }
+            typedef typename xt::pytensor<T, 1>::shape_type Shape;
+            Shape shape = {static_cast<unsigned int>(uniques.size())};
+            xt::pytensor<T, 1> out = xt::zeros<T>(shape);
+            {
+                py::gil_scoped_release allowThreads;
+                size_t ii = 0;
+                for(const T val: uniques) {
+                    out(ii) = val;
+                    ++ii;
+                }
+            }
+            return out;
+        }, py::arg("values"));
+
+
+        toolsModule.def("inflateLabeling",
+        [](const xt::pytensor<T, 1> & values, const xt::pytensor<T, 1> & labels, const T maxVal, const T fillVal){
+            const unsigned int nValues = maxVal + 1;
+            xt::pytensor<T, 1> out = xt::zeros<T>({nValues});
+            {
+                py::gil_scoped_release allowThreads;
+                T index = 0;
+                for(T consecVal = 0; consecVal < nValues; ++consecVal) {
+                    if(values[index] == consecVal) {
+                        out[consecVal] = labels[index];
+                        ++index;
+                    } else {
+                        out[consecVal] = fillVal;
+                    }
+                }
+            }
+            return out;
+        }, py::arg("values"), py::arg("labels"), py::arg("maxVal"), py::arg("fillVal")=0);
     }
 
 
     void exportTake(py::module & toolsModule) {
-        
-        exportTakeT<uint32_t, false>(toolsModule);
-        exportTakeT<uint64_t, false>(toolsModule);
-        exportTakeT<int32_t, false>(toolsModule);
-
-        //exportTakeT<float   , false>(toolsModule);
-
-        exportTakeT<int64_t   , true>(toolsModule);
-
+        exportTakeT<uint32_t>(toolsModule);
+        exportTakeT<uint64_t>(toolsModule);
+        exportTakeT<int32_t>(toolsModule);
+        exportTakeT<int64_t>(toolsModule);
     }
 
 }

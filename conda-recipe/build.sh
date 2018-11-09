@@ -160,13 +160,13 @@ cmake .. \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
-        -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O3 -DNDEBUG" \
 \
         -DBOOST_ROOT=${PREFIX} \
-        -DWITH_HDF5=ON \
-        -DHDF5_INCLUDE_DIR=${PREFIX}/include \
+        -DWITH_HDF5=OFF \
+        -DWITH_Z5=OFF \
+        -DWITH_FASTFILTERS=OFF \
+        -DFASTFILTERS_INCLUDE_DIR=${PREFIX}/include\
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \
@@ -180,7 +180,6 @@ cmake .. \
 ## Compile
 ##
 make -j${CPU_COUNT}
-
 #make test
 
 ##

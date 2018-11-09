@@ -41,14 +41,16 @@ def testShortestPathDijkstraSingleTarget():
 def testShortestPathDijkstraSingleTargetParallel():
     g, weights = graphAndWeights()
     N = 50
-    sources = N*[0]
-    targets = N*[4]
+    sources = N * [0L]
+    targets = N * [4L]
     parallelPaths = nifty.graph.shortestPathSingleTargetParallel(
-            g,
-            weights,
-            sources,
-            targets,
-            4)
+        g,
+        weights.tolist(),
+        sources,
+        targets,
+        returnNodes=True,
+        numberOfThreads=4
+    )
 
     for path in parallelPaths:
         # shortest path 0 -> 4:
@@ -90,18 +92,19 @@ def testShortestPathDijkstraMultiTarget():
 
 def testShortestPathDijkstraMultiTargetParallel():
     g, weights = graphAndWeights()
-    sp = nifty.graph.ShortestPathDijkstra(g)
     N = 50
     sources = N*[0]
     targets = [[4,5] for _ in xrange(N)]
 
     for _ in range(2):
         parallelPaths = nifty.graph.shortestPathMultiTargetParallel(
-                g,
-                weights,
-                sources,
-                targets,
-                5)
+            g,
+            weights,
+            sources,
+            targets,
+            returnNodes=True,
+            numberOfThreads=5
+        )
         for paths in parallelPaths:
             assert len(paths) == 2
             # shortest path 0 -> 4:

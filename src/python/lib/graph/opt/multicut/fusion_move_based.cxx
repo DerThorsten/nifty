@@ -70,7 +70,7 @@ namespace multicut{
             typedef typename Solver::SettingsType SettingsType;
 
             const std::string solverName = "FusionMoveBasedGreedyAdditive";
-            const std::string pgenSettingsName = std::string("__")+solverName + std::string("ProposalGenSettings") + objName;
+            const std::string pgenSettingsName = std::string("__") + solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())
@@ -115,7 +115,7 @@ namespace multicut{
             typedef typename Solver::SettingsType SettingsType;
 
             const std::string solverName = "FusionMoveBasedWatershed";
-            const std::string pgenSettingsName = solverName + std::string("ProposalGenSettings") + objName;
+            const std::string pgenSettingsName = std::string("__") + solverName + std::string("ProposalGenSettings") + objName;
 
             py::class_<ProposalGenSettings>(multicutModule, pgenSettingsName.c_str())
                 .def(py::init<>())

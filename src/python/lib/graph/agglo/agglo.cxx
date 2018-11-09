@@ -13,12 +13,12 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace agglo{
-    
-    void exportMergeRules(py::module &);    
-    void exportAgglomerativeClustering(py::module &);    
-    void exportFixationAgglomerativeClustering(py::module &);    
-    void exportDualAgglomerativeClustering(py::module &);    
-    void exportLiftedAgglomerativeClusteringPolicy(py::module &);    
+
+    void exportMergeRules(py::module &);
+    void exportAgglomerativeClustering(py::module &);
+    void exportFixationAgglomerativeClustering(py::module &);
+    void exportDualAgglomerativeClustering(py::module &);
+    void exportLiftedAgglomerativeClusteringPolicy(py::module &);
 }
 }
 }
@@ -28,13 +28,11 @@ namespace agglo{
 PYBIND11_MODULE(_agglo, module) {
 
     xt::import_numpy();
-    
+
     py::options options;
     options.disable_function_signatures();
-    
     module.doc() = "agglo submodule of nifty.graph";
 
-    
     using namespace nifty::graph::agglo;
     exportMergeRules(module);
     exportAgglomerativeClustering(module);

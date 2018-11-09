@@ -2,6 +2,7 @@
 
 #define FORCE_IMPORT_ARRAY
 #include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pytensor.hpp"
 #include "xtensor-python/pyvectorize.hpp"
 
 #include <iostream>
@@ -31,15 +32,13 @@ namespace graph{
 PYBIND11_MODULE(_graph, module) {
 
     xt::import_numpy();
-    
+
     py::options options;
     options.disable_function_signatures();
-    
+
     module.doc() = "graph submodule of nifty";
 
     using namespace nifty::graph;
-
-        
 
     exportUndirectedListGraph(module);
     exportUndirectedGridGraph(module);
@@ -49,6 +48,4 @@ PYBIND11_MODULE(_graph, module) {
     exportConnectedComponents(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
-
 }
-

@@ -7,7 +7,7 @@
 #include "nifty/graph/undirected_list_graph.hxx"
 
 #include "export_undirected_graph_class_api.hxx"
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 namespace py = pybind11;
 
@@ -30,24 +30,24 @@ namespace graph{
             )
             .def("insertEdge",&GraphType::insertEdge)
             .def("insertEdges",
-                [](GraphType & g, nifty::marray::PyView<uint64_t> array) {
-                    NIFTY_CHECK_OP(array.dimension(),==,2,"wrong dimensions");
-                    NIFTY_CHECK_OP(array.shape(1),==,2,"wrong shape");
-                    for(size_t i=0; i<array.shape(0); ++i){
-                        g.insertEdge(array(i,0),array(i,1));
+                [](GraphType & g, const xt::pytensor<uint64_t, 2> & array) {
+                    NIFTY_CHECK_OP(array.shape()[1],==,2,"wrong shape");
+                    for(size_t i=0; i<array.shape()[0]; ++i){
+                        g.insertEdge(array(i,0), array(i,1));
                     }
                 }
             )
             .def("serialize",
                 [](const GraphType & g) {
-                    nifty::marray::PyView<uint64_t> out({g.serializationSize()});
+                    typename xt::pytensor<uint64_t, 1>::shape_type shape = {static_cast<int64_t>(g.serializationSize())};
+                    xt::pytensor<uint64_t, 1> out(shape);
                     auto ptr = &out(0);
                     g.serialize(ptr);
                     return out;
                 }
             )
             .def("deserialize",
-                [](GraphType & g, nifty::marray::PyView<uint64_t,1> serialization) {
+                [](GraphType & g, xt::pytensor<uint64_t, 1> & serialization) {
 
                     auto  startPtr = &serialization(0);
                     auto  lastElement = &serialization(serialization.size()-1);
@@ -55,22 +55,50 @@ namespace graph{
 
                     NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
-
-                    
                     g.deserialize(startPtr);
                 }
             )
             .def("extractSubgraphFromNodes",
-                []( GraphType & g, const marray::PyView<int64_t,1> nodeList) {
-                    
-                    std::vector<int64_t> innerEdgesVec;  
-                    std::vector<int64_t> outerEdgesVec;  
-                    GraphType subgraph;
+                 []( GraphType & g, const xt::pytensor<uint64_t, 1> & nodeList) {
+                    std::vector<int64_t> innerEdgesVec;
+                    std::vector<int64_t> outerEdgesVec;
+                    std::vector<std::pair<uint64_t, uint64_t>> subUvsVec;
                     {
                         py::gil_scoped_release allowThreads;
-                        subgraph = g.extractSubgraphFromNodes(nodeList, innerEdgesVec, outerEdgesVec);
+                        g.extractSubgraphFromNodes(nodeList,
+                                                   innerEdgesVec,
+                                                   outerEdgesVec,
+                                                   subUvsVec);
                     }
-                    return std::make_tuple(innerEdgesVec, outerEdgesVec, subgraph);
+                    xt::pytensor<int64_t, 1> innerEdges = xt::zeros<int64_t>({static_cast<int64_t>(innerEdgesVec.size())});
+                    xt::pytensor<int64_t, 1> outerEdges = xt::zeros<int64_t>({static_cast<int64_t>(outerEdgesVec.size())});
+                    xt::pytensor<uint64_t, 2> subUvs({static_cast<int64_t>(subUvsVec.size()), 2});
+                    {
+                        py::gil_scoped_release allowThreads;
+                        for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                            innerEdges(i) = innerEdgesVec[i];
+                        }
+                        for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                            outerEdges(i) = outerEdgesVec[i];
+                        }
+                        for(size_t i = 0; i < subUvsVec.size(); ++i) {
+                            subUvs(i, 0) = subUvsVec[i].first;
+                            subUvs(i, 1) = subUvsVec[i].second;
+                        }
+
+                    }
+                    return std::make_tuple(innerEdges, outerEdges, subUvs);
+                }
+            )
+            .def("edgesFromNodeList",
+                [](GraphType & g, const std::vector<int64_t> & nodeList) {
+
+                    std::vector<int64_t> edges;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        g.edgesFromNodeList(nodeList, edges);
+                    }
+                    return edges;
                 }
             )
             .def("shrinkToFit",&GraphType::shrinkToFit)
@@ -80,8 +108,8 @@ namespace graph{
             [&](
                 UndirectedGraph<> & g,
                 array::StaticArray<int64_t, 3>      shape,
-                nifty::marray::PyView<int64_t,2>   offsets,
-                nifty::marray::PyView<float, 4>    affinities
+                const xt::pytensor<int64_t, 2> &   offsets,
+                const xt::pytensor<float, 4> &   affinities
             ){
                 g.assign(shape[0]*shape[1]*shape[2]);
 
@@ -90,7 +118,7 @@ namespace graph{
                 for(int p1=0; p1<shape[1]; ++p1)
                 for(int p2=0; p2<shape[2]; ++p2){
 
-                    for(int io=0; io<offsets.shape(0); ++io){
+                    for(int io=0; io<offsets.shape()[0]; ++io){
 
                         const int q0 = p0 + offsets(io, 0);
                         const int q1 = p1 + offsets(io, 1);
@@ -107,16 +135,17 @@ namespace graph{
                     ++u;
                 }
 
-                nifty::marray::PyView<uint32_t, 1>   offsetsIndex({g.numberOfEdges()});
-                nifty::marray::PyView<float>         aff({g.numberOfEdges()});
-                
+                typedef typename xt::pytensor<uint32_t, 1>::shape_type TensorShapeType;
+                TensorShapeType tensorShape = {static_cast<int64_t>(g.numberOfEdges())};
+                xt::pytensor<uint32_t, 1>   offsetsIndex(tensorShape);
+                xt::pytensor<float, 1>      aff({tensorShape});
 
                 u=0;
                 for(int p0=0; p0<shape[0]; ++p0)
                 for(int p1=0; p1<shape[1]; ++p1)
                 for(int p2=0; p2<shape[2]; ++p2){
 
-                    for(int io=0; io<offsets.shape(0); ++io){
+                    for(int io=0; io<offsets.shape()[0]; ++io){
 
                         const int q0 = p0 + offsets(io, 0);
                         const int q1 = p1 + offsets(io, 1);

@@ -19,15 +19,3 @@ namespace marray{
    namespace hdf5 = andres::hdf5;
 }
 }
-
-
-    
-
-
-
-
-
-
-
-
-

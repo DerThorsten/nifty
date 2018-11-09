@@ -24,15 +24,15 @@ namespace tools{
         }
 
         const VectorType & begin() const {
-            return begin_;  
+            return begin_;
         }
 
         const VectorType & end() const {
-            return end_;  
+            return end_;
         }
 
         VectorType shape() const {
-            return end_ - begin_;  
+            return end_ - begin_;
         }
 
     private:
@@ -58,23 +58,22 @@ namespace tools{
         :   outerBlock_(outerBlock),
             innerBlock_(innerBlock),
             innerBlockLocal_(){
-    
-            
+
             const auto lBegin = innerBlock.begin()  - outerBlock.begin();
             const auto lEnd = lBegin  + innerBlock_.shape();
             innerBlockLocal_ = BlockType(lBegin, lEnd);
         }
 
         const BlockType & outerBlock() const {
-            return outerBlock_;  
+            return outerBlock_;
         }
 
         const BlockType & innerBlock() const {
-            return innerBlock_;  
+            return innerBlock_;
         }
 
         const BlockType & innerBlockLocal() const {
-            return innerBlockLocal_;  
+            return innerBlockLocal_;
         }
 
 
@@ -110,7 +109,7 @@ namespace tools{
             blocksPerAxis_(),
             blocksPerAxisStrides_(),
             numberOfBlocks_(1){
-        
+
             for(size_t d=0; d<DIM; ++d){
                 const auto dimSize = roiEnd_[d] - (roiBegin_[d] - blockShift_[d]);
                 const auto bs = blockShape_[d];
@@ -118,33 +117,57 @@ namespace tools{
                 blocksPerAxis_[d] = bpa;
                 numberOfBlocks_ *= bpa;
             }
-            
+
             blocksPerAxisStrides_[DIM - 1] = 1;
             for(int64_t d = DIM-2; d>=0; --d){
                 blocksPerAxisStrides_[d] = blocksPerAxisStrides_[d+1] * blocksPerAxis_[d+1];
             }
         }
 
+        void blockGridPosition(const uint64_t blockId, VectorType & gridPosition) const {
+            for(unsigned ii = 0; ii < DIM; ++ii) {
+                gridPosition[ii] = getBlockAxisPosition(blockId, ii);
+            }
+        }
+
+        int64_t getNeighborId(const uint64_t blockId, const unsigned axis, const bool lower) const {
+
+            const auto blockPosAtAxis = getBlockAxisPosition(blockId, axis);
+
+            // we don't have lower neighbors for the lowest block in axis
+            // and we don't have upper neighbor for the highest block in axis
+            if(lower && blockPosAtAxis == 0) {
+                return -1;
+            } else if(!lower && blockPosAtAxis == blocksPerAxis_[axis] - 1) {
+                return -1;
+            }
+
+            const auto stride = blocksPerAxisStrides_[axis];
+            int64_t neighborId = blockId + (lower ? -stride : stride);
+            //return (neighborId < numberOfBlocks_) ? (neighborId >= 0 ? neighborId : -1) : -1;
+            return neighborId;
+        }
+
         const VectorType & roiBegin() const {
-            return roiBegin_;  
+            return roiBegin_;
         }
 
         const VectorType & roiEnd() const {
-            return roiEnd_;  
+            return roiEnd_;
         }
 
         const VectorType & blockShape() const {
-            return blockShape_;  
+            return blockShape_;
         }
 
         const VectorType & blockShift() const {
-            return blockShift_;  
+            return blockShift_;
         }
 
         const VectorType & blocksPerAxis() const {
-            return blocksPerAxis_;  
+            return blocksPerAxis_;
         }
-        
+
         const size_t numberOfBlocks()const{
             return numberOfBlocks_;
         }
@@ -157,7 +180,6 @@ namespace tools{
             VectorType beginCoord, endCoord;
             for(auto d=0; d<DIM; ++d){
 
-
                 const int64_t blockCoordAtD = index / blocksPerAxisStrides_[d];
                 index -= blockCoordAtD*blocksPerAxisStrides_[d];
 
@@ -167,10 +189,11 @@ namespace tools{
             }
 
             return BlockType(beginCoord, endCoord);
-        }   
+        }
+
 
         BlockWithHaloType getBlockWithHalo(
-            const uint64_t blockIndex, 
+            const uint64_t blockIndex,
             const VectorType & haloBegin,
             const VectorType & haloEnd
         )const{
@@ -182,21 +205,186 @@ namespace tools{
                 outerBegin[d] = std::max(innerBlock.begin()[d] - haloBegin[d], roiBegin_[d]);
                 outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
-            return  BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
+            return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
         }
 
+
+        // get all block ids that are enclosed in the roi
+        void getBlockIdsInBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+
+                // get coordinates of the current bock
+                const auto & block = getBlock(blockId);
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+
+                // check for each dimension whether the current block has overlap with the roi
+                std::vector<bool> enclosedInDim(DIM, false);
+                for(auto d = 0; d < DIM; ++d) {
+                    if(begin[d] >= roiBegin[d] && end[d] <= roiEnd[d]) {
+                        enclosedInDim[d] = true;
+                    }
+
+                }
+
+                // if all dimentsions have overlap, push back the block id
+                if(std::all_of(enclosedInDim.begin(), enclosedInDim.end(), [](bool i){return i;})) {
+                    idsOut.push_back(blockId);
+                }
+            }
+        }
+
+
+        // get all block ids that have overlap with the roi
+        void getBlockIdsOverlappingBoundingBox(
+                const VectorType & roiBegin,
+                const VectorType & roiEnd,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+            idsOut.clear();
+
+            VectorType minChunkIds;
+            VectorType maxChunkIds;
+            // determine the position in chunks
+            for(unsigned ii = 0; ii < DIM; ++ii) {
+                minChunkIds[ii] = floor(roiBegin[ii] / blockShape_[ii]);
+                maxChunkIds[ii] = ceil(roiEnd[ii] / blockShape_[ii]);
+                // increase the max if we have a singleton
+                if(minChunkIds[ii] == maxChunkIds[ii])
+                    ++maxChunkIds[ii];
+            }
+
+            // FIXME this only works for 3D, implement this dimension independent !
+            for(size_t chunkX = minChunkIds[0]; chunkX < maxChunkIds[0]; ++ chunkX) {
+                for(size_t chunkY = minChunkIds[1]; chunkY < maxChunkIds[1]; ++ chunkY) {
+                    for(size_t chunkZ = minChunkIds[2]; chunkZ < maxChunkIds[2]; ++ chunkZ) {
+                        idsOut.push_back(blocksPerAxisStrides_[0] * chunkX + blocksPerAxisStrides_[1] * chunkY + blocksPerAxisStrides_[2] * chunkZ);
+                    }
+                }
+            }
+        }
+
+
+
+        // return the overlaps (in local block coordinates for two specified blocks)
+        bool getLocalOverlaps(
+                const uint64_t blockAId,
+                const uint64_t blockBId,
+                const VectorType & blockHalo,
+                VectorType & overlapBeginA,
+                VectorType & overlapEndA,
+                VectorType & overlapBeginB,
+                VectorType & overlapEndB
+        ) const {
+
+            // lambda to check whether two values are in range
+            auto valueInRange = [](T value, T min, T max) {
+                return (value >= min) && (value <= max);
+            };
+
+            // determine whether the query block starts inside block
+            auto isLeft = [&](const BlockType & queryBlock, const BlockType & block) {
+                std::vector<bool> left(DIM, false);
+                const auto & queryBegin = queryBlock.begin();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+                for(int d = 0; d < DIM; ++d) {
+                    left[d] = valueInRange(queryBegin[d], begin[d], end[d]);
+                }
+                return left;
+            };
+
+            const auto blockA = getBlockWithHalo(blockAId, blockHalo).outerBlock();
+            const auto blockB = getBlockWithHalo(blockBId, blockHalo).outerBlock();
+
+            auto aIsLeft = isLeft(blockA, blockB);
+            auto bIsLeft = isLeft(blockB, blockA);
+
+            std::vector<bool> overlaps(DIM);
+            for(int d = 0; d < DIM; ++d) {
+                overlaps[d] = aIsLeft[d] || bIsLeft[d];
+            }
+
+            const auto & beginA = blockA.begin();
+            const auto & beginB = blockB.begin();
+            const auto & endA = blockA.end();
+            const auto & endB = blockB.end();
+
+            VectorType globalOverlapBegin, globalOverlapEnd;
+            // check if the blocks are overlapping
+            if( std::all_of( overlaps.begin(), overlaps.end(), [](bool i){return i;}) ) {
+
+                // set the appropriate begin and end for each dimension
+                for(int d = 0; d < DIM; ++d) {
+                    // a is left in this dimension -> we set the beginning to begin(A) end the end to end(B)
+                    if(aIsLeft[d]) {
+                        globalOverlapBegin[d] = beginA[d];
+                        globalOverlapEnd[d] = endB[d];
+                    }
+                    else { // b is left in this dimension, or a and b are equal -> we set the beginning to begin(B) and the end to end(A)
+                        globalOverlapBegin[d] = beginB[d];
+                        globalOverlapEnd[d] = endA[d];
+                    }
+                }
+
+            }
+            else { // otherwise return that no overlap was found
+                return false;
+            }
+
+            for(int d = 0; d < DIM; ++d) {
+                overlapBeginA[d] = globalOverlapBegin[d] - beginA[d];
+                overlapEndA[d] = globalOverlapEnd[d] - beginA[d];
+
+                overlapBeginB[d] = globalOverlapBegin[d] - beginB[d];
+                overlapEndB[d] = globalOverlapEnd[d] - beginB[d];
+            }
+
+            return true;
+        }
+
+
+        // get all block ids in slice z
+        void getBlockIdsInSlice(
+                const T z,
+                const VectorType & blockHalo,
+                std::vector<uint64_t> & idsOut) const {
+
+            // TODO assert that the roi is in global roi
+            //
+            idsOut.clear();
+
+            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+                const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
+                const auto & begin = block.begin();
+                const auto & end   = block.end();
+                // check if this slice is in z
+                auto z_start = begin[0];
+                auto z_end   = end[0];
+                if(z >= z_start && z < z_end )
+                    idsOut.push_back(blockId);
+            }
+        }
+
+
         BlockWithHaloType getBlockWithHalo(
-            const uint64_t blockIndex, 
+            const uint64_t blockIndex,
             const VectorType & halo
         )const{
             return this->getBlockWithHalo(blockIndex, halo, halo);
-        } 
-
-
+        }
 
 
         BlockWithHaloType addHalo(
-            const BlockType innerBlock, 
+            const BlockType innerBlock,
             const VectorType & haloBegin,
             const VectorType & haloEnd
         )const{
@@ -211,16 +399,30 @@ namespace tools{
         }
 
 
-        
+
         BlockWithHaloType addHalo(
-            const BlockType innerBlock,  
+            const BlockType innerBlock,
             const VectorType & halo
         )const{
             return this->addHalo(innerBlock, halo, halo);
-        } 
-          
-        
+        }
+
+
     private:
+
+        uint64_t getBlockAxisPosition(const uint64_t blockId, const unsigned axis) const {
+            // get the position of the block in this axis
+            uint64_t index = blockId;
+            int64_t blockPosAtAxis;
+            for(auto d = 0; d < DIM; ++d) {
+                blockPosAtAxis = index / blocksPerAxisStrides_[d];
+                index -= blockPosAtAxis * blocksPerAxisStrides_[d];
+                if(d == axis){
+                    break;
+                }
+            }
+            return blockPosAtAxis;
+        }
 
         // given from user
         VectorType roiBegin_;

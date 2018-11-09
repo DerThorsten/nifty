@@ -5,4 +5,5 @@ addPythonModule(
     SOURCES
         ufd.cxx
         export_ufd.cxx
+        export_boost_ufd.cxx
 )

@@ -1004,4 +1004,3 @@ closeGroup(
 } // namespace andres
 
 #endif // #ifndef MARRAY_HDF5_HXX
-

@@ -16,7 +16,7 @@ namespace agglo{
 
 
     void exportMergeRules(py::module & aggloModule) {
-        
+
 
         py::class_<merge_rules::ArithmeticMeanSettings>(aggloModule, "ArithmeticMeanSettings")
             .def(py::init<>())
@@ -79,4 +79,3 @@ namespace agglo{
 } // end namespace agglo
 } // end namespace graph
 } // end namespace nifty
-    

@@ -41,16 +41,16 @@ def thinSegFilter(seg, sigma, radius=None):
 
 def overlap(segmentation, groundTruth):
     """factory function for :class:`nifty.ground_truth.Overlap`
-    
+
     create an instance of :class:`nifty.ground_truth.Overlap`
     which can be used to project ground truth
     to some segmentation / over-segmentation
-    
+
     Args:
-        segmentation (numpy.ndarray): The segmentation / over-segmentation  
+        segmentation (numpy.ndarray): The segmentation / over-segmentation
         groundTruth (numpy.ndarray): The ground truth as node labeling.
 
-    
+
     Returns:
         [description]
         [type]

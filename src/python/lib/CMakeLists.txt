@@ -99,10 +99,20 @@ addPythonModule(
 
 
 # submodules
+if(WITH_HDF5)
+    add_subdirectory(hdf5)
+endif()
+
+if(WITH_Z5)
+    add_subdirectory(z5)
+endif()
+
 add_subdirectory(graph)
-add_subdirectory(hdf5)
 add_subdirectory(tools)
 add_subdirectory(ufd)
 add_subdirectory(cgp)
 add_subdirectory(filters)
 add_subdirectory(ground_truth)
+add_subdirectory(distributed)
+add_subdirectory(skeletons)
+add_subdirectory(mws)

@@ -5,12 +5,20 @@ addPythonModule(
     SOURCES
         rag.cxx
         grid_rag.cxx
+        grid_rag_stacked.cxx
         graph_accumulator.cxx
         project_to_pixels.cxx
         accumulate.cxx
+        accumulate_stacked.cxx
+        accumulate_filters_stacked.cxx
+        accumulate_flat.cxx
+        grid_rag_coordinates.cxx
+        accumulate_affinities.cxx
     LIBRRARIES
-        ${HDF5_LIBRARIES}   
-        #${NIFTY_LP_SOLVER_LIBS} ${HDF5_LIBRARIES}
+        ${HDF5_LIBRARIES} 
+        ${FASTFILTERS_LIBRARY}
+        ${Z5_COMPRESSION_LIBRARIES}
+        ${Boost_FILESYSTEM_LIBRARY}    
+        ${Boost_SYSTEM_LIBRARY}    
+        pthread
 )
-
-target_link_libraries(_rag PUBLIC ${HDF5_LIBRARIES}   )

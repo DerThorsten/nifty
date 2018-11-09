@@ -240,7 +240,8 @@ namespace detail_cc_fusion{
                 }
             }
 
-            visitorProxy.visit(this);
+            if(!visitorProxy.visit(this))
+                break;
         }
     }
 

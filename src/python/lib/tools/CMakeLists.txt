@@ -7,5 +7,16 @@ addPythonModule(
         blocking.cxx
         take.cxx
         changable_priority_queue.cxx
+        unique.cxx
+        nodes_to_blocks.cxx
+        edge_mapping.cxx
+        sleep.cxx
+        map_dict.cxx
+        merge_helper.cxx
+    LIBRRARIES
+        ${HDF5_LIBRARIES}
+        ${Z5_COMPRESSION_LIBRARIES}
+        ${Boost_FILESYSTEM_LIBRARY}    
+        ${Boost_SYSTEM_LIBRARY}    
 )
 

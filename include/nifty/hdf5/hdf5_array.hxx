@@ -15,10 +15,13 @@ namespace hdf5{
     using namespace marray::hdf5;
 
 
-
     template<class T>
     class Hdf5Array{
     public:
+
+        typedef T DataType;
+        typedef T value_type;
+
         template<class SHAPE_ITER, class CHUNK_SHAPE_ITER>
         Hdf5Array(
             const hid_t& groupHandle,
@@ -75,7 +78,53 @@ namespace hdf5{
 
             // create the dataset
             dataset_ = H5Dcreate(groupHandle_, datasetName.c_str(), datatype_, dataspace,
-                        H5P_DEFAULT,dcplId, H5P_DEFAULT);
+                                 H5P_DEFAULT, dcplId, H5P_DEFAULT);
+
+            // close the dataspace and the chunk properties
+            H5Sclose(dataspace);
+            H5Pclose(dcplId);
+        }
+
+
+        // constructor for new array without chunks and compression
+        template<class SHAPE_ITER>
+        Hdf5Array(
+            const hid_t& groupHandle,
+            const std::string & datasetName,
+            SHAPE_ITER shapeBegin,
+            SHAPE_ITER shapeEnd
+        )
+        :   groupHandle_(groupHandle),
+            dataset_(),
+            datatype_(),
+            isChunked_(false)
+        {
+            datatype_ = H5Tcopy(hdf5Type<T>());
+            const auto dim = std::distance(shapeBegin, shapeEnd);
+
+            shape_.resize(dim);
+            chunkShape_.resize(dim);
+
+            std::vector<hsize_t> shape(dim);
+            std::vector<hsize_t> chunkShape(dim);
+
+            for(auto d=0; d<dim; ++d){
+                const auto s = *shapeBegin;
+                shape[d] = s;
+                shape_[d] = s;
+                chunkShape_[d] = s;
+                ++shapeBegin;
+            }
+
+            // chunk properties
+            hid_t dcplId = H5Pcreate(H5P_DATASET_CREATE);
+
+            // dataset shape
+            auto dataspace = H5Screate_simple(hsize_t(dim), shape.data(), NULL);
+
+            // create the dataset
+            dataset_ = H5Dcreate(groupHandle_, datasetName.c_str(), datatype_, dataspace,
+                                 H5P_DEFAULT, dcplId, H5P_DEFAULT);
 
             // close the dataspace and the chunk properties
             H5Sclose(dataspace);
@@ -91,8 +140,6 @@ namespace hdf5{
             datatype_(),
             isChunked_(true)
         {
-
-
 
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
@@ -122,15 +169,19 @@ namespace hdf5{
         uint64_t dimension()const{
             return shape_.size();
         }
+
         uint64_t shape(const std::size_t d)const{
             return shape_[d];
         }
+
         const std::vector<uint64_t> & shape()const{
             return shape_;
         }
+
         uint64_t chunkShape(const std::size_t d)const{
             return chunkShape_[d];
         }
+
         const std::vector<uint64_t> & chunkShape()const{
             return chunkShape_;
         }
@@ -148,7 +199,7 @@ namespace hdf5{
             NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder,
                 "currently only views with last major order are supported"
             );
-            this->loadHyperslab(roiBeginIter, roiBeginIter+out.dimension(), out.shapeBegin(), out);
+            this->loadHyperslab(roiBeginIter, roiBeginIter + out.dimension(), out.shapeBegin(), out);
         }
 
         template<class ITER>
@@ -156,10 +207,9 @@ namespace hdf5{
             ITER roiBeginIter,
             marray::View<T> & out
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->readSubarray(roiBeginIter,out);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
         template<class ITER>
@@ -171,7 +221,7 @@ namespace hdf5{
             NIFTY_CHECK(in.coordinateOrder() == marray::FirstMajorOrder,
                 "currently only views with last major order are supported"
             );
-            this->saveHyperslab(roiBeginIter, roiBeginIter+in.dimension(), in.shapeBegin(), in);
+            this->saveHyperslab(roiBeginIter, roiBeginIter + in.dimension(), in.shapeBegin(), in);
         }
 
         template<class ITER>
@@ -179,10 +229,9 @@ namespace hdf5{
             ITER roiBeginIter,
             const marray::View<T> & in
         )const{
-            std::mutex mtx;
-            mtx.lock();
+            mtx_.lock();
             this->writeSubarrayLocked(roiBeginIter,in);
-            mtx.unlock();
+            mtx_.unlock();
         }
 
     private:
@@ -223,6 +272,10 @@ namespace hdf5{
             }
             //std::cout<<"_3\n";
             hid_t dataspace = H5Dget_space(dataset_);
+            if(dataspace < 0) {
+                throw std::runtime_error("Can't open dataspace!");
+            }
+
             herr_t status = H5Sselect_hyperslab(dataspace, H5S_SELECT_SET,
                 &offset[0], NULL, &slabShape[0], NULL);
             if(status < 0) {
@@ -245,7 +298,7 @@ namespace hdf5{
             // read from dataspace into memspace
             //out = Marray<T>(SkipInitialization, &marrayShape[0],
             //    (&marrayShape[0])+size, coordinateOrder);
-            //std::cout<<"_1\n";
+            //std::cout<<"_5\n";
             if(out.isSimple()){
                 //std::cout<<"is simple\n";
                 status = H5Dread(dataset_, datatype_, memspace, dataspace,
@@ -419,7 +472,14 @@ namespace hdf5{
         std::vector<uint64_t> shape_;
         std::vector<uint64_t> chunkShape_;
         bool isChunked_;
+    public: // Hacy for now, better to declare functions that are allowed to change this friend...
+        // FIXME having a mutex member makes class non-copyable -> global mtx for now...
+        static std::mutex mtx_; // For now we have one mtx per array, but it might be better to have a global (static) mtx
     };
+
+    // initialize the mutex
+    template<class T>
+    std::mutex Hdf5Array<T>::mtx_;
 
 
     namespace tools{

@@ -11,12 +11,6 @@ from . opt import lifted_multicut
 from . opt import mincut
 from . opt import minstcut
 
-
-# import opt.multicut as multicut
-# import opt.lifted_multicut as lifted_multicut
-# import opt.mincut as mincut
-# from . import rag
-
 import numpy
 from functools import partial
 import types

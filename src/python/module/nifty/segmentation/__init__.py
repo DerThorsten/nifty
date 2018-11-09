@@ -20,22 +20,22 @@ def slic(image, nSegments, components):
 
 def seededWatersheds(heightMap, seeds=None, method="node_weighted", acc="max"):
     """Seeded watersheds segmentation
-    
+
     Get a segmentation via seeded watersheds.
-    This is a high level wrapper around 
+    This is a high level wrapper around
     :func:`nifty.graph.nodeWeightedWatershedsSegmentation`
     and :func:`nifty.graph.nodeWeightedWatershedsSegmentation`.
 
-    
+
     Args:
-        heightMap (numpy.ndarray) : height / evaluation map  
+        heightMap (numpy.ndarray) : height / evaluation map
         seeds (numpy.ndarray) : Seeds as non zero elements in the array.
             (default: {nifty.segmentation.localMinimaSeeds(heightMap)})
         method (str): Algorithm type can be:
 
             *   "node_weighted": ordinary node weighted watershed
             *   "edge_weighted": edge weighted watershed (minimum spanning tree)
-        
+
             (default: {"max"})
 
         acc (str): If method is "edge_weighted", one needs to specify how
@@ -43,28 +43,28 @@ def seededWatersheds(heightMap, seeds=None, method="node_weighted", acc="max"):
             This parameter specificities this method.
             Allow values are:
 
-            *   'min' : Take the minimum value of the endpoints of the edge 
-            *   'max' : Take the minimum value of the endpoints of the edge 
-            *   'sum' : Take the sum  of the values of the endpoints of the edge 
-            *   'prod' : Take the product of the values of the endpoints of the edge 
+            *   'min' : Take the minimum value of the endpoints of the edge
+            *   'max' : Take the minimum value of the endpoints of the edge
+            *   'sum' : Take the sum  of the values of the endpoints of the edge
+            *   'prod' : Take the product of the values of the endpoints of the edge
             *   'interpixel' : Take the value of the image at the interpixel
                 coordinate in between the two endpoints.
                 To do this the image is resampled to have shape :math: `2 \cdot shape -1 `
 
             (default: {"max"})
-    
+
     Returns:
         numpy.ndarray : the segmentation
-    
+
     Raises:
         RuntimeError: [description]
     """
     if seeds is None:
         seeds = localMinimaSeeds(heightMap)
 
-    hshape = heightMap.shape 
-    sshape = seeds.shape 
-    shape = sshape 
+    hshape = heightMap.shape
+    sshape = seeds.shape
+    shape = sshape
 
 
     ishape = [2*s -1 for s in shape]
@@ -100,21 +100,21 @@ def seededWatersheds(heightMap, seeds=None, method="node_weighted", acc="max"):
 
 def distanceTransformWatersheds(pmap, preBinarizationMedianRadius=1, threshold = 0.5, preSeedSigma=0.75):
     """Superpixels for neuro data as in http://brainiac2.mit.edu/isbi_challenge/
-    
+
     Use raw data and membrane probability maps to
     generate a over-segmentation suitable for neuro data
-    
+
     Args:
         pmap (numpy.ndarray): Membrane probability in [0,1].
         preBinarizationMedianRadius (int) : Radius of
             diskMedian filter applied to the probability map
             before binarization. (default:{1})
-        threshold (float) : threshold to binarize 
+        threshold (float) : threshold to binarize
             probability map  before applying
             the distance transform (default: {0.5})
         preSeedSigma (float) : smooth the distance
             transform image before getting the seeds.
-       
+
     Raises:
         RuntimeError: if applied to data with wrong dimensionality
     """
@@ -163,14 +163,14 @@ def distanceTransformWatersheds(pmap, preBinarizationMedianRadius=1, threshold =
 
 def localMinima(image):
     """get the local minima of an image
-    
+
     Get the local minima wrt a 4-neighborhood on an image.
     For a plateau, all pixels of this plateau are marked
     as minimum pixel.
-    
+
     Args:
         image (numpy.ndarray): the input image
-    
+
     Returns:
         (numpy.ndarray) : array which is 1 the minimum 0 elsewhere.
 
@@ -181,14 +181,14 @@ def localMinima(image):
 
 def localMaxima(image):
     """get the local maxima of an image
-    
+
     Get the local maxima wrt a 4-neighborhood on an image.
     For a plateau, all pixels of this plateau are marked
     as maximum pixel.
-    
+
     Args:
         image (numpy.ndarray): the input image
-    
+
     Returns:
         (numpy.ndarray) : array which is 1 the maximum 0 elsewhere.
 
@@ -200,17 +200,17 @@ def localMaxima(image):
 
 def connectedComponents(labels, dense=True, ignoreBackground=False):
     """get connected components of a label image
-    
+
     Get connected components of an image w.r.t.
-    a 4-neighborhood .      
+    a 4-neighborhood .
     This is a high level wrapper for
-        :func:`nifty.graph.connectedComponentsFromNodeLabels` 
+        :func:`nifty.graph.connectedComponentsFromNodeLabels`
 
     Args:
-        labels (numpy.ndarray): 
+        labels (numpy.ndarray):
         dense (bool): should the return labeling be dense (default: {True})
         ignoreBackground (bool): should values of zero be excluded (default: {False})
-    
+
     Returns:
         [description]
         [type]
@@ -218,49 +218,49 @@ def connectedComponents(labels, dense=True, ignoreBackground=False):
     shape = labels.shape
     gridGraph = graph.gridGraph(shape)
 
-    ccLabels = graph.connectedComponentsFromNodeLabels(gridGraph, 
+    ccLabels = graph.connectedComponentsFromNodeLabels(gridGraph,
             labels.ravel(), dense=dense,
             ignoreBackground=bool(ignoreBackground))
-    
+
     return ccLabels.reshape(shape)
 
 def localMinimaSeeds(image):
     """Get seed from local minima
-    
-    Get seeds by running connected components 
+
+    Get seeds by running connected components
     on the local minima.
     This is a high level wrapper around
-    :func:`nifty.segmentation.localMinima` 
-    and :func:`nifty.segmentation.connectedComponents` 
-    
+    :func:`nifty.segmentation.localMinima`
+    and :func:`nifty.segmentation.connectedComponents`
+
     Args:
         image: [description]
-    
+
     Returns:
         [description]
         [type]
-    
+
     Raises:
         RuntimeError: [description]
     """
     return localMaximaSeeds(-1.0 * image)
-    
+
 def localMaximaSeeds(image):
     """Get seed from local maxima
-    
-    Get seeds by running connected components 
+
+    Get seeds by running connected components
     on the local maxima.
     This is a high level wrapper around
-    :func:`nifty.segmentation.localMinima` 
-    and :func:`nifty.segmentation.connectedComponents` 
-    
+    :func:`nifty.segmentation.localMinima`
+    and :func:`nifty.segmentation.connectedComponents`
+
     Args:
         image: [description]
-    
+
     Returns:
         [description]
         [type]
-    
+
     Raises:
         RuntimeError: [description]
     """
@@ -270,22 +270,22 @@ def localMaximaSeeds(image):
     lm = localMaxima(image)
     cc = connectedComponents(lm, dense=True, ignoreBackground=True)
     return cc
-    
+
 def markBoundaries(image, segmentation, color=None, thin=True):
     """Mark the boundaries in an image
-    
+
     Mark boundaries in an image.
 
     Warning:
 
         The returned image shape is twice as large
         as the input if this is True.
-    
+
     Args:
-        image:  the input image 
+        image:  the input image
         segmentation:  the segmentation
         color (tuple) : the edge color(default: {(0,0,0)})
-        thin (bool) : IF true, the image is interpolated and 
+        thin (bool) : IF true, the image is interpolated and
             the boundaries are marked in the interpolated
             image. This will make the output twice as large.
     Returns:
@@ -322,7 +322,7 @@ def segmentOverlay(image, segmentation, beta=0.5, zeroToZero=False, showBoundari
     ma = imgCp.max()
 
     if(ma-mi > 0.000001):
-        imgCp -= mi 
+        imgCp -= mi
         imgCp /= (ma - mi)
 
     overlayImg =  (1.0-beta)*imgCp + (beta)*cSeg

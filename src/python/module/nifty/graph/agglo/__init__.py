@@ -36,7 +36,7 @@ def updatRule(name, **kwargs):
         return NotImplementedError("not yet implemented")
 
 
-# def fixationClusterPolicy(graph, 
+# def fixationClusterPolicy(graph,
 #     mergePrios=None,
 #     notMergePrios=None,
 #     edgeSizes=None,
@@ -46,7 +46,7 @@ def updatRule(name, **kwargs):
 #     p0=float('inf'),
 #     p1=float('inf'),
 #     zeroInit=False):
-    
+
 #     if isLocalEdge is None:
 #         raise RuntimeError("`isLocalEdge` must not be none")
 
@@ -79,14 +79,13 @@ def updatRule(name, **kwargs):
 #                         edgeSizes=edgeSizes, isMergeEdge=isLocalEdge,
 #                         q0=p0, q1=p1, zeroInit=zeroInit)
 #     elif(updateRule0 in ["smooth_max","generalized_mean"] and updateRule1 in ["smooth_max","generalized_mean"]):
-        
+
 
 #         return  nifty.graph.agglo.generalizedMeanFixationClusterPolicy(graph=g,
 #                         mergePrios=mp, notMergePrios=nmp,
 #                         edgeSizes=edgeSizes, isMergeEdge=isLocalEdge,
 #                         p0=p0, p1=p1, zeroInit=zeroInit)
 
-       
 
 
 
@@ -100,8 +99,9 @@ def updatRule(name, **kwargs):
 
 
 
-def sizeLimitClustering(graph, nodeSizes, minimumNodeSize, 
-                        edgeIndicators=None,edgeSizes=None, 
+
+def sizeLimitClustering(graph, nodeSizes, minimumNodeSize,
+                        edgeIndicators=None,edgeSizes=None,
                         sizeRegularizer=0.001, gamma=0.999,
                         makeDenseLabels=False):
 
@@ -124,7 +124,7 @@ def sizeLimitClustering(graph, nodeSizes, minimumNodeSize,
 
 
 
-    cp =  minimumNodeSizeClusterPolicy(graph, edgeIndicators=edgeIndicators, 
+    cp =  minimumNodeSizeClusterPolicy(graph, edgeIndicators=edgeIndicators,
                                               edgeSizes=edgeSizes,
                                               nodeSizes=nodeSizes,
                                               minimumNodeSize=float(minimumNodeSize),
@@ -144,22 +144,22 @@ def sizeLimitClustering(graph, nodeSizes, minimumNodeSize,
 
 
 
-def ucmFeatures(graph, edgeIndicators, edgeSizes, nodeSizes, 
+def ucmFeatures(graph, edgeIndicators, edgeSizes, nodeSizes,
                 sizeRegularizers = numpy.arange(0.1,1,0.1) ):
-    
+
     def rq(data):
         return numpy.require(data, 'float32')
- 
+
     edgeIndicators = rq(edgeIndicators)
 
     if edgeSizes is None:
-        edgeSizes = numpy.ones(s,dtype='float32')
+        edgeSizes = numpy.ones(graph.numberOfEdges, dtype='float32')
     else:
         edgeSizes = rq(edgeSizes)
 
 
     if nodeSizes is None:
-        nodeSizes = numpy.ones(s,dtype='float32')
+        nodeSizes = numpy.ones(graph.numberOfNodes, dtype='float32')
     else:
         nodeSizes = rq(nodeSizes)
 
@@ -182,4 +182,3 @@ def ucmFeatures(graph, edgeIndicators, edgeSizes, nodeSizes,
         fOut.extend([hA,hB])
 
     return numpy.concatenate(fOut, axis=1)
-

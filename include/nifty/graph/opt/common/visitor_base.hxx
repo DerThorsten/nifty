@@ -68,15 +68,23 @@ namespace common{
 
         virtual void begin(SolverType * ) {
             std::cout<<"begin inference\n";
+            if(timeLimit_ > 0) {
+                std::cout << "With Time Limit: \n";
+                std::cout << timeLimit_ << std::endl;
+            }
             startTime_ = std::chrono::steady_clock::now();
         }
 
         virtual bool visit(SolverType * solver) {
             runtime_ = std::chrono::duration_cast<TimeType>(std::chrono::steady_clock::now() - startTime_).count();
             if(iter_%printNth_ == 0){
+                auto runtime = std::chrono::duration_cast<TimeType>(
+                        std::chrono::steady_clock::now() - startTime_);
                 std::stringstream ss;
-                ss << "Energy: " << solver->currentBestEnergy() << " ";
+                ss.precision(12);
+                ss << "Energy: " << std::scientific << solver->currentBestEnergy()<<" ";
                 ss << "Runtime: " << runtime_ << " ";
+                
                 for(size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }

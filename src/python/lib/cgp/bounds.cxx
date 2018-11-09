@@ -44,11 +44,9 @@ namespace cgp{
 
     void exportBounds2D(py::module & m) {
 
-        
-        
 
         // cell 0 bounds
-        {   
+        {
             typedef CellBounds<2,0> Cell0Bounds2D;
             typedef CellBoundsVector<2,0> Cells0BoundsVector2D;
 
@@ -70,7 +68,7 @@ namespace cgp{
                         }
                     }
                     return ret;
-                }) 
+                })
             ;
             exportCellVector<Cells0BoundsVector2D>(m, clsVec);
 

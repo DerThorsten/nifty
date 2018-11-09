@@ -23,15 +23,11 @@ namespace ground_truth{
 
         py::class_<OverlapType>(groundTruthModule, "Overlap")
 
-            .def("__init__",
-                [](
-                    OverlapType &instance,
-                    const uint64_t maxLabelA,
-                    nifty::marray::PyView<uint64_t> labelA,
-                    nifty::marray::PyView<uint64_t> labelB
-                ) {
-                    new (&instance) OverlapType(maxLabelA, labelA, labelB);
-                }
+            .def(py::init([](const uint64_t maxLabelA,
+                             nifty::marray::PyView<uint64_t> labelA,
+                             nifty::marray::PyView<uint64_t> labelB) {
+                    return new OverlapType(maxLabelA, labelA, labelB);
+                })
             )
             .def("differentOverlaps",[](
                 const OverlapType & self,
@@ -45,8 +41,11 @@ namespace ground_truth{
             ){
                 nifty::marray::PyView<float> out({uv.shape(0)});
 
-                for(auto i=0; i<uv.shape(0); ++i){
-                    out(i) = self.differentOverlap(uv(i,0),uv(i,1));
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(auto i=0; i<uv.shape(0); ++i){
+                        out(i) = self.differentOverlap(uv(i,0),uv(i,1));
+                    }
                 }
 
                 return out;
@@ -58,8 +57,11 @@ namespace ground_truth{
             ){
                 nifty::marray::PyView<float> out({ids.shape(0)});
 
-                for(auto i=0; i<ids.shape(0); ++i){
-                    out(i) = self.bleeding(ids(i));
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(auto i=0; i<ids.shape(0); ++i){
+                        out(i) = self.bleeding(ids(i));
+                    }
                 }
                 return out;
             })
@@ -68,48 +70,53 @@ namespace ground_truth{
                 const auto & counts = self.counts();
                 nifty::marray::PyView<uint64_t> out({counts.size()});
 
-                for(auto i=0; i<counts.size(); ++i){
-                    out(i) = counts[i];
+                {
+                    py::gil_scoped_release allowThreads;
+                    for(auto i=0; i<counts.size(); ++i){
+                        out(i) = counts[i];
+                    }
                 }
 
                 return out;
             })
             .def("overlapArrays", [](const OverlapType & self, const size_t index, const bool sorted){
 
-                const auto & counts = self.counts();
+                typedef nifty::marray::PyView<uint64_t>  ArrayType;
                 const auto & overlaps = self.overlaps();
-
                 const auto & olMap = overlaps[index];
 
-                typedef nifty::marray::PyView<uint64_t>  ArrayType;
-                
                 ArrayType olIndices({olMap.size()});
                 ArrayType olCounts({olMap.size()});
 
-                if(!sorted){
-                    auto c=0;
-                    for(const auto & kv : olMap){
-                        olIndices(c) = kv.first;
-                        olCounts(c) = kv.second;
-                        ++c;
-                    }
-                }
-                else{
-                    typedef std::pair<uint64_t, uint64_t> PairType;
-                    std::vector<PairType> pairVec(olMap.size());
-                    auto c=0;
-                    for(const auto & kv : olMap){
-                        pairVec[c] = PairType(kv.first, kv.second);
-                        ++c;
-                    }
-                    std::sort(pairVec.begin(), pairVec.end(),[](const PairType & pA, const PairType & pB){
-                        return pA.second > pB.second;
-                    });
-                    for(c=0; c<pairVec.size(); ++c){
-                        olIndices(c) = pairVec[c].first;
-                        olCounts(c) = pairVec[c].second;
-                    }
+                {
+                    py::gil_scoped_release allowThreads;
+                    const auto & counts = self.counts();
 
+                    if(!sorted){
+                        auto c=0;
+                        for(const auto & kv : olMap){
+                            olIndices(c) = kv.first;
+                            olCounts(c) = kv.second;
+                            ++c;
+                        }
+                    }
+                    else{
+                        typedef std::pair<uint64_t, uint64_t> PairType;
+                        std::vector<PairType> pairVec(olMap.size());
+                        auto c=0;
+                        for(const auto & kv : olMap){
+                            pairVec[c] = PairType(kv.first, kv.second);
+                            ++c;
+                        }
+                        std::sort(pairVec.begin(), pairVec.end(),[](const PairType & pA, const PairType & pB){
+                            return pA.second > pB.second;
+                        });
+                        for(c=0; c<pairVec.size(); ++c){
+                            olIndices(c) = pairVec[c].first;
+                            olCounts(c) = pairVec[c].second;
+                        }
+
+                    }
                 }
                 return std::make_pair(olIndices, olCounts);
             }, py::arg("index"),py::arg("sorted") = false
@@ -117,42 +124,44 @@ namespace ground_truth{
 
             .def("overlapArraysNormalized", [](const OverlapType & self, const size_t index, const bool sorted){
 
-                const float count = self.counts()[index];
                 const auto & overlaps = self.overlaps();
-
                 const auto & olMap = overlaps[index];
-       
                 nifty::marray::PyView<uint64_t> olIndices({olMap.size()});
                 nifty::marray::PyView<float> olCounts({olMap.size()});
 
-                if(!sorted){
-                    auto c=0;
-                    for(const auto & kv : olMap){
-                        olIndices(c) = kv.first;
-                        olCounts(c) = float(kv.second) / count;
-                        ++c;
+                {
+                    py::gil_scoped_release allowThreads;
+                    const float count = self.counts()[index];
+
+                    if(!sorted){
+                        auto c=0;
+                        for(const auto & kv : olMap){
+                            olIndices(c) = kv.first;
+                            olCounts(c) = float(kv.second) / count;
+                            ++c;
+                        }
                     }
-                }
-                else{
-                    typedef std::pair<uint64_t, uint64_t> PairType;
-                    std::vector<PairType> pairVec(olMap.size());
-                    auto c=0;
-                    for(const auto & kv : olMap){
-                        pairVec[c] = PairType(kv.first, kv.second);
-                        ++c;
-                    }
-                    std::sort(pairVec.begin(), pairVec.end(),[](const PairType & pA, const PairType & pB){
-                        return pA.second > pB.second;
-                    });
-                    for(c=0; c<pairVec.size(); ++c){
-                        olIndices(c) = pairVec[c].first;
-                        olCounts(c) = float(pairVec[c].second)/ count;
+                    else{
+                        typedef std::pair<uint64_t, uint64_t> PairType;
+                        std::vector<PairType> pairVec(olMap.size());
+                        auto c=0;
+                        for(const auto & kv : olMap){
+                            pairVec[c] = PairType(kv.first, kv.second);
+                            ++c;
+                        }
+                        std::sort(pairVec.begin(), pairVec.end(),[](const PairType & pA, const PairType & pB){
+                            return pA.second > pB.second;
+                        });
+                        for(c=0; c<pairVec.size(); ++c){
+                            olIndices(c) = pairVec[c].first;
+                            olCounts(c) = float(pairVec[c].second)/ count;
+                        }
                     }
                 }
                 return std::make_pair(olIndices, olCounts);
             },py::arg("index"),py::arg("sorted") = false)
         ;
-        
+
     }
 }
 }

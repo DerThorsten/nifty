@@ -56,18 +56,21 @@ def rand_choice(probs, choose_from=None):
 
 
 
-
 def take(relabeling, toRelabel):
     shape = toRelabel.shape
     toRelabelFlat = toRelabel.ravel()
-
-    resFlat = _tools._take(relabeling, toRelabelFlat)
-    return resFlat.reshape(shape)
+    return _tools._take(relabeling, toRelabelFlat).reshape(shape)
 
 
 
+def takeDict(relabeling, toRelabel):
+    shape = toRelabel.shape
+    toRelabelFlat = toRelabel.ravel()
+    return _tools._takeDict(relabeling, toRelabelFlat).reshape(shape)
 
 
+def unique(values):
+    return _tools._unique(values.ravel())
 
 
 def getSlicing(begin, end):
@@ -85,13 +88,15 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
         blockShift = [0]*ndim
 
 
-    if ndim == 2:
+    if ndim == 1:
+        blockingCls = Blocking1d
+    elif ndim == 2:
         blockingCls = Blocking2d
     elif ndim == 3:
         blockingCls = Blocking3d
     else:
         raise RuntimeError("only 2d and 3d blocking is implemented currently")
-        
+
     return blockingCls(
         [int(v) for v in roiBegin],
         [int(v) for v in roiEnd],
@@ -129,8 +134,8 @@ def parallelForEach(iterable, f, nWorkers=cpu_count() ,
                 with lock:
                     done[0] += 1
                     bar.update(done[0])
-            parallelForEach(iterable=iterable, 
-                            f=fTilde, 
+            parallelForEach(iterable=iterable,
+                            f=fTilde,
                             nWorkers=nWorkers,
                             showBar=False,
                             size=None)
