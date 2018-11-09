@@ -126,7 +126,8 @@ namespace graph{
                     }
                     return path;
                 },
-                py::arg("weights"), py::arg("source"), py::arg("target"), py::arg("returnNodes")=true
+                py::arg("weights"), py::arg("source"),
+                py::arg("target"), py::arg("returnNodes")=true
             )
 
             .def("runSingleSourceMultiTarget", // single source -> multiple targets
@@ -143,7 +144,8 @@ namespace graph{
                     }
                     return paths;
                 },
-                py::arg("weights"), py::arg("source"), py::arg("targets"), py::arg("returnNodes")=true
+                py::arg("weights"), py::arg("source"),
+                py::arg("targets"), py::arg("returnNodes")=true
             )
         ;
     }
@@ -188,7 +190,9 @@ namespace graph{
                 return paths;
 
             },
-            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targets"),py::arg("returnNodes")=true,py::arg("numberOfThreads")=-1
+            py::arg("graph"), py::arg("edgeWeights"),
+            py::arg("sources"),py::arg("targets"),
+            py::arg("returnNodes")=true, py::arg("numberOfThreads")=-1
         );
 
 
@@ -206,24 +210,28 @@ namespace graph{
                 {
                     py::gil_scoped_release allowThreads;
 
-                    std::cout << "N-threads: " << numberOfThreads << std::endl;
                     parallel::ThreadPool threadpool(numberOfThreads);
-                    std::cout << "N-pool: " << threadpool.nThreads() << std::endl;
                     // initialize a shortest path class for each thread
-                    std::vector<ShortestPathType> shortestPathThreads( threadpool.nThreads(), ShortestPathType(graph) );
+                    std::vector<ShortestPathType> shortestPathThreads(threadpool.nThreads(), ShortestPathType(graph));
 
                     parallel::parallel_foreach(threadpool, sources.size(), [&](const int tid, const int ii) {
                         auto & sp = shortestPathThreads[tid];
-                        sp.runSingleSourceMultiTarget(edgeWeights, sources[ii], targetVectors[ii]);
+                        sp.runSingleSourceMultiTarget(edgeWeights,
+                                                      sources[ii],
+                                                      targetVectors[ii]);
                         if(returnNodes)
-                            pathsFromPredecessors(sp, sources[ii], targetVectors[ii], paths[ii]);
+                            pathsFromPredecessors(sp, sources[ii],
+                                                  targetVectors[ii], paths[ii]);
                         else
-                            edgePathsFromPredecessors(sp, sources[ii], targetVectors[ii], paths[ii]);
+                            edgePathsFromPredecessors(sp, sources[ii],
+                                                      targetVectors[ii], paths[ii]);
                     });
                 }
                 return paths;
             },
-            py::arg("graph"),py::arg("edgeWeights"),py::arg("sources"),py::arg("targetVectors"),py::arg("returnNodes")=true,py::arg("numberOfThreads")=-1
+            py::arg("graph"), py::arg("edgeWeights"),
+            py::arg("sources"), py::arg("targetVectors"),
+            py::arg("returnNodes")=true, py::arg("numberOfThreads")=-1
         );
     }
 

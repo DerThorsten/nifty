@@ -43,12 +43,13 @@ build:
 
 requirements:
   build:
-    - boost >=1.63.0
+    - boost 1.68.0
     - python {{PY_VER}}*
-    - hdf5 >=1.8.17
-    - fastfilters
-    - xtensor
-    - xtensor-python
+    - hdf5 >=1.10
+    - numpy >=1.15
+    # - fastfilters
+    - xtensor 0.18.1
+    - xtensor-python 0.21.0
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
     {% endif %}
@@ -59,13 +60,12 @@ requirements:
     {% endif %}
 
   run:
-    - boost >=1.63.0
+    - boost >=1.68.0
     - python {{PY_VER}}*
-    - hdf5 >=1.8.17
-    - numpy
-    - fastfilters
+    - hdf5 >=1.10
+    - numpy >=1.15
+    # - fastfilters
     - scikit-image
-    - scipy
     - futures # [py2k]
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
