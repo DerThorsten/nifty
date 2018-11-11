@@ -1,255 +1,194 @@
 from __future__ import print_function
-import nifty
-import numpy
-import os
-import tempfile
-import shutil
 
-hasH5py = True
+import os
+import unittest
+from shutil import rmtree
+
+import numpy
+import nifty
+WITH_HDF5 = nifty.Configuration.WITH_HDF5
+
 try:
     import h5py
-except:
-    hasH5py = False
-
-def ensureDir(f):
-    d = os.path.dirname(f)
-    if not os.path.exists(d):
-        os.makedirs(d)
+    WITH_H5PY = True
+except ImportError:
+    WITH_H5PY= False
 
 
+class TestHDF5(unittest.TestCase):
+    tempFolder = './tmp_hdf5'
 
-
-
-if nifty.Configuration.WITH_HDF5:
-    import nifty.hdf5
-    nhdf5 = nifty.hdf5
-
-    if hasH5py:
-
-        def testHdf5ArrayReadFromExistingH5pyChunked():
-            tempFolder = tempfile.mkdtemp()
-            ensureDir(tempFolder)
-            fpath = os.path.join(tempFolder,'_nifty_test_array__.h5')
-            try:
-
-
-                # try catch since dataset can only be created once
-                shape = (101, 102, 103)
-                data = numpy.ones(shape=shape, dtype='uint64')
-                f = h5py.File(fpath)
-                f.create_dataset("data", shape, dtype='uint64', data=data,chunks=(10,20,30))
-                f.close()
-
-
-
-                hidT = nhdf5.openFile(fpath)
-
-
-                array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
-
-                assert array.ndim == 3
-                shape = array.shape
-                assert len(shape) == 3
-                assert shape[0] == 101
-                assert shape[1] == 102
-                assert shape[2] == 103
-
-                assert array.isChunked
-                chunkShape = array.chunkShape
-                assert len(chunkShape) == 3
-                assert chunkShape[0] == 10
-                assert chunkShape[1] == 20
-                assert chunkShape[2] == 30
-
-                subarray  = array[0:10,0:10 ,0:10]
-
-            finally:
-                try:
-                    os.remove(fpath)
-                    shutil.rmtree(tempFolder)
-
-                except:
-                    pass
-
-        def testHdf5ArrayReadFromExistingH5pyNonChunked():
-            tempFolder = tempfile.mkdtemp()
-            ensureDir(tempFolder)
-            fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
-            try:
-
-
-                # try catch since dataset can only be created once
-                shape = (101, 102, 103)
-                data = numpy.ones(shape=shape, dtype='uint64')
-                f = h5py.File(fpath)
-                f.create_dataset("data", shape, dtype='uint64', data=data)
-                f.close()
-
-
-
-                hidT = nhdf5.openFile(fpath)
-                array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
-
-                assert array.ndim == 3
-                shape = array.shape
-                assert len(shape) == 3
-                assert shape[0] == 101
-                assert shape[1] == 102
-                assert shape[2] == 103
-
-                assert not array.isChunked
-                chunkShape = array.chunkShape
-                assert len(chunkShape) == 3
-                assert chunkShape[0] == 101
-                assert chunkShape[1] == 102
-                assert chunkShape[2] == 103
-
-                subarray  = array[0:10,0:10 ,0:10]
-            finally:
-                try:
-                    os.remove(fpath)
-                    shutil.rmtree(tempFolder)
-
-                except:
-                    pass
-
-    def testHdf5ArrayCreateChunked():
-        tempFolder = tempfile.mkdtemp()
-        ensureDir(tempFolder)
-        fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
-
+    def setUp(self):
         try:
-            hidT = nhdf5.createFile(fpath)
-            array = nhdf5.Hdf5ArrayUInt64(hidT, "data", [101,102,103], [11,12,13])
+            os.mkdir(self.tempFolder)
+        except OSError:
+            pass
 
-            assert array.ndim == 3
-            shape = array.shape
-            assert shape[0] == 101
-            assert shape[1] == 102
-            assert shape[2] == 103
-
-            chunkShape = array.chunkShape
-            assert chunkShape[0] == 11
-            assert chunkShape[1] == 12
-            assert chunkShape[2] == 13
-
-            ends = [10,11,12]
-
-            toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
-            array[0:ends[0], 0:ends[1], 0:ends[2]] = toWrite
-            subarray  = array[0:ends[0], 0:ends[1], 0:ends[2]]
-
-            assert numpy.array_equal(toWrite, subarray) == True
-
-        finally:
-            try:
-                os.remove(fpath)
-                shutil.rmtree(tempFolder)
-            except:
-                pass
-
-
-    def testHdf5ArrayCreateChunkedZipped():
-        tempFolder = tempfile.mkdtemp()
-        ensureDir(tempFolder)
-        fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
-
+    def tearDown(self):
         try:
-            hidT = nhdf5.createFile(fpath)
-            array = nhdf5.Hdf5ArrayUInt64(
-                groupHandle=hidT,
-                datasetName="data",
-                shape=[101,102,103],
-                chunkShape=[11,12,13],
-                compression=9
-            )
+            rmtree(self.tempFolder)
+        except OSError:
+            pass
 
-            assert array.ndim == 3
-            shape = array.shape
-            assert shape[0] == 101
-            assert shape[1] == 102
-            assert shape[2] == 103
+    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY)
+    def test_hdf5_read_from_chunked(self):
+        import nifty.hdf5 as nhdf5
+        fpath = os.path.join(self.tempFolder, '_nifty_test_array__.h5')
 
-            chunkShape = array.chunkShape
-            assert chunkShape[0] == 11
-            assert chunkShape[1] == 12
-            assert chunkShape[2] == 13
+        shape = (101, 102, 103)
+        chunks = (10, 20, 30)
+        data = numpy.ones(shape=shape, dtype='uint64')
+        with h5py.File(fpath) as f:
+            f.create_dataset("data", shape, dtype='uint64', data=data, chunks=chunks)
 
-            ends = [10,11,12]
+        hidT = nhdf5.openFile(fpath)
+        array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+        ashape = array.shape
 
-            toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
-            array[0:ends[0], 0:ends[1], 0:ends[2]] = toWrite
-            subarray  = array[0:ends[0], 0:ends[1], 0:ends[2]]
+        self.assertEqual(array.ndim, 3)
+        self.assertEqual(len(ashape), 3)
+        self.assertEqual(ashape, shape)
 
-            assert numpy.array_equal(toWrite, subarray) == True
+        self.assertTrue(array.isChunked)
+        chunkShape = array.chunkShape
+        self.assertEqual(len(chunkShape), 3)
+        self.assertEqual(chunkShape, chunks)
 
-        finally:
-            try:
-                os.remove(fpath)
-                shutil.rmtree(tempFolder)
-            except:
-                pass
+        subarray = array[0:10, 0:10, 0:10]
+        expected = data[0:10, 0:10, 0:10]
+        self.assertEqual(subarray.shape, expected.shape)
+        self.assertTru(numpy.allclose(subarray, expected))
 
-    def testHdf5Offsets():
+    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY)
+    def test_hdf5_read_from_non_chunked(self):
+        import nifty.hdf5 as nhdf5
+        fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
+
+        shape = (101, 102, 103)
+        data = numpy.ones(shape=shape, dtype='uint64')
+        with h5py.File(fpath) as f:
+            f.create_dataset("data", shape, dtype='uint64', data=data)
+
+        hidT = nhdf5.openFile(fpath)
+        array = nhdf5.Hdf5ArrayUInt64(hidT, "data")
+
+        ashape = array.shape
+        self.assertEqual(array.ndim, 3)
+        self.assertEqual(len(ashape), 3)
+        self.assertEqual(shape, ashape)
+
+        self.assertFalse(array.isChunked)
+        chunkShape = array.chunkShape
+        self.assertEqual(len(chunkShape), 3)
+        self.assertEqual(chunkShape, shape)
+
+        subarray = array[0:10, 0:10, 0:10]
+        expected = data[0:10, 0:10, 0:10]
+        self.assertEqual(subarray.shape, expected.shape)
+        self.assertTru(numpy.allclose(subarray, expected))
+
+    @unittest.skipUnless(WITH_HDF5)
+    def test_create_chunked_array(self):
+        import nifty.hdf5 as nhdf5
+        fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
+
+        hidT = nhdf5.createFile(fpath)
+        shape = [101, 102, 103]
+        chunks = [11, 12, 13]
+        array = nhdf5.Hdf5ArrayUInt64(hidT, "data", shape, chunks)
+
+        ashape = array.shape
+        self.assertEqual(array.ndim, 3)
+        self.assertEqual(ashape, shape)
+
+        chunkShape = array.chunkShape
+        self.assertEqual(chunkShape, chunks)
+
+        ends = [10, 11, 12]
+
+        toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
+        array[0:ends[0], 0:ends[1], 0:ends[2]] = toWrite
+        subarray  = array[0:ends[0], 0:ends[1], 0:ends[2]]
+
+        self.assertTrue(numpy.array_equal(toWrite, subarray))
+
+    @unittest.skipUnless(WITH_HDF5)
+    def test_create_zipped_array(self):
+        import nifty.hdf5 as nhdf5
+        fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
+
+        shape = [101,102,103]
+        chunks = [11,12,13]
+        hidT = nhdf5.createFile(fpath)
+        array = nhdf5.Hdf5ArrayUInt64(
+            groupHandle=hidT,
+            datasetName="data",
+            shape=shape,
+            chunkShape=chunks,
+            compression=9
+        )
+
+        ashape = array.shape
+        self.assertEqual(array.ndim, 3)
+        self.assertEqual(shape, ashape)
+
+        chunkShape = array.chunkShape
+        self.assertEqual(chunkShape, chunks)
+
+        ends = [10,11,12]
+
+        toWrite = numpy.arange(ends[0]*ends[1]*ends[2]).reshape(ends)
+        array[0:ends[0], 0:ends[1], 0:ends[2]] = toWrite
+        subarray = array[0:ends[0], 0:ends[1], 0:ends[2]]
+
+        self.assertTrue(numpy.array_equal(toWrite, subarray))
+
+    @unittest.skipUnless(WITH_HDF5)
+    def testHdf5Offsets(self):
+        import nifty.hdf5 as nhdf5
         from itertools import combinations
+        fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
 
-        tempFolder = tempfile.mkdtemp()
-        ensureDir(tempFolder)
-        fpath = os.path.join(tempFolder,'_nifty_test_array_.h5')
+        hidT = nhdf5.createFile(fpath)
+        shape = [100,100,100]
+        chunks = [32,32,32]
+        array = nhdf5.hdf5Array(
+            'uint32',
+            groupHandle=hidT,
+            datasetName="data",
+            shape=shape,
+            chunkShape=chunks
+        )
 
-        try:
-            hidT = nhdf5.createFile(fpath)
-            shape = [100,100,100]
-            array = nhdf5.hdf5Array(
-                'uint32',
-                groupHandle=hidT,
-                datasetName="data",
-                shape=shape,
-                chunkShape=[32,32,32]
-            )
+        testData = numpy.arange(100**3, dtype='uint32').reshape(tuple(shape))
+        array.writeSubarray([0,0,0], testData)
 
-            testData = numpy.arange(100**3, dtype='uint32').reshape(tuple(shape))
-            array.writeSubarray([0,0,0], testData)
+        testOffsets = ([1,1,1], [10,0,0], [0,10,0], [0,0,10], [10,10,10])
 
-            testOffsets = ([1,1,1], [10,0,0], [0,10,0], [0,0,10], [10,10,10])
+        for offFront, offBack in combinations(testOffsets, 2):
+            array.setOffsetFront(offFront)
+            array.setOffsetBack(offBack)
 
-            for offFront, offBack in combinations(testOffsets, 2):
-                array.setOffsetFront(offFront)
-                array.setOffsetBack(offBack)
+            # check for correct effective shape
+            effectiveShape = numpy.array(array.shape)
+            expectedShape  = numpy.array(shape) - numpy.array(offFront) - numpy.array(offBack)
+            slef.assertTrue(numpy.array_equal(effectiveShape, expectedShape))
 
-                # check for correct effective shape
-                effectiveShape = numpy.array(array.shape)
-                expectedShape  = numpy.array(shape) - numpy.array(offFront) - numpy.array(offBack)
-                assert numpy.array_equal(effectiveShape, expectedShape) == True
+            # check for correct data
+            subData = array.readSubarray([0,0,0], effectiveShape)
+            self.assertEqual(subData.shape, tuple(effectiveShape))
+            bb = numpy.s_[
+                offFront[0]:shape[0]-offBack[0],
+                offFront[1]:shape[1]-offBack[1],
+                offFront[2]:shape[2]-offBack[2]
+            ]
+            expectedData = testData[bb]
+            self.assertEqual(expectedData.shape, subData.shape,
+                             "%s, %s" % (str(expectedData.shape), str(subData.shape)))
+            self.assertTrue(numpy.array_equal(subData, expectedData))
 
-                # check for correct data
-                subData = array.readSubarray([0,0,0], effectiveShape)
-                assert subData.shape == tuple(effectiveShape)
-                bb = numpy.s_[
-                    offFront[0]:shape[0]-offBack[0],
-                    offFront[1]:shape[1]-offBack[1],
-                    offFront[2]:shape[2]-offBack[2]
-                ]
-                expectedData = testData[bb]
-                assert expectedData.shape == subData.shape, "%s, %s" % (str(expectedData.shape), str(subData.shape))
-                assert numpy.array_equal(subData, expectedData) == True
-
-            # check correct handling of incorrect offsets
-            for offFront in ([101,0,0],[0,101,0],[0,0,101],[101,101,101]):
-                offCheck = array.setOffsetFront(offFront)
-                assert not offCheck
-                assert array.shape == shape
-
-            #print("Passed!")
-
-        finally:
-            try:
-                os.remove(fpath)
-                shutil.rmtree(tempFolder)
-            except:
-                pass
-
-
-
-#if __name__ == '__main__':
-#    testHdf5Offsets()
+        # check correct handling of incorrect offsets
+        for offFront in ([101,0,0], [0,101,0], [0,0,101], [101,101,101]):
+            offCheck = array.setOffsetFront(offFront)
+            self.assertFalse(offCheck)
+            self.assertEqual(array.shape, shape)

@@ -9,6 +9,7 @@ import numpy
 
 numpy.random.seed(42)
 
+
 class TestCgp2d(unittest.TestCase):
 
     def test_corner_case_3x3_grid_a(self):
@@ -31,7 +32,7 @@ class TestCgp2d(unittest.TestCase):
         tShape = tGrid.topologicalGridShape
         assertEq(tShape, [5,5])
 
-        shape = tGrid.shape 
+        shape = tGrid.shape
         assertEq(shape, [3,3])
 
 
@@ -60,7 +61,7 @@ class TestCgp2d(unittest.TestCase):
             for c in [0,1,2]:
                g = geo[c]
                assert len(g) == numberOfCells[c]
-           
+
     def test_corner_case_3x3_grid_b(self):
 
         assertEq = self.assertEqual
@@ -81,7 +82,7 @@ class TestCgp2d(unittest.TestCase):
         tShape = tGrid.topologicalGridShape
         assertEq(tShape, [5,5])
 
-        shape = tGrid.shape 
+        shape = tGrid.shape
         assertEq(shape, [3,3])
 
 
@@ -112,7 +113,7 @@ class TestCgp2d(unittest.TestCase):
             for c in [0,1,2]:
                g = geo[c]
                assert len(g) == numberOfCells[c]
-           
+
     def test_corner_case_3x3_grid_c(self):
 
         assertEq = self.assertEqual
@@ -133,7 +134,7 @@ class TestCgp2d(unittest.TestCase):
         tShape = tGrid.topologicalGridShape
         assertEq(tShape, [5,5])
 
-        shape = tGrid.shape 
+        shape = tGrid.shape
         assertEq(shape, [3,3])
 
 
@@ -176,15 +177,15 @@ class TestCgp2d(unittest.TestCase):
             [1,1,3]
         ]
 
-        #     01234 
+        #     01234
         #   --------------------
-        # 0  |1|1|1| 0  
+        # 0  |1|1|1| 0
         # 1  |-*-*-| 1
         # 2  |1|2|1| 2
         # 3  |-*-*-| 3
         # 4  |1|1|3| 4
         # ----------------------
-        #     01234 
+        #     01234
 
         seg = numpy.array(seg,dtype='uint32').T
         tGrid = ncgp.TopologicalGrid2D(seg)
@@ -195,7 +196,7 @@ class TestCgp2d(unittest.TestCase):
         tShape = tGrid.topologicalGridShape
         assertEq(tShape, [5,5])
 
-        shape = tGrid.shape 
+        shape = tGrid.shape
         assertEq(shape, [3,3])
 
 

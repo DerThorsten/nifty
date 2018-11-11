@@ -41,13 +41,11 @@ matrix:
         - export ENV_BIN=$ENV_ROOT/bin
         - export ROOT_BIN="$HOME/miniconda/bin"
         
-
-
         ###############################################
         # setup compiler
         ###############################################
-        - export CXX="$ENV_BIN/g++";
-        - export CC="$ENV_BIN/gcc";
+        - export CC="$ENV_BIN/x86_64-conda_cos6-linux-gnu-cc"
+        - export CXX="$ENV_BIN/x86_64-conda_cos6-linux-gnu-c++"
         
         #-DCMAKE_C_COMPILER=$C_COMPILER_PATH
         #-DCMAKE_CXX_COMPILER=$COMPILER_PATH
