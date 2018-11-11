@@ -237,7 +237,8 @@ if(WITH_Z5)
     option(WITH_BZIP2 ON)
     option(WITH_ZLIB ON)
 
-    set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
+    # TODO need to do this for conda package or add necessary things to cmake modules here 
+    # set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
     # z5 compression libraries
     SET(Z5_COMPRESSION_LIBRARIES "")
 
@@ -261,10 +262,6 @@ if(WITH_Z5)
         add_definitions(-DWITH_BZIP2)
         SET(Z5_COMPRESSION_LIBRARIES "${Z5_COMPRESSION_LIBRARIES};${BZIP2_LIBRARIES}")
     endif()
-
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/include")
-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/external/json/include")
-
 endif()
 
 
