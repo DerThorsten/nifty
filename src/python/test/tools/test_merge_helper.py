@@ -56,6 +56,5 @@ class TestMergeHelper(unittest.TestCase):
         self.assertTrue((indicators_merged[:, 1] == expected_indicator_den).all())
 
 
-
 if __name__ == '__main__':
     unittest.main()

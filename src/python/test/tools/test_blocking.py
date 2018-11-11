@@ -53,7 +53,8 @@ class TestBlocking(unittest.TestCase):
         halo = [2,2]
 
         blocks = [blocking.getBlock(i) for i in range(blocking.numberOfBlocks)]
-        blocksWithHalo = [blocking.getBlockWithHalo(i, halo) for i in range(blocking.numberOfBlocks)]
+        blocksWithHalo = [blocking.getBlockWithHalo(i, halo)
+                          for i in range(blocking.numberOfBlocks)]
 
         self.assertEqual(blocks[0].begin,[0,0])
         self.assertEqual(blocks[0].end,  [3,3])
