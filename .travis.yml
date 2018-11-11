@@ -1,31 +1,16 @@
 language: generic
 dist: trusty
 sudo: required
-# cache:
-#   directories:
-#   - $HOME/.cache/pip
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
       - deadsnakes
-      #- boost-latest/ppa
-      #- george-edison55/precise-backports #cmake-3.x
-      #- kubuntu-backports # cmake 2.8.12
     packages:
       - cmake
 
 matrix:
   include:
-  
-  
-
-  
-
-    # conda linux python gcc6 python 3.6
-    # NO C++ test
-    # CALLS python tests by hand 
-    # (make python test does not work yet)
     - os: linux
       env: 
         - USE_CONDA=true
@@ -40,12 +25,9 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         #
-        - conda create -q -n dev python=$CONDA_PYTHON_VERSION numpy nose boost hdf5 scikit-image
+        - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
         - source activate dev
-        - conda install -c conda-forge glpk pybind11 xtensor xtensor-python
-        - conda install -c anaconda cmake=3.2
-        - conda install -c rdonnelly gcc-6=6.1.0;
-        - conda install -c conda-forge glpk
+        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image vigra
 
       script:
 
@@ -74,10 +56,9 @@ matrix:
         ###############################################
         - $ENV_BIN/cmake 
                 -DWITHIN_TRAVIS=ON 
-                -DWITH_QPBO=ON
+                -DWITH_QPBO=OFF
                 -DWITH_HDF5=OFF
-                -DWITH_QPBO=ON
-                -DWITH_GLPK=OFF 
+                -DWITH_GLPK=ON 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
                 -DBUILD_CPP_TEST=OFF
@@ -96,16 +77,18 @@ matrix:
         # the actual build
         ###############################################
         - make -j 2
+
         ###############################################
         # cpp tests
         ###############################################
         - make test
         - CTEST_OUTPUT_ON_FAILURE=TRUE make test
+        
         ###############################################
         # install and test the project
         ###############################################
-        
-        - sudo make install
+        - make install
+        # TODO use unittest discover
         - cd src/python/test
         # this is a fucked up way of running python test
         # pls, if someone could fix this =)
@@ -116,12 +99,7 @@ matrix:
         - nosetests  graph/agglo/*.py
         - nosetests  hdf5/*.py
         - nosetests  tools/*.py
-
         # back to the root
         - cd ../../..
-        
         # run the python examples with nose?
         - $ENV_BIN/python src/python/examples/nifty_configuration.py
-        # this example uses plotting...
-        #- python src/python/examples/graph/plot_edge_contraction_graph.py
-    
