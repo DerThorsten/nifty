@@ -1,21 +1,11 @@
 language: generic
 dist: trusty
-sudo: required
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - deadsnakes
-    packages:
-      - cmake
 
 matrix:
   include:
     - os: linux
       env: 
-        - USE_CONDA=true
         - CONDA_PYTHON_VERSION=3.6
-        - COMPILER=gcc6
       before_script:
         - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
         - bash miniconda.sh -b -p $HOME/miniconda
