@@ -2,12 +2,12 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/undirected_grid_graph.hxx"
 
 #include "nifty/graph/components.hxx"
-#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
@@ -22,12 +22,12 @@ namespace graph{
         module.def("connectedComponentsFromNodeLabels",
         [](
             const GRAPH & graph,
-            nifty::marray::PyView<uint64_t,1> nodeLabels,
+            xt::pytensor<uint64_t, 1> nodeLabels,
             const bool dense = true,
             const bool ignoreBackground = false
         ){
-       
-            nifty::marray::PyView<uint64_t> ccLabels({nodeLabels.shape(0)});
+
+            xt::pytensor<uint64_t, 1> ccLabels({uint64_t(nodeLabels.shape()[0])});
             ComponentsUfd<GRAPH> componentsUfd(graph);
             componentsUfd.buildFromLabels(nodeLabels);
 
@@ -35,8 +35,7 @@ namespace graph{
                 ccLabels[node] = componentsUfd.componentLabel(node);
             }
 
-
-            if(dense  && ignoreBackground){
+            if(dense && ignoreBackground){
                 std::unordered_map<uint64_t, uint64_t> mapping;
                 for(const auto node: graph.nodes()){
 
@@ -104,7 +103,6 @@ namespace graph{
         const auto clsName = std::string("Components") + GraphName<GraphType>::name();
         auto componentsPyCls = py::class_<ComponentsType>(module, clsName.c_str());
 
-        
         module.def("components",
             [](
                 const GraphType & graph
@@ -115,20 +113,20 @@ namespace graph{
             py::keep_alive<0, 1>(),
             py::arg("graph")
         );
-        
+
         componentsPyCls
         .def("build",[](ComponentsType & self){
             self.build();
         })
         .def("buildFromNodeLabels",[](
             ComponentsType & self,
-            nifty::marray::PyView<uint64_t,1> labels
+            xt::pytensor<uint64_t, 1> labels
         ){
             self.buildFromLabels(labels);
         })
         .def("buildFromEdgeLabels",[](
             ComponentsType & self,
-            nifty::marray::PyView<uint8_t,1> labels
+            xt::pytensor<uint8_t, 1> labels
         ){
             self.buildFromEdgeLabels(labels);
         })
@@ -137,15 +135,13 @@ namespace graph{
         ){
             const auto & g = self.graph();
             const size_t size = g.nodeIdUpperBound()+1;
-            nifty::marray::PyView<uint64_t> ccLabels({size});
+            xt::pytensor<uint64_t, 1> ccLabels({size});
             for(const auto node : g.nodes()){
                 ccLabels[node] = self.componentLabel(node);
             }
             return ccLabels;
         })
         ;
-
-
     }
 
     void exportConnectedComponents(py::module & module) {
@@ -153,7 +149,7 @@ namespace graph{
         {
             typedef UndirectedGraph<> GraphType;
             exportConnectedComponentsT<GraphType>(module);
-        }   
+        }
         {
             typedef UndirectedGridGraph<2, true> GraphType;
             exportConnectedComponentsT<GraphType>(module);

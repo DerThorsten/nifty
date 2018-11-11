@@ -10,14 +10,15 @@
 namespace nifty {
 namespace graph {
 
-template<class ADJACENCY, class ACC_CHAIN_VECTOR, class COORD>
+template<class ADJACENCY, class ACC_CHAIN_VECTOR, class COORD,
+         class LABELS, class AFFS>
 void accumulateLongRangeFeaturesForSlice(
     const ADJACENCY & adj,
     ACC_CHAIN_VECTOR & accChainVec,
     const COORD & sliceShape2,
-    const marray::View<typename ADJACENCY::LabelType> & labelsA,
-    const marray::View<typename ADJACENCY::LabelType> & labelsB,
-    const marray::View<float> & affinities,
+    const xt::xexpression<LABELS> & labelsAExp,
+    const xt::xexpression<LABELS> & labelsBExp,
+    const xt::xexpression<AFFS> & affinitiesExp,
     const int pass,
     const size_t slice,
     const size_t targetSlice,
@@ -27,7 +28,9 @@ void accumulateLongRangeFeaturesForSlice(
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
     typedef typename ADJACENCY::LabelType LabelType;
 
-    //std::cout << "Starting to accumulate from " << slice << " to " << targetSlice << std::endl;
+    const auto & labelsA = labelsAExp.derived_cast();
+    const auto & labelsB = labelsBExp.derived_cast();
+    const auto & affinities = affinitiesExp.derived_cast();
 
     VigraCoord vigraCoord;
     LabelType lU, lV;
@@ -35,10 +38,10 @@ void accumulateLongRangeFeaturesForSlice(
     nifty::tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
 
         // labels are different for different slices by default!
-        lU = labelsA(coord.asStdArray());
-        lV = labelsB(coord.asStdArray());
+        lU = xtensor::read(labelsA, coord.asStdArray());
+        lV = xtensor::read(labelsB, coord.asStdArray());
         // affinity
-        aff = affinities(coord.asStdArray());
+        aff = xtensor::read(affinities, coord.asStdArray());
 
         vigraCoord[0] = slice;
         for(int d = 1; d < 3; ++d){
@@ -54,6 +57,7 @@ void accumulateLongRangeFeaturesForSlice(
     });
 
 }
+
 
 // accumulate features for long range adjacency along the z (anisotropic) axis
 // assumes flat superpixels !
@@ -86,7 +90,8 @@ void accumulateLongRangeFeaturesWithAccChain(
     const size_t nSlices = shape[0] - 2;
     const size_t nEdges = adj.numberOfEdges();
 
-    // convention for zDirection: 1 -> affinties go to upper slices, 2 -> affinities go to lower slices
+    // convention for zDirection: 1 -> affinties go to upper slices,
+    // 2 -> affinities go to lower slices
     const bool affsToUpper = zDirection == 1;
 
     Coord2 sliceShape2({shape[1], shape[2]});
@@ -201,8 +206,8 @@ void accumulateLongRangeFeatures(
     namespace acc = vigra::acc;
     typedef float DataType;
 
-    typedef acc::UserRangeHistogram<40>            SomeHistogram;   //binCount set at compile time
-    typedef acc::StandardQuantiles<SomeHistogram > Quantiles;
+    typedef acc::UserRangeHistogram<40> SomeHistogram;   //binCount set at compile time
+    typedef acc::StandardQuantiles<SomeHistogram> Quantiles;
 
     typedef acc::Select<
         acc::DataArg<1>,
@@ -227,7 +232,7 @@ void accumulateLongRangeFeatures(
         const uint64_t nEdges = edgeAccChainVec.size();
         const uint64_t nStats = 9;
 
-        marray::Marray<float> featuresTemp({nEdges, nStats});
+        xt::xtenspor<float, 2> featuresTemp({nEdges, nStats});
 
         for(auto edge = 0; edge < nEdges; ++edge) {
             const auto & chain = edgeAccChainVec[edge];

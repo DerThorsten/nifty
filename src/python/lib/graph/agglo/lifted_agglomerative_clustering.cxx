@@ -27,19 +27,16 @@ namespace graph{
 namespace agglo{
 
 
-  
-
-
     template<class GRAPH, class ACC, bool WITH_UCM>
     void exportLiftedAgglomerativeClusteringPolicyT(py::module & aggloModule) {
-        
+
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
-        typedef nifty::marray::PyView<float, 1>   PyViewFloat1;
-        typedef nifty::marray::PyView<uint8_t, 1> PyViewUInt8_1;
+        typedef xt::pytensor<float, 1>   PyViewFloat1;
+        typedef xt::pytensor<uint8_t, 1> PyViewUInt8_1;
         const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
 
-        {   
+        {
             // name and type of cluster operator
             typedef LiftedGraphEdgeWeightedClusterPolicy<GraphType, ACC, WITH_UCM> ClusterPolicyType;
             const auto clusterPolicyBaseName = std::string("LiftedGraphEdgeWeightedClusterPolicy") +  withUcmStr;

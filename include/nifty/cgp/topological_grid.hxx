@@ -4,18 +4,15 @@
 #include <unordered_map>
 #include <map>
 
-#include "nifty/marray/marray.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/container/boost_flat_set.hxx"
 #include "nifty/ufd/ufd.hxx"
 #include "nifty/tools/timer.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
 namespace cgp{
-
-
-
 
     template<size_t DIM>
     class TopologicalGrid;
@@ -35,23 +32,23 @@ namespace cgp{
 
     public:
 
-        template<class T>
-        TopologicalGrid(const nifty::marray::View<T> & labels);
+        template<class LABELS>
+        TopologicalGrid(const xt::xexpression<LABELS> & labelsExp);
 
 
         uint32_t operator()(const CoordinateType & coord)const{
-            return tGrid_(coord.asStdArray());
+            return xtensor::read(tGrid_, coord.asStdArray());
         }
 
         uint32_t operator()(const uint32_t x0, const uint32_t x1)const{
-            return tGrid_(x0,x1);
+            return tGrid_(x0, x1);
         }
 
         const NumberOfCellsType & numberOfCells() const{
             return numberOfCells_;
         }
 
-        const nifty::marray::Marray<uint32_t> & array()const{
+        const xt::xtensor<uint32_t, 2> & array()const{
             return tGrid_;
         }
 
@@ -69,21 +66,23 @@ namespace cgp{
         CoordinateType tShape_;
         NumberOfCellsType numberOfCells_;
 
-        nifty::marray::Marray<uint32_t> tGrid_;
+        xt::xtensor<uint32_t, 2> tGrid_;
     };
 
 
-    template<class T>
+    template<class LABELS>
     inline TopologicalGrid<2>::TopologicalGrid(
-        const nifty::marray::View<T> & labels
+        const xt::xexpression<LABELS> & labelsExp
     ) :
-        shape_({{labels.shape(0), labels.shape(1)}}),
-        tShape_({{2*labels.shape(0)-1, 2*labels.shape(1)-1}}),
-        tGrid_({2*labels.shape(0)-1, 2*labels.shape(1)-1},0)
+        shape_({{labelsExp.derived_cast().shape()[0],
+                 labelsExp.derived_cast().shape()[1]}}),
+        tShape_({{2*labelsExp.derived_cast().shape()[0] - 1,
+                  2*labelsExp.derived_cast().shape()[1] - 1}}),
+        tGrid_({2*labels.derived_cast().shape()[0]-1,
+                2*labels.derived_cast().shape()[1]-1}, 0)
     {
 
         NIFTY_CHECK_OP(labels.dimension(),==,2,"wrong dimensions");
-
 
         uint32_t jLabel = 1, bLabel = 1, maxNodeLabel = 0;
         // pass 1
@@ -150,9 +149,9 @@ namespace cgp{
 
             if(!even0 && !even1){
 
-                const auto nEdge = tGrid_(tCoord[0],tCoord[1]);
+                const auto nEdge = tGrid_(tCoord[0], tCoord[1]);
                 if(nEdge < 2){
-                    tGrid_(tCoord[0],tCoord[1]) = 0;
+                    tGrid_(tCoord[0], tCoord[1]) = 0;
                 }
                 else if(nEdge == 2){
 
@@ -191,9 +190,9 @@ namespace cgp{
                     const auto nB = tGrid_(tCoord[0]+1, tCoord[1]-1);
                     const auto nC = tGrid_(tCoord[0]-1, tCoord[1]+1);
                     const auto nD = tGrid_(tCoord[0]+1, tCoord[1]+1);
-                    //   d 
+                    //   d
                     // a * c
-                    //   b 
+                    //   b
                     const auto a = tGrid_(tCoord[0] - 1, tCoord[1]    );
                     const auto b = tGrid_(tCoord[0]    , tCoord[1] + 1);
                     const auto c = tGrid_(tCoord[0] + 1, tCoord[1]    );

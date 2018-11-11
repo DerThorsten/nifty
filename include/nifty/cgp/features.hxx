@@ -2,19 +2,14 @@
 
 #include <vector>
 
-#include "nifty/marray/marray.hxx"
 #include "nifty/cgp/bounds.hxx"
-
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty{
 namespace cgp{
 
 
-    
-    
-
-    
     /**
      * @brief      a handcrafted thing to hopefully close
      * tiny gaps in  edge_probos]
@@ -29,21 +24,25 @@ namespace cgp{
      *
      * @tparam     T                 float or double
      */
-    template<T>
+    template<class PROBS>
     void cell1ProbabilityPropagation2D(
-        const nifty::marray::View<T> &     probabilitiesIn,
+        const xt::xexpression<PROBS> &     probabilitiesInExp,
         const CellBoundsVector<   2, 0> &  cell0Bounds,
         const CellBoundedByVector<2, 1> &  cell1BoundedBy,
-        nifty::marray::View<T> &           probabilitiesOut,
+        xt::xexpression<PROBS> &           probabilitiesOutExp,
         const float                        thresholdLow  = 0.3,
         const float                        thresholdHigh = 0.5,
         const float                        damping = 0.1
     ){
-        const auto nEdges =  probabilitiesIn.shape(0);
+        const auto & probabilitiesIn = probabilitiesInExp.derived_cast()
+        auto & probabilitiesOut = probabilitiesOutExp.derived_cast()
+        typedef typename PROBS::value_type T;
+
+        const auto nEdges =  probabilitiesIn.shape()[0];
         for(auto edgeIndex=0; edgeIndex<nEdges; ++edgeIndex){
 
-            const auto pIn = probabilitiesIn(edgeIndex)0
-            probabilitiesOut[edgeIndex] = pIn;
+            const auto pIn = probabilitiesIn(edgeIndex);
+            probabilitiesOut(edgeIndex) = pIn;
 
             // iterate over all junctions
             const auto & junctionsOfEdge = cell1BoundedBy[edgeIndex];
@@ -60,19 +59,19 @@ namespace cgp{
                         for(auto i=0; i<edgesOfJunction.size(); ++i){
                             const auto otherEdgeIndex = edgesOfJunction[i] - 1;
                             if(otherEdgeIndex != edgeIndex)
-                                maxVal = std::max(probabilitiesIn[otherEdgeIndex])
+                                maxVal = std::max(probabilitiesIn(otherEdgeIndex))
                         }
                         maxVals[j] = maxVal;
                     }
                     if(maxVals[0]>pIn && maxVals[1]>pIn){
                         const auto av = (maxVals[0]+maxVals[1])/2.0
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(av);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(av);
                     }
                     else if(maxVals[0]>pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(maxVals[0]);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(maxVals[0]);
                     }
                     else if(maxVals[1]>pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(maxVals[1]);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(maxVals[1]);
                     }
                 }
                 else if(pIn < thresholdLow){
@@ -84,19 +83,19 @@ namespace cgp{
                         for(auto i=0; i<edgesOfJunction.size(); ++i){
                             const auto otherEdgeIndex = edgesOfJunction[i] - 1;
                             if(otherEdgeIndex != edgeIndex)
-                                minVal = std::min(probabilitiesIn[otherEdgeIndex])
+                                minVal = std::min(probabilitiesIn(otherEdgeIndex));
                         }
                         minVals[j] = minVal;
                     }
                     if(minVals[0]>pIn && minVals[1]>pIn){
                         const auto av = (minVals[0]+minVals[1])/2.0
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(av);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(av);
                     }
                     else if(minVals[0]>pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(minVals[0]);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(minVals[0]);
                     }
                     else if(minVals[1]>pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*(minVals[1]);
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*(minVals[1]);
                     }
                 }
             }
@@ -109,10 +108,10 @@ namespace cgp{
                     for(auto i=0; i<edgesOfJunction.size(); ++i){
                         const auto otherEdgeIndex = edgesOfJunction[i] - 1;
                         if(otherEdgeIndex != edgeIndex)
-                            maxVal = std::max(probabilitiesIn[otherEdgeIndex])
+                            maxVal = std::max(probabilitiesIn(otherEdgeIndex));
                     }
                     if(maxVal > pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*maxVal;
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*maxVal;
                     }
                 }
                 else if(pIn < thresholdHigh){
@@ -120,13 +119,13 @@ namespace cgp{
                     for(auto i=0; i<edgesOfJunction.size(); ++i){
                         const auto otherEdgeIndex = edgesOfJunction[i] - 1;
                         if(otherEdgeIndex != edgeIndex)
-                            minVal = std::min(probabilitiesIn[otherEdgeIndex])
+                            minVal = std::min(probabilitiesIn(otherEdgeIndex));
                     }
                     if(minVal < pIn){
-                        probabilitiesOut[edgeIndex] = damping*pIn + (1.0-damping)*minVal;
+                        probabilitiesOut(edgeIndex) = damping*pIn + (1.0-damping)*minVal;
                     }
                 }
-            }   
+            }
         }
     }
 

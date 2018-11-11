@@ -28,20 +28,15 @@ namespace graph{
 namespace agglo{
 
 
-
-
-
-
     template<class GRAPH, class ACC_0, class ACC_1,bool WITH_UCM>
     void exportDualClusterPolicyTT(py::module & aggloModule) {
-        
         typedef GRAPH GraphType;
         const auto graphName = GraphName<GraphType>::name();
-        typedef nifty::marray::PyView<float, 1>   PyViewFloat1;
-        typedef nifty::marray::PyView<uint8_t, 1> PyViewUInt8_1;
+        typedef xt::xtensor<float, 1>   PyViewFloat1;
+        typedef xt::xtensor<uint8_t, 1> PyViewUInt8_1;
         const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
 
-        {   
+        {
             // name and type of cluster operator
             typedef DualClusterPolicy<GraphType, ACC_0, ACC_1, WITH_UCM> ClusterPolicyType;
             const auto clusterPolicyBaseName = std::string("DualClusterPolicy") +  withUcmStr;
@@ -55,7 +50,6 @@ namespace agglo{
                 //.def_property_readonly("notMergePrios", &ClusterPolicyType::notMergePrios)
                 //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
             ;
-        
 
             // factory
             aggloModule.def(clusterPolicyFacName.c_str(),

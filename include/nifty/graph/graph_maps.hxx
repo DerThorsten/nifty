@@ -1,7 +1,6 @@
 #pragma once
 
-#include "nifty/marray/marray.hxx"
-//#include "nifty/xtensor/xtensor.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
 namespace graph{

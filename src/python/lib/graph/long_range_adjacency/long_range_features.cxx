@@ -24,8 +24,8 @@ namespace graph{
         module.def("longRangeFeatures",
         [](
             const ADJACENCY & longRangeAdjacency,
-            marray::PyView<typename ADJACENCY::LabelType, 3> labels,
-            marray::PyView<float, 4> affinities,
+            xt::pytensor<typename ADJACENCY::LabelType, 3> labels,
+            xt::pytensor<float, 4> affinities,
             const int zDirection,
             const int numberOfThreads
         ){
@@ -34,10 +34,12 @@ namespace graph{
                 NIFTY_CHECK_OP(affinities.shape(d+1), ==, longRangeAdjacency.shape(d), "Wrong shape");
             }
             size_t nStats = 9;
-            nifty::marray::PyView<float> features({longRangeAdjacency.numberOfEdges(), nStats});
+            xt::pytensor<float, 2> features({longRangeAdjacency.numberOfEdges(), nStats});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateLongRangeFeatures(longRangeAdjacency, labels, affinities, features, zDirection, numberOfThreads);
+                accumulateLongRangeFeatures(longRangeAdjacency, labels,
+                                            affinities, features,
+                                            zDirection, numberOfThreads);
             }
             return features;
         },
@@ -51,13 +53,10 @@ namespace graph{
     }
 
     // TODO HDF5 out of core
-
     void exportLongRangeFeatures(py::module & module) {
-        typedef marray::PyView<uint32_t, 3> ExplicitLabels;
+        typedef xt::pytensor<uint32_t, 3> ExplicitLabels;
         typedef LongRangeAdjacency<ExplicitLabels> ExplicitAdjacency;
         exportLongRangeFeaturesInCoreT<ExplicitAdjacency>(module);
-
-        // TODO HDF5
     }
 
 }

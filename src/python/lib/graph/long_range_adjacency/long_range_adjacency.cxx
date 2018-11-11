@@ -61,7 +61,7 @@ namespace graph{
                 return out;
             })
             .def("serialize",[](const AdjacencyType & self){
-                nifty::marray::PyView<uint64_t, 1> out({self.serializationSize()});
+                xt::pytensor<uint64_t, 1> out({self.serializationSize()});
                 auto ptr = &out(0);
                 self.serialize(ptr);
                 return out;
@@ -93,7 +93,7 @@ namespace graph{
         module.def(facName.c_str(),
             [](
                Labels labels,
-               nifty::marray::PyView<uint64_t, 1> serialization
+               const xt::pytensor<uint64_t, 1> & serialization
             ){
 
                 auto startPtr = &serialization(0);
@@ -114,7 +114,7 @@ namespace graph{
 
     void exportLongRangeAdjacency(py::module & module) {
 
-        typedef marray::PyView<uint32_t, 3> ExplicitLabels;
+        typedef xt::pytensor<uint32_t, 3> ExplicitLabels;
         exportLongRangeAdjacencyT<ExplicitLabels>(
             module,
             "ExplicitLabelsLongRangeAdjacency",

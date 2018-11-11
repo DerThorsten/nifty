@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "nifty/marray/marray.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 #include "nifty/container/boost_flat_set.hxx"
@@ -19,7 +19,7 @@ namespace cgp{
 
 
     /**
-     * @brief      Class for cartesian grid partitioning 
+     * @brief      Class for cartesian grid partitioning
      * for 2d images
      *
      * @tparam     INDEX_TYPE  { description }
@@ -72,7 +72,7 @@ namespace cgp{
         cellTypeOffset_{tGrid.numberOfCells()[1] + tGrid.numberOfCells()[2],tGrid.numberOfCells()[2],uint32_t(0)}
     {
 
-        // pass 1 
+        // pass 1
         nifty::tools::forEachCoordinate(tShape_, [&](
             const CoordinateType & tCoord
         ){
@@ -82,19 +82,16 @@ namespace cgp{
             auto even0 = tCoord[0] % 2 == 0 ;
             auto even1 = tCoord[1] % 2 == 0 ;
 
-            if(even0 && even1){
-              
-            }
+            if(even0 && even1){}
             // junction (0-Cell)
             else if(!even0 && !even1){
 
                 const auto cell0Label = tGrid(tCoord);
                 if(cell0Label == 0){
-                    
                     // check if to relabel inactive cell-0 as   cell-1 or cell-2
-                    //   d 
+                    //   d
                     // a * c
-                    //   b 
+                    //   b
                     const auto a = tGrid(tCoord[0] - 1, tCoord[1]    );
                     const auto b = tGrid(tCoord[0]    , tCoord[1] + 1);
                     const auto c = tGrid(tCoord[0] + 1, tCoord[1]    );
@@ -130,7 +127,7 @@ namespace cgp{
                 if(cell1Label == 0){
                     if(!even0){
                         ftGrid_(tCoord.asStdArray()) = tGrid( tCoord[0]-1, tCoord[1] );
-                    } 
+                    }
                     else{
                         ftGrid_(tCoord.asStdArray()) = tGrid( tCoord[0], tCoord[1]-1 );
                     }
@@ -142,14 +139,7 @@ namespace cgp{
 
             //std::cout<<"\n";
         });
-
-    
-
-
-
     }
- 
-
 
 } // namespace nifty::cgp
 } // namespace nifty

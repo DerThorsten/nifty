@@ -21,24 +21,7 @@ namespace nifty{
 namespace graph{
 
 
-
-
 namespace detail_graph{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     template<std::size_t DIM, bool SIMPLE_NH>
@@ -296,11 +279,12 @@ public:
     )const{
         for(const auto edge : this->edges()){
             const auto uv = this->uv(edge);
-            CoordinateType cU,cV;
+            CoordinateType cU, cV;
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
             const auto uVal = xtensor::read(image, cU.asStdArray());
             const auto vVal = xtensor::read(image, cU.asStdArray());
+
             edgeMap[edge] = binaryFunctor(uVal, vVal);
         }
     }
