@@ -147,7 +147,6 @@ include_directories(${xtensor_INCLUDE_DIRS})
 #-------------------------------------------------------------------------------------------------------------------
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/maxflow")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/vigra/include")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
 
 
