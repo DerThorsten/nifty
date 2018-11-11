@@ -29,7 +29,7 @@ include(CheckCXXCompilerFlag)
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
 # Old ABI to be compatible with boost
-add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
+# add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 
 
@@ -79,12 +79,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 14 support
+# check for c++ 17 support
 #-------------------------------------------------------------------------------------------------------------------
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 # WITH_LP_MP needs special treatment since
 # it requires C++ 14 and used OpenMP
@@ -128,25 +127,14 @@ else()
 endif()
 
 
-
 find_package(xtensor REQUIRED)
 include_directories(${xtensor_INCLUDE_DIRS})
-
-
-
-
-
-
-
-
-
 
 
 #-------------------------------------------------------------------------------------------------------------------
 # externals
 #-------------------------------------------------------------------------------------------------------------------
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/maxflow")
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
 
 
@@ -202,6 +190,7 @@ if(WITH_GUROBI)
     SET(NIFTY_LP_SOLVER_LIBS "${NIFTY_LP_SOLVER_LIBS};${GUROBI_LIBRARIES}")
 endif()
 
+
 #-------------------------------------------------------------------------------------------------------------------
 # find glpk
 #-------------------------------------------------------------------------------------------------------------------
@@ -211,10 +200,6 @@ if(WITH_GLPK)
     add_definitions(-DWITH_GLPK)
     SET(NIFTY_LP_SOLVER_LIBS "${NIFTY_LP_SOLVER_LIBS};${GLPK_LIBRARY}")
 endif()
-
-
-
-
 
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -325,6 +310,7 @@ endif()
 
 
 if(WITH_QPBO)
+    include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/qpbo")
     add_definitions(-DWITH_QPBO)
 endif(WITH_QPBO)
 
@@ -353,9 +339,6 @@ add_subdirectory(src)
 add_subdirectory(docsrc)
 
 
-
-
-
 #-------------------------------------------------------------------------------------------------------------------
 #  install headers
 #-------------------------------------------------------------------------------------------------------------------
@@ -366,10 +349,6 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/nifty"
   PATTERN "*.hpp"
   PATTERN "*.h"
 )
-
-
-
-
 
 
 #------------------------------------------------------------------------------------------------------------------

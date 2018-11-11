@@ -54,43 +54,21 @@ namespace hdf5{
                 std::vector<size_t> roiBegin,
                 std::vector<size_t> roiEnd
             ){
-                //std::cout<<"READ\n";
-                py::gil_release gilRease1;
-
-                //std::cout<<"relase gil\n";
-                gilRease1.releaseGil();
                 const auto dim = array.dimension();
-                //std::cout<<"array.dimension\n";
-                //std::cout << dim << std::endl;
-                NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
-                NIFTY_CHECK_OP(roiEnd.size(),==,dim,  "`roiEnd`has wrong size");
-
-                //std::cout<<"make shape\n";
                 std::vector<size_t> shape(dim);
-                for(size_t d=0; d<dim; ++d){
-                    shape[d] = roiEnd[d] - roiBegin[d];
-                    //std::cout<<"s "<< shape[d]<<"\n";
+                {
+                    py::gil_scoped_release liftGil;
+                    NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
+                    NIFTY_CHECK_OP(roiEnd.size(),==,dim,  "`roiEnd`has wrong size");
+                    for(size_t d=0; d<dim; ++d){
+                        shape[d] = roiEnd[d] - roiBegin[d];
+                    }
                 }
-                
-                //std::cout<<"make pyview\n";
-
-                gilRease1.unreleaseGil();
-
-               
                 nifty::marray::PyView<T> out(shape.begin(), shape.end());
-                //std::cout << "have pyview" << std::endl;
-            
-
-                py::gil_release gilRease2;
-                gilRease2.releaseGil();
-                //std::cout << "reading subarray" << std::endl;
-                array.readSubarray(roiBegin.begin(), out);
-                gilRease2.unreleaseGil();
-                //std::cout << "read subarray" << std::endl;
-                
-                ////std::cout<<"unreleaseGil\n";
-                //gilRease.unreleaseGil();\
-                //std::cout<<"return\n\n";
+                {
+                    py::gil_scoped_release liftGil;
+                    array.readSubarray(roiBegin.begin(), out);
+                }
                 return out;
             })
 

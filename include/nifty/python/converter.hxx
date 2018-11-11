@@ -83,21 +83,6 @@ namespace detail{
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     template <typename Type, size_t Size>
     struct type_caster< nifty::array::StaticArray<Type, Size> >
     : array_caster_< nifty::array::StaticArray<Type, Size>, Type, false, Size> {
@@ -110,50 +95,6 @@ namespace detail{
 
 }
 }
-
-namespace pybind11
-{
-
-    #if defined(WITH_THREAD)
-    class gil_release {
-    public:
-
-        void releaseGil(bool disassoc_ = false) {
-            disassoc = disassoc_;
-            tstate = PyEval_SaveThread();
-            if (disassoc) {
-                auto key = detail::get_internals().tstate;
-                #if PY_MAJOR_VERSION < 3
-                    PyThread_delete_key_value(key);
-                #else
-                    PyThread_set_key_value(key, nullptr);
-                #endif
-            }
-        }
-        void unreleaseGil() {
-            if (!tstate)
-                return;
-            PyEval_RestoreThread(tstate);
-            if (disassoc) {
-                auto key = detail::get_internals().tstate;
-                #if PY_MAJOR_VERSION < 3
-                    PyThread_delete_key_value(key);
-                #endif
-                PyThread_set_key_value(key, tstate);
-            }
-        }
-    private:
-        PyThreadState *tstate;
-        bool disassoc;
-    };
-    #else
-    class gil_release {
-        void releaseGil(bool disassoc = false){}
-        void unreleaseGil(){}
-    };
-    #endif
-}
-
 
 
 namespace nifty
@@ -420,85 +361,3 @@ namespace pybind11
         //};
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-namespace nifty{
-
-    template<class T>
-    std::vector<size_t> toSizeT(std::initializer_list<T> l){
-        return std::vector<size_t>(l.begin(),l.end());
-    }
-
-
-
-    template<class T>
-    class NumpyArray : public marray::View<T>{
-    public:
-
-        template<class SHAPE_T,class STRIDE_T>
-        NumpyArray(
-            std::initializer_list<SHAPE_T> shape,
-            std::initializer_list<STRIDE_T> strides
-        )
-        : array_(){
-
-
-            auto svec = toSizeT(strides);
-            for(auto i=0; i<svec.size(); ++i){
-                svec[i] *= sizeof(T);
-            }
-
-            array_  = py::array(
-                py::buffer_info(NULL, sizeof(T),
-                py::format_descriptor<T>::value,
-                shape.size(), toSizeT(shape),svec)
-            );
-
-            py::buffer_info info = array_.request();
-            T * ptr = static_cast<T*>(info.ptr);
-
-            this->assign(shape.begin(),shape.end(),strides.begin(),ptr,
-                marray::FirstMajorOrder
-            );
-        }
-
-
-        NumpyArray(py::array_t<T> & array)
-        :   array_(array)
-        {
-            py::buffer_info info = array.request();
-            T * ptr = static_cast<T*>(info.ptr);
-            const auto & shape = info.shape;
-            auto  strides=  info.strides;
-            for(auto & s : strides)
-                s/=sizeof(T);
-            this->assign(shape.begin(),shape.end(),strides.begin(),ptr,
-                marray::FirstMajorOrder
-            );
-        }
-
-
-        py::array_t<T>  pyArray(){
-            return array_;
-        }
-
-    private:
-        py::array_t<T> array_;
-    };
-
-} // namespace nifty
-*/

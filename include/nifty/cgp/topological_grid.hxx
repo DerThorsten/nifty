@@ -22,7 +22,7 @@ namespace cgp{
 
 
     /**
-     * @brief      Class for cartesian grid partitioning 
+     * @brief      Class for cartesian grid partitioning
      * for 2d images
      *
      * @tparam     INDEX_TYPE  { description }
@@ -38,7 +38,6 @@ namespace cgp{
         template<class T>
         TopologicalGrid(const nifty::marray::View<T> & labels);
 
-        
 
 
         uint32_t operator()(const CoordinateType & coord)const{
@@ -48,8 +47,7 @@ namespace cgp{
         uint32_t operator()(const uint32_t x0, const uint32_t x1)const{
             return tGrid_(x0,x1);
         }
-        
- 
+
         const NumberOfCellsType & numberOfCells() const{
             return numberOfCells_;
         }
@@ -68,9 +66,6 @@ namespace cgp{
 
     private:
 
-
-
-
         CoordinateType shape_;
         CoordinateType tShape_;
         NumberOfCellsType numberOfCells_;
@@ -82,7 +77,7 @@ namespace cgp{
     template<class T>
     inline TopologicalGrid<2>::TopologicalGrid(
         const nifty::marray::View<T> & labels
-    ) :   
+    ) :
         shape_({{labels.shape(0), labels.shape(1)}}),
         tShape_({{2*labels.shape(0)-1, 2*labels.shape(1)-1}}),
         tGrid_({2*labels.shape(0)-1, 2*labels.shape(1)-1},0)
@@ -90,16 +85,12 @@ namespace cgp{
 
         NIFTY_CHECK_OP(labels.dimension(),==,2,"wrong dimensions");
 
-    
-
-
 
         uint32_t jLabel = 1, bLabel = 1, maxNodeLabel = 0;
-        // pass 1 
+        // pass 1
         nifty::tools::forEachCoordinate(tShape_, [&](
             const CoordinateType & tCoord
         ){
-    
             // compute even odd
             auto even0 = tCoord[0] % 2 == 0 ;
             auto even1 = tCoord[1] % 2 == 0 ;
@@ -126,7 +117,7 @@ namespace cgp{
                 //std::cout<<" E \n";
                 T l0,l1;
                 // A|B
-                // vertical  boundary 
+                // vertical  boundary
                 if(!even0){
                     l0=labels( (tCoord[0]-1)/2, tCoord[1]/2 );
                     l1=labels( (tCoord[0]+1)/2, tCoord[1]/2 );
@@ -150,12 +141,10 @@ namespace cgp{
         });
 
         nifty::ufd::Ufd<uint32_t> edgeUfd(bLabel-1);
-           
-        
+
         nifty::tools::forEachCoordinate(tShape_, [&](
             const CoordinateType & tCoord
         ){
-            
             // compute even odd
             auto even0 = tCoord[0] % 2 == 0 ;
             auto even1 = tCoord[1] % 2 == 0 ;
@@ -163,7 +152,6 @@ namespace cgp{
             if(!even0 && !even1){
 
                 const auto nEdge = tGrid_(tCoord[0],tCoord[1]);
-                
                 if(nEdge < 2){
                     tGrid_(tCoord[0],tCoord[1]) = 0;
                 }
@@ -230,13 +218,11 @@ namespace cgp{
                 }
             }
         });
-      
+
         numberOfCells_[0] = jLabel - 1;
         numberOfCells_[1] = edgeUfd.numberOfSets();
         numberOfCells_[2] = maxNodeLabel;
 
-
-        
         // pass 3,make dense
         std::unordered_map<uint32_t, uint32_t> rmap;
         edgeUfd.representativeLabeling(rmap);
@@ -244,7 +230,6 @@ namespace cgp{
         nifty::tools::forEachCoordinate(tShape_, [&](
             const CoordinateType & tCoord
         ){
-    
             auto even0 = tCoord[0] % 2 == 0 ;
             auto even1 = tCoord[1] % 2 == 0 ;
 
@@ -257,9 +242,5 @@ namespace cgp{
         });
     }
 
-
-
 } // namespace nifty::cgp
 } // namespace nifty
-
-
