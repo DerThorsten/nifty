@@ -86,18 +86,5 @@ matrix:
         # install and test the project
         ###############################################
         - make install
-        # TODO use unittest discover
-        - cd src/python/test
-        # this is a fucked up way of running python test
-        # pls, if someone could fix this =)
-        - nosetests  cgp/*.py
-        - nosetests  graph/lifted_multicut/*.py
-        - nosetests  graph/multicut/*.py
-        - nosetests  graph/mincut/*.py
-        - nosetests  graph/agglo/*.py
-        - nosetests  hdf5/*.py
-        - nosetests  tools/*.py
-        # back to the root
-        - cd ../../..
-        # run the python examples with nose?
-        - $ENV_BIN/python src/python/examples/nifty_configuration.py
+        # run all python unittests
+        - $ENV_BIN/python -m unittest discover -v src/python/test

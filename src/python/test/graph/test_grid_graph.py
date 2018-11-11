@@ -5,14 +5,13 @@ import numpy
 import unittest
 
 
-
 class TestUndirectedGridGraph(unittest.TestCase):
 
     def test2DSimpleNh(self):
 
         shape = [3,4]
         g =  nifty.graph.undirectedGridGraph(shape)
-        
+
         self.assertEqual(g.numberOfNodes,12)
 
         def vi(x0, x1):

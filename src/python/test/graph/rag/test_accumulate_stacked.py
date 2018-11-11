@@ -227,7 +227,8 @@ class TestAccumulateStacked(unittest.TestCase):
         dsl[:] = self.labels
 
         rag_ooc = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32',
-                                                                  os.path.join(label_path, 'data')),
+                                                                  os.path.join(label_path,
+                                                                               'data')),
                                           numberOfLabels=self.n_labels,
                                           numberOfThreads=1)
         data_path = os.path.join(self.tmp_dir, 'data.n5')

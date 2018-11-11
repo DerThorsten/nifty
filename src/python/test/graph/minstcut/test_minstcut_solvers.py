@@ -1,16 +1,15 @@
-
-
-
 import unittest
+import random
+import numpy
+
 import nifty
 import nifty.graph
 import nifty.graph.opt.minstcut
-import numpy
-import random
 
-numpy.random.seed(7)
 
 class TestMinstcutSolver(unittest.TestCase):
+    def setUp(self):
+        numpy.random.seed(7)
 
     def generateGrid(self, gridSize):
         def nid(x, y):
@@ -18,7 +17,7 @@ class TestMinstcutSolver(unittest.TestCase):
         G = nifty.graph.UndirectedGraph
         g =  G(gridSize[0] * gridSize[1])
         for x in range(gridSize[0]):
-            for y in range(gridSize[1]):  
+            for y in range(gridSize[1]):
 
                 u = nid(x,y)
 
@@ -31,17 +30,13 @@ class TestMinstcutSolver(unittest.TestCase):
 
                     v = nid(x, y+1)
                     g.insertEdge(u, v)
-
         return g, nid
-
-
 
     def gridModel(self):
 
         beta = .7
-        gridSize = [5,5]  
+        gridSize = [5,5]
         weightRange = [0,1]
-
 
         g,nid = self.generateGrid(gridSize)
         d = weightRange[1] - weightRange[0]
@@ -50,7 +45,6 @@ class TestMinstcutSolver(unittest.TestCase):
         u = numpy.zeros((g.numberOfNodes,2))
 
         labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
-
 
         for x in range(gridSize[0]):
             for y in range(gridSize[1]):
@@ -91,11 +85,5 @@ class TestMinstcutSolver(unittest.TestCase):
                         w[weightId] = beta
 
         obj = nifty.graph.opt.minstcut.minstcutObjective(g,w)
-        
+
         return obj
-
-
-    # def testSomeStuff(self):
-
-    #     obj = self.gridModel(gridSize=[5,5], weightRange=[0,2])
-

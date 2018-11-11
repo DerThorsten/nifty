@@ -1,15 +1,14 @@
-
-
-
 import unittest
-import nifty
-import nifty.graph
 import numpy
 import random
 
-numpy.random.seed(7)
+import nifty
+import nifty.graph
+
 
 class TestMincutObjective(unittest.TestCase):
+    def setUp(self):
+        numpy.random.seed(7)
 
     def generateGrid(self, gridSize):
         def nid(x, y):
@@ -17,7 +16,7 @@ class TestMincutObjective(unittest.TestCase):
         G = nifty.graph.UndirectedGraph
         g =  G(gridSize[0] * gridSize[1])
         for x in range(gridSize[0]):
-            for y in range(gridSize[1]):  
+            for y in range(gridSize[1]):
 
                 u = nid(x,y)
 
@@ -33,13 +32,11 @@ class TestMincutObjective(unittest.TestCase):
 
         return g, nid
 
-
-
     def testGridModel(self, gridSize = [5,5],  weightRange = [-2,1]):
 
         beta = .7
-        gridSize = [5,5]  
-        weightRange = [0,1]
+        gridSize = [5, 5]
+        weightRange = [0, 1]
 
         g,nid = self.generateGrid(gridSize)
 
@@ -48,9 +45,7 @@ class TestMincutObjective(unittest.TestCase):
         # print(w.min(),w.max())
 
         w = numpy.zeros(g.numberOfEdges)
-        
         labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
-
 
         for x in range(gridSize[0]):
             for y in range(gridSize[1]):
@@ -89,4 +84,3 @@ class TestMincutObjective(unittest.TestCase):
         value = obj.evalNodeLabels(labels)
         self.assertAlmostEqual(value,8.4)
         return obj
-

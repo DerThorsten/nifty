@@ -1,19 +1,17 @@
 from __future__ import print_function
+import unittest
 import nifty
 import numpy
 
-import unittest
-
 
 class TestLiftedMulticutObjective(unittest.TestCase):
-
     def generateGrid(self, gridSize):
         def nid(x, y):
             return x*gridSize[1] + y
         G = nifty.graph.UndirectedGraph
         g =  G(gridSize[0] * gridSize[1])
         for x in range(gridSize[0]):
-            for y in range(gridSize[1]):  
+            for y in range(gridSize[1]):
 
                 u = nid(x,y)
 
@@ -28,7 +26,6 @@ class TestLiftedMulticutObjective(unittest.TestCase):
                     g.insertEdge(u, v)
 
         return g, nid
-
 
     def testInsertLiftedEdgesBfsSmall(self):
         g,nid = self.generateGrid([2,2])
@@ -84,29 +81,20 @@ class TestLiftedMulticutObjective(unittest.TestCase):
         self.assertEqual( liftedGraph.findEdge(node, nid(0,3))    , -1 )
 
 
-
-
-
-
-
 class TestLiftedMulticutGridGraphObjective(unittest.TestCase):
-
     def generateGrid(self, gridSize):
         def nid(x, y):
             return x*gridSize[1] + y
         g = nifty.graph.undirectedGridGraph(gridSize)
-    
-        return g, nid
 
+        return g, nid
 
     def testInsertLiftedEdgesBfsSmall(self):
         g,nid = self.generateGrid([2,2])
 
-
         obj = nifty.graph.lifted_multicut.liftedMulticutObjective(g)
         graph = obj.graph
         liftedGraph = obj.liftedGraph
-
 
         self.assertEqual(graph.numberOfEdges,g.numberOfEdges)
         self.assertEqual(liftedGraph.numberOfNodes, graph.numberOfNodes)

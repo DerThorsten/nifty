@@ -1,34 +1,30 @@
 from __future__ import print_function
-import nifty
 
-import nifty.graph
-import nifty.graph.agglo
-
+import unittest
 import numpy
 
-
-
+import nifty
+import nifty.graph
+import nifty.graph.agglo
 nagglo = nifty.graph.agglo
 
 
-def testUndirectedGraph():
+class TestAgglo(unittest.TestCase):
+    def testUndirectedGraph(self):
+        g = nifty.graph.UndirectedGraph(4)
+        edges = numpy.array([[0,1], [0,2], [0,3]], dtype='uint64')
+        g.insertEdges(edges)
 
-    g =  nifty.graph.UndirectedGraph(4)
-    edges =  numpy.array([[0,1],[0,2],[0,3]],dtype='uint64')
-    g.insertEdges(edges)
+        edgeIndicators = numpy.ones(shape=[g.numberOfEdges])
+        edgeSizes = numpy.ones(shape=[g.numberOfEdges])
+        nodeSizes = numpy.ones(shape=[g.numberOfNodes])
 
+        clusterPolicy = nagglo.edgeWeightedClusterPolicy(
+            graph=g, edgeIndicators=edgeIndicators,
+            edgeSizes=edgeSizes, nodeSizes=nodeSizes)
 
-    edgeIndicators = numpy.ones(shape=[g.numberOfEdges])
-    edgeSizes = numpy.ones(shape=[g.numberOfEdges])
-    nodeSizes = numpy.ones(shape=[g.numberOfNodes])
+        agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy)
+        agglomerativeClustering.run()
 
-    clusterPolicy = nagglo.edgeWeightedClusterPolicy(
-        graph=g, edgeIndicators=edgeIndicators,
-        edgeSizes=edgeSizes, nodeSizes=nodeSizes)
-
-
-    agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy)
-    agglomerativeClustering.run()
-
-    seg = agglomerativeClustering.result()#out=[1,2,3,4])
-
+        # TODO actually test something
+        seg = agglomerativeClustering.result()

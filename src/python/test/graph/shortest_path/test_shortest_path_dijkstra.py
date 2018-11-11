@@ -1,148 +1,127 @@
 from __future__ import print_function
-import nifty
-
-import nifty.graph
+import unittest
 import numpy
-
-def graphAndWeights():
-    edges = numpy.array([
-        [0,1],
-        [1,2],
-        [2,3],
-        [3,4],
-        [0,5],
-        [4,5]
-    ], dtype = 'uint64')
-    g = nifty.graph.UndirectedGraph(6)
-    g.insertEdges(edges)
-
-    weights = numpy.zeros(len(edges), dtype = 'float32')
-    weights[0]  = 1.
-    weights[1]  = 1.
-    weights[-1] = 5.
-
-    return g, weights
+import nifty
+import nifty.graph
 
 
-def testShortestPathDijkstraSingleTarget():
-    g, weights = graphAndWeights()
-    sp = nifty.graph.ShortestPathDijkstra(g)
-    path = sp.runSingleSourceSingleTarget(weights, 0, 4)
+class TestShortesetPath(unittest.TestCase):
+    def graphAndWeights(self):
+        edges = numpy.array([
+            [0,1],
+            [1,2],
+            [2,3],
+            [3,4],
+            [0,5],
+            [4,5]
+        ], dtype = 'uint64')
+        g = nifty.graph.UndirectedGraph(6)
+        g.insertEdges(edges)
 
-    # shortest path 0 -> 4:
-    # 0 - 1, 1 - 2, 3 - 4
-    assert len(path) == 5, str(len(path))
-    path.reverse()
-    for ii in range(5):
-        assert path[ii] == ii, "%i, %i" % (path[ii], ii)
-    print("Test Single Target successfull")
+        weights = numpy.zeros(len(edges), dtype = 'float32')
+        weights[0]  = 1.
+        weights[1]  = 1.
+        weights[-1] = 5.
 
+        return g, weights
 
-def testShortestPathDijkstraSingleTargetParallel():
-    g, weights = graphAndWeights()
-    N = 50
-    sources = N * [0L]
-    targets = N * [4L]
-    parallelPaths = nifty.graph.shortestPathSingleTargetParallel(
-        g,
-        weights.tolist(),
-        sources,
-        targets,
-        returnNodes=True,
-        numberOfThreads=4
-    )
-
-    for path in parallelPaths:
+    def testShortestPathDijkstraSingleTarget(self):
+        g, weights = self.graphAndWeights()
+        sp = nifty.graph.ShortestPathDijkstra(g)
+        path = sp.runSingleSourceSingleTarget(weights, 0, 4)
         # shortest path 0 -> 4:
         # 0 - 1, 1 - 2, 3 - 4
-        assert len(path) == 5, str(len(path))
+        self.assertEqual(len(path), 5, str(len(path)))
         path.reverse()
         for ii in range(5):
-            assert path[ii] == ii, "%i, %i" % (path[ii], ii)
-    print("Test Single Target Parallel successfull")
+            self.assertEqual(path[ii], ii, "%i, %i" % (path[ii], ii))
 
-
-def testShortestPathDijkstraMultiTarget():
-    g, weights = graphAndWeights()
-    sp = nifty.graph.ShortestPathDijkstra(g)
-
-    # we need to check 2 times to make sure that more than 1 runs work
-    for _ in range(2):
-        paths = sp.runSingleSourceMultiTarget(weights, 0, [4,5])
-
-        assert len(paths) == 2
-
-        # shortest path 0 -> 4:
-        # 0 - 1, 1 - 2, 3 - 4
-        path = paths[0]
-        path.reverse()
-        assert len(path) == 5, str(len(path))
-        for ii in range(5):
-            assert path[ii] == ii, "%i, %i" % (path[ii], ii)
-
-        # shortest path 0 -> 5:
-        # 0 - 5
-        path = paths[1]
-        path.reverse()
-        assert len(path) == 2, str(len(path))
-        assert path[0] == 0, str(path[0])
-        assert path[1] == 5, str(path[1])
-    print("Test Multi Target successfull")
-
-
-def testShortestPathDijkstraMultiTargetParallel():
-    g, weights = graphAndWeights()
-    N = 50
-    sources = N*[0]
-    targets = [[4,5] for _ in xrange(N)]
-
-    for _ in range(2):
-        parallelPaths = nifty.graph.shortestPathMultiTargetParallel(
+    def testShortestPathDijkstraSingleTargetParallel(self):
+        g, weights = self.graphAndWeights()
+        N = 50
+        sources = N * [0L]
+        targets = N * [4L]
+        parallelPaths = nifty.graph.shortestPathSingleTargetParallel(
             g,
-            weights,
+            weights.tolist(),
             sources,
             targets,
             returnNodes=True,
-            numberOfThreads=5
+            numberOfThreads=4
         )
-        for paths in parallelPaths:
-            assert len(paths) == 2
+
+        for path in parallelPaths:
+            # shortest path 0 -> 4:
+            # 0 - 1, 1 - 2, 3 - 4
+            self.assertEqual(len(path), 5, str(len(path)))
+            path.reverse()
+            for ii in range(5):
+                self.assertEqual(path[ii], ii, "%i, %i" % (path[ii], ii))
+
+    def testShortestPathDijkstraMultiTarget(self):
+        g, weights = self.graphAndWeights()
+        sp = nifty.graph.ShortestPathDijkstra(g)
+        # we need to check 2 times to make sure that more than 1 runs work
+        for _ in range(2):
+            paths = sp.runSingleSourceMultiTarget(weights, 0, [4,5])
+            self.assertEqual(len(paths), 2)
             # shortest path 0 -> 4:
             # 0 - 1, 1 - 2, 3 - 4
             path = paths[0]
             path.reverse()
-            assert len(path) == 5, str(len(path))
+            self.assertEqual(len(path), 5, str(len(path)))
             for ii in range(5):
-                assert path[ii] == ii, "%i, %i" % (path[ii], ii)
+                self.assertEqual(path[ii], ii, "%i, %i" % (path[ii], ii))
 
             # shortest path 0 -> 5:
             # 0 - 5
             path = paths[1]
             path.reverse()
-            assert len(path) == 2, str(len(path))
-            assert path[0] == 0, str(path[0])
-            assert path[1] == 5, str(path[1])
-    print("Test Multi Target Parallel successfull")
+            self.assertEqual(len(path) , 2, str(len(path)))
+            self.assertEqual(path[0] , 0, str(path[0]))
+            self.assertEqual(path[1] , 5, str(path[1]))
 
+    def testShortestPathDijkstraMultiTargetParallel(self):
+        g, weights = self.graphAndWeights()
+        N = 50
+        sources = N*[0]
+        targets = [[4,5] for _ in xrange(N)]
 
-def testShortestPathInvalid():
-    edges = numpy.array([
-        [0,1],
-        [2,3]
-    ], dtype = 'uint64')
-    g = nifty.graph.UndirectedGraph(4)
-    g.insertEdges(edges)
-    sp = nifty.graph.ShortestPathDijkstra(g)
-    weights = [1.,1.]
-    path = sp.runSingleSourceSingleTarget(weights, 0, 3)
-    assert not path # make sure that the path is invalid
-    print("Test Invalid successfull")
+        for _ in range(2):
+            parallelPaths = nifty.graph.shortestPathMultiTargetParallel(
+                g,
+                weights,
+                sources,
+                targets,
+                returnNodes=True,
+                numberOfThreads=5
+            )
+            for paths in parallelPaths:
+                self.assertEqual(len(paths), 2)
+                # shortest path 0 -> 4:
+                # 0 - 1, 1 - 2, 3 - 4
+                path = paths[0]
+                path.reverse()
+                self.assertEqual(len(path), 5, str(len(path)))
+                for ii in range(5):
+                    self.assertEqual(path[ii] , ii, "%i, %i" % (path[ii], ii))
 
+                # shortest path 0 -> 5:
+                # 0 - 5
+                path = paths[1]
+                path.reverse()
+                self.assertEqual(len(path) , 2, str(len(path)))
+                self.assertEqual(path[0] , 0, str(path[0]))
+                self.assertEqual(path[1] , 5, str(path[1]))
 
-# TODO check that invalid paths are handled correctly
-if __name__ == '__main__':
-    testShortestPathDijkstraSingleTarget()
-    testShortestPathDijkstraSingleTargetParallel()
-    testShortestPathDijkstraMultiTarget()
-    testShortestPathDijkstraMultiTargetParallel()
-    testShortestPathInvalid()
+    def testShortestPathInvalid(self):
+        edges = numpy.array([
+            [0,1],
+            [2,3]
+        ], dtype = 'uint64')
+        g = nifty.graph.UndirectedGraph(4)
+        g.insertEdges(edges)
+        sp = nifty.graph.ShortestPathDijkstra(g)
+        weights = [1.,1.]
+        path = sp.runSingleSourceSingleTarget(weights, 0, 3)
+        self.assertTrue(not path) # make sure that the path is invalid

@@ -1,12 +1,11 @@
 from __future__ import print_function
 import unittest
+import random
+import numpy
 
 import nifty
 import nifty.graph
 nlmc = nifty.graph.lifted_multicut
-import numpy
-import random
-
 
 
 class TestLiftedGraphFeatures(unittest.TestCase):
@@ -17,7 +16,7 @@ class TestLiftedGraphFeatures(unittest.TestCase):
         G = nifty.graph.UndirectedGraph
         g =  G(gridSize[0] * gridSize[1])
         for x in range(gridSize[0]):
-            for y in range(gridSize[1]):  
+            for y in range(gridSize[1]):
 
                 u = nid(x,y)
 
@@ -40,7 +39,7 @@ class TestLiftedGraphFeatures(unittest.TestCase):
         graph = obj.graph
         liftedGraph = obj.liftedGraph
 
-    
+
         # this should  add edges
         obj.insertLiftedEdgesBfs(bfsRadius)
         postEdges = liftedGraph.numberOfEdges
@@ -54,15 +53,13 @@ class TestLiftedGraphFeatures(unittest.TestCase):
         return obj,nid
 
 
-
-     
     def testLiftedUcFeatures(self):
         obj,nid = self.gridLiftedModel(gridSize=[100,100],bfsRadius=3)
 
-        graph = obj.graph 
+        graph = obj.graph
 
         edgeIndicators = numpy.random.rand(graph.edgeIdUpperBound + 1) + 2.0
-        edgeSizes      = numpy.random.rand(graph.edgeIdUpperBound + 1) + 0.5  
+        edgeSizes      = numpy.random.rand(graph.edgeIdUpperBound + 1) + 0.5
         nodeSizes      = numpy.random.rand(graph.nodeIdUpperBound + 1) + 0.5
 
         features = nlmc.liftedUcmFeatures(
@@ -86,6 +83,5 @@ class TestLiftedGraphFeatures(unittest.TestCase):
 
         self.assertGreaterEqual(featuresRaw.min(), 2.0)
         self.assertLessEqual(featuresRaw.max(), 3.0)
-
 
         self.assertGreaterEqual(featuresReg.min(), 0.0)
