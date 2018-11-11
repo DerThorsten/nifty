@@ -26,25 +26,31 @@ namespace minstcut{
         auto minstcutObjectiveCls = py::class_<ObjectiveType>(minstcutModule, clsName.c_str());
         minstcutObjectiveCls
             .def_property_readonly("graph", &ObjectiveType::graph)
-            .def("evalNodeLabels",[](const ObjectiveType & objective,  nifty::marray::PyView<uint64_t> array){
+            .def("evalNodeLabels",[](const ObjectiveType & objective,
+                                     nifty::marray::PyView<uint64_t> array){
                 return objective.evalNodeLabels(array);
             })
         ;
 
 
         minstcutModule.def("minstcutObjective",
-            [](const GraphType & graph,  nifty::marray::PyView<double> weightsArray, nifty::marray::PyView<double> unrariesArray){
+            [](const GraphType & graph,
+               nifty::marray::PyView<double> weightsArray,
+               nifty::marray::PyView<double> unrariesArray){
+
                 NIFTY_CHECK_OP(weightsArray.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(weightsArray.shape(0),==,graph.edgeIdUpperBound()+1,"wrong shape");
+                NIFTY_CHECK_OP(weightsArray.shape(0),==,graph.edgeIdUpperBound()+1,
+                               "wrong shape");
 
                 NIFTY_CHECK_OP(unrariesArray.dimension(),==,2,"wrong dimensions");
-                NIFTY_CHECK_OP(unrariesArray.shape(0),==,graph.nodeIdUpperBound()+1,"wrong shape");
+                NIFTY_CHECK_OP(unrariesArray.shape(0),==,graph.nodeIdUpperBound()+1,
+                               "wrong shape");
                 NIFTY_CHECK_OP(unrariesArray.shape(1),==,2, "wrong shape");
-                
+
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
                 auto & unaries = obj->unaries();
-                
+
                 graph.forEachEdge([&](int64_t edge){
                     weights[edge] += weightsArray(edge);
                 });
@@ -59,7 +65,7 @@ namespace minstcut{
             },
             py::return_value_policy::take_ownership,
             py::keep_alive<0, 1>(),
-            py::arg("graph"),py::arg("weights"),py::arg("unaries")  
+            py::arg("graph"),py::arg("weights"),py::arg("unaries")
         );
     }
 
@@ -72,11 +78,11 @@ namespace minstcut{
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             exportMinstcutObjectiveT<GraphType>(minstcutModule);
-        }        
+        }
 
     }
- 
-} // namespace nifty::graph::opt::minstcut   
+
+} // namespace nifty::graph::opt::minstcut
 } // namespace nifty::graph::opt
 }
 }

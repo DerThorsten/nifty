@@ -57,7 +57,8 @@ class TestSkeletons(unittest.TestCase):
         if os.path.exists('./tmp'):
             rmtree('./tmp')
 
-    @unittest.skipUnless(WITH_Z5 and WITH_Z5PY)
+    @unittest.skipUnless(WITH_Z5 and WITH_Z5PY,
+                         "Need z5 support")
     def test_nodes(self):
         import nifty.skeletons as nskel
         out = nskel.getSkeletonNodeAssignments('./tmp/seg.n5/seg', './tmp/skels.n5', [1, 2], 1)

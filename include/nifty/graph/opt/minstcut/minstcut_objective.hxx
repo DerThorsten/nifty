@@ -25,7 +25,7 @@ namespace minstcut{
 
             for(const auto edge: g.edges()){
                 const auto uv = g.uv(edge);
-                
+
                 if(nodeLabels[uv.first] != nodeLabels[uv.second]){
                     sum += w[edge];
                 }
@@ -56,12 +56,12 @@ namespace minstcut{
     };
 
 
-    template<class GRAPH, class WEIGHT_TYPE>   
+    template<class GRAPH, class WEIGHT_TYPE>
     class MinstcutObjective :  public
         MinstcutObjectiveBase<
             MinstcutObjective<GRAPH, WEIGHT_TYPE>, GRAPH, WEIGHT_TYPE
         >
-    {   
+    {
     public:
         typedef GRAPH GraphType;
         typedef WEIGHT_TYPE WeightType;
@@ -70,7 +70,7 @@ namespace minstcut{
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
         MinstcutObjective(const GraphType & g )
         :   graph_(g),
-            weights_(g, 0.0),unaries_(g, {0.0 , 0.0})   
+            weights_(g, 0.0),unaries_(g, {0.0 , 0.0})
         {
 
         }

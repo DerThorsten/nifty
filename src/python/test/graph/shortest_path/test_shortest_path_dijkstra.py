@@ -39,8 +39,8 @@ class TestShortesetPath(unittest.TestCase):
     def testShortestPathDijkstraSingleTargetParallel(self):
         g, weights = self.graphAndWeights()
         N = 50
-        sources = N * [0L]
-        targets = N * [4L]
+        sources = N * [0]
+        targets = N * [4]
         parallelPaths = nifty.graph.shortestPathSingleTargetParallel(
             g,
             weights.tolist(),
@@ -85,7 +85,7 @@ class TestShortesetPath(unittest.TestCase):
         g, weights = self.graphAndWeights()
         N = 50
         sources = N*[0]
-        targets = [[4,5] for _ in xrange(N)]
+        targets = [[4,5] for _ in range(N)]
 
         for _ in range(2):
             parallelPaths = nifty.graph.shortestPathMultiTargetParallel(

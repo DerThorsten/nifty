@@ -163,7 +163,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             obj, nid = self.gridLiftedModel(gridSize=[40,40] , bfsRadius=4, weightRange=[-1,1])
 
             pgen = obj.watershedProposalGenerator(sigma=1.0,
-                                                  seedingStrategie='SEED_FROM_LOCAL',
+                                                  seedingStrategy='SEED_FROM_LOCAL',
                                                   numberOfSeeds=0.1)
             # print(x)
 

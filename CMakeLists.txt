@@ -25,13 +25,10 @@ message(STATUS "${PROJECT_NAME} v${${PROJECT_NAME}_VERSION}")
 
 include(CheckCXXCompilerFlag)
 
-
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
 # Old ABI to be compatible with boost
 # add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
-
-
 
 option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)
@@ -79,10 +76,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 17 support
+# check for c++ 14 support
 #-------------------------------------------------------------------------------------------------------------------
 
-set(CMAKE_CXX_STANDARD 17)
+# TODO enable compiling with c++17
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # WITH_LP_MP needs special treatment since

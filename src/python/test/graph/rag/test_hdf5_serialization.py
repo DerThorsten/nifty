@@ -2,9 +2,16 @@ from __future__ import print_function
 import unittest
 import os
 import numpy as np
+
 import nifty
 import nifty.graph.rag as nrag
-import vigra
+WITH_HDF5 = nifty.Configuration.WITH_HDF5
+
+try:
+    import h5py
+    WITH_H5PY = True
+except ImportError:
+    WITH_H5PY = False
 
 
 class TestHdf5Serialization(unittest.TestCase):
@@ -42,14 +49,15 @@ class TestHdf5Serialization(unittest.TestCase):
             assert min_label == prev_max + 1
             prev_max = max_label
 
-    @unittest.skipUnless(nifty.Configuration.WITH_HDF5, "skipping hdf5 tests")
+    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY, "need nifty hdf5 and h5py")
     def test_hdf5_serialization(self):
         import nifty.hdf5 as nh5
         seg = self.make_random_stacked_seg((20, 100, 100))
         self.check_stacked(seg)
         n_labels = seg.max() + 1
 
-        vigra.writeHDF5(seg, self.seg_path, 'data')
+        with h5py.File(self.seg_path) as f:
+            f.create_dataset('data', data=seg)
 
         label_f = nh5.openFile(self.seg_path)
         labels = nh5.Hdf5ArrayUInt32(label_f, 'data')

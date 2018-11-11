@@ -30,7 +30,8 @@ class TestHDF5(unittest.TestCase):
         except OSError:
             pass
 
-    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY)
+    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY,
+                         "Need nifty-hdf5 and h5py")
     def test_hdf5_read_from_chunked(self):
         import nifty.hdf5 as nhdf5
         fpath = os.path.join(self.tempFolder, '_nifty_test_array__.h5')
@@ -59,7 +60,8 @@ class TestHDF5(unittest.TestCase):
         self.assertEqual(subarray.shape, expected.shape)
         self.assertTru(numpy.allclose(subarray, expected))
 
-    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY)
+    @unittest.skipUnless(WITH_HDF5 and WITH_H5PY,
+                         "Need nifty-hdf5 and h5py")
     def test_hdf5_read_from_non_chunked(self):
         import nifty.hdf5 as nhdf5
         fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
@@ -87,7 +89,7 @@ class TestHDF5(unittest.TestCase):
         self.assertEqual(subarray.shape, expected.shape)
         self.assertTru(numpy.allclose(subarray, expected))
 
-    @unittest.skipUnless(WITH_HDF5)
+    @unittest.skipUnless(WITH_HDF5, "Need nifty-hdf5")
     def test_create_chunked_array(self):
         import nifty.hdf5 as nhdf5
         fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
@@ -112,7 +114,7 @@ class TestHDF5(unittest.TestCase):
 
         self.assertTrue(numpy.array_equal(toWrite, subarray))
 
-    @unittest.skipUnless(WITH_HDF5)
+    @unittest.skipUnless(WITH_HDF5, "Need nifty-hdf5")
     def test_create_zipped_array(self):
         import nifty.hdf5 as nhdf5
         fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
@@ -143,7 +145,7 @@ class TestHDF5(unittest.TestCase):
 
         self.assertTrue(numpy.array_equal(toWrite, subarray))
 
-    @unittest.skipUnless(WITH_HDF5)
+    @unittest.skipUnless(WITH_HDF5, "Need nifty-hdf5")
     def testHdf5Offsets(self):
         import nifty.hdf5 as nhdf5
         from itertools import combinations

@@ -46,9 +46,7 @@ class TestRagBase(unittest.TestCase):
             self.assertEqual(fRes, -1)
 
 
-# TODO same test skeletons for all rag implementations
 class TestRag(TestRagBase):
-
     # This will fail because the expliecit labels python bindings are broken
     def test_insert(self):
         labels = numpy.zeros(shape=(2, 2), dtype='uint32')
@@ -59,17 +57,10 @@ class TestRag(TestRagBase):
         labels[1, 1] = 2
 
         g = nrag.gridRag(labels, labels.max() + 1)
-
         self.assertEqual(g.numberOfNodes, 3)
         self.assertEqual(g.numberOfEdges, 3)
-
-        insertWorked = True
-        # TODO we should use a assertRaises here
-        try:
+        with self.assertRaises(RuntimeError):
             g.insertEdge(0, 1)
-        except:
-            insertWorked = False
-        self.assertFalse(insertWorked)
 
     # This will fail because the expliecit labels python bindings are broken
     def test_explicit_labels_rag2d(self):

@@ -53,26 +53,26 @@ class TestAccumulateStacked(unittest.TestCase):
         n_edges_z  = rag.totalNumberOfInBetweenSliceEdges
 
         # test complete accumulation
-        print("Complete Accumulation ...")
+        # print("Complete Accumulation ...")
         feats_xy, feats_z = accumulation_function(rag,
                                                   self.data,
                                                   numberOfThreads=-1)
         self.check_features(feats_xy, n_edges_xy)
         self.check_features(feats_z, n_edges_z)
-        print("... passed")
+        # print("... passed")
 
         # test xy-feature accumulation
-        print("Complete XY Accumulation ...")
+        # print("Complete XY Accumulation ...")
         feats_xy, feats_z = accumulation_function(rag,
                                                   self.data,
                                                   keepXYOnly=True,
                                                   numberOfThreads=-1)
         self.check_features(feats_xy, n_edges_xy)
         self.assertEqual(len(feats_z), 1)
-        print("... passed")
+        # print("... passed")
 
         # test z-feature accumulation for all 3 directions
-        print("Complete Z Accumulations ...")
+        # print("Complete Z Accumulations ...")
         for z_direction in (0, 1, 2):
             feats_xy, feats_z = accumulation_function(rag,
                                                       self.data,
@@ -81,7 +81,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                                       numberOfThreads=-1)
             self.assertEqual(len(feats_xy), 1)
             self.check_features(feats_z, n_edges_z)
-        print("... passed")
+        # print("... passed")
 
     def test_standard_features_in_core(self):
         self.accumulation_in_core_test(nrag.accumulateEdgeStandardFeatures)

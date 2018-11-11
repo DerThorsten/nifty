@@ -30,14 +30,13 @@ namespace cgp{
     template<>
     class TopologicalGrid<2>{
     private:
-        typedef array::StaticArray<int64_t, 2 > CoordinateType;
-        typedef array::StaticArray<uint32_t, 3 > NumberOfCellsType;
+        typedef array::StaticArray<int64_t, 2> CoordinateType;
+        typedef array::StaticArray<uint32_t, 3> NumberOfCellsType;
 
     public:
 
         template<class T>
         TopologicalGrid(const nifty::marray::View<T> & labels);
-
 
 
         uint32_t operator()(const CoordinateType & coord)const{

@@ -24,10 +24,14 @@ matrix:
         - conda config --set always_yes yes --set changeps1 no;
         - conda update -q conda;
         - conda info -a;
-        #
+        
+        # TODO c++ 17 compilation not supported fully with xtensor yet
+        # - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
+        # - source activate dev
+        # - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image vigra
         - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
         - source activate dev
-        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image vigra
+        - conda install -c conda-forge glpk xtensor-python boost-cpp=1.67 scikit-image vigra
 
       script:
 
@@ -47,8 +51,6 @@ matrix:
         - export CC="$ENV_BIN/x86_64-conda_cos6-linux-gnu-cc"
         - export CXX="$ENV_BIN/x86_64-conda_cos6-linux-gnu-c++"
         
-        #-DCMAKE_C_COMPILER=$C_COMPILER_PATH
-        #-DCMAKE_CXX_COMPILER=$COMPILER_PATH
         ###############################################
         # configure cmake
         ###############################################
@@ -87,4 +89,4 @@ matrix:
         ###############################################
         - make install
         # run all python unittests
-        - $ENV_BIN/python -m unittest discover -s src/python/test
+        - $ENV_BIN/python -m unittest discover -v src/python/test

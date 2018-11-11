@@ -41,14 +41,14 @@ class TestMincutSolver(unittest.TestCase):
         obj = nifty.graph.opt.mincut.mincutObjective(g,w)
         return obj
 
-    @unittest.skipUnless(nifty.Configuration.WITH_QPBO)
+    @unittest.skipUnless(nifty.Configuration.WITH_QPBO, "need qpbo")
     def testMincutQpbo(self):
         objective = self.gridModel(gridSize=[4,4])
         solver = objective.mincutQpboFactory(improve=False).create(objective)
         visitor = objective.verboseVisitor(1)
         arg = solver.optimize(visitor)
 
-    @unittest.skipUnless(nifty.Configuration.WITH_QPBO)
+    @unittest.skipUnless(nifty.Configuration.WITH_QPBO, "need qpbo")
     def testMincutQpboImprove(self):
         objective = self.gridModel(gridSize=[8,8])
         solver = objective.mincutQpboFactory(improve=True).create(objective)

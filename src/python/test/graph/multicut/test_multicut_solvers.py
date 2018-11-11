@@ -70,7 +70,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         solver = factory.create(objective)
         arg = solver.optimize()
 
-    @unittest.skipUnless(nifty.Configuration.WITH_QPBO)
+    @unittest.skipUnless(nifty.Configuration.WITH_QPBO, "need qpbo")
     def testCgc(self):
         objective = self.gridModel(gridSize=[6,6])
         solver = objective.cgcFactory(True,True).create(objective)
@@ -112,17 +112,17 @@ class TestLiftedMulticutSolver(unittest.TestCase):
             Obj.ccFusionMoveBasedFactory(proposalGenerator= Obj.randomNodeColorCcProposals()),
             gridSize=[10,10])
 
-    @unittest.skipUnless(nifty.Configuration.WITH_CPLEX)
+    @unittest.skipUnless(nifty.Configuration.WITH_CPLEX, "need cplex")
     def testMulticutIlpCplex(self):
         Obj = nifty.graph.UndirectedGraph.MulticutObjective
         self._testGridModelImpl(Obj.multicutIlpCplexFactory(), gridSize=[5,5])
 
-    @unittest.skipUnless(nifty.Configuration.WITH_GUROBI)
+    @unittest.skipUnless(nifty.Configuration.WITH_GUROBI, "need gurobi")
     def testMulticutIlpGurobi(self):
         Obj = nifty.graph.UndirectedGraph.MulticutObjective
         self._testGridModelImpl(Obj.multicutIlpGurobiFactory(), gridSize=[5,5])
 
-    @unittest.skipUnless(nifty.Configuration.WITH_GLPK)
+    @unittest.skipUnless(nifty.Configuration.WITH_GLPK, "need glpk")
     def testMulticutIlpGlpk(self):
         Obj = nifty.graph.UndirectedGraph.MulticutObjective
         objective = self.gridModel(gridSize=[4,5])

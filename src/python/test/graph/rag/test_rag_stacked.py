@@ -11,7 +11,10 @@ try:
 except ImportError:
     WITH_H5PY = False
 
-from test_rag import TestRagBase
+try:
+    from .test_rag import TestRagBase
+except ImportError:
+    from test_rag import TestRagBase
 
 
 class TestRagStacked(TestRagBase):
