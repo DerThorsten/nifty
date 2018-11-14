@@ -248,6 +248,7 @@ namespace distributed {
             return max_overlaps;
         }, py::arg("labels"), py::arg("gt"));
 
+
         module.def("connectedComponents", [](const Graph & graph,
                                              const xt::pytensor<bool, 1> & edgeLabels,
                                              const bool ignoreLabel){
@@ -258,6 +259,16 @@ namespace distributed {
             }
             return labels;
         }, py::arg("graph"), py::arg("edgeLabels"), py::arg("ignoreLabel"));
+
+
+        module.def("serializeBlockMapping", [](const std::string & inputPath,
+                                               const std::string & outputPath,
+                                               const std::size_t idStart,
+                                               const std::size_t idStop){
+            py::gil_scoped_release allowThreads;
+            serializeBlockMapping(inputPath, outputPath, idStart, idStop);
+        }, py::arg("inputPath"), py::arg("outputPath"),
+           py::arg("idStart"), py::arg("idStop"));
     }
 
 }

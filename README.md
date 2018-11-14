@@ -1,6 +1,6 @@
 Travis (Ubuntu builds)
 ---------------------------------
-Master: [![Build Status master](https://travis-ci.org/DerThorsten/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty) Dev: [![Build Status dev](https://travis-ci.org/DerThorsten/nifty.svg?branch=dev)](https://travis-ci.org/DerThorsten/nifty)
+Master: [![Build Status master](https://travis-ci.org/constantinpape/nifty.svg?branch=master)](https://travis-ci.org/DerThorsten/nifty)
 
 Appveyor (Windows builds)
 ---------------------------------
