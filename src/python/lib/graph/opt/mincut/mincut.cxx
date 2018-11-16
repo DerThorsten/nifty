@@ -1,6 +1,10 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -16,12 +20,12 @@ namespace mincut{
     void exportMincutBase(py::module &);
     #if WITH_QPBO
     void exportMincutQpbo(py::module &);
-    #endif 
+    #endif
 
     void exportMincutCcFusionMoveBased(py::module &);
     #if WITH_QPBO
     void exportMincutGreedyAdditive(py::module &);
-    #endif 
+    #endif
 
 } // namespace nifty::graph::opt::mincut
 } // namespace nifty::graph::opt
@@ -29,15 +33,13 @@ namespace mincut{
 }
 
 
-
-
 PYBIND11_MODULE(_mincut, mincutModule) {
 
     py::options options;
     options.disable_function_signatures();
-    
+
     mincutModule.doc() = "mincut submodule of nifty.graph";
-    
+
     using namespace nifty::graph::opt::mincut;
 
     exportMincutObjective(mincutModule);
@@ -49,6 +51,4 @@ PYBIND11_MODULE(_mincut, mincutModule) {
     exportMincutGreedyAdditive(mincutModule);
     #endif
     exportMincutCcFusionMoveBased(mincutModule);
-
 }
-

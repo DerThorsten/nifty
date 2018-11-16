@@ -1,7 +1,5 @@
 #include <pybind11/pybind11.h>
 
-
-
 #define FORCE_IMPORT_ARRAY
 #include "xtensor-python/pyarray.hpp"
 #include "xtensor-python/pyvectorize.hpp"
@@ -45,9 +43,9 @@ PYBIND11_MODULE(_lifted_multicut, liftedMulticutModule) {
 
     py::options options;
     options.disable_function_signatures();
-    
+
     liftedMulticutModule.doc() = "lifted_multicut submodule of nifty.graph";
-    
+
     using namespace nifty::graph::opt::lifted_multicut;
 
     exportLiftedMulticutObjective(liftedMulticutModule);

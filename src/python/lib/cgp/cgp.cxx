@@ -1,6 +1,8 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
 
 
 namespace py = pybind11;
@@ -22,6 +24,7 @@ namespace cgp{
 
 
 PYBIND11_MODULE(_cgp, cgpModule) {
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
