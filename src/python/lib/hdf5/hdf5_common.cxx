@@ -14,9 +14,6 @@ namespace py = pybind11;
 namespace nifty{
 namespace hdf5{
 
-    using namespace marray::hdf5;
-
-
     void exportHdf5Common(py::module & hdf5Module) {
 
 
@@ -54,7 +51,7 @@ namespace hdf5{
             const CacheSettings & cacheSettings,
             const HDF5Version & hdf5version
         ){
-            return createFile(filename, cacheSettings, hdf5version);
+            return createFile(filename, hdf5version, cacheSettings);
         },
             py::arg("filename"),
             py::arg("cacheSettings"),
@@ -77,7 +74,7 @@ namespace hdf5{
             const FileAccessMode & fileAccessMode,
             const HDF5Version & hdf5version
         ){
-            return openFile(filename, cacheSettings,fileAccessMode, hdf5version);
+            return openFile(filename, fileAccessMode, hdf5version, cacheSettings);
         },
             py::arg("filename"),
             py::arg("cacheSettings"),
@@ -91,7 +88,7 @@ namespace hdf5{
             const FileAccessMode & fileAccessMode,
             const HDF5Version & hdf5version
         ){
-            return openFile(filename,fileAccessMode, hdf5version);
+            return openFile(filename, fileAccessMode, hdf5version);
         },
             py::arg("filename"),
             py::arg("fileAccessMode") = READ_ONLY,

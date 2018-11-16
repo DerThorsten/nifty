@@ -235,8 +235,8 @@ namespace agglo{
                     s.numberOfNodesStop = numberOfNodesStop;
                     s.sizeRegularizer = sizeRegularizer;
                     s.beta = beta;
-                    // create a MultibandArrayViewNodeMap
 
+                    // create a MultibandArrayViewNodeMap
                     nifty::graph::graph_maps::MultibandArrayViewNodeMap<PyViewFloat2> nodeFeaturesView(nodeFeatures);
 
                     auto ptr = new ClusterPolicyType(graph, edgeIndicators, edgeSizes, nodeFeaturesView, nodeSizes, s);
@@ -321,7 +321,6 @@ namespace agglo{
         {
             typedef PyUndirectedGraph GraphType;
 
-        
             exportMalaClusterPolicy<GraphType, false>(aggloModule);
             exportMalaClusterPolicy<GraphType, true>(aggloModule);
 
@@ -350,7 +349,7 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
-            
+
             exportLiftedGraphEdgeWeightedPolicy<GraphType, false>(aggloModule);
             exportLiftedGraphEdgeWeightedPolicy<GraphType, true>(aggloModule);
         }
@@ -368,7 +367,7 @@ namespace agglo{
             exportNodeAndEdgeWeightedClusterPolicy<GraphType, true>(aggloModule);
 
             exportMinimumNodeSizeClusterPolicy<GraphType>(aggloModule);
-            
+
             exportLiftedGraphEdgeWeightedPolicy<GraphType, false>(aggloModule);
             exportLiftedGraphEdgeWeightedPolicy<GraphType, true>(aggloModule);
         }
@@ -377,4 +376,3 @@ namespace agglo{
 } // end namespace agglo
 } // end namespace graph
 } // end namespace nifty
-    

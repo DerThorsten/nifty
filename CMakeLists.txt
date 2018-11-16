@@ -28,7 +28,7 @@ include(CheckCXXCompilerFlag)
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
 # Old ABI to be compatible with boost
-# add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
+add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 option(WITH_GUROBI OFF)
 option(WITH_CPLEX OFF)

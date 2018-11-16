@@ -40,24 +40,22 @@ namespace hdf5{
                     const int tid,
                     const int blockIndex
                 ){
+                    typedef typename xt::xarray<uint32_t>::shape_type ShapeType;
                     const auto block = blocking.getBlock(blockIndex);
-                    const auto blockShape = block.shape();
-                    
+                    const ShapeType blockShape(block.shape().begin(), block.shape().end());
                     lock.lock();
-                    nifty::marray::Marray<uint32_t> subarray(blockShape.begin(), blockShape.end());
+                    xt::xarray<uint32_t> subarray(blockShape);
                     data.readSubarray(block.begin().begin(), subarray);
 
                     const auto _val = subarray(0,0,0);
 
-                    
-                    //std::cout<<"bi "<<blockIndex<<" val "<<_val<<"\n";
                     val += _val;
                     lock.unlock();
                 }
             );
             // to make sure the above code is not optimized away
             std::cout<<"val "<<val<<"\n";
-        }   
+        }
         );
 
     }

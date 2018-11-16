@@ -1,8 +1,6 @@
 #pragma once
 
-
 #include "nifty/math/numerics.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 
@@ -43,42 +41,44 @@ public:
             sxx += g2;
         }
         for(int i=0; i<kdx_.size(); ++i){
-            //kdx_[i]  /= sx;
-            kdxx_[i] -= (sxx/kdx_.size());
+            kdxx_[i] -= (sxx / kdx_.size());
         }
     }
 
 
-    template<class T0, class T1>
-    void operator()(
-        const nifty::marray::View< T0 > & coordinates,
-        nifty::marray::View< T1 > & out,
-        const bool closedLine
-    ) const {
+    template<class ARR0, class ARR1>
+    void operator()(const ARR0 & coordinates,
+                    ARR1 & out,
+                    const bool closedLine) const {
+        //
+        typedef typename ARR0::value_type T0;
+        typedef typename ARR1::value_type T1;
+
         struct CoordAdaptor{
-            CoordAdaptor(const nifty::marray::View< T0 > & _coordinates)
+            CoordAdaptor(const ARR0 & _coordinates)
             : coordinates_(_coordinates){
             }
             //
-            std::array<ValueType,2> operator[](const size_t i)const{
+            std::array<ValueType, 2> operator[](const size_t i)const{
                 std::array<ValueType,2> ret;
                 ret[0] = coordinates_(i, 0);
                 ret[1] = coordinates_(i, 1);
                 return ret;
             }
-            const nifty::marray::View< T0 > & coordinates_;
+            const ARR0 & coordinates_;
         };
+
         struct OutAdaptor{
-            OutAdaptor(const nifty::marray::View< T1 > & _out)
+            OutAdaptor(ARR1 & _out)
             : out_(_out){
             }
-            T0 & operator[](const size_t i)const{
+            T1 & operator[](const size_t i) {
                 return out_(i);
             }
-            const nifty::marray::View< T0 > & out_;
+            ARR1 & out_;
         };
-        this->impl(CoordAdaptor(coordinates),OutAdaptor(out),
-                    coordinates.shape(0), closedLine);
+        this->impl(CoordAdaptor(coordinates), OutAdaptor(out),
+                    coordinates.shape()[0], closedLine);
     }
 
     template<class COORD_ITER, class OUT_ITER>
@@ -88,10 +88,10 @@ public:
         OUT_ITER   outIter,
         const bool closedLine
     ) const {
-        this->impl(coordsBegin, outIter, 
+        this->impl(coordsBegin, outIter,
             std::distance(coordsBegin, coordsEnd),
             closedLine);
-    }   
+    }
 
 
     int radius()const{
@@ -109,7 +109,7 @@ private:
 
         const auto kSize = 2*radius_ + 1;
 
-        struct CoordinateExtrapolator{   
+        struct CoordinateExtrapolator{
             CoordinateExtrapolator(
                 const COORD_ITER & _coordinates,
                 const size_t s
@@ -158,9 +158,9 @@ private:
 
             ValueType dx[2]  = {ValueType(0),ValueType(0)};
             ValueType dxx[2] = {ValueType(0),ValueType(0)};
-      
+
             for(int ki=0; ki<kSize; ++ki){
-                
+
                 const auto di = i - radius_ + ki;
                 const auto eCoord = cExt[di];
 
@@ -168,8 +168,8 @@ private:
                     dx[d]  += ValueType(eCoord[d]) * kdx_[ki];
                     dxx[d] += ValueType(eCoord[d]) * kdxx_[ki];
                 }
-            }   
-            
+            }
+
             const auto a = std::abs(dx[0]*dxx[1] -  dx[1]*dxx[0]);
             const auto b = std::pow(dx[0]*dx[0] + dx[1]*dx[1], 3.0/2.0);
 
@@ -178,7 +178,7 @@ private:
                 outIter[i] = 0.0;
             }
             else{
-                const auto k  = (a)/(b); 
+                const auto k  = (a)/(b);
                 outIter[i] = k;
             }
         }
@@ -196,11 +196,6 @@ private:
 
 
 
-
-
-
-
-
 #if 0
 
 template<class T = long double>
@@ -213,14 +208,14 @@ public:
     StepCurvature2D(const int step = 2)
     :   step_(step)
     {
-       
+
     }
 
 
     template<class T0, class T1>
     void operator()(
-        const nifty::marray::View< T0 > & coordinates,
-        nifty::marray::View< T1 > & out
+        const xt::xtensor<T0, 2> & coordinates,
+        xt::xtensor<T1, 1> & out
     ) const {
         int step  = step_;
         std::vector< double > vecCurvature( vecContourPoints.size() );
@@ -228,9 +223,7 @@ public:
             step = 1;
         }
 
-       
         bool isClosed = false;
-        
         cv::Point2f pplus, pminus;
         cv::Point2f f1stDerivative, f2ndDerivative;
         for (int i = 0; i < vecContourPoints.size(); i++ ){
@@ -280,15 +273,7 @@ private:
     std::vector<ValueType> kdx_;
     std::vector<ValueType> kdxx_;
 };
-
 #endif
 
-
-
-
-
-
-
-    
 } // end namespace nifty::filters
 } // end namespace nifty

@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include "xtensor-python/pytensor.hpp"
 
-#include "nifty/python/converter.hxx"
 #include "nifty/python/graph/undirected_grid_graph.hxx"
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/opt/lifted_multicut/lifted_multicut_objective.hxx"
@@ -26,14 +26,15 @@ namespace lifted_multicut{
         liftedMulticutModule.def("liftedUcmFeatures",
             [](
                 const ObjectiveType & objective,
-                marray::PyView<double,1> edgeIndicators,
-                marray::PyView<double,1> edgeSizes,
-                marray::PyView<double,1> nodeSizes,
+                const xt::pytensor<double,1> & edgeIndicators,
+                const xt::pytensor<double,1> & edgeSizes,
+                const xt::pytensor<double,1> & nodeSizes,
                 std::vector<double > sizeRegularizers
             ){
                 const size_t numberOfFeatures = sizeRegularizers.size() * 2;
                 const size_t numberOfLiftedEdges = objective.numberOfLiftedEdges();
-                marray::PyView<double> out({numberOfFeatures, numberOfLiftedEdges});
+                xt::pytensor<double, 2> out({static_cast<int64_t>(numberOfFeatures),
+                                             static_cast<int64_t>(numberOfLiftedEdges)});
 
                 {
                     py::gil_scoped_release allowThreads;
@@ -51,9 +52,8 @@ namespace lifted_multicut{
             py::arg("nodeSizes"),
             py::arg("sizeRegularizers")
         );
-       
     }
-    
+
     void exportLiftedGraphFeatures(py::module & liftedMulticutModule){
         {
             typedef PyUndirectedGraph GraphType;

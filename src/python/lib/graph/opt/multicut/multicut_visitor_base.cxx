@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include "xtensor-python/pytensor.hpp"
 
 
 #include "nifty/graph/opt/multicut/multicut_base.hxx"
@@ -13,11 +14,6 @@
 #include "nifty/python/graph/opt/multicut/multicut_objective.hxx"
 #include "nifty/python/graph/opt/multicut/py_multicut_visitor_base.hxx"
 #include "nifty/graph/opt/common/logging_visitor.hxx"
-
-#include "nifty/python/converter.hxx"
-
-
-
 
 
 namespace py = pybind11;
@@ -40,22 +36,17 @@ namespace multicut{
         typedef PyMulticutVisitorBase<ObjectiveType>    PyVisitorBaseType;
         typedef MulticutVisitorBase<ObjectiveType>      VisitorBaseType;
 
-        
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
         const auto visitorBaseClsName = std::string("VisitorBase") + objName;
-        
 
         // base factory
         py::class_<
             VisitorBaseType,
-            std::unique_ptr<VisitorBaseType>, 
-            PyVisitorBaseType 
+            std::unique_ptr<VisitorBaseType>,
+            PyVisitorBaseType
         > visitorBase(module, visitorBaseClsName.c_str());
-        
-   
 
         // concrete visitors
-        
         {
             const auto visitorClsName = std::string("VerboseVisitor") + objName;
             typedef MulticutVerboseVisitor<ObjectiveType> VisitorType; 
@@ -92,21 +83,27 @@ namespace multicut{
                 // logging
                 .def("iterations",[](const VisitorType & visitor){
                     const auto vec = visitor.iterations();
-                    nifty::marray::PyView<uint32_t> ret({vec.size()});
+                    typedef typename xt::pytensor<uint32_t, 1>::shape_type ShapeType;
+                    ShapeType shape = {static_cast<int64_t>(vec.size())};
+                    xt::pytensor<uint32_t, 1> ret(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;
                 })
                 .def("energies",[](const VisitorType & visitor){
                     const auto vec = visitor.energies();
-                    nifty::marray::PyView<double> ret({vec.size()});
+                    typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
+                    ShapeType shape = {static_cast<int64_t>(vec.size())};
+                    xt::pytensor<double, 1> ret(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;
                 })
                 .def("runtimes",[](const VisitorType & visitor){
                     const auto vec = visitor.runtimes();
-                    nifty::marray::PyView<double> ret({vec.size()});
+                    typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
+                    ShapeType shape = {static_cast<int64_t>(vec.size())};
+                    xt::pytensor<double, 1> ret(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;

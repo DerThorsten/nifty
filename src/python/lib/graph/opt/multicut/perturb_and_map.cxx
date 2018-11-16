@@ -2,11 +2,10 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include <xtensor-python/pytensor.hpp>
 
 
 #include "nifty/graph/opt/multicut/perturb_and_map.hxx"
-#include "nifty/python/converter.hxx"
-
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/opt/multicut/multicut_objective.hxx"
@@ -42,14 +41,12 @@ namespace multicut{
             .def("optimize",
             [](
                 PerturbAndMapType * self,
-                nifty::marray::PyView<uint64_t> nodeLabelsArray
+                xt::pytensor<uint64_t, 1> nodeLabelsArray
             )
             {
                 const auto & graph = self->graph();
                 const auto nNodes = graph.numberOfNodes();
                 const auto nEdges = graph.numberOfEdges();
-
-
 
                 EdgeState edgeState(graph);
 
@@ -67,13 +64,12 @@ namespace multicut{
                     self->optimize(nodeLabels, edgeState);
                 }
 
-
-                nifty::marray::PyView<double> rarray(&nEdges,&nEdges+1);
+                typedef xt::pytensor<double, 1>::shape_type ShapeType;
+                ShapeType shape = {static_cast<int64_t>(nEdges)};
+                xt::pytensor<double, 1> rarray(shape);
                 for(auto edge: graph.edges())
                     rarray(edge) = edgeState[edge];
                 return rarray;
-    
-
             },
             py::arg_t< py::array_t<uint64_t> >("nodeLabels", py::list() )
             )

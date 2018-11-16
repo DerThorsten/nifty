@@ -2,7 +2,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include "nifty/marray/marray.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
 
@@ -30,11 +30,11 @@ namespace ground_truth{
             fill(aBegin, aEnd, bBegin);
         }
 
-        template<class LABEL_A, class LABEL_B>
+        template<class LABELS_A, class LABELS_B>
         Overlap(
             const uint64_t maxLabelSetA,
-            const marray::View<LABEL_A> arrayA,
-            const marray::View<LABEL_B> arrayB
+            const LABELS_A & arrayA,
+            const LABELS_B & arrayB
         )
         :   overlaps_(maxLabelSetA+1),
             counts_(maxLabelSetA+1){
@@ -44,7 +44,7 @@ namespace ground_truth{
             NIFTY_CHECK_OP(dimA,==,dimB,"dimension mismatch in Overlap::Overlap")
 
             for(auto d=0; d<dimA; ++d){
-                NIFTY_CHECK_OP(arrayA.shape(d),==,arrayB.shape(d),"shape mismatch in Overlap::Overlap")
+                NIFTY_CHECK_OP(arrayA.shape()[d],==,arrayB.shape()[d],"shape mismatch in Overlap::Overlap")
             }
 
             if(dimA == 1){
@@ -69,9 +69,6 @@ namespace ground_truth{
         }
 
 
-
-
-
         double differentOverlap(const LabelType u, const LabelType v)const{
 
             const auto & olU = overlaps_[u];
@@ -91,7 +88,7 @@ namespace ground_truth{
                     isDiff += (rSizeU * rSizeV);
                 }
             }
-            return isDiff;  
+            return isDiff;
         }
 
         double bleeding(const LabelType u)const{
@@ -106,7 +103,6 @@ namespace ground_truth{
             for(const auto & kv : ol){
                 maxOlCount = std::max(maxOlCount, kv.second);
             }
-            
             return 1.0 - (double(size) - double(maxOlCount))/size;
 
         }
@@ -199,20 +195,20 @@ namespace ground_truth{
         }
 
 
-        template<size_t DIM, class LABEL_A, class LABEL_B>
+        template<size_t DIM, class LABELS_A, class LABELS_B>
         void fill(
-            const marray::View<LABEL_A> arrayA,
-            const marray::View<LABEL_B> arrayB
+            const LABELS_A & arrayA,
+            const LABELS_B & arrayB
         ){
             typedef array::StaticArray<int64_t, DIM> Coord;
 
             Coord shape;
             for(auto d=0; d<DIM; ++d){
-                    shape[d] = arrayA.shape(d);
+                shape[d] = arrayA.shape()[d];
             }
             tools::forEachCoordinate(shape,[&](const Coord coord){
-                const auto la = arrayA(coord.asStdArray());
-                ++overlaps_[la][arrayB(coord.asStdArray())];
+                const auto la = xtensor::read(arrayA, coord.asStdArray());
+                ++overlaps_[la][xtensor::read(arrayB, coord.asStdArray())];
                 ++counts_[la];
             });
         }

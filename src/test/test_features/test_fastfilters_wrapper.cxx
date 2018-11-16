@@ -1,5 +1,5 @@
-#include <iostream> 
-#include <tuple> 
+#include <iostream>
+#include <tuple>
 #include <random>
 
 #include "nifty/tools/runtime_check.hxx"
@@ -11,6 +11,7 @@
 //
 // 2d filters
 //
+typedef typename xt::xarray<float>::shape_type ShapeType;
 
 //std::tuple<std::vector<std::vector<float>>> get2DTestData() {
 auto get2DTestData() {
@@ -157,8 +158,8 @@ auto get3DTestData() {
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
 {
 
-    std::vector<size_t> shapeIn({5,5});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {5,5};
+    xt::xarray<float> in(shapeIn);
     std::fill(in.begin(), in.end(), 0.);
     in(2,2) = 1.;
 
@@ -174,8 +175,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
 
     ApplyFilters<2> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
-    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(), shapeIn[0], shapeIn[1]};
+    xt::xarray<float> out(shapeOut);
 
     functor(in, out);
 
@@ -187,8 +188,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     auto testData = get2DTestData();
 
     // test filter responses for correctnes for first sigma val
-    for(size_t y = 0; y < in.shape(0); y++) { 
-        for(size_t x = 0; x < in.shape(1); x++) { 
+    for(size_t y = 0; y < in.shape(0); y++) {
+        for(size_t x = 0; x < in.shape(1); x++) {
             NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
@@ -203,8 +204,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
 {
 
     // create random test data
-    std::vector<size_t> shapeIn({100,100});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {100,100};
+    xt::xarray<float> in(shapeIn);
 
     std::default_random_engine generator;
     std::uniform_real_distribution<float> distr(0.,1.);
@@ -227,9 +228,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
 
     ApplyFilters<2> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
-    nifty::marray::Marray<float> outExpected(shapeOut.begin(), shapeOut.end());
-    nifty::marray::Marray<float> outActual(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(), shapeIn[0], shapeIn[1]};
+    xt::xarray<float> outExpected(shapeOut);
+    xt::xarray<float> outActual(shapeOut);
 
     functor(in, outExpected, true);
     functor(in, outActual, false);
@@ -241,9 +242,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
 
     // test filter responses for correctnes for first sigma val
     double tolerance = 1e-1; // we pass only if we allow for first tolerance after the first comma
-    for(size_t c = 0; c < outActual.shape(0); ++c) { 
-        for(size_t x = 0; x < outActual.shape(1); ++x) { 
-            for(size_t y = 0; y < outActual.shape(2); ++y) { 
+    for(size_t c = 0; c < outActual.shape(0); ++c) {
+        for(size_t x = 0; x < outActual.shape(1); ++x) {
+            for(size_t y = 0; y < outActual.shape(2); ++y) {
                 NIFTY_CHECK_EQ_TOL(outActual(c,x,y),outExpected(c,x,y),tolerance);
             }
         }
@@ -254,8 +255,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
 {
 
-    std::vector<size_t> shapeIn({5,5});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {5,5};
+    xt::xarray<float> in(shapeIn);
     std::fill(in.begin(), in.end(), 0.);
     in(2,2) = 1.;
 
@@ -271,8 +272,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
 
     ApplyFilters<2> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1]});
-    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(),shapeIn[0],shapeIn[1]};
+    xt::xarray<float> out(shapeOut);
 
     nifty::parallel::ParallelOptions pOpts(-1);
     nifty::parallel::ThreadPool threadpool(pOpts);
@@ -301,9 +302,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
 
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
 {
-
-    std::vector<size_t> shapeIn({5,5,5});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {5,5,5};
+    xt::xarray<float> in(shapeIn);
     std::fill(in.begin(), in.end(), 0.);
     in(2,2,2) = 1.;
 
@@ -319,8 +319,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
 
     ApplyFilters<3> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
-    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]};
+    xt::xarray<float> out(shapeOut);
 
     functor(in, out);
 
@@ -334,8 +334,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
 
     // test filter responses for correctnes for first sigma val
     for(size_t z = 0; z < in.shape(0); z++) {
-        for(size_t y = 0; y < in.shape(1); y++) { 
-            for(size_t x = 0; x < in.shape(2); x++) { 
+        for(size_t y = 0; y < in.shape(1); y++) {
+            for(size_t x = 0; x < in.shape(2); x++) {
                 NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)
@@ -350,8 +350,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
 {
 
     // create random test data
-    std::vector<size_t> shapeIn({100,100,100});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {100,100,100};
+    xt::xarray<float> in(shapeIn);
 
     std::default_random_engine generator;
     std::uniform_real_distribution<float> distr(0.,1.);
@@ -375,9 +375,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
 
     ApplyFilters<3> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
-    nifty::marray::Marray<float> outExpected(shapeOut.begin(), shapeOut.end());
-    nifty::marray::Marray<float> outActual(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]};
+    xt::xarray<float> outExpected(shapeOut);
+    xt::xarray<float> outActual(shapeOut);
 
     functor(in, outExpected, true);
     functor(in, outActual, false);
@@ -390,10 +390,10 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
     // test filter responses for correctnes for first sigma val
     double tolerance = 1e-2; // we pass only if we allow for first tolerance after the first comma
     // apparently this is more robust in 3d than in 2d
-    for(size_t c = 0; c < outActual.shape(0); ++c) { 
-        for(size_t x = 0; x < outActual.shape(1); ++x) { 
-            for(size_t y = 0; y < outActual.shape(2); ++y) { 
-                for(size_t z = 0; z < outActual.shape(3); ++z) { 
+    for(size_t c = 0; c < outActual.shape(0); ++c) {
+        for(size_t x = 0; x < outActual.shape(1); ++x) {
+            for(size_t y = 0; y < outActual.shape(2); ++y) {
+                for(size_t z = 0; z < outActual.shape(3); ++z) {
                     NIFTY_CHECK_EQ_TOL(outActual(c,x,y,z),outExpected(c,x,y,z),tolerance);
                 }
             }
@@ -405,8 +405,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
 BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
 {
 
-    std::vector<size_t> shapeIn({5,5,5});
-    nifty::marray::Marray<float> in(shapeIn.begin(), shapeIn.end());
+    ShapeType shapeIn = {5,5,5};
+    xt::xarray<float> in(shapeIn);
     std::fill(in.begin(), in.end(), 0.);
     in(2,2,2) = 1.;
 
@@ -422,8 +422,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
 
     ApplyFilters<3> functor(sigmas, filtersToSigmas);
 
-    std::vector<size_t> shapeOut({functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]});
-    nifty::marray::Marray<float> out(shapeOut.begin(), shapeOut.end());
+    ShapeType shapeOut = {functor.numberOfChannels(),shapeIn[0],shapeIn[1],shapeIn[2]};
+    xt::xarray<float> out(shapeOut.begin(), shapeOut.end());
 
     nifty::parallel::ParallelOptions pOpts(-1);
     nifty::parallel::ThreadPool threadpool(pOpts);

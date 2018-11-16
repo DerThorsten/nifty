@@ -78,10 +78,12 @@ namespace cgp{
                  labelsExp.derived_cast().shape()[1]}}),
         tShape_({{2*labelsExp.derived_cast().shape()[0] - 1,
                   2*labelsExp.derived_cast().shape()[1] - 1}}),
-        tGrid_({2*labels.derived_cast().shape()[0]-1,
-                2*labels.derived_cast().shape()[1]-1}, 0)
+        tGrid_({2*labelsExp.derived_cast().shape()[0]-1,
+                2*labelsExp.derived_cast().shape()[1]-1}, 0)
     {
 
+        typedef typename LABELS::value_type T;
+        const auto & labels = labelsExp.derived_cast();
         NIFTY_CHECK_OP(labels.dimension(),==,2,"wrong dimensions");
 
         uint32_t jLabel = 1, bLabel = 1, maxNodeLabel = 0;
