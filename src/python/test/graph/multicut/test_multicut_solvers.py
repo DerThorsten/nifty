@@ -132,3 +132,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         self.assertEqual(visitor.timeLimitTotal, float('inf'))
         self.assertEqual(visitor.timeLimitSolver, float('inf'))
         arg = solver.optimize(visitor)
+
+
+if __name__ == '__main__':
+    unittest.main()

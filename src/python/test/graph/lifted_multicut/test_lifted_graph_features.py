@@ -85,3 +85,7 @@ class TestLiftedGraphFeatures(unittest.TestCase):
         self.assertLessEqual(featuresRaw.max(), 3.0)
 
         self.assertGreaterEqual(featuresReg.min(), 0.0)
+
+
+if __name__ == '__main__':
+    unittest.main()

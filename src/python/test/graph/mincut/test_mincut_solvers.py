@@ -55,3 +55,7 @@ class TestMincutSolver(unittest.TestCase):
         visitor = objective.verboseVisitor(1)
         arg = numpy.zeros(4,dtype='uint8')
         arg = solver.optimize(visitor)
+
+
+if __name__ == '__main__':
+    unittest.main()

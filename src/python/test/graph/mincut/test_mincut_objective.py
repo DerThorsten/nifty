@@ -84,3 +84,7 @@ class TestMincutObjective(unittest.TestCase):
         value = obj.evalNodeLabels(labels)
         self.assertAlmostEqual(value,8.4)
         return obj
+
+
+if __name__ == '__main__':
+    unittest.main()

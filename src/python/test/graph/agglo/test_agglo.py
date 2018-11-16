@@ -28,3 +28,7 @@ class TestAgglo(unittest.TestCase):
 
         # TODO actually test something
         seg = agglomerativeClustering.result()
+
+
+if __name__ == '__main__':
+    unittest.main()

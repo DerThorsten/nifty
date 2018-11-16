@@ -93,3 +93,7 @@ class TestMinstcutObjective(unittest.TestCase):
         self.assertAlmostEqual(maxflow,29.3)
         self.assertAlmostEqual(value, 0.) #just a test
         return obj
+
+
+if __name__ == '__main__':
+    unittest.main()

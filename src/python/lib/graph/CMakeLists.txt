@@ -1,4 +1,3 @@
-
 addPythonModule(
     NESTED_NAME 
         nifty/graph  
@@ -14,14 +13,11 @@ addPythonModule(
         connected_components.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES} 
-        #${NIFTY_LP_SOLVER_LIBS}
 )
-
-# target_link_libraries(graph_ PUBLIC  ${HDF5_LIBRARIES} )
 
 
 # submodules
 add_subdirectory(agglo)
 add_subdirectory(rag)
 add_subdirectory(opt)
-#add_subdirectory(long_range_adjacency)
+add_subdirectory(long_range_adjacency)

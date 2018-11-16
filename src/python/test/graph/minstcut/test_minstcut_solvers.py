@@ -87,3 +87,7 @@ class TestMinstcutSolver(unittest.TestCase):
         obj = nifty.graph.opt.minstcut.minstcutObjective(g,w)
 
         return obj
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,7 +1,12 @@
+import os
 import unittest
 import numpy as np
-import vigra
-import os
+
+try:
+    import h5py
+    WITH_H5PY = True
+except ImportError:
+    WITH_H5PY = False
 
 import nifty.graph.long_range_adjacency as nlr
 
@@ -57,12 +62,14 @@ class TestLongRangeAdjacecny(unittest.TestCase):
         lr = nlr.longRangeAdjacency(seg, 2, 1)
         self.checks_toy_data(lr)
 
+    @unittest.skipUnless(WITH_H5PY, "Need h5py")
     def test_serialization(self):
         seg = self.generate_toy_data()
         lr = nlr.longRangeAdjacency(seg, 2, 1)
         try:
-            vigra.writeHDF5(lr.serialize(), './tmp.h5', 'data')
-            serialization = vigra.readHDF5('./tmp.h5', 'data')
+            with h5py.File('./tmp.h5') as f:
+                f.create_dataset('data', data=lr.serialize())
+                serialization = f['data'][:]
             lr_ = nlr.longRangeAdjacency(seg, 2, serialization=serialization)
             self.checks_toy_data(lr_)
         finally:

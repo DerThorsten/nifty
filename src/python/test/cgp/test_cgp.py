@@ -349,3 +349,7 @@ class TestCgp2d(unittest.TestCase):
                 print(labels)
                 import sys
                 sys.exit()
+
+
+if __name__ == '__main__':
+    unittest.main()

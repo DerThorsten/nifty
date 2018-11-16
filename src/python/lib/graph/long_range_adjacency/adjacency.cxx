@@ -1,6 +1,9 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -15,6 +18,8 @@ namespace graph{
 
 
 PYBIND11_PLUGIN(_long_range_adjacency) {
+
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();

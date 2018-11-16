@@ -2,7 +2,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -29,12 +29,16 @@ namespace graph{
             const int zDirection,
             const int numberOfThreads
         ){
-            NIFTY_CHECK_OP(affinities.shape(0), ==, longRangeAdjacency.range()-1, "Number of channels is wrong!");
+            NIFTY_CHECK_OP(affinities.shape()[0], ==,
+                           longRangeAdjacency.range()-1,
+                           "Number of channels is wrong!");
             for(int d = 0; d < 3; ++d) {
-                NIFTY_CHECK_OP(affinities.shape(d+1), ==, longRangeAdjacency.shape(d), "Wrong shape");
+                NIFTY_CHECK_OP(affinities.shape()[d + 1], ==,
+                               longRangeAdjacency.shape()[d], "Wrong shape");
             }
             size_t nStats = 9;
-            xt::pytensor<float, 2> features({longRangeAdjacency.numberOfEdges(), nStats});
+            xt::pytensor<float, 2> features({int64_t(longRangeAdjacency.numberOfEdges()),
+                                             int64_t(nStats)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateLongRangeFeatures(longRangeAdjacency, labels,

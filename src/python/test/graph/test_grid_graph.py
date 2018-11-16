@@ -61,3 +61,7 @@ class TestUndirectedGridGraph(unittest.TestCase):
 
         for edge in g.nodes():
             uv = g.uv(edge)
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -5,6 +5,7 @@
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 #include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 
 namespace nifty {
@@ -70,8 +71,8 @@ void accumulateLongRangeFeaturesWithAccChain(
     F && f,
     const int zDirection
 ) {
-    typedef typename AFFINITIES::DataType DataType;
-    typedef typename LABELS::DataType LabelType;
+    typedef typename AFFINITIES::value_type DataType;
+    typedef typename LABELS::value_type LabelType;
 
     typedef tools::BlockStorage<DataType> DataBlockStorage;
     typedef tools::BlockStorage<LabelType> LabelBlockStorage;
@@ -124,7 +125,7 @@ void accumulateLongRangeFeaturesWithAccChain(
 
             auto labelsA = labelsAStorage.getView(tid);
             tools::readSubarray(labels, beginA, endA, labelsA);
-            auto labelsASqueezed = labelsA.squeezedView();
+            auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             // initialize the affinity storage and coordinates
             auto affs = affinityStorage.getView(tid);
@@ -163,13 +164,13 @@ void accumulateLongRangeFeaturesWithAccChain(
 
                 // read and squeeze affinities
                 tools::readSubarray(affinities, beginAff, endAff, affs);
-                auto affsSqueezed = affs.squeezedView();
+                auto affsSqueezed = xtensor::squeezedView(affs);
 
                 // read upper labels
                 Coord3 beginB({targetSlice,   0L,       0L});
                 Coord3 endB({targetSlice + 1, shape[1], shape[2]});
                 tools::readSubarray(labels, beginB, endB, labelsB);
-                auto labelsBSqueezed = labelsB.squeezedView();
+                auto labelsBSqueezed = xtensor::squeezedView(labelsB);
 
                 // accumulate the long range features
                 accumulateLongRangeFeaturesForSlice(
@@ -232,7 +233,7 @@ void accumulateLongRangeFeatures(
         const uint64_t nEdges = edgeAccChainVec.size();
         const uint64_t nStats = 9;
 
-        xt::xtenspor<float, 2> featuresTemp({nEdges, nStats});
+        xt::xtensor<float, 2> featuresTemp({nEdges, nStats});
 
         for(auto edge = 0; edge < nEdges; ++edge) {
             const auto & chain = edgeAccChainVec[edge];

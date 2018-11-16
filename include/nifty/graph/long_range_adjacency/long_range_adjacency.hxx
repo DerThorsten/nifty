@@ -3,16 +3,18 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty {
 namespace graph {
+
 
 template<class LABELS>
 class LongRangeAdjacency : public UndirectedGraph<>{
 
 public:
     typedef LABELS Labels;
-    typedef typename Labels::DataType LabelType;
+    typedef typename Labels::value_type LabelType;
     typedef UndirectedGraph<> BaseType;
 
     typedef array::StaticArray<int64_t, 3> Coord;
@@ -26,13 +28,12 @@ public:
         const bool ignoreLabel,
         const int numberOfThreads=-1
     ) : range_(range),
-        shape_({labels.shape(0), labels.shape(1), labels.shape(2)}),
+        shape_({labels.shape()[0], labels.shape()[1], labels.shape()[2]}),
         numberOfEdgesInSlice_(shape_[0]),
         edgeOffset_(shape_[0]),
         ignoreLabel_(ignoreLabel)
     {
         initAdjacency(labels, numberOfLabels, numberOfThreads);
-        //std::cout << "end init" << std::endl;
     }
 
     // constructor from serialization
@@ -41,7 +42,7 @@ public:
         const Labels & labels,
         ITER & iter
     ) : range_(0),
-        shape_({labels.shape(0), labels.shape(1), labels.shape(2)}),
+        shape_({labels.shape()[0], labels.shape()[1], labels.shape()[2]}),
         numberOfEdgesInSlice_(shape_[0]),
         edgeOffset_(shape_[0])
     {
@@ -126,12 +127,14 @@ private:
 
 // FIXME multithreading sometimes causes segfaults / undefined behaviour, if we have an ignore label
 template<class LABELS>
-void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size_t numberOfLabels, const int numberOfThreads) {
+void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
+                                               const size_t numberOfLabels,
+                                               const int numberOfThreads) {
 
     typedef tools::BlockStorage<LabelType> LabelStorage;
     //std::cout << "Start" << std::endl;
     //std::cout << "ignoreLabel " << ignoreLabel_ << std::endl;
-    //std::cout << "Nthreads: " << numberOfThreads << std::endl; 
+    //std::cout << "Nthreads: " << numberOfThreads << std::endl;
 
     // set the number of nodes in the graph == number of labels
     BaseType::assign(numberOfLabels);
@@ -164,14 +167,14 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
             Coord endA({int64_t(slice + 1), shape_[1], shape_[2]});
             auto labelsA = labelsAStorage.getView(tid);
             tools::readSubarray(labels, beginA, endA, labelsA);
-            auto labelsASqueezed = labelsA.squeezedView();
+            auto labelsASqueezed = xtensor::squeezedView(labelsA);
 
             // iterate over the xy-coordinates and find the min and max nodes
             LabelType lU;
             auto & minNode = minNodeInSlice[slice];
             auto & maxNode = maxNodeInSlice[slice];
             tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-                lU = labelsASqueezed(coord.asStdArray());
+                lU = xtensor::read(labelsASqueezed, coord.asStdArray());
 
                 // if we have an ignore label, it is assumed to be zero and is
                 // skipped in all the calculations
@@ -200,13 +203,13 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
                 Coord beginB ({slice + z, 0L, 0L});
                 Coord endB({slice + z + 1, shape_[1], shape_[2]});
                 tools::readSubarray(labels, beginB, endB, labelsB);
-                auto labelsBSqueezed = labelsB.squeezedView();
+                auto labelsBSqueezed = xtensor::squeezedView(labelsB);
 
                 // iterate over the xy-coordinates and insert the long range edges
                 LabelType lU, lV;
                 tools::forEachCoordinate(sliceShape2, [&](const Coord2 coord){
-                    lU = labelsASqueezed(coord.asStdArray());
-                    lV = labelsBSqueezed(coord.asStdArray());
+                    lU = xtensor::read(labelsASqueezed, coord.asStdArray());
+                    lV = xtensor::read(labelsBSqueezed, coord.asStdArray());
 
                     // skip ignore label
                     if(ignoreLabel_ && (lU == 0 || lV == 0)) {
@@ -237,7 +240,8 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels, const size
         auto & edges = BaseType::edges_;
         auto & nodes = BaseType::nodes_;
         edges.resize(offset);
-        parallel::parallel_foreach(threadpool, nSlices-2, [&](const int tid, const int64_t slice){
+        parallel::parallel_foreach(threadpool, nSlices-2,
+                                   [&](const int tid, const int64_t slice){
 
             auto edgeIndex = edgeOffset_[slice];
             const auto startNode = minNodeInSlice[slice];

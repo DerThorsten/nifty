@@ -1,13 +1,13 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
-
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+#include "nifty/python/converter.hxx"
 #include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
 
 namespace py = pybind11;
@@ -72,21 +72,23 @@ namespace graph{
         // from labels
         module.def(facName.c_str(),
             [](
-               Labels labels,
+               const Labels & labels,
                const size_t range,
                const size_t numberOfLabels,
                const bool ignoreLabel,
                const int numberOfThreads
             ){
-                auto ptr = new AdjacencyType(labels, range, numberOfLabels, ignoreLabel, numberOfThreads);
+                auto ptr = new AdjacencyType(labels, range,
+                                             numberOfLabels, ignoreLabel,
+                                             numberOfThreads);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::arg("labels"),
             py::arg("range"),
             py::arg("numberOfLabels"),
-            py::arg_t<bool>("ignoreLabel", false),
-            py::arg_t<int>("numberOfThreads", -1)
+            py::arg("ignoreLabel")=false,
+            py::arg("numberOfThreads")=-1
         );
 
         // from labels + serialization
