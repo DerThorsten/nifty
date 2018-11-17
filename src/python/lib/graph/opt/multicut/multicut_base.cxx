@@ -52,21 +52,16 @@ namespace multicut{
                 [](
                     McBase * self
                 ){
-                    //std::cout<<"without arg\n";
                     const auto & graph = self->objective().graph();
-                    //std::cout<<"optimize that damn thing\n";
-
-
-
                     typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
+                    nifty::marray::PyView<uint64_t> array(shape.begin(), shape.end());
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
-                    }
-                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
-                    nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
-                    for(auto node : graph.nodes()){
-                        array(node) = nodeLabels[node];
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
                     }
                     return array;
 
@@ -77,21 +72,16 @@ namespace multicut{
                     McBase * self,
                     McVisitorBase * visitor
                 ){
-                    //std::cout<<"with visitor\n";
                     const auto & graph = self->objective().graph();
-                    //std::cout<<"optimize that damn thing\n";
-
-
-
                     typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
+                    nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
-                    }
-                    std::vector<std::size_t> shape = {std::size_t(graph.nodeIdUpperBound()+1)};
-                    nifty::marray::PyView<uint64_t> array(shape.begin(),shape.end());
-                    for(auto node : graph.nodes()){
-                        array(node) = nodeLabels[node];
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
                     }
                     return array;
 
@@ -103,27 +93,22 @@ namespace multicut{
                     McBase * self,
                     nifty::marray::PyView<uint64_t> array
                 ){
-                    //std::cout<<"opt array\n";
-                    const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabelsType nodeLabels(graph,0);
-
-
-                    if(array.size() == graph.nodeIdUpperBound()+1){
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & graph = self->objective().graph();
+                        typename McBase::NodeLabelsType nodeLabels(graph,0);
+                        if(array.size() != graph.nodeIdUpperBound()+1){
+                            throw std::runtime_error("input node labels have wrong shape");
+                        }
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, nullptr);
-                        }
+                        self->optimize(nodeLabels, nullptr);
                         for(auto node : graph.nodes()){
                             array(node) = nodeLabels[node];
                         }
-                        return array;
                     }
-                    else{
-                        throw std::runtime_error("input node labels have wrong shape");
-                    }
+                    return array;
                 },
                 py::arg("nodeLabels")
             )
@@ -133,27 +118,23 @@ namespace multicut{
                     McVisitorBase * visitor,
                     nifty::marray::PyView<uint64_t> array
                 ){
-                    //std::cout<<"opt with both\n";
-                    const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & graph = self->objective().graph();
+                        typename McBase::NodeLabelsType nodeLabels(graph,0);
 
-
-                    if(array.size() == graph.nodeIdUpperBound()+1){
+                        if(array.size() != graph.nodeIdUpperBound()+1){
+                            throw std::runtime_error("input node labels have wrong shape");
+                        }
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, visitor);
-                        }
+                        self->optimize(nodeLabels, visitor);
                         for(auto node : graph.nodes()){
                             array(node) = nodeLabels[node];
                         }
-                        return array;
                     }
-                    else{
-                        throw std::runtime_error("input node labels have wrong shape");
-                    }
+                    return array;
                 },
                 py::arg("visitor"),
                 py::arg("nodeLabels")

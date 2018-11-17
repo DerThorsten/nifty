@@ -33,18 +33,16 @@ namespace multicut{
         typedef typename Solver::SettingsType SettingsType;
         typedef nifty::graph::opt::common::SolverFactory<Solver> Factory;
 
-
         const auto objName = MulticutObjectiveName<ObjectiveType>::name();
 
         const std::string factoryBaseName = std::string("SolverFactoryBase")+objName;
         const std::string solverBaseName = std::string("MulticutBase") + objName;
-        
+
         const std::string sName = solverName + objName;
         const std::string settingsName = std::string("__") + solverName + std::string("SettingsType") + objName;
         const std::string factoryName = solverName + std::string("Factory") + objName;
         std::string factoryFactoryName = factoryName;
         factoryFactoryName[0] = std::tolower(factoryFactoryName[0]);
-
 
         // setup dochelper
         docHelper.factoryBaseClsName = factoryBaseName;
@@ -54,9 +52,6 @@ namespace multicut{
         docHelper.factoryBaseClsName = factoryBaseName;
         docHelper.factoryBaseClsName = factoryBaseName;
         docHelper.factoryFactoryName = factoryFactoryName;
-
-
-
 
         py::object factoryBase = multicutModule.attr(factoryBaseName.c_str());
         py::object solverBase = multicutModule.attr(solverBaseName.c_str());
@@ -68,7 +63,7 @@ namespace multicut{
         // factory
         py::class_<Factory, std::shared_ptr<Factory> >(
             multicutModule,
-            factoryName.c_str(),  
+            factoryName.c_str(),
             factoryBase,
             docHelper.factoryDocstring<Factory>().c_str()
         )
@@ -79,7 +74,7 @@ namespace multicut{
 
         // solver
         py::class_<Solver >(
-            multicutModule, sName.c_str(),  
+            multicutModule, sName.c_str(),
             solverBase,
             docHelper.solverDocstring<Solver>().c_str()
         )
@@ -87,7 +82,6 @@ namespace multicut{
         ;
 
         return settingsCls;
-
     }
 
 } // namespace multicut

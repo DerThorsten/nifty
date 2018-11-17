@@ -17,8 +17,10 @@ namespace skeletons {
 
         // TODO lift gil for init with call wrapper
         py::class_<SelfType>(module, "SkeletonMetrics")
-            .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const int>())
-            .def(py::init<const std::string &, const std::string &, const std::vector<size_t> &, const std::string &>())
+            .def(py::init<const std::string &, const std::string &,
+                          const std::vector<size_t> &, const int>())
+            .def(py::init<const std::string &, const std::string &,
+                          const std::vector<size_t> &, const std::string &>())
             //
             .def("getNodeAssignments", [](const SelfType & self){return self.getNodeAssignments();})
             .def("computeSplitScores", [](const SelfType & self, const int numberOfThreads){
@@ -35,7 +37,8 @@ namespace skeletons {
             .def("computeSplitRunlengths", [](const SelfType & self, const std::array<double, 3> & resolution, const int numberOfThreads){
                 std::map<size_t, double> skeletonRunlens;
                 std::map<size_t, std::map<size_t, double>> fragmentRunlens;
-                self.computeSplitRunlengths(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);
+                self.computeSplitRunlengths(resolution, skeletonRunlens,
+                                            fragmentRunlens, numberOfThreads);
                 // can't lift gil because we mess with pytthon exposed objects internally
                 //{
                 //    py::gil_scoped_release allowThreads;
@@ -50,7 +53,8 @@ namespace skeletons {
                 return out;
             }, py::arg("numberOfThreads")=-1)
             //
-            .def("computeExplicitMergeScores", [](const SelfType & self, const int numberOfThreads) {
+            .def("computeExplicitMergeScores", [](const SelfType & self,
+                                                  const int numberOfThreads) {
                 std::map<size_t, double> mergeScore;
                 std::map<size_t, size_t> mergePoints;
                 self.computeExplicitMergeScores(mergeScore, mergePoints, numberOfThreads);
@@ -60,7 +64,8 @@ namespace skeletons {
             .def("computeGoogleScore", [](const SelfType & self, const int numberOfThreads) {
                 double correctScore, splitScore, mergeScore;
                 size_t mergePoints;
-                self.computeGoogleScore(correctScore, splitScore, mergeScore, mergePoints, numberOfThreads);
+                self.computeGoogleScore(correctScore, splitScore,
+                                        mergeScore, mergePoints, numberOfThreads);
                 return std::make_tuple(correctScore, splitScore, mergeScore, mergePoints);
             }, py::arg("numberOfThreads")=-1)
             //
@@ -113,15 +118,19 @@ namespace skeletons {
                     out[blockItem.first] = OutStorage();
                     auto & currentOut = out[blockItem.first];
                     for(const auto & skelItem : blockItem.second) {
-                        ArrayShape shape = {skelItem.second.shape()[0], skelItem.second.shape()[1]};
+                        ArrayShape shape = {int64_t(skelItem.second.shape()[0]),
+                                            int64_t(skelItem.second.shape()[1])};
                         currentOut[skelItem.first] = OutArray(shape);
-                        std::copy(skelItem.second.begin(), skelItem.second.end(), currentOut[skelItem.first].begin());
+                        std::copy(skelItem.second.begin(),
+                                  skelItem.second.end(),
+                                  currentOut[skelItem.first].begin());
                     }
                 }
                 return std::make_tuple(nonEmptyChunks, out);
             }, py::arg("numberOfThreads")=-1)
             //
-            .def("getNodesInFalseMergeLabels", [](const SelfType & self, const int numberOfThreads) {
+            .def("getNodesInFalseMergeLabels", [](const SelfType & self,
+                                                  const int numberOfThreads) {
                 std::map<size_t, std::vector<size_t>> out;
                 self.getNodesInFalseMergeLabels(out, numberOfThreads);
                 return out;

@@ -80,7 +80,8 @@ namespace distributed {
                 std::vector<EdgeType> uvIdsVec;
                 {
                     py::gil_scoped_release allowThreads;
-                    self.extractSubgraphFromNodes(nodes, allowInvalidNodes, uvIdsVec, innerEdgesVec, outerEdgesVec);
+                    self.extractSubgraphFromNodes(nodes, allowInvalidNodes,
+                                                  uvIdsVec, innerEdgesVec, outerEdgesVec);
                 }
 
                 //
@@ -110,8 +111,6 @@ namespace distributed {
 
                 }
                 return std::make_tuple(innerEdges, outerEdges, uvIds);
-
-
             }, py::arg("nodes"), py::arg("allowInvalidNodes")=false)
 
             ;
