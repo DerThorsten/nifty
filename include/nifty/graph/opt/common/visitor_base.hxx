@@ -84,7 +84,6 @@ namespace common{
                 ss.precision(12);
                 ss << "Energy: " << std::scientific << solver->currentBestEnergy()<<" ";
                 ss << "Runtime: " << runtime_ << " ";
-                
                 for(size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }
@@ -166,7 +165,6 @@ namespace common{
         {}
 
         virtual void begin(SolverType * ) {
-            std::cout<<"begin inference\n";
             timerSolver_.start();
             timerTotal_.start();
         }
@@ -195,7 +193,6 @@ namespace common{
         }
 
         virtual void end(SolverType * )   {
-            std::cout<<"end inference\n";
             timerSolver_.stop();
         }
 
