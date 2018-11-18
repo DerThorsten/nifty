@@ -33,7 +33,7 @@ namespace cgp{
     public:
 
         template<class LABELS>
-        TopologicalGrid(const xt::xexpression<LABELS> & labelsExp);
+        TopologicalGrid(const LABELS & labelsExp);
 
 
         uint32_t operator()(const CoordinateType & coord)const{
@@ -72,18 +72,17 @@ namespace cgp{
 
     template<class LABELS>
     inline TopologicalGrid<2>::TopologicalGrid(
-        const xt::xexpression<LABELS> & labelsExp
+        const LABELS & labels
     ) :
-        shape_({{labelsExp.derived_cast().shape()[0],
-                 labelsExp.derived_cast().shape()[1]}}),
-        tShape_({{2*labelsExp.derived_cast().shape()[0] - 1,
-                  2*labelsExp.derived_cast().shape()[1] - 1}}),
-        tGrid_({2*labelsExp.derived_cast().shape()[0]-1,
-                2*labelsExp.derived_cast().shape()[1]-1}, 0)
+        shape_({{uint64_t(labels.shape()[0]),
+                 uint64_t(labels.shape()[1])}}),
+        tShape_({{2*uint64_t(labels.shape()[0]) - 1,
+                  2*uint64_t(labels.shape()[1]) - 1}}),
+        tGrid_({2*uint64_t(labels.shape()[0]) - 1,
+                2*uint64_t(labels.shape()[1]) - 1}, 0)
     {
 
         typedef typename LABELS::value_type T;
-        const auto & labels = labelsExp.derived_cast();
         NIFTY_CHECK_OP(labels.dimension(),==,2,"wrong dimensions");
 
         uint32_t jLabel = 1, bLabel = 1, maxNodeLabel = 0;

@@ -56,7 +56,7 @@ namespace cgp{
             auto clsVec = py::class_<Cells0BoundsVector2D>(m, clsNameVec.c_str());
             clsVec
                 .def("__array__",[](const Cells0BoundsVector2D & self){
-                    xt::pytensor<uint32_t, 2> ret({self.size(), 4L});
+                    xt::pytensor<uint32_t, 2> ret({int64_t(self.size()), 4L});
                     for(size_t ci=0 ;ci<self.size(); ++ci){
                         for(size_t i=0; i<self[ci].size(); ++i){
                             ret(ci,i) = self[ci][i];
@@ -84,7 +84,7 @@ namespace cgp{
             auto clsVec = py::class_<Cell1BoundsVector2D>(m, clsNameVec.c_str());
             clsVec
                 .def("__array__",[](const Cell1BoundsVector2D & self){
-                    xt::pytensor<uint32_t, 2> ret({self.size(), 2L});
+                    xt::pytensor<uint32_t, 2> ret({int64_t(self.size()), 2L});
                     for(uint32_t ci=0 ;ci<self.size(); ++ci){
                         ret(ci,0) = self[ci][0];
                         ret(ci,1) = self[ci][1];
@@ -113,7 +113,7 @@ namespace cgp{
             clsVec
                 .def(py::init<const CellBoundsVector<2,0 > &>())
                 .def("__array__",[](const Cell1BoundedByVector2D & self){
-                    xt::pytensor<uint32_t, 2> ret({self.size(), 2L});
+                    xt::pytensor<uint32_t, 2> ret({int64_t(self.size()), 2L});
                     for(uint32_t ci=0 ;ci<self.size(); ++ci){
                         const auto & b = self[ci];
                         ret(ci,0) = b[0];
@@ -134,7 +134,7 @@ namespace cgp{
                     }
 
                     typedef typename xt::pytensor<uint32_t, 1>::shape_type ShapeType;
-                    ShapeType shape = {cell1Labels.size()};
+                    ShapeType shape = {int64_t(cell1Labels.size())};
                     xt::pytensor<uint32_t, 1> ret(shape);
                     for(auto i=0; i<ret.size(); ++i){
                         ret[i] = cell1Labels[i];

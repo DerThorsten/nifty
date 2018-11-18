@@ -11,10 +11,8 @@
 
 namespace py = pybind11;
 
-
 namespace nifty{
 namespace graph{
-
 
 
     void exportUndirectedListGraph(py::module & graphModule) {
@@ -26,16 +24,17 @@ namespace graph{
         undirectedGraphCls
             .def(py::init<const uint64_t,const uint64_t>(),
                py::arg_t<uint64_t>("numberOfNodes",0),
-               py::arg_t<uint64_t>("reserveEdges",0)
+               py::arg_t<uint64_t>("reserveEdges",0),
+               py::call_guard<py::gil_scoped_release>()
             )
-            .def("insertEdge",&GraphType::insertEdge)
+            .def("insertEdge", &GraphType::insertEdge)
             .def("insertEdges",
                 [](GraphType & g, const xt::pytensor<uint64_t, 2> & array) {
                     NIFTY_CHECK_OP(array.shape()[1],==,2,"wrong shape");
                     for(size_t i=0; i<array.shape()[0]; ++i){
                         g.insertEdge(array(i,0), array(i,1));
                     }
-                }
+                }, py::arg("array"), py::call_guard<py::gil_scoped_release>()
             )
             .def("serialize",
                 [](const GraphType & g) {
@@ -49,12 +48,12 @@ namespace graph{
             .def("deserialize",
                 [](GraphType & g, xt::pytensor<uint64_t, 1> & serialization) {
 
-                    auto  startPtr = &serialization(0);
-                    auto  lastElement = &serialization(serialization.size()-1);
+                    auto startPtr = &serialization(0);
+                    auto lastElement = &serialization(serialization.size()-1);
                     auto d = lastElement - startPtr + 1;
 
-                    NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
-
+                    NIFTY_CHECK_OP(d,==,serialization.size(),
+                                   "serialization must be contiguous");
                     g.deserialize(startPtr);
                 }
             )
@@ -154,7 +153,7 @@ namespace graph{
                         if(q0>=0 && q0<shape[0] &&
                            q1>=0 && q1<shape[1] &&
                            q2>=0 && q2<shape[2]){
-                            
+
                             const auto v = q0*shape[1]*shape[2] + q1*shape[2] + q2;
                             const auto e = g.findEdge(u, v);
                             offsetsIndex(e) = io;
@@ -167,14 +166,8 @@ namespace graph{
             }
         );
 
-
-
-
         // export the base graph API (others might derive)
         exportUndirectedGraphClassAPI<GraphType>(graphModule, undirectedGraphCls,clsName);
-
-
     }
-
 }
 }

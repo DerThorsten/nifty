@@ -30,7 +30,7 @@ namespace cgp{
             })
             .def("centerOfMass",&CLS::centerOfMass)
             .def("__array__", [](const CLS & self){
-                xt::pytensor<uint32_t, 2> out({self.size(), DIM});
+                xt::pytensor<uint32_t, 2> out({int64_t(self.size()), int64_t(DIM)});
                 for(size_t i=0; i<self.size(); ++i){
                     const auto & coord = self[i];
                     for(size_t d=0; d<DIM; ++d){
@@ -51,7 +51,7 @@ namespace cgp{
 
         pyCls
             .def("centersOfMass", [](const CLS & self){
-                xt::pytensor<float, 2> cArray({self.size(),
+                xt::pytensor<float, 2> cArray({int64_t(self.size()),
                                                CLS::value_type::DimensionType::value});
                 for(auto i=0; i<self.size(); ++i){
                     const auto com  = self[i].centerOfMass();
@@ -67,11 +67,8 @@ namespace cgp{
 
     void exportGeometry2D(py::module & m) {
 
-        
-        
-
         // cell 0 geometry
-        {   
+        {
             typedef CellGeometry<2,0> Cell0Geometry2D;
             typedef CellGeometryVector<2,0> Cells0GeometryVector2D;
 

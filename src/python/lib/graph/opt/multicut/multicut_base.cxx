@@ -52,15 +52,15 @@ namespace multicut{
                     McBase * self
                 ){
                     const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabelsType nodeLabels(graph, 0);
+                    typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    ShapeType shape = {graph.nodeIdUpperBound() + 1};
+                    xt::pytensor<uint64_t, 1> array(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
-                    }
-                    ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
-                    for(auto node : graph.nodes()){
-                        array(node) = nodeLabels[node];
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
                     }
                     return array;
                 }
@@ -73,14 +73,14 @@ namespace multicut{
                 ){
                     const auto & graph = self->objective().graph();
                     typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    ShapeType shape = {graph.nodeIdUpperBound() + 1};
+                    xt::pytensor<uint64_t, 1> array(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);
-                    }
-                    ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
-                    for(auto node : graph.nodes()){
-                        array(node) = nodeLabels[node];
+                        for(auto node : graph.nodes()){
+                            array(node) = nodeLabels[node];
+                        }
                     }
                     return array;
 
@@ -93,25 +93,22 @@ namespace multicut{
                     McBase * self,
                     xt::pytensor<uint64_t, 1> & array
                 ){
-                    const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabelsType nodeLabels(graph,0);
-
-                    if(array.size() == graph.nodeIdUpperBound()+1){
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & graph = self->objective().graph();
+                        typename McBase::NodeLabelsType nodeLabels(graph,0);
+                        if(array.size() != graph.nodeIdUpperBound()+1){
+                            throw std::runtime_error("input node labels have wrong shape");
+                        }
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, nullptr);
-                        }
+                        self->optimize(nodeLabels, nullptr);
                         for(auto node : graph.nodes()){
                             array(node) = nodeLabels[node];
                         }
-                        return array;
                     }
-                    else{
-                        throw std::runtime_error("input node labels have wrong shape");
-                    }
+                    return array;
                 },
                 py::arg("nodeLabels")
             )
@@ -122,25 +119,24 @@ namespace multicut{
                     McVisitorBase * visitor,
                     xt::pytensor<uint64_t, 1> & array
                 ){
-                    const auto & graph = self->objective().graph();
-                    typename McBase::NodeLabelsType nodeLabels(graph,0);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        const auto & graph = self->objective().graph();
+                        typename McBase::NodeLabelsType nodeLabels(graph,0);
 
-                    if(array.size() == graph.nodeIdUpperBound()+1){
+                        if(array.size() != graph.nodeIdUpperBound()+1){
+                            throw std::runtime_error("input node labels have wrong shape");
+                        }
+
                         for(auto node : graph.nodes()){
                             nodeLabels[node] = array(node);
                         }
-                        {
-                            py::gil_scoped_release allowThreads;
-                            self->optimize(nodeLabels, visitor);
-                        }
+                        self->optimize(nodeLabels, visitor);
                         for(auto node : graph.nodes()){
                             array(node) = nodeLabels[node];
                         }
-                        return array;
                     }
-                    else{
-                        throw std::runtime_error("input node labels have wrong shape");
-                    }
+                    return array;
                 },
                 py::arg("visitor"),
                 py::arg("nodeLabels")

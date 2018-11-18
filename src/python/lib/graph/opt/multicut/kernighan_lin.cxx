@@ -21,7 +21,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
 namespace nifty{
 namespace graph{
 namespace opt{
-namespace multicut{    
+namespace multicut{
     template<class OBJECTIVE>
     void exportKernighanLinT(py::module & multicutModule){
 
@@ -30,14 +30,12 @@ namespace multicut{
         // DOCSTRING HELPER
         ///////////////////////////////////////////////////////////////
         nifty::graph::opt::SolverDocstringHelper docHelper;
-        docHelper.objectiveName = "multicut objective"; 
+        docHelper.objectiveName = "multicut objective";
         docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
-        docHelper.name = "Kernighan Lin "; 
-        docHelper.mainText =  
+        docHelper.name = "Kernighan Lin";
+        docHelper.mainText =
             "Kernighan Lin algorithm for multicuts";
         docHelper.note = "The solver should be  be warm started.";
-        
-
 
 
         typedef OBJECTIVE ObjectiveType;
@@ -49,10 +47,10 @@ namespace multicut{
             .def_readwrite("numberOfInnerIterations", &SettingsType::numberOfInnerIterations)
             .def_readwrite("numberOfOuterIterations", &SettingsType::numberOfOuterIterations)
             .def_readwrite("epsilon", &SettingsType::epsilon)
-        ; 
+        ;
     }
 
-    
+
     void exportKernighanLin(py::module & multicutModule){
 
         py::options options;
@@ -66,8 +64,7 @@ namespace multicut{
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportKernighanLinT<ObjectiveType>(multicutModule);
-        }    
-         
+        }
     }
 } // namespace nifty::graph::opt::multicut
 } // namespace nifty::graph::opt
