@@ -128,12 +128,11 @@ public:
     template<class ITER>
     void deserialize(ITER & iter);
 
-    template<class NODE_ARRAY, class EDGE_STORAGE>
+    template<class NODE_ARRAY>
     void extractSubgraphFromNodes(
         const xt::xexpression<NODE_ARRAY> &,
         std::vector<EDGE_INTERNAL_TYPE> &,
-        std::vector<EDGE_INTERNAL_TYPE> &,
-        std::vector<EDGE_STORAGE> &) const;
+        std::vector<EDGE_INTERNAL_TYPE> &) const;
 
     // extract all the edges that connect nodes in the node list
     void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
@@ -466,12 +465,11 @@ insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
 }
 
 template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE>
-template<class NODE_ARRAY, class EDGE_STORAGE>
+template<class NODE_ARRAY>
 void UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
 extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
                          std::vector<EDGE_INTERNAL_TYPE> & innerEdgesOut,
-                         std::vector<EDGE_INTERNAL_TYPE> & outerEdgesOut,
-                         std::vector<EDGE_STORAGE> & subUvs) const {
+                         std::vector<EDGE_INTERNAL_TYPE> & outerEdgesOut) const {
 
     const auto & nodeList = nodeListExp.derived_cast();
     std::unordered_set<NodeInteralType> nodeSet(nodeList.begin(), nodeList.end());
@@ -491,14 +489,6 @@ extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
                 outerEdgesOut.push_back(e);
             }
         }
-    }
-
-    const auto & edges = edges_;
-    subUvs.resize(innerEdgesOut.size());
-    size_t eId = 0;
-    for(auto e : innerEdgesOut) {
-        subUvs[eId] = edges[e];
-        ++eId;
     }
 }
 
