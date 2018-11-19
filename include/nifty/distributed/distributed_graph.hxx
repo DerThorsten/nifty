@@ -108,16 +108,12 @@ namespace distributed {
         template<class NODE_ARRAY>
         void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
                                       const bool allowInvalidNodes,
-                                      std::vector<EdgeType> & uvIdsOut,
                                       std::vector<EdgeIndexType> & innerEdgesOut,
                                       std::vector<EdgeIndexType> & outerEdgesOut) const {
             const auto & nodes = nodesExp.derived_cast();
 
-            // first find the mapping to dense node index
-            std::unordered_map<NodeType, NodeType> nodeMapping;
-            for(size_t i = 0; i < nodes.size(); ++i) {
-                nodeMapping[nodes(i)] = i;
-            }
+            // build hash set for fast look-up
+            std::unordered_set<NodeType> nodeSet(nodes.begin(), nodes.end());
 
             // then iterate over the adjacency and extract inner and outer edges
             for(const NodeType u : nodes) {
@@ -140,11 +136,10 @@ namespace distributed {
                     const EdgeIndexType edge = adj.second;
                     // we do the look-up in the node-mapping instead of the node-list, because it's a hash-map
                     // (and thus faster than array lookup)
-                    if(nodeMapping.find(v) != nodeMapping.end()) {
+                    if(nodeSet.find(v) != nodeSet.end()) {
                         // we will encounter inner edges twice, so we only add them for u < v
                         if(u < v) {
                             innerEdgesOut.push_back(edge);
-                            uvIdsOut.emplace_back(std::make_pair(nodeMapping[u], nodeMapping[v]));
                         }
                     } else {
                         // outer edges occur only once by construction
