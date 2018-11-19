@@ -77,11 +77,10 @@ namespace distributed {
                                                 const bool allowInvalidNodes) {
                 //
                 std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
-                std::vector<EdgeType> uvIdsVec;
                 {
                     py::gil_scoped_release allowThreads;
                     self.extractSubgraphFromNodes(nodes, allowInvalidNodes,
-                                                  uvIdsVec, innerEdgesVec, outerEdgesVec);
+                                                  innerEdgesVec, outerEdgesVec);
                 }
 
                 //
@@ -92,10 +91,6 @@ namespace distributed {
                 ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
                 xt::pytensor<EdgeIndexType, 1> outerEdges(outerShape);
 
-                typedef typename xt::pytensor<NodeType, 2>::shape_type UvShapeType;
-                UvShapeType uvShape = {static_cast<int64_t>(uvIdsVec.size()), 2L};
-                xt::pytensor<NodeType, 2> uvIds(uvShape);
-
                 {
                     py::gil_scoped_release allowThreads;
                     for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
@@ -104,13 +99,9 @@ namespace distributed {
                     for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
                         outerEdges(i) = outerEdgesVec[i];
                     }
-                    for(size_t i = 0; i < uvIdsVec.size(); ++i) {
-                        uvIds(i, 0) = uvIdsVec[i].first;
-                        uvIds(i, 1) = uvIdsVec[i].second;
-                    }
 
                 }
-                return std::make_tuple(innerEdges, outerEdges, uvIds);
+                return std::make_pair(innerEdges, outerEdges);
             }, py::arg("nodes"), py::arg("allowInvalidNodes")=false)
 
             ;
