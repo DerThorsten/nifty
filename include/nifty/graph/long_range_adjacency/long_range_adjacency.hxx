@@ -3,6 +3,7 @@
 #include "nifty/parallel/threadpool.hxx"
 #include "nifty/tools/array_tools.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+#include "nifty/tools/block_access.hxx"
 #include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty {
