@@ -24,19 +24,21 @@ namespace distributed {
             const CoordinateType & roiEnd,
             const std::string & pathToGraph,
             const std::string & keyToGraph,
-            const bool ignoreLabel
+            const bool ignoreLabel,
+            const bool increaseRoi
         ) {
 
             py::gil_scoped_release allowThreads;
             computeMergeableRegionGraph(pathToLabels, keyToLabels,
                                         roiBegin, roiEnd,
                                         pathToGraph, keyToGraph,
-                                        ignoreLabel);
+                                        ignoreLabel, increaseRoi);
 
         }, py::arg("pathToLabels"), py::arg("keyToLabels"),
            py::arg("roiBegin"), py::arg("roiEnd"),
            py::arg("pathToGraph"), py::arg("keyToGraph"),
-           py::arg("ignoreLabel")=false);
+           py::arg("ignoreLabel")=false,
+           py::arg("increaseRoi")=false);
 
 
         module.def("mergeSubgraphs", [](

@@ -333,23 +333,38 @@ namespace distributed {
                              const COORD & roiEnd,
                              NodeSet & nodes,
                              EdgeSet & edges,
-                             const bool ignoreLabel=false) {
+                             const bool ignoreLabel=false,
+                             const bool increaseRoi=true) {
 
         // open the n5 label dataset
         auto path = fs::path(pathToLabels);
         path /= keyToLabels;
         auto ds = z5::openDataset(path.string());
 
+        // if specified, we incresae roiEnd by 1.
+        // this is necessary to capture edges that lie in between of block boundaries
+        // However, we don't want to add the nodes to nodes in the sub-graph !
+        COORD actualRoiBegin = roiBegin;
+        std::array<bool, 3> roiIncreasedAxis = {false, false, false};
+        if(increaseRoi) {
+            for(int axis = 0; axis < 3; ++axis) {
+                if(actualRoiBegin[axis] > 0) {
+                    --actualRoiBegin[axis];
+                    roiIncreasedAxis[axis] = true;
+                }
+            }
+        }
+
         // load the roi
         Shape3Type shape;
         CoordType blockShape, coord2;
 
         for(int axis = 0; axis < 3; ++axis) {
-            shape[axis] = roiEnd[axis] - roiBegin[axis];
+            shape[axis] = roiEnd[axis] - actualRoiBegin[axis];
             blockShape[axis] = shape[axis];
         }
         Tensor3 labels(shape);
-        z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
+        z5::multiarray::readSubarray<NodeType>(ds, labels, actualRoiBegin.begin());
 
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,
@@ -359,7 +374,22 @@ namespace distributed {
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
 
             lU = xtensor::read(labels, coord.asStdArray());
-            nodes.insert(lU);
+            // we don't add the nodes in the increased roi
+            if(increaseRoi) {
+                bool insertNode = true;
+                for(int axis = 0; axis < 3; ++axis) {
+                    if(coord[axis] == 0 && roiIncreasedAxis[axis]) {
+                        insertNode = false;
+                        break;
+                    }
+                }
+                if(insertNode) {
+                    nodes.insert(lU);
+                }
+            }
+            else {
+                nodes.insert(lU);
+            }
 
             // skip edges to zero if we have an ignoreLabel
             if(ignoreLabel && (lU == 0)) {
@@ -368,7 +398,6 @@ namespace distributed {
 
             for(size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
-                // TODO we over-count edges at the block boundaries here
                 if(coord2[axis] < blockShape[axis]){
                     lV = xtensor::read(labels, coord2.asStdArray());
                     // skip zero if we have an ignoreLabel
@@ -392,14 +421,15 @@ namespace distributed {
                                      const COORD & roiEnd,
                                      const std::string & pathToGraph,
                                      const std::string & keyToRoi,
-                                     const bool ignoreLabel=false) {
+                                     const bool ignoreLabel=false,
+                                     const bool increaseRoi=false) {
         // extract graph nodes and edges from roi
         NodeSet nodes;
         EdgeSet edges;
         extractGraphFromRoi(pathToLabels, keyToLabels,
                             roiBegin, roiEnd,
                             nodes, edges,
-                            ignoreLabel);
+                            ignoreLabel, increaseRoi);
         // serialize the graph
         serializeGraph(pathToGraph, keyToRoi,
                        nodes, edges,
