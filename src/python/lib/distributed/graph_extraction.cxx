@@ -274,6 +274,19 @@ namespace distributed {
             serializeBlockMapping(inputPath, outputPath, idStart, idStop);
         }, py::arg("inputPath"), py::arg("outputPath"),
            py::arg("idStart"), py::arg("idStop"));
+
+
+        module.def("readBlockMapping", [](const std::string & dsPath,
+                                          const std::vector<std::size_t> chunkId) {
+            std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> mapping;
+            {
+                // dunno if we can lift gil, and this is not really performance
+                // critical, so it doesn't really matter
+                // py::gil_scoped_release allowThreads;
+                readBlockMapping(dsPath, chunkId, mapping);
+            }
+            return mapping;
+        }, py::arg("dsPath"), py::arg("chunkId"));
     }
 
 }

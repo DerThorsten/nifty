@@ -489,7 +489,7 @@ namespace distributed {
         // blocking of input dataset
         const auto & blocking = inputDs->chunking();
 
-        // map to store the mapping from label ids to block coordinates min / ma (XYZ !!!!)
+        // map to store the mapping from label ids to block coordinates min / max (XYZ !!!!)
         std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> mapping;
         // initialize with empty vectors
         for(std::size_t labelId = idStart; labelId < idStop; ++labelId) {
@@ -519,7 +519,7 @@ namespace distributed {
             // get coordinates of this chunk and transform to array for serialization
             std::vector<std::size_t> chunkBegin, chunkEnd;
             blocking.getBlockBeginAndEnd(chunkCoord, chunkBegin, chunkEnd);
-            // NOTE, java has axis order XYZ, we have ZYX that's why we invert
+            // NOTE, java has axis order XYZ, we have ZYX that's why we revert
             // also, we report the end coordinates (= max + 1), java expects max
             std::array<int64_t, 6> blockSer = {static_cast<int64_t>(chunkBegin[2]), static_cast<int64_t>(chunkBegin[1]), static_cast<int64_t>(chunkBegin[0]),
                                                static_cast<int64_t>(chunkEnd[2] - 1), static_cast<int64_t>(chunkEnd[1] - 1), static_cast<int64_t>(chunkEnd[0] - 1)};
@@ -529,7 +529,7 @@ namespace distributed {
             const std::size_t chunkMin = labelsInChunk[0];
             const std::size_t chunkMax = labelsInChunk.back();
             // check for overlap of intervals
-            if(!(chunkMin <= idStart && chunkMax <= idStop)) {
+            if(!(std::max(chunkMin, idStart) <= std::min(chunkMax, idStop))) {
                 return;
             }
 
@@ -562,26 +562,71 @@ namespace distributed {
         char * serPointer = byteSerialization;
         for(const auto & elem: mapping) {
             const auto & blockList = elem.second;
-            int32_t nBlocks = static_cast<int32_t>(blockList.size());
+            const int32_t nBlocks = static_cast<int32_t>(blockList.size());
             if(nBlocks > 0) {
                 // copy labelId, numberOfBlocks into the serialization buffer
-                int64_t labelId = static_cast<int64_t>(elem.first);
-                memcpy(&labelId, serPointer, 8);
+                const int64_t labelId = static_cast<int64_t>(elem.first);
+                memcpy(serPointer, &labelId, 8);
                 serPointer += 8;
-                memcpy(&nBlocks, serPointer, 4);
+                memcpy(serPointer, &nBlocks, 4);
                 serPointer += 4;
                 for(const auto & block: blockList) {
-                    // TODO I think std::copy is ok here instead of individual memcpys
-                    std::copy(block.begin(), block.end(), serPointer);
-                    serPointer += 48;
+                    for(const int64_t bc : block) {
+                        memcpy(serPointer, &bc, 8);
+                        serPointer += 8;
+                    }
                 }
             }
         }
 
         // write serialization to the current output chunk
         z5::types::ShapeType outChunk = {static_cast<std::size_t>(idStart / idChunkSize)};
-        outputDs->writeChunk(outChunk, byteSerialization);
+        outputDs->writeChunk(outChunk, byteSerialization, true, serSize);
         delete[] byteSerialization;
+    }
+
+
+    // take block mapping serialization and return the map
+    inline void formatBlockMapping(const std::vector<char> & input,
+                                   std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> & mapping) {
+        const std::size_t byteSize = input.size();
+        const char * serPointer = &input[0];
+
+        int64_t labelId;
+        int32_t nBlocks;
+        std::array<int64_t, 6> coords;
+        while(std::distance(&input[0], serPointer) < byteSize) {
+            memcpy(&labelId, serPointer, 8);
+            serPointer += 8;
+
+            memcpy(&nBlocks, serPointer, 4);
+            serPointer += 4;
+
+            std::vector<std::array<int64_t, 6>> coordList;
+            for(int i = 0; i < nBlocks; ++i) {
+                // std::copy(serPointer, serPointer + 48, &coords[0]);
+                for(int c = 0; c < 6; ++c) {
+                    memcpy(&coords[c], serPointer, 8);
+                    serPointer += 8;
+                }
+
+                coordList.push_back(coords);
+            }
+            mapping[static_cast<uint64_t>(labelId)] = coordList;
+        }
+    }
+
+    inline void readBlockMapping(const std::string & dsPath,
+                                 const std::vector<std::size_t> chunkId,
+                                 std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> & mapping) {
+        auto ds = z5::openDataset(dsPath);
+        if(ds->chunkExists(chunkId)) {
+            bool isVarlen;
+            const std::size_t chunkSize = ds->getDiscChunkSize(chunkId, isVarlen);
+            std::vector<char> out(chunkSize);
+            ds->readChunk(chunkId, &out[0]);
+            formatBlockMapping(out, mapping);
+        }
     }
 
 }
