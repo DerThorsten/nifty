@@ -2,6 +2,7 @@
 
 #include "boost/pending/disjoint_sets.hpp"
 #include "z5/util/for_each.hxx"
+#include "z5/util/util.hxx"
 
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
@@ -562,16 +563,23 @@ namespace distributed {
         char * serPointer = byteSerialization;
         for(const auto & elem: mapping) {
             const auto & blockList = elem.second;
-            const int32_t nBlocks = static_cast<int32_t>(blockList.size());
+            int32_t nBlocks = static_cast<int32_t>(blockList.size());
             if(nBlocks > 0) {
                 // copy labelId, numberOfBlocks into the serialization buffer
-                const int64_t labelId = static_cast<int64_t>(elem.first);
+                int64_t labelId = static_cast<int64_t>(elem.first);
+
+                // for some reason, this is not in the n5 default endianness,
+                // so we need to reverse the endidianness for everything here
+                z5::util::reverseEndiannessInplace(labelId);
                 memcpy(serPointer, &labelId, 8);
                 serPointer += 8;
+
+                z5::util::reverseEndiannessInplace(nBlocks);
                 memcpy(serPointer, &nBlocks, 4);
                 serPointer += 4;
-                for(const auto & block: blockList) {
-                    for(const int64_t bc : block) {
+                for(auto & block: blockList) {
+                    for(int64_t bc : block) {
+                        z5::util::reverseEndiannessInplace(bc);
                         memcpy(serPointer, &bc, 8);
                         serPointer += 8;
                     }
@@ -597,19 +605,20 @@ namespace distributed {
         std::array<int64_t, 6> coords;
         while(std::distance(&input[0], serPointer) < byteSize) {
             memcpy(&labelId, serPointer, 8);
+            z5::util::reverseEndiannessInplace(labelId);
             serPointer += 8;
 
             memcpy(&nBlocks, serPointer, 4);
+            z5::util::reverseEndiannessInplace(nBlocks);
             serPointer += 4;
 
             std::vector<std::array<int64_t, 6>> coordList;
             for(int i = 0; i < nBlocks; ++i) {
-                // std::copy(serPointer, serPointer + 48, &coords[0]);
                 for(int c = 0; c < 6; ++c) {
                     memcpy(&coords[c], serPointer, 8);
                     serPointer += 8;
                 }
-
+                z5::util::reverseEndiannessInplace<int64_t>(coords.begin(), coords.end());
                 coordList.push_back(coords);
             }
             mapping[static_cast<uint64_t>(labelId)] = coordList;
