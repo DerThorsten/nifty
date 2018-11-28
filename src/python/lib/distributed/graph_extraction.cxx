@@ -268,12 +268,16 @@ namespace distributed {
 
         module.def("serializeBlockMapping", [](const std::string & inputPath,
                                                const std::string & outputPath,
-                                               const std::size_t idStart,
-                                               const std::size_t idStop){
+                                               const std::size_t numberOfLabels,
+                                               const int numberOfThreads,
+                                               const std::vector<std::size_t> & roiBegin,
+                                               const std::vector<std::size_t> & roiEnd){
             py::gil_scoped_release allowThreads;
-            serializeBlockMapping(inputPath, outputPath, idStart, idStop);
+            serializeBlockMapping(inputPath, outputPath, numberOfLabels, numberOfThreads,
+                                  roiBegin, roiEnd);
         }, py::arg("inputPath"), py::arg("outputPath"),
-           py::arg("idStart"), py::arg("idStop"));
+           py::arg("numberOfLabels"), py::arg("numberOfThreads"),
+           py::arg("roiBegin")=std::vector<size_t>(), py::arg("roiEnd")=std::vector<size_t>());
 
 
         module.def("readBlockMapping", [](const std::string & dsPath,

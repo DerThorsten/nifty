@@ -476,121 +476,241 @@ namespace distributed {
     }
 
 
-    inline void serializeBlockMapping(const std::string & inputPath,
-                                      const std::string & outputPath,
-                                      const std::size_t idStart,
-                                      const std::size_t idStop) {
-        // open the input and output datasets
+    template<class OUT, class THREAD_DATA>
+    inline void mergeBlockMapping(const THREAD_DATA & perThreadData,
+                                  OUT & mapping, const int numberOfThreads) {
+        // merge the label data into output vector
+        const std::size_t numberOfLabels = mapping.size();
+        nifty::parallel::parallel_foreach(numberOfThreads, numberOfLabels,
+                                          [&](const int t,
+                                              const uint64_t labelId){
+            auto & out = mapping[labelId];
+            for(int threadId = 0; threadId < numberOfThreads; ++threadId) {
+                auto & threadData = perThreadData[threadId];
+                auto it = threadData.find(labelId);
+                if(it != threadData.end()) {
+                    const auto & copyIds = it->second;
+                    out.reserve(out.size() + copyIds.size());
+                    out.insert(out.end(), copyIds.begin(), copyIds.end());
+                }
+            }
+            std::sort(out.begin(), out.end());
+        });
+
+    }
+
+
+    template<class OUT>
+    inline void getBlockMapping(const std::string & inputPath,
+                                const int numberOfThreads,
+                                OUT & mapping) {
+
         auto inputDs = z5::openDataset(inputPath);
-        auto outputDs = z5::openDataset(outputPath);
 
-        // id space chunking
-        const std::size_t idChunkSize = outputDs->maxChunkShape(0);
+        // we store the mapping of labels to blocks extracted for each thread in an unordered map
+        // of vectors
+        typedef std::unordered_map<uint64_t, std::vector<std::size_t>> PerThread;
+        std::vector<PerThread> perThreadData(numberOfThreads);
 
-        // blocking of input dataset
         const auto & blocking = inputDs->chunking();
-
-        // map to store the mapping from label ids to block coordinates min / max (XYZ !!!!)
-        std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> mapping;
-        // initialize with empty vectors
-        for(std::size_t labelId = idStart; labelId < idStop; ++labelId) {
-            mapping.emplace(std::make_pair(labelId, std::vector<std::array<int64_t, 6>>()));
-        }
-        // iterate over all the chunks in the input dataset and find the mapping to labels
-        // in the label range
-        const size_t nThreads = 1;  // NOTE for > 1 we would need to make the labmbda below thread-safe !!!
-        z5::util::parallel_for_each_chunk(*inputDs, nThreads, [&mapping,
-                                                               &blocking,
-                                                               idStart,
-                                                               idStop](const int t,
-                                                                       const z5::Dataset & ds,
-                                                                       const z5::types::ShapeType & chunkCoord){
-            // read this chunk data (if present)
+        z5::util::parallel_for_each_chunk(*inputDs, numberOfThreads, [&perThreadData,
+                                                                      &blocking](const int tId,
+                                                                                 const z5::Dataset & ds,
+                                                                                 const z5::types::ShapeType & chunkCoord){
+            // read this chunk's data (if present)
             z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
             if(!chunk.exists()) {
                 return;
             }
-            // get size of the chunk
+
             bool isVarlen;
             const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
             std::vector<uint64_t> labelsInChunk(chunkSize);
-            // read
             ds.readChunk(chunkCoord, &labelsInChunk[0]);
 
-            // get coordinates of this chunk and transform to array for serialization
-            std::vector<std::size_t> chunkBegin, chunkEnd;
-            blocking.getBlockBeginAndEnd(chunkCoord, chunkBegin, chunkEnd);
-            // NOTE, java has axis order XYZ, we have ZYX that's why we revert
-            // also, we report the end coordinates (= max + 1), java expects max
-            std::array<int64_t, 6> blockSer = {static_cast<int64_t>(chunkBegin[2]), static_cast<int64_t>(chunkBegin[1]), static_cast<int64_t>(chunkBegin[0]),
-                                               static_cast<int64_t>(chunkEnd[2] - 1), static_cast<int64_t>(chunkEnd[1] - 1), static_cast<int64_t>(chunkEnd[0] - 1)};
+            // get the (1d) id of the chunk
+            const std::size_t chunkId = blocking.blockCoordinatesToBlockId(chunkCoord);
 
-            // check if id spaces have any overlap
-            // NOTE the chnk labels are unique and sorted
-            const std::size_t chunkMin = labelsInChunk[0];
-            const std::size_t chunkMax = labelsInChunk.back();
-            // check for overlap of intervals
-            if(!(std::max(chunkMin, idStart) <= std::min(chunkMax, idStop))) {
-                return;
-            }
-
-            // check ids that are in this chunk
-            for(const uint64_t labelId : labelsInChunk) {
-                if(labelId < idStart) {
-                    continue;
-                } else if(labelId >= idStop) {
-                    break;
+            // add the chunkId to all the labels we have found in this chunk
+            auto & threadData = perThreadData[tId];
+            for(const uint64_t labelId: labelsInChunk) {
+                auto it = threadData.find(labelId);
+                if(it == threadData.end()) {
+                    threadData.insert(std::make_pair(labelId,
+                                                     std::vector<size_t>({chunkId})));
+                } else {
+                    it->second.push_back(chunkId);
                 }
-                mapping[labelId].emplace_back(blockSer);
             }
         });
 
-        // calculate the serialization size in byte
-        std::size_t serSize = 0;
-        for(const auto & elem: mapping) {
-            const auto nElems = elem.second.size();
-            // for every label that is present in at least one block, we serialize:
-            // labelId as int64 = 8 byte
-            // number of blocks as int32 = 4 byte
-            // 6 int64 coordinates for each block = 6 * 8 * nBlocks = 48 * nBlocks
-            if(nElems > 0) {
-                serSize += 12 + nElems * 48;
+        mergeBlockMapping(perThreadData, mapping, numberOfThreads);
+    }
+
+
+    template<class OUT>
+    inline void getBlockMappingWithRoi(const std::string & inputPath,
+                                       const int numberOfThreads,
+                                       OUT & mapping,
+                                       const std::vector<std::size_t> & roiBegin,
+                                       const std::vector<std::size_t> & roiEnd) {
+
+        auto inputDs = z5::openDataset(inputPath);
+
+        // we store the mapping of labels to blocks extracted for each thread in an unordered map
+        // of vectors
+        typedef std::unordered_map<uint64_t, std::vector<std::size_t>> PerThread;
+        std::vector<PerThread> perThreadData(numberOfThreads);
+
+        const auto & blocking = inputDs->chunking();
+        z5::util::parallel_for_each_chunk_in_roi(*inputDs,
+                                                 roiBegin,
+                                                 roiEnd,
+                                                 numberOfThreads,
+                                                 [&perThreadData,
+                                                  &blocking](const int tId,
+                                                             const z5::Dataset & ds,
+                                                             const z5::types::ShapeType & chunkCoord){
+            // read this chunk's data (if present)
+            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
+            if(!chunk.exists()) {
+                return;
             }
-        }
 
-        // make serialzation
-        char * byteSerialization = new char[serSize];
-        char * serPointer = byteSerialization;
-        for(const auto & elem: mapping) {
-            const auto & blockList = elem.second;
-            int32_t nBlocks = static_cast<int32_t>(blockList.size());
-            if(nBlocks > 0) {
-                // copy labelId, numberOfBlocks into the serialization buffer
-                int64_t labelId = static_cast<int64_t>(elem.first);
+            bool isVarlen;
+            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::vector<uint64_t> labelsInChunk(chunkSize);
+            ds.readChunk(chunkCoord, &labelsInChunk[0]);
 
-                // for some reason, this is not in the n5 default endianness,
-                // so we need to reverse the endidianness for everything here
-                z5::util::reverseEndiannessInplace(labelId);
-                memcpy(serPointer, &labelId, 8);
-                serPointer += 8;
+            // get the (1d) id of the chunk
+            const std::size_t chunkId = blocking.blockCoordinatesToBlockId(chunkCoord);
 
-                z5::util::reverseEndiannessInplace(nBlocks);
-                memcpy(serPointer, &nBlocks, 4);
-                serPointer += 4;
-                for(auto & block: blockList) {
-                    for(int64_t bc : block) {
-                        z5::util::reverseEndiannessInplace(bc);
-                        memcpy(serPointer, &bc, 8);
-                        serPointer += 8;
+            // add the chunkId to all the labels we have found in this chunk
+            auto & threadData = perThreadData[tId];
+            for(const uint64_t labelId: labelsInChunk) {
+                auto it = threadData.find(labelId);
+                if(it == threadData.end()) {
+                    threadData.insert(std::make_pair(labelId,
+                                                     std::vector<size_t>({chunkId})));
+                } else {
+                    it->second.push_back(chunkId);
+                }
+            }
+        });
+
+        mergeBlockMapping(perThreadData, mapping, numberOfThreads);
+    }
+
+
+    template<class OUT>
+    inline void serializeMappingChunks(const std::string & inputPath,
+                                       const std::string & outputPath,
+                                       const OUT & mapping,
+                                       const int numberOfThreads) {
+        // open the input and output datasets
+        auto inputDs = z5::openDataset(inputPath);
+        auto outputDs = z5::openDataset(outputPath);
+        const auto & blocking = inputDs->chunking();
+
+        const std::size_t numberOfLabels = mapping.size();
+        const std::vector<std::size_t> idRoiBegin = {0};
+        const std::vector<std::size_t> idRoiEnd = {numberOfLabels};
+        z5::util::parallel_for_each_chunk_in_roi(*outputDs,
+                                                 idRoiBegin,
+                                                 idRoiEnd,
+                                                 numberOfThreads,
+                                                 [&mapping,
+                                                  &blocking,
+                                                  numberOfLabels](const int t,
+                                                                  const z5::Dataset & ds,
+                                                                  const z5::types::ShapeType & idChunk){
+
+            const auto & idBlocking = ds.chunking();
+            // get the begin and end in id-space for this chunk
+            std::vector<std::size_t> idBegin, idEnd;
+            idBlocking.getBlockBeginAndEnd(idChunk, idBegin, idEnd);
+            idEnd[0] = std::min(idEnd[0], numberOfLabels);
+
+            // calculate the serialization size for this chunk in byte
+            std::size_t serSize = 0;
+            for(int64_t labelId = idBegin[0]; labelId < idEnd[0]; ++labelId) {
+                const std::size_t nBlocks = mapping[labelId].size();
+                // for every label that is present in at least one block, we serialize:
+                // labelId as int64 = 8 byte
+                // number of blocks as int32 = 4 byte
+                // 6 int64 coordinates for each block = 6 * 8 * nBlocks = 48 * nBlocks
+                if(nBlocks > 0) {
+                    serSize += 12 + nBlocks * 48;
+                }
+            }
+
+            std::vector<size_t> chunkBegin, chunkEnd;
+            // make serialzation
+            char * byteSerialization = new char[serSize];
+            char * serPointer = byteSerialization;
+            for(int64_t labelId = idBegin[0]; labelId < idEnd[0]; ++labelId) {
+                const auto & blockList = mapping[labelId];
+                int32_t nBlocks = static_cast<int32_t>(blockList.size());
+                if(nBlocks > 0) {
+                    // copy labelId, numberOfBlocks into the serialization buffer
+                    int64_t labelIdOut = labelId;
+
+                    // for some reason, this is not in the n5 default endianness,
+                    // so we need to reverse the endidianness for everything here
+                    z5::util::reverseEndiannessInplace(labelIdOut);
+                    memcpy(serPointer, &labelIdOut, 8);
+                    serPointer += 8;
+
+                    z5::util::reverseEndiannessInplace(nBlocks);
+                    memcpy(serPointer, &nBlocks, 4);
+                    serPointer += 4;
+
+                    // serialize the coordinates for all blocks in blocklist
+                    for(const std::size_t chunkId: blockList) {
+                        blocking.getBlockBeginAndEnd(chunkId, chunkBegin, chunkEnd);
+
+                        // NOTE, java has axis order XYZ, we have ZYX that's why we revert
+                        // also, we report the end coordinates (= max + 1), java expects max
+                        std::array<int64_t, 6> blockSer = {static_cast<int64_t>(chunkBegin[2]),
+                                                           static_cast<int64_t>(chunkBegin[1]),
+                                                           static_cast<int64_t>(chunkBegin[0]),
+                                                           static_cast<int64_t>(chunkEnd[2] - 1),
+                                                           static_cast<int64_t>(chunkEnd[1] - 1),
+                                                           static_cast<int64_t>(chunkEnd[0] - 1)};
+
+                        for(int64_t bc : blockSer) {
+                            z5::util::reverseEndiannessInplace(bc);
+                            memcpy(serPointer, &bc, 8);
+                            serPointer += 8;
+                        }
                     }
                 }
             }
-        }
+            // write serialization to this chunk
+            ds.writeChunk(idChunk, byteSerialization, true, serSize);
+            delete[] byteSerialization;
+        });
 
-        // write serialization to the current output chunk
-        z5::types::ShapeType outChunk = {static_cast<std::size_t>(idStart / idChunkSize)};
-        outputDs->writeChunk(outChunk, byteSerialization, true, serSize);
-        delete[] byteSerialization;
+    }
+
+
+    inline void serializeBlockMapping(const std::string & inputPath,
+                                      const std::string & outputPath,
+                                      const std::size_t numberOfLabels,
+                                      const int numberOfThreads,
+                                      const std::vector<size_t> & roiBegin=std::vector<std::size_t>(),
+                                      const std::vector<size_t> & roiEnd=std::vector<std::size_t>()) {
+
+        // iterate over the input in parallel and map block-ids to label ids
+        std::vector<std::vector<std::size_t>> mapping(numberOfLabels);
+        if(roiBegin.size() == 0) {
+            getBlockMapping(inputPath, numberOfThreads, mapping);
+        } else if(roiBegin.size() == 3) {
+            getBlockMappingWithRoi(inputPath, numberOfThreads, mapping, roiBegin, roiEnd);
+        } else {
+            throw std::runtime_error("Invalid ROI");
+        }
+        serializeMappingChunks(inputPath, outputPath, mapping, numberOfThreads);
     }
 
 
