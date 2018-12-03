@@ -79,11 +79,16 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 14 support
+# check for c++ 14 / 17 support
 #-------------------------------------------------------------------------------------------------------------------
 
-# TODO enable compiling with c++17
-set(CMAKE_CXX_STANDARD 14)
+message(STATUS "CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+if (NOT "${CMAKE_CXX_FLAGS}" MATCHES "-std=c\\+\\+17")
+    message(STATUS "Using c++ 14")
+    set(CMAKE_CXX_STANDARD 14)
+else()
+    message(STATUS "Using c++ 17")
+endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # WITH_LP_MP needs special treatment since

@@ -3,8 +3,14 @@ include_directories(${xtensor-python_INCLUDE_DIRS})
 
 find_package(pybind11 REQUIRED)
 include_directories(${pybind11_INCLUDE_DIRS})
-# TODO enable compiling with c++17
-set(PYBIND11_CPP_STANDARD -std=c++14)
+
+if (NOT "${CMAKE_CXX_FLAGS}" MATCHES "-std=c\\+\\+17")
+    message(STATUS "Set pybind standard to c++ 14")
+    set(PYBIND11_CPP_STANDARD -std=c++14)
+else()
+    message(STATUS "Set pybind standard to c++ 17")
+    set(PYBIND11_CPP_STANDARD -std=c++17)
+endif()
 
 find_package(NUMPY REQUIRED)
 include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
