@@ -379,12 +379,9 @@ namespace distributed {
 
 
     template<class LABELS, class VALUES, class OVERLAPS>
-    inline void computeLabelOverlaps(const xt::xexpression<LABELS> & labelsExp,
-                                     const xt::xexpression<VALUES> & valuesExp,
+    inline void computeLabelOverlaps(const LABELS & labels,
+                                     const VALUES & values,
                                      OVERLAPS & overlaps) {
-        const auto & labels = labelsExp.derived_cast();
-        const auto & values = valuesExp.derived_cast();
-
         CoordType shape;
         std::copy(labels.shape().begin(), labels.shape().end(), shape.begin());
 
@@ -396,9 +393,74 @@ namespace distributed {
                 overlaps.emplace(node, std::unordered_map<uint64_t, size_t>{{l, 1}});
             }
             else {
-                // FIXME not sure how this can work
                 ovlpIt->second[l] += 1;
             }
+        });
+    }
+
+
+    template<class LABELS, class VALUES>
+    inline void serializeLabelOverlaps(const LABELS & labels,
+                                       const VALUES & values,
+                                       const std::string & dsPath,
+                                       const std::vector<std::size_t> & chunkId) {
+        typedef typename LABELS::value_type LabelType;
+        typedef typename VALUES::value_type ValueType;
+        typedef std::unordered_map<ValueType, std::size_t> OverlapType;
+        // extract the overlaps
+        std::unordered_map<LabelType, OverlapType> overlaps;
+        computeLabelOverlaps(labels, values, overlaps);
+
+        // serialize the overlaps
+
+        // first determine the serialization size
+        std::size_t serSize = 0;
+        for(const auto & elem: overlaps) {
+            // per label, we serialize labelId, number of values,
+            // the values and value-counts
+            serSize += 2 + 2 * elem.second.size();
+        }
+
+        // make serialize
+        std::vector<uint64_t> serialization(serSize);
+        std::size_t serPos = 0;
+        for(const auto & elem: overlaps) {
+            const uint64_t labelId = static_cast<uint64_t>(elem.first);
+            serialization[serPos] = labelId;
+            ++serPos;
+
+            const uint64_t count = elem.second.size();
+            serialization[serPos] = count;
+            ++serPos;
+
+            for(const auto & ovlp: elem.second) {
+                const uint64_t value = static_cast<uint64_t>(ovlp.first);
+                serialization[serPos] = value;
+                ++serPos;
+
+                const uint64_t count = static_cast<uint64_t>(ovlp.second);
+                serialization[serPos] = count;
+                ++serPos;
+            }
+        }
+
+        // write serialization
+        auto ds = z5::openDataset(dsPath);
+        ds->writeChunk(chunkId, &serialization[0], true, serSize);
+    }
+
+
+    // TODO implement
+    inline void mergeAndSerializeOverlaps(const std::string & inputPath,
+                                          const std::string & outputPath,
+                                          const bool max_overlap,
+                                          const int numberOfThreads) {
+        auto inputDs = z5::openDataset(inputPath);
+        z5::util::parallel_for_each_chunk(*inputDs,
+                                          numberOfThreads,
+                                          [](const int tId,
+                                             const z5::Dataset & ds,
+                                             const z5::types::ShapeType & chunkCoord){
         });
     }
 
@@ -513,10 +575,12 @@ namespace distributed {
         std::vector<PerThread> perThreadData(numberOfThreads);
 
         const auto & blocking = inputDs->chunking();
-        z5::util::parallel_for_each_chunk(*inputDs, numberOfThreads, [&perThreadData,
-                                                                      &blocking](const int tId,
-                                                                                 const z5::Dataset & ds,
-                                                                                 const z5::types::ShapeType & chunkCoord){
+        z5::util::parallel_for_each_chunk(*inputDs,
+                                          numberOfThreads,
+                                          [&perThreadData,
+                                           &blocking](const int tId,
+                                                      const z5::Dataset & ds,
+                                                      const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
             z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
             if(!chunk.exists()) {

@@ -211,6 +211,27 @@ namespace distributed {
            py::arg("serializeEdges")=true);
 
 
+        module.def("serializeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
+                                                const xt::pytensor<uint64_t, 3> & values,
+                                                const std::string & dsPath,
+                                                const std::vector<std::size_t> & chunkId){
+            py::gil_scoped_release allowThreads;
+            serializeLabelOverlaps(labels, values, dsPath, chunkId);
+        }, py::arg("labels"), py::arg("values"),
+           py::arg("dsPath"), py::arg("chunkId"));
+
+
+        module.def("mergeAndSerializeOverlaps", [](const std::string & inputPath,
+                                                   const std::string & outputPath,
+                                                   const bool max_overlap,
+                                                   const int numberOfThreads) {
+            py::gil_scoped_release allowThreads;
+            mergeAndSerializeOverlaps(inputPath, outputPath,
+                                      max_overlap, numberOfThreads);
+        }, py::arg("inputPath"), py::arg("outputPath"),
+           py::arg("max_overlap"), py::arg("numberOfThreads"));
+
+
         module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
                                               const xt::pytensor<uint64_t, 3> & gt){
             typedef std::unordered_map<uint64_t, size_t> OverlapType;
