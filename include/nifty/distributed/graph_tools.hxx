@@ -450,18 +450,136 @@ namespace distributed {
     }
 
 
-    // TODO implement
     inline void mergeAndSerializeOverlaps(const std::string & inputPath,
                                           const std::string & outputPath,
                                           const bool max_overlap,
                                           const int numberOfThreads) {
+
+        typedef std::unordered_map<uint64_t, std::size_t> OverlapType;
+        typedef std::unordered_map<uint64_t, OverlapType> LabelToOverlaps;
+
+        std::vector<LabelToOverlaps> threadData(numberOfThreads);
+        std::vector<uint64_t> threadMax(numberOfThreads, 0);
+
         auto inputDs = z5::openDataset(inputPath);
         z5::util::parallel_for_each_chunk(*inputDs,
                                           numberOfThreads,
-                                          [](const int tId,
-                                             const z5::Dataset & ds,
-                                             const z5::types::ShapeType & chunkCoord){
+                                          [&threadData,
+                                           &threadMax](const int tId,
+                                                       const z5::Dataset & ds,
+                                                       const z5::types::ShapeType & chunkCoord){
+            // read this chunk's data (if present)
+            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
+            if(!chunk.exists()) {
+                return;
+            }
+            bool isVarlen;
+            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::vector<uint64_t> chunkOverlaps(chunkSize);
+            ds.readChunk(chunkCoord, &chunkOverlaps[0]);
+
+            // deserialize the data
+            auto & thisData = threadData[tId];
+            auto & thisMax = threadMax[tId];
+
+            std::size_t pos = 0;
+            while(pos < chunkSize) {
+                const uint64_t labelId = chunkOverlaps[pos];
+                ++pos;
+
+                if(labelId > thisMax) {
+                    thisMax = labelId;
+                }
+
+                const uint64_t nValues = chunkOverlaps[pos];
+                ++pos;
+
+                auto labelIt = thisData.find(labelId);
+                if(labelIt == thisData.end()) {
+                    labelIt = thisData.emplace(std::make_pair(labelId, OverlapType())).first;
+                }
+
+                auto ovlps = labelIt->second;
+
+                for(size_t i = 0; i < nValues; ++i) {
+                    const uint64_t value = chunkOverlaps[pos];
+                    ++pos;
+
+                    auto valIt = ovlps.find(value);
+                    if(valIt == ovlps.end()) {
+                        valIt = ovlps.emplace(std::make_pair(value, 0)).first;
+                    }
+
+                    const uint64_t count = chunkOverlaps[pos];
+                    ++pos;
+
+                    valIt->second += count;
+                }
+            }
         });
+
+        // find the upper label bound
+        const uint64_t nLabels = *std::max_element(threadMax.begin(), threadMax.end()) + 1;
+
+        // merge the thread data
+        std::vector<OverlapType> overlaps(nLabels);
+        nifty::parallel::parallel_foreach(numberOfThreads,
+                                          nLabels,
+                                          [&threadData,
+                                           &overlaps,
+                                           numberOfThreads](const int t,
+                                                            const uint64_t labelId){
+            auto & ovlp = overlaps[labelId];
+            for(int tId = 0; tId < numberOfThreads; ++tId) {
+                const auto & src = threadData[tId];
+                const auto & srcIt = src.find(labelId);
+                if(srcIt == src.end()) {
+                    continue;
+                }
+                const auto & srcOvlps = srcIt->second;
+                for(const auto & srcElem: srcOvlps) {
+                    const uint64_t value = srcElem.first;
+                    const uint64_t count = srcElem.second;
+
+                    auto outIt = ovlp.find(value);
+                    if(outIt == ovlp.end()) {
+                        outIt = ovlp.emplace(std::make_pair(value, 0)).first;
+                    }
+                    outIt->second += count;
+                }
+            }
+        });
+
+        // serialzie the result
+        // TODO implement the case max_overlap == False
+
+        // find the maximum overlap value for each label
+        xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({nLabels});
+        nifty::parallel::parallel_foreach(numberOfThreads,
+                                          nLabels,
+                                          [&out,
+                                           &overlaps](const int t,
+                                                      const uint64_t labelId){
+            const auto & ovlp = overlaps[labelId];
+            uint64_t maxOvlp = 0;
+            uint64_t maxOvlpValue = 0;
+            for(const auto & elem: ovlp) {
+                if(elem.second > maxOvlp) {
+                    maxOvlp = elem.second;
+                    maxOvlpValue = elem.first;
+                }
+            }
+            out[labelId] = maxOvlpValue;
+        });
+
+        std::vector<std::size_t> outShape = {nLabels};
+        std::vector<std::size_t> chunkShape = {std::min(nLabels, 262144UL)};
+        auto dsOut = z5::createDataset(outputPath, "uint64",
+                                       outShape, chunkShape, false,
+                                       "gzip");
+
+        const std::vector<size_t> zero1Coord({0});
+        z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero1Coord.begin(), numberOfThreads);
     }
 
 
@@ -808,6 +926,7 @@ namespace distributed {
             mapping[static_cast<uint64_t>(labelId)] = coordList;
         }
     }
+
 
     inline void readBlockMapping(const std::string & dsPath,
                                  const std::vector<std::size_t> chunkId,
