@@ -7,6 +7,7 @@ addPythonModule(
         graph_extraction.cxx
         distributed_graph.cxx
         mergeable_features.cxx
+        distributed_utils.cxx
     LIBRRARIES
         # ${FASTFILTERS_LIBRARY}
         ${Z5_COMPRESSION_LIBRARIES}

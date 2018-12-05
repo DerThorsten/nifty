@@ -6,7 +6,6 @@
 
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/graph_tools.hxx"
-#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
@@ -211,70 +210,6 @@ namespace distributed {
            py::arg("serializeEdges")=true);
 
 
-        module.def("serializeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
-                                                const xt::pytensor<uint64_t, 3> & values,
-                                                const std::string & dsPath,
-                                                const std::vector<std::size_t> & chunkId){
-            py::gil_scoped_release allowThreads;
-            serializeLabelOverlaps(labels, values, dsPath, chunkId);
-        }, py::arg("labels"), py::arg("values"),
-           py::arg("dsPath"), py::arg("chunkId"));
-
-
-        module.def("mergeAndSerializeOverlaps", [](const std::string & inputPath,
-                                                   const std::string & outputPath,
-                                                   const bool max_overlap,
-                                                   const int numberOfThreads) {
-            py::gil_scoped_release allowThreads;
-            mergeAndSerializeOverlaps(inputPath, outputPath,
-                                      max_overlap, numberOfThreads);
-        }, py::arg("inputPath"), py::arg("outputPath"),
-           py::arg("max_overlap"), py::arg("numberOfThreads"));
-
-
-        module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
-                                              const xt::pytensor<uint64_t, 3> & gt){
-            typedef std::unordered_map<uint64_t, size_t> OverlapType;
-            std::unordered_map<uint64_t, OverlapType> overlaps;
-            {
-                py::gil_scoped_release allowThreads;
-                computeLabelOverlaps(labels, gt, overlaps);
-            }
-            return overlaps;
-        }, py::arg("labels"), py::arg("gt"));
-
-
-        module.def("computeMaximumLabelOverlap", [](const xt::pytensor<uint64_t, 3> & labels,
-                                                    const xt::pytensor<uint64_t, 3> & gt){
-            typedef std::unordered_map<uint64_t, size_t> OverlapType;
-            std::unordered_map<uint64_t, OverlapType> overlaps;
-            {
-                py::gil_scoped_release allowThreads;
-                computeLabelOverlaps(labels, gt, overlaps);
-            }
-            const size_t n_nodes = overlaps.size();
-            xt::pytensor<uint64_t, 1> max_overlaps = xt::zeros<uint64_t>({n_nodes});
-            {
-                py::gil_scoped_release allowThreads;
-                for(const auto & node_ovlp: overlaps) {
-                    const uint64_t node = node_ovlp.first;
-                    const auto & ovlp = node_ovlp.second;
-
-                    size_t max_ol = 0;
-                    uint64_t max_label = 0;
-                    for(const auto & elem: ovlp) {
-                        if(elem.second > max_ol) {
-                            max_ol = elem.second;
-                            max_label = elem.first;
-                        }
-                    }
-                    max_overlaps(node) = max_label;
-                }
-            }
-            return max_overlaps;
-        }, py::arg("labels"), py::arg("gt"));
-
-
         module.def("connectedComponents", [](const Graph & graph,
                                              const xt::pytensor<bool, 1> & edgeLabels,
                                              const bool ignoreLabel){
@@ -285,35 +220,7 @@ namespace distributed {
             }
             return labels;
         }, py::arg("graph"), py::arg("edgeLabels"), py::arg("ignoreLabel"));
-
-
-        module.def("serializeBlockMapping", [](const std::string & inputPath,
-                                               const std::string & outputPath,
-                                               const std::size_t numberOfLabels,
-                                               const int numberOfThreads,
-                                               const std::vector<std::size_t> & roiBegin,
-                                               const std::vector<std::size_t> & roiEnd){
-            py::gil_scoped_release allowThreads;
-            serializeBlockMapping(inputPath, outputPath, numberOfLabels, numberOfThreads,
-                                  roiBegin, roiEnd);
-        }, py::arg("inputPath"), py::arg("outputPath"),
-           py::arg("numberOfLabels"), py::arg("numberOfThreads"),
-           py::arg("roiBegin")=std::vector<size_t>(), py::arg("roiEnd")=std::vector<size_t>());
-
-
-        module.def("readBlockMapping", [](const std::string & dsPath,
-                                          const std::vector<std::size_t> chunkId) {
-            std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> mapping;
-            {
-                // dunno if we can lift gil, and this is not really performance
-                // critical, so it doesn't really matter
-                // py::gil_scoped_release allowThreads;
-                readBlockMapping(dsPath, chunkId, mapping);
-            }
-            return mapping;
-        }, py::arg("dsPath"), py::arg("chunkId"));
     }
-
 }
 }
 #endif
