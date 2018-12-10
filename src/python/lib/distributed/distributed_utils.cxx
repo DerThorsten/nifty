@@ -54,12 +54,16 @@ namespace distributed {
         module.def("mergeAndSerializeOverlaps", [](const std::string & inputPath,
                                                    const std::string & outputPath,
                                                    const bool max_overlap,
-                                                   const int numberOfThreads) {
+                                                   const int numberOfThreads,
+                                                   const std::size_t labelBegin,
+                                                   const std::size_t labelEnd) {
             py::gil_scoped_release allowThreads;
             mergeAndSerializeOverlaps(inputPath, outputPath,
-                                      max_overlap, numberOfThreads);
+                                      max_overlap, numberOfThreads,
+                                      labelBegin, labelEnd);
         }, py::arg("inputPath"), py::arg("outputPath"),
-           py::arg("max_overlap"), py::arg("numberOfThreads"));
+           py::arg("max_overlap"), py::arg("numberOfThreads"),
+           py::arg("labelBegin"), py::arg("labelEnd"));
 
 
         module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,

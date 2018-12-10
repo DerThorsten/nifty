@@ -100,40 +100,60 @@ namespace distributed {
     template<class OVLP>
     inline void deserializeOverlapsFromData(const std::vector<uint64_t> & chunkOverlaps,
                                             uint64_t & maxLabelId,
-                                            OVLP & out) {
+                                            OVLP & out,
+                                            const uint64_t labelBegin=0,
+                                            const uint64_t labelEnd=0) {
         typedef typename OVLP::value_type::second_type OverlapType;
+
+        const bool checkNodeRange = labelBegin != labelEnd;
+
         const std::size_t chunkSize = chunkOverlaps.size();
         std::size_t pos = 0;
         while(pos < chunkSize) {
             const uint64_t labelId = chunkOverlaps[pos];
             ++pos;
 
-            if(labelId > maxLabelId) {
-                maxLabelId = labelId;
-            }
+            const bool inRange = !(checkNodeRange && (labelId >= labelBegin && labelId < labelEnd));
 
-            const uint64_t nValues = chunkOverlaps[pos];
-            ++pos;
-
-            auto labelIt = out.find(labelId);
-            if(labelIt == out.end()) {
-                labelIt = out.emplace(std::make_pair(labelId, OverlapType())).first;
-            }
-
-            auto & ovlps = labelIt->second;
-            for(size_t i = 0; i < nValues; ++i) {
-                const uint64_t value = chunkOverlaps[pos];
-                ++pos;
-
-                auto valIt = ovlps.find(value);
-                if(valIt == ovlps.end()) {
-                    valIt = ovlps.emplace(std::make_pair(value, 0)).first;
+            if(inRange) {
+                // std::cout << "label " <<  labelId << " is in range"  << std::endl;
+                if(labelId > maxLabelId) {
+                    maxLabelId = labelId;
                 }
 
-                const uint64_t count = chunkOverlaps[pos];
+                const uint64_t nValues = chunkOverlaps[pos];
                 ++pos;
 
-                valIt->second += count;
+                auto labelIt = out.find(labelId);
+                if(labelIt == out.end()) {
+                    labelIt = out.emplace(std::make_pair(labelId, OverlapType())).first;
+                }
+
+                auto & ovlps = labelIt->second;
+                for(size_t i = 0; i < nValues; ++i) {
+                    const uint64_t value = chunkOverlaps[pos];
+                    ++pos;
+
+                    auto valIt = ovlps.find(value);
+                    if(valIt == ovlps.end()) {
+                        valIt = ovlps.emplace(std::make_pair(value, 0)).first;
+                    }
+
+                    const uint64_t count = chunkOverlaps[pos];
+                    ++pos;
+
+                    valIt->second += count;
+                }
+            } else {
+                // std::cout << "label " <<  labelId << " is out of range" << std::endl;
+                const uint64_t nValues = chunkOverlaps[pos];
+                ++pos;
+                for(size_t i = 0; i < nValues; ++i) {
+                    const uint64_t value = chunkOverlaps[pos];
+                    ++pos;
+                    const uint64_t count = chunkOverlaps[pos];
+                    ++pos;
+                }
             }
         }
     }
@@ -149,13 +169,16 @@ namespace distributed {
         // read this chunk's data (if present)
         z5::handle::Chunk chunk(ds->handle(), chunkId, ds->isZarr());
         if(chunk.exists()) {
+            std::cout << "Have Chunk" << std::endl;
             bool isVarlen;
             const std::size_t chunkSize = ds->getDiscChunkSize(chunkId, isVarlen);
+            std::cout << "of size" << chunkSize << std::endl;
             std::vector<uint64_t> chunkOverlaps(chunkSize);
             ds->readChunk(chunkId, &chunkOverlaps[0]);
 
             // deserialize the data
             deserializeOverlapsFromData(chunkOverlaps, maxLabelId, out);
+            std::cout << "ret vals: " << out.size() << " " << maxLabelId << std::endl;
         }
         return maxLabelId;
     }
@@ -164,7 +187,9 @@ namespace distributed {
     inline void mergeAndSerializeOverlaps(const std::string & inputPath,
                                           const std::string & outputPath,
                                           const bool max_overlap,
-                                          const int numberOfThreads) {
+                                          const int numberOfThreads,
+                                          const uint64_t labelBegin,
+                                          const uint64_t labelEnd) {
 
         typedef std::unordered_map<uint64_t, std::size_t> OverlapType;
         typedef std::unordered_map<uint64_t, OverlapType> LabelToOverlaps;
@@ -174,53 +199,52 @@ namespace distributed {
 
         // FIXME something is not thread-safe here
         auto inputDs = z5::openDataset(inputPath);
-        // std::cout << "Load from chunks " << std::endl;
+        std::cout << "Load from chunks " << std::endl;
         z5::util::parallel_for_each_chunk(*inputDs,
                                           numberOfThreads,
                                           [&threadData,
-                                           &threadMax](const int tId,
-                                                       const z5::Dataset & ds,
-                                                       const z5::types::ShapeType & chunkCoord){
-            // std::cout << "Thread " << tId << std::endl;
+                                           &threadMax,
+                                           labelBegin,
+                                           labelEnd](const int tId,
+                                                     const z5::Dataset & ds,
+                                                     const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
             z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
             if(!chunk.exists()) {
                 return;
             }
-            // std::cout << "Thread " << tId << " load" << std::endl;
             bool isVarlen;
             const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
             std::vector<uint64_t> chunkOverlaps(chunkSize);
             ds.readChunk(chunkCoord, &chunkOverlaps[0]);
-            // std::cout << "Thread " << tId << " load done" << std::endl;
 
             // deserialize the data
-            // std::cout << "Thread " << tId << " deserialize" << std::endl;
             auto & thisData = threadData[tId];
             uint64_t & thisMax = threadMax[tId];
-            deserializeOverlapsFromData(chunkOverlaps, thisMax, thisData);
-            // std::cout << "Thread " << tId << " deserialize done" << std::endl;
-            // std::cout << "Thread done " << tId << std::endl;
+            deserializeOverlapsFromData(chunkOverlaps, thisMax, thisData,
+                                        labelBegin, labelEnd);
 
         });
         // std::cout << "Load from chunks done" << std::endl;
 
         // find the upper label bound
-        const uint64_t nLabels = *std::max_element(threadMax.begin(), threadMax.end()) + 1;
+        // const uint64_t nLabels = *std::max_element(threadMax.begin(), threadMax.end()) + 1;
+        const uint64_t nLabels = labelEnd - labelBegin;
 
         // merge the thread data
         std::vector<OverlapType> overlaps(nLabels);
-        // std::cout << "Merge " << std::endl;
+        // std::cout << "Merge" << std::endl;
         nifty::parallel::parallel_foreach(numberOfThreads,
                                           nLabels,
                                           [&threadData,
                                            &overlaps,
-                                           numberOfThreads](const int t,
-                                                            const uint64_t labelId){
+                                           numberOfThreads,
+                                           labelBegin](const int t,
+                                                       const uint64_t labelId){
             auto & ovlp = overlaps[labelId];
             for(int tId = 0; tId < numberOfThreads; ++tId) {
                 const auto & src = threadData[tId];
-                const auto & srcIt = src.find(labelId);
+                const auto & srcIt = src.find(labelId + labelBegin);
                 if(srcIt == src.end()) {
                     continue;
                 }
@@ -241,6 +265,7 @@ namespace distributed {
 
         // serialzie the result
         if(max_overlap) {  // serialize just the label with maximum overlap
+            // std::cout << "Make serialization" << std::endl;
             // find the maximum overlap value for each label
             xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({nLabels});
             // std::cout << "Make serialization" << std::endl;
@@ -248,8 +273,8 @@ namespace distributed {
                                               nLabels,
                                               [&out,
                                                &overlaps](const int t,
-                                                          const uint64_t labelId){
-                const auto & ovlp = overlaps.at(labelId);
+                                                           const uint64_t labelId){
+                const auto & ovlp = overlaps[labelId];
                 uint64_t maxOvlp = 0;
                 uint64_t maxOvlpValue = 0;
                 for(const auto & elem: ovlp) {
@@ -262,15 +287,11 @@ namespace distributed {
             });
             // std::cout << "Make serialization done" << std::endl;
 
-            std::vector<std::size_t> outShape = {nLabels};
-            std::vector<std::size_t> chunkShape = {std::min(nLabels, 262144UL)};
-            auto dsOut = z5::createDataset(outputPath, "uint64",
-                                           outShape, chunkShape, false,
-                                           "gzip");
-
-            const std::vector<size_t> zero1Coord({0});
+            auto dsOut = z5::openDataset(outputPath);
+            const std::vector<size_t> zero1Coord({labelBegin});
             // std::cout << "Serialize" << std::endl;
-            z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero1Coord.begin(), numberOfThreads);
+            z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
+                                                    zero1Coord.begin(), numberOfThreads);
             // std::cout << "Serialize done" << std::endl;
         } else {  // serialize the merged overlap dict to a single chunk
             // merge the dicts (better not parallelize)
