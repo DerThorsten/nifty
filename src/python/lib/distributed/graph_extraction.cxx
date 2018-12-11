@@ -4,6 +4,7 @@
 
 #include "xtensor-python/pytensor.hpp"
 
+#include "nifty/python/converter.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/graph_tools.hxx"
 
