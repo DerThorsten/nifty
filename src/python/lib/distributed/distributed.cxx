@@ -20,6 +20,7 @@ namespace distributed{
     void exportDistributedGraph(py::module &);
     void exportMergeableFeatures(py::module &);
     void exportDistributedUtils(py::module &);
+    void exportLiftedUtils(py::module &);
 
 }
 }
@@ -39,5 +40,6 @@ PYBIND11_MODULE(_distributed, module) {
     exportDistributedGraph(module);
     exportMergeableFeatures(module);
     exportDistributedUtils(module);
+    exportLiftedUtils(module);
 }
 #endif
