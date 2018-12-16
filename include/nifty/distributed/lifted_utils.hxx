@@ -60,10 +60,12 @@ namespace distributed {
             }
 
             // check if we make a lifted edge between the start node and this node:
+            // is this a lifted edge? i.e. not in the local adjacency
+            const bool isLiftedEdge = graph.findEdge(nodeId, node) == -1;
             // does the node have a label?
-            // is the node's id bigger than nodeId? (otherwise edges would be redundant)
             const uint64_t label = nodeLabels[node];
-            if(label > 0 && nodeId < node) {
+            // is the node's id bigger than nodeId? (otherwise edges would be redundant)
+            if(isLiftedEdge && label > 0 && nodeId < node) {
                 out.emplace_back(std::make_pair(nodeId, node));
             }
         }
@@ -134,6 +136,14 @@ namespace distributed {
             out(liftedId, 0) = lifted.first;
             out(liftedId, 1) = lifted.second;
         }
+
+        std::vector<std::size_t> dsShape = {nLifted, 2};
+        std::vector<std::size_t> dsChunks = {std::min(static_cast<std::size_t>(64*64*64), nLifted), 1};
+        auto dsOut = z5::createDataset(outputPath, "uint64_t",
+                                       dsShape, dsChunks, false,
+                                       "gzip");
+        const std::vector<size_t> zero2Coord = {0, 0};
+        z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero2Coord.begin(), numberOfThreads);
     }
 
 }
