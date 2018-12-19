@@ -9,6 +9,7 @@ addPythonModule(
         mergeable_features.cxx
         distributed_utils.cxx
         lifted_utils.cxx
+        morphology.cxx
     LIBRRARIES
         # ${FASTFILTERS_LIBRARY}
         ${Z5_COMPRESSION_LIBRARIES}

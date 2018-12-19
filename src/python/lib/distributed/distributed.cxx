@@ -21,6 +21,7 @@ namespace distributed{
     void exportMergeableFeatures(py::module &);
     void exportDistributedUtils(py::module &);
     void exportLiftedUtils(py::module &);
+    void exportMorphology(py::module &);
 
 }
 }
@@ -41,5 +42,6 @@ PYBIND11_MODULE(_distributed, module) {
     exportMergeableFeatures(module);
     exportDistributedUtils(module);
     exportLiftedUtils(module);
+    exportMorphology(module);
 }
 #endif
