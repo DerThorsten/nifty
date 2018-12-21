@@ -1,11 +1,11 @@
 language: generic
-dist: trusty
+dist: xenial
 
 matrix:
   include:
     - os: linux
       env: 
-        - CONDA_PYTHON_VERSION=3.6
+        - CONDA_PYTHON_VERSION=3.7
       before_script:
         - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
         - bash miniconda.sh -b -p $HOME/miniconda
@@ -15,13 +15,9 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         
-        # TODO c++ 17 compilation not supported fully with xtensor yet
-        # - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
-        # - source activate dev
-        # - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image vigra
         - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
         - source activate dev
-        - conda install -c conda-forge glpk xtensor-python boost-cpp=1.67 scikit-image vigra
+        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image h5py vigra
 
       script:
 
@@ -31,9 +27,7 @@ matrix:
         - export PATH="$HOME/miniconda/bin:$PATH"
         - source activate dev
         - export ENV_ROOT="$HOME/miniconda/envs/dev"
-        - export ENV_INCLUDE="$ENV_ROOT/include"
         - export ENV_BIN=$ENV_ROOT/bin
-        - export ROOT_BIN="$HOME/miniconda/bin"
         
         ###############################################
         # setup compiler
@@ -47,36 +41,24 @@ matrix:
         - $ENV_BIN/cmake 
                 -DWITHIN_TRAVIS=ON 
                 -DWITH_QPBO=OFF
-                -DWITH_HDF5=OFF
+                -DWITH_HDF5=ON
                 -DWITH_GLPK=ON 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
                 -DBUILD_CPP_TEST=OFF
-                -DBUILD_PYTHON_TEST=ON 
                 -DBUILD_NIFTY_PYTHON=ON 
-                -DNOSETESTS_PATH=$ENV_BIN 
-                -DHDF5_INCLUDE_DIR=$ENV_INCLUDE 
-                -DGLPK_INCLUDE_DIR=$ENV_INCLUDE 
-                -DBoost_INCLUDE_DIR=$ENV_INCLUDE  
-                -DPYTHON_EXECUTABLE=$ENV_BIN/python$CONDA_PYTHON_VERSION
-                -DPYTHON_NUMPY_INCLUDE_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/numpy/core/include
-                -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages/
-                -DCMAKE_INSTALL_PREFIX=/home/travis/miniconda/envs/dev/
+                -DCMAKE_PREFIX_PATH=/home/travis/miniconda/envs/dev
+                -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages
+                -DCMAKE_INSTALL_PREFIX=/home/travis/miniconda/envs/dev
+                -DCMAKE_CXX_FLAGS="-std=c++17"
                
         ###############################################
         # the actual build
         ###############################################
-        - make -j 2
+        - make -j 4
 
-        ###############################################
-        # cpp tests
-        ###############################################
-        - make test
-        - CTEST_OUTPUT_ON_FAILURE=TRUE make test
-        
         ###############################################
         # install and test the project
         ###############################################
         - make install
-        # run all python unittests
-        - $ENV_BIN/python -m unittest discover -v src/python/test
+        - $ENV_BIN/python -m unittest discover -s src/python/test -v
