@@ -3,6 +3,7 @@
 #include "xtensor-python/pytensor.hpp"
 #include "xtensor-python/pyarray.hpp"
 
+#include "nifty/python/converter.hxx"
 #include "nifty/cgp/topological_grid.hxx"
 #include "nifty/cgp/filled_topological_grid.hxx"
 

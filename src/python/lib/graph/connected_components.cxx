@@ -27,7 +27,7 @@ namespace graph{
             const bool ignoreBackground = false
         ){
 
-            xt::pytensor<uint64_t, 1> ccLabels({uint64_t(nodeLabels.shape()[0])});
+            xt::pytensor<uint64_t, 1> ccLabels = xt::zeros<uint64_t>({nodeLabels.shape()[0]});
             ComponentsUfd<GRAPH> componentsUfd(graph);
             componentsUfd.buildFromLabels(nodeLabels);
 
@@ -58,7 +58,6 @@ namespace graph{
                         ccLabels[node] = 0;
                     }
                 }
-                
             }
             else if(dense  && !ignoreBackground){
                 componentsUfd.denseRelabeling(ccLabels);
@@ -71,11 +70,10 @@ namespace graph{
                     }
                     else{
                         ccLabels[node] += 1;
-                    }  
+                    }
                 }
             }
             return ccLabels;
-
         },
             py::arg("graph"),
             py::arg("nodeLabels"),
