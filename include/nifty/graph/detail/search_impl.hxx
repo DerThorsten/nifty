@@ -46,14 +46,14 @@ namespace detail_graph{
 
 
         template< class F>
-        void graphNeighbourhood(            
+        void graphNeighbourhood(
             const uint64_t source,
             const size_t maxDistance,
             F && f
         ){
 
             auto visitor = [&]
-            (   
+            (
                 int64_t toNode,
                 int64_t predecessorNode,
                 int64_t edge,
@@ -89,7 +89,7 @@ namespace detail_graph{
             DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
             auto visitor = [&]
-            (   
+            (
                 int64_t toNode,
                 int64_t predecessorNode,
                 int64_t edge,
@@ -114,7 +114,7 @@ namespace detail_graph{
 
             // visitor
             auto visitor = [&]
-            (   
+            (
                 int64_t toNode,
                 int64_t predecessorNode,
                 int64_t edge,
@@ -142,7 +142,7 @@ namespace detail_graph{
             this->initializeMaps(&source, &source +1);
             // visitor
             auto visitor = [&]
-            (   
+            (
                 int64_t toNode,
                 int64_t predecessorNode,
                 int64_t edge,
@@ -159,9 +159,9 @@ namespace detail_graph{
 
         template<class SOURCE_ITER, class SUBGRAPH_MASK, class VISITOR>
         void run(
-            SOURCE_ITER sourceBegin, 
+            SOURCE_ITER sourceBegin,
             SOURCE_ITER sourceEnd,
-            const SUBGRAPH_MASK &  subgraphMask,
+            const SUBGRAPH_MASK & subgraphMask,
             VISITOR && visitor
         ){
             this->initializeMaps(sourceBegin, sourceEnd);
@@ -178,7 +178,7 @@ namespace detail_graph{
 
         template<
             class SUBGRAPH_MASK,
-            class VISITOR 
+            class VISITOR
         >
         void runImpl(
             const SUBGRAPH_MASK &  subgraphMask,
@@ -204,7 +204,7 @@ namespace detail_graph{
                             queue_.push(v);
                         }
                         if(!continueSeach)
-                            break;                        
+                            break;
                     }
                 }
             }

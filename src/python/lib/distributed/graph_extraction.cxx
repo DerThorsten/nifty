@@ -4,9 +4,9 @@
 
 #include "xtensor-python/pytensor.hpp"
 
+#include "nifty/python/converter.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/graph_tools.hxx"
-#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
@@ -24,19 +24,21 @@ namespace distributed {
             const CoordinateType & roiEnd,
             const std::string & pathToGraph,
             const std::string & keyToGraph,
-            const bool ignoreLabel
+            const bool ignoreLabel,
+            const bool increaseRoi
         ) {
 
             py::gil_scoped_release allowThreads;
             computeMergeableRegionGraph(pathToLabels, keyToLabels,
                                         roiBegin, roiEnd,
                                         pathToGraph, keyToGraph,
-                                        ignoreLabel);
+                                        ignoreLabel, increaseRoi);
 
         }, py::arg("pathToLabels"), py::arg("keyToLabels"),
            py::arg("roiBegin"), py::arg("roiEnd"),
            py::arg("pathToGraph"), py::arg("keyToGraph"),
-           py::arg("ignoreLabel")=false);
+           py::arg("ignoreLabel")=false,
+           py::arg("increaseRoi")=false);
 
 
         module.def("mergeSubgraphs", [](
@@ -209,49 +211,6 @@ namespace distributed {
            py::arg("serializeEdges")=true);
 
 
-        module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
-                                              const xt::pytensor<uint64_t, 3> & gt){
-            typedef std::unordered_map<uint64_t, size_t> OverlapType;
-            std::unordered_map<uint64_t, OverlapType> overlaps;
-            {
-                py::gil_scoped_release allowThreads;
-                computeLabelOverlaps(labels, gt, overlaps);
-            }
-            return overlaps;
-        }, py::arg("labels"), py::arg("gt"));
-
-
-        module.def("computeMaximumLabelOverlap", [](const xt::pytensor<uint64_t, 3> & labels,
-                                                    const xt::pytensor<uint64_t, 3> & gt){
-            typedef std::unordered_map<uint64_t, size_t> OverlapType;
-            std::unordered_map<uint64_t, OverlapType> overlaps;
-            {
-                py::gil_scoped_release allowThreads;
-                computeLabelOverlaps(labels, gt, overlaps);
-            }
-            const size_t n_nodes = overlaps.size();
-            xt::pytensor<uint64_t, 1> max_overlaps = xt::zeros<uint64_t>({n_nodes});
-            {
-                py::gil_scoped_release allowThreads;
-                for(const auto & node_ovlp: overlaps) {
-                    const uint64_t node = node_ovlp.first;
-                    const auto & ovlp = node_ovlp.second;
-
-                    size_t max_ol = 0;
-                    uint64_t max_label = 0;
-                    for(const auto & elem: ovlp) {
-                        if(elem.second > max_ol) {
-                            max_ol = elem.second;
-                            max_label = elem.first;
-                        }
-                    }
-                    max_overlaps(node) = max_label;
-                }
-            }
-            return max_overlaps;
-        }, py::arg("labels"), py::arg("gt"));
-
-
         module.def("connectedComponents", [](const Graph & graph,
                                              const xt::pytensor<bool, 1> & edgeLabels,
                                              const bool ignoreLabel){
@@ -262,18 +221,7 @@ namespace distributed {
             }
             return labels;
         }, py::arg("graph"), py::arg("edgeLabels"), py::arg("ignoreLabel"));
-
-
-        module.def("serializeBlockMapping", [](const std::string & inputPath,
-                                               const std::string & outputPath,
-                                               const std::size_t idStart,
-                                               const std::size_t idStop){
-            py::gil_scoped_release allowThreads;
-            serializeBlockMapping(inputPath, outputPath, idStart, idStop);
-        }, py::arg("inputPath"), py::arg("outputPath"),
-           py::arg("idStart"), py::arg("idStop"));
     }
-
 }
 }
 #endif

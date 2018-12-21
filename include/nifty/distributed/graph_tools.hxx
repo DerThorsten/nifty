@@ -2,6 +2,7 @@
 
 #include "boost/pending/disjoint_sets.hpp"
 #include "z5/util/for_each.hxx"
+#include "z5/util/util.hxx"
 
 #include "nifty/graph/undirected_list_graph.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
@@ -377,31 +378,6 @@ namespace distributed {
     }
 
 
-    template<class LABELS, class VALUES, class OVERLAPS>
-    inline void computeLabelOverlaps(const xt::xexpression<LABELS> & labelsExp,
-                                     const xt::xexpression<VALUES> & valuesExp,
-                                     OVERLAPS & overlaps) {
-        const auto & labels = labelsExp.derived_cast();
-        const auto & values = valuesExp.derived_cast();
-
-        CoordType shape;
-        std::copy(labels.shape().begin(), labels.shape().end(), shape.begin());
-
-        nifty::tools::forEachCoordinate(shape, [&](const CoordType & coord){
-            const auto node = xtensor::read(labels, coord);
-            const auto l = xtensor::read(values, coord);
-            auto ovlpIt = overlaps.find(node);
-            if(ovlpIt == overlaps.end()) {
-                overlaps.emplace(node, std::unordered_map<uint64_t, size_t>{{l, 1}});
-            }
-            else {
-                // FIXME not sure how this can work
-                ovlpIt->second[l] += 1;
-            }
-        });
-    }
-
-
     template<class EDGES, class NODES>
     void connectedComponents(const Graph & graph,
                              const xt::xexpression<EDGES> & edges_exp,
@@ -472,116 +448,6 @@ namespace distributed {
         for(const NodeType node : nodes){
             labels(node) = sets.find_set(labels(node));
         }
-    }
-
-
-    inline void serializeBlockMapping(const std::string & inputPath,
-                                      const std::string & outputPath,
-                                      const std::size_t idStart,
-                                      const std::size_t idStop) {
-        // open the input and output datasets
-        auto inputDs = z5::openDataset(inputPath);
-        auto outputDs = z5::openDataset(outputPath);
-
-        // id space chunking
-        const std::size_t idChunkSize = outputDs->maxChunkShape(0);
-
-        // blocking of input dataset
-        const auto & blocking = inputDs->chunking();
-
-        // map to store the mapping from label ids to block coordinates min / ma (XYZ !!!!)
-        std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> mapping;
-        // initialize with empty vectors
-        for(std::size_t labelId = idStart; labelId < idStop; ++labelId) {
-            mapping.emplace(std::make_pair(labelId, std::vector<std::array<int64_t, 6>>()));
-        }
-        // iterate over all the chunks in the input dataset and find the mapping to labels
-        // in the label range
-        const size_t nThreads = 1;  // NOTE for > 1 we would need to make the labmbda below thread-safe !!!
-        z5::util::parallel_for_each_chunk(*inputDs, nThreads, [&mapping,
-                                                               &blocking,
-                                                               idStart,
-                                                               idStop](const int t,
-                                                                       const z5::Dataset & ds,
-                                                                       const z5::types::ShapeType & chunkCoord){
-            // read this chunk data (if present)
-            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
-            if(!chunk.exists()) {
-                return;
-            }
-            // get size of the chunk
-            bool isVarlen;
-            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
-            std::vector<uint64_t> labelsInChunk(chunkSize);
-            // read
-            ds.readChunk(chunkCoord, &labelsInChunk[0]);
-
-            // get coordinates of this chunk and transform to array for serialization
-            std::vector<std::size_t> chunkBegin, chunkEnd;
-            blocking.getBlockBeginAndEnd(chunkCoord, chunkBegin, chunkEnd);
-            // NOTE, java has axis order XYZ, we have ZYX that's why we invert
-            // also, we report the end coordinates (= max + 1), java expects max
-            std::array<int64_t, 6> blockSer = {static_cast<int64_t>(chunkBegin[2]), static_cast<int64_t>(chunkBegin[1]), static_cast<int64_t>(chunkBegin[0]),
-                                               static_cast<int64_t>(chunkEnd[2] - 1), static_cast<int64_t>(chunkEnd[1] - 1), static_cast<int64_t>(chunkEnd[0] - 1)};
-
-            // check if id spaces have any overlap
-            // NOTE the chnk labels are unique and sorted
-            const std::size_t chunkMin = labelsInChunk[0];
-            const std::size_t chunkMax = labelsInChunk.back();
-            // check for overlap of intervals
-            if(!(chunkMin <= idStart && chunkMax <= idStop)) {
-                return;
-            }
-
-            // check ids that are in this chunk
-            for(const uint64_t labelId : labelsInChunk) {
-                if(labelId < idStart) {
-                    continue;
-                } else if(labelId >= idStop) {
-                    break;
-                }
-                mapping[labelId].emplace_back(blockSer);
-            }
-        });
-
-        // calculate the serialization size in byte
-        std::size_t serSize = 0;
-        for(const auto & elem: mapping) {
-            const auto nElems = elem.second.size();
-            // for every label that is present in at least one block, we serialize:
-            // labelId as int64 = 8 byte
-            // number of blocks as int32 = 4 byte
-            // 6 int64 coordinates for each block = 6 * 8 * nBlocks = 48 * nBlocks
-            if(nElems > 0) {
-                serSize += 12 + nElems * 48;
-            }
-        }
-
-        // make serialzation
-        char * byteSerialization = new char[serSize];
-        char * serPointer = byteSerialization;
-        for(const auto & elem: mapping) {
-            const auto & blockList = elem.second;
-            int32_t nBlocks = static_cast<int32_t>(blockList.size());
-            if(nBlocks > 0) {
-                // copy labelId, numberOfBlocks into the serialization buffer
-                int64_t labelId = static_cast<int64_t>(elem.first);
-                memcpy(&labelId, serPointer, 8);
-                serPointer += 8;
-                memcpy(&nBlocks, serPointer, 4);
-                serPointer += 4;
-                for(const auto & block: blockList) {
-                    // TODO I think std::copy is ok here instead of individual memcpys
-                    std::copy(block.begin(), block.end(), serPointer);
-                    serPointer += 48;
-                }
-            }
-        }
-
-        // write serialization to the current output chunk
-        z5::types::ShapeType outChunk = {static_cast<std::size_t>(idStart / idChunkSize)};
-        outputDs->writeChunk(outChunk, byteSerialization);
-        delete[] byteSerialization;
     }
 
 }
