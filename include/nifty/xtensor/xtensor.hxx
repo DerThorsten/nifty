@@ -105,7 +105,8 @@ namespace tools {
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
-        subarray = view;
+        // subarray = view;
+        std::copy(view.begin(), view.end(), subarray.begin());
     }
 
 

@@ -152,7 +152,7 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.shape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.labels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
@@ -196,7 +196,7 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.bigShape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.bigLabels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
@@ -261,7 +261,7 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.bigShape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.bigLabels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now

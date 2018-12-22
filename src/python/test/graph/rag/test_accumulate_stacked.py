@@ -99,7 +99,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                       dtype='uint32',
                                       shape=self.shape,
                                       chunks=(1, 25, 25),
-                                      compressor='raw')
+                                      compression='raw')
         dsl[:] = self.labels
 
         rag = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32',
@@ -115,7 +115,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                     dtype='float32',
                                     shape=self.shape,
                                     chunks=(1, 25, 25),
-                                    compressor='raw')
+                                    compression='raw')
         dsd[:] = self.data
 
         def open_features(keep_xy=False, keep_z=False):
@@ -127,12 +127,12 @@ class TestAccumulateStacked(unittest.TestCase):
                                 dtype='float32',
                                 shape=(1 if keep_z else n_edges_xy, n_feats),
                                 chunks=(1 if keep_z else 500, n_feats),
-                                compressor='raw')
+                                compression='raw')
             f_z.create_dataset('data',
                                dtype='float32',
                                shape=(1 if keep_xy else n_edges_z, n_feats),
                                chunks=(1 if keep_xy else 500, n_feats),
-                               compressor='raw')
+                               compression='raw')
             return p_xy, p_z
 
         def load_features(p_xy, p_z):
@@ -223,7 +223,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                       dtype='uint32',
                                       shape=self.shape,
                                       chunks=(1, 25, 25),
-                                      compressor='raw')
+                                      compression='raw')
         dsl[:] = self.labels
 
         rag_ooc = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32',
@@ -237,7 +237,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                     dtype='float32',
                                     shape=self.shape,
                                     chunks=(1, 25, 25),
-                                    compressor='raw')
+                                    compression='raw')
         dsd[:] = self.data
 
         n_edges_xy = rag_ooc.totalNumberOfInSliceEdges
@@ -252,12 +252,12 @@ class TestAccumulateStacked(unittest.TestCase):
                                 dtype='float32',
                                 shape=(1 if keep_z else n_edges_xy, n_feats),
                                 chunks=(1 if keep_z else 500, n_feats),
-                                compressor='raw')
+                                compression='raw')
             f_z.create_dataset('data',
                                dtype='float32',
                                shape=(1 if keep_xy else n_edges_z, n_feats),
                                chunks=(1 if keep_xy else 500, n_feats),
-                               compressor='raw')
+                               compression='raw')
             return p_xy, p_z
 
         def load_features(p_xy, p_z):

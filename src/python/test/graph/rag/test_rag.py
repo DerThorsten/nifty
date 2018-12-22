@@ -56,7 +56,7 @@ class TestRag(TestRagBase):
         labels[0, 1] = 0
         labels[1, 1] = 2
 
-        g = nrag.gridRag(labels, labels.max() + 1)
+        g = nrag.gridRag(labels, int(labels.max() + 1))
         self.assertEqual(g.numberOfNodes, 3)
         self.assertEqual(g.numberOfEdges, 3)
         with self.assertRaises(RuntimeError):
