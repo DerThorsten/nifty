@@ -64,14 +64,14 @@ namespace agglo{
                     return ptr;
                 },
                 py::return_value_policy::take_ownership,
-                py::keep_alive<0,1>(), // graph
+                py::keep_alive<0, 1>(), // graph
                 py::arg("graph"),
                 py::arg("edgeIndicators"),
                 py::arg("edgeSizes"),
                 py::arg("nodeSizes"),
                 py::arg("edgeIsLifted"),
-                py::arg("numberOfNodesStop") = 1,
-                py::arg("sizeRegularizer") = 0.5f
+                py::arg("numberOfNodesStop")=1,
+                py::arg("sizeRegularizer")=0.5f
             );
 
             // export the agglomerative clustering functionality for this cluster operator

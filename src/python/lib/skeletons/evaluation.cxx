@@ -39,7 +39,7 @@ namespace skeletons {
                 std::map<size_t, std::map<size_t, double>> fragmentRunlens;
                 self.computeSplitRunlengths(resolution, skeletonRunlens,
                                             fragmentRunlens, numberOfThreads);
-                // can't lift gil because we mess with pytthon exposed objects internally
+                // can't lift gil because we mess with python exposed objects internally
                 //{
                 //    py::gil_scoped_release allowThreads;
                 //    self.computeSplitRunlength(resolution, skeletonRunlens, fragmentRunlens, numberOfThreads);

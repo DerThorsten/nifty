@@ -166,9 +166,7 @@ namespace agglo{
                         ++c;
                     }
                     // std::cout<<"d\n";
-                        
                     return std::make_tuple(nodes, p, s);
-
                 })
             ;
 
@@ -253,7 +251,7 @@ namespace agglo{
             ){
                 const auto graph = self->graph();
                 typedef typename xt::pytensor<uint64_t, 1>::shape_type ShapeType;
-                ShapeType shape = {graph.edgeIdUpperBound() + 1};
+                ShapeType shape = {graph.nodeIdUpperBound() + 1};
                 xt::pytensor<uint64_t, 1> out(shape);
                 {
                     py::gil_scoped_release allowThreds;
@@ -283,7 +281,7 @@ namespace agglo{
 
 
 
-        // additional functions which are only enabled if 
+        // additional functions which are only enabled if
         // cluster policies enables ucm
         typedef ExportUcmFunctions<AgglomerativeClusteringType::WithEdgeUfd::value> UcmExporter;
         UcmExporter::exportUcm(aggloCls);
