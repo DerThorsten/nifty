@@ -35,7 +35,7 @@ class TestMinstcutObjective(unittest.TestCase):
         return g, nid
 
     # TODO something in the minstcut pythonbindings is fishy
-    @unittest.expectedFailure
+    # @unittest.expectedFailure
     def testGridModel(self):
         beta = .7
         gridSize = [5,5]
@@ -45,7 +45,7 @@ class TestMinstcutObjective(unittest.TestCase):
         d = weightRange[1] - weightRange[0]
 
         w = numpy.zeros(g.numberOfEdges)
-        u = numpy.zeros((g.numberOfNodes,2))
+        u = numpy.zeros((g.numberOfNodes, 2))
 
         labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
 

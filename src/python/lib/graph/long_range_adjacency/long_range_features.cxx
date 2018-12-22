@@ -24,8 +24,8 @@ namespace graph{
         module.def("longRangeFeatures",
         [](
             const ADJACENCY & longRangeAdjacency,
-            xt::pytensor<typename ADJACENCY::LabelType, 3> labels,
-            xt::pytensor<float, 4> affinities,
+            const xt::pytensor<typename ADJACENCY::LabelType, 3> & labels,
+            const xt::pytensor<float, 4> & affinities,
             const int zDirection,
             const int numberOfThreads
         ){

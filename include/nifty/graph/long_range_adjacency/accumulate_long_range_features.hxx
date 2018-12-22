@@ -201,7 +201,7 @@ void accumulateLongRangeFeatures(
     const AFFINITIES & affinities,
     OUTPUT & featuresOut,
     const int zDirection,
-    const int numberOfThreads = -1
+    const int numberOfThreads=-1
 ) {
 
     namespace acc = vigra::acc;

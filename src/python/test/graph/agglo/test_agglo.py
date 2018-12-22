@@ -23,11 +23,15 @@ class TestAgglo(unittest.TestCase):
             graph=g, edgeIndicators=edgeIndicators,
             edgeSizes=edgeSizes, nodeSizes=nodeSizes)
 
+        print("111")
         agglomerativeClustering = nagglo.agglomerativeClustering(clusterPolicy)
+        print("222")
         agglomerativeClustering.run()
+        print("333")
 
         # TODO actually test something
         seg = agglomerativeClustering.result()
+        print("444")
 
 
 if __name__ == '__main__':

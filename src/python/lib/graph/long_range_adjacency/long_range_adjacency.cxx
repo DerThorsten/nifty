@@ -69,6 +69,7 @@ namespace graph{
         ;
         removeFunctions<AdjacencyType, BaseGraph>(clsT);
 
+        // FIXME multi-threading not thread-safe
         // from labels
         module.def(facName.c_str(),
             [](
@@ -88,7 +89,7 @@ namespace graph{
             py::arg("range"),
             py::arg("numberOfLabels"),
             py::arg("ignoreLabel")=false,
-            py::arg("numberOfThreads")=-1
+            py::arg("numberOfThreads")=1
         );
 
         // from labels + serialization

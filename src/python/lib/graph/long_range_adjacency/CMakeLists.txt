@@ -9,4 +9,5 @@ addPythonModule(
         long_range_features.cxx 
     LIBRRARIES
         ${HDF5_LIBRARIES}
+        ${Boost_SYSTEM_LIBRARY}    
 )
