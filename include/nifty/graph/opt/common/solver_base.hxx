@@ -20,7 +20,7 @@ namespace common{
 
     template<class OBJECTIVE, class CHILD>
     class SolverBase{
-    
+
     public:
         typedef OBJECTIVE                           ObjectiveType;
         typedef SolverBase<ObjectiveType,CHILD>     SelfType;
@@ -40,21 +40,18 @@ namespace common{
 
         /**
          * @brief Inform solver about a change of weights.
-         * @details Inform solver that all weights could have changed. 
+         * @details Inform solver that all weights could have changed.
          * If a particular solver does not overload this function, an
          * WeightsChangedNotSupported exception is thrown.
          * After a call of this function it is save to run optimize
          * again, therefore it resets the solver
-         * 
-         * 
          */
         virtual void weightsChanged(){
             std::stringstream ss;
             ss<<this->name()<<" does not support changing weights";
             throw exceptions::WeightsChangedNotSupported(ss.str());
-        }   
+        }
 
-        
 
         // with default implementation
         virtual double currentBestEnergy() {

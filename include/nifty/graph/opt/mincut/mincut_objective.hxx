@@ -23,7 +23,7 @@ namespace mincut{
             const auto & g = _child().graph();
             for(const auto edge: g.edges()){
                 const auto uv = g.uv(edge);
-                
+
                 if(nodeLabels[uv.first] != nodeLabels[uv.second]){
                     sum += w[edge];
                 }
@@ -41,12 +41,12 @@ namespace mincut{
     };
 
 
-    template<class GRAPH, class WEIGHT_TYPE>   
+    template<class GRAPH, class WEIGHT_TYPE>
     class MincutObjective :  public
         MincutObjectiveBase<
             MincutObjective<GRAPH, WEIGHT_TYPE>, GRAPH, WEIGHT_TYPE
         >
-    {   
+    {
     public:
         typedef GRAPH GraphType;
         typedef WEIGHT_TYPE WeightType;

@@ -35,7 +35,7 @@ namespace minstcut{
             typedef MinstcutBase<ObjectiveType> SolverBaseType;
 
             nifty::graph::opt::common::exportSolverFactory<SolverBaseType>(
-                multicutModule, 
+                multicutModule,
                 MinstcutObjectiveName<ObjectiveType>::name()
             );
         }
@@ -45,7 +45,7 @@ namespace minstcut{
             typedef MinstcutBase<ObjectiveType> SolverBaseType;
 
             nifty::graph::opt::common::exportSolverFactory<SolverBaseType>(
-                multicutModule, 
+                multicutModule,
                 MinstcutObjectiveName<ObjectiveType>::name()
             );
         }

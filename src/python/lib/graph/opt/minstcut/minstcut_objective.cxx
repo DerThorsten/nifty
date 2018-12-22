@@ -35,17 +35,15 @@ namespace minstcut{
 
         minstcutModule.def("minstcutObjective",
             [](const GraphType & graph,
-               xt::pytensor<double, 1> & weightsArray,
-               xt::pytensor<double, 1> & unrariesArray){
+               const xt::pytensor<double, 1> & weightsArray,
+               const xt::pytensor<double, 2> & unariesArray){
 
-                NIFTY_CHECK_OP(weightsArray.dimension(),==,1,"wrong dimensions");
                 NIFTY_CHECK_OP(weightsArray.shape()[0],==,graph.edgeIdUpperBound()+1,
                                "wrong shape");
 
-                NIFTY_CHECK_OP(unrariesArray.dimension(),==,2,"wrong dimensions");
-                NIFTY_CHECK_OP(unrariesArray.shape()[0],==,graph.nodeIdUpperBound()+1,
+                NIFTY_CHECK_OP(unariesArray.shape()[0],==,graph.nodeIdUpperBound()+1,
                                "wrong shape");
-                NIFTY_CHECK_OP(unrariesArray.shape()[1],==,2, "wrong shape");
+                NIFTY_CHECK_OP(unariesArray.shape()[1],==,2, "wrong shape");
 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
@@ -56,10 +54,9 @@ namespace minstcut{
                 });
 
                 graph.forEachNode([&](int64_t node){
-                    unaries[node].first += unrariesArray(node,0);
-                    unaries[node].second += unrariesArray(node,1);
+                    unaries[node].first += unariesArray(node, 0);
+                    unaries[node].second += unariesArray(node, 1);
                 });
-
 
                 return obj;
             },

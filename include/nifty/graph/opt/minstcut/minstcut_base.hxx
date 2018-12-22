@@ -59,7 +59,6 @@ namespace minstcut{
             throw exceptions::WeightsChangedNotSupported(ss.str());
         }   
 
-        
 
         // with default implementation
         virtual double currentBestEnergy() {

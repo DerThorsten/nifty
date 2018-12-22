@@ -25,11 +25,10 @@ namespace minstcut{
         typedef OBJECTIVE ObjectiveType;
         typedef MinstcutMaxflow<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SettingsType;
-        
-        exportMinstcutSolver<Solver>(module,"MinstcutMaxflow")
+
+        exportMinstcutSolver<Solver>(module, "MinstcutMaxflow")
             .def(py::init<>())
         ;
-     
     }
 
     void exportMinstcutMaxflow(py::module & module) {
