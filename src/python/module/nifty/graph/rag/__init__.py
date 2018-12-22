@@ -143,6 +143,7 @@ if Configuration.WITH_HDF5:
                            numberOfLabels=numberOfLabels,
                            serialization=serialization)
 
+
 if Configuration.WITH_Z5:
 
     def gridRagZ5(labels,
@@ -156,25 +157,24 @@ if Configuration.WITH_Z5:
         assert dim == 3
         blockShape_ = [100] * dim if blockShape is None else blockShape
 
-        # don't expse 2d for now
-        # if dim == 2:
-        #     return gridRag2DZ5(labels,
-        #                        numberOfLabels=numberOfLabels,
-        #                        blockShape=blockShape_,
-        #                        numberOfThreads=int(numberOfThreads))
-        factory = gridRag3DZ532 if dtype == numpy.dtype('uint32') else gridRag3DZ564
-        # else:
-        #     raise RuntimeError("gridRagZ5 is only implemented for 2D and 3D not for %dD" % dim)
-
-        if serialization is None:
-            return factory(labels,
-                           numberOfLabels=numberOfLabels,
-                           blockShape=blockShape_,
-                           numberOfThreads=int(numberOfThreads))
+        if dim == 2:
+            return gridRag2DZ5(labels,
+                               numberOfLabels=numberOfLabels,
+                               blockShape=blockShape_,
+                               numberOfThreads=int(numberOfThreads))
+        elif dim == 3:
+            factory = gridRag3DZ532 if dtype == numpy.dtype('uint32') else gridRag3DZ564
+            if serialization is None:
+                return factory(labels,
+                               numberOfLabels=numberOfLabels,
+                               blockShape=blockShape_,
+                               numberOfThreads=int(numberOfThreads))
+            else:
+                return factory(labels,
+                               numberOfLabels=numberOfLabels,
+                               serialization=serialization)
         else:
-            return factory(labels,
-                           numberOfLabels=numberOfLabels,
-                           serialization=serialization)
+            raise RuntimeError("gridRagZ5 is only implemented for 2D and 3D not for %dD" % dim)
 
 
     def gridRagStacked2DZ5(labels,

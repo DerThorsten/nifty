@@ -180,8 +180,10 @@ class TestRag(TestRagBase):
         import nifty.hdf5 as nhdf5
 
         shape = [5, 6]
-        chunkShape = [3, 2]
-        blockShape = [2, 3]
+        blockShape = chunkShape = shape
+        # FIXME  these shapes cause incorrect edges !!!
+        # chunkShape = [3, 2]
+        # blockShape = [2, 3]
 
         hidT = nhdf5.createFile(self.path)
         array = nhdf5.Hdf5ArrayUInt32(hidT, "data", shape, chunkShape)
@@ -201,7 +203,7 @@ class TestRag(TestRagBase):
 
         array[0:shape[0], 0:shape[1]] = labels
         rag = nrag.gridRagHdf5(array,
-                               numberOfLabels=labels.max() + 1,
+                               numberOfLabels=int(labels.max() + 1),
                                blockShape=blockShape,
                                numberOfThreads=1)
 

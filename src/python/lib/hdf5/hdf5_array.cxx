@@ -24,7 +24,6 @@ namespace hdf5{
 
             .def(py::init<const hid_t & , const std::string &>())
 
-
             .def(py::init([](const hid_t & groupHandle,
                              const std::string & datasetName,
                              std::vector<size_t> shape,
@@ -41,7 +40,7 @@ namespace hdf5{
                 py::arg("datasetName"),
                 py::arg("shape"),
                 py::arg("chunkShape"),
-                py::arg("compression") = -1
+                py::arg("compression")=-1
             )
             .def_property_readonly("isChunked", &Hdf5ArrayType::isChunked)
             .def_property_readonly("ndim", &Hdf5ArrayType::dimension)
@@ -101,8 +100,8 @@ namespace hdf5{
         exportHdf5ArrayT<int32_t>(hdf5Module, "Hdf5ArrayInt32");
         exportHdf5ArrayT<int64_t>(hdf5Module, "Hdf5ArrayInt64");
 
-        exportHdf5ArrayT<float >(hdf5Module, "Hdf5ArrayFloat32");
-        exportHdf5ArrayT<double >(hdf5Module, "Hdf5ArrayFloat64");
+        exportHdf5ArrayT<float>(hdf5Module, "Hdf5ArrayFloat32");
+        exportHdf5ArrayT<double>(hdf5Module, "Hdf5ArrayFloat64");
     }
 
 }
