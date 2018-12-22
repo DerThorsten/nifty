@@ -17,7 +17,7 @@ matrix:
         
         - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
         - source activate dev
-        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image h5py vigra
+        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image h5py vigra z5py
 
       script:
 
@@ -42,6 +42,7 @@ matrix:
                 -DWITHIN_TRAVIS=ON 
                 -DWITH_QPBO=OFF
                 -DWITH_HDF5=ON
+                -DWITH_Z5=ON
                 -DWITH_GLPK=ON 
                 -DWITH_CPLEX=OFF 
                 -DWITH_GUROBI=OFF
