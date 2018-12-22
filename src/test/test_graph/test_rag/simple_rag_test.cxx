@@ -1,15 +1,17 @@
 #define BOOST_TEST_MODULE NiftyRagTest
 
 #include <boost/test/unit_test.hpp>
+#include "xtensor/xarray.hpp"
 
-#include <iostream> 
+#include <iostream>
 #include <random>
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d.hxx"
 #include "nifty/graph/rag/grid_rag_stacked_2d_hdf5.hxx"
 
-void getStackedSegmentation(nifty::marray::Marray<uint32_t> & seg,
+
+void getStackedSegmentation(xt::xarray<uint32_t> & seg,
         const std::vector<size_t> & shape) {
     // random generator
     std::default_random_engine gen;
@@ -23,7 +25,7 @@ void getStackedSegmentation(nifty::marray::Marray<uint32_t> & seg,
         }
         for(auto y = 0; y < shape[1]; ++y) {
             for(auto x = 0; x < shape[2]; ++x) {
-                seg(z,y,x) = label; 
+                seg(z,y,x) = label;
                 if( draw() > 8  && (y != shape[1] - 1 && x != shape[2] - 1) )
                     ++label;
             }
@@ -36,7 +38,7 @@ BOOST_AUTO_TEST_CASE(StackedRagHdf5Test)
     typedef nifty::graph::Hdf5Labels<3, uint32_t> LabelsProxy;
 
     std::vector<size_t> shape({20,100,100});
-    nifty::marray::Marray<uint32_t> seg(shape.begin(), shape.end());
+    xt::xarray<uint32_t> seg({20L, 100L, 100L});
     getStackedSegmentation(seg, shape);
     uint32_t maxLabel = *(std::max_element(seg.begin(), seg.end()));
     std::cout << "MaxLabel: " << maxLabel << std::endl;

@@ -4,9 +4,11 @@
 
 #include <iostream>
 
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/filters/gaussian_curvature.hxx"
+
+namespace py = pybind11;
 
 namespace nifty{
 namespace filters{
@@ -28,10 +30,12 @@ namespace filters{
         .def_property_readonly("radius",&ClsType::radius)
         .def("__call__",[](
             const ClsType & self,
-            nifty::marray::PyView<float,2> coords,
+            xt::pytensor<float, 2> coords,
             const bool loop
-        ){  
-            nifty::marray::PyView<float> out({coords.shape(0)});
+        ){
+            typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+            ShapeType shape = {coords.shape()[0]};
+            xt::pytensor<float, 1> out(shape);
             self(coords, out, loop);
             return out;
         })

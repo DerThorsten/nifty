@@ -32,9 +32,6 @@ UndirectedGraph.__module__ = "nifty.graph"
 ilpSettings = multicut.ilpSettings
 
 
-
-
-
 # multicut objective
 UndirectedGraph.MulticutObjective                     = multicut.MulticutObjectiveUndirectedGraph
 UndirectedGraph.EdgeContractionGraph                  = EdgeContractionGraphUndirectedGraph
@@ -54,8 +51,6 @@ EdgeContractionGraphUndirectedGraph.MincutObjective = mincut.MincutObjectiveEdge
 UndirectedGraph.LiftedMulticutObjective = lifted_multicut.LiftedMulticutObjectiveUndirectedGraph
 
 
-
-
 def randomGraph(numberOfNodes, numberOfEdges):
     g = UndirectedGraph(numberOfNodes)
 
@@ -65,15 +60,12 @@ def randomGraph(numberOfNodes, numberOfEdges):
     where = numpy.where(uv[:,0]!=uv[:,1])[0]
     uv = uv[where,:]
 
-
     g.insertEdges(uv)
     while( g.numberOfEdges < numberOfEdges):
         u,v = numpy.random.randint(low=0, high=numberOfNodes-1, size=2)
         if u != v:
             g.insertEdge(int(u),int(v))
     return g
-
-
 
 
 class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
@@ -100,17 +92,16 @@ class EdgeContractionGraphCallback(EdgeContractionGraphCallbackImpl):
         except AttributeError:
             pass
 
+
 def edgeContractionGraph(g, callback):
     Ecg = g.__class__.EdgeContractionGraph
     ecg = Ecg(g, callback)
     return ecg
 
 
-
-
-
 def undirectedGraph(numberOfNodes):
     return UndirectedGraph(numberOfNodes)
+
 
 def undirectedGridGraph(shape, simpleNh=True):
     if not simpleNh:
@@ -124,6 +115,7 @@ def undirectedGridGraph(shape, simpleNh=True):
         raise RuntimeError("currently only 2D and 3D grid graph is exposed to python")
 
 gridGraph = undirectedGridGraph
+
 
 def undirectedLongRangeGridGraph(shape, offsets):
     offsets = numpy.require(offsets, dtype='int64')
@@ -141,26 +133,19 @@ longRangeGridGraph = undirectedLongRangeGridGraph
 
 
 def drawGraph(graph, method='spring'):
-
     import networkx
 
-    G=networkx.Graph()
+    G = networkx.Graph()
     for node in graph.nodes():
         G.add_node(node)
 
-    #uvIds = graph.uvIds()
-    #for i in range(uvIds.shape[0]):
-    #    u,v = uvIds[i,:]
-    #    G.add_edge(u,v)
     for edge in graph.edges():
-        u,v = graph.uv(edge)
-        G.add_edge(u,v)
+        u, v = graph.uv(edge)
+        G.add_edge(u, v)
 
-    nodeLabels = dict()
+    nodeLabels = {node: str(node) for node in graph.nodes()}
 
-    for node in graph.nodes():
-        nodeLabels[node] = str(node)
     if method == 'spring':
-        networkx.draw_spring(G,labels=nodeLabels)
+        networkx.draw_spring(G, labels=nodeLabels)
     else:
         networkx.draw(G, lables=nodeLabels)

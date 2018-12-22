@@ -1,7 +1,10 @@
 #ifdef WITH_HDF5
-
 #include <pybind11/pybind11.h>
 #include <iostream>
+
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pyvectorize.hpp"
 
 namespace py = pybind11;
 
@@ -24,9 +27,9 @@ namespace hdf5{
 
 PYBIND11_MODULE(_hdf5, hdf5Module) {
 
+    xt::import_numpy();
     py::options options;
     options.disable_function_signatures();
-    
     hdf5Module.doc() = "hdf5 submodule of nifty";
 
     using namespace nifty::hdf5;
@@ -36,5 +39,4 @@ PYBIND11_MODULE(_hdf5, hdf5Module) {
     //exportHdf5BlockwiseWatershed(hdf5Module);
     exportBenchmark(hdf5Module);
 }
-
 #endif

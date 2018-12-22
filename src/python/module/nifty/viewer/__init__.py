@@ -26,7 +26,7 @@ try:
     import vigra
 except:
     _hasVigra=False
-    
+
 
 try:
     _hasQt4=True
@@ -50,15 +50,15 @@ def view3D(img, show=True, cmap='Greys',title=None, singlePlain=True):
     if singlePlain:
         pylab.imshow(img[shape[0]//2,:,:],cmap=cmap)
     else:
-        f.add_subplot(2, 2, 1)  
+        f.add_subplot(2, 2, 1)
         pylab.imshow(img[shape[0]//2,:,:],cmap=cmap)
-        
-        f.add_subplot(2, 2, 2) 
+
+        f.add_subplot(2, 2, 2)
         pylab.imshow(img[:,shape[1]//2,:],cmap=cmap)
-        
-        f.add_subplot(2, 2, 3) 
+
+        f.add_subplot(2, 2, 3)
         pylab.imshow(img[:,:,shape[2]//2],cmap=cmap)
-    
+
     if title is not None:
         pylab.title(title)
 
@@ -149,5 +149,3 @@ if _hasQt4 and _hasVolumina:
             v.setWindowTitle(title)
             v.showMaximized()
             app.exec_()
-
-

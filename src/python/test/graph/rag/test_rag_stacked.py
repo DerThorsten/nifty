@@ -152,7 +152,7 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.shape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.labels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
@@ -196,7 +196,7 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.bigShape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.bigLabels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
@@ -247,7 +247,7 @@ class TestRagStacked(TestRagBase):
         chunkShape = [1, 2, 1]
         array = nhdf5.Hdf5ArrayUInt32(hidT, "data", self.bigShape, chunkShape)
         array[0:self.bigShape[0], 0:self.bigShape[1], 0:self.bigShape[2]] = self.bigLabels
-        serialization_test(self, array, gridRagStacked2DHdf5)
+        self.serialization_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
     @unittest.skipUnless(nifty.Configuration.WITH_Z5 and WITH_H5PY,
@@ -261,11 +261,10 @@ class TestRagStacked(TestRagBase):
                                      dtype='uint32',
                                      shape=self.bigShape,
                                      chunks=chunkShape,
-                                     compressor='raw')
+                                     compression='raw')
         array[:] = self.bigLabels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
-        # self.small_array_test(array, nrag.gridRagStacked2DZ5)
         self.serialization_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, "data")),
                                 nrag.gridRagStacked2DZ5)
 

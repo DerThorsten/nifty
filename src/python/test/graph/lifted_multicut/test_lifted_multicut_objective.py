@@ -139,3 +139,7 @@ class TestLiftedMulticutGridGraphObjective(unittest.TestCase):
         self.assertNotEqual( liftedGraph.findEdge(node, nid(0,1)) , -1 )
         self.assertNotEqual( liftedGraph.findEdge(node, nid(0,2)) , -1 )
         self.assertEqual( liftedGraph.findEdge(node, nid(0,3))    , -1 )
+
+
+if __name__ == '__main__':
+    unittest.main()

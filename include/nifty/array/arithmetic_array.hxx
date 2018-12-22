@@ -3,11 +3,12 @@
 #include <array>
 #include <vector>
 
+#include "xtensor/xtensor.hpp"
 #include "nifty/tools/runtime_check.hxx"
 
 namespace nifty{
 namespace array{
-    
+
 
     template<class ARRAY_CLASS>
     class ArrayExtender : public ARRAY_CLASS
@@ -35,7 +36,6 @@ namespace array{
         return out;
     }
 
-  
 
 
     #define NIFTY_MACRO_BINARY_OP_INPLACE(operatorSymbol) \
@@ -59,7 +59,7 @@ namespace array{
             a[i] operatorSymbol b; \
         } \
         return a; \
-    } 
+    }
 
     NIFTY_MACRO_BINARY_OP_INPLACE(+=);
     NIFTY_MACRO_BINARY_OP_INPLACE(-=);
@@ -105,7 +105,7 @@ namespace array{
 
     // to give std::array a proper constructor
     // since it is an aggregate we need
-    // to impl. this 
+    // to impl. this
     // => we are giving up the aggregate status
     template<class T, size_t DIM>
     class StaticArrayBase : public std::array<T,DIM>{
@@ -131,10 +131,10 @@ namespace array{
         //}
 
         const BaseType & asStdArray()const{
-            return  static_cast< const BaseType & >(*this);
+            return static_cast<const BaseType &>(*this);
         }
         BaseType & asStdArray(){
-            return  static_cast< BaseType & >(*this);
+            return static_cast< BaseType & >(*this);
         }
 
         template<class SHAPE>
@@ -151,10 +151,10 @@ namespace array{
 
 
     template<class T,size_t SIZE>
-    using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >; 
+    using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >;
 
     // template<class T, class ALLOCATOR = std::allocator<T> >
-    // using Vector = ArrayExtender< std::vector<T,ALLOCATOR> >; 
+    // using Vector = ArrayExtender< std::vector<T,ALLOCATOR> >;
 
 
 } // namespace nifty::graph

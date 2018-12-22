@@ -18,7 +18,7 @@ namespace minstcut{
     template<class OBJECTIVE>
     class MinstcutMaxflow : public MinstcutBase<OBJECTIVE>
     {
-    public: 
+    public:
 
         typedef OBJECTIVE ObjectiveType;
         typedef MinstcutBase<OBJECTIVE> BaseType;
@@ -26,7 +26,7 @@ namespace minstcut{
         //typedef typename BaseType::VisitorProxyType VisitorProxyType;
         typedef typename BaseType::NodeLabelsType NodeLabelsType;
         typedef typename ObjectiveType::GraphType GraphType;
-    
+
     private:
 
         typedef float captype;

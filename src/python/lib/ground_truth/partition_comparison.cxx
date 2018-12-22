@@ -1,9 +1,9 @@
-#include <pybind11/pybind11.h>
 #include <iostream>
 #include <sstream>
-#include <pybind11/numpy.h>
 
-#include "nifty/python/converter.hxx"
+#include <pybind11/numpy.h>
+#include <pybind11/pybind11.h>
+#include "xtensor-python/pyarray.hpp"
 
 #include "nifty/ground_truth/overlap.hxx"
 #include "nifty/ground_truth/partition_comparison.hxx"
@@ -21,11 +21,10 @@ namespace ground_truth{
 
         typedef VariationOfInformation<> ViType;
         py::class_<ViType>(module, "VariationOfInformation")
-        .def(py::init([](nifty::marray::PyView<uint32_t> labelsTruth,
-                         nifty::marray::PyView<uint32_t> labelsPrediction,
+        .def(py::init([](xt::pyarray<uint32_t> labelsTruth,
+                         xt::pyarray<uint32_t> labelsPrediction,
                          const bool ignoreDefaultLabel = false) {
 
-                NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
                 {
                     auto  startPtr = &labelsTruth(0);
                     auto  lastElement = &labelsTruth(labelsTruth.size()-1);
@@ -56,11 +55,10 @@ namespace ground_truth{
 
         typedef RandError<> RandErrorType;
         py::class_<RandErrorType>(module, "RandError")
-        .def(py::init([](nifty::marray::PyView<uint32_t> labelsTruth,
-                         nifty::marray::PyView<uint32_t> labelsPrediction,
+        .def(py::init([](xt::pyarray<uint32_t> labelsTruth,
+                         xt::pyarray<uint32_t> labelsPrediction,
                          const bool ignoreDefaultLabel = false) {
 
-                NIFTY_CHECK(labelsTruth.coordinateOrder()==labelsPrediction.coordinateOrder(),"coordinate orders do not match");
                 {
                     auto  startPtr = &labelsTruth(0);
                     auto  lastElement = &labelsTruth(labelsTruth.size()-1);
@@ -100,9 +98,6 @@ namespace ground_truth{
         .def_property_readonly("index",&RandErrorType::index)
 
         ;
-
-
-
     }
 }
 }

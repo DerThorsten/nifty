@@ -2,11 +2,11 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
 #include "nifty/python/graph/opt/minstcut/minstcut_objective.hxx"
-#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
@@ -27,7 +27,7 @@ namespace minstcut{
         minstcutObjectiveCls
             .def_property_readonly("graph", &ObjectiveType::graph)
             .def("evalNodeLabels",[](const ObjectiveType & objective,
-                                     nifty::marray::PyView<uint64_t> array){
+                                     xt::pytensor<uint64_t, 1> & array){
                 return objective.evalNodeLabels(array);
             })
         ;
@@ -35,17 +35,15 @@ namespace minstcut{
 
         minstcutModule.def("minstcutObjective",
             [](const GraphType & graph,
-               nifty::marray::PyView<double> weightsArray,
-               nifty::marray::PyView<double> unrariesArray){
+               const xt::pytensor<double, 1> & weightsArray,
+               const xt::pytensor<double, 2> & unariesArray){
 
-                NIFTY_CHECK_OP(weightsArray.dimension(),==,1,"wrong dimensions");
-                NIFTY_CHECK_OP(weightsArray.shape(0),==,graph.edgeIdUpperBound()+1,
+                NIFTY_CHECK_OP(weightsArray.shape()[0],==,graph.edgeIdUpperBound()+1,
                                "wrong shape");
 
-                NIFTY_CHECK_OP(unrariesArray.dimension(),==,2,"wrong dimensions");
-                NIFTY_CHECK_OP(unrariesArray.shape(0),==,graph.nodeIdUpperBound()+1,
+                NIFTY_CHECK_OP(unariesArray.shape()[0],==,graph.nodeIdUpperBound()+1,
                                "wrong shape");
-                NIFTY_CHECK_OP(unrariesArray.shape(1),==,2, "wrong shape");
+                NIFTY_CHECK_OP(unariesArray.shape()[1],==,2, "wrong shape");
 
                 auto obj = new ObjectiveType(graph);
                 auto & weights = obj->weights();
@@ -56,10 +54,9 @@ namespace minstcut{
                 });
 
                 graph.forEachNode([&](int64_t node){
-                    unaries[node].first += unrariesArray(node,0);
-                    unaries[node].second += unrariesArray(node,1);
+                    unaries[node].first += unariesArray(node, 0);
+                    unaries[node].second += unariesArray(node, 1);
                 });
-
 
                 return obj;
             },

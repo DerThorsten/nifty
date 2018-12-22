@@ -34,18 +34,17 @@ class TestMinstcutObjective(unittest.TestCase):
                     g.insertEdge(u, v)
         return g, nid
 
-    # TODO something in the minstcut pythonbindings is fishy
-    @unittest.expectedFailure
+    @unittest.skip("Maxflow is not properly exported to python")
     def testGridModel(self):
         beta = .7
         gridSize = [5,5]
         weightRange = [0,1]
 
-        g,nid = self.generateGrid(gridSize)
+        g, nid = self.generateGrid(gridSize)
         d = weightRange[1] - weightRange[0]
 
         w = numpy.zeros(g.numberOfEdges)
-        u = numpy.zeros((g.numberOfNodes,2))
+        u = numpy.zeros((g.numberOfNodes, 2))
 
         labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
 
@@ -90,6 +89,10 @@ class TestMinstcutObjective(unittest.TestCase):
         obj = nifty.graph.opt.minstcut.minstcutObjective(g,w,u)
         value = obj.evalNodeLabels(labels)
         maxflow = obj.minstcutMaxflow()
-        self.assertAlmostEqual(maxflow,29.3)
+        self.assertAlmostEqual(maxflow, 29.3)
         self.assertAlmostEqual(value, 0.) #just a test
         return obj
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -2,9 +2,7 @@
 
 #include <vector>
 #include <deque>
-//#include <boost/format.hpp>
 
-#include "nifty/marray/marray.hxx"
 #include "nifty/cgp/topological_grid.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/container/boost_flat_set.hxx"
@@ -16,7 +14,6 @@ namespace cgp{
     template<size_t DIM>
     class Geometry;
 
-    
     template<size_t DIM, size_t CELL_TYPE>
     class CellGeometry;
 
@@ -24,8 +21,8 @@ namespace cgp{
     // a single dot
     template<size_t DIM>
     class CellGeometry<DIM, 0> : public std::array<
-        array::StaticArray<uint32_t, 2>, 
-        1 
+        array::StaticArray<uint32_t, 2>,
+        1
     >
     {
     public:
@@ -370,7 +367,6 @@ namespace cgp{
                                 continue;
                             }
                         }
-                       
                     }
                     NIFTY_CHECK(added,"internal error, please contacts developers");
 

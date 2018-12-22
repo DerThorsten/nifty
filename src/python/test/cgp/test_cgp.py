@@ -230,7 +230,6 @@ class TestCgp2d(unittest.TestCase):
                g = geo[c]
                assert len(g) == numberOfCells[c]
 
-
     def test_randomized_big(self):
 
         for x in  range(100):
@@ -239,18 +238,15 @@ class TestCgp2d(unittest.TestCase):
             size = shape[0]*shape[1]
             labels = numpy.random.randint(0, 4,size=size).reshape(shape)
 
-            #print(labels)
-
             gg = nifty.graph.undirectedGridGraph(shape)
             cc = nifty.graph.connectedComponentsFromNodeLabels(gg, labels.ravel())
             cc = cc.reshape(shape) + 1
             cc = numpy.require(cc, dtype='uint32')
 
             tGrid = ncgp.TopologicalGrid2D(cc)
-            numberOfCells  = tGrid.numberOfCells
+            numberOfCells = tGrid.numberOfCells
 
             assertEq(numberOfCells[2], cc.max())
-
 
             # check the bounds
             bounds = tGrid.extractCellsBounds()
@@ -349,3 +345,7 @@ class TestCgp2d(unittest.TestCase):
                 print(labels)
                 import sys
                 sys.exit()
+
+
+if __name__ == '__main__':
+    unittest.main()

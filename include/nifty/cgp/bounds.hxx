@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "nifty/marray/marray.hxx"
 #include "nifty/cgp/topological_grid.hxx"
 #include "nifty/array/arithmetic_array.hxx"
 #include "nifty/container/boost_flat_set.hxx"
@@ -41,7 +40,7 @@ namespace cgp{
             if(d){
                 s.insert(d);
             }
-            std::copy(s.begin(), s.end(), data_);              
+            std::copy(s.begin(), s.end(), data_);
         }
         uint32_t size()const{
             return data_[3] == 0 ? 3:4;
@@ -267,7 +266,7 @@ namespace cgp{
                     else{
                         cell2LabelA=tGrid( tCoord[0], tCoord[1]-1);
                         cell2LabelB=tGrid( tCoord[0], tCoord[1]+1);
-                    } 
+                    }
 
                     std::get<1>(bounds_)[cell1Label-1] = CellBounds<2,1>(cell2LabelA,cell2LabelB);
                 }

@@ -1,9 +1,11 @@
 #ifdef WITH_HDF5
-#include <pybind11/pybind11.h>
 #include <iostream>
 #include <sstream>
+
+#include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
+#include "xtensor-python/pyarray.hpp"
 
 #include "nifty/python/converter.hxx"
 #include "nifty/hdf5/hdf5_array.hxx"
@@ -22,7 +24,6 @@ namespace hdf5{
 
             .def(py::init<const hid_t & , const std::string &>())
 
-
             .def(py::init([](const hid_t & groupHandle,
                              const std::string & datasetName,
                              std::vector<size_t> shape,
@@ -39,7 +40,7 @@ namespace hdf5{
                 py::arg("datasetName"),
                 py::arg("shape"),
                 py::arg("chunkShape"),
-                py::arg("compression") = -1
+                py::arg("compression")=-1
             )
             .def_property_readonly("isChunked", &Hdf5ArrayType::isChunked)
             .def_property_readonly("ndim", &Hdf5ArrayType::dimension)
@@ -54,8 +55,9 @@ namespace hdf5{
                 std::vector<size_t> roiBegin,
                 std::vector<size_t> roiEnd
             ){
+                typedef typename xt::pyarray<T>::shape_type ShapeType;
                 const auto dim = array.dimension();
-                std::vector<size_t> shape(dim);
+                ShapeType shape(dim);
                 {
                     py::gil_scoped_release liftGil;
                     NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
@@ -64,7 +66,7 @@ namespace hdf5{
                         shape[d] = roiEnd[d] - roiBegin[d];
                     }
                 }
-                nifty::marray::PyView<T> out(shape.begin(), shape.end());
+                xt::pyarray<T> out(shape);
                 {
                     py::gil_scoped_release liftGil;
                     array.readSubarray(roiBegin.begin(), out);
@@ -75,7 +77,7 @@ namespace hdf5{
             .def("writeSubarray",[](
                 Hdf5ArrayType & array,
                 std::vector<size_t> roiBegin,
-                nifty::marray::PyView<T> in
+                xt::pyarray<T> in
             ){
                 const auto dim = array.dimension();
                 NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
@@ -98,8 +100,8 @@ namespace hdf5{
         exportHdf5ArrayT<int32_t>(hdf5Module, "Hdf5ArrayInt32");
         exportHdf5ArrayT<int64_t>(hdf5Module, "Hdf5ArrayInt64");
 
-        exportHdf5ArrayT<float >(hdf5Module, "Hdf5ArrayFloat32");
-        exportHdf5ArrayT<double >(hdf5Module, "Hdf5ArrayFloat64");
+        exportHdf5ArrayT<float>(hdf5Module, "Hdf5ArrayFloat32");
+        exportHdf5ArrayT<double>(hdf5Module, "Hdf5ArrayFloat64");
     }
 
 }

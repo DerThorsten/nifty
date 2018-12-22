@@ -2,14 +2,13 @@
 #include <iostream>
 #include <sstream>
 #include <pybind11/numpy.h>
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/undirected_grid_graph.hxx"
 
 #include "nifty/graph/node_weighted_watersheds.hxx"
 
-
-#include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
 
@@ -24,16 +23,12 @@ namespace graph{
         module.def("nodeWeightedWatershedsSegmentation",
         [](
             const GRAPH & graph,
-            nifty::marray::PyView<uint64_t,1> seeds,
-            nifty::marray::PyView<float,1> nodeWeights
+            xt::pytensor<uint64_t, 1> seeds,
+            xt::pytensor<float, 1> nodeWeights
         ){
-       
-            nifty::marray::PyView<uint64_t> labels({seeds.shape(0)});
-            
+            xt::pytensor<uint64_t, 1> labels({uint64_t(seeds.shape()[0])});
             nodeWeightedWatershedsSegmentation(graph, nodeWeights, seeds, labels);
-
             return labels;
-
         },
             py::arg("graph"),
             py::arg("seeds"),
@@ -46,10 +41,6 @@ namespace graph{
             "Returns:\n\n"
             "   numpy.ndarray : the segmentation"
         );
-
-        
-
-
     }
 
     void exportNodeWeightedWatersheds(py::module & module) {
@@ -57,7 +48,7 @@ namespace graph{
         {
             typedef UndirectedGraph<> GraphType;
             exportNodeWeightedWatershedsT<GraphType>(module);
-        }   
+        }
         {
             typedef UndirectedGridGraph<2, true> GraphType;
             exportNodeWeightedWatershedsT<GraphType>(module);

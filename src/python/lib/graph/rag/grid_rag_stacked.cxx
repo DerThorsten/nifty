@@ -23,11 +23,8 @@ namespace py = pybind11;
 namespace nifty{
 namespace graph{
 
-
-
     using namespace py;
 
-    // FIXME switch to xtensor
     template<class CLS, class BASE>
     void removeFunctions(py::class_<CLS, BASE > & clsT){
         clsT
@@ -51,7 +48,6 @@ namespace graph{
 
         auto clsT = py::class_<GridRagType, BaseGraph>(ragModule, clsName.c_str());
         clsT
-
             //
             // export the per slice properties
             //
@@ -203,10 +199,10 @@ namespace graph{
             py::arg("serialization"),
             py::arg_t<int>("ignoreLabel", -1)
         );
-
     }
 
     void exportGridRagStacked(py::module & ragModule) {
+
         // export in-memory labels
         typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D32;
         exportGridRagStackedT<ExplicitPyLabels3D32>(ragModule,
@@ -217,19 +213,18 @@ namespace graph{
                                                   "GridRagStacked2D64",
                                                   "gridRagStacked2D64");
 
-        // FIXME need hdf5 with xtensor support for this to work
         // export hdf5 labels
-        // #ifdef WITH_HDF5
-        // typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels32;
-        // exportGridRagStackedT<Hdf5Labels32>(ragModule,
-        //                                     "GridRagStacked2DHdf532",
-        //                                     "gridRagStacked2DHdf532");
+        #ifdef WITH_HDF5
+        typedef nifty::hdf5::Hdf5Array<uint32_t> Hdf5Labels32;
+        exportGridRagStackedT<Hdf5Labels32>(ragModule,
+                                            "GridRagStacked2DHdf532",
+                                            "gridRagStacked2DHdf532");
 
-        // typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels64;
-        // exportGridRagStackedT<Hdf5Labels64>(ragModule,
-        //                                     "GridRagStacked2DHdf564",
-        //                                     "gridRagStacked2DHdf564");
-        // #endif
+        typedef nifty::hdf5::Hdf5Array<uint64_t> Hdf5Labels64;
+        exportGridRagStackedT<Hdf5Labels64>(ragModule,
+                                            "GridRagStacked2DHdf564",
+                                            "gridRagStacked2DHdf564");
+        #endif
 
         // export z5 labels
         #ifdef WITH_Z5

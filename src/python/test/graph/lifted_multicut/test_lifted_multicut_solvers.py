@@ -248,3 +248,7 @@ class TestLiftedMulticutSolver(unittest.TestCase):
         if nifty.Configuration.WITH_CPLEX:
             for x in range(10):
                 self.implTestSimpleChainModelOpt(ilpSolver='cplex', size=4)
+
+
+if __name__ == '__main__':
+    unittest.main()

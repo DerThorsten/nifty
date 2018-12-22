@@ -2,7 +2,6 @@
 #include <pybind11/numpy.h>
 #include <sstream>
 
-
 #include "nifty/tools/logging.hxx"
 
 #include "nifty/python/converter.hxx"

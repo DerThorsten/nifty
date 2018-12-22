@@ -6,6 +6,7 @@
 #include <stack>
 #include <algorithm>
 
+#include <set>
 #include <unordered_set>
 
 #include "nifty/array/arithmetic_array.hxx"

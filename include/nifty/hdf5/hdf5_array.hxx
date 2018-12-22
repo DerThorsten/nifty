@@ -3,17 +3,15 @@
 #include <cstddef>
 #include <string>
 #include <vector>
-#include <mutex>
 
+#include "xtensor/xarray.hpp"
+
+#include "nifty/hdf5/hdf5.hxx"
 #include "nifty/tools/block_access.hxx"
 #include "nifty/tools/runtime_check.hxx"
-#include "nifty/marray/marray_hdf5.hxx"
 
 namespace nifty{
 namespace hdf5{
-
-    using namespace marray::hdf5;
-
 
     template<class T>
     class Hdf5Array{
@@ -143,7 +141,7 @@ namespace hdf5{
 
             dataset_ = H5Dopen(groupHandle_, datasetName.c_str(), H5P_DEFAULT);
             if(dataset_ < 0) {
-                throw std::runtime_error("Marray cannot open dataset.");
+                throw std::runtime_error("Ccannot open dataset.");
             }
 
             // select dataspace hyperslab
@@ -190,87 +188,53 @@ namespace hdf5{
             return isChunked_;
         }
 
-        template<class ITER>
+        template<class ITER, class ARRAY>
         void readSubarray(
             ITER roiBeginIter,
-            marray::View<T> & out
+            ARRAY & out
         )const{
-            NIFTY_CHECK_OP(out.dimension(),==,this->dimension(),"out has wrong dimension");
-            NIFTY_CHECK(out.coordinateOrder() == marray::FirstMajorOrder,
-                "currently only views with last major order are supported"
-            );
-            this->loadHyperslab(roiBeginIter, roiBeginIter + out.dimension(), out.shapeBegin(), out);
+            NIFTY_CHECK_OP(out.dimension(),==,
+                           this->dimension(),
+                           "out has wrong dimension");
+            this->loadHyperslab(roiBeginIter,
+                                roiBeginIter + out.dimension(),
+                                out.shape().begin(), out);
         }
 
-        template<class ITER>
-        void readSubarrayLocked(
-            ITER roiBeginIter,
-            marray::View<T> & out
-        )const{
-            mtx_.lock();
-            this->readSubarray(roiBeginIter,out);
-            mtx_.unlock();
-        }
-
-        template<class ITER>
+        template<class ITER, class ARRAY>
         void writeSubarray(
             ITER roiBeginIter,
-            const marray::View<T> & in
+            const ARRAY & in
         ){
             NIFTY_CHECK_OP(in.dimension(),==,this->dimension(),"in has wrong dimension");
-            NIFTY_CHECK(in.coordinateOrder() == marray::FirstMajorOrder,
-                "currently only views with last major order are supported"
-            );
-            this->saveHyperslab(roiBeginIter, roiBeginIter + in.dimension(), in.shapeBegin(), in);
-        }
-
-        template<class ITER>
-        void writeSubarrayLocked(
-            ITER roiBeginIter,
-            const marray::View<T> & in
-        )const{
-            mtx_.lock();
-            this->writeSubarrayLocked(roiBeginIter,in);
-            mtx_.unlock();
+            this->saveHyperslab(roiBeginIter,
+								roiBeginIter + in.dimension(),
+								in.shape().begin(), in);
         }
 
     private:
-        template<class BaseIterator, class ShapeIterator>
+        template<class BaseIterator, class ShapeIterator, class ARRAY>
         void loadHyperslab(
             BaseIterator baseBegin,
             BaseIterator baseEnd,
             ShapeIterator shapeBegin,
-            marray::View<T> & out
+            ARRAY & out
         ) const {
-
-            //std::cout<<"_1\n";
-
-            HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
-
-
-            //std::cout<<"_2\n";
             // determine shape of hyperslab and array
             std::size_t size = std::distance(baseBegin, baseEnd);
             std::vector<hsize_t> offset(size);
             std::vector<hsize_t> slabShape(size);
-            std::vector<hsize_t> marrayShape(size);
-            marray::CoordinateOrder coordinateOrder;
-            if(H5Aexists(dataset_, reverseShapeAttributeName) > 0) {
-                NIFTY_CHECK(false, "currently we do not allow to load from datasets with reverseShapeAttribute")
-            }
-            else {
-                // don't reverse base and shape
-                coordinateOrder = marray::FirstMajorOrder;
-                for(std::size_t j=0; j<size; ++j) {
-                    offset[j] = hsize_t(*baseBegin);
-                    slabShape[j] = hsize_t(*shapeBegin);
-                    marrayShape[j] = slabShape[j];
+            std::vector<hsize_t> arrayShape(size);
 
-                    ++baseBegin;
-                    ++shapeBegin;
-                }
+            for(std::size_t j = 0; j < size; ++j) {
+                offset[j] = hsize_t(*baseBegin);
+                slabShape[j] = hsize_t(*shapeBegin);
+                arrayShape[j] = slabShape[j];
+
+                ++baseBegin;
+                ++shapeBegin;
             }
-            //std::cout<<"_3\n";
+
             hid_t dataspace = H5Dget_space(dataset_);
             if(dataspace < 0) {
                 throw std::runtime_error("Can't open dataspace!");
@@ -280,90 +244,54 @@ namespace hdf5{
                 &offset[0], NULL, &slabShape[0], NULL);
             if(status < 0) {
                 H5Sclose(dataspace);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape !");
+                throw std::runtime_error("Cannot select hyperslab. Check offset and shape !");
             }
 
-            //std::cout<<"_4\n";
             // select memspace hyperslab
-            hid_t memspace = H5Screate_simple(int(size), &marrayShape[0], NULL);
+            hid_t memspace = H5Screate_simple(int(size), &arrayShape[0], NULL);
             std::vector<hsize_t> offsetOut(size, 0); // no offset
             status = H5Sselect_hyperslab(memspace, H5S_SELECT_SET, &offsetOut[0],
-                NULL, &marrayShape[0], NULL);
+                NULL, &arrayShape[0], NULL);
             if(status < 0) {
                 H5Sclose(memspace);
                 H5Sclose(dataspace);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape s!");
+                throw std::runtime_error("Cannot select hyperslab. Check offset and shape s!");
             }
 
             // read from dataspace into memspace
-            //out = Marray<T>(SkipInitialization, &marrayShape[0],
-            //    (&marrayShape[0])+size, coordinateOrder);
-            //std::cout<<"_5\n";
-            if(out.isSimple()){
-                //std::cout<<"is simple\n";
-                status = H5Dread(dataset_, datatype_, memspace, dataspace,
-                    H5P_DEFAULT, &(out(0)));
+            status = H5Dread(dataset_, datatype_, memspace, dataspace,
+                             H5P_DEFAULT, &(out(0)));
 
-                //std::cout<<"read status "<<status<<"\n";
-            }
-            else{
-                //std::cout<<"is not simple\n";
-                marray::Marray<T> tmpOut(marray::SkipInitialization, &marrayShape[0],
-                    (&marrayShape[0])+size, coordinateOrder);
-
-                status = H5Dread(dataset_, datatype_, memspace, dataspace,
-                    H5P_DEFAULT, &(tmpOut(0)));
-
-                //std::cout<<"read status "<<status<<"\n";
-
-                for(auto i=0; i<size; ++i){
-                    //std::cout<<out.shape(i)<<" "<<tmpOut.shape(i)<<"\n";
-                }
-
-
-                out = tmpOut;
-
-                //std::cout<<"bra\n";
-            }
-            //std::cout<<"_6\n";
             // clean up
             H5Sclose(memspace);
             H5Sclose(dataspace);
             if(status < 0) {
-                throw std::runtime_error("Marray cannot read from dataset.");
+                throw std::runtime_error("Cannot read from dataset.");
             }
-            handleCheck.check();
         }
 
-        template<class BaseIterator, class ShapeIterator>
+        template<class BaseIterator, class ShapeIterator, class ARRAY>
         void
         saveHyperslab(
             BaseIterator baseBegin,
             BaseIterator baseEnd,
             ShapeIterator shapeBegin,
-            const marray::View<T> & in
+            const ARRAY & in
         ) {
-            HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
-
             // determine hyperslab shape
             std::vector<hsize_t> memoryShape(in.dimension());
             for(std::size_t j=0; j<in.dimension(); ++j) {
-                memoryShape[j] = in.shape(j);
+                memoryShape[j] = in.shape()[j];
             }
             std::size_t size = std::distance(baseBegin, baseEnd);
             std::vector<hsize_t> offset(size);
             std::vector<hsize_t> slabShape(size);
-            bool reverseShapeAttribute = (H5Aexists(dataset_, reverseShapeAttributeName) > 0);
-            if(reverseShapeAttribute || in.coordinateOrder() == marray::LastMajorOrder) {
-                NIFTY_CHECK(false, "neither reverseShapeAttribute nor LastMajorOrder are currently supported");
-            }
-            else{
-               for(std::size_t j=0; j<size; ++j) {
-                   offset[j] = hsize_t(*baseBegin);
-                   slabShape[j] = hsize_t(*shapeBegin);
-                   ++baseBegin;
-                   ++shapeBegin;
-               }
+
+            for(std::size_t j=0; j<size; ++j) {
+                offset[j] = hsize_t(*baseBegin);
+                slabShape[j] = hsize_t(*shapeBegin);
+                ++baseBegin;
+                ++shapeBegin;
             }
 
             // select dataspace hyperslab
@@ -373,7 +301,7 @@ namespace hdf5{
             if(status < 0) {
                 H5Sclose(dataspace);
                 H5Dclose(dataset_);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+                throw std::runtime_error("Cannot select hyperslab. Check offset and shape!");
             }
 
             // select memspace hyperslab
@@ -385,29 +313,20 @@ namespace hdf5{
                 H5Sclose(memspace); ;
                 H5Sclose(dataspace);
                 H5Dclose(dataset_);
-                throw std::runtime_error("Marray cannot select hyperslab. Check offset and shape!");
+                throw std::runtime_error("Cannot select hyperslab. Check offset and shape!");
             }
 
-            if(in.isSimple()){
-               status = H5Dwrite(dataset_, datatype_, memspace, dataspace, H5P_DEFAULT, &(in(0)));
-            }
-            else{
-                marray::Marray<T> tmp(in);
-                status = H5Dwrite(dataset_, datatype_, memspace, dataspace, H5P_DEFAULT, &(tmp(0)));
-            }
+            status = H5Dwrite(dataset_, datatype_,
+                              memspace, dataspace, H5P_DEFAULT, &(in(0)));
             // clean up
             H5Sclose(memspace);
             H5Sclose(dataspace);
             if(status < 0) {
-                throw std::runtime_error("Marray cannot write to dataset.");
+                throw std::runtime_error("Cannot write to dataset.");
             }
-            handleCheck.check();
         }
 
         void loadShape(std::vector<uint64_t> & shapeVec){
-
-            marray::marray_detail::Assert(marray::MARRAY_NO_ARG_TEST || groupHandle_ >= 0);
-            HandleCheck<marray::MARRAY_NO_DEBUG> handleCheck;
 
             hid_t filespace = H5Dget_space(dataset_);
             hsize_t dimension = H5Sget_simple_extent_ndims(filespace);
@@ -420,18 +339,12 @@ namespace hdf5{
             }
             // write shape to shape_
             shapeVec.resize(dimension);
-            if(H5Aexists(dataset_, reverseShapeAttributeName) > 0) {
-                NIFTY_CHECK(false, "currently we do not allow to load from datasets with reverseShapeAttribute")
-            }
-            else {
-                for(std::size_t j=0; j<shapeVec.size(); ++j) {
-                    shapeVec[j] = uint64_t(shape[j]);
-                }
+            for(std::size_t j=0; j<shapeVec.size(); ++j) {
+                shapeVec[j] = uint64_t(shape[j]);
             }
             // clean up
             delete[] shape;
             H5Sclose(filespace);
-            handleCheck.check();
         }
 
         void loadChunkShape(std::vector<uint64_t> & chunkShape){
@@ -472,65 +385,31 @@ namespace hdf5{
         std::vector<uint64_t> shape_;
         std::vector<uint64_t> chunkShape_;
         bool isChunked_;
-    public: // Hacy for now, better to declare functions that are allowed to change this friend...
-        // FIXME having a mutex member makes class non-copyable -> global mtx for now...
-        static std::mutex mtx_; // For now we have one mtx per array, but it might be better to have a global (static) mtx
     };
-
-    // initialize the mutex
-    template<class T>
-    std::mutex Hdf5Array<T>::mtx_;
-
-
-    namespace tools{
-
-}
-
-
 } // namespace nifty::hdf5
 
 
 
 namespace tools{
 
-    template<class T, class COORD>
+    template<class T, class COORD, class ARRAY>
     inline void readSubarray(
         const hdf5::Hdf5Array<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
-        marray::View<T> & subarray
+        ARRAY & subarray
     ){
         array.readSubarray(beginCoord.begin(), subarray);
     }
 
-    template<class T, class COORD>
+    template<class T, class COORD, class ARRAY>
     inline void writeSubarray(
         hdf5::Hdf5Array<T> & array,
         const COORD & beginCoord,
         const COORD & endCoord,
-        const marray::View<T> & subarray
+        const ARRAY & subarray
     ){
         array.writeSubarray(beginCoord.begin(), subarray);
-    }
-
-    template<class T, class COORD>
-    inline void readSubarrayLocked(
-        const hdf5::Hdf5Array<T> & array,
-        const COORD & beginCoord,
-        const COORD & endCoord,
-        marray::View<T> & subarray
-    ){
-        array.readSubarrayLocked(beginCoord.begin(), subarray);
-    }
-
-    template<class T, class COORD>
-    inline void writeSubarrayLocked(
-        hdf5::Hdf5Array<T> & array,
-        const COORD & beginCoord,
-        const COORD & endCoord,
-        const marray::View<T> & subarray
-    ){
-        array.writeSubarrayLocked(beginCoord.begin(), subarray);
     }
 
     template<class ARRAY>
@@ -542,6 +421,4 @@ namespace tools{
        typedef BlockStorage<T> type;
     };
 } // namespace nifty::tools
-
-
 } // namespace nifty

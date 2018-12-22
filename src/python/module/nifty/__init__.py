@@ -3,9 +3,6 @@ from __future__ import print_function
 
 from ._nifty import *
 
-
-
-
 import types
 import numpy
 import time
@@ -16,11 +13,10 @@ from . import tools
 from . import ufd
 
 
-
 class Timer:
     def __init__(self, name=None, verbose=True):
         """Timer class as with statement
-        
+
         Time pieces of code with a with statement timer
 
         Examples:
@@ -30,7 +26,6 @@ class Timer:
                 import time
                 time.sleep()
 
-            
         Args:
             name: name to print (default: {None})
             verbose: do printout (default: {True})
@@ -39,7 +34,6 @@ class Timer:
         self.verbose = verbose
 
     def __enter__(self):
-
         if self.verbose:
             if self.name is not None:
                 print(self.name,"...")
@@ -53,9 +47,6 @@ class Timer:
         self.elapsedTime = self.end - self.start
         if self.verbose:
             if self.name is not None:
-                print(self.name,"took",self.elapsedTime,"sec")
+                print(self.name, "took", self.elapsedTime, "sec")
             else:
-                print("took",self.elapsedTime,"sec")
-
-
-
+                print("took", self.elapsedTime, "sec")

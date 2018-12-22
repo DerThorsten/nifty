@@ -1,13 +1,13 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
-
-#include "nifty/python/converter.hxx"
+#include "xtensor-python/pytensor.hpp"
 
 #ifdef WITH_HDF5
 #include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
+#include "nifty/python/converter.hxx"
 #include "nifty/graph/long_range_adjacency/long_range_adjacency.hxx"
 
 namespace py = pybind11;
@@ -61,7 +61,7 @@ namespace graph{
                 return out;
             })
             .def("serialize",[](const AdjacencyType & self){
-                nifty::marray::PyView<uint64_t, 1> out({self.serializationSize()});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({self.serializationSize()});
                 auto ptr = &out(0);
                 self.serialize(ptr);
                 return out;
@@ -69,31 +69,34 @@ namespace graph{
         ;
         removeFunctions<AdjacencyType, BaseGraph>(clsT);
 
+        // FIXME multi-threading not thread-safe
         // from labels
         module.def(facName.c_str(),
             [](
-               Labels labels,
+               const Labels & labels,
                const size_t range,
                const size_t numberOfLabels,
                const bool ignoreLabel,
                const int numberOfThreads
             ){
-                auto ptr = new AdjacencyType(labels, range, numberOfLabels, ignoreLabel, numberOfThreads);
+                auto ptr = new AdjacencyType(labels, range,
+                                             numberOfLabels, ignoreLabel,
+                                             numberOfThreads);
                 return ptr;
             },
             py::return_value_policy::take_ownership,
             py::arg("labels"),
             py::arg("range"),
             py::arg("numberOfLabels"),
-            py::arg_t<bool>("ignoreLabel", false),
-            py::arg_t<int>("numberOfThreads", -1)
+            py::arg("ignoreLabel")=false,
+            py::arg("numberOfThreads")=1
         );
 
         // from labels + serialization
         module.def(facName.c_str(),
             [](
                Labels labels,
-               nifty::marray::PyView<uint64_t, 1> serialization
+               const xt::pytensor<uint64_t, 1> & serialization
             ){
 
                 auto startPtr = &serialization(0);
@@ -102,6 +105,7 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
+                std::cout << "start to desrialize" << std::endl;
                 auto ptr = new AdjacencyType(labels, startPtr);
                 return ptr;
             },
@@ -114,7 +118,7 @@ namespace graph{
 
     void exportLongRangeAdjacency(py::module & module) {
 
-        typedef marray::PyView<uint32_t, 3> ExplicitLabels;
+        typedef xt::pytensor<uint32_t, 3> ExplicitLabels;
         exportLongRangeAdjacencyT<ExplicitLabels>(
             module,
             "ExplicitLabelsLongRangeAdjacency",

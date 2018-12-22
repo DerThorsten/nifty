@@ -48,17 +48,17 @@ class TestHDF5(unittest.TestCase):
 
         self.assertEqual(array.ndim, 3)
         self.assertEqual(len(ashape), 3)
-        self.assertEqual(ashape, shape)
+        self.assertEqual(tuple(ashape), shape)
 
         self.assertTrue(array.isChunked)
         chunkShape = array.chunkShape
         self.assertEqual(len(chunkShape), 3)
-        self.assertEqual(chunkShape, chunks)
+        self.assertEqual(tuple(chunkShape), tuple(chunks))
 
         subarray = array[0:10, 0:10, 0:10]
         expected = data[0:10, 0:10, 0:10]
         self.assertEqual(subarray.shape, expected.shape)
-        self.assertTru(numpy.allclose(subarray, expected))
+        self.assertTrue(numpy.allclose(subarray, expected))
 
     @unittest.skipUnless(WITH_HDF5 and WITH_H5PY,
                          "Need nifty-hdf5 and h5py")
@@ -77,17 +77,17 @@ class TestHDF5(unittest.TestCase):
         ashape = array.shape
         self.assertEqual(array.ndim, 3)
         self.assertEqual(len(ashape), 3)
-        self.assertEqual(shape, ashape)
+        self.assertEqual(shape, tuple(ashape))
 
         self.assertFalse(array.isChunked)
         chunkShape = array.chunkShape
         self.assertEqual(len(chunkShape), 3)
-        self.assertEqual(chunkShape, shape)
+        self.assertEqual(tuple(chunkShape), shape)
 
         subarray = array[0:10, 0:10, 0:10]
         expected = data[0:10, 0:10, 0:10]
         self.assertEqual(subarray.shape, expected.shape)
-        self.assertTru(numpy.allclose(subarray, expected))
+        self.assertTrue(numpy.allclose(subarray, expected))
 
     @unittest.skipUnless(WITH_HDF5, "Need nifty-hdf5")
     def test_create_chunked_array(self):
@@ -145,52 +145,6 @@ class TestHDF5(unittest.TestCase):
 
         self.assertTrue(numpy.array_equal(toWrite, subarray))
 
-    @unittest.skipUnless(WITH_HDF5, "Need nifty-hdf5")
-    def testHdf5Offsets(self):
-        import nifty.hdf5 as nhdf5
-        from itertools import combinations
-        fpath = os.path.join(self.tempFolder, '_nifty_test_array_.h5')
 
-        hidT = nhdf5.createFile(fpath)
-        shape = [100,100,100]
-        chunks = [32,32,32]
-        array = nhdf5.hdf5Array(
-            'uint32',
-            groupHandle=hidT,
-            datasetName="data",
-            shape=shape,
-            chunkShape=chunks
-        )
-
-        testData = numpy.arange(100**3, dtype='uint32').reshape(tuple(shape))
-        array.writeSubarray([0,0,0], testData)
-
-        testOffsets = ([1,1,1], [10,0,0], [0,10,0], [0,0,10], [10,10,10])
-
-        for offFront, offBack in combinations(testOffsets, 2):
-            array.setOffsetFront(offFront)
-            array.setOffsetBack(offBack)
-
-            # check for correct effective shape
-            effectiveShape = numpy.array(array.shape)
-            expectedShape  = numpy.array(shape) - numpy.array(offFront) - numpy.array(offBack)
-            slef.assertTrue(numpy.array_equal(effectiveShape, expectedShape))
-
-            # check for correct data
-            subData = array.readSubarray([0,0,0], effectiveShape)
-            self.assertEqual(subData.shape, tuple(effectiveShape))
-            bb = numpy.s_[
-                offFront[0]:shape[0]-offBack[0],
-                offFront[1]:shape[1]-offBack[1],
-                offFront[2]:shape[2]-offBack[2]
-            ]
-            expectedData = testData[bb]
-            self.assertEqual(expectedData.shape, subData.shape,
-                             "%s, %s" % (str(expectedData.shape), str(subData.shape)))
-            self.assertTrue(numpy.array_equal(subData, expectedData))
-
-        # check correct handling of incorrect offsets
-        for offFront in ([101,0,0], [0,101,0], [0,0,101], [101,101,101]):
-            offCheck = array.setOffsetFront(offFront)
-            self.assertFalse(offCheck)
-            self.assertEqual(array.shape, shape)
+if __name__ == '__main__':
+    unittest.main()

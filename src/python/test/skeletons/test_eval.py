@@ -61,7 +61,8 @@ class TestSkeletons(unittest.TestCase):
                          "Need z5 support")
     def test_nodes(self):
         import nifty.skeletons as nskel
-        out = nskel.getSkeletonNodeAssignments('./tmp/seg.n5/seg', './tmp/skels.n5', [1, 2], 1)
+        metrics = nskel.SkeletonMetrics('./tmp/seg.n5/seg', './tmp/skels.n5', [1, 2], 1)
+        out = metrics.getNodeAssignments()
         self.assertEqual(list(out.keys()), [1, 2])
         out1 = [out[1][k] for k in sorted(out[1].keys())]
         out2 = [out[2][k] for k in sorted(out[2].keys())]

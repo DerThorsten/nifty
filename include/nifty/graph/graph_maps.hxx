@@ -1,7 +1,6 @@
 #pragma once
 
-#include "nifty/marray/marray.hxx"
-//#include "nifty/xtensor/xtensor.hxx"
+#include "nifty/xtensor/xtensor.hxx"
 
 namespace nifty{
 namespace graph{
@@ -119,6 +118,7 @@ public:
     typedef typename ARRAY::value_type value_type;
     typedef typename ARRAY::reference reference;
     typedef typename ARRAY::const_reference const_reference;
+
     class Proxy{
     public:
         Proxy(ARRAY & array, const uint64_t node)
@@ -138,6 +138,7 @@ public:
         uint64_t node_;
         ARRAY * array_;
     };
+
     class ConstProxy{
     public:
         ConstProxy(const ARRAY & array, const uint64_t node)
@@ -159,10 +160,8 @@ public:
     };
 
 
-
-
-    MultibandArrayViewNodeMap( const ARRAY & array)
-    :   nChannels_(array.shape(1)),
+    MultibandArrayViewNodeMap(const ARRAY & array)
+    :   nChannels_(array.shape()[1]),
         array_(array){
     }
 
@@ -170,9 +169,11 @@ public:
     Proxy operator[](const uint64_t nodeIndex){
         return Proxy(array_, nodeIndex);
     }
+
     ConstProxy operator[](const uint64_t nodeIndex)const{
         return ConstProxy(array_, nodeIndex);
     }
+
     const size_t numberOfChannels()const{
         return nChannels_;
     }

@@ -23,7 +23,7 @@ namespace minstcut{
         }
     };
 } // namespace minstcut
-} // namespace opt   
+} // namespace opt
 }
 }
 

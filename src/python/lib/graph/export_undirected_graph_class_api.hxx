@@ -9,16 +9,12 @@
 
 #include <pybind11/pybind11.h>
 #include <pybind11/cast.h>
+#include "xtensor-python/pytensor.hpp"
 
 #include "nifty/graph/breadth_first_search.hxx"
 #include "nifty/python/converter.hxx"
 
 namespace py = pybind11;
-
-
-
-
-
 
 
 namespace pybind11 {
@@ -33,7 +29,7 @@ public:
         const auto seq = reinterpret_borrow<sequence>(src);
         if (seq.size() != 2)
             return false;
-        return first.load(seq[0], convert) && 
+        return first.load(seq[0], convert) &&
                second.load(seq[1], convert);
     }
 
@@ -205,13 +201,13 @@ namespace graph{
             )
             .def("findEdges",[](
                     const G & self,
-                    nifty::marray::PyView<uint64_t, 2> uv
+                    xt::pytensor<uint64_t, 2> uv
                 ){
-                    nifty::marray::PyView<int64_t> edgeIds({uv.shape(0)});
-                    NIFTY_CHECK_OP(uv.shape(1),==,2,"uv.shape(1) must be 2");
+                    xt::pytensor<int64_t, 1> edgeIds({uv.shape()[0]});
+                    NIFTY_CHECK_OP(uv.shape()[1],==,2,"uv.shape(1) must be 2");
 
-                    for(auto i=0; i<uv.shape(0); ++i){
-                       edgeIds(i) = self.findEdge(uv(i,0), uv(i,1)); 
+                    for(auto i=0; i<uv.shape()[0]; ++i){
+                       edgeIds(i) = self.findEdge(uv(i, 0), uv(i, 1));
                     }
                     return edgeIds;
                 },
@@ -264,7 +260,7 @@ namespace graph{
                     );
                 });
 
-                nifty::marray::PyView<uint64_t> out({uint64_t(pairs.size()), uint64_t(2)});
+                xt::pytensor<uint64_t, 2> out({int64_t(pairs.size()), int64_t(2)});
 
                 auto c=0;
                 for(const auto & uv : pairs){
@@ -273,31 +269,31 @@ namespace graph{
                 }
                 return out;
 
-            }, 
+            },
                 py::arg("maxDistance")
             )
             .def("uvIds",
                 [](G & g) {
-                    nifty::marray::PyView<uint64_t> out({uint64_t(g.numberOfEdges()), uint64_t(2)});
+                    xt::pytensor<uint64_t, 2> out({int64_t(g.numberOfEdges()), int64_t(2)});
                     auto c = 0 ;
                     for(const auto edge : g.edges()){
-                        const auto uv = g.uv(edge); 
+                        const auto uv = g.uv(edge);
                         out(c,0) = uv.first;
                         out(c,1) = uv.second;
                         ++c;
                     }
                     return out;
                 },
-                "Get the two endpoints of all edges simultaneous.                \n"  
-                "                                                                \n"  
+                "Get the two endpoints of all edges simultaneous.                \n"
+                "                                                                \n"
                 "                                                                \n"
                 "Returns:                                                        \n"
-                "    numpy.ndarray: uv-ids as array with shape [numberOfEdges,2]   "            
+                "    numpy.ndarray: uv-ids as array with shape [numberOfEdges,2]   "
             )
-            .def("edges", 
-                [](py::object g) { 
+            .def("edges",
+                [](py::object g) {
                     const auto & gg = g.cast<const G &>();
-                    return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd()); 
+                    return PyEdgeIter(gg,g,gg.edgesBegin(),gg.edgesEnd());
                 }
                 ,
                 "Get an edge iterator\n\n"
@@ -305,19 +301,19 @@ namespace graph{
                 "Returns:\n"
                 "   edge iterator"
             )
-            .def("nodes", 
-                [](py::object g) { 
+            .def("nodes",
+                [](py::object g) {
                     const auto & gg = g.cast<const G &>();
-                    return PyNodeIter(gg,g,gg.nodesBegin(),gg.nodesEnd()); 
+                    return PyNodeIter(gg, g, gg.nodesBegin(), gg.nodesEnd());
                 },
                 "Get an node iterator\n\n"
                 "Get an node iterator to iterate over all nodes\n\n"
                 "Returns:\n"
                 "   node iterator"
             )
-            .def("nodeAdjacency", [](py::object g, const uint64_t nodeId) { 
+            .def("nodeAdjacency", [](py::object g, const uint64_t nodeId) {
                 const auto & gg = g.cast<const G &>();
-                return PyAdjacencyIter(gg,g,gg.adjacencyBegin(nodeId),gg.adjacencyEnd(nodeId)); 
+                return PyAdjacencyIter(gg,g,gg.adjacencyBegin(nodeId),gg.adjacencyEnd(nodeId));
             })
 
             .def("__str__",
@@ -345,7 +341,6 @@ namespace graph{
 
         ;
     }
-    
 
 
 } // namespace nifty::graph

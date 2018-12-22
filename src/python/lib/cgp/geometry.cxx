@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
+#include "xtensor-python/pytensor.hpp"
 
 #include "export_cell_vector.hxx"
 
@@ -13,10 +14,8 @@ namespace py = pybind11;
 namespace nifty{
 namespace cgp{
 
-    
-
     template<
-        size_t DIM, 
+        size_t DIM,
         size_t CELL_TYPE,
         class CLS
     >
@@ -31,7 +30,7 @@ namespace cgp{
             })
             .def("centerOfMass",&CLS::centerOfMass)
             .def("__array__", [](const CLS & self){
-                nifty::marray::PyView<uint32_t> out({size_t(self.size()),size_t(DIM)});
+                xt::pytensor<uint32_t, 2> out({int64_t(self.size()), int64_t(DIM)});
                 for(size_t i=0; i<self.size(); ++i){
                     const auto & coord = self[i];
                     for(size_t d=0; d<DIM; ++d){
@@ -52,7 +51,8 @@ namespace cgp{
 
         pyCls
             .def("centersOfMass", [](const CLS & self){
-                nifty::marray::PyView<float> cArray({self.size(), CLS::value_type::DimensionType::value});
+                xt::pytensor<float, 2> cArray({int64_t(self.size()),
+                                               CLS::value_type::DimensionType::value});
                 for(auto i=0; i<self.size(); ++i){
                     const auto com  = self[i].centerOfMass();
                     for(auto d=0; d<CLS::value_type::DimensionType::value; ++d){
@@ -67,11 +67,8 @@ namespace cgp{
 
     void exportGeometry2D(py::module & m) {
 
-        
-        
-
         // cell 0 geometry
-        {   
+        {
             typedef CellGeometry<2,0> Cell0Geometry2D;
             typedef CellGeometryVector<2,0> Cells0GeometryVector2D;
 

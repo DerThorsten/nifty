@@ -1,6 +1,10 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 
+#define FORCE_IMPORT_ARRAY
+#include "xtensor-python/pyarray.hpp"
+#include "xtensor-python/pytensor.hpp"
+
 namespace py = pybind11;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, std::shared_ptr<T>);
@@ -17,10 +21,6 @@ namespace multicut{
     void exportMulticutVisitorBase(py::module &);
     void exportMulticutBase(py::module &);
 
-    // we are currently  refactoring in little 
-    // pieces: opt::multicut is the new cool namespace
-    // implemented by Nish
-
     void exportMulticutIlp(py::module &);
     void exportCgc(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
@@ -32,7 +32,7 @@ namespace multicut{
     void exportMulticutCcFusionMoveBased(py::module &);
     void exportKernighanLin(py::module &);
     #if WITH_LP_MP
-    //void exportMulticutMp(py::module &);
+    void exportMulticutMp(py::module &);
     #endif
 }
 }
@@ -41,11 +41,11 @@ namespace multicut{
 
 PYBIND11_MODULE(_multicut, multicutModule) {
 
+    xt::import_numpy();
+
     py::options options;
     options.disable_function_signatures();
-    
     multicutModule.doc() = "multicut submodule of nifty.graph";
-    
     using namespace nifty::graph::opt::multicut;
 
     exportMulticutObjective(multicutModule);
@@ -62,10 +62,9 @@ PYBIND11_MODULE(_multicut, multicutModule) {
     exportChainedSolvers(multicutModule);
     exportMulticutCcFusionMoveBased(multicutModule);
     exportKernighanLin(multicutModule);
-    
+
     #ifdef WITH_LP_MP
-    //exportMulticutMp(multicutModule);
+    exportMulticutMp(multicutModule);
     #endif
 
 }
-

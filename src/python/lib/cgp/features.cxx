@@ -1,10 +1,8 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
+#include "xtensor-python/pytensor.hpp"
 
-
-
-#include "nifty/python/converter.hxx"
 #include "nifty/cgp/geometry.hxx"
 #include "nifty/cgp/bounds.hxx"
 
@@ -17,12 +15,6 @@ namespace py = pybind11;
 
 namespace nifty{
 namespace cgp{
-
-
-
-    
-
-
 
 
     void exportFeatures(py::module & module) {
@@ -44,10 +36,10 @@ namespace cgp{
                     const CellGeometryVector<2,1> &  cell1GeometryVector,
                     const CellBoundedByVector<2,1> & cell1BoundedByVector
                 ){
-                    const auto nFeatures = size_t(op.numberOfFeatures());
-                    const auto nCells1   = size_t(cell1GeometryVector.size());
+                    const int64_t nFeatures = op.numberOfFeatures();
+                    const int64_t nCells1   = cell1GeometryVector.size();
 
-                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+                    xt::pytensor<float, 2> out = xt::zeros<float>({nCells1, nFeatures});
 
                     op(cell1GeometryVector, cell1BoundedByVector, out);
 
@@ -74,10 +66,10 @@ namespace cgp{
                     const Op & op,
                     const CellGeometryVector<2,1> &  cell1GeometryVector
                 ){
-                    const auto nFeatures = size_t(op.numberOfFeatures());
-                    const auto nCells1   = size_t(cell1GeometryVector.size());
+                    const int64_t nFeatures = op.numberOfFeatures();
+                    const int64_t nCells1   = cell1GeometryVector.size();
 
-                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+                    xt::pytensor<float, 2> out({nCells1, nFeatures});
 
                     op(cell1GeometryVector, out);
 
@@ -102,10 +94,10 @@ namespace cgp{
                     const CellGeometryVector<2,2>   & cell2GeometryVector,
                     const CellBoundsVector<2,1>     & cell1BoundsVector
                 ){
-                    const auto nFeatures = size_t(op.numberOfFeatures());
-                    const auto nCells1   = size_t(cell1GeometryVector.size());
+                    const int64_t nFeatures = op.numberOfFeatures();
+                    const int64_t nCells1   = cell1GeometryVector.size();
 
-                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+                    xt::pytensor<float, 2> out({nCells1, nFeatures});
 
                     op( cell1GeometryVector,
                         cell2GeometryVector,
@@ -137,10 +129,10 @@ namespace cgp{
                     const CellBoundedByVector<2,1>  & cell1BoundedByVector,
                     const CellBoundedByVector<2,2>  & cell2BoundedByVector
                 ){
-                    const auto nFeatures = size_t(op.numberOfFeatures());
-                    const auto nCells1   = size_t(cell1BoundsVector.size());
+                    const int64_t nFeatures = op.numberOfFeatures();
+                    const int64_t nCells1   = cell1BoundsVector.size();
 
-                    nifty::marray::PyView<float> out({nCells1, nFeatures});
+                    xt::pytensor<float, 2> out({nCells1, nFeatures});
 
                     op( cell0BoundsVector,
                         cell1BoundsVector,
@@ -154,8 +146,8 @@ namespace cgp{
                 py::arg("cell0BoundsVector"),
                 py::arg("cell1BoundsVector"),
                 py::arg("cell1BoundedByVector"),
-                py::arg("cell2BoundedByVector")
-            )
+                py::arg("cell2BoundedByVector"))
+
             .def("names", &Op::names)
             ;
         }

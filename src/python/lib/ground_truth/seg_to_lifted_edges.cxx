@@ -1,9 +1,9 @@
-#include <pybind11/pybind11.h>
 #include <iostream>
 #include <sstream>
-#include <pybind11/numpy.h>
 
-#include "nifty/python/converter.hxx"
+#include <pybind11/pybind11.h>
+#include <pybind11/numpy.h>
+#include <xtensor-python/pytensor.hpp>
 
 #include "nifty/ground_truth/seg_to_lifted_edges.hxx"
 
@@ -14,22 +14,19 @@ namespace nifty{
 namespace ground_truth{
 
 
-
     void exportSeg2dToLiftedEdges(py::module & groundTruthModule){
 
         groundTruthModule.def("seg2dToLiftedEdges",
         [](
-            marray::PyView<uint32_t, 2 , false>   seg,
-            marray::PyView<int32_t, 2 ,  false>   edges
+            const xt::pytensor<uint32_t, 2> & seg,
+            const xt::pytensor<int32_t, 2> & edges
         ){
-            NIFTY_CHECK_OP(edges.shape(1), == , 2, "edges must be |N| x 2")
-            marray::PyView<uint8_t> out({
-                size_t(seg.shape(0)),
-                size_t(seg.shape(1)),
-                size_t(edges.shape(0))
-            }); 
-            
-            std::vector<std::array<int32_t, 2> > e(edges.shape(0));
+            NIFTY_CHECK_OP(edges.shape()[1], == , 2, "edges must be |N| x 2")
+            xt::pytensor<uint8_t, 3> out = xt::zeros<uint8_t>({seg.shape()[0],
+                                                               seg.shape()[1],
+                                                               edges.shape()[0]});
+
+            std::vector<std::array<int32_t, 2> > e(edges.shape()[0]);
             for(size_t i=0; i<e.size(); ++i){
                 e[i][0] = edges(i, 0);
                 e[i][1] = edges(i, 1);
@@ -48,19 +45,16 @@ namespace ground_truth{
 
         groundTruthModule.def("seg2dToLiftedEdges",
         [](
-            marray::PyView<uint32_t, 2 , false>   seg,
-            marray::PyView<int32_t, 2 ,  false>   edges,
-            int32_t z
+            const xt::pytensor<uint32_t, 2> & seg,
+            const xt::pytensor<int32_t, 2> & edges,
+            const int32_t z
         ){
-            NIFTY_CHECK_OP(edges.shape(1), == , 3, "edges must be |N| x 3");
+            NIFTY_CHECK_OP(edges.shape()[1], == , 3, "edges must be |N| x 3");
+            xt::pytensor<uint8_t, 3> out = xt::zeros<uint8_t>({seg.shape()[0],
+                                                               seg.shape()[1],
+                                                               edges.shape()[0]});
 
-            marray::PyView<uint8_t> out({
-                size_t(seg.shape(0)),
-                size_t(seg.shape(1)),
-                size_t(edges.shape(0))
-            }); 
-            
-            std::vector<std::array<int32_t, 3> > e(edges.shape(0));
+            std::vector<std::array<int32_t, 3> > e(edges.shape()[0]);
             for(size_t i=0; i<e.size(); ++i){
                 e[i][0] = edges(i, 0);
                 e[i][1] = edges(i, 1);
@@ -82,18 +76,16 @@ namespace ground_truth{
 
         groundTruthModule.def("seg3dToCremiZ5Edges",
         [](
-            marray::PyView<uint32_t, 3>   seg,
-            marray::PyView<int32_t, 2 >   edges
+            const xt::pytensor<uint32_t, 3> &  seg,
+            const xt::pytensor<int32_t, 2> & edges
         ){
-            NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
+            NIFTY_CHECK_OP(edges.shape()[1], == , 4, "edges must be |N| x 4");
 
-            marray::PyView<uint8_t> out({
-                size_t(seg.shape(0)),
-                size_t(seg.shape(1)),
-                size_t(edges.shape(0))
-            }); 
+            xt::pytensor<uint8_t, 3> out = xt::zeros<uint8_t>({seg.shape()[0],
+                                                               seg.shape()[1],
+                                                               edges.shape()[0]});
 
-            std::vector<std::array<int32_t, 4> > e(edges.shape(0));
+            std::vector<std::array<int32_t, 4> > e(edges.shape()[0]);
             for(size_t i=0; i<e.size(); ++i){
                 e[i][0] = edges(i, 0);
                 e[i][1] = edges(i, 1);
@@ -112,25 +104,24 @@ namespace ground_truth{
         #if 0
         groundTruthModule.def("seg3dToCremiZ5Edges",
         [](
-            marray::PyView<uint32_t, 3>   seg,
-            marray::PyView<uint32_t, 3>   dt2d,
-            marray::PyView<int32_t, 2 >   edges,
-            marray::PyView<float, 1 >    edge_priors,
+            xt::pytensor<uint32_t, 3>   seg,
+            xt::pytensor<uint32_t, 3>   dt2d,
+            xt::pytensor<int32_t, 2 >   edges,
+            xt::pytensor<float, 1 >    edge_priors,
         ){
             NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
 
-            marray::PyView<uint8_t> out({
+            xt::pytensor<uint8_t> out({
                 size_t(seg.shape(0)),
                 size_t(seg.shape(1)),
                 size_t(edges.shape(0))
-            }); 
+            });
 
-            marray::PyView<float> w({
+            xt::pytensor<float> w({
                 size_t(seg.shape(0)),
                 size_t(seg.shape(1)),
                 size_t(edges.shape(0))
-            }); 
-            
+            });
             std::vector<std::array<int32_t, 4> > e(edges.shape(0));
             std::vector<float>                   p(edges.shape(0));
             for(size_t i=0; i<e.size(); ++i){
@@ -150,31 +141,20 @@ namespace ground_truth{
             py::arg("edges"),
             py::arg("edge_priors")
         );
-
         #endif
-
     }
 
     void exportThinSegFilter(py::module & groundTruthModule){
 
         groundTruthModule.def("_thinSegFilter",
         [](
-            marray::PyView<uint32_t, 2>   seg,
-            marray::PyView<uint32_t, 2 >   dt,
+            const xt::pytensor<uint32_t, 2> & seg,
+            xt::pytensor<uint32_t, 2 > & dt,
             const float sigma,
             const int r
         ){
-            
-
-            marray::PyView<float> out({
-                size_t(seg.shape(0)),
-                size_t(seg.shape(1))
-            }); 
-
-
-
+            xt::pytensor<float, 2> out = xt::zeros<float>(seg.shape());
             thinSegFilter(seg, dt, out, sigma, r);
-            std::cout<<"DOOOONE\n";
             return out;
         },
             py::arg("seg"),
@@ -183,28 +163,29 @@ namespace ground_truth{
             py::arg("radius") = 0
         );
 
+
         #if 0
         groundTruthModule.def("seg3dToCremiZ5Edges",
         [](
-            marray::PyView<uint32_t, 3>   seg,
-            marray::PyView<uint32_t, 3>   dt2d,
-            marray::PyView<int32_t, 2 >   edges,
-            marray::PyView<float, 1 >    edge_priors,
+            xt::pytensor<uint32_t, 3>   seg,
+            xt::pytensor<uint32_t, 3>   dt2d,
+            xt::pytensor<int32_t, 2>   edges,
+            xt::pytensor<float, 1>    edge_priors,
         ){
             NIFTY_CHECK_OP(edges.shape(1), == , 4, "edges must be |N| x 4");
 
-            marray::PyView<uint8_t> out({
+            xt::pytensor<uint8_t> out({
                 size_t(seg.shape(0)),
                 size_t(seg.shape(1)),
                 size_t(edges.shape(0))
-            }); 
+            });
 
-            marray::PyView<float> w({
+            xt::pytensor<float> w({
                 size_t(seg.shape(0)),
                 size_t(seg.shape(1)),
                 size_t(edges.shape(0))
-            }); 
-            
+            });
+
             std::vector<std::array<int32_t, 4> > e(edges.shape(0));
             std::vector<float>                   p(edges.shape(0));
             for(size_t i=0; i<e.size(); ++i){
@@ -224,19 +205,9 @@ namespace ground_truth{
             py::arg("edges"),
             py::arg("edge_priors")
         );
-
         #endif
-
     }
 
-
-
-
-
-
-
-    //<class T_SEG>
-    //void cremiZ5Edges
 
     void exportSegToLiftedEdges(py::module & groundTruthModule){
         exportSeg2dToLiftedEdges(groundTruthModule);

@@ -125,3 +125,7 @@ class TestShortesetPath(unittest.TestCase):
         weights = [1.,1.]
         path = sp.runSingleSourceSingleTarget(weights, 0, 3)
         self.assertTrue(not path) # make sure that the path is invalid
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -105,7 +105,9 @@ namespace tools {
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
-        subarray = view;
+        // FIXME this fails with bad alloc
+        // subarray = view;
+        std::copy(view.begin(), view.end(), subarray.begin());
     }
 
 
@@ -125,7 +127,9 @@ namespace tools {
 
         // FIXME this is probably slow and would be faster with direct memory copy ?!
         // or figure out xt assignments...
-        view = data;
+        // FIXME this fails with bad alloc
+        // view = data;
+        std::copy(data.begin(), data.end(), view.begin());
     }
 
     template<class ARRAY>

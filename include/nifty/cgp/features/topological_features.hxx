@@ -6,7 +6,6 @@
 #include "nifty/histogram/histogram.hxx"
 #include "nifty/cgp/geometry.hxx"
 #include "nifty/cgp/bounds.hxx"
-#include "nifty/marray/marray.hxx"
 #include "nifty/filters/gaussian_curvature.hxx"
 #include "nifty/features/accumulated_features.hxx"
 
@@ -23,20 +22,18 @@ namespace cgp{
         size_t numberOfFeatures()const{
             return 6;
         }
-            
+
         std::vector<std::string> names()const{
 
             std::vector<std::string> res;
-
             const auto baseName = std::string("BasicTopologicalFeatures");
-            
+
             auto insertUVFeat = [&](const std::string & name){
                 res.push_back(baseName+name+std::string("UV-Min"));
                 res.push_back(baseName+name+std::string("UV-Max"));
                 res.push_back(baseName+name+std::string("UV-Sum"));
                 res.push_back(baseName+name+std::string("UV-AbsDiff"));
             };
-            
 
             res.push_back(baseName+std::string("Cell1BoundedBySize"));
             res.push_back(baseName+std::string("Cell1NeighbourEdges"));
@@ -45,21 +42,20 @@ namespace cgp{
             return res;
         }
 
-        template<class T>
+        template<class FEATURES>
         void operator()(
             const CellBoundsVector<2,0>     & cell0BoundsVector,
             const CellBoundsVector<2,1>     & cell1BoundsVector,
             const CellBoundedByVector<2,1>  & cell1BoundedByVector,
             const CellBoundedByVector<2,2>  & cell2BoundedByVector,
-            nifty::marray::View<T> & features
-        )const{  
+            FEATURES & features
+        ) const {
             using namespace nifty::math;
             for(auto cell1Index=0; cell1Index<cell1BoundsVector.size(); ++cell1Index){
 
                 const auto & cell1Bounds = cell1BoundsVector[cell1Index];
                 const auto cell2UIndex = cell1Bounds[0]-1;
                 const auto cell2VIndex = cell1Bounds[1]-1;
-
 
                 auto fIndex = 0;
 
@@ -81,24 +77,15 @@ namespace cgp{
                 features(cell1Index, fIndex++) = boundedBySize;
                 features(cell1Index, fIndex++) = nCells1;
 
-
-
                 // number of cells 1 which are bounding cell 2
                 // aka the degree of a nodes in ordinary graph
-                cell2ToCell1Features(cell2BoundedByVector[cell2UIndex].size(), 
+                cell2ToCell1Features(cell2BoundedByVector[cell2UIndex].size(),
                                      cell2BoundedByVector[cell2VIndex].size());
-
-
-
-
             }
-        
         }
     private:
         std::vector<size_t> dists_;
     };
-
-
 
 }
 }

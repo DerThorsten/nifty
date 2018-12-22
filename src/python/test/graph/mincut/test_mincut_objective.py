@@ -3,7 +3,6 @@ import numpy
 import random
 
 import nifty
-import nifty.graph
 
 
 class TestMincutObjective(unittest.TestCase):
@@ -38,14 +37,10 @@ class TestMincutObjective(unittest.TestCase):
         gridSize = [5, 5]
         weightRange = [0, 1]
 
-        g,nid = self.generateGrid(gridSize)
-
-        # d = weightRange[1] - weightRange[0]
-        # w = numpy.random.rand(g.numberOfEdges)*d + float(weightRange[0])
-        # print(w.min(),w.max())
+        g, nid = self.generateGrid(gridSize)
 
         w = numpy.zeros(g.numberOfEdges)
-        labels = numpy.zeros(g.nodeIdUpperBound+1,dtype='uint8')
+        labels = numpy.zeros(g.nodeIdUpperBound+1, dtype='uint8')
 
         for x in range(gridSize[0]):
             for y in range(gridSize[1]):
@@ -62,7 +57,7 @@ class TestMincutObjective(unittest.TestCase):
         for x in range(gridSize[0]):
             for y in range(gridSize[1]):
 
-                p = nid(x,y)
+                p = nid(x, y)
 
                 if x + 1 < gridSize[0]:
                     q = nid(x+1,y)
@@ -79,8 +74,12 @@ class TestMincutObjective(unittest.TestCase):
                     else:
                         w[weightId] = beta
 
-        obj = nifty.graph.mincut.mincutObjective(g,w)
+        obj = nifty.graph.opt.mincut.mincutObjective(g, w)
 
         value = obj.evalNodeLabels(labels)
-        self.assertAlmostEqual(value,8.4)
+        self.assertAlmostEqual(value, 8.4)
         return obj
+
+
+if __name__ == '__main__':
+    unittest.main()
