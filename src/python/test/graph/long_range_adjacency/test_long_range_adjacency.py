@@ -1,13 +1,6 @@
 import os
 import unittest
 import numpy as np
-
-try:
-    import h5py
-    WITH_H5PY = True
-except ImportError:
-    WITH_H5PY = False
-
 import nifty.graph.long_range_adjacency as nlr
 
 
@@ -60,35 +53,30 @@ class TestLongRangeAdjacency(unittest.TestCase):
 
     def test_toy_data(self):
         seg, n_labels = self.generate_toy_data()
-        lr = nlr.longRangeAdjacency(seg, 2, n_labels)
+        lr = nlr.longRangeAdjacency(seg, numberOfLabels=n_labels,
+                                    longRange=2, numberOfThreads=1)
         self.checks_toy_data(lr)
 
-    @unittest.skipUnless(WITH_H5PY, "Need h5py")
     def test_serialization(self):
-        seg = self.generate_toy_data()
-        lr = nlr.longRangeAdjacency(seg, 2, 1,
-                                    numberOfThreads=1)
-        try:
-            with h5py.File('./tmp.h5') as f:
-                f.create_dataset('data', data=lr.serialize())
-                serialization = f['data'][:]
-            lr_ = nlr.longRangeAdjacency(seg, 2, serialization=serialization)
-            self.checks_toy_data(lr_)
-        finally:
-            os.remove('./tmp.h5')
+        seg, n_labels = self.generate_toy_data()
+        lr = nlr.longRangeAdjacency(seg, numberOfLabels=n_labels,
+                                    longRange=2, numberOfThreads=1)
+        serialization = lr.serialize()
+        lr_ = nlr.longRangeAdjacency(seg, serialization=serialization)
+        self.checks_toy_data(lr_)
 
     def test_random_data(self):
         seg, n_labels = self.generate_random_data()
-        lr = nlr.longRangeAdjacency(seg, 4, n_labels,
-                                    numberOfThreads=1)
+        lr = nlr.longRangeAdjacency(seg, numberOfLabels=n_labels,
+                                    longRange=2, numberOfThreads=1)
         self.assertEqual(lr.numberOfNodes, n_labels)
         self.assertGreater(lr.numberOfEdges, 100)
 
     def test_features_toy_data(self):
         seg, n_labels = self.generate_toy_data()
         affs = self.generate_toy_affinities()
-        lr = nlr.longRangeAdjacency(seg, 2, n_labels,
-                                    numberOfThreads=1)
+        lr = nlr.longRangeAdjacency(seg, numberOfLabels=n_labels,
+                                    longRange=2, numberOfThreads=1)
         expected_mean = {1: 1., 2: 0.}
         for z_dir in (1, 2):
             features = nlr.longRangeFeatures(lr, seg, affs, z_dir)
@@ -99,7 +87,8 @@ class TestLongRangeAdjacency(unittest.TestCase):
         seg, n_labels = self.generate_random_data()
         for long_range in (2, 3, 4):
             affinities = self.generate_random_affinities(long_range)
-            lr = nlr.longRangeAdjacency(seg, long_range, n_labels, numberOfThreads=1)
+            lr = nlr.longRangeAdjacency(seg, numberOfLabels=n_labels,
+                                        longRange=long_range, numberOfThreads=1)
             for z_dir in (1, 2):
                 features = nlr.longRangeFeatures(lr, seg, affinities, z_dir)
                 self.assertEqual(features.shape[0], lr.numberOfEdges)

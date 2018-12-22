@@ -52,26 +52,26 @@ public:
 
     // API
 
-    size_t range() const {
+    std::size_t range() const {
         return range_;
     }
 
-    size_t numberOfEdgesInSlice(const size_t z) const {
+    std::size_t numberOfEdgesInSlice(const std::size_t z) const {
         return numberOfEdgesInSlice_[z];
     }
 
-    size_t edgeOffset(const size_t z) const {
+    std::size_t edgeOffset(const std::size_t z) const {
         return edgeOffset_[z];
     }
 
-    size_t serializationSize() const {
-        size_t size = BaseType::serializationSize();
+    std::size_t serializationSize() const {
+        std::size_t size = BaseType::serializationSize();
         size += 2; // increase by 2 for the fields longRange and ignoreLabel
         size += shape_[0] * 2; // increase by slice vector sizes
         return size;
     }
 
-    int64_t shape(const size_t i) const {
+    int64_t shape(const std::size_t i) const {
         return shape_[i];
     }
 
@@ -85,8 +85,8 @@ public:
         ++iter;
         *iter = ignoreLabel_ ? 1 : 0;
         ++iter;
-        size_t nSlices = shape_[0];
-        for(size_t slice = 0; slice < nSlices; ++slice) {
+        std::size_t nSlices = shape_[0];
+        for(std::size_t slice = 0; slice < nSlices; ++slice) {
             *iter = numberOfEdgesInSlice_[slice];
             ++iter;
             *iter = edgeOffset_[slice];
@@ -100,7 +100,7 @@ public:
     }
 
 private:
-    void initAdjacency(const Labels & labels, const size_t numberOfLabels, const int numberOfThreads);
+    void initAdjacency(const Labels & labels, const std::size_t numberOfLabels, const int numberOfThreads);
 
     template<class ITER>
     void deserializeAdjacency(ITER & iter) {
@@ -108,8 +108,8 @@ private:
         ++iter;
         ignoreLabel_ = (*iter == 1) ? true : false;
         ++iter;
-        size_t nSlices = shape_[0];
-        for(size_t slice = 0; slice < nSlices; ++slice) {
+        std::size_t nSlices = shape_[0];
+        for(std::size_t slice = 0; slice < nSlices; ++slice) {
             numberOfEdgesInSlice_[slice] = *iter;
             ++iter;
             edgeOffset_[slice] = *iter;
@@ -119,9 +119,9 @@ private:
     }
 
     Coord shape_;
-    size_t range_;
-    std::vector<size_t> numberOfEdgesInSlice_;
-    std::vector<size_t> edgeOffset_;
+    std::size_t range_;
+    std::vector<std::size_t> numberOfEdgesInSlice_;
+    std::vector<std::size_t> edgeOffset_;
     bool ignoreLabel_;
 };
 

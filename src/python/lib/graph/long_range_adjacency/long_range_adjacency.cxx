@@ -61,7 +61,7 @@ namespace graph{
                 return out;
             })
             .def("serialize",[](const AdjacencyType & self){
-                xt::pytensor<uint64_t, 1> out({self.serializationSize()});
+                xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>({self.serializationSize()});
                 auto ptr = &out(0);
                 self.serialize(ptr);
                 return out;
@@ -105,6 +105,7 @@ namespace graph{
 
                 NIFTY_CHECK_OP(d,==,serialization.size(), "serialization must be contiguous");
 
+                std::cout << "start to desrialize" << std::endl;
                 auto ptr = new AdjacencyType(labels, startPtr);
                 return ptr;
             },
