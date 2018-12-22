@@ -15,12 +15,7 @@ for key in __mincut.__dict__.keys():
         pass
 
 
-
-
-
 def __extendMincutObj(objectiveCls, objectiveName):
-
-
 
     def getCls(prefix, postfix):
         return _mincut.__dict__[prefix+postfix]
@@ -39,7 +34,6 @@ def __extendMincutObj(objectiveCls, objectiveName):
         F =  getCls(baseName + "Factory" ,objectiveName)
         return s,F
 
-
     O = objectiveCls
 
     def mincutVerboseVisitor(visitNth=1,timeLimit=0):
@@ -49,26 +43,23 @@ def __extendMincutObj(objectiveCls, objectiveName):
     O.verboseVisitor = staticmethod(mincutVerboseVisitor)
 
 
-
     def watershedProposalGenerator(sigma=1.0, numberOfSeeds=0.1,seedingStrategie='SEED_FROM_NEGATIVE'):
         """factory function for a watershed based proposal generator for mincutCcFusionMoveBased
-        
+
         Args:
-            sigma (float, optional): The weights are perturbed by a additive 
+            sigma (float, optional): The weights are perturbed by a additive
                 Gaussian noise n(0,sigma) (default  0.0)
 
-            numberOfSeeds (float, optional): Number of seed to generate. 
-                A number smaller as one will be interpreted as a fraction of 
+            numberOfSeeds (float, optional): Number of seed to generate.
+                A number smaller as one will be interpreted as a fraction of
                 the number of nodes (default 0.1)
             seedingStrategie (str, optional): Can be:
                 - 'SEED_FROM_NEGATIVE' : All negative weighted  edges
-                    can be used to generate seeds. 
+                    can be used to generate seeds.
                 - 'SEED_FROM_ALL' : All edges
-                    can be used to generate seeds. 
-        
+                    can be used to generate seeds.
         Returns:
             TYPE: parameter object used construct a WatershedProposalGenerator
-        
         """
         pGenCls = getSolverCls("WatershedProposalGeneratorFactory")
         pGenSettings = getSettings("WatershedProposalGenerator")
@@ -93,9 +84,6 @@ def __extendMincutObj(objectiveCls, objectiveName):
     O.watershedProposalGenerator = staticmethod(watershedProposalGenerator)
 
 
-
-
-
     def mincutQpboFactory(improve=True):
         if Configuration.WITH_QPBO:
             s,F = getSettingsAndFactoryCls("MincutQpbo")
@@ -104,7 +92,6 @@ def __extendMincutObj(objectiveCls, objectiveName):
         else:
             raise RuntimeError("mincutQpbo need nifty to be compiled WITH_QPBO")
     O.mincutQpboFactory = staticmethod(mincutQpboFactory)
-
 
 
     def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, improve=True):
@@ -117,7 +104,6 @@ def __extendMincutObj(objectiveCls, objectiveName):
         else:
             raise RuntimeError("greedyAdditiveFactory need nifty to be compiled WITH_QPBO")
     O.greedyAdditiveFactory = staticmethod(greedyAdditiveFactory)
-
 
 
     def mincutCcFusionMoveSettings(mincutFactory=None):
@@ -136,7 +122,7 @@ def __extendMincutObj(objectiveCls, objectiveName):
         numberOfIterations=1000, stopIfNoImprovement=100,
         fusionMoveSettings=None):
         """factory function for a  cc-fusion move based mincut solver
-        
+
         Args:
             proposalGenerator (None, optional): Proposal generator (default watershedProposalGenerator)
             numberOfThreads (int, optional):                (default 1)
@@ -161,17 +147,6 @@ def __extendMincutObj(objectiveCls, objectiveName):
         return F(s)
 
     O.mincutCcFusionMoveBasedFactory = staticmethod(mincutCcFusionMoveBasedFactory)
-
-
-
-
-
-
-
-
-
-
-
 
 
 __extendMincutObj(MincutObjectiveUndirectedGraph,

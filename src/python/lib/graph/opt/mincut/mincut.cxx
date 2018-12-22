@@ -18,12 +18,9 @@ namespace mincut{
     void exportMincutFactory(py::module &);
     void exportMincutVisitorBase(py::module &);
     void exportMincutBase(py::module &);
-    #if WITH_QPBO
-    void exportMincutQpbo(py::module &);
-    #endif
-
     void exportMincutCcFusionMoveBased(py::module &);
     #if WITH_QPBO
+    void exportMincutQpbo(py::module &);
     void exportMincutGreedyAdditive(py::module &);
     #endif
 
@@ -34,6 +31,8 @@ namespace mincut{
 
 
 PYBIND11_MODULE(_mincut, mincutModule) {
+
+    xt::import_numpy();
 
     py::options options;
     options.disable_function_signatures();
@@ -46,9 +45,9 @@ PYBIND11_MODULE(_mincut, mincutModule) {
     exportMincutVisitorBase(mincutModule);
     exportMincutBase(mincutModule);
     exportMincutFactory(mincutModule);
+    exportMincutCcFusionMoveBased(mincutModule);
     #ifdef WITH_QPBO
     exportMincutQpbo(mincutModule);
     exportMincutGreedyAdditive(mincutModule);
     #endif
-    exportMincutCcFusionMoveBased(mincutModule);
 }

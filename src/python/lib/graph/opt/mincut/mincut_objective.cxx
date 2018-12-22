@@ -35,9 +35,8 @@ namespace mincut{
 
         mincutModule.def("mincutObjective",
             [](const GraphType & graph,
-               xt::pytensor<double, 1> & array){
+               const xt::pytensor<double, 1> & array){
             //
-            NIFTY_CHECK_OP(array.dimension(),==,1,"wrong dimensions");
             NIFTY_CHECK_OP(array.shape()[0],==,graph.edgeIdUpperBound()+1,"wrong shape");
 
             auto obj = new ObjectiveType(graph);
@@ -61,11 +60,11 @@ namespace mincut{
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             exportMincutObjectiveT<GraphType>(mincutModule);
-        }        
+        }
 
     }
- 
-} // namespace nifty::graph::opt::mincut   
+
+} // namespace nifty::graph::opt::mincut
 } // namespace nifty::graph::opt
 }
 }
