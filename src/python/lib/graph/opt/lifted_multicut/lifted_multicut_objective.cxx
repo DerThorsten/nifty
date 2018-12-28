@@ -40,7 +40,7 @@ namespace lifted_multicut{
                 py::arg("overwrite")=false)
 
             .def("setCosts",[](ObjectiveType & objective,
-                               xt::pytensor<uint64_t, 1> uvIds,
+                               xt::pytensor<uint64_t, 2> uvIds,
                                xt::pytensor<double, 1> weights,
                                bool overwrite){
                 NIFTY_CHECK_OP(uvIds.dimension(),==,2,"wrong dimensions");
