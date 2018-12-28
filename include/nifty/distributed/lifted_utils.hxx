@@ -90,7 +90,7 @@ namespace distributed {
         z5::multiarray::readSubarray<uint64_t>(nodeDs, nodeLabels, zero1Coord.begin());
 
         // per thread data: store lifted edges for each thread
-        std::vector<std::vector<EdgeType>> perThreadData;
+        std::vector<std::vector<EdgeType>> perThreadData(numberOfThreads);
 
         // find lifted edges via bfs starting from each node. (in parallel)
         // only add edges if both nodes have a node label
@@ -139,7 +139,7 @@ namespace distributed {
 
         std::vector<std::size_t> dsShape = {nLifted, 2};
         std::vector<std::size_t> dsChunks = {std::min(static_cast<std::size_t>(64*64*64), nLifted), 1};
-        auto dsOut = z5::createDataset(outputPath, "uint64_t",
+        auto dsOut = z5::createDataset(outputPath, "uint64",
                                        dsShape, dsChunks, false,
                                        "gzip");
         const std::vector<size_t> zero2Coord = {0, 0};

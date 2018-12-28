@@ -726,21 +726,21 @@ namespace distributed {
 
 
     inline void findRelevantBlocks(const std::string & graphBlockPrefix,
-                                   const std::vector<size_t> & blockIds,
-                                   const size_t edgeIdBegin,
-                                   const size_t edgeIdEnd,
+                                   const std::vector<std::size_t> & blockIds,
+                                   const std::size_t edgeIdBegin,
+                                   const std::size_t edgeIdEnd,
                                    nifty::parallel::ThreadPool & threadpool,
-                                   std::vector<size_t> & relevantBlocks) {
+                                   std::vector<std::size_t> & relevantBlocks) {
 
-        const size_t nThreads = threadpool.nThreads();
-        std::vector<std::set<size_t>> perThreadData(nThreads);
+        const std::size_t nThreads = threadpool.nThreads();
+        std::vector<std::set<std::size_t>> perThreadData(nThreads);
 
-        const size_t numberOfBlocks = blockIds.size();
+        const std::size_t numberOfBlocks = blockIds.size();
 
         nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tId,
                                                                           const int blockIndex) {
 
-            const size_t blockId = blockIds[blockIndex];
+            const std::size_t blockId = blockIds[blockIndex];
 
             const std::string blockPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
