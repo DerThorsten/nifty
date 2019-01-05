@@ -168,12 +168,11 @@ namespace tools{
             return blocksPerAxis_;
         }
 
-        const size_t numberOfBlocks()const{
+        const size_t numberOfBlocks() const {
             return numberOfBlocks_;
         }
 
-
-        BlockType getBlock(const uint64_t blockIndex)const{
+        BlockType getBlock(const uint64_t blockIndex) const {
 
             // convert blockindex to coordinate
             uint64_t index = blockIndex;
@@ -206,6 +205,16 @@ namespace tools{
                 outerEnd[d]   = std::min(innerBlock.end()[d]   + haloEnd[d], roiEnd_[d]);
             }
             return BlockWithHaloType(BlockType(outerBegin, outerEnd), innerBlock);
+        }
+
+
+        // TODO this does not work with block shifts etc I guess
+        uint64_t coordinatesToBlockId(const VectorType & coordinates) const {
+            uint64_t blockIndex = 0;
+            for(int d = 0; d < DIM; ++d) {
+                blockIndex += coordinates[d] / blockShape_[d] * blocksPerAxisStrides_[d];
+            }
+            return blockIndex;
         }
 
 

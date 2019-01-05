@@ -85,9 +85,8 @@ namespace tools{
             }, py::arg("roiBegin"), py::arg("roiEnd"))
 
             .def("getBlockIdsOverlappingBoundingBox", [](const BlockingType & self,
-                const VectorType roiBegin,
-                const VectorType roiEnd) {
-
+                                                         const VectorType & roiBegin,
+                                                         const VectorType & roiEnd) {
                 std::vector<uint64_t> tmp;
                 {
                     py::gil_scoped_release allowThreads;
@@ -105,9 +104,9 @@ namespace tools{
 
             .def("getLocalOverlaps", [](
                 const BlockingType & self,
-                const size_t indexA,
-                const size_t indexB,
-                const VectorType blockHalo) {
+                const std::size_t indexA,
+                const std::size_t indexB,
+                const VectorType & blockHalo) {
 
                 VectorType blockABegin, blockBBegin, blockAEnd, blockBEnd;
                 bool ret;
@@ -133,8 +132,8 @@ namespace tools{
 
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
-                    const size_t blockIndex,
-                    const VectorType halo
+                    const std::size_t blockIndex,
+                    const VectorType & halo
                 ){
                     return self.getBlockWithHalo(blockIndex, halo);
                 },
@@ -143,9 +142,9 @@ namespace tools{
 
             .def("getBlockWithHalo", [](
                     const BlockingType & self,
-                    const size_t blockIndex,
-                    const VectorType haloBegin,
-                    const VectorType haloEnd
+                    const std::size_t blockIndex,
+                    const VectorType & haloBegin,
+                    const VectorType & haloEnd
                 ){
                     return self.getBlockWithHalo(blockIndex, haloBegin, haloEnd);
                 },
@@ -164,8 +163,8 @@ namespace tools{
             .def("addHalo", [](
                     const BlockingType & self,
                     const BlockType & block,
-                    const VectorType haloBegin,
-                    const VectorType haloEnd
+                    const VectorType & haloBegin,
+                    const VectorType & haloEnd
                 ){
                     return self.addHalo(block, haloBegin, haloEnd);
                 },
@@ -181,6 +180,10 @@ namespace tools{
              },
              py::arg("blockId"), py::arg("axis"), py::arg("lower")
             )
+            .def("coordinatesToBlockId", [](const BlockingType & self,
+                                            const VectorType & coordinates){
+                return self.coordinatesToBlockId(coordinates);
+            }, py::arg("coordinates"))
         ;
     }
 
