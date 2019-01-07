@@ -549,29 +549,34 @@ namespace distributed {
         // merge the mean
         const FeatureType meanA = targetFeatures(targetId, off);
         const FeatureType meanB = tmpFeatures(tmpId, off);
-        const FeatureType newMean = ratioA * meanA + ratioB * meanB;
-        targetFeatures(targetId, off) = newMean;
+        const FeatureType mean = replaceIfNotFinite(ratioA * meanA + ratioB * meanB, 0);
+        targetFeatures(targetId, off) = mean;
 
         // merge the variance (feature id 1), see
         // https://stackoverflow.com/questions/1480626/merging-two-statistical-result-sets
         const FeatureType varA = targetFeatures(targetId, off + 1);
         const FeatureType varB = tmpFeatures(tmpId, off + 1);
-        targetFeatures(targetId, off + 1) = ratioA * (varA + (meanA - newMean) * (meanA - newMean));
-        targetFeatures(targetId, off + 1) += ratioB * (varB + (meanB - newMean) * (meanB - newMean));
+        const FeatureType var = ratioA * (varA + (meanA - mean) * (meanA - mean)) +
+                                ratioB * (varB + (meanB - mean) * (meanB - mean));
+        targetFeatures(targetId, off + 1) = replaceIfNotFinite(var, 0);
 
         // merge the min (feature id 2)
-        targetFeatures(targetId, off + 2) = std::min(targetFeatures(targetId, off + 2),
-                                                     tmpFeatures(tmpId, off + 2));
+        const FeatureType min = std::min(targetFeatures(targetId, off + 2),
+                                         tmpFeatures(tmpId, off + 2));
+        targetFeatures(targetId, off + 2) = replaceIfNotFinite(min, mean);
 
         // merge the quantiles (not min and max !) via weighted average
         // this is not correct, but the best we can do for now
         for(size_t featId = 3 + off; featId < 8 + off; ++featId) {
-            targetFeatures(targetId, featId) = ratioA * targetFeatures(targetId, featId) + ratioB * tmpFeatures(tmpId, featId);
+            const FeatureType quant = ratioA * targetFeatures(targetId, featId) +
+                                      ratioB * tmpFeatures(tmpId, featId);
+            targetFeatures(targetId, featId) = replaceIfNotFinite(quant, mean);
         }
 
         // merge the max (feature id 8)
-        targetFeatures(targetId, off + 8) = std::max(targetFeatures(targetId, off + 8),
-                                                     tmpFeatures(tmpId, off + 8));
+        const FeatureType max = std::max(targetFeatures(targetId, off + 8),
+                                                        tmpFeatures(tmpId, off + 8));
+        targetFeatures(targetId, off + 8) = replaceIfNotFinite(max, mean);
     }
 
 
