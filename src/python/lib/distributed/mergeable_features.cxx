@@ -22,18 +22,21 @@ namespace distributed {
                                        const std::vector<size_t> & blockIds,
                                        const std::string & tmpFeatureStorage,
                                        const FeatureType dataMin,
-                                       const FeatureType dataMax) {
+                                       const FeatureType dataMax,
+                                       const bool increaseRoi) {
             py::gil_scoped_release allowThreads;
             extractBlockFeaturesFromBoundaryMaps<T>(blockPrefix, dataPath, dataKey,
                                                     labelPath, labelKey, blockIds,
                                                     tmpFeatureStorage,
-                                                    dataMin, dataMax);
+                                                    dataMin, dataMax,
+                                                    increaseRoi);
 
         }, py::arg("blockPrefix"),
            py::arg("dataPath"), py::arg("dataKey"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("blockIds"), py::arg("tmpFeatureStorage"),
-           py::arg("dataMin")=0., py::arg("dataMax")=1.);
+           py::arg("dataMin")=0., py::arg("dataMax")=1.,
+           py::arg("increaseRoi")=false);
 
 
         const std::string fuName2 = "extractBlockFeaturesFromAffinityMaps" + typeName;

@@ -341,7 +341,7 @@ namespace distributed {
         path /= keyToLabels;
         auto ds = z5::openDataset(path.string());
 
-        // if specified, we incresae roiEnd by 1.
+        // if specified, we decrease roiBegin by 1.
         // this is necessary to capture edges that lie in between of block boundaries
         // However, we don't want to add the nodes to nodes in the sub-graph !
         COORD actualRoiBegin = roiBegin;

@@ -226,29 +226,42 @@ namespace distributed {
     inline void accumulateBoundaryMap(const Graph & graph,
                                       std::unique_ptr<z5::Dataset> dataDs,
                                       std::unique_ptr<z5::Dataset> labelsDs,
-                                      const std::vector<size_t> & roiBegin,
-                                      const std::vector<size_t> & roiEnd,
+                                      const std::vector<std::size_t> & roiBegin,
+                                      const std::vector<std::size_t> & roiEnd,
                                       const std::string & blockStoragePath,
                                       const FeatureType dataMin,
                                       const FeatureType dataMax,
-                                      const bool ignoreLabel) {
+                                      const bool ignoreLabel,
+                                      const bool increaseRoi=false) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 3> DataArray;
+
+        // check if we need to increase the roi
+        // if specified, we decrease roiBegin by 1.
+        // to match what was done in the graph extraction when increaseRoi is true
+        std::vector<std::size_t> actualRoiBegin = roiBegin;
+        if(increaseRoi) {
+            for(int axis = 0; axis < 3; ++axis) {
+                if(actualRoiBegin[axis] > 0) {
+                    --actualRoiBegin[axis];
+                }
+            }
+        }
 
         // get the shapes
         Shape3Type shape;
         CoordType blockShape;
         for(unsigned axis = 0; axis < 3; ++axis) {
-            shape[axis] = roiEnd[axis] - roiBegin[axis];
+            shape[axis] = roiEnd[axis] - actualRoiBegin[axis];
             blockShape[axis] = shape[axis];
         }
 
         // load data and labels
         DataArray data(shape);
         LabelArray labels(shape);
-        z5::multiarray::readSubarray<InputType>(dataDs, data, roiBegin.begin());
-        z5::multiarray::readSubarray<NodeType>(labelsDs, labels, roiBegin.begin());
+        z5::multiarray::readSubarray<InputType>(dataDs, data, actualRoiBegin.begin());
+        z5::multiarray::readSubarray<NodeType>(labelsDs, labels, actualRoiBegin.begin());
 
         // create nifty accumulator vector
         AccumulatorVector accumulators(graph.numberOfEdges());
@@ -455,10 +468,11 @@ namespace distributed {
                                                      const std::vector<size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
                                                      const FeatureType dataMin=0,
-                                                     const FeatureType dataMax=1) {
+                                                     const FeatureType dataMax=1,
+                                                     const bool increaseRoi=false) {
 
         // TODO could also use the std::bind pattern and std::function
-        auto accumulator = [dataMin, dataMax](
+        auto accumulator = [dataMin, dataMax, increaseRoi](
                 const Graph & graph,
                 std::unique_ptr<z5::Dataset> dataDs,
                 std::unique_ptr<z5::Dataset> labelsDs,
@@ -469,7 +483,8 @@ namespace distributed {
 
             accumulateBoundaryMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
                                              roiBegin, roiEnd, blockStoragePath,
-                                             dataMin, dataMax, ignoreLabel);
+                                             dataMin, dataMax, ignoreLabel,
+                                             increaseRoi);
         };
 
         extractBlockFeaturesImpl(blockPrefix,
