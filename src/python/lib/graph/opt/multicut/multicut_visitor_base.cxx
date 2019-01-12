@@ -49,7 +49,7 @@ namespace multicut{
         // concrete visitors
         {
             const auto visitorClsName = std::string("VerboseVisitor") + objName;
-            typedef MulticutVerboseVisitor<ObjectiveType> VisitorType; 
+            typedef MulticutVerboseVisitor<ObjectiveType> VisitorType;
             py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorClsName.c_str(),  visitorBase)
                 .def(py::init<const int, const double , const double, const nifty::logging::LogLevel>(),
                     py::arg("visitNth")=1,

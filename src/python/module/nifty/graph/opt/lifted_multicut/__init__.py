@@ -102,9 +102,11 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
 
     O = objectiveCls
 
-    def verboseVisitor(visitNth=1):
+    def verboseVisitor(visitNth=1,
+                       timeLimitSolver=float('inf'),
+                       timeLimitTotal=float('inf')):
         V = getLmcCls("LiftedMulticutVerboseVisitor")
-        return V(visitNth)
+        return V(visitNth, float(timeLimitSolver), float(timeLimitTotal))
     O.verboseVisitor = staticmethod(verboseVisitor)
 
 

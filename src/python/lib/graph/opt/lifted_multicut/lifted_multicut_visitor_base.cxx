@@ -37,32 +37,32 @@ namespace lifted_multicut{
         typedef PyLiftedMulticutVisitorBase<ObjectiveType> PyLmcVisitorBase;
         typedef LiftedMulticutVisitorBase<ObjectiveType> LmcVisitorBase;
 
-        
         const auto objName = LiftedMulticutObjectiveName<ObjectiveType>::name();
         const auto lmcVisitorBaseClsName = std::string("LiftedMulticutVisitorBase") + objName;
         const auto lmcVerboseVisitorClsName = std::string("LiftedMulticutVerboseVisitor") + objName;
 
         // base factory
         py::class_<
-            LmcVisitorBase, 
-            std::unique_ptr<LmcVisitorBase>, 
-            PyLmcVisitorBase 
+            LmcVisitorBase,
+            std::unique_ptr<LmcVisitorBase>,
+            PyLmcVisitorBase
         > lmcVisitorBase(liftedMulticutModule, lmcVisitorBaseClsName.c_str());
-        
+
         lmcVisitorBase
         ;
 
 
         // concrete visitors
-        
 
-        typedef LiftedMulticutVerboseVisitor<ObjectiveType> LmcVerboseVisitor; 
-        
-        py::class_<LmcVerboseVisitor, std::unique_ptr<LmcVerboseVisitor> >(liftedMulticutModule, lmcVerboseVisitorClsName.c_str(),  lmcVisitorBase)
-            .def(py::init<const int >(),
-                py::arg_t<int>("printNth",1)
+        typedef LiftedMulticutVerboseVisitor<ObjectiveType> LmcVerboseVisitor;
+
+        py::class_<LmcVerboseVisitor, std::unique_ptr<LmcVerboseVisitor> >(liftedMulticutModule, lmcVerboseVisitorClsName.c_str(), lmcVisitorBase)
+            .def(py::init<const int, const double, const double>(),
+                py::arg("visitNth")=1,
+                py::arg("timeLimitSolver") = std::numeric_limits<double>::infinity(),
+                py::arg("timeLimitTotal") = std::numeric_limits<double>::infinity()
             )
-            .def("stopOptimize",&LmcVerboseVisitor::stopOptimize)
+            .def("stopOptimize", &LmcVerboseVisitor::stopOptimize)
         ;
     }
 
