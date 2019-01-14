@@ -15,7 +15,7 @@ namespace distributed {
 
     template<class NODE_LABELS>
     inline void findLiftedEdgesBfs(const Graph & graph,
-                                   const uint64_t nodeId,
+                                   const uint64_t srcNode,
                                    const NODE_LABELS & nodeLabels,
                                    const unsigned graphDepth,
                                    std::vector<EdgeType> & out) {
@@ -28,7 +28,8 @@ namespace distributed {
         // queue of nodes to visit
         std::queue<QueueElem> queue;
 
-        queue.emplace(std::make_pair(nodeId, 0));
+        queue.emplace(std::make_pair(srcNode, 0));
+
         while(queue.size()) {
             const QueueElem elem = queue.front();
             queue.pop();
@@ -38,10 +39,10 @@ namespace distributed {
             if(visited.find(node) != visited.end()) {
                 continue;
             }
+            visited.insert(node);
 
             // increase depth and check if we continue search from this node
             unsigned depth = elem.second;
-            ++depth;
             if(depth > graphDepth) {
                 continue;
             }
@@ -54,22 +55,21 @@ namespace distributed {
                     // put node on queue if it has not been visited already
                     const uint64_t ngbNode = ngb.first;
                     if(visited.find(ngbNode) == visited.end()) {
-                        queue.emplace(std::make_pair(ngbNode, depth));
+                        queue.emplace(std::make_pair(ngbNode, depth + 1));
                     }
                 }
             }
 
             // check if we make a lifted edge between the start node and this node:
-            // is this a lifted edge? i.e. not in the local adjacency
-            const bool isLiftedEdge = graph.findEdge(nodeId, node) == -1;
+            // is this a lifted edge? i.e. graph depth > 1
+            const bool isLiftedEdge = depth > 1;
             // does the node have a label?
             const uint64_t label = nodeLabels[node];
-            // is the node's id bigger than nodeId? (otherwise edges would be redundant)
-            if(isLiftedEdge && label > 0 && nodeId < node) {
-                out.emplace_back(std::make_pair(nodeId, node));
+            // is the node's id bigger than srcNode? (otherwise edges would be redundant)
+            if(isLiftedEdge && label > 0 && srcNode < node) {
+                out.emplace_back(std::make_pair(srcNode, node));
             }
         }
-
     }
 
 
@@ -119,13 +119,8 @@ namespace distributed {
             const auto & src = perThreadData[tid];
             liftedEdges.insert(liftedEdges.end(), src.begin(), src.end());
         }
-
         // sort lifted edges by node ids
-        std::sort(liftedEdges.begin(), liftedEdges.end(),
-                  [](const EdgeType & edgeA,
-                     const EdgeType & edgeB){
-                    return edgeA.first < edgeB.first ? true : (edgeA.first == edgeB.first ? edgeA.second < edgeB.second : false);
-        });
+        std::sort(liftedEdges.begin(), liftedEdges.end());
 
         // serialize
         Shape2Type outShape = {nLifted, 2};
