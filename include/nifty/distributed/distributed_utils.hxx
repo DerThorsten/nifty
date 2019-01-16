@@ -18,13 +18,18 @@ namespace distributed {
     template<class LABELS, class VALUES, class OVERLAPS>
     inline void computeLabelOverlaps(const LABELS & labels,
                                      const VALUES & values,
-                                     OVERLAPS & overlaps) {
+                                     OVERLAPS & overlaps,
+                                     const bool withIgnoreLabel=false,
+                                     const uint64_t ignoreLabel=0) {
         CoordType shape;
         std::copy(labels.shape().begin(), labels.shape().end(), shape.begin());
 
         nifty::tools::forEachCoordinate(shape, [&](const CoordType & coord){
             const auto node = xtensor::read(labels, coord);
             const auto l = xtensor::read(values, coord);
+            if(withIgnoreLabel && l == ignoreLabel) {
+                return;
+            }
             auto ovlpIt = overlaps.find(node);
             if(ovlpIt == overlaps.end()) {
                 overlaps.emplace(node, std::unordered_map<uint64_t, size_t>{{l, 1}});
@@ -82,13 +87,15 @@ namespace distributed {
     inline void computeAndSerializeLabelOverlaps(const LABELS & labels,
                                                  const VALUES & values,
                                                  const std::string & dsPath,
-                                                 const std::vector<std::size_t> & chunkId) {
+                                                 const std::vector<std::size_t> & chunkId,
+                                                 const bool withIgnoreLabel=false,
+                                                 const uint64_t ignoreLabel=0) {
         typedef typename LABELS::value_type LabelType;
         typedef typename VALUES::value_type ValueType;
         typedef std::unordered_map<ValueType, std::size_t> OverlapType;
         // extract the overlaps
         std::unordered_map<LabelType, OverlapType> overlaps;
-        computeLabelOverlaps(labels, values, overlaps);
+        computeLabelOverlaps(labels, values, overlaps, withIgnoreLabel, ignoreLabel);
 
         // serialize the overlaps
         if(overlaps.size() > 0) {
@@ -186,7 +193,9 @@ namespace distributed {
                                           const bool max_overlap,
                                           const int numberOfThreads,
                                           const uint64_t labelBegin,
-                                          const uint64_t labelEnd) {
+                                          const uint64_t labelEnd,
+                                          const uint64_t ignoreLabel=0,
+                                          const bool serializeCount=false) {
 
         // std::cout << "merge and serialize from " << labelBegin << " to " << labelEnd << std::endl;
         typedef std::unordered_map<uint64_t, std::size_t> OverlapType;
@@ -261,30 +270,64 @@ namespace distributed {
         // std::cout << "Merge done" << std::endl;
 
         // serialzie the result
-        if(max_overlap) {  // serialize just the label with maximum overlap
+        if(max_overlap && serializeCount) {  // serialize the label with maximum overlap and the associated count
             // find the maximum overlap value for each label
-            xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({nLabels});
+            xt::xtensor<uint64_t, 2> out = xt::zeros<uint64_t>({nLabels, 2UL});
             nifty::parallel::parallel_foreach(numberOfThreads,
                                               nLabels,
                                               [&out,
-                                               &overlaps](const int t,
-                                                           const uint64_t labelId){
+                                               &overlaps,
+                                               ignoreLabel](const int t,
+                                                            const uint64_t labelId){
                 const auto & ovlp = overlaps[labelId];
-                uint64_t maxOvlp = 0;
-                uint64_t maxOvlpValue = 0;
+                // NOTE we initialise by the ignore label here, because if we have an ignore-label
+                // and a node ONLY overalps with ignore label, its overlap vector
+                // will be empty and we need to indicate this
+                uint64_t maxOvlpValue = ignoreLabel;
+                std::size_t maxOvlp = 0;
                 for(const auto & elem: ovlp) {
                     if(elem.second > maxOvlp) {
                         maxOvlp = elem.second;
                         maxOvlpValue = elem.first;
                     }
                 }
-                out[labelId] = maxOvlpValue;
+                out(labelId, 0) = maxOvlpValue;
+                out(labelId, 1) = maxOvlp;
+            });
+
+            auto dsOut = z5::openDataset(outputPath);
+            const std::vector<std::size_t> zero2Coord({labelBegin, 0});
+            z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
+                                                    zero2Coord.begin(), numberOfThreads);
+        } else if(max_overlap) { // serialize the label with maximum overlap
+            // find the maximum overlap value for each label
+            xt::xtensor<uint64_t, 1> out = xt::zeros<uint64_t>({nLabels});
+            nifty::parallel::parallel_foreach(numberOfThreads,
+                                              nLabels,
+                                              [&out,
+                                               &overlaps,
+                                               ignoreLabel](const int t,
+                                                            const uint64_t labelId){
+                const auto & ovlp = overlaps[labelId];
+                // NOTE we initialise by the ignore label here, because if we have an ignore-label
+                // and a node ONLY overalps with ignore label, its overlap vector
+                // will be empty and we need to indicate this
+                uint64_t maxOvlpValue = ignoreLabel;
+                std::size_t maxOvlp = 0;
+                for(const auto & elem: ovlp) {
+                    if(elem.second > maxOvlp) {
+                        maxOvlp = elem.second;
+                        maxOvlpValue = elem.first;
+                    }
+                }
+                out(labelId) = maxOvlpValue;
             });
 
             auto dsOut = z5::openDataset(outputPath);
             const std::vector<size_t> zero1Coord({labelBegin});
             z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
                                                     zero1Coord.begin(), numberOfThreads);
+
         } else {  // serialize the merged overlap dict to a single chunk
             // merge the dicts (better not parallelize)
             auto & out = threadData[0];

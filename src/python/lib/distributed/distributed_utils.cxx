@@ -44,11 +44,16 @@ namespace distributed {
         module.def("computeAndSerializeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
                                                           const xt::pytensor<uint64_t, 3> & values,
                                                           const std::string & dsPath,
-                                                          const std::vector<std::size_t> & chunkId){
+                                                          const std::vector<std::size_t> & chunkId,
+                                                          const bool withIgnoreLabel,
+                                                          const uint64_t ignoreLabel){
             py::gil_scoped_release allowThreads;
-            computeAndSerializeLabelOverlaps(labels, values, dsPath, chunkId);
+            computeAndSerializeLabelOverlaps(labels, values, dsPath, chunkId,
+                                             withIgnoreLabel, ignoreLabel);
         }, py::arg("labels"), py::arg("values"),
-           py::arg("dsPath"), py::arg("chunkId"));
+           py::arg("dsPath"), py::arg("chunkId"),
+           py::arg("withIgnoreLabel")=false,
+           py::arg("ignoreLabel")=0);
 
 
         module.def("mergeAndSerializeOverlaps", [](const std::string & inputPath,
@@ -56,14 +61,19 @@ namespace distributed {
                                                    const bool max_overlap,
                                                    const int numberOfThreads,
                                                    const std::size_t labelBegin,
-                                                   const std::size_t labelEnd) {
+                                                   const std::size_t labelEnd,
+                                                   const uint64_t ignoreLabel,
+                                                   const bool serializeCount) {
             py::gil_scoped_release allowThreads;
             mergeAndSerializeOverlaps(inputPath, outputPath,
                                       max_overlap, numberOfThreads,
-                                      labelBegin, labelEnd);
+                                      labelBegin, labelEnd,
+                                      ignoreLabel, serializeCount);
         }, py::arg("inputPath"), py::arg("outputPath"),
            py::arg("max_overlap"), py::arg("numberOfThreads"),
-           py::arg("labelBegin"), py::arg("labelEnd"));
+           py::arg("labelBegin"), py::arg("labelEnd"),
+           py::arg("ignoreLabel")=0,
+           py::arg("serializeCount")=false);
 
 
         module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
