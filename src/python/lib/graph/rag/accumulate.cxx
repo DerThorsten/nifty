@@ -6,10 +6,15 @@
 #include "nifty/graph/rag/grid_rag_accumulate.hxx"
 
 #include "xtensor-python/pytensor.hpp"
+#include "xtensor-python/pyarray.hpp"
 #include "nifty/xtensor/xtensor.hxx"
 
 // still need this for python bindings of nifty::ArrayExtender
 #include "nifty/python/converter.hxx"
+
+#ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
+#endif
 
 namespace py = pybind11;
 
@@ -26,7 +31,7 @@ namespace graph{
         ragModule.def("accumulateAffinities",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM+1> & affinities,
+            const xt::pyarray<DATA_T> & affinities,
             const xt::pytensor<int, 2> & offsets
         ){
             const auto & labels = rag.labels();
@@ -119,7 +124,7 @@ namespace graph{
         ragModule.def("accumulateEdgeMeanAndLength",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM> & data,
+            const xt::pyarray<DATA_T> & data,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
@@ -132,10 +137,10 @@ namespace graph{
             }
             return out;
         },
-        py::arg("rag"),
-        py::arg("data"),
-        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
-        py::arg("numberOfThreads")= -1
+        py::arg("rag").noconvert(),
+        py::arg("data").noconvert(),
+        py::arg("blockShape")=array::StaticArray<int64_t, DIM>(100),
+        py::arg("numberOfThreads")=-1
         );
     }
 
@@ -172,23 +177,21 @@ namespace graph{
         ragModule.def("accumulateMeanAndLength",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM> & data,
+            const xt::pyarray<DATA_T> & data,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads,
             const bool saveMemory
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(2)});
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
+            xt::pytensor<DATA_T, 2> edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(2)});
+            xt::pytensor<DATA_T, 2> nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateMeanAndLength(rag, data, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
-            return OutType(edgeOut, nodeOut);;
+            return std::make_pair(edgeOut, nodeOut);
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
         py::arg("numberOfThreads")= -1,
         py::arg_t<bool>("saveMemory",false)
@@ -208,18 +211,16 @@ namespace graph{
             const int numberOfThreads,
             const bool saveMemory
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(2)});
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
+            xt::pytensor<DATA_T, 2> edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(2)});
+            xt::pytensor<DATA_T, 2> nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(2)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateMeanAndLength(rag, data, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
-            return OutType(edgeOut, nodeOut);;
+            return std::make_pair(edgeOut, nodeOut);;
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
         py::arg("numberOfThreads")= -1,
         py::arg_t<bool>("saveMemory",false)
@@ -237,24 +238,22 @@ namespace graph{
         ragModule.def("accumulateStandartFeatures",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM> & data,
+            const xt::pyarray<DATA_T> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
+            xt::pytensor<DATA_T, 2> edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
+            xt::pytensor<DATA_T, 2> nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
-            return OutType(edgeOut, nodeOut);
+            return std::make_pair(edgeOut, nodeOut);
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("minVal"),
         py::arg("maxVal"),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
@@ -276,18 +275,16 @@ namespace graph{
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            typedef std::pair<NumpyArrayType, NumpyArrayType>  OutType;
-            NumpyArrayType edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
+            xt::pytensor<DATA_T, 2> edgeOut({int64_t(rag.edgeIdUpperBound()+1), int64_t(9)});
+            xt::pytensor<DATA_T, 2> nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, nodeOut, numberOfThreads);
             }
-            return OutType(edgeOut, nodeOut);
+            return std::make_pair(edgeOut, nodeOut);
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("minVal"),
         py::arg("maxVal"),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
@@ -307,14 +304,13 @@ namespace graph{
         ragModule.def("accumulateNodeStandartFeatures",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM> & data,
+            const xt::pyarray<DATA_T> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
+            xt::pytensor<DATA_T, 2>nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(9)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateNodeStandartFeatures(rag, data, minVal, maxVal, blockShape, nodeOut, numberOfThreads);
@@ -322,7 +318,7 @@ namespace graph{
             return nodeOut;
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("minVal"),
         py::arg("maxVal"),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
@@ -337,15 +333,13 @@ namespace graph{
         ragModule.def("accumulateEdgeStandartFeatures",
         [](
             const RAG & rag,
-            const xt::pytensor<DATA_T, DIM> & data,
+            const xt::pyarray<DATA_T> & data,
             const double minVal,
             const double maxVal,
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            typename NumpyArrayType::shape_type shape = {int64_t(rag.edgeIdUpperBound()+1), 9L};
-            NumpyArrayType edgeOut(shape);
+            xt::pytensor<DATA_T, 2>edgeOut({int64_t(rag.edgeIdUpperBound()+1), 9L});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateEdgeStandartFeatures(rag, data, minVal, maxVal, blockShape, edgeOut, numberOfThreads);
@@ -353,7 +347,7 @@ namespace graph{
             return edgeOut;
         },
         py::arg("rag"),
-        py::arg("data"),
+        py::arg("data").noconvert(),
         py::arg("minVal"),
         py::arg("maxVal"),
         py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
@@ -373,8 +367,7 @@ namespace graph{
             array::StaticArray<int64_t, DIM> blockShape,
             const int numberOfThreads
         ){
-            typedef xt::pytensor<DATA_T, 2> NumpyArrayType;
-            NumpyArrayType nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(3*DIM+1)});
+            xt::pytensor<DATA_T, 2> nodeOut({int64_t(rag.nodeIdUpperBound()+1), int64_t(3*DIM+1)});
             {
                 py::gil_scoped_release allowThreads;
                 accumulateGeometricNodeFeatures(rag, blockShape, nodeOut, numberOfThreads);
@@ -382,8 +375,8 @@ namespace graph{
             return nodeOut;
         },
         py::arg("rag"),
-        py::arg("blockShape") = array::StaticArray<int64_t,DIM>(100),
-        py::arg("numberOfThreads")= -1
+        py::arg("blockShape")=array::StaticArray<int64_t,DIM>(100),
+        py::arg("numberOfThreads")=-1
         );
     }
 
@@ -391,42 +384,41 @@ namespace graph{
 
     void exportAccumulate(py::module & ragModule) {
 
-        // FIXME the overloads are broken and don't allow to use 3d arrays
         //explicit
         {
 
+            typedef xt::pytensor<uint32_t, 2> ExplicitLabels2D;
+            typedef GridRag<2, ExplicitLabels2D> Rag2d;
+            typedef xt::pytensor<uint32_t, 3> ExplicitLabels3D;
+            typedef GridRag<3, ExplicitLabels3D> Rag3d;
 
-            typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
-            typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
-
-            //exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
+            exportAccumulateEdgeMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeMeanAndLength<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
+            exportAccumulateMeanAndLength<2, Rag2d, float>(ragModule);
             exportAccumulateMeanAndLength<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateStandartFeatures<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateNodeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateNodeStandartFeatures<3, Rag3d, float>(ragModule);
 
-            // exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateEdgeStandartFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateEdgeStandartFeatures<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateGeometricNodeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricNodeFeatures<3, Rag3d, float>(ragModule);
 
-            //exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
+            exportAccumulateGeometricEdgeFeatures<2, Rag2d, float>(ragModule);
             exportAccumulateGeometricEdgeFeatures<3, Rag3d, float>(ragModule);
 
-            // FIXME need hdf5 with xtensor support for this to work
-            // #ifdef WITH_HDF5
-            // typedef nifty::hdf5::Hdf5Array<uint32_t> H5Labels
-            // typedef GridRag<3, H5Labels> RagH53d;
-            // //exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
-            // exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
-            // #endif
+            #ifdef WITH_HDF5
+            typedef nifty::hdf5::Hdf5Array<uint32_t> H5Labels;
+            typedef GridRag<3, H5Labels> RagH53d;
+            exportAccumulateMeanAndLengthHdf5<3,RagH53d, float>(ragModule);
+            exportAccumulateStandartFeaturesHdf5<3, RagH53d, uint8_t>(ragModule);
+            #endif
 
         }
     }
