@@ -13,6 +13,61 @@ namespace nifty {
 namespace distributed {
 
 
+    inline void liftedEdgesFromNode(const Graph & graph,
+                                    const uint64_t srcNode,
+                                    const unsigned graphDepth,
+                                    std::vector<EdgeType> & out) {
+        // type to put on bfs queue, stores the node id and the graph
+        // distance of this node from the start node
+        typedef std::pair<uint64_t, unsigned> QueueElem;
+
+        // set of visited nodes
+        std::unordered_set<uint64_t> visited;
+        // queue of nodes to visit
+        std::queue<QueueElem> queue;
+
+        queue.emplace(std::make_pair(srcNode, 0));
+
+        while(queue.size()) {
+            const QueueElem elem = queue.front();
+            queue.pop();
+
+            const uint64_t node = elem.first;
+            // check if this node was visited already
+            if(visited.find(node) != visited.end()) {
+                continue;
+            }
+            visited.insert(node);
+
+            // increase depth and check if we continue search from this node
+            unsigned depth = elem.second;
+            if(depth > graphDepth) {
+                continue;
+            }
+
+            // put the neighboring nodes on the queue
+            // (only if we wouldn't exceed max node depth )
+            if(depth < graphDepth) {
+                const auto & adj = graph.nodeAdjacency(node);
+                for(const auto & ngb: adj) {
+                    // put node on queue if it has not been visited already
+                    const uint64_t ngbNode = ngb.first;
+                    if(visited.find(ngbNode) == visited.end()) {
+                        queue.emplace(std::make_pair(ngbNode, depth + 1));
+                    }
+                }
+            }
+
+            // check if we make a lifted edge between the start node and this node:
+            // is this a lifted edge? i.e. graph depth > 1
+            const bool isLiftedEdge = depth > 1;
+            if(isLiftedEdge) {
+                out.emplace_back(std::make_pair(srcNode, node));
+            }
+        }
+    }
+
+
     template<class NODE_LABELS>
     inline void findLiftedEdgesBfs(const Graph & graph,
                                    const uint64_t srcNode,

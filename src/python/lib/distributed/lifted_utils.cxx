@@ -24,6 +24,28 @@ namespace distributed {
                                                     graphDepth, numberOfThreads);
         }, py::arg("graphPath"), py::arg("nodeLabelPath"), py::arg("outputPath"),
            py::arg("graphDepth"), py::arg("numberOfThreads"));
+
+
+        module.def("liftedEdgesFromNode", [](const std::string & graphPath,
+                                             const uint64_t srcNode,
+                                             const unsigned graphDepth){
+            std::vector<EdgeType> tmp;
+            {
+                py::gil_scoped_release allowThreads;
+                const auto graph = Graph(graphPath, 1);
+                liftedEdgesFromNode(graph, srcNode, graphDepth, tmp);
+            }
+            xt::pytensor<uint64_t, 2> out({tmp.size(), 2});
+            {
+                py::gil_scoped_release allowThreads;
+                for(size_t i = 0; i < tmp.size(); ++i) {
+                    out(i, 0) = tmp[i].first;
+                    out(i, 1) = tmp[i].second;
+                }
+            }
+            return out;
+
+        }, py::arg("graphPath"), py::arg("srcNode"), py::arg("graphDepth"));
     }
 }
 }
