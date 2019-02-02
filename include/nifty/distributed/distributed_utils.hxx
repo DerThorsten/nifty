@@ -79,7 +79,6 @@ namespace distributed {
         // write serialization
         auto ds = z5::openDataset(dsPath);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
-
     }
 
 
@@ -356,15 +355,10 @@ namespace distributed {
                 }
             }
 
-            // serialize to single chunk
-            const std::vector<std::size_t> outShape = {1};
-            const std::vector<std::size_t> chunkShape = {1};
-            const std::vector<std::size_t> chunkId = {0};
-            // FIXME we should implement requireDataset in c++ too
-            auto dsOut = z5::createDataset(outputPath, "uint64",
-                                           outShape, chunkShape, false,
-                                           "gzip");
-            // auto dsOut = z5::openDataset(outputPath);
+            // get the correct chunk id
+            const auto ds = z5::openDataset(outputPath);
+            const std::size_t chunkSize = ds->maxChunkShape(0);
+            const std::vector<std::size_t> chunkId = {labelBegin / chunkSize};
             serializeLabelOverlaps(out, outputPath, chunkId);
         }
     }
