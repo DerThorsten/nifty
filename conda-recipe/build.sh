@@ -164,9 +164,9 @@ cmake .. \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=OFF \
-        -DWITH_Z5=OFF \
-        -DWITH_FASTFILTERS=OFF \
-        -DFASTFILTERS_INCLUDE_DIR=${PREFIX}/include\
+        -DWITH_Z5=ON \
+        -DWITH_ZLIB=ON \
+        -DWITH_BLOSC=ON \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \

@@ -18,26 +18,14 @@ package:
   {% else %}
     name: nifty
   {% endif %}
-
-  {% set tagged_version = GIT_DESCRIBE_TAG|replace("v","")|replace("-", ".") %}
-
-
-  # If we're using a non-tagged revision, append '.postN' to the version
-  {% if GIT_DESCRIBE_NUMBER|int != 0 %}
-    {% set tagged_version = tagged_version + '.post' + GIT_DESCRIBE_NUMBER %}
-  {% endif %}
-
-    version: {{tagged_version}}
+    version: v0.4.1
 
 source:
-  path: ../
-  patches:
-    # See https://github.com/ukoethe/vigra/issues/386
-    - patches/vigra-std-threading-detection.patch
+  path: ..
+
 
 build:
   number: 0
-  string: py{{py}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
   script_env:
      - WITH_CPLEX
@@ -46,16 +34,19 @@ build:
      - WITH_GUROBI
      - GUROBI_ROOT_DIR
      - GUROBI_LIB_WIN # [win]
-     - DO_NOT_BUILD_WITH_CXX11_ABI # [linux]
 
 requirements:
   build:
-    - boost 1.68.0
     - python {{PY_VER}}*
+    - boost 1.68.0
     - hdf5 >=1.10
     - numpy >=1.15
-    - xtensor 0.18.1
-    - xtensor-python 0.21.0
+    - xtensor 0.19.3
+    - xtensor-python 0.22.1
+    - nlohmann_json
+    - blosc
+    - z5py
+    - vigra
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
@@ -67,12 +58,13 @@ requirements:
     {% endif %}
 
   run:
-    - boost >=1.68.0
     - python {{PY_VER}}*
+    - boost 1.68.0
     - hdf5 >=1.10
     - numpy >=1.15
     - scikit-image
-    - futures # [py2k]
+    - blosc
+    - vigra
 
     {% if WITH_CPLEX is defined and WITH_CPLEX %}
     - cplex-shared # Need to make sure that cplex dylibs exist
