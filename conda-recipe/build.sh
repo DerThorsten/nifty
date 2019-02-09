@@ -20,13 +20,9 @@ if [ $(uname) == "Darwin" ]; then
     export CXX=clang++
     export DYLIB="dylib"
 else
-    export CC=gcc
-    export CXX=g++
+    export CC=x86_64-conda_cos6-linux-gnu-gcc
+    export CXX=x86_64-conda_cos6-linux-gnu-g++
     export DYLIB="so"
-    # Check which gcxx abi to use; for compatibility with libs build with gcc < 5:
-    if [[ ${DO_NOT_BUILD_WITH_CXX11_ABI} == '1' ]]; then
-        CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0 ${CXXFLAGS}"
-    fi
 fi
 
 # Pre-define special flags, paths, etc. if we're building with CPLEX support.
