@@ -20,7 +20,18 @@ namespace graph{
         typedef CarvingSegmenter<GraphType> CarvingType;
         const auto clsName = std::string("CarvingSegmenter") + graphName;
         py::class_<CarvingType>(module, clsName.c_str())
-            .def(py::init<const GraphType &, const xt::pytensor<float, 1> &>())
+            // TODO this could be done more elegantly ....
+            // constructors with and without serialization
+            .def(py::init<const GraphType &, const xt::pytensor<float, 1> &, bool>(),
+                 py::arg("graph"),
+                 py::arg("edgeWeights").noconvert(),
+                 py::arg("fromSerialization")=false)
+
+            .def(py::init<const GraphType &, const xt::pytensor<std::size_t, 1> &, bool>(),
+                 py::arg("graph"),
+                 py::arg("edgeWeights").noconvert(),
+                 py::arg("fromSerialization")=true)
+
             .def("__call__", [](const CarvingType & self,
                                 const xt::pytensor<uint8_t, 1> & seeds){
                 xt::pytensor<uint8_t, 1> nodeLabels = xt::zeros<uint8_t>({self.nNodes()});
@@ -35,7 +46,7 @@ namespace graph{
     }
 
 
-    void exportCarvingT(py::module & module) {
+    void exportCarving(py::module & module) {
         // TODO we actually need to export this for rag !
         typedef UndirectedGraph<> GraphType;
         exportCarvingT<GraphType>(module, "UndirectedGraph");
