@@ -26,6 +26,7 @@ namespace graph{
     using namespace py;
 
 
+    // TODO parallelize
     template<class RAG, class T, std::size_t DATA_DIM>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 

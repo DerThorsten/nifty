@@ -8,6 +8,7 @@
 namespace nifty{
 namespace graph{
 
+    // TODO parallelize
     template<size_t DIM, class GRAPH_LABELS, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(const GridRag<DIM, GRAPH_LABELS> & graph,
                                  const xt::xexpression<LABELS> & dataExp,
