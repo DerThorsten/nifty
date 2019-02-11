@@ -92,9 +92,6 @@ namespace graph{
             "   numpy.ndarray : connected components labels"
         );
 
-      
-
-
 
         typedef GRAPH GraphType;
         typedef ComponentsUfd<GraphType> ComponentsType;
