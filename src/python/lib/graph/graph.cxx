@@ -25,7 +25,6 @@ namespace graph{
     void exportConnectedComponents(py::module &);
     void exportEdgeWeightedWatersheds(py::module &);
     void exportNodeWeightedWatersheds(py::module &);
-    void exportCarving(py::module &);
 }
 }
 
@@ -49,5 +48,4 @@ PYBIND11_MODULE(_graph, module) {
     exportConnectedComponents(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
-    exportCarving(module);
 }

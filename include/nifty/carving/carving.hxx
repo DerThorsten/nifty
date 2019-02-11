@@ -6,7 +6,7 @@
 
 
 namespace nifty {
-namespace graph {
+namespace carving {
 
 
     // we provide implementations with kruskal and prim
@@ -43,10 +43,12 @@ namespace graph {
                 // check if we can use kruskal: we don't have a bias and edges were pre-sorted
                 const bool useKruskal = (bias == 1.) && (edgesSorted_.size() == graph_.numberOfEdges());
                 if(useKruskal) {
+                    // std::cout << "run kruskal" << std::endl;
                     runKruskal(seeds);
                 }
                 // otherwise we need to run prim
                 else {
+                    // std::cout << "run prim" << std::endl;
                     runPrim(seeds, bias, noBiasBelow);
                 }
 
@@ -125,24 +127,24 @@ namespace graph {
 
                     const auto u = graph_.u(edgeId);
                     const auto v = graph_.v(edgeId);
-                    const NodeType lU = seeds[u];
-                    const NodeType lV = seeds[v];
+                    const NodeType lu = seeds[u];
+                    const NodeType lv = seeds[v];
 
                     // check for seeds
-                    if(lU == 0 && lV == 0){
+                    if(lu == 0 && lv == 0){
                         throw std::runtime_error("both have no labels");
                     }
-                    else if(lU != 0 && lV != 0){
+                    else if(lu != 0 && lv != 0){
                         continue;
                     }
 
-                    const auto unlabeledNode = lU == 0 ? u : v;
-                    const NodeType seedId = lU == 0 ? lV : lU;
+                    const auto unlabeledNode = lu == 0 ? u : v;
+                    const NodeType seedId = lu == 0 ? lv : lu;
 
                     // assign seedId to unlabeled node
                     seeds[unlabeledNode] = seedId;
 
-                    // check if this is a background seed and we use bias
+                    // check if this is a background seed and thus we use bias
                     const bool needBias = seedId == backgroundSeedLabel;
 
                     // put outgoing edges on the pq

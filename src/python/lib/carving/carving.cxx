@@ -1,15 +1,15 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
+#define FORCE_IMPORT_ARRAY
 #include "xtensor-python/pytensor.hpp"
-#include "nifty/graph/carving.hxx"
-#include "nifty/graph/undirected_list_graph.hxx"
-#include "nifty/python/graph/graph_name.hxx"
+#include "nifty/carving/carving.hxx"
+#include "nifty/graph/rag/grid_rag.hxx"
 
 namespace py = pybind11;
 
 namespace nifty{
-namespace graph{
+namespace carving{
 
 
     template<class GRAPH>
@@ -21,18 +21,22 @@ namespace graph{
         typedef CarvingSegmenter<GraphType> CarvingType;
         const auto clsName = std::string("CarvingSegmenter") + graphName;
         py::class_<CarvingType>(module, clsName.c_str())
-            // TODO  we want to make sure graph and edgeWeights stay alive
             .def(py::init<const GraphType &, const WeightsType &, bool>(),
                  py::arg("graph"),
                  py::arg("edgeWeights"),
                  py::arg("sortEdges")=true)
 
+            // TODO for some reason pure call by reference does not work
+            // and we still need to return the seeds to see a change
             .def("__call__", [](const CarvingType & self,
                                 xt::pytensor<uint8_t, 1> & seeds,
                                 const double bias,
                                 const double noBiasBelow){
-                py::gil_scoped_release allowThreads;
-                self(seeds, bias, noBiasBelow);
+                {
+                    py::gil_scoped_release allowThreads;
+                    self(seeds, bias, noBiasBelow);
+                }
+                return seeds;
             }, py::arg("seeds"),
                py::arg("bias"),
                py::arg("noBiasBelow"))
@@ -42,10 +46,29 @@ namespace graph{
 
 
     void exportCarving(py::module & module) {
-        // TODO we actually need to export this for rag !
-        typedef UndirectedGraph<> GraphType;
-        exportCarvingT<GraphType>(module, "UndirectedGraph");
+
+        typedef xt::pytensor<uint32_t, 2> ExplicitLabels2D;
+        typedef graph::GridRag<2, ExplicitLabels2D> Rag2D;
+        exportCarvingT<Rag2D>(module, "Rag2D");
+
+        typedef xt::pytensor<uint32_t, 3> ExplicitLabels3D;
+        typedef graph::GridRag<3, ExplicitLabels3D> Rag3D;
+        exportCarvingT<Rag3D>(module, "Rag3D");
     }
 
 }
+}
+
+
+PYBIND11_MODULE(_carving, module) {
+
+    xt::import_numpy();
+
+    py::options options;
+    options.disable_function_signatures();
+
+    module.doc() = "carving submodule of nifty";
+
+    using namespace nifty::carving;
+    exportCarving(module);
 }
