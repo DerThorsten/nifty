@@ -16,31 +16,24 @@ namespace graph{
     void exportCarvingT(py::module & module,
                         const std::string & graphName) {
 
+        typedef xt::pytensor<float, 1> WeightsType;
         typedef GRAPH GraphType;
-        typedef CarvingSegmenter<GraphType> CarvingType;
+        typedef CarvingSegmenter<GraphType, WeightsType> CarvingType;
         const auto clsName = std::string("CarvingSegmenter") + graphName;
         py::class_<CarvingType>(module, clsName.c_str())
-            // TODO this could be done more elegantly ....
-            // constructors with and without serialization
-            .def(py::init<const GraphType &, const xt::pytensor<float, 1> &, bool>(),
+            .def(py::init<const GraphType &, const WeightsType &, bool>(),
                  py::arg("graph"),
-                 py::arg("edgeWeights").noconvert(),
-                 py::arg("fromSerialization")=false)
-
-            .def(py::init<const GraphType &, const xt::pytensor<std::size_t, 1> &, bool>(),
-                 py::arg("graph"),
-                 py::arg("edgeWeights").noconvert(),
-                 py::arg("fromSerialization")=true)
+                 py::arg("edgeWeights"),
+                 py::arg("sortEdges")=true)
 
             .def("__call__", [](const CarvingType & self,
-                                const xt::pytensor<uint8_t, 1> & seeds){
-                xt::pytensor<uint8_t, 1> nodeLabels = xt::zeros<uint8_t>({self.nNodes()});
-                {
-                    py::gil_scoped_release allowThreads;
-                    self(seeds, nodeLabels);
-                }
-                return nodeLabels;
-            })
+                                xt::pytensor<uint8_t, 1> & seeds,
+                                const double bias,
+                                const double noBiasBelow){
+                self(seeds, bias, noBiasBelow);
+            }, py::arg("seeds"),
+               py::arg("bias"),
+               py::arg("noBiasBelow"))
         ;
 
     }
