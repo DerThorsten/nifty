@@ -18,9 +18,10 @@ namespace graph{
 
         typedef xt::pytensor<float, 1> WeightsType;
         typedef GRAPH GraphType;
-        typedef CarvingSegmenter<GraphType, WeightsType> CarvingType;
+        typedef CarvingSegmenter<GraphType> CarvingType;
         const auto clsName = std::string("CarvingSegmenter") + graphName;
         py::class_<CarvingType>(module, clsName.c_str())
+            // TODO  we want to make sure graph and edgeWeights stay alive
             .def(py::init<const GraphType &, const WeightsType &, bool>(),
                  py::arg("graph"),
                  py::arg("edgeWeights"),

@@ -10,19 +10,24 @@ namespace graph {
 
 
     // we provide implementations with kruskal and prim
-    template<class GRAPH, class EDGES>
+    template<class GRAPH>
     class CarvingSegmenter {
         public:
 
             // TODO for now I made sorting edges optional, we could also just always
             // do this, but I still want to check how much time this costs
+            template<class EDGES>
             CarvingSegmenter(const GRAPH & graph,
                              const EDGES & edgeWeights,
                              const bool sortEdges) : graph_(graph),
-                                                     edgeWeights_(edgeWeights),
                                                      nNodes_(graph.numberOfNodes()){
                 // check that the number of edges and len of edges agree
-                NIFTY_CHECK_OP(edgeWeights_.size(), ==, graph_.numberOfEdges(), "Number of edges does not agree");
+                NIFTY_CHECK_OP(edgeWeights.size(), ==, graph_.numberOfEdges(), "Number of edges does not agree");
+
+                // copy the edge weights
+                edgeWeights_.resize(edgeWeights.size());
+                std::copy(edgeWeights.begin(), edgeWeights.end(), edgeWeights_.begin());
+
                 if(sortEdges) {
                     sortEdgeIndices();
                 }
@@ -38,12 +43,10 @@ namespace graph {
                 // check if we can use kruskal: we don't have a bias and edges were pre-sorted
                 const bool useKruskal = (bias == 1.) && (edgesSorted_.size() == graph_.numberOfEdges());
                 if(useKruskal) {
-                    std::cout << "Running kruskal" << std::endl;
                     runKruskal(seeds);
                 }
                 // otherwise we need to run prim
                 else {
-                    std::cout << "Running prim" << std::endl;
                     runPrim(seeds, bias, noBiasBelow);
                 }
 
@@ -56,6 +59,7 @@ namespace graph {
             inline const std::vector<std::size_t> & edgesSorted() const {
                 return edgesSorted_;
             }
+
         private:
             // argsort the edges
             inline void sortEdgeIndices() {
@@ -73,7 +77,7 @@ namespace graph {
                                 const double bias,
                                 const double noBiasBelow) const {
                 typedef typename NODES::value_type NodeType;
-                typedef typename EDGES::value_type WeightType;
+                typedef float WeightType;
                 const NodeType backgroundSeedLabel = 1;
 
                 // initialize the priority queue
@@ -82,7 +86,6 @@ namespace graph {
                 typedef std::priority_queue<PQElement, std::vector<PQElement>, decltype(pqCompare)> PriorityQueue;
                 PriorityQueue pq(pqCompare);
 
-                // TODO for this it would be more efficient to get sparse seeds
                 // put edges from seed nodes on the pq
                 for(std::size_t nodeId = 0; nodeId < nNodes_; ++nodeId) {
                     const NodeType seedId = seeds[nodeId];
@@ -95,8 +98,15 @@ namespace graph {
                         // and put them on the pq
                         for(auto adjIt = graph_.adjacencyBegin(nodeId); adjIt != graph_.adjacencyEnd(nodeId); ++adjIt) {
                             const std::size_t edgeId = adjIt->edge();
+
+                            // don't put on pq if the connected node has a seed
+                            const std::size_t node = adjIt->node();
+                            if(seeds[node] != 0) {
+                                continue;
+                            }
+
                             WeightType weight = edgeWeights_[edgeId];
-                            if(needBias && weight > noBiasBelow) {
+                            if(needBias && (weight > noBiasBelow)) {
                                 weight *= bias;
                             }
 
@@ -217,8 +227,8 @@ namespace graph {
 
         private:
             const GRAPH & graph_;
-            const EDGES & edgeWeights_;
             std::size_t nNodes_;
+            std::vector<float> edgeWeights_;
             std::vector<std::size_t> edgesSorted_;
     };
 
