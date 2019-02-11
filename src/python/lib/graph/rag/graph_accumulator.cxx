@@ -15,6 +15,7 @@
 #endif
 
 #include "xtensor-python/pytensor.hpp"
+#include "xtensor-python/pyarray.hpp"
 
 
 namespace py = pybind11;
@@ -27,13 +28,13 @@ namespace graph{
 
 
     // TODO parallelize
-    template<class RAG, class T, std::size_t DATA_DIM>
+    template<class RAG, class T>
     void exportGridRagAccumulateLabelsT(py::module & ragModule){
 
         ragModule.def("gridRagAccumulateLabels",
             [](
                 const RAG & rag,
-                const xt::pytensor<T, DATA_DIM> & labels,
+                const xt::pyarray<T> & labels,
                 const bool ignoreBackground,
                 const T ignoreValue
             ){
@@ -137,18 +138,23 @@ namespace graph{
 
     void exportGraphAccumulator(py::module & ragModule) {
 
-        // exportGridRagAccumulateLabels Explicit
+        // rag
         {
             typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
             typedef GridRag<2, ExplicitPyLabels2D> ExplicitLabelsGridRag2D;
 
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
             typedef GridRag<3, ExplicitPyLabels3D> ExplicitLabelsGridRag3D;
-            // accumulate labels
-            // FIXME overloads are broken
-            // exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t, 2>(ragModule);
-            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
-            exportFindZExtendedNodesT<ExplicitLabelsGridRag3D, uint32_t, 3>(ragModule);
+
+            // accumulate labels for uint8, uint32 and uint64
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint8_t>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint8_t>(ragModule);
+
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint32_t>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint32_t>(ragModule);
+
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag2D, uint64_t>(ragModule);
+            exportGridRagAccumulateLabelsT<ExplicitLabelsGridRag3D, uint64_t>(ragModule);
         }
 
         // explicit stacked rag
@@ -164,29 +170,28 @@ namespace graph{
             exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
         }
 
-        // FIXME need hdf5 with xtensor support for this to work
         // hdf5 stacked rag
-        // #ifdef WITH_HDF5
-        // {
-        //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-        //     typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
-        //     typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
-        //     typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
+        #ifdef WITH_HDF5
+        {
+            typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
+            typedef nifty::hdf5::Hdf5Array<uint64_t> LabelsUInt64;
+            typedef GridRagStacked2D<LabelsUInt32> StackedRagUInt32;
+            typedef GridRagStacked2D<LabelsUInt64> StackedRagUInt64;
 
-        //     typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
-        //     typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
+            typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Array;
+            typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Array;
 
-        //     // accumulate labels
-        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
-        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
-        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
-        //     exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
+            // accumulate labels
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt32Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
+            exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
 
-        //     // getSkipEdgesForSlice
-        //     exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
-        //     //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
-        // }
-        // #endif
+            // getSkipEdgesForSlice (deprecated)
+            //exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
+            //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
+        }
+        #endif
 
         //n5 stacked rag
         #ifdef WITH_Z5
@@ -206,7 +211,7 @@ namespace graph{
             exportGridRagStackedAccumulateLabelsT<StackedRagUInt32, UInt64Array>(ragModule);
             exportGridRagStackedAccumulateLabelsT<StackedRagUInt64, UInt64Array>(ragModule);
 
-            // getSkipEdgesForSlice
+            // getSkipEdgesForSlice (deprecated)
             //exportGetSkipEdgesForSliceT<StackedRagUInt32,uint32_t>(ragModule);
             //exportGetSkipEdgesForSliceT<StackedRagUInt64,uint64_t>(ragModule);
         }
