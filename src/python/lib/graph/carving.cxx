@@ -30,6 +30,7 @@ namespace graph{
                                 xt::pytensor<uint8_t, 1> & seeds,
                                 const double bias,
                                 const double noBiasBelow){
+                py::gil_scoped_release allowThreads;
                 self(seeds, bias, noBiasBelow);
             }, py::arg("seeds"),
                py::arg("bias"),

@@ -38,10 +38,12 @@ namespace graph {
                 // check if we can use kruskal: we don't have a bias and edges were pre-sorted
                 const bool useKruskal = (bias == 1.) && (edgesSorted_.size() == graph_.numberOfEdges());
                 if(useKruskal) {
+                    std::cout << "Running kruskal" << std::endl;
                     runKruskal(seeds);
                 }
                 // otherwise we need to run prim
                 else {
+                    std::cout << "Running prim" << std::endl;
                     runPrim(seeds, bias, noBiasBelow);
                 }
 
@@ -164,7 +166,8 @@ namespace graph {
                 std::vector<uint64_t> ranks(nNodes_);
                 std::vector<uint64_t> parents(nNodes_);
                 boost::disjoint_sets<uint64_t*, uint64_t*> ufd(&ranks[0], &parents[0]);
-                for(uint64_t node = 0; node < nNodes_; ++node) {
+
+                for(std::size_t node = 0; node < nNodes_; ++node) {
                     ufd.make_set(node);
                 }
 
@@ -201,7 +204,14 @@ namespace graph {
                     if(lv != 0) {
                         seeds[ru] = lv;
                     }
+                }
 
+                // write all seeds
+                for(std::size_t node = 0; node < nNodes_; ++node) {
+                    auto & seed = seeds[node];
+                    if(seed == 0) {
+                        seed = seeds[ufd.find_set(node)];
+                    }
                 }
             }
 
