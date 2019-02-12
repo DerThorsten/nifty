@@ -234,23 +234,6 @@ def __extendLiftedMulticutObj(objectiveCls, objectiveName):
     O.liftedMulticutKernighanLinFactory = staticmethod(liftedMulticutKernighanLinFactory)
 
 
-    def liftedMulticutAndresKernighanLinFactory(numberOfOuterIterations=1000000,
-                                                numberOfInnerIterations=100,
-                                                epsilon=1e-7):
-        s,F = getSettingsAndFactoryCls("LiftedMulticutAndresKernighanLin")
-        s.numberOfOuterIterations = int(numberOfOuterIterations)
-        s.numberOfInnerIterations = int(numberOfInnerIterations)
-        s.epsilon = float(epsilon)
-        return F(s)
-    O.liftedMulticutAndresKernighanLinFactory = staticmethod(liftedMulticutAndresKernighanLinFactory)
-
-
-    def liftedMulticutAndresGreedyAdditiveFactory():
-        s,F = getSettingsAndFactoryCls("LiftedMulticutAndresGreedyAdditive")
-        return F(s)
-    O.liftedMulticutAndresGreedyAdditiveFactory = staticmethod(liftedMulticutAndresGreedyAdditiveFactory)
-
-
     if Configuration.WITH_LP_MP:
         def liftedMulticutMpFactory(
             lmcFactory = None,

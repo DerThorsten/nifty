@@ -27,7 +27,6 @@ namespace multicut{
     void exportFusionMoveBased(py::module &);
     void exportPerturbAndMap(py::module &);
     void exportMulticutDecomposer(py::module &);
-    void exportMulticutAndres(py::module &);
     void exportChainedSolvers(py::module &);
     void exportMulticutCcFusionMoveBased(py::module &);
     void exportKernighanLin(py::module &);
@@ -58,7 +57,6 @@ PYBIND11_MODULE(_multicut, multicutModule) {
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);
     exportMulticutDecomposer(multicutModule);
-    exportMulticutAndres(multicutModule);
     exportChainedSolvers(multicutModule);
     exportMulticutCcFusionMoveBased(multicutModule);
     exportKernighanLin(multicutModule);

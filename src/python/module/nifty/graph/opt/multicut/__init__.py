@@ -273,27 +273,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     """%(factoryClsName("MulticutGreedyAdditive"))
 
 
-
-    def multicutAndresGreedyAdditiveFactory():
-        s, F = getSettingsAndFactoryCls("MulticutAndresGreedyAdditive")
-        return F(s)
-    O.multicutAndresGreedyAdditiveFactory = staticmethod(multicutAndresGreedyAdditiveFactory)
-    O.multicutAndresGreedyAdditiveFactory.__doc__ = """ create an instance of :class:`%s`
-
-        Find approximate solutions via
-        agglomerative clustering as in :cite:`beier_15_funsion`.
-
-    Note:
-        This is just for comparison since it implements the
-        same as :func:`greedyAddtiveFactory`.
-
-
-    Returns:
-        %s : multicut factory
-    """%tuple([factoryClsName("MulticutAndresGreedyAdditive")]*2)
-
-
-
     @warmStartGreeedyDecorator
     def kernighanLinFactory(
             numberOfInnerIterations = sys.maxsize,
@@ -321,43 +300,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     Returns:
         %s : multicut factory
     """%tuple([factoryClsName("KernighanLin")]*2)
-
-
-
-    def multicutAndresKernighanLinFactory(
-            numberOfInnerIterations = sys.maxsize,
-            numberOfOuterIterations = 100,
-            epsilon = 1e-6,
-            verbose = False,
-            greedyWarmstart = False
-            ):
-        s, F = getSettingsAndFactoryCls("MulticutAndresKernighanLin")
-        s.numberOfInnerIterations = numberOfInnerIterations
-        s.numberOfOuterIterations = numberOfOuterIterations
-        s.epsilon = epsilon
-        s.verbose = verbose
-        s.greedyWarmstart = greedyWarmstart
-        return F(s)
-    O.multicutAndresKernighanLinFactory = staticmethod(multicutAndresKernighanLinFactory)
-    O.multicutAndresKernighanLinFactory.__doc__ = """ create an instance of :class:`%s`
-
-        Find approximate solutions via
-        agglomerative clustering as in :cite:`TODO`.
-
-    Note:
-        This is just for comparison since it implements the
-        same as :func:`greedyAddtiveFactory`.
-
-    Args:
-        numberOfInnerIterations (int): number of inner iterations (default: {sys.maxsize})
-        numberOfOuterIterations (int): number of outer iterations        (default: {100})
-        epsilon (float): epsilon   (default: { 1e-6})
-        verbose (bool):                (default: {False})
-        greedyWarmstart (bool): initialize with greedyAdditive  (default: {True})
-
-    Returns:
-        %s : multicut factory
-    """%tuple([factoryClsName("MulticutAndresKernighanLin")]*2)
 
 
     def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):
@@ -397,7 +339,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     Returns:
         %s : multicut factory
     """%(factoryClsName("MulticutDecomposer"),factoryClsName("MulticutDecomposer"))
-
 
 
     def multicutIlpFactory(addThreeCyclesConstraints=True,
