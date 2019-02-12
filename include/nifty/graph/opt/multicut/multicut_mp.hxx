@@ -6,7 +6,7 @@
 #include "nifty/graph/opt/multicut/multicut_base.hxx"
 #include "nifty/graph/opt/common/solver_factory.hxx"
 #include "nifty/graph/opt/common/solver_factory_base.hxx"
-#include "nifty/graph/opt/multicut/multicut_andres.hxx"
+#include "nifty/graph/opt/multicut/kernighan_lin.hxx"
 #include "nifty/ufd/ufd.hxx"
 
 // LP_MP includes
@@ -169,7 +169,7 @@ namespace multicut{
     {
         // if we don't have a mc-factory, we use the LP_MP default rounder
         if(!bool(settings_.mcFactory)) {
-            typedef MulticutAndresKernighanLin<ObjectiveType> DefaultSolver;
+            typedef KernighanLin<ObjectiveType> DefaultSolver;
             typedef nifty::graph::opt::common::SolverFactory<DefaultSolver> DefaultFactory;
             settings_.mcFactory = std::make_shared<DefaultFactory>();
         }
