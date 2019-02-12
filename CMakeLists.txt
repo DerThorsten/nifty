@@ -140,8 +140,9 @@ include_directories(${xtensor_INCLUDE_DIRS})
 #-------------------------------------------------------------------------------------------------------------------
 # externals
 #-------------------------------------------------------------------------------------------------------------------
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/maxflow")
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/graph/include")
+# FIXME external maxflow project doews not exist anymore
+# was this removed accidentally?
+# include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/externals/maxflow")
 
 
 
