@@ -5,7 +5,7 @@
 #include <boost/iterator/transform_iterator.hpp>
 #include <boost/iterator/iterator_facade.hpp>
 
-#include "andres/graph/grid-graph.hxx"
+#include "nifty/graph/detail/andres/grid-graph.hxx"
 
 #include "nifty/tools/runtime_check.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
