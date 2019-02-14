@@ -1,8 +1,8 @@
 #pragma once
 
 
-#define NIFTY_VERSION_MAJOR 0
-#define NIFTY_VERSION_MINOR 24
+#define NIFTY_VERSION_MAJOR 1
+#define NIFTY_VERSION_MINOR 0
 #define NIFTY_VERSION_PATCH 0
 
 // DETECT 3.6 <= clang < 3.8 for compiler bug workaround.
