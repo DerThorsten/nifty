@@ -16,7 +16,7 @@ namespace opt{
 
 
 PYBIND11_MODULE(_opt, module) {
-    module.doc() =  "_opt", "opt submodule of nifty.graph";
+    module.doc() = "opt submodule of nifty.graph";
     using namespace nifty::graph::opt;
 }
 
