@@ -137,7 +137,7 @@ namespace distributed {
 
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
-            std::vector<std::size_t> oldBlockIds;
+            std::vector<uint64_t> oldBlockIds;
             blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), oldBlockIds);
 
             // iterate over the old blocks and find all nodes
