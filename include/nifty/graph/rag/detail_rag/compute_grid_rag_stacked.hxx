@@ -69,7 +69,7 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
 
         uint64_t numberOfSlices = shape[0];
         Coord2 sliceShape2({shape[1], shape[2]});
-        Coord sliceShape3({1L, shape[1], shape[2]});
+        Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
         auto & perSliceDataVec = rag.perSliceDataVec_;
 

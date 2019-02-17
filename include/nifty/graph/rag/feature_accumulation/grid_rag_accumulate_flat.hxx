@@ -133,7 +133,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     uint64_t numberOfSlices = shape[0];
 
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L, shape[1], shape[2]});
+    Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
     // edge acc vectors for multiple threads
     std::vector<AccChainVectorType> perThreadAccChainVector(actualNumberOfThreads);
@@ -183,7 +183,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             //std::cout << "Upper: " << sliceIdA << " Lower: " << sliceIdB << std::endl;
             auto & threadAccChainVec = perThreadAccChainVector[tid];
 
-            Coord beginA ({sliceIdA, 0L, 0L});
+            Coord beginA ({sliceIdA, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
@@ -205,7 +205,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
             );
 
             // process upper slice
-            Coord beginB = Coord({sliceIdB,   0L,       0L});
+            Coord beginB = Coord({sliceIdB, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
 
             // read labels and data for upper slice

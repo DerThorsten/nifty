@@ -40,7 +40,7 @@ void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS> & graph,
 
     uint64_t numberOfSlices = shape[0];
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L,shape[1], shape[2]});
+    Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
     LabelsBlockStorage sliceLabelsStorage(threadpool, sliceShape3, nThreads);
     DataBlockStorage   sliceDataStorage(threadpool, sliceShape3, nThreads);
@@ -51,7 +51,7 @@ void projectScalarNodeDataToPixels(const GridRagStacked2D<LABELS> & graph,
         auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
         auto sliceDataFlat3DView   = sliceDataStorage.getView(tid);
 
-        const Coord blockBegin({sliceIndex,0L,0L});
+        const Coord blockBegin({sliceIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
         const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
 
         tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
@@ -100,7 +100,7 @@ void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS> & graph,
 
     uint64_t numberOfSlices = blockEnd[0] - blockBegin[0];
     Coord2 sliceShape2({blockEnd[1] - blockBegin[1], blockEnd[2] - blockBegin[2]});
-    Coord  sliceShape3({1L, blockEnd[1] - blockBegin[1], blockEnd[2] - blockBegin[2]});
+    Coord  sliceShape3({static_cast<int64_t>(1), blockEnd[1] - blockBegin[1], blockEnd[2] - blockBegin[2]});
 
     LabelsBlockStorage sliceLabelsStorage(threadpool, sliceShape3, nThreads);
     DataBlockStorage   sliceDataStorage(threadpool, sliceShape3, nThreads);
@@ -125,7 +125,7 @@ void projectScalarNodeDataInSubBlock(const GridRagStacked2D<LABELS> & graph,
             sliceData(coord.asStdArray()) = nodeData[node];
         });
 
-        const Coord localBegin({sliceIndex, 0L, 0L});
+        const Coord localBegin({sliceIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
         const Coord localEnd({sliceIndex+1, sliceShape3[1], sliceShape3[2]});
 
         tools::writeSubarray(pixelData, localBegin, localEnd, sliceDataFlat3DView);

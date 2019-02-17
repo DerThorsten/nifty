@@ -312,7 +312,7 @@ namespace graph{
 
         uint64_t numberOfSlices = shape[0];
         const Coord2 sliceShape2({shape[1], shape[2]});
-        const Coord  sliceShape3({1L,shape[1], shape[2]});
+        const Coord  sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
         // For now, we only support single pass!
         // do N passes of accumulator
@@ -325,8 +325,8 @@ namespace graph{
             DataStorage dataBStorage(threadpool, sliceShape3, nThreads);
 
             // process slice 0 to find min and max for histogram opts
-            Coord begin0({0L, 0L, 0L});
-            Coord end0(  {1L, shape[1], shape[2]});
+            Coord begin0({static_cast<int64_t>(0), static_cast<int64_t>(0), static_cast<int64_t>(0)});
+            Coord end0(  {static_cast<int64_t>(1), shape[1], shape[2]});
 
             auto data0 = dataAStorage.getView(0);
             tools::readSubarray(data, begin0, end0, data0);
@@ -356,7 +356,7 @@ namespace graph{
                 int64_t sliceIdB = slicePairs[pairId].second;// upper slice
 
                 // compute the filters for slice A
-                Coord beginA ({sliceIdA, 0L, 0L});
+                Coord beginA ({sliceIdA, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                 Coord endA({sliceIdA+1, shape[1], shape[2]});
 
                 auto labelsA = labelsAStorage.getView(tid);
@@ -408,7 +408,7 @@ namespace graph{
                 if(!keepXYOnly || sliceIdB == numberOfSlices - 1 ) {
 
                     // init labels and data for upper slice
-                    Coord beginB = Coord({sliceIdB,   0L,       0L});
+                    Coord beginB = Coord({sliceIdB, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                     Coord endB   = Coord({sliceIdB+1, shape[1], shape[2]});
 
                     // read labels
@@ -584,7 +584,7 @@ namespace graph{
                 // find beginning and end for block-aligned edges in tmp features
                 // at the begin, we need to check
                 const int64_t edgeEndAlignedLocal = nEdges - overhangEnd;
-                FeatCoord beginAlignedLocal{(int64_t)overhangBegin, 0L};
+                FeatCoord beginAlignedLocal{(int64_t)overhangBegin, static_cast<int64_t>(0)};
                 FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
 
                 // write the aligned features - if any exist
@@ -595,7 +595,7 @@ namespace graph{
                     auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
                     // find global beginning and end for block aligned edges
-                    FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+                    FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), static_cast<int64_t>(0)};
                     FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
 
                     // write out blockaligned edges
@@ -606,7 +606,7 @@ namespace graph{
                 // check if we have overhanging data at the beginning
                 if(overhangBegin > 0) {
                     auto & storage = storageFront[sliceId];
-                    storage.begin = FeatCoord{int64_t(edgeOffset), 0L};
+                    storage.begin = FeatCoord{int64_t(edgeOffset), static_cast<int64_t>(0)};
                     storage.end = FeatCoord{int64_t(edgeOffset + overhangBegin), int64_t(nFeats)};
 
                     // write correct data ti the storage
@@ -628,7 +628,7 @@ namespace graph{
                 // check if we have overhanging data at the end
                 if(overhangEnd > 0) {
                     auto & storage = storageBack[sliceId];
-                    storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0L};
+                    storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), static_cast<int64_t>(0)};
                     storage.end = FeatCoord{int64_t(edgeEnd), int64_t(nFeats)};
 
                     // write correct data ti the storage
@@ -710,7 +710,7 @@ namespace graph{
                         featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
                 }
 
-                FeatCoord begin({int64_t(edgeOffset),0L});
+                FeatCoord begin({int64_t(edgeOffset), static_cast<int64_t>(0)});
                 FeatCoord end({edgeOffset+nEdges, nFeats});
 
                 tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);
@@ -787,7 +787,7 @@ namespace graph{
         const auto & labelsProxy = rag.labelsProxy();
 
         Coord2 sliceShape2({shape[1], shape[2]});
-        Coord sliceShape3({1L,shape[1], shape[2]});
+        Coord sliceShape3({1,shape[1], shape[2]});
 
         LabelBlockStorage labelsAStorage(threadpool, sliceShape3, 1);
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
@@ -832,7 +832,7 @@ namespace graph{
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
             std::cout << "Computing lengths for skip edges from slice " << sliceId << std::endl;
 
-            Coord beginA({int64_t(sliceId),0L,0L});
+            Coord beginA({int64_t(sliceId),0,0});
             Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]});
             auto labelsA = labelsAStorage.getView(0);
             labelsProxy.readSubarray(beginA, endA, labelsA);
@@ -847,7 +847,7 @@ namespace graph{
             for(auto nextId : skipSlices[sliceId] ) {
                 std::cout << "to slice " << nextId << std::endl;
 
-                beginB = Coord({int64_t(nextId),0L,0L});
+                beginB = Coord({int64_t(nextId),0,0});
                 endB   = Coord({int64_t(nextId+1),shape[1],shape[2]});
 
                 auto labelsB = labelsBStorage.getView(0);

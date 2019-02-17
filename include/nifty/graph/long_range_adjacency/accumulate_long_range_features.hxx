@@ -96,8 +96,8 @@ void accumulateLongRangeFeaturesWithAccChain(
     const bool affsToUpper = zDirection == 1;
 
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord3 sliceShape3({1L, shape[1], shape[2]});
-    Coord4 sliceShape4({1L, 1L, shape[1], shape[2]});
+    Coord3 sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
+    Coord4 sliceShape4({static_cast<int64_t>(1), static_cast<int64_t>(1), shape[1], shape[2]});
 
     const int pass = 1;
     {
@@ -120,7 +120,7 @@ void accumulateLongRangeFeaturesWithAccChain(
             }
             const std::size_t edgeOffset = adj.edgeOffset(slice);
 
-            Coord3 beginA({slice, 0L, 0L});
+            Coord3 beginA({slice, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             Coord3 endA({slice + 1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
@@ -129,8 +129,10 @@ void accumulateLongRangeFeaturesWithAccChain(
 
             // initialize the affinity storage and coordinates
             auto affs = affinityStorage.getView(tid);
-            Coord4 beginAff({0L, 0L, 0L, 0L});
-            Coord4 endAff({0L, 0L, shape[1], shape[2]});
+            Coord4 beginAff({static_cast<int64_t>(0), static_cast<int64_t>(0),
+                             static_cast<int64_t>(0), static_cast<int64_t>(0)});
+            Coord4 endAff({static_cast<int64_t>(0), static_cast<int64_t>(0),
+                           shape[1], shape[2]});
 
             // init view for labelsB
             auto labelsB = labelsBStorage.getView(tid);
@@ -167,7 +169,7 @@ void accumulateLongRangeFeaturesWithAccChain(
                 auto affsSqueezed = xtensor::squeezedView(affs);
 
                 // read upper labels
-                Coord3 beginB({targetSlice,   0L,       0L});
+                Coord3 beginB({targetSlice, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                 Coord3 endB({targetSlice + 1, shape[1], shape[2]});
                 tools::readSubarray(labels, beginB, endB, labelsB);
                 auto labelsBSqueezed = xtensor::squeezedView(labelsB);
@@ -245,7 +247,7 @@ void accumulateLongRangeFeatures(
                 featuresTemp(edge, 2+qi) = replaceIfNotFinite(quantiles[qi], mean);
         }
 
-        FeatCoord begin({int64_t(edgeOffset),0L});
+        FeatCoord begin({int64_t(edgeOffset), static_cast<int64_t>(0)});
         FeatCoord end({edgeOffset+nEdges, nStats});
 
         tools::writeSubarray(featuresOut, begin, end, featuresTemp);

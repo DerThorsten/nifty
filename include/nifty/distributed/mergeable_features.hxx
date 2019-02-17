@@ -400,7 +400,7 @@ namespace distributed {
         std::vector<std::size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
         const auto & volumeShape = labelsDs->shape();
         for(unsigned axis = 0; axis < 3; ++axis) {
-            beginWithHalo[axis] = std::max(static_cast<int64_t>(roiBegin[axis]) - static_cast<int64_t>(haloBegin[axis]), 0L);
+            beginWithHalo[axis] = std::max(static_cast<int64_t>(roiBegin[axis]) - static_cast<int64_t>(haloBegin[axis]), static_cast<int64_t>(0));
             endWithHalo[axis] = std::min(roiEnd[axis] + haloEnd[axis], volumeShape[axis]);
             affsBegin[axis + 1] = beginWithHalo[axis];
         }

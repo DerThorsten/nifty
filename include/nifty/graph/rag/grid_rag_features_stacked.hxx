@@ -44,7 +44,7 @@ namespace graph{
 
         uint64_t numberOfSlices = shape[0];
         Coord2 sliceShape2({shape[1], shape[2]});
-        Coord sliceShape3({1L,shape[1], shape[2]});
+        Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
         std::vector<std::unordered_map<uint64_t, uint64_t>> overlaps(graph.numberOfNodes());
 
@@ -57,7 +57,7 @@ namespace graph{
             auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
             auto sliceDataFlat3DView   = sliceDataStorage.getView(tid);
 
-            const Coord blockBegin({sliceIndex,0L,0L});
+            const Coord blockBegin({sliceIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
 
             tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
@@ -121,9 +121,9 @@ namespace graph{
         if(upperSegIt == upperSegMap.end()) { // this is the first time we reach this upper slice, so we need to read the labels from hdf5
 
             auto & shape = labels.shape();
-            Coord sliceShape({1L, shape[1], shape[2]});
+            Coord sliceShape({1, shape[1], shape[2]});
             upperSegMap[zUp] = tools::make_unique<marray::Marray<NodeType>>(sliceShape.begin(), sliceShape.end()); // C++ 14 ?!
-            Coord sliceUpStart({zUp, 0L, 0L});
+            Coord sliceUpStart({zUp, 0, 0});
             Coord sliceUpStop({zUp+1, shape[1], shape[2]});
 
             std::cout << "Read Upper slice: " << zUp << std::endl;
@@ -199,12 +199,12 @@ namespace graph{
 
         auto edgeOffset = rag.numberOfInSliceEdges();
 
-        Coord sliceShape({1L, shape[1], shape[2]});
+        Coord sliceShape({1, shape[1], shape[2]});
         Coord2 sliceShape2({shape[1], shape[2]});
 
         // read the segmentation in the defected slice
         marray::Marray<NodeType> segZArray(sliceShape.begin(), sliceShape.end());
-        Coord sliceStart({z, 0L, 0L});
+        Coord sliceStart({z, 0, 0});
         Coord sliceStop({z+1, shape[1], shape[2]});
 
         std::cout << "Read defected slice: " << z << std::endl;
@@ -213,7 +213,7 @@ namespace graph{
 
         // read the segmentation in the lower slice
         marray::Marray<NodeType> segDnArray(sliceShape.begin(), sliceShape.end());
-        Coord sliceDnStart({z-1, 0L, 0L});
+        Coord sliceDnStart({z-1, 0, 0});
         Coord sliceDnStop({z, shape[1], shape[2]});
 
         // don't need lower segmentation for first and last slice or if the lower slice is completely defected
@@ -232,7 +232,7 @@ namespace graph{
         // TODO do we need a pointer here?
         std::map<int64_t, std::unique_ptr<marray::Marray<NodeType>>> upperSegMap;
         upperSegMap[z+1] = tools::make_unique<marray::Marray<NodeType>>(sliceShape.begin(), sliceShape.end()); // C++ 14 ?!
-        Coord sliceUpStart({z+1, 0L, 0L});
+        Coord sliceUpStart({z+1, 0, 0});
         Coord sliceUpStop({z+2, shape[1], shape[2]});
 
         // don't need upper segmentation for first and last slice or if the lower slice is completely defected

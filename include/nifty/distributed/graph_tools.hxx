@@ -272,7 +272,8 @@ namespace distributed {
         const auto & nodes = nodesExp.derived_cast();
 
         // TODO refactor this part
-        nifty::tools::Blocking<3> blocking({0L, 0L, 0L}, shape, blockShape);
+        nifty::tools::Blocking<3> blocking({static_cast<int64_t>(0), static_cast<int64_t>(0), static_cast<int64_t>(0)},
+                                            shape, blockShape);
 
         // find all blocks that have overlap with the nodes
         // beginning from the start block id and adding all neighbors, until nodes are no
