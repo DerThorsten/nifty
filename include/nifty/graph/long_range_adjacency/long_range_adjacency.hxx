@@ -64,8 +64,8 @@ public:
         return edgeOffset_[z];
     }
 
-    std::size_t serializationSize() const {
-        std::size_t size = BaseType::serializationSize();
+    uint64_t serializationSize() const {
+        uint64_t size = BaseType::serializationSize();
         size += 2; // increase by 2 for the fields longRange and ignoreLabel
         size += shape_[0] * 2; // increase by slice vector sizes
         return size;
