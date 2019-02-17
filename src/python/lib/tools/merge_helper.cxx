@@ -17,25 +17,25 @@ namespace tools{
         typedef NODE_TYPE NodeType;
         m.def("computeMergeVotes", [](const xt::pytensor<NodeType, 2> & uvIds,
                                       const xt::pytensor<uint8_t, 1> & indicators,
-                                      const xt::pytensor<size_t, 1> & sizes,
+                                      const xt::pytensor<std::size_t, 1> & sizes,
                                       const bool weightEdges) {
 
             std::map<std::pair<NodeType, NodeType>,
-                     std::pair<size_t, size_t>> mergeVotes;
+                     std::pair<std::size_t, std::size_t>> mergeVotes;
 
             {
                 py::gil_scoped_release allowThreads;
                 computeMergeVotes(uvIds, indicators, sizes, mergeVotes, weightEdges);
             }
 
-            const size_t nPairs = mergeVotes.size();
+            const std::size_t nPairs = mergeVotes.size();
 
             typedef typename xt::pytensor<NodeType, 2>::shape_type ShapeType;
             ShapeType shape = {static_cast<int64_t>(nPairs), 2L};
             xt::pytensor<NodeType, 2> uvIdsOut = xt::zeros<NodeType>(shape);
-            xt::pytensor<size_t, 2> votesOut = xt::zeros<NodeType>(shape);
+            xt::pytensor<std::size_t, 2> votesOut = xt::zeros<NodeType>(shape);
 
-            size_t i = 0;
+            std::size_t i = 0;
             for(const auto & vote : mergeVotes) {
                 uvIdsOut(i, 0) = vote.first.first;
                 uvIdsOut(i, 1) = vote.first.second;
@@ -53,23 +53,23 @@ namespace tools{
 
 
         m.def("mergeMergeVotes", [](const xt::pytensor<NodeType, 2> & uvIds,
-                                    const xt::pytensor<size_t, 2> & votes) {
+                                    const xt::pytensor<std::size_t, 2> & votes) {
 
             std::map<std::pair<NodeType, NodeType>,
-                     std::pair<size_t, size_t>> mergeVotes;
+                     std::pair<std::size_t, std::size_t>> mergeVotes;
             {
                 py::gil_scoped_release allowThreads;
                 mergeMergeVotes(uvIds, votes, mergeVotes);
             }
 
-            const size_t nPairs = mergeVotes.size();
+            const std::size_t nPairs = mergeVotes.size();
 
             typedef typename xt::pytensor<NodeType, 2>::shape_type ShapeType;
             ShapeType shape = {static_cast<int64_t>(nPairs), 2L};
             xt::pytensor<NodeType, 2> uvIdsOut = xt::zeros<NodeType>(shape);
-            xt::pytensor<size_t, 2> votesOut = xt::zeros<NodeType>(shape);
+            xt::pytensor<std::size_t, 2> votesOut = xt::zeros<NodeType>(shape);
 
-            size_t i = 0;
+            std::size_t i = 0;
             for(const auto & vote : mergeVotes) {
                 // write out the uv ids
                 uvIdsOut(i, 0) = vote.first.first;

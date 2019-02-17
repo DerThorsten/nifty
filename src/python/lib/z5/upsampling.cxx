@@ -26,7 +26,7 @@ namespace nz5 {
         m.def("intersectMasks", [](const std::string & maskAPath,
                                    const std::string & maskBPath,
                                    const std::string & outPath,
-                                   const std::vector<size_t> & blockShape,
+                                   const std::vector<std::size_t> & blockShape,
                                    const int numberOfThreads){
             py::gil_scoped_release allowThreads;
             intersectMasks(maskAPath, maskBPath, outPath, blockShape, numberOfThreads);

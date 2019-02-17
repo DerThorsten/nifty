@@ -17,7 +17,7 @@ namespace tools {
                            const xt::xexpression<SIZES> & sizesExp,
                            std::map<std::pair<typename UV_ARRAY::value_type,
                                               typename UV_ARRAY::value_type>,
-                                    std::pair<size_t, size_t>> & mergeVotes,
+                                    std::pair<std::size_t, std::size_t>> & mergeVotes,
                            const bool weightEdges=false) {
         const auto & uvIds = uvIdsExp.derived_cast();
         const auto & indicators = indicatorsExp.derived_cast();
@@ -28,8 +28,8 @@ namespace tools {
         mergeVotes.clear();
 
         // TODO parallelize ?!
-        const size_t nPairs = uvIds.shape()[0];
-        for(size_t i = 0; i < nPairs; ++i) {
+        const std::size_t nPairs = uvIds.shape()[0];
+        for(std::size_t i = 0; i < nPairs; ++i) {
             const NodeType u = uvIds(i, 0);
             const NodeType v = uvIds(i, 1);
             const UvType uv(u, v);
@@ -59,7 +59,7 @@ namespace tools {
                          const xt::xexpression<VOTES> & votesExp,
                          std::map<std::pair<typename UV_ARRAY::value_type,
                                             typename UV_ARRAY::value_type>,
-                                  std::pair<size_t, size_t>> & votesOut) {
+                                  std::pair<std::size_t, std::size_t>> & votesOut) {
 
         const auto & uvIds = uvIdsExp.derived_cast();
         const auto & votes = votesExp.derived_cast();
@@ -69,8 +69,8 @@ namespace tools {
         votesOut.clear();
 
         // TODO parallelize ?!
-        const size_t nPairs = uvIds.shape()[0];
-        for(size_t i = 0; i < nPairs; ++i) {
+        const std::size_t nPairs = uvIds.shape()[0];
+        for(std::size_t i = 0; i < nPairs; ++i) {
             const NodeType u = uvIds(i, 0);
             const NodeType v = uvIds(i, 1);
             const UvType uv(u, v);

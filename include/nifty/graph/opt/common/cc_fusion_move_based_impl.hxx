@@ -69,8 +69,8 @@ namespace detail_cc_fusion{
 
         struct SettingsType{
             std::shared_ptr<ProposalGeneratorFactoryBaseType> proposalGeneratorFactory;
-            size_t numberOfIterations{1000};
-            size_t stopIfNoImprovement{10};
+            std::size_t numberOfIterations{1000};
+            std::size_t stopIfNoImprovement{10};
             int numberOfThreads{1};
             int numberOfParallelProposals{-1};
             FusionMoveSettingsType fusionMoveSettings;
@@ -274,7 +274,7 @@ namespace detail_cc_fusion{
 
             nifty::parallel::parallel_foreach(threadPool_,
                 settings_.numberOfParallelProposals,
-                [&](const size_t threadId, int proposalIndex){
+                [&](const std::size_t threadId, int proposalIndex){
 
                     
                     NodeLabelsType currentBestBuffer(graph_);

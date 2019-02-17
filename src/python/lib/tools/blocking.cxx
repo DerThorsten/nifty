@@ -17,7 +17,7 @@ namespace nifty{
 namespace tools{
 
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     void exportBlockingT(py::module & toolsModule){
         const auto dimStr = std::to_string(DIM) + std::string("d");
 

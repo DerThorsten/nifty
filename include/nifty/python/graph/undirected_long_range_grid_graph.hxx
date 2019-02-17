@@ -11,7 +11,7 @@ namespace graph{
 
 
     template<
-        size_t DIM
+        std::size_t DIM
     >
     struct GraphName<UndirectedLongRangeGridGraph<DIM>>{
         static std::string name(){

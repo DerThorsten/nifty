@@ -36,7 +36,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
 
     // only single threaded for now
     // accumulator chain vectors for local and lifted edges
-    size_t nEdges = rag.edgeIdUpperBound() + 1;
+    std::size_t nEdges = rag.edgeIdUpperBound() + 1;
     auto nThreads = threadpool.nThreads();
     ThreadAccChainVectorType edgeAccumulators(nThreads);
 
@@ -49,7 +49,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
         thisAccumulators = AccChainVectorType(nEdges);
         // set the histogram options
         if(accOptions.setMinMax){
-            for(size_t edgeId; edgeId < nEdges; ++edgeId) {
+            for(std::size_t edgeId; edgeId < nEdges; ++edgeId) {
                 thisAccumulators[edgeId].setHistogramOptions(histogram_opt);
             }
         }
@@ -139,7 +139,7 @@ void accumulateAffinities(
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     auto accumulate = [&](
         const std::vector<AccChainType> & edgeAccChainVec
@@ -196,8 +196,8 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         affShape[d+1] = shape[d];
     }
 
-    size_t nLocal = rag.edgeIdUpperBound() + 1;
-    size_t nLifted = lnh.edgeIdUpperBound() + 1;
+    std::size_t nLocal = rag.edgeIdUpperBound() + 1;
+    std::size_t nLifted = lnh.edgeIdUpperBound() + 1;
     auto nThreads = threadpool.nThreads();
 
     vigra::HistogramOptions histogram_opt;
@@ -210,7 +210,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         auto & thisAcc = localEdgeAccumulators[threadId];
         thisAcc = AccChainVectorType(nLocal);
         if(accOptions.setMinMax){
-            for(size_t edgeId; edgeId < nLocal; ++edgeId) {
+            for(std::size_t edgeId; edgeId < nLocal; ++edgeId) {
                 thisAcc[edgeId].setHistogramOptions(histogram_opt);
             }
         }
@@ -223,7 +223,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         auto & thisAcc = liftedEdgeAccumulators[threadId];
         thisAcc = AccChainVectorType(nLifted);
         if(accOptions.setMinMax){
-            for(size_t edgeId; edgeId < nLifted; ++edgeId) {
+            for(std::size_t edgeId; edgeId < nLifted; ++edgeId) {
                 thisAcc[edgeId].setHistogramOptions(histogram_opt);
             }
         }
@@ -329,7 +329,7 @@ void accumulateLongRangeAffinities(
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     auto accumulateLocal = [&](
         const std::vector<AccChainType> & edgeAccChainVec

@@ -68,7 +68,7 @@ namespace graph{
             backVec_.resize(0);
         }
 
-        const T & operator[](const size_t i) const{
+        const T & operator[](const std::size_t i) const{
             if(i < frontVec_.size()){
                 const auto j = frontVec_.size() - 1 - i;
             }
@@ -77,7 +77,7 @@ namespace graph{
             }
         }
         
-        size_t size()const{
+        std::size_t size()const{
             return frontVec_ + backVec_;
         }
     private:

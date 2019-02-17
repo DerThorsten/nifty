@@ -62,11 +62,11 @@ namespace lifted_multicut{
                 std::vector<char> labeling(edgeValues.size(), 0);
                 if(originalGraph.numberOfEdges() > 0) {
                     
-                    const size_t nLocalEdges = originalGraph.numberOfEdges();
+                    const std::size_t nLocalEdges = originalGraph.numberOfEdges();
                     PrimalRounderObjectiveType obj(originalGraph);
 
                     // insert local costs
-                    size_t edgeId = 0;
+                    std::size_t edgeId = 0;
                     for(;edgeId < nLocalEdges; ++edgeId) {
                         const auto & uv = originalGraph.uv(edgeId);
                         obj.setCost(uv.first, uv.second, edgeValues[edgeId]);
@@ -127,23 +127,23 @@ namespace lifted_multicut{
             bool greedyWarmstart{true};
             // parameters for lp_mp solver TODO need better (non-completely-guessed...) default values
             double tightenSlope{0.05};
-            size_t tightenMinDualImprovementInterval{0};
+            std::size_t tightenMinDualImprovementInterval{0};
             double tightenMinDualImprovement{0.};
             double tightenConstraintsPercentage{0.1};
-            size_t tightenConstraintsMax{0};
-            size_t tightenInterval{10};
-            size_t tightenIteration{100};
+            std::size_t tightenConstraintsMax{0};
+            std::size_t tightenInterval{10};
+            std::size_t tightenIteration{100};
             std::string tightenReparametrization{"anisotropic"};
             std::string roundingReparametrization{"anisotropic"};
             std::string standardReparametrization{"anisotropic"};
             bool tighten{true};
-            size_t minDualImprovementInterval{0};
+            std::size_t minDualImprovementInterval{0};
             double minDualImprovement{0.};
-            size_t lowerBoundComputationInterval{1};
-            size_t primalComputationInterval{5};
-            size_t timeout{0};
-            size_t maxIter{1000};
-            size_t numLpThreads{1};
+            std::size_t lowerBoundComputationInterval{1};
+            std::size_t primalComputationInterval{5};
+            std::size_t timeout{0};
+            std::size_t maxIter{1000};
+            std::size_t numLpThreads{1};
         };
             
         LiftedMulticutMp(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
@@ -215,8 +215,8 @@ namespace lifted_multicut{
             auto & constructor = (*mpSolver_).template GetProblemConstructor<0>();
             const auto & weights = objective_.weights();
 
-            const size_t nLocalEdges = graph_.numberOfEdges();
-            size_t edgeId = 0;
+            const std::size_t nLocalEdges = graph_.numberOfEdges();
+            std::size_t edgeId = 0;
             for(;edgeId < nLocalEdges; ++edgeId) {
                 const auto & uv = graph_.uv(edgeId);
                 constructor.AddUnaryFactor(uv.first, uv.second, weights[edgeId]);

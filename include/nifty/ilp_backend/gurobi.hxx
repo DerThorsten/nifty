@@ -19,7 +19,7 @@ public:
     Gurobi(const SettingsType & settings = SettingsType());
     ~Gurobi();
 
-    void initModel(const size_t, const double*);
+    void initModel(const std::size_t, const double*);
 
     template<class Iterator>
     void setStart(Iterator);
@@ -29,7 +29,7 @@ public:
                            CoefficientIterator, const double, const double);
     void optimize();
 
-    double label(const size_t) const;
+    double label(const std::size_t) const;
 
     static std::string name(){
         return std::string("Gurobi");
@@ -49,7 +49,7 @@ private:
     GRBModel* gurobiModel_;
     GRBVar* gurobiVariables_;
     GRBLinExpr gurobiObjective_;
-    size_t nVariables_;
+    std::size_t nVariables_;
 };
 
 inline Gurobi::Gurobi(const SettingsType & settings)
@@ -76,7 +76,7 @@ Gurobi::~Gurobi() {
 
 inline void
 Gurobi::initModel(
-    const size_t numberOfVariables,
+    const std::size_t numberOfVariables,
     const double* coefficients
 ) {
     nVariables_ = numberOfVariables;
@@ -163,7 +163,7 @@ Gurobi::optimize() {
 
 inline double
 Gurobi::label(
-    const size_t variableIndex
+    const std::size_t variableIndex
 ) const {
     return gurobiVariables_[variableIndex].get(GRB_DoubleAttr_X);
 }
@@ -181,7 +181,7 @@ Gurobi::addConstraint(
 ) {
     GRBLinExpr expression;
     for(; viBegin != viEnd; ++viBegin, ++coefficient) {
-        expression += (*coefficient) * gurobiVariables_[static_cast<size_t>(*viBegin)];
+        expression += (*coefficient) * gurobiVariables_[static_cast<std::size_t>(*viBegin)];
     }
     if(lowerBound == upperBound) {
         GRBLinExpr exact(lowerBound);
@@ -204,7 +204,7 @@ inline void
 Gurobi::setStart(
     Iterator valueIterator
 ) {
-    for(size_t j = 0; j < nVariables_; ++j, ++valueIterator) {
+    for(std::size_t j = 0; j < nVariables_; ++j, ++valueIterator) {
         gurobiVariables_[j].set(GRB_DoubleAttr_Start, static_cast<double>(*valueIterator));
     }
 }

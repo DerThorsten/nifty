@@ -123,9 +123,9 @@ namespace graph{
         [](
             const RAG & rag,
             const DATA & data,
-            const std::vector<std::pair<size_t,size_t>> & skipEdges,
-            const std::vector<size_t> & skipRanges,
-            const std::vector<size_t> & skipStarts,
+            const std::vector<std::pair<std::size_t,std::size_t>> & skipEdges,
+            const std::vector<std::size_t> & skipRanges,
+            const std::vector<std::size_t> & skipStarts,
             const int zDirection,
             const int numberOfThreads
         ){

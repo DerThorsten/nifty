@@ -24,7 +24,7 @@ public:
 
     
 
-    void initModel(const size_t, const double*);
+    void initModel(const std::size_t, const double*);
 
     template<class Iterator>
     void setStart(Iterator);
@@ -32,7 +32,7 @@ public:
     template<class VariableIndexIterator, class CoefficientIterator>
     void addConstraint(VariableIndexIterator, VariableIndexIterator,CoefficientIterator, const double, const double);
     void optimize();
-    double label(const size_t) const;
+    double label(const std::size_t) const;
 
     static std::string name(){
         return std::string("Cplex");
@@ -43,7 +43,7 @@ public:
         OBJECTIVE_ITERATOR objectiveIter
     ){
         IloNumArray    obj(env_,nVariables_);
-        for(size_t v=0; v<nVariables_; ++v){
+        for(std::size_t v=0; v<nVariables_; ++v){
             const auto val = *objectiveIter;
 
             if(std::abs(val)<=0.00000001){
@@ -93,7 +93,7 @@ inline Cplex::Cplex(const SettingsType & settings)
 
 inline void
 Cplex::initModel(
-    const size_t numberOfVariables,
+    const std::size_t numberOfVariables,
     const double* coefficients
 ) {
     nVariables_ = numberOfVariables;
@@ -116,7 +116,7 @@ Cplex::initModel(
             //std::cout<<"create obj\n";
             IloNumArray    obj(env_,N);
 
-            for(size_t v=0; v<numberOfVariables; ++v){
+            for(std::size_t v=0; v<numberOfVariables; ++v){
                 obj[v] = coefficients[v];
             }
             obj_.setLinearCoefs(x_,obj);
@@ -225,7 +225,7 @@ Cplex::optimize() {
 
 inline double
 Cplex::label(
-    const size_t variableIndex
+    const std::size_t variableIndex
 ) const {
     if(nVariables_>=1){
         return sol_[variableIndex];

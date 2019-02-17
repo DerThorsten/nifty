@@ -38,7 +38,7 @@ namespace distributed {
             xt::pytensor<uint64_t, 2> out({tmp.size(), 2});
             {
                 py::gil_scoped_release allowThreads;
-                for(size_t i = 0; i < tmp.size(); ++i) {
+                for(std::size_t i = 0; i < tmp.size(); ++i) {
                     out(i, 0) = tmp[i].first;
                     out(i, 1) = tmp[i].second;
                 }

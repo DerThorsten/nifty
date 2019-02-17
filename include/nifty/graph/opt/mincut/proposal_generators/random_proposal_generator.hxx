@@ -44,7 +44,7 @@ namespace mincut{
 
         RandomProposalGenerator(
             const ObjectiveType & objective, 
-            const size_t numberOfThreads,
+            const std::size_t numberOfThreads,
             const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
@@ -71,13 +71,13 @@ namespace mincut{
 
         virtual void generateProposal(
             const NodeLabels & currentBest,NodeLabels & proposal, 
-            const size_t tid
+            const std::size_t tid
         ){
             
         }
     private:
         const ObjectiveType & objective_;
-        size_t numberOfThreads_;
+        std::size_t numberOfThreads_;
         SettingsType settings_;
         std::vector<std::mt19937> gens_;    
     }; 

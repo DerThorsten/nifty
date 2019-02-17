@@ -36,7 +36,7 @@ namespace multicut{
         GreedyAdditiveProposals(
             const ObjectiveType & objective, 
             const SettingsType  & settings,
-            const size_t threadIndex
+            const std::size_t threadIndex
         )
         :   objective_(objective),
             graph_(objective.graph()),
@@ -84,8 +84,8 @@ namespace multicut{
         const ObjectiveType & objective_;
         const GraphType graph_;
         SettingsType settings_;
-        size_t threadIndex_;
-        size_t proposalNumber_;
+        std::size_t threadIndex_;
+        std::size_t proposalNumber_;
 
         Solver * solver_;
 

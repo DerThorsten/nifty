@@ -165,7 +165,7 @@ namespace lifted_multicut{
         }
 
         // interatively update bipartition in order to minimize the total cost of the multicut
-        for (size_t k = 0; k < settings_.numberOfOuterIterations; ++k){
+        for (std::size_t k = 0; k < settings_.numberOfOuterIterations; ++k){
 
 
             auto energyDecrease = 0.0;

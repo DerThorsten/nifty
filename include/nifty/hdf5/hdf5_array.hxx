@@ -156,7 +156,7 @@ namespace hdf5{
         }
 
         int setCache(){
-            //herr_t H5Pset_cache(hid_t plist_id, int mdc_nelmts, size_t rdcc_nslots, size_t rdcc_nbytes, double rdcc_w0)
+            //herr_t H5Pset_cache(hid_t plist_id, int mdc_nelmts, std::size_t rdcc_nslots, std::size_t rdcc_nbytes, double rdcc_w0)
         }
 
         ~Hdf5Array(){

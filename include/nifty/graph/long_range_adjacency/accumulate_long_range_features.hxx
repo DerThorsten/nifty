@@ -21,9 +21,9 @@ void accumulateLongRangeFeaturesForSlice(
     const xt::xexpression<LABELS> & labelsBExp,
     const xt::xexpression<AFFS> & affinitiesExp,
     const int pass,
-    const size_t slice,
-    const size_t targetSlice,
-    const size_t edgeOffset
+    const std::size_t slice,
+    const std::size_t targetSlice,
+    const std::size_t edgeOffset
 ) {
     typedef COORD Coord2;
     typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
@@ -84,12 +84,12 @@ void accumulateLongRangeFeaturesWithAccChain(
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType> EdgeAccChainVectorType;
 
-    const size_t actualNumberOfThreads = threadpool.nThreads();
+    const std::size_t actualNumberOfThreads = threadpool.nThreads();
 
     const auto & shape = adj.shape();
 
-    const size_t nSlices = shape[0] - 2;
-    const size_t nEdges = adj.numberOfEdges();
+    const std::size_t nSlices = shape[0] - 2;
+    const std::size_t nEdges = adj.numberOfEdges();
 
     // convention for zDirection: 1 -> affinties go to upper slices,
     // 2 -> affinities go to lower slices
@@ -115,10 +115,10 @@ void accumulateLongRangeFeaturesWithAccChain(
             // init this accumulatore chain
             EdgeAccChainVectorType accChainVec(adj.numberOfEdgesInSlice(slice));
             // set minmax for accumulator chains
-            for(size_t edge = 0; edge < accChainVec.size(); ++edge){
+            for(std::size_t edge = 0; edge < accChainVec.size(); ++edge){
                 accChainVec[edge].setHistogramOptions(histoOptions);
             }
-            const size_t edgeOffset = adj.edgeOffset(slice);
+            const std::size_t edgeOffset = adj.edgeOffset(slice);
 
             Coord3 beginA({slice, 0L, 0L});
             Coord3 endA({slice + 1, shape[1], shape[2]});
@@ -136,7 +136,7 @@ void accumulateLongRangeFeaturesWithAccChain(
             auto labelsB = labelsBStorage.getView(tid);
 
             int64_t targetSlice;
-            size_t channel;
+            std::size_t channel;
             for(int64_t z = 2; z <= adj.range(); ++z) {
 
                 targetSlice = slice + z;
@@ -225,7 +225,7 @@ void accumulateLongRangeFeatures(
     // accumulator function
     auto accFunction = [&threadpool, &featuresOut](
         const std::vector<AccChainType> & edgeAccChainVec,
-        const size_t edgeOffset
+        const std::size_t edgeOffset
     ){
         using namespace vigra::acc;
         typedef array::StaticArray<int64_t, 2> FeatCoord;

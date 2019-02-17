@@ -26,8 +26,8 @@ namespace hdf5{
 
             .def(py::init([](const hid_t & groupHandle,
                              const std::string & datasetName,
-                             std::vector<size_t> shape,
-                             std::vector<size_t> chunkShape,
+                             std::vector<std::size_t> shape,
+                             std::vector<std::size_t> chunkShape,
                              const int compression){
                 NIFTY_CHECK_OP(shape.size(), == ,chunkShape.size(),
                     "shape and chunk shape do not match");
@@ -52,8 +52,8 @@ namespace hdf5{
             })
             .def("readSubarray",[](
                 const Hdf5ArrayType & array,
-                std::vector<size_t> roiBegin,
-                std::vector<size_t> roiEnd
+                std::vector<std::size_t> roiBegin,
+                std::vector<std::size_t> roiEnd
             ){
                 typedef typename xt::pyarray<T>::shape_type ShapeType;
                 const auto dim = array.dimension();
@@ -62,7 +62,7 @@ namespace hdf5{
                     py::gil_scoped_release liftGil;
                     NIFTY_CHECK_OP(roiBegin.size(),==,dim,"`roiBegin`has wrong size");
                     NIFTY_CHECK_OP(roiEnd.size(),==,dim,  "`roiEnd`has wrong size");
-                    for(size_t d=0; d<dim; ++d){
+                    for(std::size_t d=0; d<dim; ++d){
                         shape[d] = roiEnd[d] - roiBegin[d];
                     }
                 }
@@ -76,7 +76,7 @@ namespace hdf5{
 
             .def("writeSubarray",[](
                 Hdf5ArrayType & array,
-                std::vector<size_t> roiBegin,
+                std::vector<std::size_t> roiBegin,
                 xt::pyarray<T> in
             ){
                 const auto dim = array.dimension();

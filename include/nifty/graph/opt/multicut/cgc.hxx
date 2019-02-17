@@ -903,8 +903,8 @@ namespace multicut{
         typedef std::pair<uint64_t, uint64_t> LabelPair;
         struct LabelPairHash{
         public:
-            size_t operator()(const std::pair<uint64_t, uint64_t> & x) const {
-                 size_t h = std::hash<uint64_t>()(x.first) ^ std::hash<uint64_t>()(x.second);
+            std::size_t operator()(const std::pair<uint64_t, uint64_t> & x) const {
+                 std::size_t h = std::hash<uint64_t>()(x.first) ^ std::hash<uint64_t>()(x.second);
                  return h;
             }
         };

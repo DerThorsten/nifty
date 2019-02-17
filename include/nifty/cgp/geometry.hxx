@@ -11,22 +11,22 @@ namespace nifty{
 namespace cgp{
 
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     class Geometry;
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellGeometry;
 
     // zero cell should be the same for all dimensions,
     // a single dot
-    template<size_t DIM>
+    template<std::size_t DIM>
     class CellGeometry<DIM, 0> : public std::array<
         array::StaticArray<uint32_t, 2>,
         1
     >
     {
     public:
-        typedef std::integral_constant<size_t, DIM> DimensionType;
+        typedef std::integral_constant<std::size_t, DIM> DimensionType;
         typedef nifty::array::StaticArray<uint32_t, 2> CoordinateType;
         typedef nifty::array::StaticArray<float, DIM> FloatCoordinateType;
         typedef std::array<CoordinateType, 1> BaseType;
@@ -46,8 +46,8 @@ namespace cgp{
     class CellGeometry<2, 1> : public std::vector< array::StaticArray<uint32_t, 2> > {
     public:
         friend class Geometry<2>;
-        const static size_t DIM = 2;
-        typedef std::integral_constant<size_t, DIM> DimensionType;
+        const static std::size_t DIM = 2;
+        typedef std::integral_constant<std::size_t, DIM> DimensionType;
         typedef nifty::array::StaticArray<uint32_t, DIM> CoordinateType;
         typedef nifty::array::StaticArray<float, DIM> FloatCoordinateType;
         typedef std::vector<CoordinateType> BaseType;
@@ -76,10 +76,10 @@ namespace cgp{
 
 
     // default cell
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellGeometry : public std::vector< array::StaticArray<uint32_t, DIM> > {
     public:
-        typedef std::integral_constant<size_t, DIM> DimensionType;
+        typedef std::integral_constant<std::size_t, DIM> DimensionType;
         typedef nifty::array::StaticArray<uint32_t, DIM> CoordinateType;
         typedef nifty::array::StaticArray<float, DIM> FloatCoordinateType;
         typedef std::vector<CoordinateType> BaseType;
@@ -98,14 +98,14 @@ namespace cgp{
     };
 
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellGeometryVector  :
         public std::vector<CellGeometry<DIM, CELL_TYPE> > 
     {
 
     };
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     class Geometry;
 
 
@@ -122,7 +122,7 @@ namespace cgp{
 
         Geometry(const TopologicalGridType & tGrid, const bool fill=false, const bool sort1Cells=true);
 
-        template<size_t CELL_TYPE>
+        template<std::size_t CELL_TYPE>
         const CellGeometryVector<2,CELL_TYPE> &
         geometry()const{
             return std::get<CELL_TYPE>(geometry_);

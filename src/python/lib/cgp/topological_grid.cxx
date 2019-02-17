@@ -13,7 +13,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace cgp{
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     void exportTopologicalGridT(py::module & m) {
 
         typedef TopologicalGrid<DIM> TopologicalGrid;
@@ -39,7 +39,7 @@ namespace cgp{
         ;
     }
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     void exportFilledTopologicalGridT(py::module & m) {
 
         typedef TopologicalGrid<DIM> TopologicalGrid;

@@ -52,44 +52,44 @@ struct MultibandNodeMap
 public:
     class Proxy{
     public:
-        Proxy(T * ptr, const size_t size)
+        Proxy(T * ptr, const std::size_t size)
         :   ptr_(ptr),
             size_(size){
         }
-        const T & operator[](const size_t i)const{
+        const T & operator[](const std::size_t i)const{
             return ptr_[i];
         }
-        T & operator[](const size_t i){
+        T & operator[](const std::size_t i){
             return ptr_[i];
         }
     private:
         T * ptr_;
-        size_t size_;
+        std::size_t size_;
     };
 
     class ConstProxy{
     public:
-        ConstProxy(const T * ptr, const size_t size)
+        ConstProxy(const T * ptr, const std::size_t size)
         :   ptr_(ptr),
             size_(size){
         }
-        const T & operator[](const size_t i)const{
+        const T & operator[](const std::size_t i)const{
             return ptr_[i];
         }
-        const T & operator[](const size_t i){
+        const T & operator[](const std::size_t i){
             return ptr_[i];
         }
     private:
         const T * ptr_;
-        size_t size_;
+        std::size_t size_;
     };
 
 
-    MultibandNodeMap( const G & g, const size_t nChannels)
+    MultibandNodeMap( const G & g, const std::size_t nChannels)
     :   nChannels_(nChannels),
         data_((g.nodeIdUpperBound()+1)*nChannels){
     }
-    MultibandNodeMap( const G & g, const size_t nChannels, const T & val)
+    MultibandNodeMap( const G & g, const std::size_t nChannels, const T & val)
     :   nChannels_(nChannels),
         data_((g.nodeIdUpperBound()+1)*nChannels, val){
     }
@@ -100,12 +100,12 @@ public:
     ConstProxy operator[](const uint64_t nodeIndex)const{
         return ConstProxy(data_.data() + nodeIndex*nChannels_, nChannels_);
     }
-    const size_t numberOfChannels()const{
+    const std::size_t numberOfChannels()const{
         return nChannels_;
     }
 private:
     std::vector<T> data_;
-    size_t nChannels_;
+    std::size_t nChannels_;
 };
 
 
@@ -125,13 +125,13 @@ public:
         :   array_(&array),
             node_(node){
         }
-        const_reference operator[](const size_t i)const{
+        const_reference operator[](const std::size_t i)const{
             return array_->operator()(node_, i);
         }
-        reference operator[](const size_t i){
+        reference operator[](const std::size_t i){
             return array_->operator()(node_, i);
         }
-        size_t size()const{
+        std::size_t size()const{
             return array_->shape(1);
         }
     private:
@@ -145,13 +145,13 @@ public:
         :   array_(&array),
             node_(node){
         }
-        const_reference operator[](const size_t i)const{
+        const_reference operator[](const std::size_t i)const{
             return array_->operator()(node_, i);
         }
-        const_reference operator[](const size_t i){
+        const_reference operator[](const std::size_t i){
             return array_->operator()(node_, i);
         }
-        size_t size()const{
+        std::size_t size()const{
             return array_->shape(1);
         }
     private:
@@ -174,12 +174,12 @@ public:
         return ConstProxy(array_, nodeIndex);
     }
 
-    const size_t numberOfChannels()const{
+    const std::size_t numberOfChannels()const{
         return nChannels_;
     }
 private:
     const ARRAY & array_;
-    size_t nChannels_;
+    std::size_t nChannels_;
 };
 
 

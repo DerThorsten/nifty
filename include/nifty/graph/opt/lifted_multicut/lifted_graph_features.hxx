@@ -67,7 +67,7 @@ namespace lifted_multicut{
         EdgeMapDouble lgOutBuffer(liftedGraph);
 
         auto fi = 0;
-        for(size_t i=0; i<sizeRegularizers.size(); ++i){
+        for(std::size_t i=0; i<sizeRegularizers.size(); ++i){
 
             // reset / fill maps
             graph.forEachEdge([&](const uint64_t graphEdge){
@@ -171,7 +171,7 @@ namespace lifted_multicut{
             const double offset_;
         };
 
-        for(size_t i=0; i<offsets.size(); ++i){
+        for(std::size_t i=0; i<offsets.size(); ++i){
 
             // run the shortest path algorithm
             objective.parallelForEachLiftedeEdge(threadpool,

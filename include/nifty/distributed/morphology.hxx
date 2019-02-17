@@ -200,7 +200,7 @@ namespace distributed {
         });
 
         auto dsOut = z5::openDataset(outputPath);
-        const std::vector<size_t> offset({labelBegin, 0});
+        const std::vector<std::size_t> offset({labelBegin, 0});
         z5::multiarray::writeSubarray<double>(dsOut, out, offset.begin());
     }
 

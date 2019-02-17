@@ -116,9 +116,9 @@ namespace multicut{
                 :   ilpSolver_(ilpSolver),
                     denseIds_(denseIds)
             {}
-            bool useNode(const size_t v) const
+            bool useNode(const std::size_t v) const
                 { return true; }
-            bool useEdge(const size_t e) const
+            bool useEdge(const std::size_t e) const
                 { return ilpSolver_.label(denseIds_[e]) == 0; }
 
             const IlpSovler & ilpSolver_;
@@ -143,7 +143,7 @@ namespace multicut{
              *  A value of zero will be interpreted as an unlimited
              *  number of iterations.
              */
-            size_t numberOfIterations{0};   
+            std::size_t numberOfIterations{0};   
 
             /**
              *  \brief Explicitly add constrains for cycle of length three.
@@ -216,7 +216,7 @@ namespace multicut{
         void repairSolution(NodeLabelsType & nodeLabels);
 
 
-        size_t addCycleInequalities();
+        std::size_t addCycleInequalities();
         void addThreeCyclesConstraintsExplicitly();
 
         const ObjectiveType & objective_;
@@ -230,11 +230,11 @@ namespace multicut{
         DenseIds denseIds_;
         BidirectionalBreadthFirstSearch<GraphType> bibfs_;
         SettingsType settings_;
-        std::vector<size_t> variables_;
+        std::vector<std::size_t> variables_;
         std::vector<double> coefficients_;
         NodeLabelsType * currentBest_;
-        size_t addedConstraints_;
-        size_t numberOfOptRuns_;
+        std::size_t addedConstraints_;
+        std::size_t numberOfOptRuns_;
     };
 
     
@@ -283,7 +283,7 @@ namespace multicut{
             auto edgeLabelIter = detail_graph::nodeLabelsToEdgeLabelsIterBegin(graph_, nodeLabels);
             ilpSolver_->setStart(edgeLabelIter);
 
-            for (size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
+            for (std::size_t i = 0; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
                 // solve ilp
                 ilpSolver_->optimize();
@@ -318,14 +318,14 @@ namespace multicut{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    std::size_t MulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addCycleInequalities(
     ){
 
         components_.build(SubgraphWithCut(*ilpSolver_, denseIds_));
 
         // search for violated non-chordal cycles and add corresp. inequalities
-        size_t nCycle = 0;
+        std::size_t nCycle = 0;
 
 
         // we iterate over edges and the corresponding lpEdge 
@@ -352,7 +352,7 @@ namespace multicut{
                         continue;
                     }
 
-                    for (size_t j = 0; j < sz - 1; ++j){
+                    for (std::size_t j = 0; j < sz - 1; ++j){
                         variables_[j] = denseIds_[graph_.findEdge(path[j], path[j + 1])];
                         coefficients_[j] = 1.0;
                     }
@@ -414,7 +414,7 @@ namespace multicut{
     addThreeCyclesConstraintsExplicitly(
     ){
         //std::cout<<"add three cyckes\n";
-        std::array<size_t, 3> variables;
+        std::array<std::size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
         auto c = 0;

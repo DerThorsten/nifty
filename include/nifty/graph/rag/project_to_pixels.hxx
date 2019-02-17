@@ -17,7 +17,7 @@ namespace nifty{
 namespace graph{
 
 
-template<size_t DIM,
+template<std::size_t DIM,
          class LABELS,
          class PIXEL_ARRAY,
          class NODE_MAP>
@@ -43,7 +43,7 @@ void projectScalarNodeDataToPixels(const GridRag<DIM, LABELS> & graph,
 }
 
 
-template<size_t DIM,
+template<std::size_t DIM,
          class LABELS,
          class PIXEL_ARRAY,
          class NODE_MAP>
@@ -72,7 +72,7 @@ void projectScalarNodeDataToPixelsOutOfCore(const GridRag<DIM, LABELS> & graph,
         arrayShape[d] = blockShape[d];
     }
 
-    const size_t nThreads = threadpool.nThreads();
+    const std::size_t nThreads = threadpool.nThreads();
     std::vector<PerThreadData> perThreadDataVec(nThreads);
     parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
         perThreadDataVec[i].blockLabels.resize(arrayShape);

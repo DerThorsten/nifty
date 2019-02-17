@@ -48,7 +48,7 @@ namespace detail_graph{
         template< class F>
         void graphNeighbourhood(
             const uint64_t source,
-            const size_t maxDistance,
+            const std::size_t maxDistance,
             F && f
         ){
 

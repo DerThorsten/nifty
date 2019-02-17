@@ -6,7 +6,7 @@
 namespace nifty{
 namespace array{
 
-    template<class T,size_t SIZE>
+    template<class T,std::size_t SIZE>
     using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >;
 
 

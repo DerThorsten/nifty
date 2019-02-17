@@ -55,7 +55,7 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
 
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
-        typedef std::map<EdgeStorage, size_t> EdgeLengthsType;
+        typedef std::map<EdgeStorage, std::size_t> EdgeLengthsType;
         typedef std::vector<EdgeLengthsType> EdgeLenghtsStorage;
 
         const auto & labels = rag.labels();

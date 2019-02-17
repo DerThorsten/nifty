@@ -27,7 +27,7 @@ public:
 
 
     /// Create an empty ChangeablePriorityQueue which can contain atmost maxSize elements
-    ChangeablePriorityQueue(const size_t maxSize)  
+    ChangeablePriorityQueue(const std::size_t maxSize)  
     : maxSize_(maxSize),
       currentSize_(0),
       heap_(maxSize_+1),
@@ -185,8 +185,8 @@ private:
     }
  
 
-    size_t maxSize_;
-    size_t currentSize_;
+    std::size_t maxSize_;
+    std::size_t currentSize_;
     std::vector<int> heap_;
     std::vector<int> indices_;
     std::vector<T>   priorities_;

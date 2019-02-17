@@ -36,7 +36,7 @@ namespace graph{
                 NIFTY_CHECK_OP(affinities.shape()[d + 1], ==,
                                longRangeAdjacency.shape()[d], "Wrong shape");
             }
-            size_t nStats = 9;
+            std::size_t nStats = 9;
             xt::pytensor<float, 2> features({int64_t(longRangeAdjacency.numberOfEdges()),
                                              int64_t(nStats)});
             {

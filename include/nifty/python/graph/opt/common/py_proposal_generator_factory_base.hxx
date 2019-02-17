@@ -25,7 +25,7 @@ public:
     typedef typename ObjectiveType::GraphType GraphType;
     typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
     /* Trampoline (need one for each virtual function) */
-    std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective, const size_t numberOfThreads) {
+    std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective, const std::size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             std::shared_ptr<ProposalGeneratorBaseType>,     /* Return type */
             ProposalGeneratorFactoryBase<ObjectiveType>,        /* Parent class */
@@ -33,7 +33,7 @@ public:
             objective, numberOfThreads                      /* Argument(s) */
         );
     }
-    ProposalGeneratorBaseType * create(const ObjectiveType & objective, const size_t numberOfThreads) {
+    ProposalGeneratorBaseType * create(const ObjectiveType & objective, const std::size_t numberOfThreads) {
         PYBIND11_OVERLOAD_PURE(
             ProposalGeneratorBaseType* ,                    /* Return type */
             ProposalGeneratorFactoryBase<ObjectiveType>,        /* Parent class */

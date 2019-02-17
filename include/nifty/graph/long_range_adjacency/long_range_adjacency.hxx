@@ -24,8 +24,8 @@ public:
     // constructor from data
     LongRangeAdjacency(
         const Labels & labels,
-        const size_t range,
-        const size_t numberOfLabels,
+        const std::size_t range,
+        const std::size_t numberOfLabels,
         const bool ignoreLabel,
         const int numberOfThreads=-1
     ) : range_(range),
@@ -141,7 +141,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
     BaseType::assign(numberOfLabels);
 
     // get the shape, number of slices and slice shapes
-    const size_t nSlices = shape_[0];
+    const std::size_t nSlices = shape_[0];
     Coord2 sliceShape2({shape_[1], shape_[2]});
     Coord sliceShape3({1L, shape_[1], shape_[2]});
 
@@ -227,10 +227,10 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
     // std::cout << "Loop done" << std::endl;
 
     // set up the edge offsets
-    size_t offset = numberOfEdgesInSlice_[0];
+    std::size_t offset = numberOfEdgesInSlice_[0];
     {
         edgeOffset_[0] = 0;
-        for(size_t slice = 1; slice < nSlices-2; ++slice) {
+        for(std::size_t slice = 1; slice < nSlices-2; ++slice) {
             edgeOffset_[slice] = offset;
             offset += numberOfEdgesInSlice_[slice];
         }

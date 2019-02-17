@@ -44,7 +44,7 @@ namespace lifted_multicut{
 
         WatershedProposalGenerator(
             const ObjectiveType & objective, 
-            const size_t numberOfThreads,
+            const std::size_t numberOfThreads,
             const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
@@ -124,7 +124,7 @@ namespace lifted_multicut{
 
         virtual void generateProposal(
             const NodeLabelsType & currentBest,NodeLabelsType & proposal, 
-            const size_t tid
+            const std::size_t tid
         ){
             
             if(negativeEdges_.empty()){
@@ -140,11 +140,11 @@ namespace lifted_multicut{
                 NodeLabelsType  seeds(graph, 0);
 
                 auto nSeeds = settings_.numberOfSeeds <=1.0 ? 
-                    size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
-                    size_t(settings_.numberOfSeeds + 0.5);
+                    std::size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
+                    std::size_t(settings_.numberOfSeeds + 0.5);
 
-                nSeeds = std::max(size_t(1),nSeeds);
-                nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
+                nSeeds = std::max(std::size_t(1),nSeeds);
+                nSeeds = std::min(std::size_t(negativeEdges_.size()-1), nSeeds);
 
 
                 graph.forEachEdge([&](const uint64_t edge){
@@ -152,7 +152,7 @@ namespace lifted_multicut{
                 });
 
 
-                for(size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
+                for(std::size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
                     const auto randIndex = intDist_(gen);
                     const auto edge  = negativeEdges_[randIndex];
                     const auto uv = liftedGraph.uv(edge);
@@ -169,7 +169,7 @@ namespace lifted_multicut{
         }
     private:
         const ObjectiveType & objective_;
-        size_t numberOfThreads_;
+        std::size_t numberOfThreads_;
         SettingsType settings_;
         std::vector<uint64_t> negativeEdges_;
         EdgeWeights graphEdgeWeights_;

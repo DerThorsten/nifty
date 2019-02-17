@@ -32,8 +32,8 @@ namespace ilp_backend{
         PreSolver preSolver{PRE_SOLVER_DEFAULT};
         LPSolver  lpSolver{LP_SOLVER_DEFAULT};
 
-        size_t numberOfThreads{1};
-        size_t verbosity{0};
+        std::size_t numberOfThreads{1};
+        std::size_t verbosity{0};
 
     };  
 

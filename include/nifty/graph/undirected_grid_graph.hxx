@@ -320,7 +320,7 @@ public:
 
             // find the correct affinity edge
             AffinityCoordType affCoord;
-            for(size_t d = 0; d < DIM; ++d) {
+            for(std::size_t d = 0; d < DIM; ++d) {
                 auto diff = cU[d] - cV[d];
                 if(diff == 0) {
                     affCoord[d + 1] = cU[d];
@@ -339,7 +339,7 @@ public:
 
     template<class AFFINITIES, class LOCAL_FEATURES,
              class LIFTED_UVS, class LIFTED_FEATURES>
-    size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
+    std::size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
                                             xt::xexpression<LOCAL_FEATURES> & localFeaturesExp,
                                             xt::xexpression<LIFTED_UVS> & liftedUvsExp,
                                             xt::xexpression<LIFTED_FEATURES> & liftedFeaturesExp,
@@ -353,7 +353,7 @@ public:
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
         }
-        size_t affLen = affinities.shape()[0];
+        std::size_t affLen = affinities.shape()[0];
 
         AffinityCoordType affShape;
         affShape[0] = affLen;
@@ -361,7 +361,7 @@ public:
             affShape[d + 1] = shape(d);
         }
 
-        size_t liftedEdgeId = 0;
+        std::size_t liftedEdgeId = 0;
         tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
             const auto & offset = offsets[affCoord[0]];
             CoordinateType cU, cV;
@@ -375,10 +375,10 @@ public:
                 }
             }
 
-            const size_t u = coordianteToNode(cU);
-            const size_t v = coordianteToNode(cV);
+            const std::size_t u = coordianteToNode(cU);
+            const std::size_t v = coordianteToNode(cV);
 
-            const size_t e = findEdge(u, v);
+            const std::size_t e = findEdge(u, v);
             if(e == -1) {
                 liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
                 liftedUvs(liftedEdgeId, 0) = std::min(u, v);
@@ -394,7 +394,7 @@ public:
 
     template<class AFFINITIES, class LOCAL_FEATURES,
              class LIFTED_UVS, class LIFTED_FEATURES>
-    size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
+    std::size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
                                             LOCAL_FEATURES & localFeatures,
                                             LIFTED_UVS & liftedUvs,
                                             LIFTED_FEATURES & liftedFeatures,
@@ -405,7 +405,7 @@ public:
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
         }
-        size_t affLen = affinities.shape()[0];
+        std::size_t affLen = affinities.shape()[0];
 
         AffinityCoordType affShape;
         affShape[0] = affLen;
@@ -413,7 +413,7 @@ public:
             affShape[d + 1] = shape(d);
         }
 
-        size_t liftedEdgeId = 0;
+        std::size_t liftedEdgeId = 0;
         tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
             const auto & offset = offsets[affCoord[0]];
             CoordinateType cU, cV;
@@ -441,10 +441,10 @@ public:
                 }
             }
 
-            const size_t u = coordianteToNode(cU);
-            const size_t v = coordianteToNode(cV);
+            const std::size_t u = coordianteToNode(cU);
+            const std::size_t v = coordianteToNode(cV);
 
-            const size_t e = findEdge(u, v);
+            const std::size_t e = findEdge(u, v);
             if(e == -1) {
                 liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
                 liftedUvs(liftedEdgeId, 0) = std::min(u, v);

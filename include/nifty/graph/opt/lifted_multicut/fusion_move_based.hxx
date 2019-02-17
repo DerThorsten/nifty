@@ -72,8 +72,8 @@ namespace lifted_multicut{
 
         struct SettingsType{
             std::shared_ptr<ProposalGeneratorFactoryBaseType> proposalGeneratorFactory;
-            size_t numberOfIterations{1000};
-            size_t stopIfNoImprovement{10};
+            std::size_t numberOfIterations{1000};
+            std::size_t stopIfNoImprovement{10};
             int numberOfThreads{1};
         };
 

@@ -30,7 +30,7 @@ namespace ufd {
         // NOTE we need to set the ranks and the elements to the number of elements we would
         // have if the elements were continuous (i.e. max + 1)
         template<class ELEMENTS>
-        BoostUfd(const xt::xexpression<ELEMENTS> & elements, const size_t upper_bound) : n_elements_(elements.derived_cast().size()),
+        BoostUfd(const xt::xexpression<ELEMENTS> & elements, const std::size_t upper_bound) : n_elements_(elements.derived_cast().size()),
                                                                                          upper_bound_(upper_bound),
                                                                                          ranks_(upper_bound_),
                                                                                          parents_(upper_bound_),
@@ -53,13 +53,13 @@ namespace ufd {
         }
 
 
-        inline size_t numberOfElements() const {
+        inline std::size_t numberOfElements() const {
             return n_elements_;
         }
 
     private:
-        size_t n_elements_;
-        size_t upper_bound_;
+        std::size_t n_elements_;
+        std::size_t upper_bound_;
         std::vector<value_type> ranks_;
         std::vector<value_type> parents_;
         boost::disjoint_sets<value_type*, value_type*> sets_;

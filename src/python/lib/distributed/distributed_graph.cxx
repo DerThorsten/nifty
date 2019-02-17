@@ -30,7 +30,7 @@ namespace distributed {
                 OutType out(shape);
                 {
                     py::gil_scoped_release allowThreads;
-                    for(size_t i = 0; i < shape[0]; ++i) {
+                    for(std::size_t i = 0; i < shape[0]; ++i) {
                         out[i] = self.findEdge(uvs[0], uvs[1]);
                     }
                 }
@@ -45,7 +45,7 @@ namespace distributed {
                 {
                     py::gil_scoped_release allowThreads;
                     const auto & edges = self.edges();
-                    size_t edgeId = 0;
+                    std::size_t edgeId = 0;
                     for(const auto edge : edges) {
                         out(edgeId, 0) = edge.first;
                         out(edgeId, 1) = edge.second;
@@ -63,7 +63,7 @@ namespace distributed {
                     std::set<NodeType> nodesTmp;
                     self.nodes(nodesTmp);
 
-                    size_t nodeId = 0;
+                    std::size_t nodeId = 0;
                     for(const auto node : nodesTmp) {
                         nodes(nodeId) = node;
                         ++nodeId;
@@ -93,10 +93,10 @@ namespace distributed {
 
                 {
                     py::gil_scoped_release allowThreads;
-                    for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                    for(std::size_t i = 0; i < innerEdgesVec.size(); ++i) {
                         innerEdges(i) = innerEdgesVec[i];
                     }
-                    for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                    for(std::size_t i = 0; i < outerEdgesVec.size(); ++i) {
                         outerEdges(i) = outerEdgesVec[i];
                     }
 

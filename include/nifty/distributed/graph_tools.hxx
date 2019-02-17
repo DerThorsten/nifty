@@ -21,15 +21,15 @@ namespace distributed {
                                const bool relabelNodes=true) {
         std::vector<NodeType> nodes;
         loadNodes(graphPath, nodes, 0);
-        const size_t nNodes = nodes.size();
+        const std::size_t nNodes = nodes.size();
 
         std::vector<EdgeType> edges;
         loadEdges(graphPath, edges, 0);
-        const size_t nEdges = edges.size();
+        const std::size_t nEdges = edges.size();
 
         if(relabelNodes) {
             g.assign(nNodes, nEdges);
-            for(size_t ii = 0; ii < nNodes; ++ii) {
+            for(std::size_t ii = 0; ii < nNodes; ++ii) {
                 relabeling[nodes[ii]] = ii;
             }
 
@@ -52,8 +52,8 @@ namespace distributed {
     inline void nodeLabelingToPixels(const std::string & labelsPath,
                                      const std::string & outPath,
                                      const xt::xtensor<NodeType, 1> & nodeLabeling,
-                                     const std::vector<size_t> & blockIds,
-                                     const std::vector<size_t> & blockShape) {
+                                     const std::vector<std::size_t> & blockIds,
+                                     const std::vector<std::size_t> & blockShape) {
         // in and out dataset
         auto labelDs = z5::openDataset(labelsPath);
         auto outDs = z5::openDataset(outPath);
@@ -73,7 +73,7 @@ namespace distributed {
             const auto & end = block.end();
 
             // actual block shape and resizeing
-            std::vector<size_t> actualBlockShape(3);
+            std::vector<std::size_t> actualBlockShape(3);
             bool needsResize = false;
             for(unsigned axis = 0; axis < 3; ++axis) {
                 actualBlockShape[axis] = end[axis] - begin[axis];
@@ -87,9 +87,9 @@ namespace distributed {
 
             // get labels and do the mapping
             z5::multiarray::readSubarray<NodeType>(labelDs, labels, begin.begin());
-            for(size_t z = 0; z < actualBlockShape[0]; ++z) {
-                for(size_t y = 0; y < actualBlockShape[1]; ++y) {
-                    for(size_t x = 0; x < actualBlockShape[2]; ++x) {
+            for(std::size_t z = 0; z < actualBlockShape[0]; ++z) {
+                for(std::size_t y = 0; y < actualBlockShape[1]; ++y) {
+                    for(std::size_t x = 0; x < actualBlockShape[2]; ++x) {
                         labels(z, y, x) = nodeLabeling(labels(z, y, x));
                     }
                 }
@@ -107,7 +107,7 @@ namespace distributed {
                                      const CoordType & shape,
                                      const CoordType & blockShape,
                                      const CoordType & newBlockShape,
-                                     const std::vector<size_t> & newBlockIds,
+                                     const std::vector<std::size_t> & newBlockIds,
                                      const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
                                      const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
                                      const std::string & graphOutPrefix,
@@ -124,20 +124,20 @@ namespace distributed {
         nifty::tools::Blocking<3> blocking(roiBegin, shape, blockShape);
         nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
 
-        const size_t numberOfNewBlocks = newBlockIds.size();
+        const std::size_t numberOfNewBlocks = newBlockIds.size();
 
         // serialize the merged sub-graphs
-        const std::vector<size_t> zero1Coord({0});
-        const std::vector<size_t> zero2Coord({0, 0});
+        const std::vector<std::size_t> zero1Coord({0});
+        const std::vector<std::size_t> zero2Coord({0, 0});
         nifty::parallel::parallel_foreach(threadpool,
                                           numberOfNewBlocks, [&](const int tId,
-                                                                 const size_t blockIndex){
-            const size_t blockId = newBlockIds[blockIndex];
+                                                                 const std::size_t blockIndex){
+            const std::size_t blockId = newBlockIds[blockIndex];
             BlockNodeStorage newBlockNodes;
 
             // find the relevant old blocks
             const auto & newBlock = newBlocking.getBlock(blockId);
-            std::vector<size_t> oldBlockIds;
+            std::vector<std::size_t> oldBlockIds;
             blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), oldBlockIds);
 
             // iterate over the old blocks and find all nodes
@@ -163,13 +163,13 @@ namespace distributed {
             z5::createGroup(group, false);
 
             // serialize the new nodes
-            const size_t nNewNodes = newBlockNodes.size();
-            std::vector<size_t> nodeShape = {nNewNodes};
+            const std::size_t nNewNodes = newBlockNodes.size();
+            std::vector<std::size_t> nodeShape = {nNewNodes};
             auto dsNodes = z5::createDataset(group, "nodes", "uint64",
                                              nodeShape, nodeShape, false);
             Shape1Type nodeSerShape = {nNewNodes};
             Tensor1 nodeSer(nodeSerShape);
-            size_t i = 0;
+            std::size_t i = 0;
             for(const auto node : newBlockNodes) {
                 nodeSer(i) = node;
                 ++i;
@@ -201,7 +201,7 @@ namespace distributed {
                 loadEdgeIndices(blockPath, subEdgeIds, 0);
 
                 // map edges and edge ids to the merged graph and serialize
-                for(size_t ii = 0; ii < subEdges.size(); ++ii) {
+                for(std::size_t ii = 0; ii < subEdges.size(); ++ii) {
                     const auto newEdgeId = edgeLabeling(subEdgeIds[ii]);
                     if(newEdgeId != -1) {
                         const EdgeType & uv = subEdges[ii];
@@ -212,7 +212,7 @@ namespace distributed {
                 }
             }
 
-            const size_t nNewEdges = newEdges.size();
+            const std::size_t nNewEdges = newEdges.size();
             // serialize the new edges and the new edge ids
             if(nNewEdges > 0) {
 
@@ -222,7 +222,7 @@ namespace distributed {
                 Shape1Type edgeIdSerShape = {nNewEdges};
                 Tensor1 edgeIdSer(edgeIdSerShape);
 
-                size_t i = 0;
+                std::size_t i = 0;
                 for(const auto & edge : newEdges) {
                     edgeIdSer(i) = edge.first;
                     edgeSer(i, 0) = edge.second.first;
@@ -231,13 +231,13 @@ namespace distributed {
                 }
 
                 // serialize the edges
-                std::vector<size_t> edgeShape = {nNewEdges, 2};
+                std::vector<std::size_t> edgeShape = {nNewEdges, 2};
                 auto dsEdges = z5::createDataset(group, "edges", "uint64",
                                                  edgeShape, edgeShape, false);
                 z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
 
                 // serialize the edge ids
-                std::vector<size_t> edgeIdShape = {nNewEdges};
+                std::vector<std::size_t> edgeIdShape = {nNewEdges};
                 auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64",
                                                    edgeIdShape, edgeIdShape, false);
                 z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer,
@@ -249,8 +249,8 @@ namespace distributed {
             attrs["numberOfNodes"] = nNewNodes;
             attrs["numberOfEdges"] = nNewEdges;
             // TODO ideally we would get the rois from the prev. graph block too, but I am too lazy right now
-            // attrs["roiBegin"] = std::vector<size_t>(roiBegin.begin(), roiBegin.end());
-            // attrs["roiEnd"] = std::vector<size_t>(roiEnd.begin(), roiEnd.end());
+            // attrs["roiBegin"] = std::vector<std::size_t>(roiBegin.begin(), roiBegin.end());
+            // attrs["roiEnd"] = std::vector<std::size_t>(roiEnd.begin(), roiEnd.end());
             z5::writeAttributes(group, attrs);
         });
     }
@@ -264,7 +264,7 @@ namespace distributed {
                                          const std::string & graphBlockPrefix,
                                          const CoordType & shape,
                                          const CoordType & blockShape,
-                                         const size_t startBlockId,
+                                         const std::size_t startBlockId,
                                          std::vector<EdgeType> & uvIdsOut,
                                          std::vector<EdgeIndexType> & innerEdgesOut,
                                          std::vector<EdgeIndexType> & outerEdgesOut) {
@@ -277,7 +277,7 @@ namespace distributed {
         // find all blocks that have overlap with the nodes
         // beginning from the start block id and adding all neighbors, until nodes are no
         // longer present
-        std::vector<size_t> blockVector = {startBlockId};
+        std::vector<std::size_t> blockVector = {startBlockId};
         std::unordered_set<int64_t> blocksProcessed;
         blocksProcessed.insert(startBlockId);
 
@@ -340,7 +340,7 @@ namespace distributed {
         for(auto block : blockVector) {
             blockList.emplace_back(graphBlockPrefix + std::to_string(block));
         }
-        std::set<size_t> unBlocks(blockVector.begin(), blockVector.end());
+        std::set<std::size_t> unBlocks(blockVector.begin(), blockVector.end());
 
         std::vector<EdgeIndexType> edgeIds;
         const Graph g(blockList, edgeIds);
@@ -350,7 +350,7 @@ namespace distributed {
 
         // first find the mapping to dense node index
         std::unordered_map<NodeType, NodeType> nodeMapping;
-        for(size_t i = 0; i < nodes.size(); ++i) {
+        for(std::size_t i = 0; i < nodes.size(); ++i) {
             nodeMapping[nodes(i)] = i;
         }
 
@@ -390,7 +390,7 @@ namespace distributed {
         graph.nodes(nodes);
 
         // we need the number of nodes if nodes were dense
-        const size_t nNodes = graph.nodeMaxId() + 1;
+        const std::size_t nNodes = graph.nodeMaxId() + 1;
 
         // make union find
         std::vector<NodeType> rank(nNodes);

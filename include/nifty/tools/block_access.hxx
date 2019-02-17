@@ -32,7 +32,7 @@ public:
     :   arrayVec_(numberOfBlocks),
         zeroCoord_(maxShape.size(),0)
     {
-        std::vector<size_t> arrayShape(maxShape.begin(), maxShape.end());
+        std::vector<std::size_t> arrayShape(maxShape.begin(), maxShape.end());
         nifty::parallel::parallel_foreach(threadpool, numberOfBlocks, [&](const int tid, const int i){
             arrayVec_[i] = ArrayType(arrayShape);
         });

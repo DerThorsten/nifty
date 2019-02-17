@@ -59,7 +59,7 @@ public:
             : coordinates_(_coordinates){
             }
             //
-            std::array<ValueType, 2> operator[](const size_t i)const{
+            std::array<ValueType, 2> operator[](const std::size_t i)const{
                 std::array<ValueType,2> ret;
                 ret[0] = coordinates_(i, 0);
                 ret[1] = coordinates_(i, 1);
@@ -72,7 +72,7 @@ public:
             OutAdaptor(ARR1 & _out)
             : out_(_out){
             }
-            T1 & operator[](const size_t i) {
+            T1 & operator[](const std::size_t i) {
                 return out_(i);
             }
             ARR1 & out_;
@@ -103,7 +103,7 @@ private:
     void impl(
         COORD_ITER coordsBegin,
         OUT_ITER   outIter,
-        const size_t size,
+        const std::size_t size,
         const bool closedLine
     ) const {
 
@@ -112,7 +112,7 @@ private:
         struct CoordinateExtrapolator{
             CoordinateExtrapolator(
                 const COORD_ITER & _coordinates,
-                const size_t s
+                const std::size_t s
             ):  coordinates_(_coordinates),
                 size_(s)
             {
@@ -147,7 +147,7 @@ private:
             }
 
             const COORD_ITER & coordinates_;
-            size_t size_;
+            std::size_t size_;
             std::array<ValueType,2>  dLow_;
             std::array<ValueType,2>  dHigh_;
         };

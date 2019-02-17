@@ -35,11 +35,11 @@ namespace features{
         typedef std::integral_constant<int, 1>  NPasses;
         typedef std::integral_constant<int, 11> NFeatures;
 
-        DefaultAccumulatedStatistics(const size_t rightTailCacheSize = 1000)
+        DefaultAccumulatedStatistics(const std::size_t rightTailCacheSize = 1000)
         :   acc_(bacc::right_tail_cache_size = rightTailCacheSize){
 
         }
-        DefaultAccumulatedStatistics & acc(const T & val, const size_t pass=0){
+        DefaultAccumulatedStatistics & acc(const T & val, const std::size_t pass=0){
             acc_(val);
             return *this;
         }
@@ -66,10 +66,10 @@ namespace features{
 
         }
 
-        size_t requiredPasses()const{
+        std::size_t requiredPasses()const{
             return 1;
         }
-        size_t nFeatures()const{
+        std::size_t nFeatures()const{
             return NFeatures::value;
         }
     private:

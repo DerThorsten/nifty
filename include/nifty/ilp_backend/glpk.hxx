@@ -19,7 +19,7 @@ public:
     Glpk(const SettingsType & settings = SettingsType());
     ~Glpk();
 
-    void initModel(const size_t, const double*);
+    void initModel(const std::size_t, const double*);
 
     template<class Iterator>
     void setStart(Iterator);
@@ -29,7 +29,7 @@ public:
                            CoefficientIterator, const double, const double);
     void optimize();
 
-    double label(const size_t) const;
+    double label(const std::size_t) const;
 
     static std::string name(){
         return std::string("Glpk");
@@ -43,7 +43,7 @@ public:
 
 private:
     SettingsType settings_;
-    size_t nVariables_;
+    std::size_t nVariables_;
 
     glp_prob * lp;
 
@@ -72,7 +72,7 @@ Glpk::~Glpk() {
 
 inline void
 Glpk::initModel(
-    const size_t numberOfVariables,
+    const std::size_t numberOfVariables,
     const double* coefficients
 ) {
 
@@ -88,7 +88,7 @@ Glpk::initModel(
     glp_add_cols(lp, nVariables_);
 
     //std::cout<<"set coeffs\n";
-    for(size_t i=0; i<nVariables_; ++i){
+    for(std::size_t i=0; i<nVariables_; ++i){
         glp_set_obj_coef(lp, i+1, coefficients[i]);
 
         // set bounds
@@ -123,7 +123,7 @@ Glpk::optimize() {
 
 inline double
 Glpk::label(
-    const size_t variableIndex
+    const std::size_t variableIndex
 ) const {
     //std::cout<<"get label\n";
     auto val = glp_mip_col_val  (lp, variableIndex+1);
@@ -155,7 +155,7 @@ Glpk::addConstraint(
     std::vector<double> coeffs(nVar+1);
 
     //indices.assign(viBegin, viEnd);
-    for(size_t i=0; i<nVar; ++i){
+    for(std::size_t i=0; i<nVar; ++i){
         indices[i+1] = viBegin[i]+1;
         coeffs[i+1] = coefficient[i];
         //std::cout<<" "<<indices[i+1]<<"\n";

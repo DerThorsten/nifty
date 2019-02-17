@@ -23,14 +23,14 @@ namespace nz5 {
         typedef T ValueType;
         typedef xt::xtensor<ValueType, 3> ArrayType;
         typedef typename ArrayType::shape_type ShapeType;
-        std::vector<size_t> zeroCoord = {0, 0, 0};
+        std::vector<std::size_t> zeroCoord = {0, 0, 0};
 
         parallel::ThreadPool tp(numberOfThreads);
 
         auto dsIn = z5::openDataset(inPath);
         const auto & smallShape = dsIn->shape();
-        const size_t nPix = std::accumulate(smallShape.begin(), smallShape.end(), 1, std::multiplies<size_t>());
-        const std::vector<size_t> strides = {smallShape[2] * smallShape[1], smallShape[2], 1};
+        const std::size_t nPix = std::accumulate(smallShape.begin(), smallShape.end(), 1, std::multiplies<std::size_t>());
+        const std::vector<std::size_t> strides = {smallShape[2] * smallShape[1], smallShape[2], 1};
 
         // read all the input data
         ShapeType arrayShape = {smallShape[0], smallShape[1], smallShape[2]};
@@ -40,22 +40,22 @@ namespace nz5 {
         auto dsOut = z5::openDataset(outPath);
         const auto & shape = dsOut->shape();
         const auto & chunkShape = dsOut->maxChunkShape();
-        const size_t nChunks = dsOut->numberOfChunks();
+        const std::size_t nChunks = dsOut->numberOfChunks();
 
         const auto & chunksPerDimension = dsOut->chunksPerDimension();
-        const std::vector<size_t> chunkStrides = {chunksPerDimension[1] * chunksPerDimension[2], chunksPerDimension[2], 1};
+        const std::vector<std::size_t> chunkStrides = {chunksPerDimension[1] * chunksPerDimension[2], chunksPerDimension[2], 1};
 
-        std::unordered_map<size_t, ArrayType> chunkStorage;
-        std::vector<size_t> chunkProgress(nChunks, 0);
+        std::unordered_map<std::size_t, ArrayType> chunkStorage;
+        std::vector<std::size_t> chunkProgress(nChunks, 0);
 
         std::mutex m;
 
         // std::cout << "Here !" << std::endl;
-        parallel::parallel_foreach(tp, nPix, [&](const int tId, const size_t pixId){
+        parallel::parallel_foreach(tp, nPix, [&](const int tId, const std::size_t pixId){
             // find the coordinates
-            size_t index = pixId;
-            size_t posAtAxis;
-            std::vector<size_t> coord(3);
+            std::size_t index = pixId;
+            std::size_t posAtAxis;
+            std::vector<std::size_t> coord(3);
             for(unsigned d = 0; d < 3; ++d) {
                 posAtAxis = index / strides[d];
                 index -= posAtAxis * strides[d];
@@ -66,14 +66,14 @@ namespace nz5 {
             const ValueType val = data(coord[0], coord[1], coord[2]);
 
             // upsample the coordinates
-            std::vector<size_t> pixBegin(3), pixShape(3);
+            std::vector<std::size_t> pixBegin(3), pixShape(3);
             for(unsigned d = 0; d < 3; ++d) {
                 pixBegin[d] = coord[d] * samplingFactor[d];
-                const size_t pixEnd = std::min((coord[d] + 1) * samplingFactor[d], shape[d]);
+                const std::size_t pixEnd = std::min((coord[d] + 1) * samplingFactor[d], shape[d]);
                 pixShape[d] = pixEnd - pixBegin[d];
             }
 
-            std::vector<std::vector<size_t>> chunkIds;
+            std::vector<std::vector<std::size_t>> chunkIds;
             const auto & chunking = dsOut->chunking();
             chunking.getBlocksOverlappingRoi(pixBegin, pixShape, chunkIds);
 
@@ -81,14 +81,14 @@ namespace nz5 {
             for(const auto & chunkId : chunkIds) {
                 // std::cout << "CCC" << std::endl;
                 // see if the chunk is already in the storage
-                const size_t chunkIndex = chunkId[0] * chunkStrides[0] + chunkId[1] * chunkStrides[1] + chunkId[2] * chunkStrides[2];
+                const std::size_t chunkIndex = chunkId[0] * chunkStrides[0] + chunkId[1] * chunkStrides[1] + chunkId[2] * chunkStrides[2];
                 auto chunkIt = chunkStorage.begin();
                 {
                     std::lock_guard<std::mutex> lock(m);
                     chunkIt = chunkStorage.find(chunkIndex);
                     // if it isn't, make the chunk array
                     if(chunkIt == chunkStorage.end()) {
-                        std::vector<size_t> chunkShape;
+                        std::vector<std::size_t> chunkShape;
                         dsOut->getChunkShape(chunkId, chunkShape);
                         ShapeType arrayShape = {chunkShape[0], chunkShape[1], chunkShape[2]};
                         chunkIt = chunkStorage.emplace(chunkIndex, ArrayType(arrayShape)).first;
@@ -97,7 +97,7 @@ namespace nz5 {
                 // std::cout << "CCC " << chunkIndex << std::endl;
 
                 // find the local coordinates in the chunk and write the value and mask
-                std::vector<size_t> offsetInRequest, shapeInRequest, offsetInChunk;
+                std::vector<std::size_t> offsetInRequest, shapeInRequest, offsetInChunk;
                 // std::cout << "C1" << std::endl;
                 chunking.getCoordinatesInRoi(chunkId, pixBegin, pixShape,
                                              offsetInRequest, shapeInRequest, offsetInChunk);
@@ -117,8 +117,8 @@ namespace nz5 {
 
                 // std::cout << "DDD" << std::endl;
                 // check if the chunk is complete and write out if it is
-                const size_t requestSize = std::accumulate(shapeInRequest.begin(), shapeInRequest.end(), 1, std::multiplies<size_t>());
-                const size_t totalSize = dsOut->getChunkSize(chunkId);
+                const std::size_t requestSize = std::accumulate(shapeInRequest.begin(), shapeInRequest.end(), 1, std::multiplies<std::size_t>());
+                const std::size_t totalSize = dsOut->getChunkSize(chunkId);
                 bool chunkFinished = false;
                 {
                     std::lock_guard<std::mutex> lock(m);
@@ -146,7 +146,7 @@ namespace nz5 {
     inline void intersectMasks(const std::string & maskAPath,
                                const std::string & maskBPath,
                                const std::string & outPath,
-                               const std::vector<size_t> & blockShape,
+                               const std::vector<std::size_t> & blockShape,
                                const int numberOfThreads) {
         typedef nifty::array::StaticArray<int64_t, 3> CoordType;
         typedef xt::xtensor<uint8_t, 3> ArrayType;
@@ -177,9 +177,9 @@ namespace nz5 {
 
             // intersect the mask 
             // TODO maskB should not be hard-coded to be inverted
-            for(size_t z = 0; z < thisShape[0]; ++z) {
-                for(size_t y = 0; y < thisShape[1]; ++y) {
-                    for(size_t x = 0; x < thisShape[2]; ++x) {
+            for(std::size_t z = 0; z < thisShape[0]; ++z) {
+                for(std::size_t y = 0; y < thisShape[1]; ++y) {
+                    for(std::size_t x = 0; x < thisShape[2]; ++x) {
                         arrayA(z, y, x) = arrayA(z, y, x) | (!arrayB(z, y, x));
                     }
                 }

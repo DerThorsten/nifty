@@ -69,7 +69,7 @@ namespace lifted_multicut{
 
         struct SettingsType{
 
-            size_t numberOfIterations{0};
+            std::size_t numberOfIterations{0};
             int verbose { 0 };
             bool verboseIlp{false};
             bool addThreeCyclesConstraints{true};
@@ -123,7 +123,7 @@ namespace lifted_multicut{
         void repairSolution(NodeLabelsType & nodeLabels);
 
 
-        size_t addViolatedInequalities(const bool searchForCutConstraitns, VisitorProxyType & visitor);
+        std::size_t addViolatedInequalities(const bool searchForCutConstraitns, VisitorProxyType & visitor);
         void addThreeCyclesConstraintsExplicitly();
 
         const ObjectiveType & objective_;
@@ -139,11 +139,11 @@ namespace lifted_multicut{
         BidirectionalBreadthFirstSearch<GraphType> bibfs_;
         DfsType dfs_;
         SettingsType settings_;
-        std::vector<size_t> variables_;
+        std::vector<std::size_t> variables_;
         std::vector<double> coefficients_;
         NodeLabelsType * currentBest_;
-        size_t addedConstraints_;
-        size_t numberOfOptRuns_;
+        std::size_t addedConstraints_;
+        std::size_t numberOfOptRuns_;
     };
 
     
@@ -214,7 +214,7 @@ namespace lifted_multicut{
             ilpSolver_->setStart(edgeLabelIter);
 
 
-            size_t i=0;
+            std::size_t i=0;
             for (  ; settings_.numberOfIterations == 0 || i < settings_.numberOfIterations; ++i){
 
 
@@ -281,7 +281,7 @@ namespace lifted_multicut{
     }
 
     template<class OBJECTIVE, class ILP_SOLVER>
-    size_t LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
+    std::size_t LiftedMulticutIlp<OBJECTIVE, ILP_SOLVER>::
     addViolatedInequalities(
         const bool searchForCutConstraitns,
         VisitorProxyType & visitorProxy
@@ -295,8 +295,8 @@ namespace lifted_multicut{
 
         // search for violated non-chordal cycles and add corresp. inequalities
         // and for violated cut constraints
-        size_t nCycleConstraints = 0;
-        size_t nCutConstraints = 0;
+        std::size_t nCycleConstraints = 0;
+        std::size_t nCutConstraints = 0;
 
         // we iterate over edges and the corresponding lpEdge 
         // for a graph with dense contiguous edge ids the lpEdge 
@@ -324,7 +324,7 @@ namespace lifted_multicut{
                 }
 
                 if(chordless){
-                    for (size_t j = 0; j < sz - 1; ++j){
+                    for (std::size_t j = 0; j < sz - 1; ++j){
                         const auto v = denseIds_[liftedGraph_.findEdge(path[j], path[j + 1])];
                         NIFTY_ASSERT_OP(v,<,liftedGraph_.numberOfEdges());
                         variables_[j] = v;
@@ -435,7 +435,7 @@ namespace lifted_multicut{
     addThreeCyclesConstraintsExplicitly(
     ){
         
-        std::array<size_t, 3> variables;
+        std::array<std::size_t, 3> variables;
         std::array<double, 3> coefficients;
         auto threeCycles = findThreeCyclesEdges(graph_);
         auto c = 0;

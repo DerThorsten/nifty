@@ -58,8 +58,8 @@ namespace cgp{
 
             pyCls
             .def(
-                py::init< const std::vector<size_t> &>(),
-                py::arg("dists")  =  std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
+                py::init< const std::vector<std::size_t> &>(),
+                py::arg("dists")  =  std::vector<std::size_t>({std::size_t(3),std::size_t(5),std::size_t(7)})
             )
             .def("__call__",
                 [](

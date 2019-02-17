@@ -97,7 +97,7 @@ namespace graph{
         const LABELS_PROXY & labels,
         const int64_t zUp,
         const int64_t zDn,
-        std::map<size_t, std::vector<NODE_TYPE>> & defectNodes,
+        std::map<std::size_t, std::vector<NODE_TYPE>> & defectNodes,
         const marray::View<NODE_TYPE> & segDn,
         const std::vector<NODE_TYPE> & nodesDn,
         std::map<NODE_TYPE,std::vector<array::StaticArray<int64_t,2>>> & coordsToNodesDn,
@@ -105,7 +105,7 @@ namespace graph{
         std::map<int64_t,
             std::unique_ptr<marray::Marray<NODE_TYPE>>> & upperSegMap,
         std::vector<std::pair<NODE_TYPE,NODE_TYPE>> & skipEdges,
-        std::vector<size_t> & skipRanges
+        std::vector<std::size_t> & skipRanges
     ){
         typedef NODE_TYPE NodeType;
         typedef array::StaticArray<int64_t, 3> Coord;
@@ -114,7 +114,7 @@ namespace graph{
         skipEdges.clear();
         skipRanges.clear();
 
-        size_t skipRange = zUp - zDn;
+        std::size_t skipRange = zUp - zDn;
 
         // read the upper segmentation
         auto upperSegIt = upperSegMap.find(zUp);
@@ -180,11 +180,11 @@ namespace graph{
     void getSkipEdgesForSlice(
         const GridRagStacked2D<LABELS_PROXY> & rag,
         const int64_t z,
-        std::map<size_t,std::vector<NODE_TYPE>> & defectNodes,
+        std::map<std::size_t,std::vector<NODE_TYPE>> & defectNodes,
         std::vector<EDGE_TYPE> & deleteEdges, // ref to outvec
         std::vector<EDGE_TYPE> & ignoreEdges, // ref to outvec
         std::vector<std::pair<NODE_TYPE,NODE_TYPE>> & skipEdges, // skip edges, ref to outvec
-        std::vector<size_t> & skipRanges, // skip ranges,ref to outvec
+        std::vector<std::size_t> & skipRanges, // skip ranges,ref to outvec
         const bool lowerIsCompletelyDefected = false
     ){
 
@@ -248,7 +248,7 @@ namespace graph{
 
         std::vector<Coord2> coordsUPrev;
 
-        for(size_t i = 0; i < defectNodesZ.size(); ++i) {
+        for(std::size_t i = 0; i < defectNodesZ.size(); ++i) {
 
             auto u = defectNodesZ[i];
 
@@ -309,7 +309,7 @@ namespace graph{
                 tools::valuesToCoordinatesWithCoordinates<2,NodeType>(segDn, coordsU, coordsToNodesDn);
 
                 std::vector<std::pair<NodeType,NodeType>> skipEdgesU;
-                std::vector<size_t> skipRangesU;
+                std::vector<std::size_t> skipRangesU;
 
                 getSkipEdgesForNode(
                     labelsProxy,

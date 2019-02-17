@@ -100,21 +100,21 @@ namespace multicut{
             // multicut factory for the primal rounder used in lp_mp
             std::shared_ptr<McFactoryBase> mcFactory;
             // settings for the lp_mp solver
-            size_t numberOfIterations{1000};
+            std::size_t numberOfIterations{1000};
             int verbose{0};
-            size_t primalComputationInterval{100};
+            std::size_t primalComputationInterval{100};
             std::string standardReparametrization{"anisotropic"};
             std::string roundingReparametrization{"damped_uniform"};
             std::string tightenReparametrization{"damped_uniform"};
             bool tighten{true};
-            size_t tightenInterval{100};
-            size_t tightenIteration{10};
+            std::size_t tightenInterval{100};
+            std::size_t tightenIteration{10};
             double tightenSlope{0.02};
             double tightenConstraintsPercentage{0.1};
             double minDualImprovement{0.};
-            size_t minDualImprovementInterval{0};
-            size_t timeout{0};
-            size_t numberOfThreads{1};
+            std::size_t minDualImprovementInterval{0};
+            std::size_t timeout{0};
+            std::size_t numberOfThreads{1};
         };
 
         virtual ~MulticutMp(){
@@ -148,7 +148,7 @@ namespace multicut{
 
         SettingsType settings_;
         NodeLabelsType * currentBest_;
-        size_t numberOfOptRuns_;
+        std::size_t numberOfOptRuns_;
         SolverType * mpSolver_;
         ufd::Ufd<uint64_t> ufd_;
     };

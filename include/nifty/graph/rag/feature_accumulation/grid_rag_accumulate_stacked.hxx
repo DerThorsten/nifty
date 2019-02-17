@@ -524,7 +524,7 @@ namespace graph{
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
         // use chunked or non-chunkeda accumulation
         if(tools::isChunked(edgeFeaturesOutXY)) {
@@ -553,8 +553,8 @@ namespace graph{
             // general accumulator function
             // chunking aware
             auto accFunction = [](const std::vector<AccChainType> & edgeAccChainVec,
-                                  const size_t sliceId,
-                                  const size_t edgeOffset,
+                                  const std::size_t sliceId,
+                                  const std::size_t edgeOffset,
                                   OUTPUT & edgeFeaturesOut,
                                   OverhangStorage & storageFront,
                                   OverhangStorage & storageBack){
@@ -611,8 +611,8 @@ namespace graph{
 
                     // write correct data ti the storage
                     auto & storageFeats = storage.features;
-                    std::array<size_t, 2> storageBegin{0, 0};
-                    std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
+                    std::array<std::size_t, 2> storageBegin{0, 0};
+                    std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                     storageFeats.resize(storageShape);
 
                     xt::slice_vector slice;
@@ -633,8 +633,8 @@ namespace graph{
 
                     // write correct data ti the storage
                     auto & storageFeats = storage.features;
-                    std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
-                    std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
+                    std::array<std::size_t, 2> storageBegin{(std::size_t)edgeEndAlignedLocal, 0};
+                    std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                     storageFeats.resize(storageShape);
 
                     xt::slice_vector slice;
@@ -689,7 +689,7 @@ namespace graph{
             // accumulator function
             // no chunk support
             auto accFunction = [](const std::vector<AccChainType> & edgeAccChainVec,
-                                  const size_t sliceId,
+                                  const std::size_t sliceId,
                                   const uint64_t edgeOffset,
                                   OUTPUT & edgeFeaturesOut){
 
@@ -747,16 +747,16 @@ namespace graph{
     template<class LABELS_PROXY>
     void getSkipEdgeLengths(
         const GridRagStacked2D<LABELS_PROXY> & rag,
-        std::vector<size_t> & out, // TODO call by ref or call by val ?
+        std::vector<std::size_t> & out, // TODO call by ref or call by val ?
         const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-        const std::vector<size_t> & skipRanges,
-        const std::vector<size_t> & skipStarts,
+        const std::vector<std::size_t> & skipRanges,
+        const std::vector<std::size_t> & skipStarts,
         const int numberOfThreads = -1
     ){
         // threadpool
         nifty::parallel::ParallelOptions pOpts(numberOfThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
         getSkipEdgeLengthsImpl(rag, out, skipEdges, skipRanges, skipStarts, pOpts, threadpool);
     }
 
@@ -764,10 +764,10 @@ namespace graph{
     template<class LABELS_PROXY>
     void getSkipEdgeLengthsImpl(
         const GridRagStacked2D<LABELS_PROXY> & rag,
-        std::vector<size_t> & out,
+        std::vector<std::size_t> & out,
         const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-        const std::vector<size_t> & skipRanges,
-        const std::vector<size_t> & skipStarts,
+        const std::vector<std::size_t> & skipRanges,
+        const std::vector<std::size_t> & skipStarts,
         const parallel::ParallelOptions & pOpts,
         parallel::ThreadPool & threadpool
     ){
@@ -779,9 +779,9 @@ namespace graph{
         typedef array::StaticArray<int64_t, 2> Coord2;
 
         typedef std::pair<uint64_t,uint64_t> SkipEdgeStorage;
-        typedef std::vector<size_t> EdgeLenVector;
+        typedef std::vector<std::size_t> EdgeLenVector;
 
-        const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+        const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
         const auto & shape = rag.shape();
         const auto & labelsProxy = rag.labelsProxy();
@@ -793,23 +793,23 @@ namespace graph{
         LabelBlockStorage labelsBStorage(threadpool, sliceShape3, 1);
 
         // get unique lower slices with skip edges
-        std::vector<size_t> lowerSlices;
+        std::vector<std::size_t> lowerSlices;
         tools::uniques(skipStarts, lowerSlices);
         auto lowest = int64_t(lowerSlices[0]);
 
         // get upper slices with skip edges for each lower slice and number of skip edges for each lower slice
-        std::map<size_t,std::vector<size_t>> skipSlices;
-        std::map<size_t,size_t> numberOfSkipEdgesPerSlice;
+        std::map<std::size_t,std::vector<std::size_t>> skipSlices;
+        std::map<std::size_t,std::size_t> numberOfSkipEdgesPerSlice;
         // initialize the maps
         for(auto sliceId : lowerSlices) {
-            skipSlices[sliceId] = std::vector<size_t>();
+            skipSlices[sliceId] = std::vector<std::size_t>();
             numberOfSkipEdgesPerSlice[sliceId] = 0;
         }
 
         // determine the number of skip edges starting from each slice
         // and fill the conversion of uv-ids to edge-id
-        std::map<SkipEdgeStorage, size_t> skipUvsToIds;
-        for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
+        std::map<SkipEdgeStorage, std::size_t> skipUvsToIds;
+        for(std::size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
 
             // find the source slice of this skip edge and increment the number of edges in the slice
             auto sliceId = skipStarts[skipId];
@@ -826,7 +826,7 @@ namespace graph{
         }
 
         int countSlice = 0;
-        size_t skipEdgeOffset = 0;
+        std::size_t skipEdgeOffset = 0;
         for(auto sliceId : lowerSlices) {
 
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
@@ -884,7 +884,7 @@ namespace graph{
             parallel::parallel_foreach(threadpool, skipEdgesInSlice, [&](const int tid, const int64_t skipId){
 
                 auto & outData = out[skipId + skipEdgeOffset];
-                for(size_t t = 0; t < actualNumberOfThreads; ++t) {
+                for(std::size_t t = 0; t < actualNumberOfThreads; ++t) {
                     auto & threadData = perThreadData[t];
                     outData += threadData[skipId];
                 }

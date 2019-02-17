@@ -18,7 +18,7 @@ namespace nifty{
 namespace graph{
 
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     void exportUndirectedGridGraphT(py::module & module) {
 
         typedef UndirectedGridGraph<DIM,true> GraphType;

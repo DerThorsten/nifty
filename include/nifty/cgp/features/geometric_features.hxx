@@ -29,7 +29,7 @@ namespace cgp{
 
         }
 
-        size_t numberOfFeatures()const{
+        std::size_t numberOfFeatures()const{
             return sigmas_.size() * AccType::NFeatures::value;
         }
 
@@ -130,13 +130,13 @@ namespace cgp{
         typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
         Cell1LineSegmentDist2D(
-            const std::vector<size_t> & dists = std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
+            const std::vector<std::size_t> & dists = std::vector<std::size_t>({std::size_t(3),std::size_t(5),std::size_t(7)})
         )
         :   dists_(dists)
         {
         }
 
-        size_t numberOfFeatures()const{
+        std::size_t numberOfFeatures()const{
             return  dists_.size()*AccType::NFeatures::value;
         }
 
@@ -229,7 +229,7 @@ namespace cgp{
             }
         }
     private:
-        std::vector<size_t> dists_;
+        std::vector<std::size_t> dists_;
     };
 
 
@@ -240,7 +240,7 @@ namespace cgp{
         Cell1BasicGeometricFeatures2D(){
         }
 
-        size_t numberOfFeatures()const{
+        std::size_t numberOfFeatures()const{
             return 4 * 4 +  2*AccType::NFeatures::value + 4;
         }
 
@@ -410,7 +410,7 @@ namespace cgp{
             }
         }
     private:
-        std::vector<size_t> dists_;
+        std::vector<std::size_t> dists_;
     };
 
 
@@ -420,13 +420,13 @@ namespace cgp{
         typedef nifty::features::DefaultAccumulatedStatistics<float> AccType;
     public:
         GeometricAccumulator(
-            const std::vector<size_t> & dists  = std::vector<size_t>({size_t(3),size_t(5),size_t(7)})
+            const std::vector<std::size_t> & dists  = std::vector<std::size_t>({std::size_t(3),std::size_t(5),std::size_t(7)})
         )
         :   dists_(dists)
         {
         }
 
-        size_t numberOfFeatures()const{
+        std::size_t numberOfFeatures()const{
             return  dists_.size()*AccType::NFeatures::value;
         }
 
@@ -448,7 +448,7 @@ namespace cgp{
             }
         }
     private:
-        std::vector<size_t> dists_;
+        std::vector<std::size_t> dists_;
     };
     */
 }

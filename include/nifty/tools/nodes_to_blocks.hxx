@@ -34,7 +34,7 @@ namespace tools{
         nifty::parallel::ParallelOptions pOpts(nThreads);
         nifty::parallel::ThreadPool threadpool(pOpts);
 
-        size_t nBlocks = blocking.numberOfBlocks();
+        std::size_t nBlocks = blocking.numberOfBlocks();
         out.resize(nBlocks);
 
         const auto & shape = segmentation.shape();
@@ -70,7 +70,7 @@ namespace tools{
                 const auto block = blocking.getBlockWithHalo(blockId, internalHalo).outerBlock();
                 const auto & blockBegin3d = block.begin();
                 const auto & blockShape3d = block.shape();
-                size_t expSize = 1;
+                std::size_t expSize = 1;
                 for(int d = 0; d < 2; ++d) {
                     blockBegin[d] = blockBegin3d[d+1];
                     blockShape[d] = blockShape3d[d+1];

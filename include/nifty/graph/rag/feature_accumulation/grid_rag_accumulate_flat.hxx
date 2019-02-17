@@ -125,7 +125,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType;
 
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labels = rag.labels();
@@ -259,7 +259,7 @@ void accumulateEdgeFeaturesFlatWithAccChain(
 
 
 // 9 features
-template<size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
+template<std::size_t DIM, class LABELS, class DATA, class FEATURE_TYPE>
 void accumulateEdgeFeaturesFlat(
     const GridRag<DIM, LABELS> & rag,
     const DATA & data,
@@ -291,7 +291,7 @@ void accumulateEdgeFeaturesFlat(
     // threadpool
     nifty::parallel::ParallelOptions pOpts(numberOfThreads);
     nifty::parallel::ThreadPool threadpool(pOpts);
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     accumulateEdgeFeaturesFlatWithAccChain<AccChainType>(
         rag,

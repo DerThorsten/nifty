@@ -22,8 +22,8 @@ namespace cgp{
 
 
     template<
-        size_t DIM,
-        size_t CELL_TYPE,
+        std::size_t DIM,
+        std::size_t CELL_TYPE,
         class CLS
     >
     void exportCellBoundsT(py::module & m, py::class_<CLS> & pyCls) {
@@ -57,11 +57,11 @@ namespace cgp{
             clsVec
                 .def("__array__",[](const Cells0BoundsVector2D & self){
                     xt::pytensor<uint32_t, 2> ret({int64_t(self.size()), 4L});
-                    for(size_t ci=0 ;ci<self.size(); ++ci){
-                        for(size_t i=0; i<self[ci].size(); ++i){
+                    for(std::size_t ci=0 ;ci<self.size(); ++ci){
+                        for(std::size_t i=0; i<self[ci].size(); ++i){
                             ret(ci,i) = self[ci][i];
                         }
-                        for(size_t i=self[ci].size(); i<4; ++i){
+                        for(std::size_t i=self[ci].size(); i<4; ++i){
                             ret(ci,i) = 0;
                         }
                     }
@@ -122,7 +122,7 @@ namespace cgp{
                     return ret;
                 })
                 .def("cellsWithCertainBoundedBySize",[](const Cell1BoundedByVector2D & self,
-                                                        const size_t size){
+                                                        const std::size_t size){
 
                     std::vector<uint32_t>  cell1Labels;
 

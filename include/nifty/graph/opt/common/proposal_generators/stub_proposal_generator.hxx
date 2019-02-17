@@ -34,7 +34,7 @@ namespace common{
 
         StubProposalGenerator(
             const ObjectiveType & objective, 
-            const size_t numberOfThreads,
+            const std::size_t numberOfThreads,
             const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
@@ -51,13 +51,13 @@ namespace common{
         virtual void generateProposal(
             const ProposalType & currentBest, 
             ProposalType & proposal, 
-            const size_t tid
+            const std::size_t tid
         ){
             
         }
     private:
         const ObjectiveType & objective_;
-        size_t numberOfThreads_;
+        std::size_t numberOfThreads_;
         SettingsType settings_;
     }; 
 

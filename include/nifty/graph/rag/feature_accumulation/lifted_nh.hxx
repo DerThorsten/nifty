@@ -66,7 +66,7 @@ void LiftedNh<RAG>::initLiftedNh(
     // TODO parallelize properly
     // threadpool and actual number of threads
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
-    const size_t nThreads = threadpool.nThreads();
+    const std::size_t nThreads = threadpool.nThreads();
 
     // per thread data for adjacencies
     struct PerThread{

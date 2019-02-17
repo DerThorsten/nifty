@@ -3037,13 +3037,13 @@ namespace std
 #if HALF_ENABLE_CPP11_HASH
 	/// Hash function for half-precision floats.
 	/// This is only defined if C++11 `std::hash` is supported and enabled.
-	template<> struct hash<half_float::half> //: unary_function<half_float::half,size_t>
+	template<> struct hash<half_float::half> //: unary_function<half_float::half,std::size_t>
 	{
 		/// Type of function argument.
 		typedef half_float::half argument_type;
 
 		/// Function return type.
-		typedef size_t result_type;
+		typedef std::size_t result_type;
 
 		/// Compute hash function.
 		/// \param arg half to hash

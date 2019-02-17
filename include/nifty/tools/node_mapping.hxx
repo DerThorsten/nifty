@@ -22,8 +22,8 @@ namespace tools {
         auto & newInitialNodeLabeling = newInitialNodeLabelingExp.derived_cast();
 
         nifty::parallel::threadpool::ThreadPool threadpool(numberOfThreads);
-        const size_t nThreads = threadpool.nThreads();
-        const size_t nInitialNodes = initialNodeLabeling.shape()[0]
+        const std::size_t nThreads = threadpool.nThreads();
+        const std::size_t nInitialNodes = initialNodeLabeling.shape()[0]
 
         nifty::parallel::parallel_foreach(threadpool, nInitialNodes, [&](const int tId, const NodeType initialNode){
             const NodeType oldNodeLabel = initialNodeLabeling(initialNode);
