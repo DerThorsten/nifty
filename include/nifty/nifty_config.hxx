@@ -3,7 +3,7 @@
 
 #define NIFTY_VERSION_MAJOR 1
 #define NIFTY_VERSION_MINOR 0
-#define NIFTY_VERSION_PATCH 0
+#define NIFTY_VERSION_PATCH 1
 
 // DETECT 3.6 <= clang < 3.8 for compiler bug workaround.
 //  from  https://github.com/QuantStack/xtensor/blob/master/include/xtensor/xtensor_config.hpp
