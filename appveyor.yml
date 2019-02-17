@@ -34,8 +34,8 @@ install:
   - conda install python=3 cmake numpy boost hdf5 xtensor-python scikit-image vigra z5py
 
 build_script:
-  - cmake -G "NMake Makefiles" -DBUILD_NIFTY_PYTHON=yes -DWITH_HDF5=yes -DWITH_Z5=no -DWITH_ZLIB=no  .
-  - cmake --build . --config Release
+  - cmake -G "NMake Makefiles" -DBUILD_NIFTY_PYTHON=yes -DWITH_HDF5=yes -DWITH_Z5=no -DWITH_ZLIB=no -DCMAKE_INSTALL_PREFIX="%MINICONDA%\Library" .
+  - cmake --build . --config Release --target install
 
 test_script:
   - python -m unittest discover -s src/python/test -v
