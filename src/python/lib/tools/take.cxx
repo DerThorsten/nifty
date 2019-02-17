@@ -27,7 +27,7 @@ namespace tools{
             xt::pytensor<T, 1> out = xt::zeros<T>(shape);
             {
                 py::gil_scoped_release allowThreads;
-                for(size_t i = 0; i < shape[0]; ++i){
+                for(std::size_t i = 0; i < shape[0]; ++i){
                     out(i) = relabeling(toRelabel(i));
                 }
             }
@@ -45,7 +45,7 @@ namespace tools{
             xt::pytensor<T, 1> out = xt::zeros<T>(shape);
             {
                 py::gil_scoped_release allowThreads;
-                for(size_t i = 0; i < shape[0]; ++i){
+                for(std::size_t i = 0; i < shape[0]; ++i){
                     out(i) = relabeling.at(toRelabel(i));
                 }
             }
@@ -58,7 +58,7 @@ namespace tools{
             std::unordered_set<T> uniques;
             {
                 py::gil_scoped_release allowThreads;
-                for(size_t ii = 0; ii < values.shape()[0]; ++ii) {
+                for(std::size_t ii = 0; ii < values.shape()[0]; ++ii) {
                     uniques.insert(values(ii));
                 }
             }
@@ -67,7 +67,7 @@ namespace tools{
             xt::pytensor<T, 1> out = xt::zeros<T>(shape);
             {
                 py::gil_scoped_release allowThreads;
-                size_t ii = 0;
+                std::size_t ii = 0;
                 for(const T val: uniques) {
                     out(ii) = val;
                     ++ii;

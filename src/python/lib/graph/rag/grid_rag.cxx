@@ -33,7 +33,7 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class LABELS>
+    template<std::size_t DIM, class LABELS>
     void exportGridRagT(py::module & ragModule,
                         const std::string & clsName,
                         const std::string & facName){

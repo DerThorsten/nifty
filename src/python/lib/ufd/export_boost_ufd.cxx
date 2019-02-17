@@ -20,7 +20,7 @@ namespace ufd{
         typedef typename UfdType::value_type IndexType;
 
         py::class_<UfdType>(ufdModule, clsName.c_str())
-            .def(py::init<xt::pytensor<IndexType, 1>, size_t>(),
+            .def(py::init<xt::pytensor<IndexType, 1>, std::size_t>(),
                py::arg("elements"), py::arg("upper_bound"),
                 "This function does bla bla bla. \n\n"
                 "Detailed....TODO"

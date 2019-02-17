@@ -14,7 +14,7 @@ namespace common{
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::GraphType:: template NodeMap<uint64_t> ProposalType;
         virtual ~ProposalGeneratorBase(){}
-        virtual void generateProposal( const ProposalType & currentBest,ProposalType & labels, const size_t tid) = 0;
+        virtual void generateProposal( const ProposalType & currentBest,ProposalType & labels, const std::size_t tid) = 0;
     }; 
 
     

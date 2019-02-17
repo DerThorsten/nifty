@@ -60,7 +60,7 @@ namespace graph{
             // subgraph mask
             DefaultSubgraphMask<GraphType> subgraphMask;
             // visitor
-            size_t trgtsFound = 0;
+            std::size_t trgtsFound = 0;
             auto visitor = [&targets, &trgtsFound]
             (
                 int64_t topNode,

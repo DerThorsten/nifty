@@ -57,7 +57,7 @@ public:
 private:
 
     // internal types
-    const static size_t NumberOfBins = 20;
+    const static std::size_t NumberOfBins = 20;
     typedef nifty::histogram::Histogram<float> HistogramType;
     //typedef std::array<float, NumberOfBins> HistogramType;     
     typedef typename GRAPH:: template EdgeMap<HistogramType> EdgeHistogramMap;

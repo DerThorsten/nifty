@@ -15,8 +15,8 @@ namespace nifty{
 namespace cgp{
 
     template<
-        size_t DIM,
-        size_t CELL_TYPE,
+        std::size_t DIM,
+        std::size_t CELL_TYPE,
         class CLS
     >
     void exportCellGeometryT(py::module & m, py::class_<CLS> & pyCls) {
@@ -31,9 +31,9 @@ namespace cgp{
             .def("centerOfMass",&CLS::centerOfMass)
             .def("__array__", [](const CLS & self){
                 xt::pytensor<uint32_t, 2> out({int64_t(self.size()), int64_t(DIM)});
-                for(size_t i=0; i<self.size(); ++i){
+                for(std::size_t i=0; i<self.size(); ++i){
                     const auto & coord = self[i];
-                    for(size_t d=0; d<DIM; ++d){
+                    for(std::size_t d=0; d<DIM; ++d){
                         out(i, d) = coord[d];
                     }
                 }

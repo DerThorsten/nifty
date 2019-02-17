@@ -10,14 +10,14 @@
 namespace nifty{
 namespace cgp{
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     class Bounds;
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellBoundedByVector;
 
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellBounds;
 
     template<>
@@ -69,7 +69,7 @@ namespace cgp{
         uint32_t data_[2];
     };
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellBoundedBy;
 
 
@@ -93,7 +93,7 @@ namespace cgp{
                 return 2;
             }
         }
-        const uint32_t & operator[](const size_t i)const{
+        const uint32_t & operator[](const std::size_t i)const{
             return data_[i];
         }
     private:
@@ -111,7 +111,7 @@ namespace cgp{
         uint32_t size()const{
             return data_.size();
         }
-        const uint32_t & operator[](const size_t i)const{
+        const uint32_t & operator[](const std::size_t i)const{
             return data_[i];
         }
     private:
@@ -119,7 +119,7 @@ namespace cgp{
     };
 
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellBoundsVector : public std::vector<CellBounds<DIM, CELL_TYPE>>{
     public:
 
@@ -136,7 +136,7 @@ namespace cgp{
         NumberOfCellsType numberOfCells_;
     };
 
-    template<size_t DIM, size_t CELL_TYPE>
+    template<std::size_t DIM, std::size_t CELL_TYPE>
     class CellBoundedByVector;
 
 
@@ -192,7 +192,7 @@ namespace cgp{
 
 
 
-    template<size_t DIM>
+    template<std::size_t DIM>
     class Bounds;
 
     template<>
@@ -206,7 +206,7 @@ namespace cgp{
 
         Bounds(const TopologicalGridType & tGrid);
 
-        template<size_t CELL_TYPE>
+        template<std::size_t CELL_TYPE>
         const CellBoundsVector<2, CELL_TYPE> &
         bounds()const{
             return std::get<CELL_TYPE>(bounds_);

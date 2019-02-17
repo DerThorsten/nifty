@@ -24,8 +24,8 @@ public:
     // constructor from data
     LongRangeAdjacency(
         const Labels & labels,
-        const size_t range,
-        const size_t numberOfLabels,
+        const std::size_t range,
+        const std::size_t numberOfLabels,
         const bool ignoreLabel,
         const int numberOfThreads=-1
     ) : range_(range),
@@ -141,9 +141,9 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
     BaseType::assign(numberOfLabels);
 
     // get the shape, number of slices and slice shapes
-    const size_t nSlices = shape_[0];
+    const std::size_t nSlices = shape_[0];
     Coord2 sliceShape2({shape_[1], shape_[2]});
-    Coord sliceShape3({1L, shape_[1], shape_[2]});
+    Coord sliceShape3({static_cast<int64_t>(1), shape_[1], shape_[2]});
 
     // threadpool and actual number of threads
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
@@ -164,7 +164,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
             // std::cout << "Loop in " << slice << std::endl;
 
             // get segmentation in base slice
-            Coord beginA ({int64_t(slice), 0L, 0L});
+            Coord beginA ({int64_t(slice), static_cast<int64_t>(0), static_cast<int64_t>(0)});
             Coord endA({int64_t(slice + 1), shape_[1], shape_[2]});
             auto labelsA = labelsAStorage.getView(tid);
             tools::readSubarray(labels, beginA, endA, labelsA);
@@ -201,7 +201,7 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
                 // std::cout << "to upper slice " << slice + z << std::endl;
 
                 // get upper segmentation
-                Coord beginB ({slice + z, 0L, 0L});
+                Coord beginB ({slice + z, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                 Coord endB({slice + z + 1, shape_[1], shape_[2]});
                 tools::readSubarray(labels, beginB, endB, labelsB);
                 auto labelsBSqueezed = xtensor::squeezedView(labelsB);
@@ -227,10 +227,10 @@ void LongRangeAdjacency<LABELS>::initAdjacency(const LABELS & labels,
     // std::cout << "Loop done" << std::endl;
 
     // set up the edge offsets
-    size_t offset = numberOfEdgesInSlice_[0];
+    std::size_t offset = numberOfEdgesInSlice_[0];
     {
         edgeOffset_[0] = 0;
-        for(size_t slice = 1; slice < nSlices-2; ++slice) {
+        for(std::size_t slice = 1; slice < nSlices-2; ++slice) {
             edgeOffset_[slice] = offset;
             offset += numberOfEdgesInSlice_[slice];
         }

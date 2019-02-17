@@ -20,8 +20,8 @@ namespace mincut{
         typedef ProposalGeneratorBase<ObjectiveType> ProposalGeneratorBaseType;
 
         virtual ~ProposalGeneratorFactoryBase(){}
-        virtual std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective, const size_t numberOfThreads) = 0;
-        virtual ProposalGeneratorBaseType *                create(   const ObjectiveType & objective, const size_t numberOfThreads) = 0;
+        virtual std::shared_ptr<ProposalGeneratorBaseType> createShared(const ObjectiveType & objective, const std::size_t numberOfThreads) = 0;
+        virtual ProposalGeneratorBaseType *                create(   const ObjectiveType & objective, const std::size_t numberOfThreads) = 0;
     };
 
 

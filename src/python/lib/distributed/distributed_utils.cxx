@@ -25,7 +25,7 @@ namespace distributed {
                                   roiBegin, roiEnd);
         }, py::arg("inputPath"), py::arg("outputPath"),
            py::arg("numberOfLabels"), py::arg("numberOfThreads"),
-           py::arg("roiBegin")=std::vector<size_t>(), py::arg("roiEnd")=std::vector<size_t>());
+           py::arg("roiBegin")=std::vector<std::size_t>(), py::arg("roiEnd")=std::vector<std::size_t>());
 
 
         module.def("readBlockMapping", [](const std::string & dsPath,
@@ -78,7 +78,7 @@ namespace distributed {
 
         module.def("computeLabelOverlaps", [](const xt::pytensor<uint64_t, 3> & labels,
                                               const xt::pytensor<uint64_t, 3> & gt){
-            typedef std::unordered_map<uint64_t, size_t> OverlapType;
+            typedef std::unordered_map<uint64_t, std::size_t> OverlapType;
             std::unordered_map<uint64_t, OverlapType> overlaps;
             {
                 py::gil_scoped_release allowThreads;
@@ -120,7 +120,7 @@ namespace distributed {
 
 
         module.def("deserializeOverlapChunk", [](const std::string & path,
-                                                 const std::vector<size_t> & chunkId) {
+                                                 const std::vector<std::size_t> & chunkId) {
             typedef std::unordered_map<uint64_t, std::size_t> OverlapType;
             std::unordered_map<uint64_t, OverlapType> overlaps;
             const uint64_t maxLabelId = deserializeOverlapChunk(path, chunkId, overlaps);

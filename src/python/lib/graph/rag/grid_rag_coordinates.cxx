@@ -14,7 +14,7 @@ namespace graph{
 
     using namespace py;
 
-    template<size_t DIM, class RAG_TYPE>
+    template<std::size_t DIM, class RAG_TYPE>
     void exportGridRagCoordinatesT(py::module & module, const std::string & name) {
 
         typedef RagCoordinates<DIM, RAG_TYPE> CoordinatesType;
@@ -28,11 +28,11 @@ namespace graph{
 
             .def("topologicalEdgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
                 const auto & coords = self.edgeCoordinates(edgeId);
-                size_t nCoordinates = coords.size() / DIM;
+                std::size_t nCoordinates = coords.size() / DIM;
                 xt::pytensor<int32_t, DIM> out({(int64_t) nCoordinates, DIM});
-                size_t jj = 0;
-                for(size_t ii = 0; ii < nCoordinates; ++ii) {
-                    for(size_t d = 0; d < DIM; ++d) {
+                std::size_t jj = 0;
+                for(std::size_t ii = 0; ii < nCoordinates; ++ii) {
+                    for(std::size_t d = 0; d < DIM; ++d) {
                         out(ii,d) = coords[jj];
                         ++jj;
                     }
@@ -42,11 +42,11 @@ namespace graph{
 
             .def("edgeCoordinates", [](const CoordinatesType & self, const int64_t edgeId){
                 const auto & coords = self.edgeCoordinates(edgeId);
-                size_t nCoordinates = 2 * coords.size() / DIM;
+                std::size_t nCoordinates = 2 * coords.size() / DIM;
                 xt::pytensor<int32_t, DIM> out({(int64_t) nCoordinates, DIM});
-                size_t jj = 0;
-                for(size_t ii = 0; ii < nCoordinates / 2; ++ii) {
-                    for(size_t d = 0; d < DIM; ++d) {
+                std::size_t jj = 0;
+                for(std::size_t ii = 0; ii < nCoordinates / 2; ++ii) {
+                    for(std::size_t d = 0; d < DIM; ++d) {
                         out(2*ii, d)   = std::floor(coords[jj] / 2);
                         out(2*ii+1, d) = std::ceil( coords[jj] / 2);
                         ++jj;

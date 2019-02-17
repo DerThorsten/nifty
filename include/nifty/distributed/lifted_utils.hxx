@@ -139,7 +139,7 @@ namespace distributed {
         // load the node labels
         auto nodeDs = z5::openDataset(nodeLabelPath);
         const std::size_t nNodes = nodeDs->shape(0);
-        const std::vector<size_t> zero1Coord({0});
+        const std::vector<std::size_t> zero1Coord({0});
         Shape1Type nodeShape({nNodes});
         Tensor1 nodeLabels(nodeShape);
         z5::multiarray::readSubarray<uint64_t>(nodeDs, nodeLabels, zero1Coord.begin());
@@ -192,7 +192,7 @@ namespace distributed {
         auto dsOut = z5::createDataset(outputPath, "uint64",
                                        dsShape, dsChunks, false,
                                        "gzip");
-        const std::vector<size_t> zero2Coord = {0, 0};
+        const std::vector<std::size_t> zero2Coord = {0, 0};
         z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero2Coord.begin(), numberOfThreads);
     }
 

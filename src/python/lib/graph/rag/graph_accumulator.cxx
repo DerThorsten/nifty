@@ -106,14 +106,14 @@ namespace graph{
         [](
             const RAG & rag,
             const uint64_t z,
-            std::map<size_t,std::vector<NODE_TYPE>> & defectNodes, // all defect nodes
+            std::map<std::size_t,std::vector<NODE_TYPE>> & defectNodes, // all defect nodes
             const bool lowerIsCompletelyDefected
         ){
-            std::vector<size_t> deleteEdges;
-            std::vector<size_t> ignoreEdges;
+            std::vector<std::size_t> deleteEdges;
+            std::vector<std::size_t> ignoreEdges;
 
             std::vector<std::pair<NODE_TYPE,NODE_TYPE>> skipEdges;
-            std::vector<size_t> skipRanges;
+            std::vector<std::size_t> skipRanges;
             {
                 py::gil_scoped_release allowThreads;
                 getSkipEdgesForSlice(

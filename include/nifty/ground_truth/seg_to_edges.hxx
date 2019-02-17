@@ -17,7 +17,7 @@ namespace ground_truth{
         typedef array::StaticArray<int64_t, 2> CoordType;
 
         CoordType shape;
-        for(size_t i=0; i<2; ++i){
+        for(std::size_t i=0; i<2; ++i){
             shape[i] = segmentation.shape()[i];
         }
 

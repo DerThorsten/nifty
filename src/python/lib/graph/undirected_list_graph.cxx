@@ -31,7 +31,7 @@ namespace graph{
             .def("insertEdges",
                 [](GraphType & g, const xt::pytensor<uint64_t, 2> & array) {
                     NIFTY_CHECK_OP(array.shape()[1],==,2,"wrong shape");
-                    for(size_t i=0; i<array.shape()[0]; ++i){
+                    for(std::size_t i=0; i<array.shape()[0]; ++i){
                         g.insertEdge(array(i,0), array(i,1));
                     }
                 }, py::arg("array"), py::call_guard<py::gil_scoped_release>()
@@ -71,10 +71,10 @@ namespace graph{
                     xt::pytensor<int64_t, 1> outerEdges = xt::zeros<int64_t>({static_cast<int64_t>(outerEdgesVec.size())});
                     {
                         py::gil_scoped_release allowThreads;
-                        for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                        for(std::size_t i = 0; i < innerEdgesVec.size(); ++i) {
                             innerEdges(i) = innerEdgesVec[i];
                         }
-                        for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                        for(std::size_t i = 0; i < outerEdgesVec.size(); ++i) {
                             outerEdges(i) = outerEdgesVec[i];
                         }
 

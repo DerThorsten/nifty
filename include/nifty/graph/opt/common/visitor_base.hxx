@@ -84,7 +84,7 @@ namespace common{
                 ss.precision(12);
                 ss << "Energy: " << std::scientific << solver->currentBestEnergy()<<" ";
                 ss << "Runtime: " << runtime_ << " ";
-                for(size_t i=0; i<logNames_.size(); ++i){
+                for(std::size_t i=0; i<logNames_.size(); ++i){
                     ss<<logNames_[i]<<" "<<logValues_[i]<<" ";
                 }
                 ss<<"\n";
@@ -108,7 +108,7 @@ namespace common{
             logValues_.resize(logNames.size());
         }
 
-        virtual void setLogValue(const size_t logIndex, double logValue){
+        virtual void setLogValue(const std::size_t logIndex, double logValue){
             logValues_[logIndex] = logValue;
         }
 
@@ -127,7 +127,7 @@ namespace common{
 
         double timeLimit_;
         TimePointType startTime_;
-        size_t runtime_;
+        std::size_t runtime_;
 
         std::vector<std::string> logNames_;
         std::vector<double> logValues_;

@@ -45,17 +45,17 @@ namespace graph{
         auto clsT = py::class_<AdjacencyType, BaseGraph>(module, clsName.c_str());
         clsT
             .def("numberOfEdgesInSlice", [](const AdjacencyType & self){
-                size_t nSlices = self.shape(0);
-                std::vector<size_t> out(nSlices);
-                for(size_t slice = 0; slice < nSlices; ++slice){
+                std::size_t nSlices = self.shape(0);
+                std::vector<std::size_t> out(nSlices);
+                for(std::size_t slice = 0; slice < nSlices; ++slice){
                     out[slice] = self.numberOfEdgesInSlice(slice);
                 }
                 return out;
             })
             .def("edgeOffset", [](const AdjacencyType & self){
-                size_t nSlices = self.shape(0);
-                std::vector<size_t> out(nSlices);
-                for(size_t slice = 0; slice < nSlices; ++slice){
+                std::size_t nSlices = self.shape(0);
+                std::vector<std::size_t> out(nSlices);
+                for(std::size_t slice = 0; slice < nSlices; ++slice){
                     out[slice] = self.edgeOffset(slice);
                 }
                 return out;
@@ -74,8 +74,8 @@ namespace graph{
         module.def(facName.c_str(),
             [](
                const Labels & labels,
-               const size_t range,
-               const size_t numberOfLabels,
+               const std::size_t range,
+               const std::size_t numberOfLabels,
                const bool ignoreLabel,
                const int numberOfThreads
             ){

@@ -45,10 +45,10 @@ namespace multicut{
         struct SettingsType{
             int verbose { 1 };
             int numberOfThreads {-1};
-            size_t numberOfIterations {10};
-            size_t numberOfParallelProposals {4};
-            size_t fuseN{2};
-            size_t stopIfNoImprovement{4};
+            std::size_t numberOfIterations {10};
+            std::size_t numberOfParallelProposals {4};
+            std::size_t fuseN{2};
+            std::size_t stopIfNoImprovement{4};
             ProposalGenSettings proposalGenSettings;
             FusionMoveSettings fusionMoveSettings;
         };
@@ -69,7 +69,7 @@ namespace multicut{
         }
 
         virtual void weightsChanged(){
-            for(size_t i=0; i<pgens_.size(); ++i){
+            for(std::size_t i=0; i<pgens_.size(); ++i){
                 pgens_[i]->reset();
             }
         }
@@ -114,7 +114,7 @@ namespace multicut{
 
 
         nifty::parallel::parallel_foreach(threadPool_,nt,
-            [&](const size_t threadId, const size_t i){
+            [&](const std::size_t threadId, const std::size_t i){
                 NIFTY_CHECK_OP(threadId,<,fusionMoves_.size(),"");
                 pgens_[i] = new ProposalGen(objective_, settings_.proposalGenSettings, i);
                 fusionMoves_[i] = new FusionMoveType(objective_, settings_.fusionMoveSettings);
@@ -129,7 +129,7 @@ namespace multicut{
     FusionMoveBased<PROPPOSAL_GEN>::
     ~FusionMoveBased(){
 
-        for(size_t i=0; i<parallelOptions_.getActualNumThreads(); ++i){
+        for(std::size_t i=0; i<parallelOptions_.getActualNumThreads(); ++i){
             delete pgens_[i];
             delete fusionMoves_[i];
             delete solBufferIn_[i];
@@ -186,7 +186,7 @@ namespace multicut{
             //std::cout<<"generate "<<settings_.numberOfParallelProposals<<" proposals\n";
             nifty::parallel::parallel_foreach(threadPool_,
                 settings_.numberOfParallelProposals,
-                [&](const size_t threadId, int proposalIndex){
+                [&](const std::size_t threadId, int proposalIndex){
                     NIFTY_CHECK_OP(threadId,<,fusionMoves_.size(),"");
                     // 
                     auto & pgen = *pgens_[threadId];
@@ -239,7 +239,7 @@ namespace multicut{
             //std::cout<<"Generated "<<proposals.size() << " in parallel." << "\n";
             // recursive thing
             std::vector<NodeLabelsType> proposals2;
-            size_t nFuse = settings_.fuseN;
+            std::size_t nFuse = settings_.fuseN;
 
             if(!proposals.empty() && nFuse > 0){
                 while(proposals.size()!= 1){
@@ -259,7 +259,7 @@ namespace multicut{
                         auto i = ii*nFuse;
 
                         std::vector<const NodeLabelsType*> toFuse;
-                        for(size_t j=0; j<nFuse; ++j){
+                        for(std::size_t j=0; j<nFuse; ++j){
                             auto k = i + j < proposals.size() ? i+j : i+j - proposals.size();
                             toFuse.push_back(&proposals[k]);
                         }

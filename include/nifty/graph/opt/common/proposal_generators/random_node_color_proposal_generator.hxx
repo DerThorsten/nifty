@@ -30,12 +30,12 @@ namespace common{
         typedef typename GraphType:: template NodeMap<bool>  IsUsed;    
             
         struct SettingsType{
-            size_t numberOfColors{size_t(2)};
+            std::size_t numberOfColors{std::size_t(2)};
         };
 
         RandomNodeColorProposalGenerator(
             const ObjectiveType & objective, 
-            const size_t numberOfThreads,
+            const std::size_t numberOfThreads,
             const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
@@ -58,7 +58,7 @@ namespace common{
         virtual void generateProposal(
             const ProposalType & currentBest, 
             ProposalType & proposal, 
-            const size_t tid
+            const std::size_t tid
         ){  
 
             const auto & graph = objective_.graph();
@@ -73,7 +73,7 @@ namespace common{
         }
     private:
         const ObjectiveType & objective_;
-        size_t numberOfThreads_;
+        std::size_t numberOfThreads_;
         SettingsType settings_;
         std::vector<std::mt19937> gens_;
         std::uniform_int_distribution<>  colorDist_;

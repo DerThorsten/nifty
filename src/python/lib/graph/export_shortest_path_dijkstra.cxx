@@ -80,7 +80,7 @@ namespace graph{
             std::vector<Path> & paths) {
         paths.clear();
         paths.resize(targets.size());
-        for(size_t ii = 0; ii < targets.size(); ++ii) {
+        for(std::size_t ii = 0; ii < targets.size(); ++ii) {
             pathsFromPredecessors(sp, source, targets[ii], paths[ii]);
         }
     }
@@ -93,7 +93,7 @@ namespace graph{
             std::vector<Path> & paths) {
         paths.clear();
         paths.resize(targets.size());
-        for(size_t ii = 0; ii < targets.size(); ++ii) {
+        for(std::size_t ii = 0; ii < targets.size(); ++ii) {
             edgePathsFromPredecessors(sp, source, targets[ii], paths[ii]);
         }
     }

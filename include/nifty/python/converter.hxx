@@ -29,18 +29,18 @@ namespace detail{
     // to avoid the include of pybind/stl.h
     // we re-implement the array_caster
     template <typename ArrayType, typename Value,
-              bool Resizable, size_t Size = 0> struct array_caster_ {
+              bool Resizable, std::size_t Size = 0> struct array_caster_ {
         using value_conv = make_caster<Value>;
 
     private:
         template <bool R = Resizable>
-        bool require_size(enable_if_t<R, size_t> size) {
+        bool require_size(enable_if_t<R, std::size_t> size) {
             if (value.size() != size)
                 value.resize(size);
             return true;
         }
         template <bool R = Resizable>
-        bool require_size(enable_if_t<!R, size_t> size) {
+        bool require_size(enable_if_t<!R, std::size_t> size) {
             return size == Size;
         }
 
@@ -52,7 +52,7 @@ namespace detail{
             if (!require_size(l.size()))
                 return false;
             value_conv conv;
-            size_t ctr = 0;
+            std::size_t ctr = 0;
             for (auto it : l) {
                 if (!conv.load(it, convert))
                     return false;
@@ -63,7 +63,7 @@ namespace detail{
 
         static handle cast(const ArrayType &src, return_value_policy policy, handle parent) {
             list l(src.size());
-            size_t index = 0;
+            std::size_t index = 0;
             for (auto const &value: src) {
                 auto value_ = reinterpret_steal<object>(value_conv::cast(value, policy, parent));
                 if (!value_)
@@ -77,7 +77,7 @@ namespace detail{
     };
 
 
-    template <typename Type, size_t Size>
+    template <typename Type, std::size_t Size>
     struct type_caster< nifty::array::StaticArray<Type, Size> >
     : array_caster_< nifty::array::StaticArray<Type, Size>, Type, false, Size> {
     };

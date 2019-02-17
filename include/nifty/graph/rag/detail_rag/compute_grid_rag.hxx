@@ -70,7 +70,7 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
             std::vector< container::BoostFlatSet<uint64_t> > adjacency;
         };
 
-        std::vector<size_t> arrayShape(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
+        std::vector<std::size_t> arrayShape(blockShapeWithBorder.begin(), blockShapeWithBorder.end());
         std::vector<PerThreadData> perThreadDataVec(nThreads);
         parallel::parallel_foreach(threadpool, nThreads, [&](const int tid, const int i){
             perThreadDataVec[i].blockLabels.resize(arrayShape);

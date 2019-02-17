@@ -36,7 +36,7 @@ namespace multicut{
         WatershedProposals(
             const ObjectiveType & objective, 
             const SettingsType  & settings,
-            const size_t threadIndex
+            const std::size_t threadIndex
         )
         :   objective_(objective),
             graph_(objective.graph()),
@@ -62,12 +62,12 @@ namespace multicut{
                 proposal = currentBest;
             }
             else{
-                size_t nSeeds = settings_.seedFraction <=1.0 ? 
-                    size_t(float(graph_.numberOfNodes())*settings_.seedFraction+0.5f) :
-                    size_t(settings_.seedFraction + 0.5);
+                std::size_t nSeeds = settings_.seedFraction <=1.0 ? 
+                    std::size_t(float(graph_.numberOfNodes())*settings_.seedFraction+0.5f) :
+                    std::size_t(settings_.seedFraction + 0.5);
 
-                nSeeds = std::max(size_t(1),nSeeds);
-                nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
+                nSeeds = std::max(std::size_t(1),nSeeds);
+                nSeeds = std::min(std::size_t(negativeEdges_.size()-1), nSeeds);
 
 
                 // get the seeds
@@ -75,7 +75,7 @@ namespace multicut{
                     seeds_[node] = 0;
 
 
-                for(size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
+                for(std::size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
                     const auto randIndex = intDist_(gen_);
                     const auto edge  = negativeEdges_[randIndex];
 
@@ -121,8 +121,8 @@ namespace multicut{
         NodeLabelsType seeds_;
         std::vector<uint64_t> negativeEdges_;
         SettingsType settings_;
-        size_t threadIndex_;
-        size_t proposalNumber_;
+        std::size_t threadIndex_;
+        std::size_t proposalNumber_;
         std::mt19937 gen_;
         std::normal_distribution<> dist_;
         std::uniform_int_distribution<>  intDist_;

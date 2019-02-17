@@ -188,8 +188,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2D)
     auto testData = get2DTestData();
 
     // test filter responses for correctnes for first sigma val
-    for(size_t y = 0; y < in.shape(0); y++) {
-        for(size_t x = 0; x < in.shape(1); x++) {
+    for(std::size_t y = 0; y < in.shape(0); y++) {
+        for(std::size_t x = 0; x < in.shape(1); x++) {
             NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
@@ -211,8 +211,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
     std::uniform_real_distribution<float> distr(0.,1.);
     auto draw = std::bind( distr, generator );
 
-    for(size_t ii = 0; ii < in.shape(0); ++ii) {
-        for(size_t jj = 0; jj < in.shape(1); ++jj)
+    for(std::size_t ii = 0; ii < in.shape(0); ++ii) {
+        for(std::size_t jj = 0; jj < in.shape(1); ++jj)
             in(ii,jj) = draw();
     }
 
@@ -242,9 +242,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DPresmooth)
 
     // test filter responses for correctnes for first sigma val
     double tolerance = 1e-1; // we pass only if we allow for first tolerance after the first comma
-    for(size_t c = 0; c < outActual.shape(0); ++c) {
-        for(size_t x = 0; x < outActual.shape(1); ++x) {
-            for(size_t y = 0; y < outActual.shape(2); ++y) {
+    for(std::size_t c = 0; c < outActual.shape(0); ++c) {
+        for(std::size_t x = 0; x < outActual.shape(1); ++x) {
+            for(std::size_t y = 0; y < outActual.shape(2); ++y) {
                 NIFTY_CHECK_EQ_TOL(outActual(c,x,y),outExpected(c,x,y),tolerance);
             }
         }
@@ -288,8 +288,8 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest2DParallel)
     auto testData = get2DTestData();
 
     // test filter responses for correctnes for first sigma val
-    for(size_t y = 0; y < in.shape(0); y++) {
-        for(size_t x = 0; x < in.shape(1); x++) {
+    for(std::size_t y = 0; y < in.shape(0); y++) {
+        for(std::size_t x = 0; x < in.shape(1); x++) {
             NIFTY_CHECK_EQ_TOL(out(0,y,x),std::get<0>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(1,y,x),std::get<1>(testData)[y][x],1e-6)
             NIFTY_CHECK_EQ_TOL(out(2,y,x),std::get<2>(testData)[y][x],1e-6)
@@ -333,9 +333,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3D)
     auto testData = get3DTestData();
 
     // test filter responses for correctnes for first sigma val
-    for(size_t z = 0; z < in.shape(0); z++) {
-        for(size_t y = 0; y < in.shape(1); y++) {
-            for(size_t x = 0; x < in.shape(2); x++) {
+    for(std::size_t z = 0; z < in.shape(0); z++) {
+        for(std::size_t y = 0; y < in.shape(1); y++) {
+            for(std::size_t x = 0; x < in.shape(2); x++) {
                 NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)
@@ -357,9 +357,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
     std::uniform_real_distribution<float> distr(0.,1.);
     auto draw = std::bind( distr, generator );
 
-    for(size_t ii = 0; ii < in.shape(0); ++ii) {
-        for(size_t jj = 0; jj < in.shape(1); ++jj){
-            for(size_t kk = 0; kk < in.shape(2); ++kk)
+    for(std::size_t ii = 0; ii < in.shape(0); ++ii) {
+        for(std::size_t jj = 0; jj < in.shape(1); ++jj){
+            for(std::size_t kk = 0; kk < in.shape(2); ++kk)
                 in(ii,jj,kk) = draw();
         }
     }
@@ -390,10 +390,10 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DPresmooth)
     // test filter responses for correctnes for first sigma val
     double tolerance = 1e-2; // we pass only if we allow for first tolerance after the first comma
     // apparently this is more robust in 3d than in 2d
-    for(size_t c = 0; c < outActual.shape(0); ++c) {
-        for(size_t x = 0; x < outActual.shape(1); ++x) {
-            for(size_t y = 0; y < outActual.shape(2); ++y) {
-                for(size_t z = 0; z < outActual.shape(3); ++z) {
+    for(std::size_t c = 0; c < outActual.shape(0); ++c) {
+        for(std::size_t x = 0; x < outActual.shape(1); ++x) {
+            for(std::size_t y = 0; y < outActual.shape(2); ++y) {
+                for(std::size_t z = 0; z < outActual.shape(3); ++z) {
                     NIFTY_CHECK_EQ_TOL(outActual(c,x,y,z),outExpected(c,x,y,z),tolerance);
                 }
             }
@@ -439,9 +439,9 @@ BOOST_AUTO_TEST_CASE(FastfiltersWrapperTest3DParallel)
     auto testData = get3DTestData();
 
     // test filter responses for correctnes for first sigma val
-    for(size_t z = 0; z < in.shape(0); z++) {
-        for(size_t y = 0; y < in.shape(1); y++) {
-            for(size_t x = 0; x < in.shape(2); x++) {
+    for(std::size_t z = 0; z < in.shape(0); z++) {
+        for(std::size_t y = 0; y < in.shape(1); y++) {
+            for(std::size_t x = 0; x < in.shape(2); x++) {
                 NIFTY_CHECK_EQ_TOL(out(0,z,y,x),std::get<0>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(1,z,y,x),std::get<1>(testData)[z][y][x],1e-6)
                 NIFTY_CHECK_EQ_TOL(out(2,z,y,x),std::get<2>(testData)[z][y][x],1e-5)

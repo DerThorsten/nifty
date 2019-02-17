@@ -69,7 +69,7 @@ namespace lifted_multicut{
                     visitor_->addLogNames(logNames);
             }
 
-            virtual void setLogValue(const size_t logIndex, double logValue){
+            virtual void setLogValue(const std::size_t logIndex, double logValue){
                 if(visitor_ != nullptr)
                     visitor_->setLogValue(logIndex, logValue);
             }

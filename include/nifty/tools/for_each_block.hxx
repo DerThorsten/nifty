@@ -12,7 +12,7 @@ namespace tools{
 
     
     
-    template<size_t DIM, class SHAPE_T, class BLOCK_SHAPE_T, class F>
+    template<std::size_t DIM, class SHAPE_T, class BLOCK_SHAPE_T, class F>
     void parallelForEachBlock(
         parallel::ThreadPool & threadpool,
         const array::StaticArray<SHAPE_T, DIM> & shape,
@@ -39,7 +39,7 @@ namespace tools{
     }
 
 
-    template<size_t DIM, class SHAPE_T, class BLOCK_SHAPE_T, class OVERLAP_SHAPE_T, class F>
+    template<std::size_t DIM, class SHAPE_T, class BLOCK_SHAPE_T, class OVERLAP_SHAPE_T, class F>
     void parallelForEachBlockWithOverlap(
         parallel::ThreadPool & threadpool,
         const array::StaticArray<SHAPE_T, DIM> &    shape,

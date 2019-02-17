@@ -23,7 +23,7 @@ namespace mincut{
     
         virtual ~ProposalGeneratorBase(){}
 
-        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels, const size_t tid) = 0;
+        virtual void generateProposal( const NodeLabels & currentBest,NodeLabels & labels, const std::size_t tid) = 0;
 
     private:
     }; 

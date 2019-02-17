@@ -69,7 +69,7 @@ namespace tools{
                         // for mean accumulation, we need to divide by the edge counts
                         if(accumulation == "mean") {
                             auto & edgeCounts = self.newEdgeCounts();
-                            for(size_t ii = 0; ii < edgeCounts.size(); ++ii) {
+                            for(std::size_t ii = 0; ii < edgeCounts.size(); ++ii) {
                                 newEdgeValues(ii) /= edgeCounts[ii];
                             }
                         }
@@ -92,7 +92,7 @@ namespace tools{
 
                         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
-                        parallel::parallel_foreach(threadpool, nNew, [&](const int tId, const size_t i) {
+                        parallel::parallel_foreach(threadpool, nNew, [&](const int tId, const std::size_t i) {
                             newUvIds(i, 0) = newUvIdsInternal[i].first;
                             newUvIds(i, 1) = newUvIdsInternal[i].second;
                         });
@@ -113,7 +113,7 @@ namespace tools{
                         const auto & edgeMappingInternal = self.edgeMapping();
                         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
-                        parallel::parallel_foreach(threadpool, edgeMappingInternal.size(), [&](const int tId, const size_t i) {
+                        parallel::parallel_foreach(threadpool, edgeMappingInternal.size(), [&](const int tId, const std::size_t i) {
                             edgeMapping(i) = edgeMappingInternal[i];
                         });
                     }

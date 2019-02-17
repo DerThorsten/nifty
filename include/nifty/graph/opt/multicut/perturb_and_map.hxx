@@ -40,7 +40,7 @@ namespace multicut{
 
         struct SettingsType{
             FactorySmartPtr mcFactory;
-            size_t numberOfIterations{100};
+            std::size_t numberOfIterations{100};
             int numberOfThreads{-1};
             int verbose = 2;
             int seed = 42;
@@ -63,7 +63,7 @@ namespace multicut{
     private:
 
         struct ThreadData{
-            ThreadData(const size_t threadId,const int seed, const GraphType & graph)
+            ThreadData(const std::size_t threadId,const int seed, const GraphType & graph)
             :   objective_(graph),
                 solver_(nullptr),
                 gen_(threadId+seed),
@@ -81,7 +81,7 @@ namespace multicut{
 
 
         template<class WEIGHTS>
-        void perturbWeights(const size_t threadId, WEIGHTS & perturbedWeights);
+        void perturbWeights(const std::size_t threadId, WEIGHTS & perturbedWeights);
 
 
 
@@ -117,7 +117,7 @@ namespace multicut{
 
         nifty::parallel::parallel_foreach(settings_.numberOfThreads,
             popt.getActualNumThreads(),
-            [&](size_t threadId, int tid){
+            [&](std::size_t threadId, int tid){
                 auto & threadDataPtr = threadDataVec_[tid];
                 threadDataPtr = new ThreadData(tid, settings_.seed, graph_);
                 // copy weights
@@ -135,7 +135,7 @@ namespace multicut{
     template<class OBJECTIVE>
     PerturbAndMap<OBJECTIVE>::
     ~PerturbAndMap(){
-        for(size_t i=0; i<threadDataVec_.size(); ++i){
+        for(std::size_t i=0; i<threadDataVec_.size(); ++i){
             delete threadDataVec_[i]->solver_;
             delete threadDataVec_[i];
         }
@@ -180,7 +180,7 @@ namespace multicut{
 
         nifty::parallel::parallel_foreach(settings_.numberOfThreads,
             settings_.numberOfIterations,
-            [&](size_t threadId, int items){
+            [&](std::size_t threadId, int items){
                 auto & threadData = *threadDataVec_[threadId];
                 auto & obj = threadData.objective_;
                 auto solver = threadData.solver_;
@@ -224,7 +224,7 @@ namespace multicut{
     template<class WEIGHTS>
     void PerturbAndMap<OBJECTIVE>::
     perturbWeights( 
-        const size_t threadId,
+        const std::size_t threadId,
         WEIGHTS & perturbedWeights
     ){
 

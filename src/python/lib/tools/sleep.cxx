@@ -10,7 +10,7 @@ namespace nifty{
 namespace tools{
 
 void exportSleep(py::module & toolsModule) {
-    toolsModule.def("sleepMilliseconds",[](size_t nMilliseconds) {
+    toolsModule.def("sleepMilliseconds",[](std::size_t nMilliseconds) {
         py::gil_scoped_release allowThreads;
         std::this_thread::sleep_for(std::chrono::milliseconds(nMilliseconds));
     },

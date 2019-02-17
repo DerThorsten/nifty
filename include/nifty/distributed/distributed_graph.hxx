@@ -49,15 +49,15 @@ namespace distributed {
 
             // get the indices that would sort the edge uv's
             // (we need to sort the edge uvs AND the edgeIds in the same manner here)
-            std::vector<size_t> indices(edgesTmp.size());
+            std::vector<std::size_t> indices(edgesTmp.size());
             std::iota(indices.begin(), indices.end(), 0);
-            std::sort(indices.begin(), indices.end(), [&](const size_t a, const size_t b){
+            std::sort(indices.begin(), indices.end(), [&](const std::size_t a, const std::size_t b){
                 return edgesTmp[a] < edgesTmp[b];
             });
 
             // copy tmp edges in sorted order
             edges_.resize(edgesTmp.size());
-            for(size_t ii = 0; ii < edges_.size(); ++ii) {
+            for(std::size_t ii = 0; ii < edges_.size(); ++ii) {
                 edges_[ii] = edgesTmp[indices[ii]];
             }
             // make edges unique
@@ -65,7 +65,7 @@ namespace distributed {
 
             // copy tmp edge ids to the out vector in sorted order
             edgeIdsOut.resize(edgeIdsTmp.size());
-            for(size_t ii = 0; ii < edgeIdsOut.size(); ++ii) {
+            for(std::size_t ii = 0; ii < edgeIdsOut.size(); ++ii) {
                 edgeIdsOut[ii] = edgeIdsTmp[indices[ii]];
             }
             // make edge ids unique
@@ -150,9 +150,9 @@ namespace distributed {
         }
 
         // number of nodes and edges
-        size_t numberOfNodes() const {return nodes_.size();}
-        size_t numberOfEdges() const {return edges_.size();}
-        size_t nodeMaxId() const {return nodeMaxId_;}
+        std::size_t numberOfNodes() const {return nodes_.size();}
+        std::size_t numberOfEdges() const {return edges_.size();}
+        std::size_t nodeMaxId() const {return nodeMaxId_;}
 
         const EdgeStorage & edges() const {return edges_;}
 
@@ -165,7 +165,7 @@ namespace distributed {
         void nodes(std::vector<NodeType> & out) const{
             out.clear();
             out.resize(numberOfNodes());
-            size_t nodeId = 0;
+            std::size_t nodeId = 0;
             for(auto nodeIt = nodes_.begin(); nodeIt != nodes_.end(); ++nodeIt, ++nodeId) {
                 out[nodeId] = nodeIt->first;
             }

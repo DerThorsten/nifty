@@ -35,7 +35,7 @@ void randomizedMulticutTest()
 
 
     // create a grid graph
-    const size_t s = 15;
+    const std::size_t s = 15;
     GraphType g(s*s);
     for(auto y=0; y<s; ++y)
     for(auto x=0; x<s; ++x){
@@ -131,8 +131,8 @@ void simpleMulticutTest()
 
 
     // create a grid graph
-    const size_t sx = 8;
-    const size_t sy = 13;
+    const std::size_t sx = 8;
+    const std::size_t sy = 13;
     auto node = [&](uint64_t x, uint64_t y){
         return x + y*sx;
     };
@@ -167,7 +167,7 @@ void simpleMulticutTest()
     }
 
     typename GraphType::EdgeMap<uint16_t> shouldSolution(g,0);
-    for(size_t y=0; y<sy; ++y){
+    for(std::size_t y=0; y<sy; ++y){
         auto e = g.findEdge( node(3, y), node(3+1, y)  );
         shouldSolution[e] = 1;
     }

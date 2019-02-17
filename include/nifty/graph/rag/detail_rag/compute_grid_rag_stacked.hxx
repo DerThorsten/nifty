@@ -55,7 +55,7 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
 
         typedef array::StaticArray<int64_t, 3> Coord;
         typedef array::StaticArray<int64_t, 2> Coord2;
-        typedef std::map<EdgeStorage, size_t> EdgeLengthsType;
+        typedef std::map<EdgeStorage, std::size_t> EdgeLengthsType;
         typedef std::vector<EdgeLengthsType> EdgeLenghtsStorage;
 
         const auto & labels = rag.labels();
@@ -69,7 +69,7 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
 
         uint64_t numberOfSlices = shape[0];
         Coord2 sliceShape2({shape[1], shape[2]});
-        Coord sliceShape3({1L, shape[1], shape[2]});
+        Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
 
         auto & perSliceDataVec = rag.perSliceDataVec_;
 
@@ -97,7 +97,7 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
                 auto sliceLabelsFlat3DView = sliceLabelsStorage.getView(tid);
 
                 // fetch the data for the slice
-                const Coord blockBegin({sliceIndex, 0L, 0L});
+                const Coord blockBegin({sliceIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                 const Coord blockEnd({sliceIndex+1, sliceShape2[0], sliceShape2[1]});
                 tools::readSubarray(labels, blockBegin, blockEnd, sliceLabelsFlat3DView);
                 //
@@ -225,12 +225,12 @@ struct ComputeRag<GridRagStacked2D<LABELS>> {
                     const auto oddIndex = bool(sliceAIndex%2);
                     if((startIndex==0 && !oddIndex) || (startIndex==1 && oddIndex )){
 
-                        const auto sliceBIndex = sliceAIndex + 1;
+                        const int64_t sliceBIndex = sliceAIndex + 1;
                         auto & edgeLens = edgeLenStorage[sliceAIndex];
 
                         // fetch the data for the slice
-                        const Coord beginA({sliceAIndex,0L,0L});
-                        const Coord beginB({sliceBIndex,0L,0L});
+                        const Coord beginA({sliceAIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
+                        const Coord beginB({sliceBIndex, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                         const Coord endA({sliceAIndex+1,shape[1],shape[2]});
                         const Coord endB({sliceBIndex+1,shape[1],shape[2]});
 

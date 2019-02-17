@@ -139,8 +139,8 @@ namespace tools {
 
     // dummy to be compatible with z5 interface
     template<class ARRAY>
-    inline std::vector<size_t> getChunkShape(const xt::xexpression<ARRAY> & arr) {
-        return std::vector<size_t>();
+    inline std::vector<std::size_t> getChunkShape(const xt::xexpression<ARRAY> & arr) {
+        return std::vector<std::size_t>();
     }
 
 

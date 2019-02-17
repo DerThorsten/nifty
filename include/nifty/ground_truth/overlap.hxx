@@ -195,7 +195,7 @@ namespace ground_truth{
         }
 
 
-        template<size_t DIM, class LABELS_A, class LABELS_B>
+        template<std::size_t DIM, class LABELS_A, class LABELS_B>
         void fill(
             const LABELS_A & arrayA,
             const LABELS_B & arrayB

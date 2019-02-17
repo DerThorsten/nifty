@@ -44,7 +44,7 @@ namespace common{
 
         WatershedProposalGenerator(
             const ObjectiveType & objective, 
-            const size_t numberOfThreads,
+            const std::size_t numberOfThreads,
             const SettingsType & settings  = SettingsType()
         )
         :   objective_(objective),
@@ -89,7 +89,7 @@ namespace common{
         virtual void generateProposal(
             const ProposalType & currentBest, 
             ProposalType & proposal, 
-            const size_t tid
+            const std::size_t tid
         ){
             
             if(negativeEdges_.empty()){
@@ -106,11 +106,11 @@ namespace common{
                 }
 
                 auto nSeeds = settings_.numberOfSeeds <=1.0 ? 
-                    size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
-                    size_t(settings_.numberOfSeeds + 0.5);
+                    std::size_t(float(graph.numberOfNodes())*settings_.numberOfSeeds+0.5f) :
+                    std::size_t(settings_.numberOfSeeds + 0.5);
 
-                nSeeds = std::max(size_t(1),nSeeds);
-                nSeeds = std::min(size_t(negativeEdges_.size()-1), nSeeds);
+                nSeeds = std::max(std::size_t(1),nSeeds);
+                nSeeds = std::min(std::size_t(negativeEdges_.size()-1), nSeeds);
 
 
                 const auto & weights = objective_.weights();
@@ -119,7 +119,7 @@ namespace common{
                 });
 
 
-                for(size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
+                for(std::size_t i=0; i <  (nSeeds == 1 ? 1 : nSeeds/2); ++i){
                     const auto randIndex = intDist_(gen);
                     const auto edge  = negativeEdges_[randIndex];
                     const auto uv = graph.uv(edge);
@@ -136,7 +136,7 @@ namespace common{
         }
     private:
         const ObjectiveType & objective_;
-        size_t numberOfThreads_;
+        std::size_t numberOfThreads_;
         SettingsType settings_;
         std::vector<uint64_t> negativeEdges_;
         EdgeWeights noisyEdgeWeights_;

@@ -44,13 +44,13 @@ public:
 
     void getNewEdgeIds(const std::vector<EdgeType> &, std::vector<EdgeType> &) const;
 
-    size_t numberOfNewEdges() const
+    std::size_t numberOfNewEdges() const
     {return newUvIds_.size();}
 
-    size_t numberOfEdges() const
+    std::size_t numberOfEdges() const
     {return edgeMapping_.size();}
 
-    const std::vector<size_t> & newEdgeCounts() const
+    const std::vector<std::size_t> & newEdgeCounts() const
     {return edgeCounts_;}
 
 private:
@@ -62,16 +62,16 @@ private:
         const auto & uvIds = uvIdsExp.derived_cast();
         const auto & nodeLabeling = nodeLabelingExp.derived_cast();
 
-        const size_t nEdges = uvIds.shape()[0];
+        const std::size_t nEdges = uvIds.shape()[0];
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
-        const size_t nThreads = threadpool.nThreads();
+        const std::size_t nThreads = threadpool.nThreads();
 
         // find new uv-ids
         typedef boost::hash<UvType> Hash;
-        std::unordered_map<UvType, size_t, Hash> uvNewToIndex;
+        std::unordered_map<UvType, std::size_t, Hash> uvNewToIndex;
         {
             // use normal map because we want to have ordered keys
-            typedef std::map<UvType, size_t> UvMap;
+            typedef std::map<UvType, std::size_t> UvMap;
             std::vector<UvMap> perThreadData(nThreads);
 
             nifty::parallel::parallel_foreach(threadpool,
@@ -112,7 +112,7 @@ private:
 
             newUvIds_.resize(uvMap.size());
             edgeCounts_.resize(uvMap.size(), 0);
-            size_t ii = 0;
+            std::size_t ii = 0;
             for(const auto & uv: uvMap) {
                 newUvIds_[ii] = uv.first;
                 edgeCounts_[ii] = uv.second;
@@ -147,7 +147,7 @@ private:
 
     std::vector<EdgeType> edgeMapping_;
     std::vector<UvType> newUvIds_;
-    std::vector<size_t> edgeCounts_;
+    std::vector<std::size_t> edgeCounts_;
 };
 
 
@@ -166,7 +166,7 @@ void EdgeMapping<EDGE_TYPE, NODE_TYPE>::mapEdgeValues(const xt::xexpression<VALA
     NIFTY_CHECK_OP(edgeValues.shape()[0], ==, edgeMapping_.size(), "Wrong Input size");
 
     nifty::parallel::ThreadPool threadpool(numberOfThreads);
-    const size_t nThreads = threadpool.nThreads();
+    const std::size_t nThreads = threadpool.nThreads();
 
     // initialise the thread data
     std::vector<std::vector<ValueType>> perThreadData(nThreads);

@@ -21,7 +21,7 @@ void randomizedEdgeWeightedWatersheds()
 
 
     // create a grid graph
-    const size_t s = 30;
+    const std::size_t s = 30;
     GraphType g(s*s);
     for(auto y=0; y<s; ++y)
     for(auto x=0; x<s; ++x){

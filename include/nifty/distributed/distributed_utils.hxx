@@ -32,7 +32,7 @@ namespace distributed {
             }
             auto ovlpIt = overlaps.find(node);
             if(ovlpIt == overlaps.end()) {
-                overlaps.emplace(node, std::unordered_map<uint64_t, size_t>{{l, 1}});
+                overlaps.emplace(node, std::unordered_map<uint64_t, std::size_t>{{l, 1}});
             }
             else {
                 ovlpIt->second[l] += 1;
@@ -136,7 +136,7 @@ namespace distributed {
                 }
 
                 auto & ovlps = labelIt->second;
-                for(size_t i = 0; i < nValues; ++i) {
+                for(std::size_t i = 0; i < nValues; ++i) {
                     const uint64_t value = chunkOverlaps[pos];
                     ++pos;
 
@@ -154,7 +154,7 @@ namespace distributed {
                 // std::cout << "label " <<  labelId << " is out of range" << std::endl;
                 const uint64_t nValues = chunkOverlaps[pos];
                 ++pos;
-                for(size_t i = 0; i < nValues; ++i) {
+                for(std::size_t i = 0; i < nValues; ++i) {
                     const uint64_t value = chunkOverlaps[pos];
                     ++pos;
                     const uint64_t count = chunkOverlaps[pos];
@@ -167,7 +167,7 @@ namespace distributed {
 
     template<class OVLP>
     inline uint64_t deserializeOverlapChunk(const std::string & path,
-                                            const std::vector<size_t> & chunkId,
+                                            const std::vector<std::size_t> & chunkId,
                                             OVLP & out) {
         auto ds = z5::openDataset(path);
         uint64_t maxLabelId = 0;
@@ -323,7 +323,7 @@ namespace distributed {
             });
 
             auto dsOut = z5::openDataset(outputPath);
-            const std::vector<size_t> zero1Coord({labelBegin});
+            const std::vector<std::size_t> zero1Coord({labelBegin});
             z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
                                                     zero1Coord.begin(), numberOfThreads);
 
@@ -431,7 +431,7 @@ namespace distributed {
                 auto it = threadData.find(labelId);
                 if(it == threadData.end()) {
                     threadData.insert(std::make_pair(labelId,
-                                                     std::vector<size_t>({chunkId})));
+                                                     std::vector<std::size_t>({chunkId})));
                 } else {
                     it->second.push_back(chunkId);
                 }
@@ -485,7 +485,7 @@ namespace distributed {
                 auto it = threadData.find(labelId);
                 if(it == threadData.end()) {
                     threadData.insert(std::make_pair(labelId,
-                                                     std::vector<size_t>({chunkId})));
+                                                     std::vector<std::size_t>({chunkId})));
                 } else {
                     it->second.push_back(chunkId);
                 }
@@ -538,7 +538,7 @@ namespace distributed {
                 }
             }
 
-            std::vector<size_t> chunkBegin, chunkEnd;
+            std::vector<std::size_t> chunkBegin, chunkEnd;
             // make serialzation
             char * byteSerialization = new char[serSize];
             char * serPointer = byteSerialization;
@@ -592,8 +592,8 @@ namespace distributed {
                                       const std::string & outputPath,
                                       const std::size_t numberOfLabels,
                                       const int numberOfThreads,
-                                      const std::vector<size_t> & roiBegin=std::vector<std::size_t>(),
-                                      const std::vector<size_t> & roiEnd=std::vector<std::size_t>()) {
+                                      const std::vector<std::size_t> & roiBegin=std::vector<std::size_t>(),
+                                      const std::vector<std::size_t> & roiEnd=std::vector<std::size_t>()) {
 
         // iterate over the input in parallel and map block-ids to label ids
         std::vector<std::vector<std::size_t>> mapping(numberOfLabels);

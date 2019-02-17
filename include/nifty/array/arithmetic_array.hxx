@@ -107,7 +107,7 @@ namespace array{
     // since it is an aggregate we need
     // to impl. this
     // => we are giving up the aggregate status
-    template<class T, size_t DIM>
+    template<class T, std::size_t DIM>
     class StaticArrayBase : public std::array<T,DIM>{
     public:
         typedef  std::array<T,DIM> BaseType;
@@ -150,7 +150,7 @@ namespace array{
     };
 
 
-    template<class T,size_t SIZE>
+    template<class T,std::size_t SIZE>
     using StaticArray = ArrayExtender< StaticArrayBase<T,SIZE> >;
 
     // template<class T, class ALLOCATOR = std::allocator<T> >

@@ -108,8 +108,8 @@ inline void accumulateInnerSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec,
     const auto & labels = labelsExp.derived_cast();
     const auto & filter = filterExp.derived_cast();
 
-    size_t pass = 1;
-    size_t numberOfChannels = channelAccChainVec[0].size();
+    std::size_t pass = 1;
+    std::size_t numberOfChannels = channelAccChainVec[0].size();
 
     // set minmax for accumulator chains
     for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
@@ -198,8 +198,8 @@ inline void accumulateBetweenSliceFeatures(ACC_CHAIN_VECTOR & channelAccChainVec
     const auto haveIgnoreLabel = rag.haveIgnoreLabel();
     const auto ignoreLabel = rag.ignoreLabel();
 
-    size_t pass = 1;
-    size_t numberOfChannels = channelAccChainVec[0].size();
+    std::size_t pass = 1;
+    std::size_t numberOfChannels = channelAccChainVec[0].size();
 
     // set minmax for accumulator chains
     for(int64_t edge = 0; edge < channelAccChainVec.size(); ++edge){
@@ -293,7 +293,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
     typedef std::vector<AccChainVectorType> ChannelAccChainVectorType;
     typedef typename features::ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labels = rag.labels();
@@ -306,12 +306,12 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                                         std::vector<bool>{true,  true,  true}}; // HessianOfGaussianEigenvalues
 
     features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
-    size_t numberOfChannels = applyFilters.numberOfChannels();
+    std::size_t numberOfChannels = applyFilters.numberOfChannels();
 
     uint64_t numberOfSlices = shape[0];
 
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L, shape[1], shape[2]});
+    Coord sliceShape3({static_cast<int64_t>(1), shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
 
     // FIXME this does not really help, because slices are not completely processed
@@ -345,8 +345,8 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
         DataBlockStorage   dataStorage(threadpool, sliceShape3, actualNumberOfThreads);
 
         // process slice 0 to find min and max for histogram opts
-        Coord begin0({0L, 0L, 0L});
-        Coord end0(  {1L, shape[1], shape[2]});
+        Coord begin0({static_cast<int64_t>(0), static_cast<int64_t>(0), static_cast<int64_t>(0)});
+        Coord end0(  {static_cast<int64_t>(1), shape[1], shape[2]});
 
         auto data0 = dataStorage.getView(0);
         tools::readSubarray(data, begin0, end0, data0);
@@ -363,10 +363,10 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
                          applyFilters);
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
-        Coord cShape({1L, sliceShape2[0], sliceShape2[1]});
+        Coord cShape({static_cast<int64_t>(1), sliceShape2[0], sliceShape2[1]});
         parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
             auto & histoOpts = histoOptionsVec[c];
-            Coord cBegin({c, 0L, 0L});
+            Coord cBegin({c, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             xt::slice_vector slice;
             xtensor::sliceFromOffset(slice, cBegin, cShape);
             auto channelView = xt::strided_view(filter0, slice);
@@ -393,7 +393,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
             int64_t sliceIdB = slicePairs[pairId].second;// upper slice
 
             // compute the filters for slice A
-            Coord beginA({sliceIdA, 0L, 0L});
+            Coord beginA({sliceIdA, static_cast<int64_t>(0), static_cast<int64_t>(0)});
             Coord endA({sliceIdA+1, shape[1], shape[2]});
 
             auto labelsA = labelsAStorage.getView(tid);
@@ -440,7 +440,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
             if(!keepXYOnly || sliceIdB == numberOfSlices - 1) {
 
                 // process upper slice
-                Coord beginB = Coord({sliceIdB, 0L, 0L});
+                Coord beginB = Coord({sliceIdB, static_cast<int64_t>(0), static_cast<int64_t>(0)});
                 Coord endB   = Coord({sliceIdB + 1, shape[1], shape[2]});
                 auto filterB = filterBStorage.getView(tid);
 
@@ -567,8 +567,8 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
         // chunking aware
         auto accFunction = [](
             const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-            const size_t sliceId,
-            const size_t edgeOffset,
+            const std::size_t sliceId,
+            const std::size_t edgeOffset,
             OUTPUT & edgeFeaturesOut,
             OverhangStorage & storageFront,
             OverhangStorage & storageBack
@@ -607,7 +607,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // find beginning and end for block-aligned edges in tmp features
             // at the begin, we need to check
             const int64_t edgeEndAlignedLocal = nEdges - overhangEnd;
-            FeatCoord beginAlignedLocal{(int64_t)overhangBegin, 0L};
+            FeatCoord beginAlignedLocal{(int64_t)overhangBegin, static_cast<int64_t>(0)};
             FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
 
             // get view to the aligned features
@@ -616,9 +616,9 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
             // find global beginning and end for block aligned edges
-            FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+            FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), static_cast<int64_t>(0)};
             FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
-                
+
             // write the aligned features - if any exist
             if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
                 // get view to the aligned features
@@ -627,7 +627,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
                 // find global beginning and end for block aligned edges
-                FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), 0L};
+                FeatCoord beginAlignedGlobal{int64_t(edgeOffset + overhangBegin), static_cast<int64_t>(0)};
                 FeatCoord endAlignedGlobal{int64_t(edgeEnd - overhangEnd), (int64_t)nFeats};
 
                 // write out blockaligned edges
@@ -638,13 +638,13 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // check if we have overhanging data at the beginning
             if(overhangBegin > 0) {
                 auto & storage = storageFront[sliceId];
-                storage.begin = FeatCoord{int64_t(edgeOffset), 0L};
+                storage.begin = FeatCoord{int64_t(edgeOffset), static_cast<int64_t>(0)};
                 storage.end = FeatCoord{int64_t(edgeOffset + overhangBegin), int64_t(nFeats)};
 
                 // write correct data ti the storage
                 auto & storageFeats = storage.features;
-                std::array<size_t, 2> storageBegin{0, 0};
-                std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
+                std::array<std::size_t, 2> storageBegin{0, 0};
+                std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
                 xt::slice_vector slice;
@@ -660,13 +660,13 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // check if we have overhanging data at the end
             if(overhangEnd > 0) {
                 auto & storage = storageBack[sliceId];
-                storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0L};
+                storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), static_cast<int64_t>(0)};
                 storage.end = FeatCoord{int64_t(edgeEnd), int64_t(nFeats)};
 
                 // write correct data ti the storage
                 auto & storageFeats = storage.features;
-                std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
-                std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
+                std::array<std::size_t, 2> storageBegin{(std::size_t)edgeEndAlignedLocal, 0};
+                std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
                 xt::slice_vector slice;
@@ -687,13 +687,13 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // check if we have overhanging data at the beginning
             if(overhangBegin > 0) {
                 auto & storage = storageFront[sliceId];
-                storage.begin = FeatCoord{int64_t(edgeOffset), 0L};
+                storage.begin = FeatCoord{int64_t(edgeOffset), 0};
                 storage.end = FeatCoord{int64_t(edgeOffset + overhangBegin), int64_t(nFeats)};
 
                 // write correct data ti the storage
                 auto & storageFeats = storage.features;
-                std::array<size_t, 2> storageBegin{0, 0};
-                std::array<size_t, 2> storageShape{(size_t)overhangBegin, (size_t)nFeats};
+                std::array<std::size_t, 2> storageBegin{0, 0};
+                std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
                 xt::slice_vector slice;
@@ -709,13 +709,13 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // check if we have overhanging data at the end
             if(overhangEnd > 0) {
                 auto & storage = storageBack[sliceId];
-                storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0L};
+                storage.begin = FeatCoord{int64_t(edgeEnd - overhangEnd), 0};
                 storage.end = FeatCoord{int64_t(edgeEnd), int64_t(nFeats)};
 
                 // write correct data ti the storage
                 auto & storageFeats = storage.features;
-                std::array<size_t, 2> storageBegin{(size_t)edgeEndAlignedLocal, 0};
-                std::array<size_t, 2> storageShape{(size_t)overhangEnd, (size_t)nFeats};
+                std::array<std::size_t, 2> storageBegin{(std::size_t)edgeEndAlignedLocal, 0};
+                std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
                 xt::slice_vector slice;
@@ -772,8 +772,8 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
         // not chunking aware
         auto accFunction = [](
             const std::vector<std::vector<AccChainType>> & channelAccChainVec,
-            const size_t slideId,
-            const size_t edgeOffset,
+            const std::size_t slideId,
+            const std::size_t edgeOffset,
             OUTPUT & edgeFeaturesOut
         ){
             using namespace vigra::acc;
@@ -801,7 +801,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             }
 
             // find beginning and end for block-aligned edges
-            FeatCoord begin({(int64_t) edgeOffset, 0L});
+            FeatCoord begin({(int64_t) edgeOffset, static_cast<int64_t>(0)});
             FeatCoord end({int64_t(edgeOffset + nEdges), int64_t(nChannels * nStats)});
 
             // write out  edges
@@ -840,8 +840,8 @@ template<class EDGE_ACC_CHAIN, class LABELS_PROXY, class DATA, class F>
 void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS_PROXY> & rag,
                                                        const DATA & data,
                                                        const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-                                                       const std::vector<size_t> & skipRanges,
-                                                       const std::vector<size_t> & skipStarts,
+                                                       const std::vector<std::size_t> & skipRanges,
+                                                       const std::vector<std::size_t> & skipStarts,
                                                        const parallel::ParallelOptions & pOpts,
                                                        parallel::ThreadPool & threadpool,
                                                        F && f,
@@ -865,7 +865,7 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
 
     typedef typename features::ApplyFilters<2>::FiltersToSigmasType FiltersToSigmasType;
 
-    const size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+    const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
     const auto & shape = rag.shape();
     const auto & labelsProxy = rag.labelsProxy();
@@ -878,10 +878,10 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
                                           { true, true, true } });  // HessianOfGaussianEigenvalues
 
     features::ApplyFilters<2> applyFilters(sigmas, filtersToSigmas);
-    size_t numberOfChannels = applyFilters.numberOfChannels();
+    std::size_t numberOfChannels = applyFilters.numberOfChannels();
 
     Coord2 sliceShape2({shape[1], shape[2]});
-    Coord sliceShape3({1L,shape[1], shape[2]});
+    Coord sliceShape3({1,shape[1], shape[2]});
     Coord filterShape({int64_t(numberOfChannels), shape[1], shape[2]});
 
     // filter computation and accumulation
@@ -899,26 +899,26 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
         FilterBlockStorage dataCopyStorage(threadpool, sliceShape2, 1);
 
         // get unique lower slices with skip edges
-        std::vector<size_t> lowerSlices;
+        std::vector<std::size_t> lowerSlices;
         tools::uniques(skipStarts, lowerSlices);
         auto lowest = int64_t(lowerSlices[0]);
 
         // get upper slices with skip edges for each lower slice and number of skip edges for each lower slice
-        std::map<size_t,std::vector<size_t>> skipSlices;
-        std::map<size_t,size_t> numberOfSkipEdgesPerSlice;
+        std::map<std::size_t,std::vector<std::size_t>> skipSlices;
+        std::map<std::size_t,std::size_t> numberOfSkipEdgesPerSlice;
 
         // initialize the maps
         std::cout << "Lower slices with skip edges:" << std::endl;
         for(auto sliceId : lowerSlices) {
             std::cout << sliceId << std::endl;
-            skipSlices[sliceId] = std::vector<size_t>();
+            skipSlices[sliceId] = std::vector<std::size_t>();
             numberOfSkipEdgesPerSlice[sliceId] = 0;
         }
 
         // determine the number of skip edges starting from each slice
         // and fill the conversion of uv-ids to edge-id
-        std::map<SkipEdgeStorage, size_t> skipUvsToIds;
-        for(size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
+        std::map<SkipEdgeStorage, std::size_t> skipUvsToIds;
+        for(std::size_t skipId = 0; skipId < skipEdges.size(); ++skipId) {
 
             // find the source slice of this skip edge and increment the number of edges in the slice
             auto sliceId = skipStarts[skipId];
@@ -936,14 +936,14 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
 
         std::vector<vigra::HistogramOptions> histoOptionsVec(numberOfChannels);
 
-        size_t skipEdgeOffset = 0;
+        std::size_t skipEdgeOffset = 0;
         int countSlice = 0;
         for(auto sliceId : lowerSlices) {
 
             std::cout << countSlice++ << " / " << lowerSlices.size() << std::endl;
             std::cout << "Finding features for skip edges from slice " << sliceId << std::endl;
 
-            Coord beginA({int64_t(sliceId),0L,0L});
+            Coord beginA({int64_t(sliceId),0,0});
             Coord endA(  {int64_t(sliceId+1),shape[1],shape[2]});
             auto labelsA = labelsAStorage.getView(0);
             labelsProxy.readSubarray(beginA, endA, labelsA);
@@ -966,11 +966,11 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
 
             // set the correct histogram for each filter from lowest slice
             if(sliceId == lowest){
-                Coord cShape({1L,sliceShape2[0],sliceShape2[1]});
+                Coord cShape({1,sliceShape2[0],sliceShape2[1]});
                 parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
                     auto & histoOpts = histoOptionsVec[c];
 
-                    Coord cBegin({c,0L,0L});
+                    Coord cBegin({c,0,0});
                     auto channelView = filterA.view(cBegin.begin(), cShape.begin());
                     auto minMax = std::minmax_element(channelView.begin(), channelView.end());
                     auto min = *(minMax.first);
@@ -1003,7 +1003,7 @@ void accumulateSkipEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LA
             for(auto nextId : skipSlices[sliceId] ) {
                 std::cout << "to slice " << nextId << std::endl;
 
-                beginB = Coord({int64_t(nextId),0L,0L});
+                beginB = Coord({int64_t(nextId),0,0});
                 endB   = Coord({int64_t(nextId+1),shape[1],shape[2]});
 
                 auto labelsB = labelsBStorage.getView(0);
@@ -1109,8 +1109,8 @@ void accumulateSkipEdgeFeaturesFromFilters(
     const DATA & data,
     OUTPUT & edgeFeaturesOut,
     const std::vector<std::pair<uint64_t,uint64_t>> & skipEdges,
-    const std::vector<size_t> & skipRanges,
-    const std::vector<size_t> & skipStarts,
+    const std::vector<std::size_t> & skipRanges,
+    const std::vector<std::size_t> & skipStarts,
     const int zDirection = 0,
     const int numberOfThreads = -1
 ){
@@ -1172,7 +1172,7 @@ void accumulateSkipEdgeFeaturesFromFilters(
                 }
             });
 
-            FeatCoord begin({int64_t(edgeOffset),0L});
+            FeatCoord begin({int64_t(edgeOffset),0});
             FeatCoord end({edgeOffset+nEdges,nChannels*nStats});
 
             tools::writeSubarray(edgeFeaturesOut, begin, end, featuresTemp);

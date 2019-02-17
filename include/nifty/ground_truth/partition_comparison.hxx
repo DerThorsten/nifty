@@ -25,9 +25,9 @@ public:
         typedef typename std::iterator_traits<ITERATOR_TRUTH>::value_type Label0;
         typedef typename std::iterator_traits<ITERATOR_PRED>::value_type Label1;
         typedef std::pair<Label0, Label1> Pair;
-        typedef std::map<Pair, size_t> OverlapMatrix;
-        typedef std::map<Label0, size_t> TruthSumMap;
-        typedef std::map<Label1, size_t> PredSumMap;
+        typedef std::map<Pair, std::size_t> OverlapMatrix;
+        typedef std::map<Label0, std::size_t> TruthSumMap;
+        typedef std::map<Label1, std::size_t> PredSumMap;
 
         OverlapMatrix n;
         TruthSumMap truthSum;
@@ -67,9 +67,9 @@ public:
 
         for (auto const& it : n)
         {
-            const size_t i = it.first.first;
-            const size_t j = it.first.second;
-            const size_t n_ij = it.second;
+            const std::size_t i = it.first.first;
+            const std::size_t j = it.first.second;
+            const std::size_t n_ij = it.second;
 
             trueJoins_ += n_ij * (n_ij - 1) / 2;
             falseCuts_ -= n_ij * n_ij;
@@ -82,27 +82,27 @@ public:
         trueCuts_ = pairs() - joinsInPrediction() - falseCuts_;
     }
 
-    size_t elements() const
+    std::size_t elements() const
         { return elements_; }
-    size_t pairs() const
+    std::size_t pairs() const
         { return elements_ * (elements_ - 1) / 2; }
 
-    size_t trueJoins() const
+    std::size_t trueJoins() const
         { return trueJoins_; }
-    size_t trueCuts() const
+    std::size_t trueCuts() const
         { return trueCuts_; }
-    size_t falseJoins() const
+    std::size_t falseJoins() const
         { return falseJoins_; }
-    size_t falseCuts() const
+    std::size_t falseCuts() const
         { return falseCuts_; }
 
-    size_t joinsInPrediction() const
+    std::size_t joinsInPrediction() const
         { return trueJoins_ + falseJoins_; }
-    size_t cutsInPrediction() const
+    std::size_t cutsInPrediction() const
         { return trueCuts_ + falseCuts_; }
-    size_t joinsInTruth() const
+    std::size_t joinsInTruth() const
         { return trueJoins_ + falseCuts_; }
-    size_t cutsInTruth() const
+    std::size_t cutsInTruth() const
         { return trueCuts_ + falseJoins_; }
 
     value_type recallOfCuts() const
@@ -141,11 +141,11 @@ public:
         { return static_cast<value_type>(trueJoins() + trueCuts()) / pairs(); }
 
 private:
-    size_t elements_;
-    size_t trueJoins_ { size_t() };
-    size_t trueCuts_ { size_t() };
-    size_t falseJoins_ { size_t() };
-    size_t falseCuts_ { size_t() };
+    std::size_t elements_;
+    std::size_t trueJoins_ { std::size_t() };
+    std::size_t trueCuts_ { std::size_t() };
+    std::size_t falseJoins_ { std::size_t() };
+    std::size_t falseCuts_ { std::size_t() };
 };
 
 template<class T = double>
@@ -164,7 +164,7 @@ public:
         typedef std::map<Label1, double> PVector1;
 
         // count
-        size_t N = std::distance(begin0, end0);
+        std::size_t N = std::distance(begin0, end0);
 
         PMatrix pjk;
         PVector0 pj;

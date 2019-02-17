@@ -9,7 +9,7 @@ namespace nifty{
 namespace graph{
 
     // TODO parallelize
-    template<size_t DIM, class GRAPH_LABELS, class LABELS, class NODE_MAP>
+    template<std::size_t DIM, class GRAPH_LABELS, class LABELS, class NODE_MAP>
     void gridRagAccumulateLabels(const GridRag<DIM, GRAPH_LABELS> & graph,
                                  const xt::xexpression<LABELS> & dataExp,
                                  NODE_MAP & nodeMap,
@@ -22,7 +22,7 @@ namespace graph{
         const auto & shape = graph.shape();
         const auto & data = dataExp.derived_cast();
 
-        std::vector<std::unordered_map<LabelType, size_t>> overlaps(graph.numberOfNodes());
+        std::vector<std::unordered_map<LabelType, std::size_t>> overlaps(graph.numberOfNodes());
 
         nifty::tools::forEachCoordinate(shape, [&](const Coord & coord){
             const auto node = xtensor::read(labels, coord);
@@ -33,7 +33,7 @@ namespace graph{
         for(const auto node : graph.nodes()){
             const auto & ol = overlaps[node];
             // find max ol
-            size_t maxOl = 0;
+            std::size_t maxOl = 0;
             LabelType maxOlLabel = 0;
             for(auto kv : ol){
                 if(kv.second > maxOl){
@@ -49,7 +49,7 @@ namespace graph{
     }
 
 
-    template<size_t DIM, class GRAPH_LABELS, class NODE_MAP>
+    template<std::size_t DIM, class GRAPH_LABELS, class NODE_MAP>
     void findZExtendedNodes(const GridRag<DIM, GRAPH_LABELS> & graph, NODE_MAP & extendedNodes){
         typedef std::array<int64_t, DIM> Coord;
         typedef typename GridRag<DIM, GRAPH_LABELS>::value_type LabelType;
@@ -57,11 +57,11 @@ namespace graph{
         const auto & labels = graph.labels();
         const auto & shape = graph.shape();
 
-        std::vector<std::set<size_t>> zCoordinates(graph.numberOfNodes());
+        std::vector<std::set<std::size_t>> zCoordinates(graph.numberOfNodes());
 
         nifty::tools::forEachCoordinate(shape, [&](const Coord & coord){
             const auto node = xtensor::read(labels, coord);
-            const size_t z = coord[0];
+            const std::size_t z = coord[0];
             zCoordinates[node].insert(z);
         });
 

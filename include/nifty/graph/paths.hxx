@@ -68,7 +68,7 @@ findChord(
 
 
 template<class PREDECESSORS_MAP, class OUT_ITER>
-size_t buildPathInLargeEnoughBuffer(
+std::size_t buildPathInLargeEnoughBuffer(
     const uint64_t source,
     const uint64_t target,
     const PREDECESSORS_MAP & predecessorMap,

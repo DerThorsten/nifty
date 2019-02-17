@@ -31,8 +31,8 @@ namespace lifted_multicut{
                 const xt::pytensor<double,1> & nodeSizes,
                 std::vector<double > sizeRegularizers
             ){
-                const size_t numberOfFeatures = sizeRegularizers.size() * 2;
-                const size_t numberOfLiftedEdges = objective.numberOfLiftedEdges();
+                const std::size_t numberOfFeatures = sizeRegularizers.size() * 2;
+                const std::size_t numberOfLiftedEdges = objective.numberOfLiftedEdges();
                 xt::pytensor<double, 2> out({static_cast<int64_t>(numberOfFeatures),
                                              static_cast<int64_t>(numberOfLiftedEdges)});
 

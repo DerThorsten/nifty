@@ -12,7 +12,7 @@
 
 
 void getStackedSegmentation(xt::xarray<uint32_t> & seg,
-        const std::vector<size_t> & shape) {
+        const std::vector<std::size_t> & shape) {
     // random generator
     std::default_random_engine gen;
     std::uniform_int_distribution<int> distr(0,9);
@@ -37,19 +37,19 @@ BOOST_AUTO_TEST_CASE(StackedRagHdf5Test)
 {
     typedef nifty::graph::Hdf5Labels<3, uint32_t> LabelsProxy;
 
-    std::vector<size_t> shape({20,100,100});
+    std::vector<std::size_t> shape({20,100,100});
     xt::xarray<uint32_t> seg({20L, 100L, 100L});
     getStackedSegmentation(seg, shape);
     uint32_t maxLabel = *(std::max_element(seg.begin(), seg.end()));
     std::cout << "MaxLabel: " << maxLabel << std::endl;
     auto segFile = nifty::hdf5::createFile("./seg_tmp.h5");
-    std::vector<size_t> chunks({10,50,50});
+    std::vector<std::size_t> chunks({10,50,50});
     nifty::hdf5::Hdf5Array<uint32_t> labels(segFile,
             "data",
             shape.begin(),
             shape.end(),
             chunks.begin());
-    std::vector<size_t> start({0,0,0});
+    std::vector<std::size_t> start({0,0,0});
     labels.writeSubarray(start.begin(), seg);
     LabelsProxy labelsProxy(labels, maxLabel);
     nifty::graph::GridRagStacked2D<LabelsProxy> rag(labelsProxy);

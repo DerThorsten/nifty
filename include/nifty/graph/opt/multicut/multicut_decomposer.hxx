@@ -76,9 +76,9 @@ namespace multicut{
             SubgraphWithCut(const WeightsMap & weights)
                 :   weights_(weights)
             {}
-            bool useNode(const size_t v) const
+            bool useNode(const std::size_t v) const
                 { return true; }
-            bool useEdge(const size_t e) const
+            bool useEdge(const std::size_t e) const
             {
                 return weights_[e] > 0.0;
             }
@@ -138,7 +138,7 @@ namespace multicut{
         // build the connected components
         NodeLabelsType denseLabels(graph_);
         const auto nComponents = components_.build(SubgraphWithCut(weights_));
-        std::vector<size_t> componentsSize(nComponents,0);
+        std::vector<std::size_t> componentsSize(nComponents,0);
         components_.denseRelabeling(denseLabels, componentsSize);
 
 
@@ -161,7 +161,7 @@ namespace multicut{
             // - allocate the sub graphs
             // - sparse to dense
             std::vector<SubmodelGraph *> subGraphVec(nComponents);
-            for(size_t i=0; i<nComponents; ++i){
+            for(std::size_t i=0; i<nComponents; ++i){
                 NIFTY_CHECK_OP(componentsSize[i],>,0,"");
                 if(componentsSize[i]>1)
                     subGraphVec[i] = new SubmodelGraph(componentsSize[i]);
@@ -215,7 +215,7 @@ namespace multicut{
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "build sub-objectives");
             // build the sub mc objectives
             std::vector<SubmodelObjective *> subObjectiveVec(nComponents);
-            for(size_t i=0; i<nComponents; ++i){
+            for(std::size_t i=0; i<nComponents; ++i){
                 if(componentsSize[i]>1)
                     subObjectiveVec[i] = new SubmodelObjective(*subGraphVec[i]);
             }
@@ -243,7 +243,7 @@ namespace multicut{
             // //////////////////////////////////////////////
             // solving and partial cleanup
             // //////////////////////////////////////////////
-            for(size_t i=0; i<nComponents; ++i){
+            for(std::size_t i=0; i<nComponents; ++i){
                 if(componentsSize[i]>1){
                     const auto & subObj = *subObjectiveVec[i];
                     const auto & subGraph = *subGraphVec[i];
@@ -292,7 +292,7 @@ namespace multicut{
 
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "cleanup");
             // final cleanup
-            for(size_t i=0; i<nComponents; ++i){
+            for(std::size_t i=0; i<nComponents; ++i){
                 if(componentsSize[i]>1){
                     delete subNodeLabelsVec[i];
                 }

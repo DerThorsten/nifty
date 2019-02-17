@@ -49,7 +49,7 @@ namespace distributed {
                                          const std::string & dataKey,
                                          const std::string & labelPath,
                                          const std::string & labelKey,
-                                         const std::vector<size_t> & blockIds,
+                                         const std::vector<std::size_t> & blockIds,
                                          const std::string & tmpFeatureStorage,
                                          FEATURE_ACCUMULATOR && accumulator) {
 
@@ -94,8 +94,8 @@ namespace distributed {
             const auto & jEnd = j[keys[1]];
             const bool ignoreLabel = j[keys[2]];
 
-            std::vector<size_t> roiBegin(3);
-            std::vector<size_t> roiEnd(3);
+            std::vector<std::size_t> roiBegin(3);
+            std::vector<std::size_t> roiEnd(3);
             for(unsigned axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = jBegin[axis];
                 roiEnd[axis] = jEnd[axis];
@@ -124,7 +124,7 @@ namespace distributed {
     inline void serializeDefaultEdgeFeatures(const AccumulatorVector & accumulators,
                                              const std::string & blockStoragePath) {
         // the number of features is hard-coded to 10 for now
-        const std::vector<size_t> zero2Coord({0, 0});
+        const std::vector<std::size_t> zero2Coord({0, 0});
         xt::xtensor<FeatureType, 2> values(Shape2Type({accumulators.size(), 10}));
         EdgeIndexType edgeId = 0;
 
@@ -143,7 +143,7 @@ namespace distributed {
         }
 
         // serialize the features to z5 (TODO chunking / compression ?!)
-        std::vector<size_t> shape = {accumulators.size(), 10};
+        std::vector<std::size_t> shape = {accumulators.size(), 10};
         auto ds = z5::createDataset(blockStoragePath, "float64", shape, shape, false);
         z5::multiarray::writeSubarray<FeatureType>(ds, values, zero2Coord.begin());
     }
@@ -163,7 +163,7 @@ namespace distributed {
                 return;
             }
             CoordType coord2;
-            for(size_t axis = 0; axis < 3; ++axis){
+            for(std::size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){
                     const NodeType lV = xtensor::read(labels, coord2.asStdArray());
@@ -199,7 +199,7 @@ namespace distributed {
                 return;
             }
             CoordType coord2;
-            for(size_t axis = 0; axis < 3; ++axis){
+            for(std::size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] < blockShape[axis]){
                     const NodeType lV = xtensor::read(labels, coord2.asStdArray());
@@ -382,12 +382,12 @@ namespace distributed {
     inline void accumulateAffinityMap(const Graph & graph,
                                       std::unique_ptr<z5::Dataset> dataDs,
                                       std::unique_ptr<z5::Dataset> labelsDs,
-                                      const std::vector<size_t> & roiBegin,
-                                      const std::vector<size_t> & roiEnd,
+                                      const std::vector<std::size_t> & roiBegin,
+                                      const std::vector<std::size_t> & roiEnd,
                                       const std::string & blockStoragePath,
                                       const std::vector<OffsetType> & offsets,
-                                      const std::vector<size_t> & haloBegin,
-                                      const std::vector<size_t> & haloEnd,
+                                      const std::vector<std::size_t> & haloBegin,
+                                      const std::vector<std::size_t> & haloEnd,
                                       const FeatureType dataMin,
                                       const FeatureType dataMax,
                                       const bool ignoreLabel) {
@@ -397,10 +397,10 @@ namespace distributed {
         typedef typename DataArray::shape_type Shape4Type;
 
         // get the shapes with halos
-        std::vector<size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
+        std::vector<std::size_t> beginWithHalo(3), endWithHalo(3), affsBegin(4);
         const auto & volumeShape = labelsDs->shape();
         for(unsigned axis = 0; axis < 3; ++axis) {
-            beginWithHalo[axis] = std::max(static_cast<int64_t>(roiBegin[axis]) - static_cast<int64_t>(haloBegin[axis]), 0L);
+            beginWithHalo[axis] = std::max(static_cast<int64_t>(roiBegin[axis]) - static_cast<int64_t>(haloBegin[axis]), static_cast<int64_t>(0));
             endWithHalo[axis] = std::min(roiEnd[axis] + haloEnd[axis], volumeShape[axis]);
             affsBegin[axis + 1] = beginWithHalo[axis];
         }
@@ -465,7 +465,7 @@ namespace distributed {
                                                      const std::string & dataKey,
                                                      const std::string & labelPath,
                                                      const std::string & labelKey,
-                                                     const std::vector<size_t> & blockIds,
+                                                     const std::vector<std::size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
                                                      const FeatureType dataMin=0,
                                                      const FeatureType dataMax=1,
@@ -476,8 +476,8 @@ namespace distributed {
                 const Graph & graph,
                 std::unique_ptr<z5::Dataset> dataDs,
                 std::unique_ptr<z5::Dataset> labelsDs,
-                const std::vector<size_t> & roiBegin,
-                const std::vector<size_t> & roiEnd,
+                const std::vector<std::size_t> & roiBegin,
+                const std::vector<std::size_t> & roiEnd,
                 const std::string & blockStoragePath,
                 const bool ignoreLabel) {
 
@@ -501,19 +501,19 @@ namespace distributed {
                                                      const std::string & dataKey,
                                                      const std::string & labelPath,
                                                      const std::string & labelKey,
-                                                     const std::vector<size_t> & blockIds,
+                                                     const std::vector<std::size_t> & blockIds,
                                                      const std::string & tmpFeatureStorage,
                                                      const std::vector<OffsetType> & offsets,
                                                      const FeatureType dataMin=0,
                                                      const FeatureType dataMax=1) {
         // calculate max halos from the offsets
-        std::vector<size_t> haloBegin(3), haloEnd(3);
+        std::vector<std::size_t> haloBegin(3), haloEnd(3);
         for(const auto & offset : offsets) {
             for(unsigned axis = 0; axis < 3; ++axis) {
                 if(offset[axis] < 0) {
-                    haloBegin[axis] = std::max(static_cast<size_t>(-offset[axis]), haloBegin[axis]);
+                    haloBegin[axis] = std::max(static_cast<std::size_t>(-offset[axis]), haloBegin[axis]);
                 } else if(offset[axis] > 0) {
-                    haloEnd[axis] = std::max(static_cast<size_t>(offset[axis]), haloEnd[axis]);
+                    haloEnd[axis] = std::max(static_cast<std::size_t>(offset[axis]), haloEnd[axis]);
                 }
             }
         }
@@ -524,8 +524,8 @@ namespace distributed {
                 const Graph & graph,
                 std::unique_ptr<z5::Dataset> dataDs,
                 std::unique_ptr<z5::Dataset> labelsDs,
-                const std::vector<size_t> & roiBegin,
-                const std::vector<size_t> & roiEnd,
+                const std::vector<std::size_t> & roiBegin,
+                const std::vector<std::size_t> & roiEnd,
                 const std::string & blockStoragePath,
                 const bool ignoreLabel) {
 
@@ -550,7 +550,7 @@ namespace distributed {
 
     inline void loadBlockFeatures(const std::string & blockFeaturePath,
                                   xt::xtensor<FeatureType, 2> & features) {
-        const std::vector<size_t> zero2Coord({0, 0});
+        const std::vector<std::size_t> zero2Coord({0, 0});
         auto featDs = z5::openDataset(blockFeaturePath);
         z5::multiarray::readSubarray<FeatureType>(featDs, features, zero2Coord.begin());
     }
@@ -582,7 +582,7 @@ namespace distributed {
 
         // merge the quantiles (not min and max !) via weighted average
         // this is not correct, but the best we can do for now
-        for(size_t featId = 3 + off; featId < 8 + off; ++featId) {
+        for(std::size_t featId = 3 + off; featId < 8 + off; ++featId) {
             const FeatureType quant = ratioA * targetFeatures(targetId, featId) +
                                       ratioB * tmpFeatures(tmpId, featId);
             targetFeatures(targetId, featId) = replaceIfNotFinite(quant, mean);
@@ -601,8 +601,8 @@ namespace distributed {
                                            const EdgeIndexType targetId,
                                            std::vector<bool> & hasFeatures) {
 
-        const size_t nFeatures = tmpFeatures.shape()[1];
-        const size_t featsPerType = 9;
+        const std::size_t nFeatures = tmpFeatures.shape()[1];
+        const std::size_t featsPerType = 9;
         if(hasFeatures[targetId]) {
 
             // last index is the count
@@ -613,8 +613,8 @@ namespace distributed {
             const FeatureType ratioB = nSamplesB / nSamplesTot;
 
             // merge each type of features in 9er steps
-            const size_t nFeatTypes = (nFeatures - 1) / featsPerType;
-            for(size_t featType = 0; featType < nFeatTypes; ++featType) {
+            const std::size_t nFeatTypes = (nFeatures - 1) / featsPerType;
+            for(std::size_t featType = 0; featType < nFeatTypes; ++featType) {
                 mergeFeatType(tmpFeatures, targetFeatures,
                               tmpId, targetId, featType * featsPerType,
                               ratioA, ratioB);
@@ -625,7 +625,7 @@ namespace distributed {
 
         } else {
 
-            for(size_t featId = 0; featId < nFeatures; ++featId) {
+            for(std::size_t featId = 0; featId < nFeatures; ++featId) {
                 targetFeatures(targetId, featId) = tmpFeatures(tmpId, featId);
             }
             hasFeatures[targetId] = true;
@@ -645,19 +645,19 @@ namespace distributed {
 
     inline void mergeEdgeFeaturesForBlocks(const std::string & graphBlockPrefix,
                                            const std::string & featureBlockPrefix,
-                                           const size_t edgeIdBegin,
-                                           const size_t edgeIdEnd,
-                                           const size_t nFeatures,
-                                           const std::vector<size_t> & blockIds,
+                                           const std::size_t edgeIdBegin,
+                                           const std::size_t edgeIdEnd,
+                                           const std::size_t nFeatures,
+                                           const std::vector<std::size_t> & blockIds,
                                            nifty::parallel::ThreadPool & threadpool,
                                            const std::string & featuresOut) {
         //
-        const size_t nEdges = edgeIdEnd - edgeIdBegin;
+        const std::size_t nEdges = edgeIdEnd - edgeIdBegin;
         Shape2Type fShape = {nEdges, nFeatures};
         Shape2Type tmpInit = {1, nFeatures};
 
         // initialize per thread data
-        const size_t nThreads = threadpool.nThreads();
+        const std::size_t nThreads = threadpool.nThreads();
         struct PerThreadData {
             xt::xtensor<FeatureType, 2> features;
             xt::xtensor<FeatureType, 2> tmpFeatures;
@@ -672,11 +672,11 @@ namespace distributed {
         });
 
         // iterate over the block ids
-        const size_t nBlocks = blockIds.size();
+        const std::size_t nBlocks = blockIds.size();
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tId,
                                                                    const int blockIndex){
 
-            const size_t blockId = blockIds[blockIndex];
+            const std::size_t blockId = blockIds[blockIndex];
 
             auto & perThreadData = perThreadDataVector[tId];
             auto & features = perThreadData.features;
@@ -687,11 +687,11 @@ namespace distributed {
             const std::string blockGraphPath = graphBlockPrefix + std::to_string(blockId);
             std::vector<EdgeIndexType> blockEdgeIndices;
             loadEdgeIndices(blockGraphPath, blockEdgeIndices, 0);
-            const size_t nEdgesBlock = blockEdgeIndices.size();
+            const std::size_t nEdgesBlock = blockEdgeIndices.size();
 
             // get mapping to dense edge ids for this block
             std::unordered_map<EdgeIndexType, EdgeIndexType> toDenseBlockId;
-            size_t denseBlockId = 0;
+            std::size_t denseBlockId = 0;
             for(EdgeIndexType edgeId : blockEdgeIndices) {
                 toDenseBlockId[edgeId] = denseBlockId;
                 ++denseBlockId;
@@ -740,7 +740,7 @@ namespace distributed {
         // TODO we could parallelize this over the out chunks
         // serialize the edge features
         auto dsOut = z5::openDataset(featuresOut);
-        const std::vector<size_t> featOffset({edgeIdBegin, 0});
+        const std::vector<std::size_t> featOffset({edgeIdBegin, 0});
         z5::multiarray::writeSubarray<FeatureType>(dsOut, features, featOffset.begin());
     }
 
@@ -810,21 +810,21 @@ namespace distributed {
     inline void mergeFeatureBlocks(const std::string & graphBlockPrefix,
                                    const std::string & featureBlockPrefix,
                                    const std::string & featuresOut,
-                                   const std::vector<size_t> & blockIds,
-                                   const size_t edgeIdBegin,
-                                   const size_t edgeIdEnd,
+                                   const std::vector<std::size_t> & blockIds,
+                                   const std::size_t edgeIdBegin,
+                                   const std::size_t edgeIdEnd,
                                    const int numberOfThreads=1) {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
 
         // find all the blocks that contain edges in the current range
-        std::vector<size_t> relevantBlocks;
+        std::vector<std::size_t> relevantBlocks;
         findRelevantBlocks(graphBlockPrefix, blockIds,
                            edgeIdBegin, edgeIdEnd, threadpool,
                            relevantBlocks);
 
         // get the number of features
-        const size_t nFeatures = z5::openDataset(featuresOut)->shape(1);
+        const std::size_t nFeatures = z5::openDataset(featuresOut)->shape(1);
 
         // merge all edges in the edge range
         mergeEdgeFeaturesForBlocks(graphBlockPrefix, featureBlockPrefix,

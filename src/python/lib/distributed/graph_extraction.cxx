@@ -44,7 +44,7 @@ namespace distributed {
         module.def("mergeSubgraphs", [](
             const std::string & pathToGraph,
             const std::string & blockPrefix,
-            const std::vector<size_t> & blockIds,
+            const std::vector<std::size_t> & blockIds,
             const std::string & outKey,
             const int numberOfThreads
         ) {
@@ -59,7 +59,7 @@ namespace distributed {
             const std::string & pathToGraph,
             const std::string & graphGroup,
             const std::string & blockPrefix,
-            const std::vector<size_t> & blockIds,
+            const std::vector<std::size_t> & blockIds,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
@@ -72,7 +72,7 @@ namespace distributed {
             const std::string & pathToGraph,
             const std::string & graphGroup,
             const std::string & blockPrefix,
-            const size_t numberOfBlocks,
+            const std::size_t numberOfBlocks,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
@@ -125,8 +125,8 @@ namespace distributed {
         module.def("nodeLabelingToPixels", [](const std::string & labelsPath,
                                               const std::string & outPath,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
-                                              const std::vector<size_t> & blockIds,
-                                              const std::vector<size_t> & blockShape) {
+                                              const std::vector<std::size_t> & blockIds,
+                                              const std::vector<std::size_t> & blockShape) {
             py::gil_scoped_release allowThreads;
             nodeLabelingToPixels(labelsPath, outPath, nodeLabeling, blockIds, blockShape);
         }, py::arg("labelsPath"), py::arg("outPath"),
@@ -138,7 +138,7 @@ namespace distributed {
                                                   const std::string & graphBlockPrefix,
                                                   const CoordType & shape,
                                                   const CoordType & blockShape,
-                                                  const size_t startBlockId) {
+                                                  const std::size_t startBlockId) {
             //
             std::vector<EdgeIndexType> innerEdgesVec, outerEdgesVec;
             std::vector<EdgeType> uvIdsVec;
@@ -163,13 +163,13 @@ namespace distributed {
 
             {
                 py::gil_scoped_release allowThreads;
-                for(size_t i = 0; i < innerEdgesVec.size(); ++i) {
+                for(std::size_t i = 0; i < innerEdgesVec.size(); ++i) {
                     innerEdges(i) = innerEdgesVec[i];
                 }
-                for(size_t i = 0; i < outerEdgesVec.size(); ++i) {
+                for(std::size_t i = 0; i < outerEdgesVec.size(); ++i) {
                     outerEdges(i) = outerEdgesVec[i];
                 }
-                for(size_t i = 0; i < uvIdsVec.size(); ++i) {
+                for(std::size_t i = 0; i < uvIdsVec.size(); ++i) {
                     uvIds(i, 0) = uvIdsVec[i].first;
                     uvIds(i, 1) = uvIdsVec[i].second;
                 }
@@ -186,7 +186,7 @@ namespace distributed {
                                               const CoordType & shape,
                                               const CoordType & blockShape,
                                               const CoordType & newBlockShape,
-                                              const std::vector<size_t> & newBlockIds,
+                                              const std::vector<std::size_t> & newBlockIds,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
                                               const std::string & graphOutPrefix,

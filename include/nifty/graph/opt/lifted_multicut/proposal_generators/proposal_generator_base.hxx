@@ -23,7 +23,7 @@ namespace lifted_multicut{
     
         virtual ~ProposalGeneratorBase(){}
 
-        virtual void generateProposal( const NodeLabelsType & currentBest,NodeLabelsType & labels, const size_t tid) = 0;
+        virtual void generateProposal( const NodeLabelsType & currentBest,NodeLabelsType & labels, const std::size_t tid) = 0;
 
     private:
     }; 

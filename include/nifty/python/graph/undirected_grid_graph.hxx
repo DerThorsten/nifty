@@ -11,7 +11,7 @@ namespace graph{
 
 
     template<
-        size_t DIM,
+        std::size_t DIM,
         bool SIMPLE_NH
     >
     struct GraphName<UndirectedGridGraph<DIM, SIMPLE_NH>>{

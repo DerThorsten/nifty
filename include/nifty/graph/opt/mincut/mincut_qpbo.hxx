@@ -73,7 +73,7 @@ namespace mincut{
         void repairSolution(NodeLabelsType & nodeLabels);
 
 
-        size_t addCycleInequalities();
+        std::size_t addCycleInequalities();
         void addThreeCyclesConstraintsExplicitly();
 
         const ObjectiveType & objective_;

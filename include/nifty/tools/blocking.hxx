@@ -110,7 +110,7 @@ namespace tools{
             blocksPerAxisStrides_(),
             numberOfBlocks_(1){
 
-            for(size_t d=0; d<DIM; ++d){
+            for(std::size_t d=0; d<DIM; ++d){
                 const auto dimSize = roiEnd_[d] - (roiBegin_[d] - blockShift_[d]);
                 const auto bs = blockShape_[d];
                 const auto bpa =  dimSize / bs + int((dimSize % bs) != 0);
@@ -168,7 +168,7 @@ namespace tools{
             return blocksPerAxis_;
         }
 
-        const size_t numberOfBlocks() const {
+        const std::size_t numberOfBlocks() const {
             return numberOfBlocks_;
         }
 
@@ -227,7 +227,7 @@ namespace tools{
             // TODO assert that the roi is in global roi
             idsOut.clear();
 
-            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+            for(std::size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
 
                 // get coordinates of the current bock
                 const auto & block = getBlock(blockId);
@@ -272,9 +272,9 @@ namespace tools{
             }
 
             // FIXME this only works for 3D, implement this dimension independent !
-            for(size_t chunkX = minChunkIds[0]; chunkX < maxChunkIds[0]; ++ chunkX) {
-                for(size_t chunkY = minChunkIds[1]; chunkY < maxChunkIds[1]; ++ chunkY) {
-                    for(size_t chunkZ = minChunkIds[2]; chunkZ < maxChunkIds[2]; ++ chunkZ) {
+            for(std::size_t chunkX = minChunkIds[0]; chunkX < maxChunkIds[0]; ++ chunkX) {
+                for(std::size_t chunkY = minChunkIds[1]; chunkY < maxChunkIds[1]; ++ chunkY) {
+                    for(std::size_t chunkZ = minChunkIds[2]; chunkZ < maxChunkIds[2]; ++ chunkZ) {
                         idsOut.push_back(blocksPerAxisStrides_[0] * chunkX + blocksPerAxisStrides_[1] * chunkY + blocksPerAxisStrides_[2] * chunkZ);
                     }
                 }
@@ -371,7 +371,7 @@ namespace tools{
             //
             idsOut.clear();
 
-            for(size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
+            for(std::size_t blockId = 0; blockId < numberOfBlocks(); ++blockId) {
                 const auto & block = getBlockWithHalo(blockId, blockHalo).outerBlock();
                 const auto & begin = block.begin();
                 const auto & end   = block.end();
@@ -441,7 +441,7 @@ namespace tools{
 
         VectorType blocksPerAxis_;
         VectorType blocksPerAxisStrides_;
-        size_t numberOfBlocks_;
+        std::size_t numberOfBlocks_;
     };
 
 

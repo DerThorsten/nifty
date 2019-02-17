@@ -56,7 +56,7 @@ namespace graph{
             xt::pytensor<int64_t, 2> lnhOut({nLifted, int64_t(2)});
             if(haveLifted){
                 py::gil_scoped_release allowThreads;
-                for(size_t e = 0; e < nLifted; ++e) {
+                for(std::size_t e = 0; e < nLifted; ++e) {
                     lnhOut(e, 0) = lnh.u(e);
                     lnhOut(e, 1) = lnh.v(e);
                 }

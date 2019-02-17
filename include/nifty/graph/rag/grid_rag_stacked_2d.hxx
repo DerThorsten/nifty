@@ -105,7 +105,7 @@ public:
     uint64_t numberOfInBetweenSliceEdges() const {
         return numberOfInBetweenSliceEdges_;
     }
-    const std::vector<size_t> & edgeLengths() const {
+    const std::vector<std::size_t> & edgeLengths() const {
         return edgeLengths_;
     }
 
@@ -129,7 +129,7 @@ private:
     std::vector<PerSliceData> perSliceDataVec_;
     uint64_t numberOfInSliceEdges_;
     uint64_t numberOfInBetweenSliceEdges_;
-    std::vector<size_t> edgeLengths_;
+    std::vector<std::size_t> edgeLengths_;
 };
 
 template<class LABELS>

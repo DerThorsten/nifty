@@ -61,7 +61,7 @@ namespace tools{
     }
 
     template<class T>
-    inline std::vector<size_t> getChunkShape(const nz5::DatasetWrapper<T> & ds) {
+    inline std::vector<std::size_t> getChunkShape(const nz5::DatasetWrapper<T> & ds) {
         return ds.wrapped().maxChunkShape();
     }
 

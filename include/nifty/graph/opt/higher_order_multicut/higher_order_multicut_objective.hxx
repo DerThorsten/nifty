@@ -18,7 +18,7 @@ namespace higher_order_multicut{
         :   valueTable_(shape),
 
 
-        size_t arity() const{
+        std::size_t arity() const{
             return edgeIds_.size();
         }
         const std::vector<uint64_t> & edgeIds(){
