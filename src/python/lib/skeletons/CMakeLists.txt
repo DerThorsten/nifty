@@ -10,5 +10,5 @@ addPythonModule(
         ${Boost_FILESYSTEM_LIBRARY}    
         ${Boost_SYSTEM_LIBRARY}    
         ${Boost_SERIALIZATION_LIBRARY}    
-        pthread
+        Threads::Threads
 )

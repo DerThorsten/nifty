@@ -51,6 +51,10 @@ option(BUILD_PYTHON_DOCS "Build the Python documentation with Sphinx" OFF)
 
 option(REMOVE_SOME_WARNINGS "Remove some annoying warnings" ON)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+
 if(MSVC)
     # Disable autolinking on MSVC.
     add_definitions(-DBOOST_ALL_NO_LIB)

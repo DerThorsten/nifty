@@ -15,5 +15,5 @@ addPythonModule(
         ${Z5_COMPRESSION_LIBRARIES}
         ${Boost_FILESYSTEM_LIBRARY}    
         ${Boost_SYSTEM_LIBRARY}    
-        pthread
+        Threads::Threads
 )
