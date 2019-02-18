@@ -271,7 +271,7 @@ namespace distributed {
         // serialzie the result
         if(max_overlap && serializeCount) {  // serialize the label with maximum overlap and the associated count
             // find the maximum overlap value for each label
-            xt::xtensor<uint64_t, 2> out = xt::zeros<uint64_t>({nLabels, 2UL});
+            xt::xtensor<uint64_t, 2> out = xt::zeros<uint64_t>({nLabels, static_cast<uint64_t>(2)});
             nifty::parallel::parallel_foreach(numberOfThreads,
                                               nLabels,
                                               [&out,
