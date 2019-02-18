@@ -35,7 +35,7 @@ namespace distributed {
                 const auto graph = Graph(graphPath, 1);
                 liftedEdgesFromNode(graph, srcNode, graphDepth, tmp);
             }
-            xt::pytensor<uint64_t, 2> out({tmp.size(), 2});
+            xt::pytensor<uint64_t, 2> out({static_cast<int64_t>(tmp.size()), 2});
             {
                 py::gil_scoped_release allowThreads;
                 for(std::size_t i = 0; i < tmp.size(); ++i) {
