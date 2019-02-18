@@ -63,10 +63,12 @@ macro(addPythonModule)
     #message(STATUS ********Module: ${MODULE_NAME})
     #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
 
+    # NOTE it's not necessary to link against the python library here
+    # and if we do, this causes seg-faults on mac, so don't do it!
     # link additional libraries
     target_link_libraries(_${MODULE_NAME}
         PUBLIC
-        ${PYTHON_LIBRARIES}
+        # ${PYTHON_LIBRARIES}
         ${ADD_PY_MOD_LIBRRARIES}
     )
 
