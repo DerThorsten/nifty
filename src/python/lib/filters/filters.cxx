@@ -8,6 +8,7 @@ namespace py = pybind11;
 namespace nifty{
 namespace filters{
     void exportGaussianCurvature(py::module &);
+    void exportNonMaximumSuppression(py::module &);
 }
 }
 
@@ -19,4 +20,5 @@ PYBIND11_MODULE(_filters, filtersModule) {
     filtersModule.doc() = "filters submodule";
     using namespace nifty::filters;
     exportGaussianCurvature(filtersModule);
+    exportNonMaximumSuppression(filtersModule);
 }
