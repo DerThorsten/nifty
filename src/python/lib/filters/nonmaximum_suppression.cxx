@@ -26,7 +26,6 @@ namespace filters{
             }
 
             const int64_t nPoints = pointsTmp.size();
-            std::cout << "TmpPoints size: " << nPoints << std::endl;
             const int64_t ndim = points.shape()[1];
             xt::pytensor<uint64_t, 2> pointsOut = xt::zeros<uint64_t>({nPoints, ndim});
             {

@@ -68,12 +68,13 @@ namespace distributed {
     }
 
 
-    template<class NODE_LABELS>
+    template<class NODE_LABELS, class F>
     inline void findLiftedEdgesBfs(const Graph & graph,
                                    const uint64_t srcNode,
                                    const NODE_LABELS & nodeLabels,
                                    const unsigned graphDepth,
-                                   std::vector<EdgeType> & out) {
+                                   std::vector<EdgeType> & out,
+                                   F && addEdge) {
         // type to put on bfs queue, stores the node id and the graph
         // distance of this node from the start node
         typedef std::pair<uint64_t, unsigned> QueueElem;
@@ -84,6 +85,7 @@ namespace distributed {
         std::queue<QueueElem> queue;
 
         queue.emplace(std::make_pair(srcNode, 0));
+        const uint64_t srcLabel = nodeLabels[srcNode];
 
         while(queue.size()) {
             const QueueElem elem = queue.front();
@@ -116,15 +118,46 @@ namespace distributed {
             }
 
             // check if we make a lifted edge between the start node and this node:
-            // is this a lifted edge? i.e. graph depth > 1
+            // 1.) is this a lifted edge? i.e. graph depth > 1
             const bool isLiftedEdge = depth > 1;
-            // does the node have a label?
-            const uint64_t label = nodeLabels[node];
-            // is the node's id bigger than srcNode? (otherwise edges would be redundant)
-            if(isLiftedEdge && label > 0 && srcNode < node) {
-                out.emplace_back(std::make_pair(srcNode, node));
+            if(depth <= 1) {
+                continue;
             }
+
+            // 2.) does the node have a label?
+            const uint64_t label = nodeLabels[node];
+            if(label == 0) {
+                continue;
+            }
+
+            // 3.) is srcNode < node? (make sure not to duplicate lifted edges)
+            if(srcNode > node) {
+                continue;
+            }
+
+            // 4) additional lifted check dependend on the node labels
+            if(!addEdge(srcLabel, label)) {
+                continue;
+            }
+
+            // all checks passed ? -> add the lifted edges
+            out.emplace_back(std::make_pair(srcNode, node));
         }
+    }
+
+
+    inline bool addAll(const uint64_t labelA, const uint64_t labelB) {
+        return true;
+    }
+
+
+    inline bool addSame(const uint64_t labelA, const uint64_t labelB) {
+        return labelA == labelB;
+    }
+
+
+    inline bool addDifferent(const uint64_t labelA, const uint64_t labelB) {
+        return labelA != labelB;
     }
 
 
@@ -132,7 +165,14 @@ namespace distributed {
                                                         const std::string & nodeLabelPath,
                                                         const std::string & outputPath,
                                                         const unsigned graphDepth,
-                                                        const int numberOfThreads) {
+                                                        const int numberOfThreads,
+                                                        const std::string & mode="all") {
+        // modes can be
+        // "all": add all edges between nodes with a label
+        // "same": add edges only between nodes with the same label
+        // "different": add edges only between nodes with different labels
+        auto edgeChecker = (mode=="all") ? addAll : ((mode=="same") ? addSame : addDifferent);
+
         // load the graph
         const auto graph = Graph(graphPath, numberOfThreads);
 
@@ -160,7 +200,8 @@ namespace distributed {
             auto & threadData = perThreadData[tid];
             // do bfs for this node and find all relevant lifted edges
             findLiftedEdgesBfs(graph, nodeId,
-                               nodeLabels, graphDepth, threadData);
+                               nodeLabels, graphDepth, threadData,
+                               edgeChecker);
         });
 
         // merge the thread
