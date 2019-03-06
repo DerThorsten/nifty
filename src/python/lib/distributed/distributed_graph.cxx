@@ -27,11 +27,11 @@ namespace distributed {
                 typedef xt::pytensor<EdgeIndexType, 1> OutType;
                 typedef typename OutType::shape_type OutShape;
                 OutShape shape = {uvs.shape()[0]};
-                OutType out(shape);
+                OutType out = xt::zeros<EdgeIndexType>(shape);
                 {
                     py::gil_scoped_release allowThreads;
                     for(std::size_t i = 0; i < shape[0]; ++i) {
-                        out[i] = self.findEdge(uvs[0], uvs[1]);
+                        out(i) = self.findEdge(uvs(i, 0), uvs(i, 1));
                     }
                 }
                 return out;
