@@ -165,20 +165,21 @@ namespace distributed {
             CoordType coord2;
             for(std::size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
-                if(coord2[axis] < blockShape[axis]){
-                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                    if(lV == 0 && ignoreLabel) {
-                        return;
-                    }
-                    if(lU != lV){
-                        const EdgeIndexType edge = graph.findEdge(lU, lV);
-                        const auto fU = xtensor::read(data, coord.asStdArray());
-                        const auto fV = xtensor::read(data, coord2.asStdArray());
-                        FeatureType fUf = static_cast<FeatureType>(fU);
-                        FeatureType fVf = static_cast<FeatureType>(fV);
-                        accumulators[edge].updatePassN(fUf / 255., pass);
-                        accumulators[edge].updatePassN(fVf / 255., pass);
-                    }
+                if(coord2[axis] >= blockShape[axis]){
+                    continue;
+                }
+                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                if(lV == 0 && ignoreLabel) {
+                    continue;
+                }
+                if(lU != lV){
+                    const EdgeIndexType edge = graph.findEdge(lU, lV);
+                    const auto fU = xtensor::read(data, coord.asStdArray());
+                    const auto fV = xtensor::read(data, coord2.asStdArray());
+                    FeatureType fUf = static_cast<FeatureType>(fU);
+                    FeatureType fVf = static_cast<FeatureType>(fV);
+                    accumulators[edge].updatePassN(fUf / 255., pass);
+                    accumulators[edge].updatePassN(fVf / 255., pass);
                 }
             }
         });
@@ -201,20 +202,21 @@ namespace distributed {
             CoordType coord2;
             for(std::size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
-                if(coord2[axis] < blockShape[axis]){
-                    const NodeType lV = xtensor::read(labels, coord2.asStdArray());
-                    if(lV == 0 && ignoreLabel) {
-                        return;
-                    }
-                    if(lU != lV){
-                        const EdgeIndexType edge = graph.findEdge(lU, lV);
-                        const auto fU = xtensor::read(data, coord.asStdArray());
-                        const auto fV = xtensor::read(data, coord2.asStdArray());
-                        FeatureType fUf = static_cast<FeatureType>(fU);
-                        FeatureType fVf = static_cast<FeatureType>(fV);
-                        accumulators[edge].updatePassN(fUf, pass);
-                        accumulators[edge].updatePassN(fVf, pass);
-                    }
+                if(coord2[axis] >= blockShape[axis]){
+                    continue;
+                }
+                const NodeType lV = xtensor::read(labels, coord2.asStdArray());
+                if(lV == 0 && ignoreLabel) {
+                    continue;
+                }
+                if(lU != lV){
+                    const EdgeIndexType edge = graph.findEdge(lU, lV);
+                    const auto fU = xtensor::read(data, coord.asStdArray());
+                    const auto fV = xtensor::read(data, coord2.asStdArray());
+                    FeatureType fUf = static_cast<FeatureType>(fU);
+                    FeatureType fVf = static_cast<FeatureType>(fV);
+                    accumulators[edge].updatePassN(fUf, pass);
+                    accumulators[edge].updatePassN(fVf, pass);
                 }
             }
         });
@@ -233,7 +235,7 @@ namespace distributed {
                                       const FeatureType dataMax,
                                       const bool ignoreLabel,
                                       const bool increaseRoi=false) {
-        // xtensor typedegs
+        // xtensor typedefs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 3> DataArray;
 
