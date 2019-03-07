@@ -29,7 +29,7 @@ namespace distributed {
     template<class GRAPH, class LABELS, class OUT>
     inline void find1DEdgesBlock(const GRAPH & graph, const LABELS & labels,
                                  const std::vector<EdgeIndexType> & edgeIndices,
-                                 const bool ignoreLabel, OUT & out, OUT & edgeAxes) {
+                                 const bool ignoreLabel, OUT & out, std::vector<uint8_t> & edgeAxes) {
         typedef nifty::array::StaticArray<int64_t, 3> CoordType;
         CoordType shape;
         std::copy(labels.shape().begin(), labels.shape().end(), shape.begin());
@@ -63,7 +63,7 @@ namespace distributed {
                 const auto globalEdgeId = edgeIndices[edgeId];
 
                 // did we already visit the edge - and if so, what's the prev state?
-                auto & prevState = out[globalEdgeId];
+                auto & prevState = out(globalEdgeId);
                 // prev state is 0 -> the edge was not visited yet -> we just set our current axis
                 if(prevState == 0) {
                     edgeAxes[globalEdgeId] = axis;
@@ -88,7 +88,7 @@ namespace distributed {
                             const std::vector<std::size_t> & blockIds,
                             OUT & out) {
         typedef xt::xtensor<NodeType, 3> LabelArray;
-        OUT edgeAxes = xt::zeros<uint8_t>(out.shape());
+        std::vector<uint8_t> edgeAxes(out.size());
 
         fs::path labelsSetPath(labelPath);
         labelsSetPath /= labelKey;

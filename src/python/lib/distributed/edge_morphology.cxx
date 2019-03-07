@@ -20,9 +20,10 @@ namespace distributed {
             {
                 py::gil_scoped_release allowThreads;
                 find1DEdges(blockPrefix, labelPath, labelKey, blockIds, out);
+                std::cout << "blub" << std::endl;
             }
+            std::cout << "blob" << std::endl;
             return out;
-
         }, py::arg("blockPrefix"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("numberOfEdges"), py::arg("blockIds"));
