@@ -20,13 +20,29 @@ namespace distributed {
             {
                 py::gil_scoped_release allowThreads;
                 find1DEdges(blockPrefix, labelPath, labelKey, blockIds, out);
-                std::cout << "blub" << std::endl;
             }
-            std::cout << "blob" << std::endl;
             return out;
         }, py::arg("blockPrefix"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("numberOfEdges"), py::arg("blockIds"));
+
+
+        module.def("findBlockBoundaryEdges", [](const std::string & blockPrefix,
+                                                const std::string & labelPath,
+                                                const std::string & labelKey,
+                                                const std::size_t numberOfEdges,
+                                                const std::vector<std::size_t> & blockShape,
+                                                const std::vector<std::size_t> & blockIds) {
+            xt::pytensor<bool, 1> out = xt::zeros<bool>({numberOfEdges});
+            {
+                py::gil_scoped_release allowThreads;
+                findBlockBoundaryEdges(blockPrefix, labelPath, labelKey, blockShape, blockIds, out);
+            }
+            return out;
+        }, py::arg("blockPrefix"),
+           py::arg("labelPath"), py::arg("labelKey"),
+           py::arg("numberOfEdges"), py::arg("blockShape"),
+           py::arg("blockIds"));
     }
 
 }
