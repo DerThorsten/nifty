@@ -53,30 +53,6 @@ namespace tools{
         }, py::arg("relabeling"), py::arg("toRelabel"));
 
 
-        toolsModule.def("_unique",
-        [](const xt::pytensor<T, 1> & values) {
-            std::unordered_set<T> uniques;
-            {
-                py::gil_scoped_release allowThreads;
-                for(std::size_t ii = 0; ii < values.shape()[0]; ++ii) {
-                    uniques.insert(values(ii));
-                }
-            }
-            typedef typename xt::pytensor<T, 1>::shape_type Shape;
-            Shape shape = {static_cast<unsigned int>(uniques.size())};
-            xt::pytensor<T, 1> out = xt::zeros<T>(shape);
-            {
-                py::gil_scoped_release allowThreads;
-                std::size_t ii = 0;
-                for(const T val: uniques) {
-                    out(ii) = val;
-                    ++ii;
-                }
-            }
-            return out;
-        }, py::arg("values"));
-
-
         toolsModule.def("inflateLabeling",
         [](const xt::pytensor<T, 1> & values, const xt::pytensor<T, 1> & labels, const T maxVal, const T fillVal){
             const unsigned int nValues = maxVal + 1;
