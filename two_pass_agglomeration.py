@@ -1,8 +1,24 @@
 from concurrent import futures
+from itertools import product
 import numpy as np
 
 import nifty
 import nifty.graph.rag as nrag
+
+
+def mask_corners(input_, halo):
+    ndim = input_.ndim
+    shape = input_.shape
+
+    corners = ndim * [[0, 1]]
+    corners = product(*corners)
+
+    for corner in corners:
+        corner_bb = tuple(slice(0, ha) if co == 0 else slice(sh - ha, sh)
+                          for ha, co, sh in zip(halo, shape, corner))
+        input_[corner_bb] = 0
+
+    return input_
 
 
 def dummy_agglomerator(affs, offsets, previous_segmentation=None,
@@ -65,18 +81,16 @@ def two_pass_agglomeration(affinities, offsets, agglomerator,
     # calculations for pass 1:
     #
     def pass1(block_id):
-        # TODO we could already add some halo here, that might help to make results more consistento
+        # TODO we could already add some halo here, that might help to make results more consistent
 
         # load the affinities from the current block
         block = blocking.getBlock(block_id)
         bb = tuple(slice(beg, end) for beg, end in zip(block.begin, block.end))
         aff_bb = (slice(None),) + bb
-        affs = affinities[aff_bb]
+        # mutex watershed changes the affs, so we need to copy here
+        affs = affinities[aff_bb].copy()
 
-        # TODO need to define the api for the agglomerator
-        # get the segmentation from our agglomeration function
-        # NOTE we could also generate the state with the agglomerator directly
-        # in that case, we would nee to add up the id_offset to the uv-ids
+        # get the segmentation and state from our agglomeration function
         seg, state = agglomerator(affs, offsets, return_state=True)
 
         # offset the segmentation with the lowest block coordinate to
@@ -95,11 +109,10 @@ def two_pass_agglomeration(affinities, offsets, agglomerator,
     # get blocks corresponding to the two checkerboard colorings
     blocks1, blocks2 = make_checkorboard(blocking)
 
-    # TODO use threadpool once this is debugged
-    # with futures.ThreadPoolExecutor(n_threads) as tp:
-    #   tasks = [tp.submit(pass1, block_id) for block_id in blocks1]
-    #   results = [t.result() for t in tasks]
-    results = [pass1(block_id) for block_id in blocks1]
+    with futures.ThreadPoolExecutor(n_threads) as tp:
+        tasks = [tp.submit(pass1, block_id) for block_id in blocks1]
+        results = [t.result() for t in tasks]
+    # results = [pass1(block_id) for block_id in blocks1]
 
     # combine results and build graph corresponding to it
     uvs = np.concatenate([res[0] for res in results], axis=0)
@@ -112,12 +125,17 @@ def two_pass_agglomeration(affinities, offsets, agglomerator,
     # calculations for pass 2:
     #
     def pass2(block_id):
-        # load affinities and segmentation from pass1 from the current block with halo
+        # load segmentation from pass1 from the current block with halo
         block = blocking.getBlockWithHalo(block_id, list(halo))
         bb = tuple(slice(beg, end) for beg, end in zip(block.outerBlock.begin, block.outerBlock.end))
         seg = segmentation[bb]
+        # mask the corners, because these are not part of the seeds, and could already be written by path 2
+        seg = mask_corners(seg, halo)
+
+        # load affinties
         aff_bb = (slice(None),) + bb
-        affs = affinities[aff_bb]
+        # mutex watershed changes the affs, so we need to copy here
+        affs = affinities[aff_bb].copy()
 
         # get the state of the segmentation from pass 1
         # TODO maybe there is a better option than doing this with the rag
@@ -126,15 +144,7 @@ def two_pass_agglomeration(affinities, offsets, agglomerator,
         prev_uv_ids = prev_uv_ids[(prev_uv_ids != 0).all(axis=1)]
         edge_ids = graph.findEdges(prev_uv_ids)
         assert len(edge_ids) == len(prev_uv_ids), "%i, %i" % (len(edge_ids), len(prev_uv_ids))
-
-        # TODO for some reason we can get edges here that are not part of the serialized state
-        # I don't fully get why, but it means that we have seeds from the different pass 1
-        # blocks touching
-        # for now, we just get rid of these edges
-        # assert (edge_ids != -1).all()
-        valid_edges = edge_ids == -1
-        edge_ids = edge_ids[valid_edges]
-        prev_uv_ids= prev_uv_ids[valid_edges]
+        assert (edge_ids != -1).all()
         prev_weights = weights[edge_ids]
         assert len(prev_uv_ids) == len(prev_weights)
 
@@ -157,11 +167,10 @@ def two_pass_agglomeration(affinities, offsets, agglomerator,
 
         return assignments
 
-    # TODO use threadpool once this is debugged
-    # with futures.ThreadPoolExecutor(n_threads) as tp:
-    #     tasks = [tp.submit(pass2, block_id) for block_id in blocks2]
-    #     results = [t.result() for t in tasks]
-    results = [pass2(block_id) for block_id in blocks2]
+    with futures.ThreadPoolExecutor(n_threads) as tp:
+        tasks = [tp.submit(pass2, block_id) for block_id in blocks2]
+        results = [t.result() for t in tasks]
+    # results = [pass2(block_id) for block_id in blocks2]
     assignments = np.concatenate(results)
 
     # get consistent labeling with union find

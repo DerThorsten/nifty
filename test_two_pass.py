@@ -73,12 +73,15 @@ def mws_agglomerator(affs, offsets, previous_segmentation=None,
 def test_tp():
     path = '/home/pape/Work/data/cluster_tools_test_data/test_data.n5'
     aff_key = '/volumes/full_affinities'
-    raw_key = 'volumes/raw'
 
     f = z5py.File(path)
     ds_affs = f[aff_key]
     ds_affs.n_threads = 8
     affs = ds_affs[:]
+
+    # affs = affs[:, :10, :256]
+    # affs = affs[:, :20, :256]
+    print(affs.shape)
 
     offsets = [[-1, 0, 0], [0, -1, 0], [0, 0, -1],
                [-1, -1, -1], [-1, 1, 1], [-1, -1, 1], [-1, 1, -1],
@@ -94,11 +97,7 @@ def test_tp():
     seg = two_pass_agglomeration(affs, offsets, agglomerator, block_shape, halo, 4)
     print(seg.shape)
 
-    ds = f[raw_key]
-    ds.n_threads = 8
-    raw = ds[:]
-
-    view([raw, seg])
+    view([affs[1], seg])
 
 
 if __name__ == '__main__':
