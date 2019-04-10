@@ -25,7 +25,7 @@ namespace graph{
                 xt::pytensor<float, 1> & edgeWeights
             ){
 
-                xt::pytensor<uint64_t, 1> labels({uint64_t(seeds.shape()[0])});
+                xt::pytensor<uint64_t, 1> labels = xt::zeros<uint64_t>({int64_t(seeds.shape()[0])});
                 {
                     py::gil_scoped_release allowThreads;
                     edgeWeightedWatershedsSegmentation(graph, edgeWeights, seeds, labels);
