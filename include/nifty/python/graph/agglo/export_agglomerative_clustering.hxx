@@ -46,7 +46,7 @@ namespace agglo{
                     const auto & graph = self->graph();
                     typedef typename xt::pytensor<uint64_t, 1>::shape_type ShapeType;
                     ShapeType shape = {graph.edgeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> mtimes(shape);
+                    xt::pytensor<uint64_t, 1> mtimes = xt::zeros<uint64_t>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->runAndGetMergeTimes(mtimes, verbose);
@@ -63,8 +63,8 @@ namespace agglo{
                     typedef typename xt::pytensor<uint64_t, 1>::shape_type ShapeType;
                     ShapeType shape = {graph.edgeIdUpperBound() + 1};
 
-                    xt::pytensor<double, 1> dheight(shape);
-                    xt::pytensor<uint64_t, 1> mtimes (shape);
+                    xt::pytensor<double, 1> dheight = xt::zeros<double>(shape);
+                    xt::pytensor<uint64_t, 1> mtimes = xt::zeros<uint64_t>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->runAndGetMergeTimesAndDendrogramHeight(mtimes, dheight,verbose);
@@ -81,7 +81,7 @@ namespace agglo{
                     const auto & graph = self->graph();
                     typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
                     ShapeType shape = {graph.edgeIdUpperBound() + 1};
-                    xt::pytensor<double, 1> dheight(shape);
+                    xt::pytensor<double, 1> dheight = xt::zeros<double>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->runAndGetDendrogramHeight(dheight,verbose);
@@ -99,7 +99,7 @@ namespace agglo{
                     const auto & graph = self->graph();
                     typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
                     ShapeType shape = {graph.edgeIdUpperBound() + 1};
-                    xt::pytensor<double, 1> transformed(shape);
+                    xt::pytensor<double, 1> transformed = xt::zeros<double>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->ucmTransform(edgeValues, transformed);

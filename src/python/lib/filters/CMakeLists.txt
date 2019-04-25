@@ -5,4 +5,5 @@ addPythonModule(
     SOURCES
         filters.cxx
         gaussian_curvature.cxx
+        nonmaximum_suppression.cxx
 )

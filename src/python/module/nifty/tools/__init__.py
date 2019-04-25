@@ -69,9 +69,6 @@ def takeDict(relabeling, toRelabel):
     return _tools._takeDict(relabeling, toRelabelFlat).reshape(shape)
 
 
-def unique(values):
-    return _tools._unique(values.ravel())
-
 
 def getSlicing(begin, end):
     return [slice(b,e) for b,e in zip(begin,end)]

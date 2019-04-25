@@ -118,7 +118,7 @@ namespace graph{
                 ){
                     typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
                     ShapeType shape = {g.edgeIdUpperBound() + 1};
-                    xt::pytensor<float, 1> out(shape);
+                    xt::pytensor<float, 1> out = xt::zeros<float>(shape);
                     g.affinitiesToEdgeMap(affinities, out);
                     return out;
                 },
@@ -182,8 +182,8 @@ namespace graph{
                     typedef typename xt::pytensor<uint64_t, 2>::shape_type UvShape;
                     UvShape uvShape = {nLiftedTot, 2};
 
-                    xt::pytensor<float, 1> localFeatures(localShape);
-                    xt::pytensor<float, 1> liftedFeatures(liftedShape);
+                    xt::pytensor<float, 1> localFeatures = xt::zeros<float>(localShape);
+                    xt::pytensor<float, 1> liftedFeatures = xt::zeros<float>(liftedShape);
                     xt::pytensor<uint64_t, 2> liftedUvs(uvShape);
                     int64_t nLifted;
                     {

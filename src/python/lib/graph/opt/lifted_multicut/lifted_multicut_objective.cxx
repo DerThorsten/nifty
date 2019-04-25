@@ -120,7 +120,7 @@ namespace lifted_multicut{
 
                     typedef typename xt::pytensor<uint64_t, 1>::shape_type ShapeType;
                     ShapeType shape = {int64_t(dist.size())};
-                    xt::pytensor<uint64_t, 1> array(shape);
+                    xt::pytensor<uint64_t, 1> array = xt::zeros<uint64_t>(shape);
 
                     for(std::size_t i=0; i<dist.size(); ++i){
                         array(i) = dist[i];

@@ -22,6 +22,7 @@ namespace distributed{
     void exportDistributedUtils(py::module &);
     void exportLiftedUtils(py::module &);
     void exportMorphology(py::module &);
+    void exportEdgeMorphology(py::module &);
 
 }
 }
@@ -43,5 +44,6 @@ PYBIND11_MODULE(_distributed, module) {
     exportDistributedUtils(module);
     exportLiftedUtils(module);
     exportMorphology(module);
+    exportEdgeMorphology(module);
 }
 #endif

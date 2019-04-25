@@ -402,7 +402,7 @@ namespace distributed {
                     lV = xtensor::read(labels, coord2.asStdArray());
                     // skip zero if we have an ignoreLabel
                     if(ignoreLabel && (lV == 0)) {
-                        return;
+                        continue;
                     }
                     if(lU != lV){
                         edges.insert(std::make_pair(std::min(lU, lV),

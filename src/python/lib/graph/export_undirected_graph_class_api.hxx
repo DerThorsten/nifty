@@ -203,7 +203,7 @@ namespace graph{
                     const G & self,
                     xt::pytensor<uint64_t, 2> uv
                 ){
-                    xt::pytensor<int64_t, 1> edgeIds({uv.shape()[0]});
+                    xt::pytensor<int64_t, 1> edgeIds = xt::zeros<int64_t>({uv.shape()[0]});
                     NIFTY_CHECK_OP(uv.shape()[1],==,2,"uv.shape(1) must be 2");
 
                     for(auto i=0; i<uv.shape()[0]; ++i){

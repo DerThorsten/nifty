@@ -35,7 +35,7 @@ namespace filters{
         ){
             typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
             ShapeType shape = {coords.shape()[0]};
-            xt::pytensor<float, 1> out(shape);
+            xt::pytensor<float, 1> out = xt::zeros<float>(shape);
             self(coords, out, loop);
             return out;
         })

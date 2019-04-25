@@ -55,7 +55,7 @@ namespace lifted_multicut{
                         self->optimize(nodeLabels, nullptr);
                     }
                     ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
+                    xt::pytensor<uint64_t, 1> array = xt::zeros<uint64_t>(shape);
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
                     }
@@ -76,7 +76,7 @@ namespace lifted_multicut{
                         self->optimize(nodeLabels, visitor);
                     }
                     ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
+                    xt::pytensor<uint64_t, 1> array = xt::zeros<uint64_t>(shape);
                     for(auto node : graph.nodes()){
                         array(node) = nodeLabels[node];
                     }

@@ -4,6 +4,7 @@
 #include "nifty/python/converter.hxx"
 #include "nifty/graph/shortest_path_dijkstra.hxx"
 #include "nifty/graph/undirected_list_graph.hxx"
+#include "nifty/graph/undirected_grid_graph.hxx"
 #include "nifty/parallel/threadpool.hxx"
 
 namespace py = pybind11;
@@ -98,10 +99,10 @@ namespace graph{
         }
     }
 
-    template<typename WEIGHT_TYPE>
+    template<typename WEIGHT_TYPE, typename GRAPH_TYPE>
     void exportShortestPathDijkstraT(py::module & graphModule) {
 
-        typedef UndirectedGraph<> GraphType;
+        typedef GRAPH_TYPE GraphType;
         typedef WEIGHT_TYPE WeightType;
         typedef ShortestPathDijkstra<GraphType, WeightType> ShortestPathType;
         typedef std::vector<WeightType> EdgeWeightsType;
@@ -237,10 +238,22 @@ namespace graph{
 
 
     void exportShortestPathDijkstra(py::module & graphModule) {
-        exportShortestPathDijkstraT<float>(graphModule);
-        exportParallelShortestPathT<float>(graphModule);
-        // TODO this does not work
-        //exportShortestPathDijkstraT<double>(graphModule);
+        // for undirected graph
+        {
+            typedef UndirectedGraph<> GraphType;
+            exportShortestPathDijkstraT<float, GraphType>(graphModule);
+            exportParallelShortestPathT<float>(graphModule);
+        }
+        // NOTE this does not work, because we get overloaded names.
+        // Would need to export Dijstra_undirected_graph etc.
+        // and then implement a python factory
+        /*
+        // for grid graph
+        {
+            typedef UndirectedGridGraph<3, true> GraphType;
+            exportShortestPathDijkstraT<float, GraphType>(graphModule);
+        }
+        */
     }
 
 } // namespace graph
