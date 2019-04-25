@@ -130,7 +130,7 @@ namespace graph{
         ){
             const auto & g = self.graph();
             const std::size_t size = g.nodeIdUpperBound()+1;
-            xt::pytensor<uint64_t, 1> ccLabels({size});
+            xt::pytensor<uint64_t, 1> ccLabels = xt::zeros<uint64_t>({size});
             for(const auto node : g.nodes()){
                 ccLabels[node] = self.componentLabel(node);
             }

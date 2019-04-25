@@ -135,7 +135,7 @@ namespace cgp{
 
                     typedef typename xt::pytensor<uint32_t, 1>::shape_type ShapeType;
                     ShapeType shape = {int64_t(cell1Labels.size())};
-                    xt::pytensor<uint32_t, 1> ret(shape);
+                    xt::pytensor<uint32_t, 1> ret = xt::zeros<uint32_t>(shape);
                     for(auto i=0; i<ret.size(); ++i){
                         ret[i] = cell1Labels[i];
                     }

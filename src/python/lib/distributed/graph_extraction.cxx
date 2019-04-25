@@ -152,10 +152,10 @@ namespace distributed {
             //
             typedef typename xt::pytensor<EdgeIndexType, 1>::shape_type ShapeType;
             ShapeType innerShape = {static_cast<int64_t>(innerEdgesVec.size())};
-            xt::pytensor<EdgeIndexType, 1> innerEdges(innerShape);
+            xt::pytensor<EdgeIndexType, 1> innerEdges = xt::zeros<EdgeIndexType>(innerShape);
 
             ShapeType outerShape = {static_cast<int64_t>(outerEdgesVec.size())};
-            xt::pytensor<EdgeIndexType, 1> outerEdges(outerShape);
+            xt::pytensor<EdgeIndexType, 1> outerEdges = xt::zeros<EdgeIndexType>(outerShape);
 
             typedef typename xt::pytensor<NodeType, 2>::shape_type UvShapeType;
             UvShapeType uvShape = {static_cast<int64_t>(uvIdsVec.size()), 2L};

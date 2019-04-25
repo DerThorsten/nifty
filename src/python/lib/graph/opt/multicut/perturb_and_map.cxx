@@ -66,7 +66,7 @@ namespace multicut{
 
                 typedef xt::pytensor<double, 1>::shape_type ShapeType;
                 ShapeType shape = {static_cast<int64_t>(nEdges)};
-                xt::pytensor<double, 1> rarray(shape);
+                xt::pytensor<double, 1> rarray = xt::zeros<double>(shape);
                 for(auto edge: graph.edges())
                     rarray(edge) = edgeState[edge];
                 return rarray;

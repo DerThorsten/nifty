@@ -54,7 +54,7 @@ namespace multicut{
                     const auto & graph = self->objective().graph();
                     typename McBase::NodeLabelsType nodeLabels(graph,0);
                     ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
+                    xt::pytensor<uint64_t, 1> array = xt::zeros<uint64_t>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, nullptr);
@@ -74,7 +74,7 @@ namespace multicut{
                     const auto & graph = self->objective().graph();
                     typename McBase::NodeLabelsType nodeLabels(graph,0);
                     ShapeType shape = {graph.nodeIdUpperBound() + 1};
-                    xt::pytensor<uint64_t, 1> array(shape);
+                    xt::pytensor<uint64_t, 1> array = xt::zeros<uint64_t>(shape);
                     {
                         py::gil_scoped_release allowThreads;
                         self->optimize(nodeLabels, visitor);

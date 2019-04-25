@@ -106,7 +106,7 @@ namespace tools{
                                    const int numberOfThreads) {
                     typedef typename xt::pytensor<EdgeType, 1>::shape_type ShapeType;
                     ShapeType shape = {static_cast<int64_t>(self.numberOfEdges())};
-                    xt::pytensor<EdgeType, 1> edgeMapping(shape);
+                    xt::pytensor<EdgeType, 1> edgeMapping = xt::zeros<EdgeType>(shape);
 
                     {
                         py::gil_scoped_release allowThreads;

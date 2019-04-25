@@ -85,7 +85,7 @@ namespace multicut{
                     const auto vec = visitor.iterations();
                     typedef typename xt::pytensor<uint32_t, 1>::shape_type ShapeType;
                     ShapeType shape = {static_cast<int64_t>(vec.size())};
-                    xt::pytensor<uint32_t, 1> ret(shape);
+                    xt::pytensor<uint32_t, 1> ret = xt::zeros<uint32_t>(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;
@@ -94,7 +94,7 @@ namespace multicut{
                     const auto vec = visitor.energies();
                     typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
                     ShapeType shape = {static_cast<int64_t>(vec.size())};
-                    xt::pytensor<double, 1> ret(shape);
+                    xt::pytensor<double, 1> ret = xt::zeros<double>(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;
@@ -103,7 +103,7 @@ namespace multicut{
                     const auto vec = visitor.runtimes();
                     typedef typename xt::pytensor<double, 1>::shape_type ShapeType;
                     ShapeType shape = {static_cast<int64_t>(vec.size())};
-                    xt::pytensor<double, 1> ret(shape);
+                    xt::pytensor<double, 1> ret = xt::zeros<double>(shape);
                     for(auto i=0; i<vec.size(); ++i)
                         ret[i] = vec[i];
                     return ret;

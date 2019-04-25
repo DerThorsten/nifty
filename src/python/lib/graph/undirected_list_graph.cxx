@@ -39,7 +39,7 @@ namespace graph{
             .def("serialize",
                 [](const GraphType & g) {
                     typename xt::pytensor<uint64_t, 1>::shape_type shape = {static_cast<int64_t>(g.serializationSize())};
-                    xt::pytensor<uint64_t, 1> out(shape);
+                    xt::pytensor<uint64_t, 1> out = xt::zeros<uint64_t>(shape);
                     auto ptr = &out(0);
                     g.serialize(ptr);
                     return out;
@@ -129,8 +129,8 @@ namespace graph{
 
                 typedef typename xt::pytensor<uint32_t, 1>::shape_type TensorShapeType;
                 TensorShapeType tensorShape = {static_cast<int64_t>(g.numberOfEdges())};
-                xt::pytensor<uint32_t, 1>   offsetsIndex(tensorShape);
-                xt::pytensor<float, 1>      aff({tensorShape});
+                xt::pytensor<uint32_t, 1>   offsetsIndex = xt::zeros<uint32_t>(tensorShape);
+                xt::pytensor<float, 1>      aff = xt::zeros<float>(tensorShape);
 
                 u=0;
                 for(int p0=0; p0<shape[0]; ++p0)
