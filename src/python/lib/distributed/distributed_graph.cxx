@@ -104,6 +104,43 @@ namespace distributed {
                 return std::make_pair(innerEdges, outerEdges);
             }, py::arg("nodes"), py::arg("allowInvalidNodes")=false)
 
+            // neighborhood as serialized by vigra::adjacency list graph
+            .def("flattenedNeighborhoods", [](const Graph & self){
+
+                std::vector<NodeType> nhoods;
+                {
+                    py::gil_scoped_release allowThreads;
+                    // iterate over all nodes and append their neighbors
+                    const NodeType n_nodes = self.numberOfNodes();
+                    for(NodeType node_id = 0; node_id < n_nodes; ++node_id) {
+                        // push back the node-id
+                        nhoods.push_back(node_id);
+
+                        try {
+                            const auto & adjacency = self.nodeAdjacency(node_id);
+                            // push back the degree
+                            const NodeType degree = adjacency.size();
+                            nhoods.push_back(degree);
+
+                            // iterate over the adjacent nodes / edges and push them
+                            for(const auto & adj : adjacency) {
+                                nhoods.push_back(adj.second);
+                                nhoods.push_back(adj.first);
+                            }
+                        } catch (const std::out_of_range & e) {
+                            nhoods.push_back(0);
+                        }
+                    }
+                }
+
+                xt::pytensor<NodeType, 1> out = xt::zeros<NodeType>({nhoods.size()});
+                {
+                    py::gil_scoped_release allowThreads;
+                    std::copy(nhoods.begin(), nhoods.end(), out.begin());
+                }
+                return out;
+            })
+
             ;
     }
 
