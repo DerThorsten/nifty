@@ -391,7 +391,7 @@ namespace distributed {
         graph.nodes(nodes);
 
         // we need the number of nodes if nodes were dense
-        const std::size_t nNodes = graph.nodeMaxId() + 1;
+        const std::size_t nNodes = graph.maxNodeId() + 1;
 
         // make union find
         std::vector<NodeType> rank(nNodes);

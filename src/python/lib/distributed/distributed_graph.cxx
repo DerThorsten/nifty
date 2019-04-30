@@ -19,6 +19,8 @@ namespace distributed {
                  py::arg("path"), py::arg("numberOfThreads")=1)
             .def_property_readonly("numberOfNodes", &Graph::numberOfNodes)
             .def_property_readonly("numberOfEdges", &Graph::numberOfEdges)
+            .def_property_readonly("maxNodeId", &Graph::maxNodeId)
+            .def_property_readonly("maxEdgeId", &Graph::maxEdgeId)
 
             .def("findEdge", &Graph::findEdge)   // TODO lift gil
 
@@ -110,25 +112,23 @@ namespace distributed {
                 std::vector<NodeType> nhoods;
                 {
                     py::gil_scoped_release allowThreads;
+                    // TODO would be nice to expose a node iterator
                     // iterate over all nodes and append their neighbors
-                    const NodeType n_nodes = self.numberOfNodes();
-                    for(NodeType node_id = 0; node_id < n_nodes; ++node_id) {
+                    std::vector<NodeType> nodes;
+                    self.nodes(nodes);
+                    for(const NodeType node_id: nodes) {
                         // push back the node-id
                         nhoods.push_back(node_id);
 
-                        try {
-                            const auto & adjacency = self.nodeAdjacency(node_id);
-                            // push back the degree
-                            const NodeType degree = adjacency.size();
-                            nhoods.push_back(degree);
+                        const auto & adjacency = self.nodeAdjacency(node_id);
+                        // push back the degree
+                        const NodeType degree = adjacency.size();
+                        nhoods.push_back(degree);
 
-                            // iterate over the adjacent nodes / edges and push them
-                            for(const auto & adj : adjacency) {
-                                nhoods.push_back(adj.second);
-                                nhoods.push_back(adj.first);
-                            }
-                        } catch (const std::out_of_range & e) {
-                            nhoods.push_back(0);
+                        // iterate over the adjacent nodes / edges and push them
+                        for(const auto & adj : adjacency) {
+                            nhoods.push_back(adj.second);
+                            nhoods.push_back(adj.first);
                         }
                     }
                 }

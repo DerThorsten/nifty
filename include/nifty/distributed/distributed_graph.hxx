@@ -152,7 +152,9 @@ namespace distributed {
         // number of nodes and edges
         std::size_t numberOfNodes() const {return nodes_.size();}
         std::size_t numberOfEdges() const {return edges_.size();}
-        std::size_t nodeMaxId() const {return nodeMaxId_;}
+        std::size_t maxNodeId() const {return nodeMaxId_;}
+        // edges are always consecutive
+        std::size_t maxEdgeId() const {return edges_.size() - 1;}
 
         const EdgeStorage & edges() const {return edges_;}
 
