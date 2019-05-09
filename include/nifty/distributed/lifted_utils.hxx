@@ -74,7 +74,8 @@ namespace distributed {
                                    const NODE_LABELS & nodeLabels,
                                    const unsigned graphDepth,
                                    std::vector<EdgeType> & out,
-                                   F && addEdge) {
+                                   F && addEdge,
+                                   const uint64_t ignoreLabel=0) {
         // type to put on bfs queue, stores the node id and the graph
         // distance of this node from the start node
         typedef std::pair<uint64_t, unsigned> QueueElem;
@@ -107,13 +108,18 @@ namespace distributed {
             // put the neighboring nodes on the queue
             // (only if we wouldn't exceed max node depth )
             if(depth < graphDepth) {
-                const auto & adj = graph.nodeAdjacency(node);
-                for(const auto & ngb: adj) {
-                    // put node on queue if it has not been visited already
-                    const uint64_t ngbNode = ngb.first;
-                    if(visited.find(ngbNode) == visited.end()) {
-                        queue.emplace(std::make_pair(ngbNode, depth + 1));
+                // FIXME map can get out of scope, I don't understand why
+                try {
+                    const auto & adj = graph.nodeAdjacency(node);
+                    for(const auto & ngb: adj) {
+                        // put node on queue if it has not been visited already
+                        const uint64_t ngbNode = ngb.first;
+                        if(visited.find(ngbNode) == visited.end()) {
+                            queue.emplace(std::make_pair(ngbNode, depth + 1));
+                        }
                     }
+                } catch(std::out_of_range exception) {
+                    continue;
                 }
             }
 
@@ -126,7 +132,7 @@ namespace distributed {
 
             // 2.) does the node have a label?
             const uint64_t label = nodeLabels[node];
-            if(label == 0) {
+            if(label == ignoreLabel) {
                 continue;
             }
 
@@ -166,7 +172,8 @@ namespace distributed {
                                                         const std::string & outputPath,
                                                         const unsigned graphDepth,
                                                         const int numberOfThreads,
-                                                        const std::string & mode="all") {
+                                                        const std::string & mode="all",
+                                                        const uint64_t ignoreLabel=0) {
         // modes can be
         // "all": add all edges between nodes with a label
         // "same": add edges only between nodes with the same label
@@ -191,17 +198,23 @@ namespace distributed {
         // only add edges if both nodes have a node label
         nifty::parallel::parallel_foreach(numberOfThreads, nNodes,
                                           [&](const int tid, const uint64_t nodeId){
+            // zero is usually not in graph
+            // TODO should do a proper check instead ...
+            if(nodeId == 0) {
+                return;
+            }
+
             // check if this node has a node label
             const uint64_t nodeLabel = nodeLabels[nodeId];
             // continue if it is unlabeled
-            if(nodeLabel == 0) {
+            if(nodeLabel == ignoreLabel) {
                 return;
             }
             auto & threadData = perThreadData[tid];
             // do bfs for this node and find all relevant lifted edges
             findLiftedEdgesBfs(graph, nodeId,
                                nodeLabels, graphDepth, threadData,
-                               edgeChecker);
+                               edgeChecker, ignoreLabel);
         });
 
         // merge the thread
