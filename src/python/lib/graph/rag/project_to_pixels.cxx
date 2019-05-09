@@ -160,16 +160,16 @@ namespace graph{
             typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
             typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
 
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint32_t, 2>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint32_t, 3>(ragModule);
 
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint64_t, 2>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, uint64_t, 2>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, uint64_t, 3>(ragModule);
 
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, float, 2>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, float, 2>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, float, 3>(ragModule);
 
-            // exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, double, 2>(ragModule);
+            exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels2D, double, 2>(ragModule);
             exportProjectScalarNodeDataToPixelsT<ExplicitPyLabels3D, double, 3>(ragModule);
         }
 
@@ -181,116 +181,6 @@ namespace graph{
                                                           LabelsUInt64, 3>(ragModule);
         }
         #endif
-
-        // exportScalarNodeDataToPixelsStacked
-        {
-            /*
-            // explicit
-            {
-                typedef xt::pytensor<uint32_t, 3> LabelsUInt32;
-
-                exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, uint32_t>(ragModule);
-                exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, uint64_t>(ragModule);
-                exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, float>(ragModule);
-                exportProjectScalarNodeDataToPixelsStackedT<LabelsUInt32, double>(ragModule);
-            }
-            */
-
-            // FIXME need hdf5 with xtensor support for this to work
-            // hdf5
-            // #ifdef WITH_HDF5
-            // {
-            //     typedef nifty::hdf5::Hdf5Array<uint32_t> LabelsUInt32;
-
-            //     // exports for uint 32 rag
-            //     typedef nifty::hdf5::Hdf5Array<uint32_t> UInt32Data;
-            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-            //                                                          uint32_t,
-            //                                                          UInt32Data>(ragModule);
-
-            //     typedef nifty::hdf5::Hdf5Array<uint64_t> UInt64Data;
-            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-            //                                                          uint64_t,
-            //                                                          UInt64Data>(ragModule);
-
-            //     typedef nifty::hdf5::Hdf5Array<float> FloatData;
-            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-            //                                                          float,
-            //                                                          FloatData>(ragModule);
-
-            //     typedef nifty::hdf5::Hdf5Array<double> DoubleData;
-            //     exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-            //                                                          double,
-            //                                                          DoubleData>(ragModule);
-
-            //     exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-            //                                            uint32_t,
-            //                                            UInt32Data>(ragModule);
-            //     exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-            //                                            uint64_t,
-            //                                            UInt64Data>(ragModule);
-            // }
-            // #endif
-
-            /*
-            // z5
-            #ifdef WITH_Z5
-            {
-                typedef nifty::nz5::DatasetWrapper<uint32_t> LabelsUInt32;
-                typedef nifty::nz5::DatasetWrapper<uint64_t> LabelsUInt64;
-
-                // exports for uint 32 rag
-                typedef nifty::nz5::DatasetWrapper<uint32_t> UInt32Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     uint32_t,
-                                                                     UInt32Data>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<uint64_t> UInt64Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     uint64_t,
-                                                                     UInt64Data>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<float> FloatData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     float,
-                                                                     FloatData>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<double> DoubleData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt32,
-                                                                     double,
-                                                                     DoubleData>(ragModule);
-
-                // exports for uint 64 rag
-                typedef nifty::nz5::DatasetWrapper<uint32_t> UInt32Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt64,
-                                                                     uint32_t,
-                                                                     UInt32Data>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<uint64_t> UInt64Data;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt64,
-                                                                     uint64_t,
-                                                                     UInt64Data>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<float> FloatData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt64,
-                                                                     float,
-                                                                     FloatData>(ragModule);
-
-                typedef nifty::nz5::DatasetWrapper<double> DoubleData;
-                exportProjectScalarNodeDataToPixelsStackedOutOfCoreT<LabelsUInt64,
-                                                                     double,
-                                                                     DoubleData>(ragModule);
-
-                //exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-                //                                       uint32_t,
-                //                                       UInt32Data>(ragModule);
-                //exportProjectScalarNodeDataInSubBlockT<LabelsUInt32,
-                //                                       uint64_t,
-                //                                       UInt64Data>(ragModule);
-            }
-            #endif
-            */
-        }
     }
 
 } // end namespace graph
