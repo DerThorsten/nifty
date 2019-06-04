@@ -25,6 +25,20 @@ namespace distributed {
         }, py::arg("segA"), py::arg("segB"),
            py::arg("path"), py::arg("chunkId"),
            py::arg("ignoreA")=0, py::arg("ignoreB")=0);
+
+
+        module.def("computeEvalPrimitives", [](const std::string & inputPath,
+                                               const std::size_t nPoints,
+                                               const std::size_t nLabelsA,
+                                               const std::size_t nLabelsB,
+                                               const int nThreads) {
+            std::map<std::string, double> ret;
+            {
+                py::gil_scoped_release allowThreads;
+                computeEvalPrimitives(inputPath, nPoints, nLabelsA, nLabelsB, ret, nThreads);
+            }
+            return ret;
+        }, py::arg("inputPath"), py::arg("nPoints"), py::arg("nLabelsA"), py::arg("nLabelsB"), py::arg("nThreads")=1);
     }
 }
 }
