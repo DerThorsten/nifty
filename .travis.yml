@@ -15,9 +15,9 @@ matrix:
         - conda update -q conda;
         - conda info -a;
         
-        - conda create -q -n dev -c conda-forge/label/gcc7 -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
+        - conda create -q -n dev -c conda-forge -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
         - source activate dev
-        - conda install -c conda-forge/label/gcc7 glpk xtensor-python boost-cpp scikit-image h5py vigra z5py nlohmann_json
+        - conda install -c conda-forge glpk xtensor-python boost-cpp scikit-image h5py vigra z5py nlohmann_json
 
       script:
 

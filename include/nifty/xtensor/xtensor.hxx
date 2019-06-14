@@ -9,7 +9,7 @@ namespace xtensor {
     // helper function to convert a ROI given by (begin, end) into
     // a proper xtensor sliceing
     template<typename COORD1, typename COORD2>
-    inline void sliceFromRoi(xt::slice_vector & roiSlice,
+    inline void sliceFromRoi(xt::xstrided_slice_vector & roiSlice,
                              const COORD1 & begin,
                              const COORD2 & end) {
         for(int d = 0; d < begin.size(); ++d) {
@@ -21,7 +21,7 @@ namespace xtensor {
     // helper function to convert a ROI given by (offset, shape) into
     // a proper xtensor sliceing
     template<typename COORD1, typename COORD2>
-    inline void sliceFromOffset(xt::slice_vector & roiSlice,
+    inline void sliceFromOffset(xt::xstrided_slice_vector & roiSlice,
                                 const COORD1 & offset,
                                 const COORD2 & shape) {
         for(int d = 0; d < offset.size(); ++d) {
@@ -35,7 +35,7 @@ namespace xtensor {
     inline auto squeezedView(xt::xexpression<ARRAY> & arrayExp) {
         auto & array = arrayExp.derived_cast();
         auto & shape = array.shape();
-        xt::slice_vector squeeze;
+        xt::xstrided_slice_vector squeeze;
         for(const auto s : shape) {
             if(s == 1) {
                 squeeze.push_back(1);
@@ -99,7 +99,7 @@ namespace tools {
         auto & subarray = subarrayExpression.derived_cast();
 
         // get the view in the array
-        xt::slice_vector slice;
+        xt::xstrided_slice_vector slice;
         xtensor::sliceFromRoi(slice, beginCoord, endCoord);
         const auto view = xt::strided_view(array, slice);
 
@@ -121,7 +121,7 @@ namespace tools {
         auto & data = dataExpression.derived_cast();
 
         // get the view in the array
-        xt::slice_vector slice;
+        xt::xstrided_slice_vector slice;
         xtensor::sliceFromRoi(slice, beginCoord, endCoord);
         auto view = xt::strided_view(array, slice);
 

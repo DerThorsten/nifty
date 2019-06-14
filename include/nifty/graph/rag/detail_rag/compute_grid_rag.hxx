@@ -94,7 +94,7 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
         ){
             const Coord actualBlockShape = blockEnd - blockBegin;
             auto & blockView = perThreadDataVec[tid].blockLabels;
-            xt::slice_vector slice;
+            xt::xstrided_slice_vector slice;
             xtensor::sliceFromRoi(slice, zeroCoord, actualBlockShape);
             auto blockLabels = xt::strided_view(blockView, slice);
 

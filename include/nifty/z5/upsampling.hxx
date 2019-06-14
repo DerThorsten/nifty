@@ -106,7 +106,7 @@ namespace nz5 {
                 // std::cout << "C2" << std::endl;
                 auto & chunkArray = chunkIt->second;
                 // std::cout << "C3" << std::endl;
-                xt::slice_vector offsetSlice;
+                xt::xstrided_slice_vector offsetSlice;
                 // std::cout << "C4" << std::endl;
                 xtensor::sliceFromOffset(offsetSlice, offsetInChunk, shapeInRequest);
                 // std::cout << "C5" << std::endl;
