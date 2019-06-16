@@ -62,7 +62,6 @@ namespace distributed {
             ++index;
         }
 
-        // FIXME not parallelization save ???
         auto ds = z5::openDataset(path);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
     }
