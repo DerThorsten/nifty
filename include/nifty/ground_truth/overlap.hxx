@@ -14,7 +14,7 @@ namespace ground_truth{
     public:
 
         typedef LABEL_TYPE LabelType;
-        typedef COUNT_TYPE  CountType;
+        typedef COUNT_TYPE CountType;
         typedef std::unordered_map<LabelType, CountType> MapType;
 
         template<class SET_A_ITER, class SET_B_ITER>
@@ -50,14 +50,14 @@ namespace ground_truth{
             if(dimA == 1){
                 fill<1>(arrayA, arrayB);
             }
-            if(dimA == 2){
+            else if(dimA == 2){
                 fill<2>(arrayA, arrayB);
             }
-            if(dimA == 3){
-                fill<2>(arrayA, arrayB);
+            else if(dimA == 3){
+                fill<3>(arrayA, arrayB);
             }
-            if(dimA == 4){
-                fill<2>(arrayA, arrayB);
+            else if(dimA == 4){
+                fill<4>(arrayA, arrayB);
             }
             else{
                 auto aBegin = arrayA.begin();
@@ -206,12 +206,15 @@ namespace ground_truth{
             for(auto d=0; d<DIM; ++d){
                 shape[d] = arrayA.shape()[d];
             }
-            tools::forEachCoordinate(shape,[&](const Coord coord){
-                const auto la = xtensor::read(arrayA, coord.asStdArray());
-                ++overlaps_[la][xtensor::read(arrayB, coord.asStdArray())];
+            tools::forEachCoordinate(shape, [&](const Coord coord){
+                const LabelType la = xtensor::read(arrayA, coord.asStdArray());
+                const LabelType lb = xtensor::read(arrayB, coord.asStdArray());
+
+                ++overlaps_[la][lb];
                 ++counts_[la];
             });
         }
+
         std::vector<CountType> counts_;
         std::vector<MapType>   overlaps_;
     };

@@ -35,7 +35,13 @@ namespace distributed {
                 overlaps.emplace(node, std::unordered_map<uint64_t, std::size_t>{{l, 1}});
             }
             else {
-                ovlpIt->second[l] += 1;
+                auto & ovlpMap = ovlpIt->second;
+                auto mapIt = ovlpMap.find(l);
+                if(mapIt == ovlpMap.end()) {
+                    ovlpMap.emplace(l, 1);
+                } else {
+                    ++mapIt->second;
+                }
             }
         });
     }
@@ -77,7 +83,6 @@ namespace distributed {
         }
 
         // write serialization
-        // FIXME not parallelization save ???
         auto ds = z5::openDataset(dsPath);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
     }
