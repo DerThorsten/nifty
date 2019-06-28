@@ -221,6 +221,18 @@ namespace distributed {
             }
             return labels;
         }, py::arg("graph"), py::arg("edgeLabels"), py::arg("ignoreLabel"));
+
+
+        module.def("connectedComponentsFromNodes", [](const Graph & graph,
+                                                      const xt::pytensor<NodeType, 1> & nodeLabels,
+                                                      const bool ignoreLabel){
+            xt::pytensor<NodeType, 1> out = xt::zeros<NodeType>({graph.maxNodeId() + 1});
+            {
+                py::gil_scoped_release allowThreads;
+                connectedComponentsFromNodes(graph, nodeLabels, ignoreLabel, out);
+            }
+            return out;
+        }, py::arg("graph"), py::arg("nodeLabels"), py::arg("ignoreLabel"));
     }
 }
 }
