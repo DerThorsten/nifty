@@ -544,6 +544,10 @@ namespace distributed {
                 }
             }
 
+            if(serSize == 0) {
+                return;
+            }
+
             std::vector<std::size_t> chunkBegin, chunkEnd;
             // make serialzation
             char * byteSerialization = new char[serSize];
