@@ -209,7 +209,6 @@ namespace distributed {
         std::vector<LabelToOverlaps> threadData(numberOfThreads);
         std::vector<uint64_t> threadMax(numberOfThreads, 0);
 
-        // FIXME something is not thread-safe here
         auto inputDs = z5::openDataset(inputPath);
         z5::util::parallel_for_each_chunk(*inputDs,
                                           numberOfThreads,
