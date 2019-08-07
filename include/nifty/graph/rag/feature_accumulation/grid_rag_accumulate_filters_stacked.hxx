@@ -367,7 +367,7 @@ void accumulateEdgeFeaturesFromFiltersWithAccChain(const GridRagStacked2D<LABELS
         parallel::parallel_foreach(threadpool, numberOfChannels, [&](const int tid, const int64_t c){
             auto & histoOpts = histoOptionsVec[c];
             Coord cBegin({c, static_cast<int64_t>(0), static_cast<int64_t>(0)});
-            xt::slice_vector slice;
+            xt::xstrided_slice_vector slice;
             xtensor::sliceFromOffset(slice, cBegin, cShape);
             auto channelView = xt::strided_view(filter0, slice);
             auto minMax = std::minmax_element(channelView.begin(), channelView.end());
@@ -611,7 +611,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             FeatCoord endAlignedLocal{(int64_t)edgeEndAlignedLocal, (int64_t)nFeats};
 
             // get view to the aligned features
-            xt::slice_vector sliceAligned;
+            xt::xstrided_slice_vector sliceAligned;
             xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
             auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
@@ -622,7 +622,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
             // write the aligned features - if any exist
             if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
                 // get view to the aligned features
-                xt::slice_vector sliceAligned;
+                xt::xstrided_slice_vector sliceAligned;
                 xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
                 auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
@@ -647,7 +647,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
-                xt::slice_vector slice;
+                xt::xstrided_slice_vector slice;
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                 const auto overhangView = xt::strided_view(featuresTemp, slice);
                 storageFeats = overhangView;
@@ -669,7 +669,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
-                xt::slice_vector slice;
+                xt::xstrided_slice_vector slice;
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                 const auto overhangView = xt::strided_view(featuresTemp, slice);
                 storageFeats = overhangView;
@@ -696,7 +696,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
-                xt::slice_vector slice;
+                xt::xstrided_slice_vector slice;
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                 const auto overhangView = xt::strided_view(featuresTemp, slice);
                 storageFeats = overhangView;
@@ -718,7 +718,7 @@ void accumulateEdgeFeaturesFromFilters(const GridRagStacked2D<LABELS_PROXY> & ra
                 std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                 storageFeats.resize(storageShape);
 
-                xt::slice_vector slice;
+                xt::xstrided_slice_vector slice;
                 xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                 const auto overhangView = xt::strided_view(featuresTemp, slice);
                 storageFeats = overhangView;

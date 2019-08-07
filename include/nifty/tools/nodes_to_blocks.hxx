@@ -76,7 +76,7 @@ namespace tools{
                     blockShape[d] = blockShape3d[d+1];
                 }
 
-                xt::slice_vector slice;
+                xt::xstrided_slice_vector slice;
                 xtensor::sliceFromOffset(slice, blockBegin, blockShape);
                 auto blockView = xt::strided_view(subsegSqueezed, slice);
                 uniques(blockView, blockUniques);

@@ -9,7 +9,15 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
-namespace fs = boost::filesystem;
+#ifdef WITH_BOOST_FS
+    namespace fs = boost::filesystem;
+#else
+    #if __GCC__ > 7
+        namespace fs = std::filesystem;
+    #else
+        namespace fs = std::experimental::filesystem;
+    #endif
+#endif
 
 namespace nifty {
 namespace distributed {
@@ -379,6 +387,87 @@ namespace distributed {
     }
 
 
+    // TODO this should also work in-place, i.e. just with a single node labeling, 
+    // but right now it's too hot for me to figure this out
+    // connected components from node labels
+    template<class NODES> void connectedComponentsFromNodes(const Graph & graph,
+                                                            const xt::xexpression<NODES> & labels_exp,
+                                                            const bool ignoreLabel,
+                                                            xt::xexpression<NODES> &  out_exp) {
+        const auto & labels = labels_exp.derived_cast();
+        auto & out = out_exp.derived_cast();
+
+        // we need the number of nodes if nodes were dense
+        const std::size_t nNodes = graph.maxNodeId() + 1;
+
+        // make union find
+        std::vector<NodeType> rank(nNodes);
+        std::vector<NodeType> parent(nNodes);
+        boost::disjoint_sets<NodeType*, NodeType*> sets(&rank[0], &parent[0]);
+        for(NodeType node_id = 0; node_id < nNodes; ++node_id) {
+            sets.make_set(node_id);
+        }
+
+        std::vector<NodeType> nodes;
+        graph.nodes(nodes);
+
+        // First pass:
+        // iterate over each node and create new label at node
+        // or assign representative of the neighbor node
+        NodeType currentLabel = 0;
+        for(const NodeType u : nodes){
+
+            if(ignoreLabel && (u == 0)) {
+                continue;
+            }
+
+            // iterate over the nodes in the neighborhood
+            // and collect the nodes that are connected
+            const auto & nhood = graph.nodeAdjacency(u);
+            std::set<NodeType> ngbLabels;
+            const auto lU = labels(u);
+
+            for(auto nhIt = nhood.begin(); nhIt != nhood.end(); ++nhIt) {
+                const NodeType v = nhIt->first;
+                const auto lV = labels(v);
+
+                // nodes are connected if the edge has the value 0
+                // this is in accordance with cut edges being 1
+                if(lU == lV) {
+                    ngbLabels.insert(v);
+                }
+            }
+
+            // check if we are connected to any of the neighbors
+            // and if the neighbor labels need to be merged
+            if(ngbLabels.size() == 0) {
+                // no connection -> make new label @ current node
+                out(u) = ++currentLabel;
+            } else if (ngbLabels.size() == 1) {
+                // only single label -> we assign its representative to the current node
+                out(u) = sets.find_set(*ngbLabels.begin());
+            } else {
+                // multiple labels -> we merge them and assign representative to the current node
+                std::vector<NodeType> tmp_labels(ngbLabels.begin(), ngbLabels.end());
+                for(unsigned ii = 1; ii < tmp_labels.size(); ++ii) {
+                    sets.link(tmp_labels[ii - 1], tmp_labels[ii]);
+                }
+                out(u) = sets.find_set(tmp_labels[0]);
+            }
+        }
+
+        // Second pass:
+        // Assign representative to each pixel
+        for(const NodeType u : nodes){
+            out(u) = sets.find_set(out(u));
+        }
+
+
+
+    }
+
+
+    // connected components from edge labels
     template<class EDGES, class NODES>
     void connectedComponents(const Graph & graph,
                              const xt::xexpression<EDGES> & edges_exp,
@@ -391,7 +480,7 @@ namespace distributed {
         graph.nodes(nodes);
 
         // we need the number of nodes if nodes were dense
-        const std::size_t nNodes = graph.nodeMaxId() + 1;
+        const std::size_t nNodes = graph.maxNodeId() + 1;
 
         // make union find
         std::vector<NodeType> rank(nNodes);

@@ -590,7 +590,7 @@ namespace graph{
                 // write the aligned features - if any exist
                 if(edgeEndAlignedLocal > 0 && edgeEndAlignedLocal > overhangBegin) {
                     // get view to the aligned features
-                    xt::slice_vector sliceAligned;
+                    xt::xstrided_slice_vector sliceAligned;
                     xtensor::sliceFromRoi(sliceAligned, beginAlignedLocal, endAlignedLocal);
                     auto featuresAligned = xt::strided_view(featuresTemp, sliceAligned);
 
@@ -615,7 +615,7 @@ namespace graph{
                     std::array<std::size_t, 2> storageShape{(std::size_t)overhangBegin, (std::size_t)nFeats};
                     storageFeats.resize(storageShape);
 
-                    xt::slice_vector slice;
+                    xt::xstrided_slice_vector slice;
                     xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                     const auto overhangView = xt::strided_view(featuresTemp, slice);
                     storageFeats = overhangView;
@@ -637,7 +637,7 @@ namespace graph{
                     std::array<std::size_t, 2> storageShape{(std::size_t)overhangEnd, (std::size_t)nFeats};
                     storageFeats.resize(storageShape);
 
-                    xt::slice_vector slice;
+                    xt::xstrided_slice_vector slice;
                     xtensor::sliceFromOffset(slice, storageBegin, storageShape);
                     const auto overhangView = xt::strided_view(featuresTemp, slice);
                     storageFeats = overhangView;

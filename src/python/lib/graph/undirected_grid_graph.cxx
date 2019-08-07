@@ -39,12 +39,49 @@ namespace graph{
             ){
                 return g.nodeToCoordinate(node);
             })
-            .def("coordianteToNode",[](
+            .def("coordinateToNode",[](
                 const GraphType & g,
                 const typename GraphType::CoordinateType & coord
             ){
                 return g.coordianteToNode(coord);
             })
+
+            .def("euclideanEdgeMap",
+                [](
+                    const GraphType & g,
+                    const xt::pytensor<bool, DIM> & mask,
+                    const std::array<double, DIM> & resolution
+                ){
+                    typedef typename GraphType::CoordinateType CoordinateType;
+                    xt::pytensor<float, 1> out = xt::zeros<float>({g.edgeIdUpperBound() + 1});
+                    for(const int64_t edge : g.edges()){
+
+                        const auto & uv = g.uv(edge);
+                        CoordinateType cU, cV;
+                        g.nodeToCoordinate(uv.first,  cU);
+                        g.nodeToCoordinate(uv.second, cV);
+                        const bool uVal = xtensor::read(mask, cU.asStdArray());
+                        const bool vVal = xtensor::read(mask, cU.asStdArray());
+
+                        // if one or more of the values is outside of the mask,
+                        // the edge is not allowed
+                        if(uVal == 0 || vVal == 0) {
+                            out[edge] = std::numeric_limits<float>::infinity();
+                            continue;
+                        }
+
+                        // euclidean distance
+                        double dist = 0;
+                        double aux;
+                        for(unsigned d = 0; d < DIM; ++d) {
+                            aux = (cU[d] - cV[d]) * resolution[d];
+                            dist += aux * aux;
+                        }
+                        out[edge] = sqrt(dist);
+                    }
+                    return out;
+                }
+            )
 
             .def("imageToEdgeMap",
                 [](

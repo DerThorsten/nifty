@@ -127,6 +127,13 @@ namespace distributed {
             return std::make_pair(overlaps, maxLabelId);
         }, py::arg("path"), py::arg("chunkId"));
 
+
+        module.def("serializeOverlapChunk", [](const std::string & path,
+                                               const std::vector<std::size_t> & chunkId,
+                                               const std::unordered_map<uint64_t, std::unordered_map<uint64_t, std::size_t>> & overlaps) {
+            serializeLabelOverlaps(overlaps, path, chunkId);
+        }, py::arg("path"), py::arg("chunkId"), py::arg("overlap"));
+
     }
 }
 }

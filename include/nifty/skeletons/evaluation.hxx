@@ -11,7 +11,16 @@
 namespace bg = boost::geometry;
 namespace bgi = boost::geometry::index;
 
-namespace fs = boost::filesystem;
+#ifdef WITH_BOOST_FS
+    namespace fs = boost::filesystem;
+#else
+    #if __GCC__ > 7
+        namespace fs = std::filesystem;
+    #else
+        namespace fs = std::experimental::filesystem;
+    #endif
+#endif
+
 namespace nifty {
 namespace skeletons {
 

@@ -41,7 +41,7 @@ public:
     template<class SHAPE>
     inline auto getView(const SHAPE & shape, const std::size_t blockIndex) {
         auto & array = arrayVec_[blockIndex];
-        xt::slice_vector slice;
+        xt::xstrided_slice_vector slice;
         xtensor::sliceFromRoi(slice, zeroCoord_, shape);
         return xt::strided_view(array, slice);
     }

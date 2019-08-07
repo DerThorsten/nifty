@@ -6,7 +6,15 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 
-namespace fs = boost::filesystem;
+#ifdef WITH_BOOST_FS
+    namespace fs = boost::filesystem;
+#else
+    #if __GCC__ > 7
+        namespace fs = std::filesystem;
+    #else
+        namespace fs = std::experimental::filesystem;
+    #endif
+#endif
 
 namespace nifty {
 namespace distributed {
@@ -35,7 +43,13 @@ namespace distributed {
                 overlaps.emplace(node, std::unordered_map<uint64_t, std::size_t>{{l, 1}});
             }
             else {
-                ovlpIt->second[l] += 1;
+                auto & ovlpMap = ovlpIt->second;
+                auto mapIt = ovlpMap.find(l);
+                if(mapIt == ovlpMap.end()) {
+                    ovlpMap.emplace(l, 1);
+                } else {
+                    ++mapIt->second;
+                }
             }
         });
     }
@@ -77,7 +91,6 @@ namespace distributed {
         }
 
         // write serialization
-        // FIXME not parallelization save ???
         auto ds = z5::openDataset(dsPath);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
     }
@@ -204,7 +217,6 @@ namespace distributed {
         std::vector<LabelToOverlaps> threadData(numberOfThreads);
         std::vector<uint64_t> threadMax(numberOfThreads, 0);
 
-        // FIXME something is not thread-safe here
         auto inputDs = z5::openDataset(inputPath);
         z5::util::parallel_for_each_chunk(*inputDs,
                                           numberOfThreads,
@@ -539,6 +551,10 @@ namespace distributed {
                 }
             }
 
+            if(serSize == 0) {
+                return;
+            }
+
             std::vector<std::size_t> chunkBegin, chunkEnd;
             // make serialzation
             char * byteSerialization = new char[serSize];
@@ -653,9 +669,6 @@ namespace distributed {
             formatBlockMapping(out, mapping);
         }
     }
-
-
-
 
 }
 }

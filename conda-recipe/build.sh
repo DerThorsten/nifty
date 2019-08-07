@@ -143,6 +143,8 @@ PY_VER=$(python -c "import sys; print('{}.{}'.format(*sys.version_info[:2]))")
 PY_ABIFLAGS=$(python -c "import sys; print('' if sys.version_info.major == 2 else sys.abiflags)")
 PY_ABI=${PY_VER}${PY_ABIFLAGS}
 
+NUMPY_INCLUDE_DIR="${PREFIX}/lib/python3.7/site-packages/numpy/core/include"
+
 ##
 ## Configure
 ##
@@ -153,6 +155,7 @@ cmake .. \
         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
+        -DPYTHON_NUMPY_INCLUDE_DIR=${NUMPY_INCLUDE_DIR} \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \

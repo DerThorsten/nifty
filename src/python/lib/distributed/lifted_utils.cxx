@@ -19,12 +19,14 @@ namespace distributed {
                                                                  const std::string & outputPath,
                                                                  const unsigned graphDepth,
                                                                  const int numberOfThreads,
-                                                                 const std::string & mode){
+                                                                 const std::string & mode,
+                                                                 const uint64_t ignoreLabel){
             py::gil_scoped_release allowThreads;
             computeLiftedNeighborhoodFromNodeLabels(graphPath, nodeLabelPath, outputPath,
                                                     graphDepth, numberOfThreads, mode);
         }, py::arg("graphPath"), py::arg("nodeLabelPath"), py::arg("outputPath"),
-           py::arg("graphDepth"), py::arg("numberOfThreads"), py::arg("mode")="all");
+           py::arg("graphDepth"), py::arg("numberOfThreads"), py::arg("mode")="all",
+           py::arg("ignoreLabel")=0);
 
 
         module.def("liftedEdgesFromNode", [](const std::string & graphPath,

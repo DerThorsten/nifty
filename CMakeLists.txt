@@ -90,18 +90,22 @@ message(STATUS "CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 if (NOT "${CMAKE_CXX_FLAGS}" MATCHES "-std=c\\+\\+17")
     message(STATUS "Using c++ 14")
     set(CMAKE_CXX_STANDARD 14)
+    set(CPP17 FALSE)
 else()
     message(STATUS "Using c++ 17")
+    set(CMAKE_CXX_STANDARD 17)
+    set(CPP17 TRUE)
 endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 # WITH_LP_MP needs special treatment since
-# it requires C++ 14 and used OpenMP
+# it requires C++ 14 and uses OpenMP
 if(WITH_LP_MP)
     find_package(OpenMP)
     if (OPENMP_FOUND)
-        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     endif()
 endif()
 
@@ -166,9 +170,38 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost 1.63.0 COMPONENTS system filesystem serialization REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-MESSAGE(STATUS ${Boost_INCLUDE_DIRS})
+
+# If WITH_BOOST_FS is set, we always use the boost filesystem library
+# otherwise, we check if we have c++17 support. If so, we use std::filesystem,
+# otherwise we fall back to boost filesystem.
+if(CPP17)
+    SET(WITH_BOOST_FS FALSE CACHE BOOL "")
+else()
+    SET(WITH_BOOST_FS TRUE CACHE BOOL "")
+endif()
+
+if(WITH_BOOST_FS)
+    message(STATUS "With boost filesystem")
+    find_package(Boost 1.63.0 COMPONENTS system filesystem serialization REQUIRED)
+    add_definitions(-DWITH_BOOST_FS)
+    SET(FILESYSTEM_LIBRARIES "${Boost_FILESYSTEM_LIBRARY};${Boost_SYSTEM_LIBRARY}")
+else()
+    message(STATUS "With std filesystem")
+    find_package(Boost 1.63.0 REQUIRED)
+
+    # see this issue for discussions about the filesystem lib in CMake
+    # https://gitlab.kitware.com/cmake/cmake/issues/17834
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+        SET(FILESYSTEM_LIBRARIES "stdc++fs")
+    endif()
+
+    # on clang, we need to enable libc++experimental, see
+    # https://stackoverflow.com/a/45332844
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        SET(FILESYSTEM_LIBRARIES "c++experimental")
+    endif()
+endif()
+include_directories(${Boost_INCLUDE_DIR})
 
 
 if(WITHIN_TRAVIS)
@@ -233,11 +266,8 @@ if(WITH_Z5)
     option(WITH_BZIP2 ON)
     option(WITH_ZLIB ON)
 
-    # TODO need to do this for conda package or add necessary things to cmake modules here 
-    # set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/externals/z5/cmake")
     # z5 compression libraries
     SET(Z5_COMPRESSION_LIBRARIES "")
-
     if(WITH_BLOSC)
         find_package(BLOSC REQUIRED)
         include_directories(${BLOSC_INCLUDE_DIR})
