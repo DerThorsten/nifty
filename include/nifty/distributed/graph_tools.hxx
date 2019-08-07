@@ -9,7 +9,15 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
-namespace fs = boost::filesystem;
+#ifdef WITH_BOOST_FS
+    namespace fs = boost::filesystem;
+#else
+    #if __GCC__ > 7
+        namespace fs = std::filesystem;
+    #else
+        namespace fs = std::experimental::filesystem;
+    #endif
+#endif
 
 namespace nifty {
 namespace distributed {

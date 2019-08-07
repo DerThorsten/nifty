@@ -4,6 +4,5 @@ addPythonModule(
     SOURCES
         carving.cxx
     LIBRRARIES
-        ${Boost_FILESYSTEM_LIBRARY}    
-        ${Boost_SYSTEM_LIBRARY}    
+        ${FILESYSTEM_LIBRARIES}
 )

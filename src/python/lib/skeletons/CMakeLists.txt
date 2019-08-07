@@ -7,8 +7,7 @@ addPythonModule(
         evaluation.cxx
     LIBRRARIES
         ${Z5_COMPRESSION_LIBRARIES}
-        ${Boost_FILESYSTEM_LIBRARY}    
-        ${Boost_SYSTEM_LIBRARY}    
+        ${FILESYSTEM_LIBRARIES}    
         ${Boost_SERIALIZATION_LIBRARY}    
         Threads::Threads
 )
