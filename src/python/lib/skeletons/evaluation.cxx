@@ -19,8 +19,9 @@ namespace skeletons {
         py::class_<SelfType>(module, "SkeletonMetrics")
             .def(py::init<const std::string &, const std::string &,
                           const std::vector<std::size_t> &, const int>())
-            .def(py::init<const std::string &, const std::string &,
-                          const std::vector<std::size_t> &, const std::string &>())
+            // can't build with boost serialization
+            //.def(py::init<const std::string &, const std::string &,
+            //              const std::vector<std::size_t> &, const std::string &>())
             //
             .def("getNodeAssignments", [](const SelfType & self){return self.getNodeAssignments();})
             .def("computeSplitScores", [](const SelfType & self, const int numberOfThreads){
@@ -86,10 +87,11 @@ namespace skeletons {
                 return out;
             }, py::arg("resolution"), py::arg("numberOfThreads")=-1)
             //
-            .def("serialize", [](const SelfType & self,
-                                 const std::string & serializationPath){
-                self.serialize(serializationPath);
-            }, py::arg("serializationPath"))
+            // can't build with boost serialization
+            //.def("serialize", [](const SelfType & self,
+            //                     const std::string & serializationPath){
+            //    self.serialize(serializationPath);
+            //}, py::arg("serializationPath"))
             //
             .def("mergeFalseSplitNodes", [](const SelfType & self, const int numberOfThreads){
                 std::map<std::size_t, std::set<std::pair<std::size_t, std::size_t>>> out;

@@ -182,7 +182,7 @@ endif()
 
 if(WITH_BOOST_FS)
     message(STATUS "With boost filesystem")
-    find_package(Boost 1.63.0 COMPONENTS system filesystem serialization REQUIRED)
+    find_package(Boost 1.63.0 COMPONENTS system filesystem REQUIRED)
     add_definitions(-DWITH_BOOST_FS)
     SET(FILESYSTEM_LIBRARIES "${Boost_FILESYSTEM_LIBRARY};${Boost_SYSTEM_LIBRARY}")
 else()
