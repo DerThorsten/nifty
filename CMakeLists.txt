@@ -193,13 +193,12 @@ else()
     # https://gitlab.kitware.com/cmake/cmake/issues/17834
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
         SET(FILESYSTEM_LIBRARIES "stdc++fs")
-        SET(FILESYSTEM_LIBRARIES "")
     endif()
 
     # on clang, we need to enable libc++experimental, see
     # https://stackoverflow.com/a/45332844
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(LIBCXX_ENABLE_EXPERIMENTAL_LIBRARY ON)
+        SET(FILESYSTEM_LIBRARIES "c++experimental")
     endif()
 endif()
 include_directories(${Boost_INCLUDE_DIR})
