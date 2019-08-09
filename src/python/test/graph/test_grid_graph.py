@@ -26,9 +26,9 @@ class TestUndirectedGridGraph(unittest.TestCase):
                 self.assertEqual(u, counter)
                 coord = g.nodeToCoordinate(u)
 
-                self.assertEqual(g.coordianteToNode(coord),u)
-                self.assertEqual(g.coordianteToNode(coord),counter)
-                self.assertEqual(g.coordianteToNode([x0,x1]),counter)
+                self.assertEqual(g.coordinateToNode(coord),u)
+                self.assertEqual(g.coordinateToNode(coord),counter)
+                self.assertEqual(g.coordinateToNode([x0,x1]),counter)
 
 
                 self.assertEqual(coord[0], x0)
