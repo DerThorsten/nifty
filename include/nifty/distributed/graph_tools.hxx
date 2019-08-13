@@ -387,6 +387,21 @@ namespace distributed {
     }
 
 
+    // number of nodes taking care of paintera ignore id BS
+    std::size_t getNumberOfNodes(const Graph & graph) {
+        uint64_t maxNode = graph.maxNodeId();
+        if(maxNode == std::numeric_limits<uint64_t>::max()) {
+            // need to find the second largest node
+            std::vector<NodeType> nodes;
+            graph.nodes(nodes);
+            std::nth_element(nodes.begin(), nodes.begin() + 1, nodes.end(),
+                             std::greater<NodeType>());
+            maxNode = nodes[1];
+        }
+        return maxNode + 1;
+    }
+
+
     // this should also work in-place, i.e. just with a single node labeling
     // but right now it's too hot for me to figure this out
     // connected components from node labels
@@ -396,9 +411,10 @@ namespace distributed {
                                                             xt::xexpression<NODES> & out_exp) {
         const auto & labels = labels_exp.derived_cast();
         auto & out = out_exp.derived_cast();
+        const std::size_t nNodes = getNumberOfNodes(graph);
 
-        // we need the number of nodes if nodes were dense
-        const std::size_t nNodes = graph.maxNodeId() + 1;
+        // for hacky paintera fix
+        const uint64_t painteraId = std::numeric_limits<uint64_t>::max();
 
         // make union find
         std::vector<NodeType> rank(nNodes);
@@ -412,7 +428,15 @@ namespace distributed {
         for(const auto & edge: edges) {
             const uint64_t u = edge.first;
             const uint64_t v = edge.second;
+            // this is a hacky fix to deal with paintera
+            if(ignoreLabel && (u == painteraId) || (v == painteraId)) {
+                continue;
+            }
+
+
+            // std::cout << u << std::endl;
             const uint64_t lU = labels(u);
+            // std::cout << v << std::endl;
             const uint64_t lV = labels(v);
             if(ignoreLabel && (lU == 0 || lV == 0)) {
                 continue;
@@ -437,11 +461,8 @@ namespace distributed {
         const auto & edgeLabels = edges_exp.derived_cast();
         auto & labels = labels_exp.derived_cast();
 
-        std::vector<NodeType> nodes;
-        graph.nodes(nodes);
-
         // we need the number of nodes if nodes were dense
-        const std::size_t nNodes = graph.maxNodeId() + 1;
+        const std::size_t nNodes = getNumberOfNodes(graph);
 
         // make union find
         std::vector<NodeType> rank(nNodes);

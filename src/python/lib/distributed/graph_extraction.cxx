@@ -213,7 +213,7 @@ namespace distributed {
 
         module.def("connectedComponents", [](const Graph & graph,
                                              const xt::pytensor<bool, 1> & edgeLabels){
-            xt::pytensor<NodeType, 1> labels = xt::zeros<NodeType>({graph.maxNodeId() + 1});
+            xt::pytensor<NodeType, 1> labels = xt::zeros<NodeType>({getNumberOfNodes(graph)});
             {
                 py::gil_scoped_release allowThreads;
                 connectedComponents(graph, edgeLabels, labels);
@@ -225,7 +225,7 @@ namespace distributed {
         module.def("connectedComponentsFromNodes", [](const Graph & graph,
                                                       const xt::pytensor<NodeType, 1> & nodeLabels,
                                                       const bool ignoreLabel){
-            xt::pytensor<NodeType, 1> out = xt::zeros<NodeType>({graph.maxNodeId() + 1});
+            xt::pytensor<NodeType, 1> out = xt::zeros<NodeType>({getNumberOfNodes(graph)});
             {
                 py::gil_scoped_release allowThreads;
                 connectedComponentsFromNodes(graph, nodeLabels, ignoreLabel, out);
