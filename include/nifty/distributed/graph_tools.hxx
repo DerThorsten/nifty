@@ -408,61 +408,23 @@ namespace distributed {
             sets.make_set(node_id);
         }
 
-        std::vector<NodeType> nodes;
-        graph.nodes(nodes);
-
-        // First pass:
-        // iterate over each node and create new label at node
-        // or assign representative of the neighbor node
-        NodeType currentLabel = 0;
-        for(const NodeType u : nodes){
-
-            if(ignoreLabel && (u == 0)) {
+        const auto & edges = graph.edges();
+        for(const auto & edge: edges) {
+            const uint64_t u = edge.first;
+            const uint64_t v = edge.second;
+            const uint64_t lU = labels(u);
+            const uint64_t lV = labels(v);
+            if(ignoreLabel && (lU == 0 || lV == 0)) {
                 continue;
             }
-
-            // iterate over the nodes in the neighborhood
-            // and collect the nodes that are connected
-            const auto & nhood = graph.nodeAdjacency(u);
-            std::set<NodeType> ngbLabels;
-            const auto lU = labels(u);
-
-            for(auto nhIt = nhood.begin(); nhIt != nhood.end(); ++nhIt) {
-                const NodeType v = nhIt->first;
-                const auto lV = labels(v);
-
-                // nodes are connected if the edge has the value 0
-                // this is in accordance with cut edges being 1
-                if(lU == lV) {
-                    ngbLabels.insert(v);
-                }
-            }
-
-            // check if we are connected to any of the neighbors
-            // and if the neighbor labels need to be merged
-            if(ngbLabels.size() == 0) {
-                // no connection -> make new label @ current node
-                out(u) = ++currentLabel;
-            } else if (ngbLabels.size() == 1) {
-                // only single label -> we assign its representative to the current node
-                const uint64_t ngb = *ngbLabels.begin();
-                out(u) = sets.find_set(ngb);
-                sets.link(u, ngb);
-            } else {
-                // multiple labels -> we merge them and assign representative to the current node
-                std::vector<NodeType> tmp_labels(ngbLabels.begin(), ngbLabels.end());
-                for(unsigned ii = 1; ii < tmp_labels.size(); ++ii) {
-                    sets.link(tmp_labels[ii - 1], tmp_labels[ii]);
-                }
-                sets.link(u, tmp_labels[0]);
-                out(u) = sets.find_set(tmp_labels[0]);
+            if(lU == lV) {
+                sets.link(u, v);
             }
         }
 
-        // Second pass:
-        // Assign representative to each pixel
-        for(const NodeType u : nodes){
-            out(u) = sets.find_set(out(u));
+        // assign representative to each pixel
+        for(std::size_t u = 0; u < out.size(); ++u){
+            out(u) = sets.find_set(u);
         }
     }
 
@@ -471,9 +433,8 @@ namespace distributed {
     template<class EDGES, class NODES>
     void connectedComponents(const Graph & graph,
                              const xt::xexpression<EDGES> & edges_exp,
-                             const bool ignoreLabel,
                              xt::xexpression<NODES> & labels_exp) {
-        const auto & edges = edges_exp.derived_cast();
+        const auto & edgeLabels = edges_exp.derived_cast();
         auto & labels = labels_exp.derived_cast();
 
         std::vector<NodeType> nodes;
@@ -490,56 +451,22 @@ namespace distributed {
             sets.make_set(node_id);
         }
 
-        // First pass:
-        // iterate over each node and create new label at node
-        // or assign representative of the neighbor node
-        NodeType currentLabel = 0;
-        for(const NodeType node : nodes){
+        const auto & edges = graph.edges();
+        for(std::size_t edge_id = 0; edge_id < edges.size(); ++edge_id) {
+            const auto & edge = edges[edge_id];
+            const uint64_t u = edge.first;
+            const uint64_t v = edge.second;
 
-            if(ignoreLabel && (node == 0)) {
-                continue;
-            }
-
-            // iterate over the nodes in the neighborhood
-            // and collect the nodes that are connected
-            const auto & nhood = graph.nodeAdjacency(node);
-            std::set<NodeType> ngbLabels;
-            for(auto nhIt = nhood.begin(); nhIt != nhood.end(); ++nhIt) {
-                const NodeType nhNode = nhIt->first;
-                const EdgeIndexType nhEdge = nhIt->second;
-
-                // nodes are connected if the edge has the value 0
-                // this is in accordance with cut edges being 1
-                if(!edges(nhEdge)) {
-                    ngbLabels.insert(nhNode);
-                }
-            }
-
-            // check if we are connected to any of the neighbors
-            // and if the neighbor labels need to be merged
-            if(ngbLabels.size() == 0) {
-                // no connection -> make new label @ current pixel
-                labels(node) = ++currentLabel;
-            } else if (ngbLabels.size() == 1) {
-                // only single label -> we assign its representative to the current pixel
-                const uint64_t ngb = *ngbLabels.begin();
-                sets.link(node, ngb);
-                labels(node) = sets.find_set(ngb);
-            } else {
-                // multiple labels -> we merge them and assign representative to the current pixel
-                std::vector<NodeType> tmp_labels(ngbLabels.begin(), ngbLabels.end());
-                for(unsigned ii = 1; ii < tmp_labels.size(); ++ii) {
-                    sets.link(tmp_labels[ii - 1], tmp_labels[ii]);
-                }
-                sets.link(node, tmp_labels[0]);
-                labels(node) = sets.find_set(tmp_labels[0]);
+            // nodes are connected if the edge has the value 0
+            // this is in accordance with cut edges being 1
+            if(!edgeLabels(edge_id)) {
+                sets.link(u, v);
             }
         }
 
-        // Second pass:
-        // Assign representative to each pixel
-        for(const NodeType node : nodes){
-            labels(node) = sets.find_set(labels(node));
+        // assign representative to each pixel
+        for(std::size_t u = 0; u < labels.size(); ++u){
+            labels(u) = sets.find_set(u);
         }
     }
 
