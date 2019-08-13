@@ -57,7 +57,7 @@ class TestUndirectedGridGraph(unittest.TestCase):
         self.assertEqual(eCounter,g.numberOfEdges)
         for node in g.nodes():
             coord = g.nodeToCoordinate(node)
-            self.assertEqual(g.coordianteToNode(coord),node)
+            self.assertEqual(g.coordinateToNode(coord),node)
 
         for edge in g.nodes():
             uv = g.uv(edge)

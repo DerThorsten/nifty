@@ -18,14 +18,14 @@ package:
   {% else %}
     name: nifty
   {% endif %}
-    version: v1.0.5
+    version: v1.0.7
 
 source:
   path: ..
 
 
 build:
-  number: 1
+  number: 0
 
   script_env:
      - WITH_CPLEX
@@ -45,6 +45,7 @@ requirements:
     - xtensor 0.19.3
     - xtensor-python 0.22.1
     - nlohmann_json
+    - bzip2
     - blosc
     - z5py
     - vigra
@@ -60,10 +61,10 @@ requirements:
 
   run:
     - python {{PY_VER}}*
-    - boost 1.68.0
     - hdf5 >=1.10
     - numpy >=1.15
     - scikit-image
+    - bzip2
     - blosc
     - vigra
 
