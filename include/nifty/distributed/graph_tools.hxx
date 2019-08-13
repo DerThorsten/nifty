@@ -387,13 +387,13 @@ namespace distributed {
     }
 
 
-    // TODO this should also work in-place, i.e. just with a single node labeling, 
+    // this should also work in-place, i.e. just with a single node labeling
     // but right now it's too hot for me to figure this out
     // connected components from node labels
     template<class NODES> void connectedComponentsFromNodes(const Graph & graph,
                                                             const xt::xexpression<NODES> & labels_exp,
                                                             const bool ignoreLabel,
-                                                            xt::xexpression<NODES> &  out_exp) {
+                                                            xt::xexpression<NODES> & out_exp) {
         const auto & labels = labels_exp.derived_cast();
         auto & out = out_exp.derived_cast();
 
@@ -445,13 +445,16 @@ namespace distributed {
                 out(u) = ++currentLabel;
             } else if (ngbLabels.size() == 1) {
                 // only single label -> we assign its representative to the current node
-                out(u) = sets.find_set(*ngbLabels.begin());
+                const uint64_t ngb = *ngbLabels.begin();
+                out(u) = sets.find_set(ngb);
+                sets.link(u, ngb);
             } else {
                 // multiple labels -> we merge them and assign representative to the current node
                 std::vector<NodeType> tmp_labels(ngbLabels.begin(), ngbLabels.end());
                 for(unsigned ii = 1; ii < tmp_labels.size(); ++ii) {
                     sets.link(tmp_labels[ii - 1], tmp_labels[ii]);
                 }
+                sets.link(u, tmp_labels[0]);
                 out(u) = sets.find_set(tmp_labels[0]);
             }
         }
@@ -461,9 +464,6 @@ namespace distributed {
         for(const NodeType u : nodes){
             out(u) = sets.find_set(out(u));
         }
-
-
-
     }
 
 
@@ -522,13 +522,16 @@ namespace distributed {
                 labels(node) = ++currentLabel;
             } else if (ngbLabels.size() == 1) {
                 // only single label -> we assign its representative to the current pixel
-                labels(node) = sets.find_set(*ngbLabels.begin());
+                const uint64_t ngb = *ngbLabels.begin();
+                sets.link(node, ngb);
+                labels(node) = sets.find_set(ngb);
             } else {
                 // multiple labels -> we merge them and assign representative to the current pixel
                 std::vector<NodeType> tmp_labels(ngbLabels.begin(), ngbLabels.end());
                 for(unsigned ii = 1; ii < tmp_labels.size(); ++ii) {
                     sets.link(tmp_labels[ii - 1], tmp_labels[ii]);
                 }
+                sets.link(node, tmp_labels[0]);
                 labels(node) = sets.find_set(tmp_labels[0]);
             }
         }
