@@ -43,7 +43,7 @@ namespace graph{
                 const GraphType & g,
                 const typename GraphType::CoordinateType & coord
             ){
-                return g.coordianteToNode(coord);
+                return g.coordinateToNode(coord);
             })
 
             .def("euclideanEdgeMap",

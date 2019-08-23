@@ -53,7 +53,7 @@ for node in graph.nodes():
 # get the node of a coordinate
 for x0 in range(shape[0]):
     for x1 in range(shape[1]):
-        print("coordiante",[x0,x1],"node",graph.coordianteToNode([x0,x1]))
+        print("coordiante",[x0,x1],"node",graph.coordinateToNode([x0,x1]))
 
 
 ##############################################

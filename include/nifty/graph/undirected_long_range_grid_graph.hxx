@@ -130,7 +130,7 @@ namespace graph{
             for(const auto & offset : offsets_){
                     const auto coordQ = offset + coordP;
                     if(coordQ.allInsideShape(shape_)){
-                        const auto v = this->coordianteToNode(coordQ);
+                        const auto v = this->coordinateToNode(coordQ);
                         const auto e = this->findEdge(u,v);
                         ret[e] = offsetIndex;
                     }
@@ -166,7 +166,7 @@ namespace graph{
                         if(coordQ.allInsideShape(shape_)){
 
                             const auto valQ = xt::view(nodeFeatures, coordQ[0],coordQ[1], xt::all());
-                            const auto v = this->coordianteToNode(coordQ);
+                            const auto v = this->coordinateToNode(coordQ);
                             const auto e = this->findEdge(u,v);
                             NIFTY_CHECK_OP(e,>=,0,"");
                             ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
@@ -183,7 +183,7 @@ namespace graph{
                         const auto coordQ = offset + coordP;
                         if(coordQ.allInsideShape(shape_)){
                             const auto valQ = xt::view(nodeFeatures, coordQ[0], coordQ[1], coordQ[2], xt::all());
-                            const auto v = this->coordianteToNode(coordQ);
+                            const auto v = this->coordinateToNode(coordQ);
                             const auto e = this->findEdge(u,v);
                             NIFTY_CHECK_OP(e,>=,0,"");
                             ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
@@ -221,7 +221,7 @@ namespace graph{
 
                             const auto valP = xt::view(nodeFeatures, coordP[0],coordP[1],offsetIndex, xt::all());
                             const auto valQ = xt::view(nodeFeatures, coordQ[0],coordQ[1],offsetIndex, xt::all());
-                            const auto v = this->coordianteToNode(coordQ);
+                            const auto v = this->coordinateToNode(coordQ);
                             const auto e = this->findEdge(u,v);
                             NIFTY_CHECK_OP(e,>=,0,"");
                             ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
@@ -242,7 +242,7 @@ namespace graph{
                         if(coordQ.allInsideShape(shape_)){
                             const auto valP = xt::view(nodeFeatures, coordP[0], coordP[1], coordP[2],offsetIndex, xt::all());
                             const auto valQ = xt::view(nodeFeatures, coordQ[0], coordQ[1], coordQ[2],offsetIndex, xt::all());
-                            const auto v = this->coordianteToNode(coordQ);
+                            const auto v = this->coordinateToNode(coordQ);
                             const auto e = this->findEdge(u,v);
                             NIFTY_CHECK_OP(e,>=,0,"");
                             ret[e] = xt::sum(xt::pow(valP-valQ, 2))();
@@ -282,7 +282,7 @@ namespace graph{
                     const auto coordQ = offset + coordP;
                     if(coordQ.allInsideShape(shape_)){
 
-                        const auto v = this->coordianteToNode(coordQ);
+                        const auto v = this->coordinateToNode(coordQ);
                         const auto e = this->findEdge(u,v);
 
                         if(DIM == 2){
@@ -312,7 +312,7 @@ namespace graph{
         // }
 
         template<class NODE_COORDINATE>
-        uint64_t coordianteToNode(
+        uint64_t coordinateToNode(
             const NODE_COORDINATE & coordinate
         )const{
             uint64_t n = 0;
