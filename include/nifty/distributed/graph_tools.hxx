@@ -429,14 +429,12 @@ namespace distributed {
             const uint64_t u = edge.first;
             const uint64_t v = edge.second;
             // this is a hacky fix to deal with paintera
-            if(ignoreLabel && (u == painteraId) || (v == painteraId)) {
+            if((u == painteraId) || (v == painteraId)) {
                 continue;
             }
 
 
-            // std::cout << u << std::endl;
             const uint64_t lU = labels(u);
-            // std::cout << v << std::endl;
             const uint64_t lV = labels(v);
             if(ignoreLabel && (lU == 0 || lV == 0)) {
                 continue;

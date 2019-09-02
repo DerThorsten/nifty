@@ -375,8 +375,8 @@ public:
                 }
             }
 
-            const std::size_t u = coordianteToNode(cU);
-            const std::size_t v = coordianteToNode(cV);
+            const std::size_t u = coordinateToNode(cU);
+            const std::size_t v = coordinateToNode(cV);
 
             const std::size_t e = findEdge(u, v);
             if(e == -1) {
@@ -441,8 +441,8 @@ public:
                 }
             }
 
-            const std::size_t u = coordianteToNode(cU);
-            const std::size_t v = coordianteToNode(cV);
+            const std::size_t u = coordinateToNode(cU);
+            const std::size_t v = coordinateToNode(cV);
 
             const std::size_t e = findEdge(u, v);
             if(e == -1) {
@@ -522,7 +522,7 @@ public:
     }
 
     template<class NODE_COORDINATE>
-    uint64_t coordianteToNode(const NODE_COORDINATE & coordinate)const{
+    uint64_t coordinateToNode(const NODE_COORDINATE & coordinate)const{
         AndresVertexCoordinate aCoordinate;
         for(auto d=0; d<DIM; ++d){
             aCoordinate[DIM-1-d] = coordinate[d];
