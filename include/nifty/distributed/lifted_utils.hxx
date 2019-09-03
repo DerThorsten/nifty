@@ -176,8 +176,11 @@ namespace distributed {
 
 
     inline void computeLiftedNeighborhoodFromNodeLabels(const std::string & graphPath,
+                                                        const std::string & graphKey,
                                                         const std::string & nodeLabelPath,
+                                                        const std::string & nodeLabelKey,
                                                         const std::string & outputPath,
+                                                        const std::string & outputKey,
                                                         const unsigned graphDepth,
                                                         const int numberOfThreads,
                                                         const std::string & mode="all",
@@ -189,10 +192,11 @@ namespace distributed {
         auto edgeChecker = (mode=="all") ? addAll : ((mode=="same") ? addSame : addDifferent);
 
         // load the graph
-        const auto graph = Graph(graphPath, numberOfThreads);
+        const auto graph = Graph(graphPath, graphKey, numberOfThreads);
 
         // load the node labels
-        auto nodeDs = z5::openDataset(nodeLabelPath);
+        const z5::filesystem::handle::File nodeLabelFile(nodeLabelPath);
+        auto nodeDs = z5::openDataset(nodeLabelFile, nodeLabelKey);
         const std::size_t nNodes = nodeDs->shape(0);
         const std::vector<std::size_t> zero1Coord({0});
         Shape1Type nodeShape({nNodes});
@@ -251,9 +255,10 @@ namespace distributed {
 
         std::vector<std::size_t> dsShape = {nLifted, 2};
         std::vector<std::size_t> dsChunks = {std::min(static_cast<std::size_t>(64*64*64), nLifted), 1};
-        auto dsOut = z5::createDataset(outputPath, "uint64",
-                                       dsShape, dsChunks, false,
-                                       "gzip");
+
+        const z5::filesystem::handle::File outputFile(outputPath);
+        auto dsOut = z5::createDataset(outputFile, outputKey, "uint64",
+                                       dsShape, dsChunks, "gzip");
         const std::vector<std::size_t> zero2Coord = {0, 0};
         z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero2Coord.begin(), numberOfThreads);
     }

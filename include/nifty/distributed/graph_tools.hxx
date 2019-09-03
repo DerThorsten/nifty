@@ -9,30 +9,22 @@
 #include "nifty/distributed/distributed_graph.hxx"
 #include "nifty/tools/blocking.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
 
 
     inline void loadNiftyGraph(const std::string & graphPath,
+                               const std::string & graphKey,
                                nifty::graph::UndirectedGraph<> & g,
                                std::unordered_map<NodeType, NodeType> & relabeling,
                                const bool relabelNodes=true) {
         std::vector<NodeType> nodes;
-        loadNodes(graphPath, nodes, 0);
+        loadNodes(graphPath, graphKey, nodes, 0);
         const std::size_t nNodes = nodes.size();
 
         std::vector<EdgeType> edges;
-        loadEdges(graphPath, edges, 0);
+        loadEdges(graphPath, graphKey, edges, 0);
         const std::size_t nEdges = edges.size();
 
         if(relabelNodes) {
@@ -58,13 +50,17 @@ namespace distributed {
 
 
     inline void nodeLabelingToPixels(const std::string & labelsPath,
+                                     const std::string & labelsKey,
                                      const std::string & outPath,
+                                     const std::string & outKey,
                                      const xt::xtensor<NodeType, 1> & nodeLabeling,
                                      const std::vector<std::size_t> & blockIds,
                                      const std::vector<std::size_t> & blockShape) {
         // in and out dataset
-        auto labelDs = z5::openDataset(labelsPath);
-        auto outDs = z5::openDataset(outPath);
+        const z5::filesystem::handle::File labelsFile(labelsPath);
+        auto labelDs = z5::openDataset(labelsFile, labelsKey);
+        const z5::filesystem::handle::File outFile(outPath);
+        auto outDs = z5::openDataset(outFile, outKey);
         Shape3Type arrayShape = {blockShape[0], blockShape[1], blockShape[2]};
         xt::xtensor<NodeType, 3> labels(arrayShape);
 
@@ -111,13 +107,15 @@ namespace distributed {
 
     // FIXME this sometimes fails with a floating point exception, but not really reproducible
     template<class NODE_ARRAY, class EDGE_ARRAY>
-    inline void serializeMergedGraph(const std::string & graphBlockPrefix,
+    inline void serializeMergedGraph(const std::string & graphPath,
+                                     const std::string & graphBlockPrefix,
                                      const CoordType & shape,
                                      const CoordType & blockShape,
                                      const CoordType & newBlockShape,
                                      const std::vector<std::size_t> & newBlockIds,
                                      const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
                                      const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
+                                     const std::string & outPath,
                                      const std::string & graphOutPrefix,
                                      const int numberOfThreads,
                                      const bool serializeEdges) {
@@ -133,6 +131,8 @@ namespace distributed {
         nifty::tools::Blocking<3> newBlocking(roiBegin, shape, newBlockShape);
 
         const std::size_t numberOfNewBlocks = newBlockIds.size();
+        const z5::filesystem::handle::File graphFile(graphPath);
+        const z5::filesystem::handle::File outFile(outPath);
 
         // serialize the merged sub-graphs
         const std::vector<std::size_t> zero1Coord({0});
@@ -150,31 +150,31 @@ namespace distributed {
 
             // iterate over the old blocks and find all nodes
             for(auto oldBlockId : oldBlockIds) {
-                const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+                const std::string blockKey = graphBlockPrefix + std::to_string(oldBlockId);
+                const z5::filesystem::handle::Group graph(graphFile, blockKey);
 
                 // if we are dealing with region of interests, the sub-graph might actually not exist
                 // so we need to check and skip if it does not exist.
-                if(!fs::exists(blockPath)) {
+                if(!graph.exists()) {
                     continue;
                 }
 
                 std::vector<NodeType> blockNodes;
-                loadNodes(blockPath, blockNodes, 0);
+                loadNodes(graph, blockNodes, 0);
                 for(const NodeType node : blockNodes) {
                     newBlockNodes.insert(nodeLabeling(node));
                 }
             }
 
             // create the out group
-            const std::string outPath = graphOutPrefix + std::to_string(blockId);
-            z5::handle::Group group(outPath);
-            z5::createGroup(group, false);
+            const std::string outKey = graphOutPrefix + std::to_string(blockId);
+            z5::createGroup(outFile, outKey);
+            z5::filesystem::handle::Group group(outFile, outKey);
 
             // serialize the new nodes
             const std::size_t nNewNodes = newBlockNodes.size();
             std::vector<std::size_t> nodeShape = {nNewNodes};
-            auto dsNodes = z5::createDataset(group, "nodes", "uint64",
-                                             nodeShape, nodeShape, false);
+            auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeShape);
             Shape1Type nodeSerShape = {nNewNodes};
             Tensor1 nodeSer(nodeSerShape);
             std::size_t i = 0;
@@ -195,18 +195,19 @@ namespace distributed {
             // iterate over the old blocks and load all edges and edge ids
             std::map<EdgeIndexType, EdgeType> newEdges;
             for(auto oldBlockId : oldBlockIds) {
-                const std::string blockPath = graphBlockPrefix + std::to_string(oldBlockId);
+                const std::string blockKey = graphBlockPrefix + std::to_string(oldBlockId);
+                const z5::filesystem::handle::Group graph(graphFile, blockKey);
 
                 // if we are dealing with region of interests, the sub-graph might actually not exist
                 // so we need to check and skip if it does not exist.
-                if(!fs::exists(blockPath)) {
+                if(!graph.exists()) {
                     continue;
                 }
 
                 std::vector<EdgeType> subEdges;
                 std::vector<EdgeIndexType> subEdgeIds;
-                loadEdges(blockPath, subEdges, 0);
-                loadEdgeIndices(blockPath, subEdgeIds, 0);
+                loadEdges(graph, subEdges, 0);
+                loadEdgeIndices(graph, subEdgeIds, 0);
 
                 // map edges and edge ids to the merged graph and serialize
                 for(std::size_t ii = 0; ii < subEdges.size(); ++ii) {
@@ -240,14 +241,12 @@ namespace distributed {
 
                 // serialize the edges
                 std::vector<std::size_t> edgeShape = {nNewEdges, 2};
-                auto dsEdges = z5::createDataset(group, "edges", "uint64",
-                                                 edgeShape, edgeShape, false);
+                auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape);
                 z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
 
                 // serialize the edge ids
                 std::vector<std::size_t> edgeIdShape = {nNewEdges};
-                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64",
-                                                   edgeIdShape, edgeIdShape, false);
+                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64", edgeIdShape, edgeIdShape);
                 z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer,
                                                              zero1Coord.begin());
             }
@@ -266,7 +265,8 @@ namespace distributed {
 
     // we have to look at surprisingly many blocks, which makes
     // this function pretty inefficient
-    // FIXME I am not 100 % sure if this is not due to some bug
+    // FIXME I am not 100 % sure if this is due to some bug
+    /*
     template<class NODE_ARRAY>
     inline void extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodesExp,
                                          const std::string & graphBlockPrefix,
@@ -385,6 +385,7 @@ namespace distributed {
             }
         }
     }
+    */
 
 
     // number of nodes taking care of paintera ignore id BS

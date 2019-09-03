@@ -11,7 +11,8 @@ namespace nifty {
 namespace distributed {
 
     void exportEdgeMorphology(py::module & module) {
-        module.def("find1DEdges", [](const std::string & blockPrefix,
+        module.def("find1DEdges", [](const std::string & graphPath,
+                                     const std::string & graphPrefix,
                                      const std::string & labelPath,
                                      const std::string & labelKey,
                                      const std::size_t numberOfEdges,
@@ -19,15 +20,16 @@ namespace distributed {
             xt::pytensor<uint8_t, 1> out = xt::zeros<uint8_t>({numberOfEdges});
             {
                 py::gil_scoped_release allowThreads;
-                find1DEdges(blockPrefix, labelPath, labelKey, blockIds, out);
+                find1DEdges(graphPath, graphPrefix, labelPath, labelKey, blockIds, out);
             }
             return out;
-        }, py::arg("blockPrefix"),
+        }, py::arg("graphPath"), py::arg("graphPrefix"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("numberOfEdges"), py::arg("blockIds"));
 
 
-        module.def("findBlockBoundaryEdges", [](const std::string & blockPrefix,
+        module.def("findBlockBoundaryEdges", [](const std::string & graphPath,
+                                                const std::string & graphPrefix,
                                                 const std::string & labelPath,
                                                 const std::string & labelKey,
                                                 const std::size_t numberOfEdges,
@@ -36,10 +38,10 @@ namespace distributed {
             xt::pytensor<bool, 1> out = xt::zeros<bool>({numberOfEdges});
             {
                 py::gil_scoped_release allowThreads;
-                findBlockBoundaryEdges(blockPrefix, labelPath, labelKey, blockShape, blockIds, out);
+                findBlockBoundaryEdges(graphPath, graphPrefix, labelPath, labelKey, blockShape, blockIds, out);
             }
             return out;
-        }, py::arg("blockPrefix"),
+        }, py::arg("graphPath"), py::arg("graphPrefix"),
            py::arg("labelPath"), py::arg("labelKey"),
            py::arg("numberOfEdges"), py::arg("blockShape"),
            py::arg("blockIds"));

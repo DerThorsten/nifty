@@ -42,16 +42,17 @@ namespace distributed {
 
 
         module.def("mergeSubgraphs", [](
-            const std::string & pathToGraph,
+            const std::string & graphPath,
+            const std::string & graphKey,
             const std::string & blockPrefix,
             const std::vector<std::size_t> & blockIds,
             const std::string & outKey,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mergeSubgraphs(pathToGraph, blockPrefix, blockIds,
+            mergeSubgraphs(graphPath, graphKey, blockPrefix, blockIds,
                            outKey, numberOfThreads);
-        }, py::arg("pathToGraph"), py::arg("blockPrefix"), py::arg("blockIds"),
+        }, py::arg("graphPath"), py::arg("graphKey"), py::arg("blockPrefix"), py::arg("blockIds"),
            py::arg("outKey"), py::arg("numberOfThreads")=1);
 
 
@@ -81,59 +82,65 @@ namespace distributed {
            py::arg("blockPrefix"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
 
 
-        module.def("loadAsUndirectedGraphWithRelabeling", []( const std::string & pathToGraph) {
+        module.def("loadAsUndirectedGraphWithRelabeling", [](const std::string & pathToGraph,
+                                                             const std::string & graphKey) {
             nifty::graph::UndirectedGraph<> g;
             std::unordered_map<NodeType, NodeType> relabeling;
             {
                 py::gil_scoped_release allowThreads;
-                loadNiftyGraph(pathToGraph, g, relabeling, true);
+                loadNiftyGraph(pathToGraph, graphKey, g, relabeling, true);
             }
             return std::make_pair(g, relabeling);
-        }, py::arg("pathToGraph"));
+        }, py::arg("pathToGraph"), py::arg("graphKey"));
 
 
-        module.def("loadAsUndirectedGraph", [](const std::string & pathToGraph) {
+        module.def("loadAsUndirectedGraph", [](const std::string & pathToGraph,
+                                               const std::string & graphKey) {
             nifty::graph::UndirectedGraph<> g;
             std::unordered_map<NodeType, NodeType> relabeling;
             {
                 py::gil_scoped_release allowThreads;
-                loadNiftyGraph(pathToGraph, g, relabeling, false);
+                loadNiftyGraph(pathToGraph, graphKey, g, relabeling, false);
             }
             return g;
-        }, py::arg("pathToGraph"));
+        }, py::arg("pathToGraph"), py::arg("graphKey"));
 
 
-        module.def("loadNodes", [](const std::string & pathToGraph) {
+        module.def("loadNodes", [](const std::string & pathToGraph, const std::string & graphKey) {
             int64_t nNodes;
             {
                 py::gil_scoped_release allowThreads;
-                z5::handle::Group graph(pathToGraph);
-                const std::vector<std::string> keys = {"numberOfNodes"};
+                z5::filesystem::handle::File graphFile(pathToGraph);
+                z5::filesystem::handle::Group graph(graphFile, graphKey);
                 nlohmann::json j;
-                z5::readAttributes(graph, keys, j);
-                nNodes = j[keys[0]];
+                z5::readAttributes(graph, j);
+                nNodes = j["numberOfNodes"];
             }
             xt::pytensor<NodeType, 1> nodes = xt::zeros<NodeType>({nNodes});
             {
                 py::gil_scoped_release allowThreads;
-                loadNodesToArray(pathToGraph, nodes);
+                loadNodesToArray(pathToGraph, graphKey, nodes);
             }
             return nodes;
-        }, py::arg("pathToGraph"));
+        }, py::arg("pathToGraph"), py::arg("graphKey"));
 
 
         module.def("nodeLabelingToPixels", [](const std::string & labelsPath,
+                                              const std::string & labelsKey,
                                               const std::string & outPath,
+                                              const std::string & outKey,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const std::vector<std::size_t> & blockIds,
                                               const std::vector<std::size_t> & blockShape) {
             py::gil_scoped_release allowThreads;
-            nodeLabelingToPixels(labelsPath, outPath, nodeLabeling, blockIds, blockShape);
-        }, py::arg("labelsPath"), py::arg("outPath"),
+            nodeLabelingToPixels(labelsPath, labelsKey, outPath, outKey, nodeLabeling, blockIds, blockShape);
+        }, py::arg("labelsPath"), py::arg("labelsKey"),
+           py::arg("outPath"), py::arg("outKey"),
            py::arg("nodeLabeling"), py::arg("blockIds"),
            py::arg("blockShape"));
 
 
+        /*
         module.def("extractSubgraphFromNodes", [](const xt::pytensor<uint64_t, 1> & nodes,
                                                   const std::string & graphBlockPrefix,
                                                   const CoordType & shape,
@@ -180,32 +187,36 @@ namespace distributed {
 
         }, py::arg("nodes"), py::arg("graphBlockPrefix"),
            py::arg("shape"), py::arg("blockShape"), py::arg("startBlockId"));
+        */
 
 
-        module.def("serializeMergedGraph", [](const std::string & graphBlockPrefix,
+        module.def("serializeMergedGraph", [](const std::string & graphPath,
+                                              const std::string & graphBlockPrefix,
                                               const CoordType & shape,
                                               const CoordType & blockShape,
                                               const CoordType & newBlockShape,
                                               const std::vector<std::size_t> & newBlockIds,
                                               const xt::pytensor<NodeType, 1> & nodeLabeling,
                                               const xt::pytensor<EdgeIndexType, 1> & edgeLabeling,
+                                              const std::string & outPath,
                                               const std::string & graphOutPrefix,
                                               const int numberOfThreads,
                                               const bool serializeEdges) {
             py::gil_scoped_release allowThreads;
-            serializeMergedGraph(graphBlockPrefix, shape,
+            serializeMergedGraph(graphPath, graphBlockPrefix, shape,
                                  blockShape, newBlockShape, newBlockIds,
                                  nodeLabeling, edgeLabeling,
-                                 graphOutPrefix,
-                                 numberOfThreads,
-                                 serializeEdges);
-        }, py::arg("graphBlockPrefix"),
+                                 outPath, graphOutPrefix,
+                                 numberOfThreads, serializeEdges);
+        }, py::arg("graphPath"),
+           py::arg("graphBlockPrefix"),
            py::arg("shape"),
            py::arg("blockShape"),
            py::arg("newBlockShape"),
            py::arg("newBlockIds"),
            py::arg("nodeLabeling"),
            py::arg("edgeLabeling"),
+           py::arg("outPath"),
            py::arg("graphOutPrefix"),
            py::arg("numberOfThreads")=-1,
            py::arg("serializeEdges")=true);

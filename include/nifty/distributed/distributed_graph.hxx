@@ -27,14 +27,17 @@ namespace distributed {
         // API: we can construct the graph from blocks that were extracted via `extractGraphFromRoi`
         // or `mergeSubgraphs` from `region_graph.hxx`
 
-        Graph(const std::string & blockPath, const int nThreads=1) : nodeMaxId_(0) {
-            loadEdges(blockPath, edges_, 0, nThreads);
+        Graph(const std::string & graphPath,
+              const std::string & graphKey,
+              const int nThreads=1) : nodeMaxId_(0) {
+            loadEdges(graphPath, graphKey, edges_, 0, nThreads);
             initGraph();
         }
 
         // This is a bit weird (constructor with side effects....)
         // but I don't want the edge id mapping to be part of this class
-        Graph(const std::vector<std::string> & blockPaths,
+        Graph(const std::string & graphPath,
+              const std::vector<std::string> & graphKeys,
               std::vector<EdgeIndexType> & edgeIdsOut,
               const int nThreads=1) : nodeMaxId_(0) {
 
@@ -42,9 +45,11 @@ namespace distributed {
             // to tmp objects
             std::vector<EdgeType> edgesTmp;
             std::vector<EdgeIndexType> edgeIdsTmp;
-            for(const auto & blockPath : blockPaths) {
-                loadEdges(blockPath, edgesTmp, edgesTmp.size(), nThreads);
-                loadEdgeIndices(blockPath, edgeIdsTmp, edgeIdsTmp.size(), nThreads);
+            const z5::filesystem::handle::File file(graphPath);
+            for(const auto & graphKey : graphKeys) {
+                const z5::filesystem::handle::Group graph(file, graphKey);
+                loadEdges(graph, edgesTmp, edgesTmp.size(), nThreads);
+                loadEdgeIndices(graph, edgeIdsTmp, edgeIdsTmp.size(), nThreads);
             }
 
             // get the indices that would sort the edge uv's

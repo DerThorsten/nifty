@@ -18,6 +18,7 @@ namespace skeletons {
         // TODO lift gil for init with call wrapper
         py::class_<SelfType>(module, "SkeletonMetrics")
             .def(py::init<const std::string &, const std::string &,
+                          const std::string &, const std::string &,
                           const std::vector<std::size_t> &, const int>())
             // can't build with boost serialization
             //.def(py::init<const std::string &, const std::string &,
