@@ -23,8 +23,8 @@ namespace graph{
         [](
             const GRAPH & graph,
             xt::pytensor<uint64_t, 1> nodeLabels,
-            const bool dense = true,
-            const bool ignoreBackground = false
+            const bool dense,
+            const bool ignoreBackground
         ){
 
             xt::pytensor<uint64_t, 1> ccLabels = xt::zeros<uint64_t>({nodeLabels.shape()[0]});
