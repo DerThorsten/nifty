@@ -23,6 +23,7 @@ namespace tools{
     void exportChangeablePriorityQueue(py::module &);
     void exportMapDictionaryToArray(py::module &);
     void exportMergeHelper(py::module &);
+    void exportLabelMultiset(py::module &);
 }
 }
 
@@ -47,4 +48,5 @@ PYBIND11_MODULE(_tools, toolsModule) {
     exportChangeablePriorityQueue(toolsModule);
     exportMapDictionaryToArray(toolsModule);
     exportMergeHelper(toolsModule);
+    exportLabelMultiset(toolsModule);
 }
