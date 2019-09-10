@@ -190,7 +190,7 @@ namespace distributed {
         uint64_t maxLabelId = 0;
 
         // read this chunk's data (if present)
-        if(!ds->chunkExists(chunkId)) {
+        if(ds->chunkExists(chunkId)) {
             std::size_t chunkSize;
             ds->checkVarlenChunk(chunkId, chunkSize);
             std::vector<uint64_t> chunkOverlaps(chunkSize);
