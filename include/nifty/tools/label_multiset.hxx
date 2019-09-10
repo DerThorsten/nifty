@@ -310,9 +310,9 @@ namespace tools {
                 const OffsetType size = entry_sizes[entry];
 
                 auto ids_begin = ids.begin() + off;
-                auto ids_end = ids.begin() + off + size;
+                auto ids_end = ids_begin + size;
                 auto counts_begin = counts.begin() + off;
-                auto counts_end = counts.begin() + off + size;
+                auto counts_end = counts_begin + size;
 
                 auto max_it = std::max_element(counts_begin, counts_end);
                 const IdType max_label = *(ids_begin + std::distance(counts_begin, max_it));
@@ -339,9 +339,9 @@ namespace tools {
 
                         // if the ids match, check the counts
                         if(match) {
-                            bool match = check_range(counts_begin, counts_end,
-                                                     counts_.begin() + c_offset,
-                                                     counts_.begin() + c_offset + c_size);
+                            match = check_range(counts_begin, counts_end,
+                                                counts_.begin() + c_offset,
+                                                counts_.begin() + c_offset + c_size);
                         }
 
                         if(match) {
