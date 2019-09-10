@@ -43,16 +43,15 @@ namespace distributed {
 
         module.def("mergeSubgraphs", [](
             const std::string & graphPath,
-            const std::string & graphKey,
             const std::string & blockPrefix,
             const std::vector<std::size_t> & blockIds,
             const std::string & outKey,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mergeSubgraphs(graphPath, graphKey, blockPrefix, blockIds,
+            mergeSubgraphs(graphPath, blockPrefix, blockIds,
                            outKey, numberOfThreads);
-        }, py::arg("graphPath"), py::arg("graphKey"), py::arg("blockPrefix"), py::arg("blockIds"),
+        }, py::arg("graphPath"), py::arg("blockPrefix"), py::arg("blockIds"),
            py::arg("outKey"), py::arg("numberOfThreads")=1);
 
 

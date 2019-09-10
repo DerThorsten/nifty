@@ -324,7 +324,6 @@ namespace distributed {
                                                         edgeOffset.begin());
             });
         }
-        // std::cout << "done" << std::endl;
 
         // serialize metadata (number of edges and nodes and position of the block)
         nlohmann::json attrs;
@@ -463,7 +462,6 @@ namespace distributed {
 
 
     inline void mergeSubgraphsSingleThreaded(const std::string & graphPath,
-                                             const std::string & graphKey,
                                              const std::string & blockPrefix,
                                              const std::vector<std::size_t> & blockIds,
                                              NodeSet & nodes,
@@ -476,7 +474,7 @@ namespace distributed {
 
             nlohmann::json j;
             // open the group associated with the sub-graph corresponding to this block
-            const std::string blockKey = graphKey + "/" + blockPrefix + std::to_string(blockId);
+            const std::string blockKey = blockPrefix + std::to_string(blockId);
             z5::filesystem::handle::Group group(graph, blockKey);
 
             // load nodes and edgees
@@ -506,7 +504,6 @@ namespace distributed {
 
 
     inline void mergeSubgraphsMultiThreaded(const std::string & graphPath,
-                                            const std::string & graphKey,
                                             const std::string & blockPrefix,
                                             const std::vector<std::size_t> & blockIds,
                                             NodeSet & nodes,
@@ -552,7 +549,7 @@ namespace distributed {
             auto & threadEnd = threadData[tid].roiEnd;
 
             // open the group associated with the sub-graph corresponding to this block
-            const std::string blockKey = graphKey + "/" + blockPrefix + std::to_string(blockId);
+            const std::string blockKey = blockPrefix + std::to_string(blockId);
             z5::filesystem::handle::Group group(graphFile, blockKey);
 
             // load nodes and edgees
@@ -601,7 +598,6 @@ namespace distributed {
 
 
     inline void mergeSubgraphs(const std::string & graphPath,
-                               const std::string & graphKey,
                                const std::string & blockPrefix,
                                const std::vector<std::size_t> & blockIds,
                                const std::string & outKey,
@@ -616,15 +612,13 @@ namespace distributed {
         bool ignoreLabel;
 
         if(numberOfThreads == 1) {
-            mergeSubgraphsSingleThreaded(graphPath, graphKey,
-                                         blockPrefix, blockIds,
-                                         nodes, edges,
+            mergeSubgraphsSingleThreaded(graphPath, blockPrefix,
+                                         blockIds, nodes, edges,
                                          roiBegin, roiEnd,
                                          ignoreLabel);
         } else {
-            mergeSubgraphsMultiThreaded(graphPath, graphKey,
-                                        blockPrefix, blockIds,
-                                        nodes, edges,
+            mergeSubgraphsMultiThreaded(graphPath, blockPrefix,
+                                        blockIds, nodes, edges,
                                         roiBegin, roiEnd,
                                         ignoreLabel,
                                         numberOfThreads);
@@ -655,7 +649,8 @@ namespace distributed {
         // it will be sorted by construction and we can take
         // advantage of O(logN) search with std::lower_bound
         std::vector<EdgeType> edges;
-        loadEdges(pathToGraph, graphKey, edges, 0);
+        z5::filesystem::handle::File gFile(pathToGraph);
+        loadEdges(pathToGraph, graphKey, edges, 0, numberOfThreads);
 
         // iterate over the blocks and insert the nodes and edges
         // construct threadpool
@@ -663,7 +658,6 @@ namespace distributed {
         auto nThreads = threadpool.nThreads();
         std::size_t nBlocks = blockIds.size();
 
-        z5::filesystem::handle::File graphFile(pathToGraph);
         // handle all the blocks in parallel
         nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
                                                                    const int blockIndex){
@@ -671,11 +665,12 @@ namespace distributed {
             auto blockId = blockIds[blockIndex];
 
             // open the group associated with the sub-graph corresponding to this block
-            const std::string blockKey = graphKey + "/" + blockPrefix + std::to_string(blockId);
+            const std::string blockKey = blockPrefix + std::to_string(blockId);
 
             // load the block edges
             std::vector<EdgeType> blockEdges;
-            bool haveEdges = loadEdges(pathToGraph, graphKey, blockEdges, 0);
+            z5::filesystem::handle::Group block(gFile, blockKey);
+            bool haveEdges = loadEdges(block, blockEdges, 0);
             if(!haveEdges) {
                 return;
             }
@@ -703,7 +698,6 @@ namespace distributed {
             // serialize the edge ids
             std::vector<std::size_t> idShape = {edgeIds.size()};
             auto idView = xt::adapt(edgeIds, idShape);
-            z5::filesystem::handle::Group block(graphFile, blockKey);
             auto dsIds = z5::createDataset(block, "edgeIds", "int64", idShape, idShape);
             z5::multiarray::writeSubarray<EdgeIndexType>(dsIds, idView, zero1Coord.begin());
         });
