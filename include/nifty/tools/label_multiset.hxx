@@ -23,12 +23,17 @@ namespace tools {
     // inplace argsort of both vectors by the first vector
     // NOTE we assume both have the same size !
     template<class V1, class V2>
-    inline void argsort_by_first_vector(V1 & v1, V2 & v2) {
+    inline void argsort_by_first_vector(V1 & v1, V2 & v2, const bool ascending=true) {
         std::vector<std::size_t> idx(v1.size());
         std::iota(idx.begin(), idx.end(), 0);
 
-        std::sort(idx.begin(), idx.end(),
-                 [&v1](std::size_t i1, std::size_t i2) {return v1[i1] < v1[i2];});
+        if(ascending) {
+            std::sort(idx.begin(), idx.end(),
+                     [&v1](std::size_t i1, std::size_t i2) {return v1[i1] < v1[i2];});
+        } else {
+            std::sort(idx.begin(), idx.end(),
+                     [&v1](std::size_t i1, std::size_t i2) {return v1[i1] > v1[i2];});
+        }
 
         // reorder both vectors inplace
         reorder_inplace(v1, idx);
@@ -184,11 +189,11 @@ namespace tools {
             IdType max_label;
             CountType max_count;
             if(restrict_set > 0 && this_ids.size() > restrict_set) {
-                // arg-sort by counts
+                // arg-sort by counts (in descending order)
                 // could use std::nth_element to index sort and only get the 'restrict_set' largest
                 // elements, but that's premature optimization for now, because it will complicate the code
                 // quite a bit
-                argsort_by_first_vector(this_counts, this_ids);
+                argsort_by_first_vector(this_counts, this_ids, false);
                 max_label = this_ids[0];
                 max_count = this_counts[0];
                 // restrict
