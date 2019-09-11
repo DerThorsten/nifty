@@ -152,19 +152,54 @@ namespace distributed {
                                              const xt::xtensor<LABELS, 3> & labels,
                                              const CoordType & blockShape,
                                              const bool ignoreLabel,
+                                             const std::array<bool, 3> & increaseRoi,
                                              AccumulatorVector & accumulators) {
         const int pass = 1;
+        const bool anyIncreased = std::any_of(increaseRoi.begin(), increaseRoi.end(), [](const bool val){return val;});
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
             const NodeType lU = xtensor::read(labels, coord.asStdArray());
             if(lU == 0 && ignoreLabel) {
                 return;
             }
+
+            // check if we need to skip any axes due to increase roi
+            std::array<bool, 3> skipAxis = {false, false, false};
+            if(anyIncreased) {
+
+                // check if we have any axis on the face
+                std::array<bool, 3> onFace = {false, false, false};
+                for(std::size_t axis = 0; axis < 3; ++axis){
+                    onFace[axis] = (coord[axis] == 0) && increaseRoi[axis];
+                }
+
+                // check how many axes are on the face
+                const int faceSum = std::accumulate(onFace.begin(), onFace.end(), 0, std::plus<int>());
+
+                // depending on the number of axes on the face:
+                //  0: we don't need to skip any axis
+                //  1: we are on a face -> we need to skip the axes not on the face so we don't overcount
+                // >1: we are on a line or point ->  we need to skip all axes, because all adjacent nodes are on a face
+                if(faceSum == 1) {
+                    for(std::size_t axis = 0; axis < 3; ++axis){
+                        skipAxis[axis] = !onFace[axis];
+                    }
+                } else if(faceSum > 1) {
+                    return;
+                }
+            }
+
             CoordType coord2;
             for(std::size_t axis = 0; axis < 3; ++axis){
+
+                if(skipAxis[axis]){
+                    continue;
+                }
+
                 makeCoord2(coord, coord2, axis);
                 if(coord2[axis] >= blockShape[axis]){
                     continue;
                 }
+
                 const NodeType lV = xtensor::read(labels, coord2.asStdArray());
                 if(lV == 0 && ignoreLabel) {
                     continue;
@@ -189,13 +224,42 @@ namespace distributed {
                                               const LABELS & labels,
                                               const CoordType & blockShape,
                                               const bool ignoreLabel,
+                                              const std::array<bool, 3> & increaseRoi,
                                               AccumulatorVector & accumulators) {
         const int pass = 1;
+        const bool anyIncreased = std::any_of(increaseRoi.begin(), increaseRoi.end(), [](const bool val){return val;});
         nifty::tools::forEachCoordinate(blockShape,[&](const CoordType & coord) {
             const NodeType lU = xtensor::read(labels, coord.asStdArray());
             if(lU == 0 && ignoreLabel) {
                 return;
             }
+
+            // check if we need to skip any axes due to increase roi
+            std::array<bool, 3> skipAxis = {false, false, false};
+            if(anyIncreased) {
+
+                // check if we have any axis on the face
+                std::array<bool, 3> onFace = {false, false, false};
+                for(std::size_t axis = 0; axis < 3; ++axis){
+                    onFace[axis] = (coord[axis] == 0) && increaseRoi[axis];
+                }
+
+                // check how many axes are on the face
+                const int faceSum = std::accumulate(onFace.begin(), onFace.end(), 0, std::plus<int>());
+
+                // depending on the number of axes on the face:
+                //  0: we don't need to skip any axis
+                //  1: we are on a face -> we need to skip the axes not on the face so we don't overcount
+                // >1: we are on a line or point ->  we need to skip all axes, because all adjacent nodes are on a face
+                if(faceSum == 1) {
+                    for(std::size_t axis = 0; axis < 3; ++axis){
+                        skipAxis[axis] = !onFace[axis];
+                    }
+                } else if(faceSum > 1) {
+                    return;
+                }
+            }
+
             CoordType coord2;
             for(std::size_t axis = 0; axis < 3; ++axis){
                 makeCoord2(coord, coord2, axis);
@@ -241,10 +305,12 @@ namespace distributed {
         // if specified, we decrease roiBegin by 1.
         // to match what was done in the graph extraction when increaseRoi is true
         std::vector<std::size_t> actualRoiBegin = roiBegin;
+        std::array<bool, 3> increaseRoiArray = {false, false, false};
         if(increaseRoi) {
             for(int axis = 0; axis < 3; ++axis) {
                 if(actualRoiBegin[axis] > 0) {
                     --actualRoiBegin[axis];
+                    increaseRoiArray[axis] = true;
                 }
             }
         }
@@ -276,10 +342,10 @@ namespace distributed {
         // accumulate
         if(byteInput) {
             accumulateBoundariesImplByte(graph, data, labels, blockShape,
-                                         ignoreLabel, accumulators);
+                                         ignoreLabel, increaseRoiArray, accumulators);
         } else {
             accumulateBoundariesImplFloat(graph, data, labels, blockShape,
-                                          ignoreLabel, accumulators);
+                                          ignoreLabel, increaseRoiArray, accumulators);
         }
 
         // serialize the accumulators
@@ -879,8 +945,10 @@ namespace distributed {
         CoordType shape;
         std::copy(input.shape().begin(), input.shape().end(), shape.begin());
 
+        // TODO we need to get this from the outside
+        const std::array<bool, 3> increaseRoiArray = {false, false, false};
         accumulateBoundariesImplFloat(graph, input, labels, shape,
-                                      ignoreLabel, accumulators);
+                                      ignoreLabel, increaseRoiArray, accumulators);
 
         EdgeIndexType edgeId = 0;
         for(const auto & accumulator : accumulators) {
