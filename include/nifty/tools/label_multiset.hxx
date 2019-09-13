@@ -369,7 +369,7 @@ namespace tools {
                     ids_.insert(ids_.end(), ids_begin, ids_end);
                     counts_.insert(counts_.end(), counts_begin, counts_end);
 
-                    const OffsetType this_offset_id = offsets_.size();
+                    const OffsetType this_offset_id = offsets_.size() - 1;
                     if(hash_it == hashed_.end()) {
                         hashed_.emplace(hash, HashElement({this_offset_id}));
                     } else {
