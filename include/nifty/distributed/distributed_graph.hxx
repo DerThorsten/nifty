@@ -24,6 +24,19 @@ namespace distributed {
         typedef std::vector<EdgeType> EdgeStorage;
     public:
 
+        // constructor from regular data
+        template<class EDGES>
+        Graph(const EDGES & edges) : nodeMaxId_(0) {
+            const std::size_t nEdges = edges.shape()[0];
+            edges_.resize(nEdges);
+            for(std::size_t ii = 0; ii < nEdges; ++ii) {
+                auto & e = edges_[ii];
+                e.first = edges(ii, 0);
+                e.second = edges(ii, 1);
+            }
+            initGraph();
+        }
+
         // API: we can construct the graph from blocks that were extracted via `extractGraphFromRoi`
         // or `mergeSubgraphs` from `region_graph.hxx`
 

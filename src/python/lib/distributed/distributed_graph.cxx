@@ -17,6 +17,8 @@ namespace distributed {
         py::class_<Graph>(module, "Graph")
             .def(py::init<const std::string &, const std::string &,  const int>(),
                  py::arg("path"), py::arg("key"), py::arg("numberOfThreads")=1)
+            .def(py::init<xt::pytensor<uint64_t, 2>>(), py::arg("edges"))
+
             .def_property_readonly("numberOfNodes", &Graph::numberOfNodes)
             .def_property_readonly("numberOfEdges", &Graph::numberOfEdges)
             .def_property_readonly("maxNodeId", &Graph::maxNodeId)
