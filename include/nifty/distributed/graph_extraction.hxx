@@ -58,6 +58,50 @@ namespace distributed {
     ///
 
 
+    // load labels from block; works for normal label dataset
+    // and label multisets
+    template<class LABELS, class ROI>
+    inline void loadLabels(const std::string & path, const std::string & key,
+                           LABELS & labels, const ROI & roiBegin) {
+
+        typedef typename LABELS::value_type NodeType;
+
+        z5::filesystem::handle::File file(path);
+        auto ds = z5::openDataset(file, key);
+
+        // check if this is a label multiset
+        bool isLabelMultiset = false;
+
+        // TODO check for label multiset attributes
+
+        if(isLabelMultiset) {
+            // is a label multiset -> load the argmax vector and copy into label array
+
+            // first, need to find this chunk id
+            const auto & chunks = ds->defaultChunkShape();
+            const unsigned ndim = chunks.size();
+            std::vector<std::size_t> chunkId(ndim);
+            for(unsigned d = 0; d < ndim; ++d) {
+                chunkId[d] = roiBegin[d] / chunks[d];
+            }
+
+            // next, load this chunk
+
+            // find the number of labels in this chunk
+            // (encoded in the first 4 bytes as signed integer '>i' in pythons struct)
+
+            // load the first 8 * number of labels bytes, which encode the argmax labels
+            // encoded as '>q' in python's struct TODO unsigned long?
+
+            // reshape the label vector and copy it into the label output array
+        }
+        else {
+            // not a label multiset -> we can just load the label array
+            z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
+        }
+    }
+
+
     template<class HANDLE, class NODES>
     inline void loadNodes(const HANDLE & graph, NODES & nodes) {
         const std::vector<std::size_t> zero1Coord({0});
@@ -360,10 +404,6 @@ namespace distributed {
                              const bool ignoreLabel=false,
                              const bool increaseRoi=true) {
 
-        // open the n5 label dataset
-        z5::filesystem::handle::File file(pathToLabels);
-        auto ds = z5::openDataset(file, keyToLabels);
-
         // if specified, we decrease roiBegin by 1.
         // this is necessary to capture edges that lie in between of block boundaries
         // However, we don't want to add the nodes to nodes in the sub-graph !
@@ -387,7 +427,9 @@ namespace distributed {
             blockShape[axis] = shape[axis];
         }
         Tensor3 labels(shape);
-        z5::multiarray::readSubarray<NodeType>(ds, labels, actualRoiBegin.begin());
+
+        // load the label block from n5
+        loadLabels(pathToLabels, keyToLabels, labels, actualRoiBegin);
 
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,

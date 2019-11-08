@@ -6,18 +6,10 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
+
 
     //
     // compute and serialize label overlaps
