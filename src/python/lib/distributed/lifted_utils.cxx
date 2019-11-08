@@ -3,7 +3,6 @@
 #include <pybind11/stl.h>
 
 #include "xtensor-python/pytensor.hpp"
-
 #include "nifty/distributed/lifted_utils.hxx"
 
 
@@ -14,6 +13,7 @@ namespace distributed {
 
     void exportLiftedUtils(py::module & module) {
 
+        // function from z5 data
         module.def("computeLiftedNeighborhoodFromNodeLabels", [](const std::string & graphPath,
                                                                  const std::string & graphKey,
                                                                  const std::string & nodeLabelPath,
@@ -35,6 +35,32 @@ namespace distributed {
            py::arg("graphDepth"), py::arg("numberOfThreads"), py::arg("mode")="all",
            py::arg("ignoreLabel")=0);
 
+        // function from in memory data
+        module.def("liftedNeighborhoodFromNodeLabels", [](const Graph & graph,
+                                                          const xt::pytensor<uint64_t, 1> & nodeLabels,
+                                                          const int graphDepth,
+                                                          const int numberOfThreads,
+                                                          const std::string & mode,
+                                                          const uint64_t ignoreLabel){
+            std::vector<EdgeType> liftedEdges;
+            {
+                py::gil_scoped_release allowThreads;
+                computeLiftedNeighborhoodFromNodeLabels(graph, nodeLabels,
+                                                        graphDepth, numberOfThreads,
+                                                        liftedEdges, mode, ignoreLabel);
+            }
+            const int64_t nLifted = liftedEdges.size();
+            xt::pytensor<uint64_t, 2> out = xt::zeros<uint64_t>({nLifted, int64_t(2)});
+
+            for(std::size_t liftedId = 0; liftedId < nLifted; ++liftedId) {
+                const auto & lifted = liftedEdges[liftedId];
+                out(liftedId, 0) = lifted.first;
+                out(liftedId, 1) = lifted.second;
+            }
+            return out;
+        }, py::arg("graph"), py::arg("nodeLabels"),
+           py::arg("graphDepth"), py::arg("numberOfThreads"),
+           py::arg("mode")="all", py::arg("ignoreLabel")=0);
 
         module.def("liftedEdgesFromNode", [](const std::string & graphPath,
                                              const std::string & graphKey,

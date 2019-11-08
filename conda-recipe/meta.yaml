@@ -25,7 +25,7 @@ source:
 
 
 build:
-  number: 1
+  number: 3
 
   script_env:
      - WITH_CPLEX
@@ -39,7 +39,7 @@ requirements:
   build:
     - gxx_linux-64
     - python {{PY_VER}}*
-    - boost 1.68.0
+    - boost-cpp >=1.63
     - hdf5 >=1.10
     - numpy >=1.15
     - xtensor 0.19.3

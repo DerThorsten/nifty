@@ -32,7 +32,9 @@ namespace distributed {
                                                      const std::string & outputKey,
                                                      const uint64_t labelBegin,
                                                      const uint64_t labelEnd) {
-            mergeAndSerializeMorphology(inputPath, inputKey, outputPath, outputKey, labelBegin, labelEnd);
+            mergeAndSerializeMorphology(inputPath, inputKey,
+                                        outputPath, outputKey,
+                                        labelBegin, labelEnd);
         }, py::arg("inputPath"), py::arg("inputKey"),
            py::arg("outputPath"), py::arg("outputKey"),
            py::arg("labelBegin"), py::arg("labelEnd"));
