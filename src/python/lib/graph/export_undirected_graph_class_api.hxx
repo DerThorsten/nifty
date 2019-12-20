@@ -248,7 +248,6 @@ namespace graph{
 
             .def("bfsEdges",[](G & g, const std::size_t maxDistance){
 
-
                 BreadthFirstSearch<G> bfs(g);
                 std::vector<std::pair<uint64_t, uint64_t>> pairs;
                 g.forEachNode([&](const uint64_t sourceNode){
