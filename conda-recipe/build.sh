@@ -166,6 +166,7 @@ cmake .. \
         -DWITH_Z5=ON \
         -DWITH_ZLIB=ON \
         -DWITH_BLOSC=ON \
+        -DWITH_BZIP2=OFF \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \
