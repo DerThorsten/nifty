@@ -34,7 +34,7 @@ namespace multicut{
 
 
 
-    
+
     template<class OBJECTIVE>
     void exportMulticutCcFusionMoveBasedT(py::module & module) {
         typedef OBJECTIVE ObjectiveType;
@@ -44,7 +44,7 @@ namespace multicut{
             module, MulticutObjectiveName<ObjectiveType>::name()
         );
 
-        
+
         // concrete proposal generators
 
         { // watershed proposal generators
@@ -52,17 +52,17 @@ namespace multicut{
             typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             typedef typename PGenSettigns::SeedingStrategie SeedingStrategie;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
-                module, 
+                module,
                 "WatershedProposalGenerator",
                 MulticutObjectiveName<ObjectiveType>::name()
             );
-            py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategie")
+            py::enum_<SeedingStrategie>(pGenSettigns, "SeedingStrategy")
                 .value("SEED_FROM_NEGATIVE", SeedingStrategie::SEED_FROM_NEGATIVE)
                 .value("SEED_FROM_ALL", SeedingStrategie::SEED_FROM_ALL)
             ;
             pGenSettigns
                 .def(py::init<>())
-                .def_readwrite("seedingStrategie", &PGenSettigns::seedingStrategie)
+                .def_readwrite("seedingStrategy", &PGenSettigns::seedingStrategie)
                 .def_readwrite("sigma", &PGenSettigns::sigma)
                 .def_readwrite("numberOfSeeds", &PGenSettigns::numberOfSeeds)
             ;
@@ -72,7 +72,7 @@ namespace multicut{
             typedef optCommon::InterfaceFlipperProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
-                module, 
+                module,
                 "InterfaceFlipperProposalGenerator",
                 MulticutObjectiveName<ObjectiveType>::name()
             );
@@ -86,7 +86,7 @@ namespace multicut{
             typedef optCommon::RandomNodeColorProposalGenerator<ObjectiveType> ProposalGeneratorType;
             typedef typename ProposalGeneratorType::SettingsType PGenSettigns;
             auto pGenSettigns = optCommon::exportCCProposalGenerator<ProposalGeneratorType>(
-                module, 
+                module,
                 "RandomNodeColorProposalGenerator",
                 MulticutObjectiveName<ObjectiveType>::name()
             );
@@ -97,13 +97,12 @@ namespace multicut{
             ;
         }
 
-    
 
 
         typedef CcFusionMoveBased<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SettingsType;
 
-        
+
         exportMulticutSolver<Solver>(module,"CcFusionMoveBased")
            .def(py::init<>())
            .def_readwrite("proposalGenerator", &SettingsType::proposalGeneratorFactory)
@@ -113,8 +112,8 @@ namespace multicut{
            .def_readwrite("fusionMoveSettings",&SettingsType::fusionMoveSettings)
            //.def_readwrite("verbose", &SettingsType::verbose)
         ;
-        
-     
+
+
     }
 
     void exportMulticutCcFusionMoveBased(py::module & module) {

@@ -61,7 +61,7 @@ namespace distributed {
     // load labels from block; works for normal label dataset
     // and label multisets
     template<class LABELS, class ROI>
-    inline void loadLabels(const std::string & path, const std::string & key,
+    inline bool loadLabels(const std::string & path, const std::string & key,
                            LABELS & labels, const ROI & roiBegin) {
 
         typedef typename LABELS::value_type NodeType;
@@ -85,7 +85,7 @@ namespace distributed {
                 chunkId[d] = roiBegin[d] / chunks[d];
             }
 
-            // next, load this chunk
+            // next, load this chunk, if we don't have one, return false
 
             // find the number of labels in this chunk
             // (encoded in the first 4 bytes as signed integer '>i' in pythons struct)
@@ -98,7 +98,10 @@ namespace distributed {
         else {
             // not a label multiset -> we can just load the label array
             z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
+
+            // check if the labels are all zero
         }
+        return true;
     }
 
 
@@ -429,7 +432,12 @@ namespace distributed {
         Tensor3 labels(shape);
 
         // load the label block from n5
-        loadLabels(pathToLabels, keyToLabels, labels, actualRoiBegin);
+        const bool hasLabels = loadLabels(pathToLabels, keyToLabels, labels, actualRoiBegin);
+
+        // don't write empty labels
+        if(!hasLabels) {
+            return;
+        }
 
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,
