@@ -8,62 +8,68 @@ matrix:
     - os: linux
       env: 
         - CONDA_PYTHON_VERSION=3.7
-      before_script:
-        - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-        - bash miniconda.sh -b -p $HOME/miniconda
-        - export PATH="$HOME/miniconda/bin:$PATH";
-        - hash -r;
-        - conda config --set always_yes yes --set changeps1 no;
-        - conda update -q conda;
-        - conda info -a;
-        
-        - conda create -q -n dev -c conda-forge -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
-        - source activate dev
-        - conda install -c conda-forge glpk xtensor-python boost-cpp scikit-image h5py vigra z5py>=1.5.1 nlohmann_json
 
-      script:
 
-        ###############################################
-        # shortcuts
-        ###############################################
-        - export PATH="$HOME/miniconda/bin:$PATH"
-        - source activate dev
-        - export ENV_ROOT="$HOME/miniconda/envs/dev"
-        - export ENV_BIN=$ENV_ROOT/bin
-        
-        ###############################################
-        # setup compiler
-        ###############################################
-        - export CC="$ENV_BIN/x86_64-conda_cos6-linux-gnu-cc"
-        - export CXX="$ENV_BIN/x86_64-conda_cos6-linux-gnu-c++"
-        
-        ###############################################
-        # configure cmake
-        ###############################################
-        - $ENV_BIN/cmake 
-                -DWITHIN_TRAVIS=ON 
-                -DWITH_QPBO=OFF
-                -DWITH_HDF5=ON
-                -DWITH_Z5=ON
-                -DWITH_ZLIB=ON
-                -DWITH_BLOSC=ON
-                -DWITH_GLPK=ON 
-                -DWITH_CPLEX=OFF 
-                -DWITH_GUROBI=OFF
-                -DBUILD_CPP_TEST=OFF
-                -DBUILD_NIFTY_PYTHON=ON 
-                -DCMAKE_PREFIX_PATH=/home/travis/miniconda/envs/dev
-                -DPYTHON_MODULE_INSTALL_DIR=/home/travis/miniconda/envs/dev/lib/python$CONDA_PYTHON_VERSION/site-packages
-                -DCMAKE_INSTALL_PREFIX=/home/travis/miniconda/envs/dev
-                -DCMAKE_CXX_FLAGS="-std=c++17"
-               
-        ###############################################
-        # the actual build
-        ###############################################
-        - make -j 4
+before_script:
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH";
+  - hash -r;
+  - conda config --set always_yes yes --set changeps1 no;
+  - conda update -q conda;
+  - conda info -a;
 
-        ###############################################
-        # install and test the project
-        ###############################################
-        - make install
-        - $ENV_BIN/python -m unittest discover -s src/python/test -v
+  - conda create -q -n dev -c conda-forge -c defaults python=$CONDA_PYTHON_VERSION cmake gcc_linux-64 gxx_linux-64
+  - source activate dev
+  # install build  packages
+  - conda install -c conda-forge glpk xtensor-python boost-cpp vigra nlohmann_json z5py>=2.0.0 'pybind11<2.3'
+  # install python packages
+  - conda install -c conda-forge scikit-image h5py
+
+
+script:
+
+  ###############################################
+  # shortcuts
+  ###############################################
+  - export PATH="${HOME}/miniconda/bin:$PATH"
+  - source activate dev
+  - export ENV_ROOT="${HOME}/miniconda/envs/dev"
+  - export ENV_BIN="${ENV_ROOT}/bin"
+
+  ###############################################
+  # setup compiler
+  ###############################################
+  - export CC="${ENV_BIN}/x86_64-conda_cos6-linux-gnu-cc"
+  - export CXX="${ENV_BIN}/x86_64-conda_cos6-linux-gnu-c++"
+
+  ###############################################
+  # configure cmake
+  ###############################################
+  - cmake .
+          -DWITHIN_TRAVIS=ON
+          -DWITH_QPBO=OFF
+          -DWITH_HDF5=ON
+          -DWITH_Z5=ON
+          -DWITH_ZLIB=ON
+          -DWITH_BLOSC=ON
+          -DWITH_GLPK=ON
+          -DWITH_CPLEX=OFF
+          -DWITH_GUROBI=OFF
+          -DBUILD_CPP_TEST=OFF
+          -DBUILD_NIFTY_PYTHON=ON
+          -DCMAKE_PREFIX_PATH="${ENV_ROOT}"
+          -DCMAKE_INSTALL_PREFIX="${ENV_ROOT}"
+          -DPYTHON_MODULE_INSTALL_DIR="/home/travis/miniconda/envs/dev/lib/python${CONDA_PYTHON_VERSION}/site-packages"
+          -DCMAKE_CXX_FLAGS="-std=c++17"
+ 
+  ###############################################
+  # the actual build
+  ###############################################
+  - make -j 4
+
+  ###############################################
+  # install and test the project
+  ###############################################
+  - make install
+  - ${ENV_BIN}/python -m unittest discover -s src/python/test -v
