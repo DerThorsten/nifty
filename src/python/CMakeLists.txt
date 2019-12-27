@@ -21,7 +21,7 @@ else()
 endif()
 
 find_package(NUMPY REQUIRED)
-include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
+include_directories(${NUMPY_INCLUDE_DIRS})
 
 
 add_subdirectory(test)
