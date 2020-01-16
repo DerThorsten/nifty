@@ -14,7 +14,6 @@
 #include "nifty/array/static_array.hxx"
 #include "nifty/xtensor/xtensor.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
-#include "nifty/tools/blocking.hxx"
 
 
 namespace nifty {
@@ -581,7 +580,6 @@ namespace distributed {
                                              EdgeSet & edges,
                                              std::vector<std::size_t> & roiBegin,
                                              std::vector<std::size_t> & roiEnd) {
-        typedef typename nifty::tools::Blocking<3>::VectorType BlockingVecType;
         // open the graph file
         z5::filesystem::handle::File graph(graphPath);
 
@@ -591,36 +589,24 @@ namespace distributed {
         const std::string edgeKey = subgraphKey + "/edges";
         const auto dsEdges = z5::openDataset(graph, edgeKey);
 
-        // make blocking
-        const auto & shape = dsNodes->shape();
-        const auto & chunks = dsNodes->defaultChunkShape();
-        BlockingVecType bstart, bshape, bchunks;
-        for(unsigned d = 0; d < 3; ++d) {
-            bstart[d] = 0;
-            bshape[d] = shape[d];
-            bchunks[d] = chunks[d];
-        }
-        nifty::tools::Blocking<3> blocking(bstart, bshape, bchunks);
+        // get blocking of the dataset
+        const auto & blocking = dsNodes->chunking();
 
-        BlockingVecType bchunkPos;
+        std::vector<std::size_t> chunkPos(3), blockBegin(3), blockEnd(3);
         for(const std::size_t chunkId : chunkIds) {
 
             // find the bounding box of this chunk and merge
             // with the full roi
-            const auto block = blocking.getBlock(chunkId);
-            const auto & blockBegin = block.begin();
-            const auto & blockEnd = block.end();
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
+            blocking.getBlockBeginAndEnd(chunkPos, blockBegin, blockEnd);
             for(int axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = std::min(roiBegin[axis],
                                           static_cast<std::size_t>(blockBegin[axis]));
                 roiEnd[axis] = std::max(roiEnd[axis],
                                         static_cast<std::size_t>(blockEnd[axis]));
             }
-            // determine the chunk grid position
-            blocking.blockGridPosition(chunkId, bchunkPos);
 
             // load nodes from this chunk and insert into the node set
-            std::vector<std::size_t> chunkPos(bchunkPos.begin(), bchunkPos.end());
             if(!dsNodes->chunkExists(chunkPos)) {
                 continue;
             }
@@ -655,7 +641,6 @@ namespace distributed {
                                             std::vector<std::size_t> & roiBegin,
                                             std::vector<std::size_t> & roiEnd,
                                             const int numberOfThreads) {
-        typedef typename nifty::tools::Blocking<3>::VectorType BlockingVecType;
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
         auto nThreads = threadpool.nThreads();
@@ -669,16 +654,8 @@ namespace distributed {
         const std::string edgeKey = subgraphKey + "/edges";
         const auto dsEdges = z5::openDataset(graph, edgeKey);
 
-        // make blocking
-        const auto & shape = dsNodes->shape();
-        const auto & chunks = dsNodes->defaultChunkShape();
-        BlockingVecType bstart, bshape, bchunks;
-        for(unsigned d = 0; d < 3; ++d) {
-            bstart[d] = 0;
-            bshape[d] = shape[d];
-            bchunks[d] = chunks[d];
-        }
-        nifty::tools::Blocking<3> blocking(bstart, bshape, bchunks);
+        // get blocking from dataset
+        const auto & blocking = dsNodes->chunking();
 
         // initialize thread data
         struct PerThreadData {
@@ -700,7 +677,7 @@ namespace distributed {
                                                                    const int chunkIndex){
 
             // get the thread data
-            auto chunkId = chunkIds[chunkIndex];
+            const auto chunkId = chunkIds[chunkIndex];
             // for thread 0, we use the input sets instead of our thread data
             // to avoid one sequential merge in the end
             auto & threadNodes = (tid == 0) ? nodes : threadData[tid].nodes;
@@ -710,9 +687,9 @@ namespace distributed {
 
             // find the bounding box of this chunk and merge
             // with the full roi
-            const auto block = blocking.getBlock(chunkId);
-            const auto & blockBegin = block.begin();
-            const auto & blockEnd = block.end();
+            std::vector<std::size_t> chunkPos(3), blockBegin(3), blockEnd(3);
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
+            blocking.getBlockBeginAndEnd(chunkPos, blockBegin, blockEnd);
             for(int axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = std::min(roiBegin[axis],
                                           static_cast<std::size_t>(blockBegin[axis]));
@@ -720,12 +697,7 @@ namespace distributed {
                                         static_cast<std::size_t>(blockEnd[axis]));
             }
 
-            // determine the chunk grid position
-            BlockingVecType bchunkPos;
-            blocking.blockGridPosition(chunkId, bchunkPos);
-
             // load nodes from this chunk and insert into the node set
-            std::vector<std::size_t> chunkPos(bchunkPos.begin(), bchunkPos.end());
             if(!dsNodes->chunkExists(chunkPos)) {
                 return;
             }
@@ -820,7 +792,6 @@ namespace distributed {
                            const std::vector<std::size_t> & chunkIds,
                            const int numberOfThreads=1) {
 
-        typedef typename nifty::tools::Blocking<3>::VectorType BlockingVecType;
         // we load the edges into a vector, because
         // it will be sorted by construction and we can take
         // advantage of O(logN) search with std::lower_bound
@@ -840,27 +811,18 @@ namespace distributed {
         const std::string edgeIdKey = subgraphKey + "/edge_ids";
         const auto dsEdgeIds = z5::openDataset(graphFile, edgeIdKey);
 
-        // make blocking
-        const auto & shape = dsEdges->shape();
-        const auto & chunks = dsEdges->defaultChunkShape();
-        BlockingVecType bstart, bshape, bchunks;
-        for(unsigned d = 0; d < 3; ++d) {
-            bstart[d] = 0;
-            bshape[d] = shape[d];
-            bchunks[d] = chunks[d];
-        }
-        nifty::tools::Blocking<3> blocking(bstart, bshape, bchunks);
+        // get blocking of dataset
+        const auto & blocking = dsEdges->chunking();
 
         // handle all the chunks in parallel
-        BlockingVecType bchunkPos;
         nifty::parallel::parallel_foreach(threadpool, nChunks, [&](const int tid,
                                                                    const int chunkIndex){
             // determine the chunk grid position
             const auto chunkId = chunkIds[chunkIndex];
-            blocking.blockGridPosition(chunkId, bchunkPos);
+            std::vector<std::size_t> chunkPos(3);
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
 
             // load the edges from this chunk
-            std::vector<std::size_t> chunkPos(bchunkPos.begin(), bchunkPos.end());
             if(!dsEdges->chunkExists(chunkPos)) {
                 return;
             }
