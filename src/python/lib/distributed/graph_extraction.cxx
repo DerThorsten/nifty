@@ -25,60 +25,64 @@ namespace distributed {
             const std::string & pathToGraph,
             const std::string & keyToGraph,
             const bool ignoreLabel,
-            const bool increaseRoi
+            const bool increaseRoi,
+            const bool serializeToVarlen
         ) {
 
             py::gil_scoped_release allowThreads;
             computeMergeableRegionGraph(pathToLabels, keyToLabels,
                                         roiBegin, roiEnd,
                                         pathToGraph, keyToGraph,
-                                        ignoreLabel, increaseRoi);
+                                        ignoreLabel, increaseRoi,
+                                        serializeToVarlen);
 
         }, py::arg("pathToLabels"), py::arg("keyToLabels"),
            py::arg("roiBegin"), py::arg("roiEnd"),
            py::arg("pathToGraph"), py::arg("keyToGraph"),
            py::arg("ignoreLabel")=false,
-           py::arg("increaseRoi")=false);
+           py::arg("increaseRoi")=false,
+           py::arg("serializeToVarlen")=false);
 
 
         module.def("mergeSubgraphs", [](
             const std::string & graphPath,
-            const std::string & blockPrefix,
+            const std::string & subgraphKey,
             const std::vector<std::size_t> & blockIds,
             const std::string & outKey,
-            const int numberOfThreads
+            const int numberOfThreads,
+            const int serializeToVarlen
         ) {
             py::gil_scoped_release allowThreads;
-            mergeSubgraphs(graphPath, blockPrefix, blockIds,
-                           outKey, numberOfThreads);
-        }, py::arg("graphPath"), py::arg("blockPrefix"), py::arg("blockIds"),
-           py::arg("outKey"), py::arg("numberOfThreads")=1);
+            mergeSubgraphs(graphPath, subgraphKey, blockIds,
+                           outKey, numberOfThreads, serializeToVarlen);
+        }, py::arg("graphPath"), py::arg("subgraphKey"), py::arg("blockIds"),
+           py::arg("outKey"), py::arg("numberOfThreads")=1, py::arg("serializeToVarlen")=false);
 
 
         module.def("mapEdgeIds", [](
             const std::string & pathToGraph,
             const std::string & graphGroup,
-            const std::string & blockPrefix,
+            const std::string & subgraphKey,
             const std::vector<std::size_t> & blockIds,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mapEdgeIds(pathToGraph, graphGroup, blockPrefix, blockIds, numberOfThreads);
+            mapEdgeIds(pathToGraph, graphGroup, subgraphKey, blockIds, numberOfThreads);
         }, py::arg("pathToGraph"), py::arg("graphGroup"),
-           py::arg("blockPrefix"), py::arg("blockIds"), py::arg("numberOfThreads")=1);
+           py::arg("subgraphKey"), py::arg("blockIds"), py::arg("numberOfThreads")=1);
 
 
         module.def("mapEdgeIdsForAllBlocks", [](
             const std::string & pathToGraph,
             const std::string & graphGroup,
-            const std::string & blockPrefix,
+            const std::string & subgraphKey,
             const std::size_t numberOfBlocks,
             const int numberOfThreads
         ) {
             py::gil_scoped_release allowThreads;
-            mapEdgeIds(pathToGraph, graphGroup, blockPrefix, numberOfBlocks, numberOfThreads);
+            mapEdgeIds(pathToGraph, graphGroup, subgraphKey, numberOfBlocks, numberOfThreads);
         }, py::arg("pathToGraph"), py::arg("graphGroup"),
-           py::arg("blockPrefix"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
+           py::arg("subgraphKey"), py::arg("numberOfBlocks"), py::arg("numberOfThreads")=1);
 
 
         module.def("loadAsUndirectedGraphWithRelabeling", [](const std::string & pathToGraph,
