@@ -218,7 +218,7 @@ namespace distributed {
         z5::filesystem::handle::Group graphGroup(graphFile, subgraphKey);
         nlohmann::json j;
         z5::readAttributes(graphGroup, j);
-        const bool ignoreLabel = j["ignoreLabel"];
+        const bool ignoreLabel = j["ignore_label"];
         const auto dsEdges = z5::openDataset(graphGroup, "edges");
         const auto dsEdgeIds = z5::openDataset(graphGroup, "edge_ids");
 
