@@ -804,8 +804,8 @@ namespace distributed {
         // iterate over the blocks and insert the nodes and edges
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
-        auto nThreads = threadpool.nThreads();
-        std::size_t nChunks = chunkIds.size();
+        const auto nThreads = threadpool.nThreads();
+        const std::size_t nChunks = chunkIds.size();
 
         // load the ege dataset and the edge id dataset
         const std::string edgeKey = subgraphKey + "/edges";
@@ -836,7 +836,8 @@ namespace distributed {
 
             std::vector<EdgeType> blockEdges(nEdges / 2);
             for(std::size_t edgeId = 0; edgeId < nEdges / 2; ++edgeId) {
-                blockEdges[edgeId] = std::make_pair(edgeSer[2 * edgeId], edgeSer[2 * edgeId + 1]);
+                blockEdges[edgeId] = std::make_pair(edgeSer[2 * edgeId],
+                                                    edgeSer[2 * edgeId + 1]);
             }
 
             // label the local edges acccording to the global edge ids
