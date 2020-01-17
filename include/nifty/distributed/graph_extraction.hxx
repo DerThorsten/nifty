@@ -305,7 +305,9 @@ namespace distributed {
 
         // create the graph group
         z5::filesystem::handle::File graphFile(pathToGraph);
-        z5::createGroup(graphFile, graphKey);
+        if(!graphFile.in(graphKey)) {
+            z5::createGroup(graphFile, graphKey);
+        }
         z5::filesystem::handle::Group group(graphFile, graphKey);
 
         // threadpool for parallel writing

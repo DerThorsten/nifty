@@ -65,14 +65,14 @@ namespace distributed {
         z5::filesystem::handle::File labelFile(labelPath);
         z5::filesystem::handle::File graphFile(graphPath);
 
-        // get ignore label flag from the attributes of the graphFile
+        // get ignore label flag from the attributes of the sub-graph group
+        z5::filesystem::handle::Group subgraphGroup(graphFile, subgraphKey);
         nlohmann::json j;
-        z5::readAttributes(graphFile, j);
+        z5::readAttributes(subgraphGroup, j);
         const bool ignoreLabel = j["ignore_label"];
 
         // open the edge dataset
-        const std::string edgeKey = subgraphKey + "/edges";
-        const auto dsEdges = z5::openDataset(graphFile, edgeKey);
+        const auto dsEdges = z5::openDataset(subgraphGroup, "edges");
 
         const auto & blocking = dsEdges->chunking();
         std::vector<std::size_t> blockPos(3), roiBegin(3), roiEnd(3);

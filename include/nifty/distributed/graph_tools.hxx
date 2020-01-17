@@ -108,7 +108,7 @@ namespace distributed {
     // FIXME this sometimes fails with a floating point exception, but not really reproducible
     template<class NODE_ARRAY, class EDGE_ARRAY>
     inline void serializeMergedGraph(const std::string & graphPath,
-                                     const std::string & graphBlockPrefix,
+                                     const std::string & subgraphInKey,
                                      const CoordType & shape,
                                      const CoordType & blockShape,
                                      const CoordType & newBlockShape,
@@ -116,7 +116,7 @@ namespace distributed {
                                      const xt::xexpression<NODE_ARRAY> & nodeLabelingExp,
                                      const xt::xexpression<EDGE_ARRAY> & edgeLabelingExp,
                                      const std::string & outPath,
-                                     const std::string & graphOutPrefix,
+                                     const std::string & subgraphOutKey,
                                      const int numberOfThreads,
                                      const bool serializeEdges) {
 
@@ -134,131 +134,173 @@ namespace distributed {
         const z5::filesystem::handle::File graphFile(graphPath);
         const z5::filesystem::handle::File outFile(outPath);
 
+        // open the input node dataset
+        const std::string nodeInKey = subgraphInKey + "/nodes";
+        const auto dsNodesIn = z5::openDataset(graphFile, nodeInKey);
+
+        // requre the output node dataset
+        const std::string nodeOutKey = subgraphOutKey + "/nodes";
+        std::unique_ptr<z5::Dataset> dsNodesOut;
+        if(graphFile.in(nodeInKey)) {
+            dsNodesOut = std::move(z5::openDataset(graphFile, nodeInKey));
+        } else {
+            dsNodesOut = std::move(z5::createDataset(graphFile, nodeInKey, "uint64",
+                                                     std::vector<std::size_t>(shape.begin(), shape.end()),
+                                                     std::vector<std::size_t>(newBlockShape.begin(), newBlockShape.end()),
+                                                     "gzip"));
+
+        }
+
+        // declare the pointer to the edge datasets;
+        // only link them to the corresponding datasets if we serialize edges
+        std::unique_ptr<z5::Dataset> dsEdgesIn;
+        std::unique_ptr<z5::Dataset> dsEdgesOut;
+
+        std::unique_ptr<z5::Dataset> dsEdgeIdsIn;
+        std::unique_ptr<z5::Dataset> dsEdgeIdsOut;
+
+        if(serializeEdges) {
+            const std::string edgeInKey = subgraphInKey + "/edges";
+            dsEdgesIn = std::move(z5::openDataset(graphFile, edgeInKey));
+
+            const std::string edgeOutKey = subgraphOutKey + "/edges";
+            if(graphFile.in(edgeOutKey)) {
+                dsEdgesOut = std::move(z5::openDataset(graphFile, edgeOutKey));
+            } else {
+                dsEdgesOut = std::move(z5::createDataset(graphFile, edgeOutKey, "uint64",
+                                                         std::vector<std::size_t>(shape.begin(), shape.end()),
+                                                         std::vector<std::size_t>(newBlockShape.begin(), newBlockShape.end()),
+                                                         "gzip"));
+            }
+
+            const std::string edgeIdInKey = subgraphInKey + "/edge_ids";
+            dsEdgeIdsIn = std::move(z5::openDataset(graphFile, edgeIdInKey));
+
+            const std::string edgeIdOutKey = subgraphOutKey + "/edge_ids";
+            if(graphFile.in(edgeIdOutKey)) {
+                dsEdgeIdsOut = std::move(z5::openDataset(graphFile, edgeIdOutKey));
+            } else {
+                dsEdgeIdsOut = std::move(z5::createDataset(graphFile, edgeIdOutKey, "uint64",
+                                                           std::vector<std::size_t>(shape.begin(), shape.end()),
+                                                           std::vector<std::size_t>(newBlockShape.begin(), newBlockShape.end()),
+                                                           "gzip"));
+            }
+        }
+
         // serialize the merged sub-graphs
-        const std::vector<std::size_t> zero1Coord({0});
-        const std::vector<std::size_t> zero2Coord({0, 0});
         nifty::parallel::parallel_foreach(threadpool,
                                           numberOfNewBlocks, [&](const int tId,
                                                                  const std::size_t blockIndex){
             const std::size_t blockId = newBlockIds[blockIndex];
             BlockNodeStorage newBlockNodes;
 
+            //
             // find the relevant old blocks
+            //
             const auto & newBlock = newBlocking.getBlock(blockId);
             std::vector<uint64_t> oldBlockIds;
             blocking.getBlockIdsInBoundingBox(newBlock.begin(), newBlock.end(), oldBlockIds);
 
+            CoordType blockPos;
             // iterate over the old blocks and find all nodes
             for(auto oldBlockId : oldBlockIds) {
-                const std::string blockKey = graphBlockPrefix + std::to_string(oldBlockId);
-                const z5::filesystem::handle::Group graph(graphFile, blockKey);
 
-                // if we are dealing with region of interests, the sub-graph might actually not exist
-                // so we need to check and skip if it does not exist.
-                if(!graph.exists()) {
+                blocking.blockGridPosition(oldBlockId, blockPos);
+                const std::vector<std::size_t> chunkId(blockPos.begin(), blockPos.end());
+
+                // load nodes from this chunk (if it exists)
+                if(!dsNodesIn->chunkExists(chunkId)) {
                     continue;
                 }
+                std::size_t nNodesBlock;
+                dsNodesIn->checkVarlenChunk(chunkId, nNodesBlock);
+                std::vector<NodeType> blockNodes(nNodesBlock);
+                dsNodesIn->readChunk(chunkId, &blockNodes[0]);
 
-                std::vector<NodeType> blockNodes;
-                loadNodes(graph, blockNodes, 0);
+                // add nodes to the set of all nodes
                 for(const NodeType node : blockNodes) {
                     newBlockNodes.insert(nodeLabeling(node));
                 }
             }
 
-            // create the out group
-            const std::string outKey = graphOutPrefix + std::to_string(blockId);
-            z5::createGroup(outFile, outKey);
-            z5::filesystem::handle::Group group(outFile, outKey);
-
+            //
             // serialize the new nodes
+            //
             const std::size_t nNewNodes = newBlockNodes.size();
-            std::vector<std::size_t> nodeShape = {nNewNodes};
-            auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape, nodeShape);
-            Shape1Type nodeSerShape = {nNewNodes};
-            Tensor1 nodeSer(nodeSerShape);
-            std::size_t i = 0;
-            for(const auto node : newBlockNodes) {
-                nodeSer(i) = node;
-                ++i;
-            }
-            z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer, zero1Coord.begin());
-
-            if(!serializeEdges) {
-                // serialize metadata (number of edges and nodes and position of the block)
-                nlohmann::json attrs;
-                attrs["numberOfNodes"] = nNewNodes;
-                z5::writeAttributes(group, attrs);
+            if(nNewNodes == 0) {
                 return;
             }
 
+            // write nodes to vector for serialization
+            std::vector<NodeType> nodeSer(nNewNodes);
+            std::size_t i = 0;
+            for(const auto node : newBlockNodes) {
+                nodeSer[i] = node;
+                ++i;
+            }
+
+            // serialize nodes as varlen chunk
+            newBlocking.blockGridPosition(blockId, blockPos);
+            const std::vector<std::size_t> chunkId(blockPos.begin(), blockPos.end());
+            dsNodesOut->writeChunk(chunkId, &nodeSer[0], true, nNewNodes);
+
+            // return now if we don't serialize the edges
+            if(!serializeEdges) {
+                return;
+            }
+
+            //
             // iterate over the old blocks and load all edges and edge ids
+            //
             std::map<EdgeIndexType, EdgeType> newEdges;
             for(auto oldBlockId : oldBlockIds) {
-                const std::string blockKey = graphBlockPrefix + std::to_string(oldBlockId);
-                const z5::filesystem::handle::Group graph(graphFile, blockKey);
 
-                // if we are dealing with region of interests, the sub-graph might actually not exist
-                // so we need to check and skip if it does not exist.
-                if(!graph.exists()) {
+                blocking.blockGridPosition(oldBlockId, blockPos);
+                const std::vector<std::size_t> chunkId(blockPos.begin(), blockPos.end());
+
+                // load edges and edge ids from this chunk (if it exists)
+                if(!dsEdgesIn->chunkExists(chunkId)) {
                     continue;
                 }
+                std::size_t nEdgesBlock;
+                dsEdgesIn->checkVarlenChunk(chunkId, nEdgesBlock);
+                std::vector<NodeType> subEdges(nEdgesBlock);
+                dsEdgesIn->readChunk(chunkId, &subEdges[0]);
 
-                std::vector<EdgeType> subEdges;
-                std::vector<EdgeIndexType> subEdgeIds;
-                loadEdges(graph, subEdges, 0);
-                loadEdgeIndices(graph, subEdgeIds, 0);
+                // we have half as many edge ids as edge values (2 node values per edge)
+                std::vector<EdgeIndexType> subEdgeIds(nEdgesBlock / 2);
+                dsEdgeIdsIn->readChunk(chunkId, &subEdgeIds[0]);
 
                 // map edges and edge ids to the merged graph and serialize
-                for(std::size_t ii = 0; ii < subEdges.size(); ++ii) {
+                for(std::size_t ii = 0; ii < subEdgeIds.size(); ++ii) {
                     const auto newEdgeId = edgeLabeling(subEdgeIds[ii]);
                     if(newEdgeId != -1) {
-                        const EdgeType & uv = subEdges[ii];
-                        const NodeType newU = nodeLabeling(uv.first);
-                        const NodeType newV = nodeLabeling(uv.second);
-                        newEdges[newEdgeId] = std::make_pair(newU, newV);
+                        newEdges[newEdgeId] = std::make_pair(subEdges[2 * ii], subEdges[2 * ii + 1]);
                     }
                 }
             }
 
-            const std::size_t nNewEdges = newEdges.size();
+            //
             // serialize the new edges and the new edge ids
+            //
+            const std::size_t nNewEdges = newEdges.size();
             if(nNewEdges > 0) {
 
-                Shape2Type edgeSerShape = {nNewEdges, 2};
-                Tensor2 edgeSer(edgeSerShape);
-
-                Shape1Type edgeIdSerShape = {nNewEdges};
-                Tensor1 edgeIdSer(edgeIdSerShape);
+                std::vector<NodeType> edgeSer(2 * nNewEdges);
+                std::vector<EdgeIndexType> edgeIdSer(nNewEdges);
 
                 std::size_t i = 0;
                 for(const auto & edge : newEdges) {
-                    edgeIdSer(i) = edge.first;
-                    edgeSer(i, 0) = edge.second.first;
-                    edgeSer(i, 1) = edge.second.second;
+                    edgeIdSer[i] = edge.first;
+                    edgeSer[2 * i] = edge.second.first;
+                    edgeSer[2 * i + 1] = edge.second.second;
                     ++i;
                 }
 
-                // serialize the edges
-                std::vector<std::size_t> edgeShape = {nNewEdges, 2};
-                auto dsEdges = z5::createDataset(group, "edges", "uint64", edgeShape, edgeShape);
-                z5::multiarray::writeSubarray<NodeType>(dsEdges, edgeSer, zero2Coord.begin());
-
-                // serialize the edge ids
-                std::vector<std::size_t> edgeIdShape = {nNewEdges};
-                auto dsEdgeIds = z5::createDataset(group, "edgeIds", "int64", edgeIdShape, edgeIdShape);
-                z5::multiarray::writeSubarray<EdgeIndexType>(dsEdgeIds, edgeIdSer,
-                                                             zero1Coord.begin());
+                // serialize the edges and edge ids
+                dsEdgesOut->writeChunk(chunkId, &edgeSer[0], true, edgeSer.size());
+                dsEdgeIdsOut->writeChunk(chunkId, &edgeIdSer[0], true, edgeIdSer.size());
             }
-
-            // serialize metadata (number of edges and nodes and position of the block)
-            nlohmann::json attrs;
-            attrs["numberOfNodes"] = nNewNodes;
-            attrs["numberOfEdges"] = nNewEdges;
-            // TODO ideally we would get the rois from the prev. graph block too, but I am too lazy right now
-            // attrs["roiBegin"] = std::vector<std::size_t>(roiBegin.begin(), roiBegin.end());
-            // attrs["roiEnd"] = std::vector<std::size_t>(roiEnd.begin(), roiEnd.end());
-            z5::writeAttributes(group, attrs);
         });
     }
 
