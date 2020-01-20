@@ -693,10 +693,10 @@ namespace distributed {
             blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
             blocking.getBlockBeginAndEnd(chunkPos, blockBegin, blockEnd);
             for(int axis = 0; axis < 3; ++axis) {
-                roiBegin[axis] = std::min(roiBegin[axis],
-                                          static_cast<std::size_t>(blockBegin[axis]));
-                roiEnd[axis] = std::max(roiEnd[axis],
-                                        static_cast<std::size_t>(blockEnd[axis]));
+                threadBegin[axis] = std::min(threadBegin[axis],
+                                             static_cast<std::size_t>(blockBegin[axis]));
+                threadEnd[axis] = std::max(threadEnd[axis],
+                                           static_cast<std::size_t>(blockEnd[axis]));
             }
 
             // load nodes from this chunk and insert into the node set
@@ -707,7 +707,7 @@ namespace distributed {
             dsNodes->checkVarlenChunk(chunkPos, nNodes);
             std::vector<uint64_t> nodeSer(nNodes);
             dsNodes->readChunk(chunkPos, &nodeSer[0]);
-            nodes.insert(nodeSer.begin(), nodeSer.end());
+            threadNodes.insert(nodeSer.begin(), nodeSer.end());
 
             // load edges from this chunk and insert into the edge set
             if(!dsEdges->chunkExists(chunkPos)) {
@@ -718,7 +718,7 @@ namespace distributed {
             std::vector<uint64_t> edgeSer(nEdges);
             dsEdges->readChunk(chunkPos, &edgeSer[0]);
             for(std::size_t edgeId = 0; edgeId < nEdges / 2; ++edgeId) {
-                edges.insert(std::make_pair(edgeSer[2 * edgeId], edgeSer[2 * edgeId + 1]));
+                threadEdges.insert(std::make_pair(edgeSer[2 * edgeId], edgeSer[2 * edgeId + 1]));
             }
 
         });
