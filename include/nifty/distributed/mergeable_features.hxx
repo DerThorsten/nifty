@@ -732,7 +732,6 @@ namespace distributed {
                                            nifty::parallel::ThreadPool & threadpool,
                                            const std::string & outPath,
                                            const std::string & outKey) {
-        std::cout << edgeIdBegin << " to " << edgeIdEnd << std::endl;
         //
         const std::size_t nEdges = edgeIdEnd - edgeIdBegin;
         Shape2Type fShape = {nEdges, nFeatures};
@@ -768,8 +767,6 @@ namespace distributed {
                                                                    const int blockIndex){
 
             const std::size_t blockId = blockIds[blockIndex];
-            std::cout << "Block:" << std::endl;
-            std::cout << blockId << std::endl;
             std::vector<std::size_t> chunkPos(3);
             blocking.blockIdToBlockCoordinate(blockId, chunkPos);
 
@@ -782,7 +779,6 @@ namespace distributed {
             dsEdgeIds->checkVarlenChunk(chunkPos, nEdgesBlock);
             std::vector<EdgeIndexType> blockEdgeIndices(nEdgesBlock);
             dsEdgeIds->readChunk(chunkPos, &blockEdgeIndices[0]);
-            std::cout << "edges: " << nEdgesBlock << std::endl;
 
             // get mapping to dense edge ids for this block
             std::unordered_map<EdgeIndexType, EdgeIndexType> toDenseBlockId;
@@ -835,8 +831,6 @@ namespace distributed {
         const z5::filesystem::handle::File outFile(outPath);
         auto dsOut = z5::openDataset(outFile, outKey);
         const std::vector<std::size_t> featOffset({edgeIdBegin, 0});
-        std::cout << dsOut->shape()[0] << std::endl;
-        std::cout << edgeIdBegin << " to " << features.shape()[0] << std::endl;
         z5::multiarray::writeSubarray<FeatureType>(dsOut, features, featOffset.begin(), nThreads);
     }
 
@@ -929,7 +923,6 @@ namespace distributed {
         findRelevantBlocks(graphPath, graphKey, blockIds,
                            edgeIdBegin, edgeIdEnd, threadpool,
                            relevantBlocks);
-        std::cout << "nblocks: " << relevantBlocks.size() << std::endl;
 
         // get the number of features
         const z5::filesystem::handle::File outFile(outPath);
