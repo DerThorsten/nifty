@@ -1,0 +1,78 @@
+#pragma once
+#include <xtensor/xarray.hpp>
+#include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/xtensor/xtensor.hxx"
+
+
+namespace nifty {
+namespace transformation {
+
+    //
+    // interpolation functions
+    //
+
+    template<unsigned NDIM>
+    inline void intepolateNearest(const array::StaticArray<float, NDIM> & coord,
+                                  std::vector<array::StaticArray<int64_t, NDIM>> & coordList,
+                                  std::vector<double> & weightList) {
+        coordList.resize(1);
+        weightList.resize(1);
+        weightList[0] = 1.;
+        auto & coordOut = coordList[0];
+        for(unsigned d = 0; d < NDIM; ++d) {
+            coordOut[d] = round(coord[d]);
+        }
+    }
+
+
+    //
+    // coordinate transformation functions
+    //
+
+    template<unsigned NDIM, class ARRAY,
+             class COORD_TRAFO, class INTERPOLATOR>
+    void coordinateTransformation(const ARRAY & input, ARRAY & output,
+                                  COORD_TRAFO && trafo, INTERPOLATOR && interpolator,
+                                  const array::StaticArray<int64_t, NDIM> & start,
+                                  const array::StaticArray<int64_t, NDIM> & stop){
+        typedef array::StaticArray<int64_t, NDIM> CoordType;
+        typedef array::StaticArray<float, NDIM> FloatCoordType;
+        // typedef typename ARRAY::value_type;
+
+        const auto & shape = input.shape();
+        array::StaticArray<int64_t, NDIM> maxRange;
+        for(unsigned d = 0; d < NDIM; ++d) {
+            maxRange[d] = shape[d] - 1;
+        }
+
+        FloatCoordType coord;
+        std::vector<CoordType> coordList;
+        std::vector<double> weightList;
+
+        tools::forEachCoordinate(start, stop, [&](const array::StaticArray<int64_t, NDIM> & outCoord){
+            // transform the coordinate
+            trafo(outCoord, coord);
+
+            // range check
+            for(unsigned d = 0; d < NDIM; ++d){
+                if(coord[d] >= maxRange[d] || coord[d] < 0) {
+                    return;
+                }
+            }
+
+            // interpolate the coordinate
+            interpolator(coord, coordList, weightList);
+
+            // iterate over the interpolated coords and compute the output value
+            double val = 0.;
+            for(unsigned i = 0; i < coordList.size(); ++i) {
+                val += weightList[i] * xtensor::read(input,
+                                                     coordList[i].asStdArray());
+            }
+            xtensor::write(output, outCoord.asStdArray(), val);
+
+        });
+    }
+
+}
+}
