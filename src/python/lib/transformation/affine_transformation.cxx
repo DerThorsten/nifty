@@ -17,7 +17,7 @@ namespace transformation{
     template<class ARRAY, unsigned NDIM>
     void exportAffineTransformationT(py::module & m, const std::string & name) {
         const std::string fuName = "affineTransformation" + name;
-        m.def(fuName.c_str(), [](const ARRAY & input, const xt::pytensor<float, 2> & matrix,
+        m.def(fuName.c_str(), [](const ARRAY & input, const xt::pytensor<double, 2> & matrix,
                                  const int order,
                                  const array::StaticArray<int64_t, NDIM> & start,
                                  const array::StaticArray<int64_t, NDIM> & stop,
@@ -32,7 +32,7 @@ namespace transformation{
             {
                 py::gil_scoped_release allowThreads;
                 auto trafo = [&matrix](const array::StaticArray<int64_t, NDIM> & inCoord,
-                                       array::StaticArray<float, NDIM> & coord){
+                                       array::StaticArray<double, NDIM> & coord){
                     return affineCoordinateTransformation<NDIM>(inCoord, coord, matrix);
                 };
                 if(order == 0){

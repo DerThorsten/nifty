@@ -12,7 +12,7 @@ namespace transformation {
     //
 
     template<unsigned NDIM>
-    inline void intepolateNearest(const array::StaticArray<float, NDIM> & coord,
+    inline void intepolateNearest(const array::StaticArray<double, NDIM> & coord,
                                   std::vector<array::StaticArray<int64_t, NDIM>> & coordList,
                                   std::vector<double> & weightList) {
         coordList.resize(1);
@@ -25,13 +25,33 @@ namespace transformation {
     }
 
     template<unsigned NDIM>
-    inline void intepolateLinear(const array::StaticArray<float, NDIM> & coord,
+    inline void intepolateLinear(const array::StaticArray<double, NDIM> & coord,
                                  std::vector<array::StaticArray<int64_t, NDIM>> & coordList,
                                  std::vector<double> & weightList) {
+        // we have 2**ndim output coordinates for linear interpolation
         const std::size_t nOut = pow(2, NDIM);
         coordList.resize(nOut);
         weightList.resize(nOut);
-        // TODO
+
+        // determine the upper and lower coordinate bound
+        array::StaticArray<int64_t, NDIM> lower, upper;
+        for(unsigned d = 0; d < NDIM; ++d) {
+            lower[d] = static_cast<int64_t>(coord[d]);
+            upper[d] = lower[d] + 1;
+        }
+
+        for(unsigned i = 0; i < nOut; ++i) {
+            auto & coordOut = coordList[i];
+            auto & weightOut = weightList[i];
+            weightOut = 1.;
+
+            // find all next neighbor coordiantes by choosing all upper/lower
+            // combinations via bitshifts of 2 ** ndim
+            for(unsigned d = 0; d < NDIM; ++d) {
+                coordOut[d] = (i & (1 << d)) ? lower[d] : upper[d];
+                weightOut *= fabs(1. - fabs(coordOut[d] - coord[d]));
+            }
+        }
     }
 
     //
@@ -45,7 +65,7 @@ namespace transformation {
                                   const array::StaticArray<int64_t, NDIM> & start,
                                   const array::StaticArray<int64_t, NDIM> & stop){
         typedef array::StaticArray<int64_t, NDIM> CoordType;
-        typedef array::StaticArray<float, NDIM> FloatCoordType;
+        typedef array::StaticArray<double, NDIM> FloatCoordType;
 
         const auto & shape = input.shape();
         array::StaticArray<int64_t, NDIM> maxRange;
