@@ -13,8 +13,9 @@ namespace transformation {
         for(unsigned di = 0; di < NDIM; ++di) {
             coord[di] = 0.;
             for(unsigned dj = 0; dj < NDIM; ++dj) {
-                coord[di] += matrix(di, dj) * inCoord[dj] + matrix(di, NDIM);
+                coord[di] += matrix(di, dj) * inCoord[dj];
             }
+            coord[di] += matrix(di, NDIM);
         }
     }
 
