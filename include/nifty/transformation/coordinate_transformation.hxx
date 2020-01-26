@@ -20,10 +20,19 @@ namespace transformation {
         weightList[0] = 1.;
         auto & coordOut = coordList[0];
         for(unsigned d = 0; d < NDIM; ++d) {
-            coordOut[d] = round(coord[d]);
+            coordOut[d] = static_cast<int64_t>(round(coord[d]));
         }
     }
 
+    template<unsigned NDIM>
+    inline void intepolateLinear(const array::StaticArray<float, NDIM> & coord,
+                                 std::vector<array::StaticArray<int64_t, NDIM>> & coordList,
+                                 std::vector<double> & weightList) {
+        const std::size_t nOut = pow(2, NDIM);
+        coordList.resize(nOut);
+        weightList.resize(nOut);
+        // TODO
+    }
 
     //
     // coordinate transformation functions
@@ -37,7 +46,6 @@ namespace transformation {
                                   const array::StaticArray<int64_t, NDIM> & stop){
         typedef array::StaticArray<int64_t, NDIM> CoordType;
         typedef array::StaticArray<float, NDIM> FloatCoordType;
-        // typedef typename ARRAY::value_type;
 
         const auto & shape = input.shape();
         array::StaticArray<int64_t, NDIM> maxRange;
@@ -45,11 +53,12 @@ namespace transformation {
             maxRange[d] = shape[d] - 1;
         }
 
+        CoordType normalizedOutCoord;
         FloatCoordType coord;
         std::vector<CoordType> coordList;
         std::vector<double> weightList;
 
-        tools::forEachCoordinate(start, stop, [&](const array::StaticArray<int64_t, NDIM> & outCoord){
+        tools::forEachCoordinate(start, stop, [&](const CoordType & outCoord){
             // transform the coordinate
             trafo(outCoord, coord);
 
@@ -66,11 +75,13 @@ namespace transformation {
             // iterate over the interpolated coords and compute the output value
             double val = 0.;
             for(unsigned i = 0; i < coordList.size(); ++i) {
-                val += weightList[i] * xtensor::read(input,
-                                                     coordList[i].asStdArray());
+                val += weightList[i] * xtensor::read(input, coordList[i]);
             }
-            xtensor::write(output, outCoord.asStdArray(), val);
 
+            for(unsigned d = 0; d < NDIM; ++d){
+                normalizedOutCoord[d] = outCoord[d] - start[d];
+            }
+            xtensor::write(output, normalizedOutCoord, val);
         });
     }
 
