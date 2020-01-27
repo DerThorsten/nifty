@@ -13,6 +13,9 @@ namespace py = pybind11;
 namespace nifty{
 namespace transformation{
     void exportAffineTransformation(py::module &);
+    #ifdef WITH_Z5
+    void exportAffineTransformationZ5(py::module &);
+    #endif
 }
 }
 
@@ -28,4 +31,7 @@ PYBIND11_MODULE(_transformation, module) {
 
     using namespace nifty::transformation;
     exportAffineTransformation(module);
+    #ifdef WITH_Z5
+    exportAffineTransformationZ5(module);
+    #endif
 }

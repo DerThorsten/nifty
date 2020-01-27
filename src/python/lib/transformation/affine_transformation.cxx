@@ -7,13 +7,14 @@
 #include "nifty/python/converter.hxx"
 #include "nifty/transformation/affine_transformation.hxx"
 #include "nifty/transformation/coordinate_transformation.hxx"
+#include "nifty/transformation/coordinate_transformation_chunked.hxx"
 
 namespace py = pybind11;
 
 namespace nifty{
 namespace transformation{
 
-    // TODO pre-smoothing and multi-channel
+    // TODO multi-channel
     template<class ARRAY, unsigned NDIM>
     void exportAffineTransformationT(py::module & m, const std::string & name) {
         const std::string fuName = "affineTransformation" + name;
@@ -41,9 +42,10 @@ namespace transformation{
                 } else if(order == 1){
                     coordinateTransformation<NDIM>(input, out, trafo,
                                                    intepolateLinear<NDIM>, start, stop);
-                } else
+                } else {
                     throw std::invalid_argument("Invalid interpolation order");
                 }
+            }
             return out;
         });
     }
@@ -70,5 +72,63 @@ namespace transformation{
         typedef xt::pytensor<uint8_t, 3> Byte3DArray;
         exportAffineTransformationT<Byte3DArray, 3>(m, "3Duint8");
     }
+
+
+    #ifdef WITH_Z5
+    // TODO pre-smooothing and multi-channel
+    template<class T, unsigned NDIM>
+    void exportAffineTransformationZ5T(py::module & m, const std::string & name) {
+        const std::string fuName = "affineTransformationZ5" + name;
+        m.def(fuName.c_str(), [](const std::string & path, const std::string & key,
+                                 const xt::pytensor<double, 2> & matrix, const int order,
+                                 const array::StaticArray<int64_t, NDIM> & start,
+                                 const array::StaticArray<int64_t, NDIM> & stop,
+                                 const double fillValue){
+            typedef xt::pytensor<T, NDIM> ArrayType;
+            typedef typename ArrayType::shape_type ShapeType;
+            ShapeType outShape;
+            for(unsigned d = 0; d < NDIM; ++d) {
+                outShape[d] = stop[d] - start[d];
+            }
+
+            ArrayType out = fillValue * xt::ones<T>(outShape);
+            nz5::DatasetWrapper<T> input(path, key);
+            {
+                py::gil_scoped_release allowThreads;
+                auto trafo = [&matrix](const array::StaticArray<int64_t, NDIM> & inCoord,
+                                       array::StaticArray<double, NDIM> & coord){
+                    return affineCoordinateTransformation<NDIM>(inCoord, coord, matrix);
+                };
+                if(order == 0){
+                    coordinateTransformationChunked<NDIM>(input, out, trafo,
+                                                          intepolateNearest<NDIM>, start, stop);
+                } else if(order == 1){
+                    coordinateTransformationChunked<NDIM>(input, out, trafo,
+                                                          intepolateLinear<NDIM>, start, stop);
+                } else {
+                    throw std::invalid_argument("Invalid interpolation order");
+                }
+            }
+            return out;
+        });
+    }
+
+
+    void exportAffineTransformationZ5(py::module & m) {
+        // export 2d affine transformations
+        // float types
+        exportAffineTransformationZ5T<float, 2>(m, "2Dfloat32");
+        exportAffineTransformationZ5T<double, 2>(m, "2Dfloat64");
+        // int types
+        exportAffineTransformationZ5T<uint8_t, 2>(m, "2Duint8");
+
+        // export 3d affine transformations
+        // float types
+        exportAffineTransformationZ5T<float, 3>(m, "3Dfloat32");
+        exportAffineTransformationZ5T<double, 3>(m, "3Dfloat64");
+        // int types
+        exportAffineTransformationZ5T<uint8_t, 3>(m, "3Duint8");
+    }
+    #endif
 }
 }
