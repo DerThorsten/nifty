@@ -1,4 +1,4 @@
-# TODO only link libraries if we build with z5
+
 addPythonModule(
     NESTED_NAME 
         nifty/transformation
@@ -6,7 +6,9 @@ addPythonModule(
         transformation.cxx
         affine_transformation.cxx
     LIBRRARIES
+        ${HDF5_LIBRARIES} 
+        ${FASTFILTERS_LIBRARY}
         ${Z5_COMPRESSION_LIBRARIES}
-        ${FILESYSTEM_LIBRARIES}
+        ${FILESYSTEM_LIBRARIES} 
         Threads::Threads
 )

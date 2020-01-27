@@ -16,6 +16,9 @@ namespace transformation{
     #ifdef WITH_Z5
     void exportAffineTransformationZ5(py::module &);
     #endif
+    #ifdef WITH_HDF5
+    void exportAffineTransformationH5(py::module &);
+    #endif
 }
 }
 
@@ -33,5 +36,8 @@ PYBIND11_MODULE(_transformation, module) {
     exportAffineTransformation(module);
     #ifdef WITH_Z5
     exportAffineTransformationZ5(module);
+    #endif
+    #ifdef WITH_HDF5
+    exportAffineTransformationH5(module);
     #endif
 }

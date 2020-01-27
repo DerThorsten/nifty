@@ -412,6 +412,11 @@ namespace tools{
         array.writeSubarray(beginCoord.begin(), subarray);
     }
 
+    template<class T>
+    inline std::vector<std::size_t> getChunkShape(const hdf5::Hdf5Array<T> & array) {
+        return array.chunkShape();
+    }
+
     template<class ARRAY>
     struct BlockStorageSelector;
 

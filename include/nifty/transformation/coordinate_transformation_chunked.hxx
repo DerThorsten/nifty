@@ -6,8 +6,8 @@
 #include "nifty/z5/z5.hxx"
 #endif
 
-// TODO support hdf5 as well
 #ifdef WITH_HDF5
+#include "nifty/hdf5/hdf5_array.hxx"
 #endif
 
 namespace nifty {
