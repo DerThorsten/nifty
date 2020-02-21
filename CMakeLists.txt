@@ -198,7 +198,13 @@ else()
     # on clang, we need to enable libc++experimental, see
     # https://stackoverflow.com/a/45332844
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        SET(FILESYSTEM_LIBRARIES "c++experimental")
+        # see https://libcxx.llvm.org/docs/UsingLibcxx.html#id3
+        if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "7.0")
+            SET(FILESYSTEM_LIBRARIES "c++experimental")
+        elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "9.0")
+            SET(FILESYSTEM_LIBRARIES "c++fs")
+        endif()
+        # nothing required for clang>=9.0
     endif()
 endif()
 include_directories(${Boost_INCLUDE_DIR})
