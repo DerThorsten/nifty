@@ -162,7 +162,7 @@ cmake .. \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O3 -DNDEBUG -std=c++17" \
 \
         -DBOOST_ROOT=${PREFIX} \
-        -DWITH_HDF5=OFF \
+        -DWITH_HDF5=ON \
         -DWITH_Z5=ON \
         -DWITH_ZLIB=ON \
         -DWITH_BLOSC=ON \
