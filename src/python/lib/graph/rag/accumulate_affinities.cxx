@@ -51,7 +51,8 @@ namespace graph{
             xt::pytensor<double, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1., outLocal, outLifted, numberOfThreads);
+                accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,
+                                              outLocal, outLifted, numberOfThreads);
             }
             xt::pytensor<int64_t, 2> lnhOut({nLifted, int64_t(2)});
             if(haveLifted){
