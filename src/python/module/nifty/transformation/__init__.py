@@ -3,19 +3,7 @@ from . import _transformation as _trafo_impl
 
 def get_path_and_key_from_dataset(dataset):
     key = dataset.name
-    # NOTE z5py will have this in newer version as well, but not in 2.0.3
-    # which we currently depend on
-    # h5py: datasets have a direct pointer to the parent file
-    try:
-        return dataset.file.filename, key
-    except AttributeError:
-        pass
-
-    # go up the parents until we hit root (which is it's own parent)
-    obj = dataset
-    while obj.name != '/':
-        obj = obj.parent
-    return obj.filename, key
+    return dataset.file.filename, key
 
 
 # TODO support pre-smoothing

@@ -70,6 +70,16 @@ namespace transformation{
         typedef xt::pytensor<int16_t, 2> Short2DArray;
         exportAffineTransformationT<Short2DArray, 2>(m, "2Dint16");
 
+        typedef xt::pytensor<uint32_t, 2> UInt2DArray;
+        exportAffineTransformationT<UInt2DArray, 2>(m, "2Duint32");
+        typedef xt::pytensor<int32_t, 2> Int2DArray;
+        exportAffineTransformationT<Int2DArray, 2>(m, "2Dint32");
+
+        typedef xt::pytensor<uint64_t, 2> ULong2DArray;
+        exportAffineTransformationT<ULong2DArray, 2>(m, "2Duint64");
+        typedef xt::pytensor<int64_t, 2> Long2DArray;
+        exportAffineTransformationT<Long2DArray, 2>(m, "2Dint64");
+
         // export 3d affine transformations
         // float types
         typedef xt::pytensor<float, 3> Float3DArray;
@@ -87,6 +97,16 @@ namespace transformation{
         exportAffineTransformationT<UShort3DArray, 3>(m, "3Duint16");
         typedef xt::pytensor<int16_t, 3> Short3DArray;
         exportAffineTransformationT<Short3DArray, 3>(m, "3Dint16");
+
+        typedef xt::pytensor<uint32_t, 3> UInt3DArray;
+        exportAffineTransformationT<UInt3DArray, 3>(m, "3Duint32");
+        typedef xt::pytensor<int32_t, 3> Int3DArray;
+        exportAffineTransformationT<Int3DArray, 3>(m, "3Dint32");
+
+        typedef xt::pytensor<uint64_t, 3> ULong3DArray;
+        exportAffineTransformationT<ULong3DArray, 3>(m, "3Duint64");
+        typedef xt::pytensor<int64_t, 3> Long3DArray;
+        exportAffineTransformationT<Long3DArray, 3>(m, "3Dint64");
     }
 
 
@@ -141,6 +161,10 @@ namespace transformation{
         exportAffineTransformationZ5T<int8_t, 2>(m, "2Dint8");
         exportAffineTransformationZ5T<uint16_t, 2>(m, "2Duint16");
         exportAffineTransformationZ5T<int16_t, 2>(m, "2Dint16");
+        exportAffineTransformationZ5T<uint32_t, 2>(m, "2Duint32");
+        exportAffineTransformationZ5T<int32_t, 2>(m, "2Dint32");
+        exportAffineTransformationZ5T<uint64_t, 2>(m, "2Duint64");
+        exportAffineTransformationZ5T<int64_t, 2>(m, "2Dint64");
 
         // export 3d affine transformations
         // float types
@@ -152,6 +176,10 @@ namespace transformation{
         exportAffineTransformationZ5T<int8_t, 3>(m, "3Dint8");
         exportAffineTransformationZ5T<uint16_t, 3>(m, "3Duint16");
         exportAffineTransformationZ5T<int16_t, 3>(m, "3Dint16");
+        exportAffineTransformationZ5T<uint32_t, 3>(m, "3Duint32");
+        exportAffineTransformationZ5T<int32_t, 3>(m, "3Dint32");
+        exportAffineTransformationZ5T<uint64_t, 3>(m, "3Duint64");
+        exportAffineTransformationZ5T<int64_t, 3>(m, "3Dint64");
     }
     #endif
 
@@ -209,6 +237,10 @@ namespace transformation{
         exportAffineTransformationH5T<int8_t, 2>(m, "2Dint8");
         exportAffineTransformationH5T<uint16_t, 2>(m, "2Duint16");
         exportAffineTransformationH5T<int16_t, 2>(m, "2Dint16");
+        exportAffineTransformationH5T<uint32_t, 2>(m, "2Duint32");
+        exportAffineTransformationH5T<int32_t, 2>(m, "2Dint32");
+        exportAffineTransformationH5T<uint64_t, 2>(m, "2Duint64");
+        exportAffineTransformationH5T<int64_t, 2>(m, "2Dint64");
 
         // export 3d affine transformations
         // float types
@@ -220,6 +252,10 @@ namespace transformation{
         exportAffineTransformationH5T<int8_t, 3>(m, "3Dint8");
         exportAffineTransformationH5T<uint16_t, 3>(m, "3Duint16");
         exportAffineTransformationH5T<int16_t, 3>(m, "3Dint16");
+        exportAffineTransformationH5T<uint32_t, 3>(m, "3Duint32");
+        exportAffineTransformationH5T<int32_t, 3>(m, "3Dint32");
+        exportAffineTransformationH5T<uint64_t, 3>(m, "3Duint64");
+        exportAffineTransformationH5T<int64_t, 3>(m, "3Dint64");
     }
     #endif
 }
