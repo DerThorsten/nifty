@@ -377,6 +377,7 @@ namespace distributed {
         nlohmann::json attrs;
         attrs["numberOfNodes"] = nNodes;
         attrs["numberOfEdges"] = nEdges;
+        attrs["nodeMaxId"] = *std::max_element(nodes.begin(), nodes.end());
         attrs["roiBegin"] = std::vector<std::size_t>(roiBegin.begin(), roiBegin.end());
         attrs["roiEnd"] = std::vector<std::size_t>(roiEnd.begin(), roiEnd.end());
 
