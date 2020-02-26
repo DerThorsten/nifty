@@ -14,6 +14,7 @@
 #include "nifty/array/static_array.hxx"
 #include "nifty/xtensor/xtensor.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/tools/label_multiset_wrapper.hxx"
 
 
 namespace nifty {
@@ -68,39 +69,28 @@ namespace distributed {
 
         z5::filesystem::handle::File file(path);
         auto ds = z5::openDataset(file, key);
+        z5::filesystem::handle::Dataset dsHandle(file, key);
+        nlohmann::json attrs;
+        z5::readAttributes(dsHandle, attrs);
 
         // check if this is a label multiset
         bool isLabelMultiset = false;
-
-        // TODO check for label multiset attributes
+        if(attrs.find("isLabelMultiset") != attrs.end()) {
+            isLabelMultiset = attrs["isLabelMultiset"];
+        }
 
         if(isLabelMultiset) {
-            // is a label multiset -> load the argmax vector and copy into label array
-
-            // first, need to find this chunk id
-            const auto & chunks = ds->defaultChunkShape();
-            const unsigned ndim = chunks.size();
-            std::vector<std::size_t> chunkId(ndim);
-            for(unsigned d = 0; d < ndim; ++d) {
-                chunkId[d] = roiBegin[d] / chunks[d];
-            }
-
-            // next, load this chunk, if we don't have one, return false
-
-            // find the number of labels in this chunk
-            // (encoded in the first 4 bytes as signed integer '>i' in pythons struct)
-
-            // load the first 8 * number of labels bytes, which encode the argmax labels
-            // encoded as '>q' in python's struct TODO unsigned long?
-
-            // reshape the label vector and copy it into the label output array
+            // is a label multiset -> need to use label multi-set wrapper and then load the array
+            tools::LabelMultisetWrapper label_multiset(std::move(ds));
+            label_multiset.readSubarray(labels, roiBegin);
         }
         else {
             // not a label multiset -> we can just load the label array
             z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
-
-            // check if the labels are all zero
         }
+
+        // TODO
+        // check if the labels are all zero and return false
         return true;
     }
 

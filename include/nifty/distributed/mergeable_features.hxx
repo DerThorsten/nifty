@@ -311,7 +311,8 @@ namespace distributed {
                                       const FeatureType dataMin,
                                       const FeatureType dataMax,
                                       const bool ignoreLabel,
-                                      const bool increaseRoi=false) {
+                                      const bool increaseRoi=false,
+                                      const bool isLabelMultiset=false) {
         // xtensor typedefs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 3> DataArray;
@@ -340,9 +341,17 @@ namespace distributed {
 
         // load data and labels
         DataArray data(shape);
-        LabelArray labels(shape);
         z5::multiarray::readSubarray<InputType>(dataDs, data, actualRoiBegin.begin());
-        z5::multiarray::readSubarray<NodeType>(labelsDs, labels, actualRoiBegin.begin());
+
+        // load labels from normal label dataset or label multi-set
+        LabelArray labels(shape);
+        if(isLabelMultiset) {
+            // is a label multiset -> need to use label multi-set wrapper and then load the array
+            tools::LabelMultisetWrapper label_multiset(std::move(labelsDs));
+            label_multiset.readSubarray(labels, actualRoiBegin);
+        } else {
+            z5::multiarray::readSubarray<NodeType>(labelsDs, labels, actualRoiBegin.begin());
+        }
 
         // create nifty accumulator vector
         AccumulatorVector accumulators(graph.numberOfEdges());
@@ -473,7 +482,8 @@ namespace distributed {
                                       const std::vector<std::size_t> & haloEnd,
                                       const FeatureType dataMin,
                                       const FeatureType dataMax,
-                                      const bool ignoreLabel) {
+                                      const bool ignoreLabel,
+                                      const bool isLabelMultiset) {
         // xtensor typedegs
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef xt::xtensor<InputType, 4> DataArray;
@@ -503,11 +513,19 @@ namespace distributed {
         affShape[0] = offsets.size();
         affBlockShape[0] = affShape[0];
 
-        // load data and labels
+        // load data
         DataArray affs(affShape);
-        LabelArray labels(shape);
         z5::multiarray::readSubarray<InputType>(dataDs, affs, affsBegin.begin());
-        z5::multiarray::readSubarray<NodeType>(labelsDs, labels, beginWithHalo.begin());
+
+        // load labels from normal label dataset or label multi-set
+        LabelArray labels(shape);
+        if(isLabelMultiset) {
+            // is a label multiset -> need to use label multi-set wrapper and then load the array
+            tools::LabelMultisetWrapper label_multiset(std::move(labelsDs));
+            label_multiset.readSubarray(labels, beginWithHalo);
+        } else {
+            z5::multiarray::readSubarray<NodeType>(labelsDs, labels, beginWithHalo.begin());
+        }
 
         // create nifty accumulator vector
         AccumulatorVector accumulators(graph.numberOfEdges());
@@ -556,7 +574,19 @@ namespace distributed {
                                                      const FeatureType dataMax=1,
                                                      const bool increaseRoi=false) {
 
-        auto accumulator = [dataMin, dataMax, increaseRoi, &outPath, &outKey](
+        // check if we have label multiset input
+        z5::filesystem::handle::File fileHandle(labelPath);
+        z5::filesystem::handle::Dataset dsHandle(fileHandle, labelKey);
+        nlohmann::json attrs;
+        z5::readAttributes(dsHandle, attrs);
+
+        bool isLabelMultiset = false;
+        if(attrs.find("isLabelMultiset") != attrs.end()) {
+            isLabelMultiset = attrs["isLabelMultiset"];
+        }
+
+        auto accumulator = [dataMin, dataMax, increaseRoi, isLabelMultiset,
+                            &outPath, &outKey](
                 const Graph & graph,
                 std::unique_ptr<z5::Dataset> dataDs,
                 std::unique_ptr<z5::Dataset> labelsDs,
@@ -569,7 +599,7 @@ namespace distributed {
             accumulateBoundaryMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
                                              chunkPos, roiBegin, roiEnd, outPath, outKey,
                                              dataMin, dataMax, ignoreLabel,
-                                             increaseRoi);
+                                             increaseRoi, isLabelMultiset);
         };
 
         extractBlockFeaturesImpl(graphPath, subgraphKey,
@@ -604,7 +634,18 @@ namespace distributed {
             }
         }
 
-        auto accumulator = [dataMin, dataMax,
+        // check if we have label multiset input
+        z5::filesystem::handle::File fileHandle(labelPath);
+        z5::filesystem::handle::Dataset dsHandle(fileHandle, labelKey);
+        nlohmann::json attrs;
+        z5::readAttributes(dsHandle, attrs);
+
+        bool isLabelMultiset = false;
+        if(attrs.find("isLabelMultiset") != attrs.end()) {
+            isLabelMultiset = attrs["isLabelMultiset"];
+        }
+
+        auto accumulator = [dataMin, dataMax, isLabelMultiset,
                             &offsets, &haloBegin, &haloEnd,
                             &outPath, &outKey](
                 const Graph & graph,
@@ -619,7 +660,8 @@ namespace distributed {
             accumulateAffinityMap<InputType>(graph, std::move(dataDs), std::move(labelsDs),
                                              chunkPos, roiBegin, roiEnd, outPath, outKey,
                                              offsets, haloBegin, haloEnd,
-                                             dataMin, dataMax, ignoreLabel);
+                                             dataMin, dataMax, ignoreLabel,
+                                             isLabelMultiset);
         };
 
         extractBlockFeaturesImpl(graphPath, subgraphKey,
