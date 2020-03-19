@@ -62,6 +62,7 @@ script:
           -DCMAKE_INSTALL_PREFIX="${ENV_ROOT}"
           -DPYTHON_MODULE_INSTALL_DIR="/home/travis/miniconda/envs/dev/lib/python${CONDA_PYTHON_VERSION}/site-packages"
           -DCMAKE_CXX_FLAGS="-std=c++17"
+          -DWITH_BOOST_FS=OFF
  
   ###############################################
   # the actual build
