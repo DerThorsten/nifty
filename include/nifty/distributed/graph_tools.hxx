@@ -445,6 +445,8 @@ namespace distributed {
     }
 
 
+    // FIXME I don't think this is working properly right now, use the nifty.graph version instead
+    // and fix this !!!!
     // this should also work in-place, i.e. just with a single node labeling
     // but right now it's too hot for me to figure this out
     // connected components from node labels

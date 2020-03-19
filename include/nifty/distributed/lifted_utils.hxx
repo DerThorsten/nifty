@@ -7,15 +7,6 @@
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/distributed_graph.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {

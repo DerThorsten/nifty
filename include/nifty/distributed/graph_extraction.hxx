@@ -196,7 +196,7 @@ namespace distributed {
                                 const int nThreads=1) {
         const z5::filesystem::handle::File graphFile(graphPath);
         const z5::filesystem::handle::Group graph(graphFile, graphKey);
-        loadEdgeIndices(graph, edgeIndices, offset, nThreads);
+        return loadEdgeIndices(graph, edgeIndices, offset, nThreads);
     }
 
 
@@ -231,7 +231,7 @@ namespace distributed {
                           EDGES & edges) {
         z5::filesystem::handle::File graphFile(graphPath);
         z5::filesystem::handle::Group graph(graphFile, graphKey);
-        loadEdges(graph, edges);
+        return loadEdges(graph, edges);
     }
 
 
@@ -273,7 +273,7 @@ namespace distributed {
                           const int nThreads=1) {
         z5::filesystem::handle::File graphFile(graphPath);
         z5::filesystem::handle::Group graph(graphFile, graphKey);
-        loadEdges(graph, edges, offset, nThreads);
+        return loadEdges(graph, edges, offset, nThreads);
     }
 
 
