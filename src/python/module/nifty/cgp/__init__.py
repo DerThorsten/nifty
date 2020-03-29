@@ -4,7 +4,7 @@ from .import _cgp as __cgp
 from ._cgp import *
 
 from scipy.ndimage import grey_dilation
-from scipy.misc import imresize as __imresize
+from skimage.transform import resize as __imresize
 from scipy.ndimage import zoom as __zoom
 
 try:
@@ -25,10 +25,10 @@ for key in __cgp.__dict__.keys():
     except:
         pass
 
-import numpy 
+import numpy
 
 def _extenTGrid():
-   
+
 
     def _gridView(self):
         a = self._gridView()
@@ -36,7 +36,7 @@ def _extenTGrid():
         return a
 
     TopologicalGrid2D.__array__ = _gridView
-    
+
     def extractCellsBounds(self):
         return Bounds2D(self)
 
@@ -60,7 +60,7 @@ def _extenTGrid():
                 if cellType==0:
                     a[a>offset[0]]  = 0
                 else:
-                   a[ numpy.logical_and(a>offset[cellType], a<=offset[cellType-1])] = 0 
+                   a[ numpy.logical_and(a>offset[cellType], a<=offset[cellType-1])] = 0
 
 
         return a
@@ -143,7 +143,7 @@ def makeCellImage(image, mask_image, lut, size=None):
             zeroValue = numpy.array(zeroValue)[None,:]
             _lut = numpy.concatenate((zeroValue,lut))
 
-            #lutImg0 
+            #lutImg0
             #lutImg1
             #lutImg2
 
@@ -170,7 +170,7 @@ def makeCellImage(image, mask_image, lut, size=None):
 
         else:
             raise ValueError("lut ndim must be in [1,2]")
-       
+
         #print("theklut",_lut.shape,mask_image.shape)
         lutImg = numpy.take(_lut, mask_image)
         lutImg = _lut[mask_image.ravel(),:].reshape(mask_image.shape+(3,))
@@ -187,14 +187,14 @@ def makeCellImage(image, mask_image, lut, size=None):
 
 def cell1Features(tgrid, geometry=None, bounds=None,
         boundedBy=None,raw=None, pmap=None):
-    
-    
+
+
     if geometry is None:
         geometry = tgrid.extractCellsGeometry()
     if geometry is None:
         bounds = tgrid.extractCellsBounds()
     if boundedBy is None:
-        boundedBy = {1:bounds[0].reverseMapping(), 
+        boundedBy = {1:bounds[0].reverseMapping(),
                      2:bounds[1].reverseMapping()}
 
 
@@ -203,11 +203,11 @@ def cell1Features(tgrid, geometry=None, bounds=None,
 
     # curvature
     op = Cell1CurvatureFeatures2D()
-    feat = op(cell1GeometryVector=geometry[1], 
+    feat = op(cell1GeometryVector=geometry[1],
               cell1BoundedByVector=boundedBy[1])
     feats.append(feat)
     fNames = op.names()
-    
+
     assert len(fNames) == feat.shape[1]
 
     names.extend(fNames)
@@ -222,8 +222,8 @@ def cell1Features(tgrid, geometry=None, bounds=None,
 
     # basic geometric features
     op = Cell1BasicGeometricFeatures2D()
-    feat = op(cell1GeometryVector=geometry[1], 
-             cell2GeometryVector=geometry[2], 
+    feat = op(cell1GeometryVector=geometry[1],
+             cell2GeometryVector=geometry[2],
              cell1BoundsVector=bounds[1])
     feats.append(feat)
     fNames = op.names()
@@ -233,9 +233,9 @@ def cell1Features(tgrid, geometry=None, bounds=None,
 
     # basic topological features
     op = Cell1BasicTopologicalFeatures2D()
-    feat = op(cell0BoundsVector=bounds[0], 
-              cell1BoundsVector=bounds[1], 
-              cell1BoundedByVector=boundedBy[1], 
+    feat = op(cell0BoundsVector=bounds[0],
+              cell1BoundsVector=bounds[1],
+              cell1BoundedByVector=boundedBy[1],
               cell2BoundedByVector=boundedBy[2])
     feats.append(feat)
     fNames = op.names()
@@ -247,4 +247,4 @@ def cell1Features(tgrid, geometry=None, bounds=None,
 
     return feats, names
 
-    
+
