@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: s-weigand/setup-conda@v1
     - name: configure
-      run: ./github/workflows/configure.sh
+      run: ./.github/workflows/configure.sh
     - name: make
       run: make install
     - name: test
-      run: ./github/workflows/test.sh
+      run: ./.github/workflows/test.sh
