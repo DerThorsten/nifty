@@ -39,7 +39,7 @@ class TestHDF5(unittest.TestCase):
         shape = (101, 102, 103)
         chunks = (10, 20, 30)
         data = numpy.ones(shape=shape, dtype='uint64')
-        with h5py.File(fpath) as f:
+        with h5py.File(fpath, 'a') as f:
             f.create_dataset("data", shape, dtype='uint64', data=data, chunks=chunks)
 
         hidT = nhdf5.openFile(fpath)
@@ -68,7 +68,7 @@ class TestHDF5(unittest.TestCase):
 
         shape = (101, 102, 103)
         data = numpy.ones(shape=shape, dtype='uint64')
-        with h5py.File(fpath) as f:
+        with h5py.File(fpath, 'a') as f:
             f.create_dataset("data", shape, dtype='uint64', data=data)
 
         hidT = nhdf5.openFile(fpath)

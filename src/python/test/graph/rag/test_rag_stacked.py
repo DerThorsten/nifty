@@ -157,7 +157,7 @@ class TestRagStacked(TestRagBase):
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
-        self.small_array_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, 'data')),
+        self.small_array_test(nifty.z5.datasetWrapper('uint32', self.path, 'data'),
                               nrag.gridRagStacked2DZ5)
 
     def big_array_test(self, array, ragFunction):
@@ -201,7 +201,7 @@ class TestRagStacked(TestRagBase):
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
         # self.small_array_test(array, nrag.gridRagStacked2DZ5)
-        self.big_array_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, 'data')),
+        self.big_array_test(nifty.z5.datasetWrapper('uint32', self.path, 'data'),
                             nrag.gridRagStacked2DZ5)
 
     def serialization_test(self, array, ragFunction):
@@ -265,7 +265,7 @@ class TestRagStacked(TestRagBase):
         array[:] = self.bigLabels
         # we only pass the path and key to the dataset, because we
         # cannot properly link the python bindings for now
-        self.serialization_test(nifty.z5.datasetWrapper('uint32', os.path.join(self.path, "data")),
+        self.serialization_test(nifty.z5.datasetWrapper('uint32', self.path, "data"),
                                 nrag.gridRagStacked2DZ5)
 
 
