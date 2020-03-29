@@ -47,11 +47,15 @@ public:
         return result.release();
     }
 
+    // this does not work with pybind11 > 2.4, see
+    // https://github.com/DerThorsten/nifty/issues/133
+    /*
     static PYBIND11_DESCR name() {
         return type_descr(
             _("Adjacency[") + make_caster<T1>::name() + _(", ") + make_caster<T2>::name() + _("]")
         );
     }
+    */
 
     template <typename T> using cast_op_type = type;
 

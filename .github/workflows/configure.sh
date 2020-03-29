@@ -1,7 +1,7 @@
 # TODO how do we set the python version properly?
 conda create -q -n dev -c conda-forge -c defaults cmake gcc_linux-64 gxx_linux-64
 source activate dev
-conda install -c conda-forge "pybind11\<2.4" xtensor-python boost-cpp scikit-image h5py vigra z5py>=1.5.1 nlohmann_json
+conda install -c conda-forge xtensor-python boost-cpp scikit-image h5py vigra z5py>=1.5.1 nlohmann_json
         
 export ENV_BIN="$CONDA_PREFIX/bin"
 export CC="$ENV_BIN/x86_64-conda_cos6-linux-gnu-cc"
