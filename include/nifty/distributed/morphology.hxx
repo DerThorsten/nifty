@@ -6,15 +6,6 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
@@ -73,6 +64,7 @@ namespace distributed {
     template<class MORPHOLOGY>
     inline void serializeMorphology(const MORPHOLOGY & morphology,
                                     const std::string & outPath,
+                                    const std::string & outKey,
                                     const std::vector<std::size_t> & chunkId) {
         // first determine the serialization size = 11 elems per label
         const std::size_t serSize = morphology.size() * 11;
@@ -90,7 +82,8 @@ namespace distributed {
         }
 
         // write serialization
-        auto ds = z5::openDataset(outPath);
+        const z5::filesystem::handle::File file(outPath);
+        auto ds = z5::openDataset(file, outKey);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
     }
 
@@ -99,6 +92,7 @@ namespace distributed {
     inline void computeAndSerializeMorphology(const LABELS & labels,
                                               const std::vector<std::size_t> & coordinateOffset,
                                               const std::string & outPath,
+                                              const std::string & outKey,
                                               const std::vector<std::size_t> & chunkId) {
         typedef typename LABELS::value_type LabelType;
         // we keep track of 10 values in the morphology:
@@ -113,7 +107,7 @@ namespace distributed {
 
         // serialize the morphology
         if(morphology.size() > 0) {
-            serializeMorphology(morphology, outPath, chunkId);
+            serializeMorphology(morphology, outPath, outKey, chunkId);
         }
     }
 
@@ -161,7 +155,9 @@ namespace distributed {
     }
 
     inline void mergeAndSerializeMorphology(const std::string & inputPath,
+                                            const std::string & inputKey,
                                             const std::string & outputPath,
+                                            const std::string & outputKey,
                                             const uint64_t labelBegin,
                                             const uint64_t labelEnd) {
 
@@ -186,7 +182,8 @@ namespace distributed {
         }
 
 
-        auto inputDs = z5::openDataset(inputPath);
+        const z5::filesystem::handle::File inFile(inputPath);
+        auto inputDs = z5::openDataset(inFile, inputKey);
         z5::util::parallel_for_each_chunk(*inputDs, 1,
                                           [&out,
                                            labelBegin,
@@ -194,12 +191,11 @@ namespace distributed {
                                                      const z5::Dataset & ds,
                                                      const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
-            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
-            if(!chunk.exists()) {
+            if(!ds.chunkExists(chunkCoord)) {
                 return;
             }
-            bool isVarlen;
-            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::size_t chunkSize;
+            ds.checkVarlenChunk(chunkCoord, chunkSize);
             std::vector<double> morphologyIn(chunkSize);
             ds.readChunk(chunkCoord, &morphologyIn[0]);
             mergeMorphology(morphologyIn, out,
@@ -207,7 +203,8 @@ namespace distributed {
 
         });
 
-        auto dsOut = z5::openDataset(outputPath);
+        const z5::filesystem::handle::File outFile(outputPath);
+        auto dsOut = z5::openDataset(outFile, outputKey);
         const std::vector<std::size_t> offset({labelBegin, 0});
         z5::multiarray::writeSubarray<double>(dsOut, out, offset.begin());
     }

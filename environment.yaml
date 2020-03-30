@@ -1,0 +1,13 @@
+name:
+    nifty-dev
+channels:
+    - conda-forge
+dependencies:
+    - boost-cpp
+    - hdf5 >=1.10
+    - nlohmann_json
+    - pybind11 <2.4  # cannot build with >2.4, see https://github.com/DerThorsten/nifty/issues/133
+    - vigra
+    - xtensor
+    - xtensor-python
+    - z5py >=2.0.5

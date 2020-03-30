@@ -23,7 +23,7 @@ public:
         ufd_(graph.nodeIdUpperBound()+1),
         offset_(ufd_.numberOfElements() - graph_.numberOfNodes()),
         needsReset_(false){
-        
+
     }
 
     uint64_t build(){
@@ -54,7 +54,7 @@ public:
             if(edgeLabels[edge] == 0){
                 const auto u = graph_.u(edge);
                 const auto v = graph_.v(edge);
-                ufd_.merge(u,v); 
+                ufd_.merge(u,v);
             }
         }
         needsReset_ = true;

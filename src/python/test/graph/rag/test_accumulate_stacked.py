@@ -102,8 +102,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                       compression='raw')
         dsl[:] = self.labels
 
-        rag = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32',
-                                                              os.path.join(label_path, 'data')),
+        rag = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32', label_path, 'data'),
                                       numberOfLabels=self.n_labels,
                                       numberOfThreads=1)
         n_edges_xy = rag.totalNumberOfInSliceEdges
@@ -147,12 +146,9 @@ class TestAccumulateStacked(unittest.TestCase):
         # test complete accumulation
         print("Complete Accumulation ...")
         accumulation_function(rag,
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(data_path, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_xy, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_z, 'data')),
+                              nifty.z5.datasetWrapper('float32', data_path, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_xy, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_z, 'data'),
                               numberOfThreads=1)
 
         feats_xy, feats_z = load_features(path_xy, path_z)
@@ -164,12 +160,9 @@ class TestAccumulateStacked(unittest.TestCase):
         print("Complete XY Accumulation ...")
         path_xy, path_z = open_features(keep_xy=True)
         accumulation_function(rag,
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(data_path, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_xy, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_z, 'data')),
+                              nifty.z5.datasetWrapper('float32', data_path, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_xy, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_z, 'data'),
                               keepXYOnly=True,
                               numberOfThreads=-1)
 
@@ -184,12 +177,9 @@ class TestAccumulateStacked(unittest.TestCase):
         for z_direction in (0, 1, 2):
             path_xy, path_z = open_features(keep_z=True)
             accumulation_function(rag,
-                                  nifty.z5.datasetWrapper('float32',
-                                                          os.path.join(data_path, 'data')),
-                                  nifty.z5.datasetWrapper('float32',
-                                                          os.path.join(path_xy, 'data')),
-                                  nifty.z5.datasetWrapper('float32',
-                                                          os.path.join(path_z, 'data')),
+                                  nifty.z5.datasetWrapper('float32', data_path, 'data'),
+                                  nifty.z5.datasetWrapper('float32', path_xy, 'data'),
+                                  nifty.z5.datasetWrapper('float32', path_z, 'data'),
                                   keepZOnly=True,
                                   numberOfThreads=-1)
 
@@ -226,9 +216,7 @@ class TestAccumulateStacked(unittest.TestCase):
                                       compression='raw')
         dsl[:] = self.labels
 
-        rag_ooc = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32',
-                                                                  os.path.join(label_path,
-                                                                               'data')),
+        rag_ooc = nrag.gridRagStacked2DZ5(nifty.z5.datasetWrapper('uint32', label_path, 'data'),
                                           numberOfLabels=self.n_labels,
                                           numberOfThreads=1)
         data_path = os.path.join(self.tmp_dir, 'data.n5')
@@ -271,13 +259,10 @@ class TestAccumulateStacked(unittest.TestCase):
 
         # test complete accumulation
         accumulation_function(rag_ooc,
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(data_path, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_xy, 'data')),
-                              nifty.z5.datasetWrapper('float32',
-                                                      os.path.join(path_z, 'data')),
-                              numberOfThreads=-11)
+                              nifty.z5.datasetWrapper('float32', data_path, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_xy, 'data'),
+                              nifty.z5.datasetWrapper('float32', path_z, 'data'),
+                              numberOfThreads=-1)
 
         feats_xy_ooc, feats_z_ooc = load_features(path_xy, path_z)
 

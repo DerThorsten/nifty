@@ -13,6 +13,7 @@ except ImportError:
     WITH_Z5PY = False
 
 
+@unittest.skipUnless(WITH_Z5 and WITH_Z5PY, "Need z5 support")
 class TestSkeletons(unittest.TestCase):
 
     def setUp(self):
@@ -30,6 +31,7 @@ class TestSkeletons(unittest.TestCase):
 
         # make skeletons
         f_skels = z5py.File('./tmp/skels.n5', use_zarr_format=False)
+        g = f_skels.require_group('skels')
         # skeleton 1: only in label 3
         skel1 = np.array([[0, 0, 0, 0],
                           [1, 10, 10, 10],
@@ -37,7 +39,7 @@ class TestSkeletons(unittest.TestCase):
                           [3, 20, 20, 20],
                           [4, 25, 25, 25],
                           [5, 35, 35, 35]], dtype='uint64')
-        g1 = f_skels.create_group('1')
+        g1 = g.create_group('1')
         c1 = g1.create_dataset('coordinates', shape=skel1.shape,
                                chunks=skel1.shape, dtype='uint64')
         c1[:] = skel1
@@ -48,7 +50,7 @@ class TestSkeletons(unittest.TestCase):
                           [3, 75, 45, 45],
                           [4, 80, 55, 55],
                           [5, 85, 65, 65]], dtype='uint64')
-        g2 = f_skels.create_group('2')
+        g2 = g.create_group('2')
         c2 = g2.create_dataset('coordinates', shape=skel2.shape,
                                chunks=skel2.shape, dtype='uint64')
         c2[:] = skel2
@@ -57,11 +59,9 @@ class TestSkeletons(unittest.TestCase):
         if os.path.exists('./tmp'):
             rmtree('./tmp')
 
-    @unittest.skipUnless(WITH_Z5 and WITH_Z5PY,
-                         "Need z5 support")
     def test_nodes(self):
         import nifty.skeletons as nskel
-        metrics = nskel.SkeletonMetrics('./tmp/seg.n5/seg', './tmp/skels.n5', [1, 2], 1)
+        metrics = nskel.SkeletonMetrics('./tmp/seg.n5', 'seg', './tmp/skels.n5', 'skels', [1, 2], 1)
         out = metrics.getNodeAssignments()
         self.assertEqual(list(out.keys()), [1, 2])
         out1 = [out[1][k] for k in sorted(out[1].keys())]

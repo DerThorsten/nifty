@@ -8,16 +8,10 @@
 #include "nifty/array/arithmetic_array.hxx"
 
 
-
-
-
-
-
 namespace nifty{
 namespace tools{
 
-    
-    
+
 
     template<class SHAPE_T, class F>
     void forEachCoordinateImpl(

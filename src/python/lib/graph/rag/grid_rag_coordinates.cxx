@@ -57,19 +57,19 @@ namespace graph{
 
             .def("edgesToVolume", [](
                     const CoordinatesType & self,
-                    const std::vector<uint32_t> & edgeValues,
+                    const xt::pytensor<float, 1> & edgeValues,
                     const int edgeDirection,
                     const uint32_t ignoreValue,
                     const int numberOfThreads) {
 
-                typedef typename xt::pytensor<uint32_t, DIM>::shape_type ShapeType;
+                typedef typename xt::pytensor<float, DIM>::shape_type ShapeType;
                 ShapeType shape;
                 std::copy(self.rag().shape().begin(), self.rag().shape().end(), shape.begin());
-                xt::pytensor<uint32_t, DIM> out = xt::zeros<uint32_t>(shape);
+                xt::pytensor<float, DIM> out = xt::zeros<float>(shape);
 
                 self.edgesToVolume(edgeValues, out, edgeDirection, ignoreValue, numberOfThreads);
                 return out;
-            }, py::arg("edgeValues"), py::arg("edgeDirection") = 0, py::arg("ignoreValue") = 0, py::arg("numberOfThreads") = -1)
+            }, py::arg("edgeValues"), py::arg("edgeDirection")=0, py::arg("ignoreValue")=0, py::arg("numberOfThreads")=-1)
 
             .def("edgesToSubVolume", [](
                     const CoordinatesType & self,

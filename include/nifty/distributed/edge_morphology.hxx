@@ -3,16 +3,6 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/distributed/mergeable_features.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
-
 
 namespace nifty {
 namespace distributed {
@@ -96,7 +86,8 @@ namespace distributed {
 
 
     template<class OUT>
-    inline void find1DEdges(const std::string & blockPrefix,
+    inline void find1DEdges(const std::string & graphPath,
+                            const std::string & graphPrefix,
                             const std::string & labelPath,
                             const std::string & labelKey,
                             const std::vector<std::size_t> & blockIds,
@@ -104,28 +95,26 @@ namespace distributed {
         typedef xt::xtensor<NodeType, 3> LabelArray;
         std::vector<uint8_t> edgeAxes(out.size());
 
-        fs::path labelsSetPath(labelPath);
-        labelsSetPath /= labelKey;
-
-        auto labelDs = z5::openDataset(labelsSetPath.string());
-        const std::vector<std::string> keys = {"roiBegin", "roiEnd", "ignoreLabel"};
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::File labelFile(labelPath);
+        auto labelDs = z5::openDataset(labelFile, labelKey);
 
         std::vector<std::size_t> roiBegin(3), roiEnd(3);
         for(const std::size_t blockId : blockIds) {
 
             // load the sub-graph corresponding to this block
-            const std::string blockPath = blockPrefix + std::to_string(blockId);
-            Graph graph(blockPath);
+            const std::string blockKey = graphPrefix + std::to_string(blockId);
+            Graph graph(graphPath, blockKey);
             // continue if we don't have edges in this graph
             if(graph.numberOfEdges() == 0) {
                 continue;
             }
 
             // load the bounding box information
-            z5::handle::Group group(blockPath);
+            z5::filesystem::handle::Group group(graphFile, blockKey);
             nlohmann::json j;
-            z5::readAttributes(group, keys, j);
-            loadBB(j[keys[0]], j[keys[1]], roiBegin, roiEnd);
+            z5::readAttributes(group, j);
+            loadBB(j["roiBegin"], j["roiEnd"], roiBegin, roiEnd);
 
             // get the shape and create array
             Shape3Type shape;
@@ -136,11 +125,11 @@ namespace distributed {
 
             // load the labels from the bounding box
             z5::multiarray::readSubarray<NodeType>(labelDs, labels, roiBegin.begin());
-            const bool ignoreLabel = j[keys[2]];
+            const bool ignoreLabel = j["ignoreLabel"];
 
             // load the global edge indices for this block
             std::vector<EdgeIndexType> edgeIndices;
-            loadEdgeIndices(blockPath, edgeIndices, 0);
+            loadEdgeIndices(group, edgeIndices, 0);
 
             // find which edges are 1d
             find1DEdgesBlock(graph, labels, edgeIndices, ignoreLabel, out, edgeAxes);
@@ -202,7 +191,8 @@ namespace distributed {
 
 
     template<class OUT>
-    inline void findBlockBoundaryEdges(const std::string & blockPrefix,
+    inline void findBlockBoundaryEdges(const std::string & graphPath,
+                                       const std::string & subgraphKey,
                                        const std::string & labelPath,
                                        const std::string & labelKey,
                                        const std::vector<std::size_t> & blockShape,
@@ -211,11 +201,16 @@ namespace distributed {
         typedef xt::xtensor<NodeType, 3> LabelArray;
         typedef nifty::array::StaticArray<int64_t, 3> VectorType;
 
-        fs::path labelsSetPath(labelPath);
-        labelsSetPath /= labelKey;
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::File labelFile(labelPath);
+        auto labelDs = z5::openDataset(labelFile, labelKey);
 
-        auto labelDs = z5::openDataset(labelsSetPath.string());
-        const std::vector<std::string> keys = {"ignoreLabel"};
+        z5::filesystem::handle::Group graphGroup(graphFile, subgraphKey);
+        nlohmann::json j;
+        z5::readAttributes(graphGroup, j);
+        const bool ignoreLabel = j["ignore_label"];
+        const auto dsEdges = z5::openDataset(graphGroup, "edges");
+        const auto dsEdgeIds = z5::openDataset(graphGroup, "edge_ids");
 
         VectorType shape, blockShapeVec;
         std::copy(labelDs->shape().begin(), labelDs->shape().end(), shape.begin());
@@ -224,25 +219,33 @@ namespace distributed {
         tools::Blocking<3> blocking(VectorType({0, 0, 0}),
                                     shape, blockShapeVec);
 
+        VectorType blockPos;
         for(const std::size_t blockId : blockIds) {
 
-            // load the sub-graph corresponding to this block
-            const std::string blockPath = blockPrefix + std::to_string(blockId);
-            Graph graph(blockPath);
-            // continue if we don't have edges in this graph
-            if(graph.numberOfEdges() == 0) {
+            blocking.blockGridPosition(blockId, blockPos);
+            std::vector<std::size_t> chunkId(blockPos.begin(), blockPos.end());
+            // continue if we don't have edges in this block
+            if(!dsEdges->chunkExists(chunkId)) {
                 continue;
             }
 
+            // load the edges and build the graph
+            std::size_t nEdgesBlock;
+            dsEdges->checkVarlenChunk(chunkId, nEdgesBlock);
+            std::vector<uint64_t> edgeSer(nEdgesBlock);
+            dsEdges->readChunk(chunkId, &edgeSer[0]);
+            xt::xtensor<uint64_t, 2> edges({nEdgesBlock / 2, 2});
+            for(std::size_t edgeId = 0; edgeId < nEdgesBlock / 2; ++edgeId) {
+                edges(edgeId, 0) = edgeSer[2 * edgeId];
+                edges(edgeId, 1) = edgeSer[2 * edgeId + 1];
+            }
+            Graph graph(edges);
+
+            // find the bounduing box of this block and load the label array
             const auto block = blocking.getBlock(blockId);
             auto roiBegin = block.begin();
             const auto & roiEnd = block.end();
             increaseRoi(roiBegin);
-
-            // load the bounding box information
-            z5::handle::Group group(blockPath);
-            nlohmann::json j;
-            z5::readAttributes(group, keys, j);
 
             // get the shape and create array
             Shape3Type thisShape;
@@ -250,14 +253,12 @@ namespace distributed {
                 thisShape[axis] = roiEnd[axis] - roiBegin[axis];
             }
             LabelArray labels(thisShape);
-
-            // load the labels from the bounding box
+            // load
             z5::multiarray::readSubarray<NodeType>(labelDs, labels, roiBegin.begin());
-            const bool ignoreLabel = j[keys[0]];
 
             // load the global edge indices for this block
-            std::vector<EdgeIndexType> edgeIndices;
-            loadEdgeIndices(blockPath, edgeIndices, 0);
+            std::vector<EdgeIndexType> edgeIndices(nEdgesBlock / 2);
+            dsEdgeIds->readChunk(chunkId, &edgeIndices[0]);
 
             // find which edges are 1d
             findBlockBoundaryEdgesBlock(graph, labels, edgeIndices, blocking, blockId,

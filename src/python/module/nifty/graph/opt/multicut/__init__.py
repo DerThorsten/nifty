@@ -100,22 +100,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.loggingVisitor = staticmethod(loggingVisitor)
 
 
-
-    def greedyAdditiveProposals(sigma=1.0, weightStopCond=0.0, nodeNumStopCond=-1.0):
-        s = getSettings('FusionMoveBasedGreedyAdditiveProposalGen')
-        s.sigma = float(sigma)
-        s.weightStopCond = float(weightStopCond)
-        s.nodeNumStopCond = float(nodeNumStopCond)
-        return s
-    O.greedyAdditiveProposals = staticmethod(greedyAdditiveProposals)
-
-    def watershedProposals(sigma=1.0, seedFraction=0.0):
-        s = getSettings('FusionMoveBasedWatershedProposalGen')
-        s.sigma = float(sigma)
-        s.seedFraction = float(seedFraction)
-        return s
-    O.watershedProposals = staticmethod(watershedProposals)
-
     def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=1):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
@@ -483,8 +467,6 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
         s.mcFactory = mcFactory
         return s
     O.fusionMoveSettings = staticmethod(fusionMoveSettings)
-
-
 
 
     def watershedCcProposals(sigma=1.0, numberOfSeeds=0.1):

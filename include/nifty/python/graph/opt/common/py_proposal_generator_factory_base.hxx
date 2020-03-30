@@ -56,14 +56,14 @@ void exportCCProposalGeneratorFactoryBaseT(
 
     typedef ProposalGeneratorFactoryBase<ObjectiveType> PropGenFactoryBase;
     typedef PyProposalGeneratorFactoryBase<ObjectiveType> PyPropGenFactoryBase;
-    
+
     // base factory
     pybind11::class_<
-        PropGenFactoryBase, 
-        std::shared_ptr<PropGenFactoryBase>, 
+        PropGenFactoryBase,
+        std::shared_ptr<PropGenFactoryBase>,
        PyPropGenFactoryBase
     >  proposalsGenFactoryBase(module, clsName.c_str());
-    
+
     proposalsGenFactoryBase
         .def(pybind11::init<>())
     ;
@@ -72,7 +72,7 @@ void exportCCProposalGeneratorFactoryBaseT(
 
 
 template<class PROPOSAL_GENERATOR>
-py::class_<typename PROPOSAL_GENERATOR::SettingsType> 
+py::class_<typename PROPOSAL_GENERATOR::SettingsType>
 exportCCProposalGenerator(
     py::module & module,
     const std::string & clsName,
@@ -104,7 +104,7 @@ exportCCProposalGenerator(
 
     return settingsCls;
 
-}   
+}
 
 
 

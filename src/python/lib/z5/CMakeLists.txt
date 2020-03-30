@@ -5,7 +5,6 @@ addPythonModule(
     SOURCES
         z5.cxx
         dataset_wrapper.cxx
-        upsampling.cxx
     LIBRRARIES
         ${Z5_COMPRESSION_LIBRARIES} 
         ${FILESYSTEM_LIBRARIES} 

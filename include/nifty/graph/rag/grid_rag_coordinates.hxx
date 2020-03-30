@@ -36,11 +36,11 @@ namespace graph {
             return storage_[edgeId];
         }
 
-        template<class T, class ARRAY>
-        void edgesToVolume(const std::vector<T> & edgeValues,
+        template<class EDGES, class ARRAY>
+        void edgesToVolume(const xt::xexpression<EDGES> & edgeValues,
                            xt::xexpression<ARRAY> & out,
                            const int edgeDirection = 0, // 0 -> both edge coordinates, 1-> lower edge coordinate, 2-> upper
-                           const T ignoreValue = 0,
+                           const typename EDGES::value_type ignoreValue = 0,
                            const int nThreads = -1) const;
 
         template<class T, class ARRAY>
@@ -267,13 +267,14 @@ namespace graph {
 
 
     template<std::size_t DIM, class RAG_TYPE>
-    template<class T, class ARRAY>
+    template<class EDGES, class ARRAY>
     void RagCoordinates<DIM, RAG_TYPE>::edgesToVolume(
-            const std::vector<T> & edgeValues,
+            const xt::xexpression<EDGES> & edgeValuesExp,
             xt::xexpression<ARRAY> & outExp,
             const int edgeDirection, // 0 -> both edge coordinates, 1-> lower edge coordinate, 2-> upper
-            const T ignoreValue,
+            const typename EDGES::value_type ignoreValue,
             const int nThreads) const {
+        const auto & edgeValues = edgeValuesExp.derived_cast();
         auto & out = outExp.derived_cast();
 
         NIFTY_CHECK_OP(edgeValues.size(),==,storageLengths(),"Wrong number of edges");
@@ -282,7 +283,7 @@ namespace graph {
 
         parallel::parallel_foreach(threadpool, numEdges, [&](const int tid, const int edgeId) {
 
-            auto edgeVal = edgeValues[edgeId];
+            const auto edgeVal = edgeValues(edgeId);
             if(edgeVal == ignoreValue) {
                 return;
             }

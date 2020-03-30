@@ -7,15 +7,6 @@
 #include "nifty/distributed/graph_extraction.hxx"
 #include "nifty/distributed/distributed_graph.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
@@ -174,12 +165,12 @@ namespace distributed {
         return labelA != labelB;
     }
 
-
-    inline void computeLiftedNeighborhoodFromNodeLabels(const std::string & graphPath,
-                                                        const std::string & nodeLabelPath,
-                                                        const std::string & outputPath,
-                                                        const unsigned graphDepth,
+    template<class NODE_LABELS>
+    inline void computeLiftedNeighborhoodFromNodeLabels(const Graph & graph,
+                                                        const NODE_LABELS & nodeLabels,
+                                                        const int graphDepth,
                                                         const int numberOfThreads,
+                                                        std::vector<EdgeType> & out,
                                                         const std::string & mode="all",
                                                         const uint64_t ignoreLabel=0) {
         // modes can be
@@ -188,22 +179,13 @@ namespace distributed {
         // "different": add edges only between nodes with different labels
         auto edgeChecker = (mode=="all") ? addAll : ((mode=="same") ? addSame : addDifferent);
 
-        // load the graph
-        const auto graph = Graph(graphPath, numberOfThreads);
-
-        // load the node labels
-        auto nodeDs = z5::openDataset(nodeLabelPath);
-        const std::size_t nNodes = nodeDs->shape(0);
-        const std::vector<std::size_t> zero1Coord({0});
-        Shape1Type nodeShape({nNodes});
-        Tensor1 nodeLabels(nodeShape);
-        z5::multiarray::readSubarray<uint64_t>(nodeDs, nodeLabels, zero1Coord.begin());
-
         // per thread data: store lifted edges for each thread
-        std::vector<std::vector<EdgeType>> perThreadData(numberOfThreads);
+        out.clear();
+        std::vector<std::vector<EdgeType>> perThreadData(numberOfThreads - 1);
 
         // find lifted edges via bfs starting from each node. (in parallel)
         // only add edges if both nodes have a node label
+        const std::size_t nNodes = graph.numberOfNodes();
         nifty::parallel::parallel_foreach(numberOfThreads, nNodes,
                                           [&](const int tid, const uint64_t nodeId){
             // zero is usually not in graph
@@ -218,7 +200,7 @@ namespace distributed {
             if(nodeLabel == ignoreLabel) {
                 return;
             }
-            auto & threadData = perThreadData[tid];
+            auto & threadData = (tid == 0) ? out : perThreadData[tid - 1];
             // do bfs for this node and find all relevant lifted edges
             findLiftedEdgesBfs(graph, nodeId,
                                nodeLabels, graphDepth, threadData,
@@ -226,20 +208,49 @@ namespace distributed {
         });
 
         // merge the thread
-        std::size_t nLifted = 0;
-        for(int tid = 0; tid < numberOfThreads; ++tid) {
+        std::size_t nLifted = out.size();
+        for(int tid = 0; tid < numberOfThreads - 1; ++tid) {
             nLifted += perThreadData[tid].size();
         }
-        auto & liftedEdges = perThreadData[0];
-        liftedEdges.reserve(nLifted);
-        for(int tid = 1; tid < numberOfThreads; ++tid) {
+        out.reserve(nLifted);
+        for(int tid = 0; tid < numberOfThreads - 1; ++tid) {
             const auto & src = perThreadData[tid];
-            liftedEdges.insert(liftedEdges.end(), src.begin(), src.end());
+            out.insert(out.end(), src.begin(), src.end());
         }
         // sort lifted edges by node ids
-        std::sort(liftedEdges.begin(), liftedEdges.end());
+        std::sort(out.begin(), out.end());
+    }
+
+    inline void computeLiftedNeighborhoodFromNodeLabels(const std::string & graphPath,
+                                                        const std::string & graphKey,
+                                                        const std::string & nodeLabelPath,
+                                                        const std::string & nodeLabelKey,
+                                                        const std::string & outputPath,
+                                                        const std::string & outputKey,
+                                                        const int graphDepth,
+                                                        const int numberOfThreads,
+                                                        const std::string & mode="all",
+                                                        const uint64_t ignoreLabel=0) {
+        // load the node labels
+        const z5::filesystem::handle::File nodeLabelFile(nodeLabelPath);
+        auto nodeDs = z5::openDataset(nodeLabelFile, nodeLabelKey);
+        const std::size_t nNodes = nodeDs->shape(0);
+        const std::vector<std::size_t> zero1Coord({0});
+        Shape1Type nodeShape({nNodes});
+        Tensor1 nodeLabels(nodeShape);
+        z5::multiarray::readSubarray<uint64_t>(nodeDs, nodeLabels, zero1Coord.begin());
+
+        // load the graph
+        const auto graph = Graph(graphPath, graphKey, numberOfThreads);
+
+        // call the extraction function
+        std::vector<EdgeType> liftedEdges;
+        computeLiftedNeighborhoodFromNodeLabels(graph, nodeLabels,
+                                                graphDepth, numberOfThreads,
+                                                liftedEdges, mode, ignoreLabel);
 
         // serialize
+        const std::size_t nLifted = liftedEdges.size();
         Shape2Type outShape = {nLifted, 2};
         xt::xtensor<uint64_t, 2> out(outShape);
 
@@ -251,9 +262,10 @@ namespace distributed {
 
         std::vector<std::size_t> dsShape = {nLifted, 2};
         std::vector<std::size_t> dsChunks = {std::min(static_cast<std::size_t>(64*64*64), nLifted), 1};
-        auto dsOut = z5::createDataset(outputPath, "uint64",
-                                       dsShape, dsChunks, false,
-                                       "gzip");
+
+        const z5::filesystem::handle::File outputFile(outputPath);
+        auto dsOut = z5::createDataset(outputFile, outputKey, "uint64",
+                                       dsShape, dsChunks, "gzip");
         const std::vector<std::size_t> zero2Coord = {0, 0};
         z5::multiarray::writeSubarray<uint64_t>(dsOut, out, zero2Coord.begin(), numberOfThreads);
     }

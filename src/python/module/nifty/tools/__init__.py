@@ -91,8 +91,10 @@ def blocking(roiBegin, roiEnd, blockShape, blockShift=None):
         blockingCls = Blocking2d
     elif ndim == 3:
         blockingCls = Blocking3d
+    elif ndim == 4:
+        blockingCls = Blocking4d
     else:
-        raise RuntimeError("only 2d and 3d blocking is implemented currently")
+        raise RuntimeError("only 1, 2, 3 and 4d blocking is currently implemented")
 
     return blockingCls(
         [int(v) for v in roiBegin],

@@ -159,13 +159,14 @@ cmake .. \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O3 -DNDEBUG" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O3 -DNDEBUG -std=c++17" \
 \
         -DBOOST_ROOT=${PREFIX} \
-        -DWITH_HDF5=OFF \
+        -DWITH_HDF5=ON \
         -DWITH_Z5=ON \
         -DWITH_ZLIB=ON \
         -DWITH_BLOSC=ON \
+        -DWITH_BZIP2=OFF \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \

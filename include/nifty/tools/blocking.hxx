@@ -257,7 +257,6 @@ namespace tools{
                 const VectorType & roiEnd,
                 std::vector<uint64_t> & idsOut) const {
 
-            // TODO assert that the roi is in global roi
             idsOut.clear();
 
             VectorType minChunkIds;
@@ -265,7 +264,7 @@ namespace tools{
             // determine the position in chunks
             for(unsigned ii = 0; ii < DIM; ++ii) {
                 minChunkIds[ii] = floor(roiBegin[ii] / blockShape_[ii]);
-                maxChunkIds[ii] = ceil(roiEnd[ii] / blockShape_[ii]);
+                maxChunkIds[ii] = static_cast<int64_t>(ceil(roiEnd[ii] / static_cast<float>(blockShape_[ii])));
                 // increase the max if we have a singleton
                 if(minChunkIds[ii] == maxChunkIds[ii])
                     ++maxChunkIds[ii];
@@ -280,7 +279,6 @@ namespace tools{
                 }
             }
         }
-
 
 
         // return the overlaps (in local block coordinates for two specified blocks)

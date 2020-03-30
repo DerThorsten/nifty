@@ -6,18 +6,10 @@
 #include "nifty/tools/blocking.hxx"
 #include "nifty/distributed/graph_extraction.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
+
 
     //
     // compute and serialize label overlaps
@@ -55,9 +47,8 @@ namespace distributed {
     }
 
 
-    template<class OVLPS>
-    inline void serializeLabelOverlaps(const OVLPS & overlaps,
-                                       const std::string & dsPath,
+    template<class OVLPS, class DS>
+    inline void serializeLabelOverlaps(const OVLPS & overlaps, DS ds,
                                        const std::vector<std::size_t> & chunkId) {
         // first determine the serialization size
         std::size_t serSize = 0;
@@ -91,7 +82,6 @@ namespace distributed {
         }
 
         // write serialization
-        auto ds = z5::openDataset(dsPath);
         ds->writeChunk(chunkId, &serialization[0], true, serSize);
     }
 
@@ -99,7 +89,8 @@ namespace distributed {
     template<class LABELS, class VALUES>
     inline void computeAndSerializeLabelOverlaps(const LABELS & labels,
                                                  const VALUES & values,
-                                                 const std::string & dsPath,
+                                                 const std::string & path,
+                                                 const std::string & key,
                                                  const std::vector<std::size_t> & chunkId,
                                                  const bool withIgnoreLabel=false,
                                                  const uint64_t ignoreLabel=0) {
@@ -112,7 +103,9 @@ namespace distributed {
 
         // serialize the overlaps
         if(overlaps.size() > 0) {
-            serializeLabelOverlaps(overlaps, dsPath, chunkId);
+            const z5::filesystem::handle::File file(path);
+            auto ds = z5::openDataset(file, key);
+            serializeLabelOverlaps(overlaps, std::move(ds), chunkId);
         }
     }
 
@@ -181,16 +174,17 @@ namespace distributed {
 
     template<class OVLP>
     inline uint64_t deserializeOverlapChunk(const std::string & path,
+                                            const std::string & key,
                                             const std::vector<std::size_t> & chunkId,
                                             OVLP & out) {
-        auto ds = z5::openDataset(path);
+        const z5::filesystem::handle::File file(path);
+        auto ds = z5::openDataset(file, key);
         uint64_t maxLabelId = 0;
 
         // read this chunk's data (if present)
-        z5::handle::Chunk chunk(ds->handle(), chunkId, ds->isZarr());
-        if(chunk.exists()) {
-            bool isVarlen;
-            const std::size_t chunkSize = ds->getDiscChunkSize(chunkId, isVarlen);
+        if(ds->chunkExists(chunkId)) {
+            std::size_t chunkSize;
+            ds->checkVarlenChunk(chunkId, chunkSize);
             std::vector<uint64_t> chunkOverlaps(chunkSize);
             ds->readChunk(chunkId, &chunkOverlaps[0]);
 
@@ -202,7 +196,9 @@ namespace distributed {
 
 
     inline void mergeAndSerializeOverlaps(const std::string & inputPath,
+                                          const std::string & inputKey,
                                           const std::string & outputPath,
+                                          const std::string & outputKey,
                                           const bool max_overlap,
                                           const int numberOfThreads,
                                           const uint64_t labelBegin,
@@ -217,7 +213,9 @@ namespace distributed {
         std::vector<LabelToOverlaps> threadData(numberOfThreads);
         std::vector<uint64_t> threadMax(numberOfThreads, 0);
 
-        auto inputDs = z5::openDataset(inputPath);
+        const z5::filesystem::handle::File inFile(inputPath);
+        const z5::filesystem::handle::File outFile(outputPath);
+        auto inputDs = z5::openDataset(inFile, inputKey);
         z5::util::parallel_for_each_chunk(*inputDs,
                                           numberOfThreads,
                                           [&threadData,
@@ -227,12 +225,11 @@ namespace distributed {
                                                      const z5::Dataset & ds,
                                                      const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
-            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
-            if(!chunk.exists()) {
+            if(!ds.chunkExists(chunkCoord)) {
                 return;
             }
-            bool isVarlen;
-            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::size_t chunkSize;
+            ds.checkVarlenChunk(chunkCoord, chunkSize);
             std::vector<uint64_t> chunkOverlaps(chunkSize);
             ds.readChunk(chunkCoord, &chunkOverlaps[0]);
 
@@ -307,7 +304,7 @@ namespace distributed {
                 out(labelId, 1) = maxOvlp;
             });
 
-            auto dsOut = z5::openDataset(outputPath);
+            auto dsOut = z5::openDataset(outFile, outputKey);
             const std::vector<std::size_t> zero2Coord({labelBegin, 0});
             z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
                                                     zero2Coord.begin(), numberOfThreads);
@@ -335,7 +332,7 @@ namespace distributed {
                 out(labelId) = maxOvlpValue;
             });
 
-            auto dsOut = z5::openDataset(outputPath);
+            auto dsOut = z5::openDataset(outFile, outputKey);
             const std::vector<std::size_t> zero1Coord({labelBegin});
             z5::multiarray::writeSubarray<uint64_t>(dsOut, out,
                                                     zero1Coord.begin(), numberOfThreads);
@@ -369,10 +366,10 @@ namespace distributed {
             }
 
             // get the correct chunk id
-            const auto ds = z5::openDataset(outputPath);
-            const std::size_t chunkSize = ds->maxChunkShape(0);
+            auto ds = z5::openDataset(outFile, outputKey);
+            const std::size_t chunkSize = ds->defaultChunkShape(0);
             const std::vector<std::size_t> chunkId = {labelBegin / chunkSize};
-            serializeLabelOverlaps(out, outputPath, chunkId);
+            serializeLabelOverlaps(out, std::move(ds), chunkId);
         }
     }
 
@@ -407,10 +404,12 @@ namespace distributed {
 
     template<class OUT>
     inline void getBlockMapping(const std::string & inputPath,
+                                const std::string & inputKey,
                                 const int numberOfThreads,
                                 OUT & mapping) {
 
-        auto inputDs = z5::openDataset(inputPath);
+        const z5::filesystem::handle::File file(inputPath);
+        auto inputDs = z5::openDataset(file, inputKey);
 
         // we store the mapping of labels to blocks extracted for each thread in an unordered map
         // of vectors
@@ -425,13 +424,12 @@ namespace distributed {
                                                       const z5::Dataset & ds,
                                                       const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
-            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
-            if(!chunk.exists()) {
+            if(!ds.chunkExists(chunkCoord)) {
                 return;
             }
 
-            bool isVarlen;
-            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::size_t chunkSize;
+            ds.checkVarlenChunk(chunkCoord, chunkSize);
             std::vector<uint64_t> labelsInChunk(chunkSize);
             ds.readChunk(chunkCoord, &labelsInChunk[0]);
 
@@ -457,12 +455,14 @@ namespace distributed {
 
     template<class OUT>
     inline void getBlockMappingWithRoi(const std::string & inputPath,
+                                       const std::string & inputKey,
                                        const int numberOfThreads,
                                        OUT & mapping,
                                        const std::vector<std::size_t> & roiBegin,
                                        const std::vector<std::size_t> & roiEnd) {
 
-        auto inputDs = z5::openDataset(inputPath);
+        const z5::filesystem::handle::File file(inputPath);
+        auto inputDs = z5::openDataset(file, inputKey);
 
         // we store the mapping of labels to blocks extracted for each thread in an unordered map
         // of vectors
@@ -479,13 +479,12 @@ namespace distributed {
                                                              const z5::Dataset & ds,
                                                              const z5::types::ShapeType & chunkCoord){
             // read this chunk's data (if present)
-            z5::handle::Chunk chunk(ds.handle(), chunkCoord, ds.isZarr());
-            if(!chunk.exists()) {
+            if(!ds.chunkExists(chunkCoord)) {
                 return;
             }
 
-            bool isVarlen;
-            const std::size_t chunkSize = ds.getDiscChunkSize(chunkCoord, isVarlen);
+            std::size_t chunkSize;
+            ds.checkVarlenChunk(chunkCoord, chunkSize);
             std::vector<uint64_t> labelsInChunk(chunkSize);
             ds.readChunk(chunkCoord, &labelsInChunk[0]);
 
@@ -511,12 +510,16 @@ namespace distributed {
 
     template<class OUT>
     inline void serializeMappingChunks(const std::string & inputPath,
+                                       const std::string & inputKey,
                                        const std::string & outputPath,
+                                       const std::string & outputKey,
                                        const OUT & mapping,
                                        const int numberOfThreads) {
         // open the input and output datasets
-        auto inputDs = z5::openDataset(inputPath);
-        auto outputDs = z5::openDataset(outputPath);
+        const z5::filesystem::handle::File inFile(inputPath);
+        const z5::filesystem::handle::File outFile(outputPath);
+        auto inputDs = z5::openDataset(inFile, inputKey);
+        auto outputDs = z5::openDataset(outFile, outputKey);
         const auto & blocking = inputDs->chunking();
 
         const std::size_t numberOfLabels = mapping.size();
@@ -606,7 +609,9 @@ namespace distributed {
 
 
     inline void serializeBlockMapping(const std::string & inputPath,
+                                      const std::string & inputKey,
                                       const std::string & outputPath,
+                                      const std::string & outputKey,
                                       const std::size_t numberOfLabels,
                                       const int numberOfThreads,
                                       const std::vector<std::size_t> & roiBegin=std::vector<std::size_t>(),
@@ -615,13 +620,14 @@ namespace distributed {
         // iterate over the input in parallel and map block-ids to label ids
         std::vector<std::vector<std::size_t>> mapping(numberOfLabels);
         if(roiBegin.size() == 0) {
-            getBlockMapping(inputPath, numberOfThreads, mapping);
+            getBlockMapping(inputPath, inputKey, numberOfThreads, mapping);
         } else if(roiBegin.size() == 3) {
-            getBlockMappingWithRoi(inputPath, numberOfThreads, mapping, roiBegin, roiEnd);
+            getBlockMappingWithRoi(inputPath, inputKey, numberOfThreads, mapping, roiBegin, roiEnd);
         } else {
             throw std::runtime_error("Invalid ROI");
         }
-        serializeMappingChunks(inputPath, outputPath, mapping, numberOfThreads);
+        serializeMappingChunks(inputPath, inputKey, outputPath, outputKey,
+                               mapping, numberOfThreads);
     }
 
 
@@ -657,13 +663,14 @@ namespace distributed {
     }
 
 
-    inline void readBlockMapping(const std::string & dsPath,
+    inline void readBlockMapping(const std::string & path, const std::string & key,
                                  const std::vector<std::size_t> chunkId,
                                  std::map<std::uint64_t, std::vector<std::array<int64_t, 6>>> & mapping) {
-        auto ds = z5::openDataset(dsPath);
+        const z5::filesystem::handle::File file(path);
+        auto ds = z5::openDataset(file, key);
         if(ds->chunkExists(chunkId)) {
-            bool isVarlen;
-            const std::size_t chunkSize = ds->getDiscChunkSize(chunkId, isVarlen);
+            std::size_t chunkSize;
+            ds->checkVarlenChunk(chunkId, chunkSize);
             std::vector<char> out(chunkSize);
             ds->readChunk(chunkId, &out[0]);
             formatBlockMapping(out, mapping);

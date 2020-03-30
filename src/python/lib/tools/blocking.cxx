@@ -192,6 +192,7 @@ namespace tools{
         exportBlockingT<1>(toolsModule);
         exportBlockingT<2>(toolsModule);
         exportBlockingT<3>(toolsModule);
+        exportBlockingT<4>(toolsModule);
     }
 
 }

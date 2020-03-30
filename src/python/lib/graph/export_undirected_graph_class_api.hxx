@@ -20,6 +20,9 @@ namespace py = pybind11;
 namespace pybind11 {
 namespace detail {
 
+// NOTE this is incompatible with more recent pybind11 versions.
+// Does not work anymore in 2.4.3, still works in 2.2.4
+// for now, I will go with pybind11<2.3
 template <typename T1, typename T2> class type_caster<nifty::graph::detail_graph::UndirectedAdjacency<T1, T2>> {
     typedef nifty::graph::detail_graph::UndirectedAdjacency<T1, T2> type;
 public:
@@ -44,13 +47,7 @@ public:
         return result.release();
     }
 
-    static PYBIND11_DESCR name() {
-        return type_descr(
-            _("Adjacency[") + make_caster<T1>::name() + _(", ") + make_caster<T2>::name() + _("]")
-        );
-    }
-
-    template <typename T> using cast_op_type = type;
+    PYBIND11_TYPE_CASTER(type, _("Adjacency[") + make_caster<T1>::name + _(", ") + make_caster<T2>::name + _("]"));
 
     operator type() {
         return type(cast_op<T1>(first), cast_op<T2>(second));
@@ -247,7 +244,6 @@ namespace graph{
             )
 
             .def("bfsEdges",[](G & g, const std::size_t maxDistance){
-
 
                 BreadthFirstSearch<G> bfs(g);
                 std::vector<std::pair<uint64_t, uint64_t>> pairs;

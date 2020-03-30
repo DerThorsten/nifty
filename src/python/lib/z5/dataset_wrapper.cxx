@@ -13,10 +13,9 @@ namespace nz5 {
     void exportDatasetWrapperT(py::module & module, const std::string & dsName) {
         typedef DatasetWrapper<T> clsT;
         py::class_<clsT>(module, dsName.c_str())
-            .def(py::init([](const std::string & pathToDataset){
-                return new clsT(pathToDataset);
+            .def(py::init([](const std::string & pathToFile, const std::string & key){
+                return new clsT(pathToFile, key);
             }))
-
             .def_property_readonly("shape", &clsT::shape);
         ;
     }

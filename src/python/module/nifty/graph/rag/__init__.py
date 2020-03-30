@@ -204,7 +204,7 @@ if Configuration.WITH_Z5:
 if WITH_H5PY:
 
     def writeStackedRagToHdf5(rag, savePath):
-        with h5py.File(savePath) as f:
+        with h5py.File(savePath, 'a') as f:
             f.create_dataset('numberOfNodes', data=rag.numberOfNodes)
             f.create_dataset('numberOfEdges', data=rag.numberOfEdges)
             f.create_dataset('uvIds', data=rag.uvIds())

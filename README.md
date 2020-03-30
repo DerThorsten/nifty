@@ -6,8 +6,6 @@ Appveyor (Windows builds)
 ---------------------------------
 Master: 
 [![Build status](https://ci.appveyor.com/api/projects/status/u6nfcpfhpyya5mk8/branch/master?svg=true)](https://ci.appveyor.com/project/DerThorsten/nifty-5sb8n/branch/master)
-Dev:
-[![Build status](https://ci.appveyor.com/api/projects/status/u6nfcpfhpyya5mk8/branch/dev?svg=true)](https://ci.appveyor.com/project/DerThorsten/nifty-5sb8n/branch/dev)
 
 
 Nifty
@@ -114,7 +112,22 @@ https://github.com/conda-forge/staged-recipes/pull/7763. Any help on solving the
 From Source:
 ============
 
-TODO
+To build nifty from source, you will need to set up an environment with all necessary dependencies.
+We recommend to use conda for this as well and provide the file environment.yaml` for this.
+You can set up this environment and build nifty with the following commands: 
+
+```sh
+$ conda env create -f environment.yaml
+$ conda activate nifty-dev
+$ mkdir bld
+$ cd bld
+$ cmake -DCMAKE_PREFIX_PATH=/path/to/conda/envs/nifty-dev -DWITH_Z5=ON -DWITH_HDF5=ON -DWITH_ZLIB=ON ..
+$ make
+```
+
+This would build nifty with additional hdf5 and z5 dependencies; and add zlib support for z5.
+You can find all build options in [CMakeLists.txt](https://github.com/DerThorsten/nifty/blob/master/CMakeLists.txt#L36-L50);
+note that you may need to install additional dependencies.
 
 
 Troubleshooting:

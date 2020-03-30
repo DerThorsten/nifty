@@ -7,24 +7,15 @@
 #include "xtensor/xtensor.hpp"
 #include "xtensor/xadapt.hpp"
 
-#include "z5/multiarray/xtensor_access.hxx"
-#include "z5/dataset_factory.hxx"
-#include "z5/groups.hxx"
+#include "z5/factory.hxx"
 #include "z5/attributes.hxx"
+#include "z5/multiarray/xtensor_access.hxx"
 
 #include "nifty/array/static_array.hxx"
 #include "nifty/xtensor/xtensor.hxx"
 #include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/tools/label_multiset_wrapper.hxx"
 
-#ifdef WITH_BOOST_FS
-    namespace fs = boost::filesystem;
-#else
-    #if __GCC__ > 7
-        namespace fs = std::filesystem;
-    #else
-        namespace fs = std::experimental::filesystem;
-    #endif
-#endif
 
 namespace nifty {
 namespace distributed {
@@ -68,12 +59,46 @@ namespace distributed {
     ///
 
 
-    template<class NODES>
-    inline void loadNodes(const std::string & graphPath,
-                          NODES & nodes) {
+    // load labels from block; works for normal label dataset
+    // and label multisets
+    template<class LABELS, class ROI>
+    inline bool loadLabels(const std::string & path, const std::string & key,
+                           LABELS & labels, const ROI & roiBegin) {
+
+        typedef typename LABELS::value_type NodeType;
+
+        z5::filesystem::handle::File file(path);
+        auto ds = z5::openDataset(file, key);
+        z5::filesystem::handle::Dataset dsHandle(file, key);
+        nlohmann::json attrs;
+        z5::readAttributes(dsHandle, attrs);
+
+        // check if this is a label multiset
+        bool isLabelMultiset = false;
+        if(attrs.find("isLabelMultiset") != attrs.end()) {
+            isLabelMultiset = attrs["isLabelMultiset"];
+        }
+
+        if(isLabelMultiset) {
+            // is a label multiset -> need to use label multi-set wrapper and then load the array
+            tools::LabelMultisetWrapper label_multiset(std::move(ds));
+            label_multiset.readSubarray(labels, roiBegin);
+        }
+        else {
+            // not a label multiset -> we can just load the label array
+            z5::multiarray::readSubarray<NodeType>(ds, labels, roiBegin.begin());
+        }
+
+        // TODO
+        // check if the labels are all zero and return false
+        return true;
+    }
+
+
+    template<class HANDLE, class NODES>
+    inline void loadNodes(const HANDLE & graph, NODES & nodes) {
         const std::vector<std::size_t> zero1Coord({0});
-        // get handle and dataset
-        z5::handle::Group graph(graphPath);
+        // get dataset
         auto nodeDs = z5::openDataset(graph, "nodes");
         // read the nodes and inset them into the node set
         Shape1Type nodeShape({nodeDs->shape(0)});
@@ -82,14 +107,22 @@ namespace distributed {
         nodes.insert(tmpNodes.begin(), tmpNodes.end());
     }
 
-
+    template<class NODES>
     inline void loadNodes(const std::string & graphPath,
+                          const std::string & graphKey,
+                          NODES & nodes) {
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::Group graph(graphFile, graphKey);
+        loadNodes(graph, nodes);
+    }
+
+
+    template<class HANDLE>
+    inline void loadNodes(const HANDLE & graph,
                           std::vector<NodeType> & nodes,
                           const std::size_t offset,
                           const int nThreads=1) {
         const std::vector<std::size_t> zero1Coord({0});
-        // get handle and dataset
-        z5::handle::Group graph(graphPath);
         auto nodeDs = z5::openDataset(graph, "nodes");
         // read the nodes and inset them into the node set
         Shape1Type nodeShape({nodeDs->shape(0)});
@@ -97,35 +130,47 @@ namespace distributed {
         z5::multiarray::readSubarray<NodeType>(nodeDs, tmpNodes, zero1Coord.begin(), nThreads);
         nodes.resize(nodes.size() + nodeShape[0]);
         std::copy(tmpNodes.begin(), tmpNodes.end(), nodes.begin() + offset);
+
+    }
+
+    inline void loadNodes(const std::string & graphPath,
+                          const std::string & graphKey,
+                          std::vector<NodeType> & nodes,
+                          const std::size_t offset,
+                          const int nThreads=1) {
+        // get handle and dataset
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::Group graph(graphFile, graphKey);
+        loadNodes(graph, nodes, offset, nThreads);
     }
 
 
     template<class NODES>
     inline void loadNodesToArray(const std::string & graphPath,
+                                 const std::string & graphKey,
                                  xt::xexpression<NODES> & nodesExp,
                                  const int nThreads=1) {
         auto & nodes = nodesExp.derived_cast();
         const std::vector<std::size_t> zero1Coord({0});
         // get handle and dataset
-        z5::handle::Group graph(graphPath);
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::Group graph(graphFile, graphKey);
         auto nodeDs = z5::openDataset(graph, "nodes");
         // read the nodes and inset them into the array
         z5::multiarray::readSubarray<NodeType>(nodeDs, nodes, zero1Coord.begin(), nThreads);
     }
 
 
-    inline bool loadEdgeIndices(const std::string & graphPath,
+    template<class HANDLE>
+    inline bool loadEdgeIndices(const HANDLE & graph,
                                 std::vector<EdgeIndexType> & edgeIndices,
                                 const std::size_t offset,
                                 const int nThreads=1) {
         const std::vector<std::size_t> zero1Coord({0});
-        const std::vector<std::string> keys = {"numberOfEdges"};
-
-        // get handle and check if we have edges
-        z5::handle::Group graph(graphPath);
+        // check if we have edges
         nlohmann::json j;
-        z5::readAttributes(graph, keys, j);
-        std::size_t numberOfEdges = j[keys[0]];
+        z5::readAttributes(graph, j);
+        std::size_t numberOfEdges = j["numberOfEdges"];
 
         // don't do anything, if we don't have edges
         if(numberOfEdges == 0) {
@@ -144,17 +189,24 @@ namespace distributed {
     }
 
 
-    template<class EDGES>
-    inline bool loadEdges(const std::string & graphPath,
-                          EDGES & edges) {
-        const std::vector<std::size_t> zero2Coord({0, 0});
-        const std::vector<std::string> keys = {"numberOfEdges"};
+    inline bool loadEdgeIndices(const std::string & graphPath,
+                                const std::string & graphKey,
+                                std::vector<EdgeIndexType> & edgeIndices,
+                                const std::size_t offset,
+                                const int nThreads=1) {
+        const z5::filesystem::handle::File graphFile(graphPath);
+        const z5::filesystem::handle::Group graph(graphFile, graphKey);
+        return loadEdgeIndices(graph, edgeIndices, offset, nThreads);
+    }
 
-        // get handle and check if we have edges
-        z5::handle::Group graph(graphPath);
+
+    template<class HANDLE, class EDGES>
+    inline bool loadEdges(const HANDLE & graph, EDGES & edges) {
+        const std::vector<std::size_t> zero2Coord({0, 0});
+        // check if we have edges
         nlohmann::json j;
-        z5::readAttributes(graph, keys, j);
-        std::size_t numberOfEdges = j[keys[0]];
+        z5::readAttributes(graph, j);
+        std::size_t numberOfEdges = j["numberOfEdges"];
 
         // don't do anything, if we don't have edges
         if(numberOfEdges == 0) {
@@ -173,19 +225,26 @@ namespace distributed {
         return true;
     }
 
-
+    template<class EDGES>
     inline bool loadEdges(const std::string & graphPath,
+                          const std::string & graphKey,
+                          EDGES & edges) {
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::Group graph(graphFile, graphKey);
+        return loadEdges(graph, edges);
+    }
+
+
+    template<class HANDLE>
+    inline bool loadEdges(const HANDLE & graph,
                           std::vector<EdgeType> & edges,
                           const std::size_t offset,
                           const int nThreads=1) {
         const std::vector<std::size_t> zero2Coord({0, 0});
-        const std::vector<std::string> keys = {"numberOfEdges"};
-
-        // get handle and check if we have edges
-        z5::handle::Group graph(graphPath);
+        // check if we have edges
         nlohmann::json j;
-        z5::readAttributes(graph, keys, j);
-        std::size_t numberOfEdges = j[keys[0]];
+        z5::readAttributes(graph, j);
+        std::size_t numberOfEdges = j["numberOfEdges"];
 
         // don't do anything, if we don't have edges
         if(numberOfEdges == 0) {
@@ -207,28 +266,39 @@ namespace distributed {
     }
 
 
+    inline bool loadEdges(const std::string & graphPath,
+                          const std::string & graphKey,
+                          std::vector<EdgeType> & edges,
+                          const std::size_t offset,
+                          const int nThreads=1) {
+        z5::filesystem::handle::File graphFile(graphPath);
+        z5::filesystem::handle::Group graph(graphFile, graphKey);
+        return loadEdges(graph, edges, offset, nThreads);
+    }
+
+
     // Using templates for node and edge storages here,
     // because we might use different datastructures at different graph levels
     // (set or unordered_set)
     template<class NODES, class EDGES, class COORD>
     void serializeGraph(const std::string & pathToGraph,
-                        const std::string & saveKey,
+                        const std::string & graphKey,
                         const NODES & nodes,
                         const EDGES & edges,
                         const COORD & roiBegin,
                         const COORD & roiEnd,
-                        const bool ignoreLabel=false,
                         const int numberOfThreads=1,
-                        const std::string & compression="raw") {
+                        const std::string & compression="gzip") {
 
         const std::size_t nNodes = nodes.size();
         const std::size_t nEdges = edges.size();
 
         // create the graph group
-        auto graphPath = fs::path(pathToGraph);
-        graphPath /= saveKey;
-        z5::handle::Group group(graphPath.string());
-        z5::createGroup(group, false);
+        z5::filesystem::handle::File graphFile(pathToGraph);
+        if(!graphFile.in(graphKey)) {
+            z5::createGroup(graphFile, graphKey);
+        }
+        z5::filesystem::handle::Group group(graphFile, graphKey);
 
         // threadpool for parallel writing
         parallel::ThreadPool tp(numberOfThreads);
@@ -236,18 +306,10 @@ namespace distributed {
         // serialize the graph (nodes)
         std::vector<std::size_t> nodeShape = {nNodes};
         std::vector<std::size_t> nodeChunks = {std::min(nNodes, 2*262144UL)};
-        // FIXME For some reason only raw compression works,
-        // because the precompiler flags for activating compression schemes
-        // are not properly set (although we can read datasets with compression,
-        // so this doesn't make much sense)
-        // std::cout << "Writing " << nNodes << " nodes to " << pathToGraph << std::endl;
-        auto dsNodes = z5::createDataset(group, "nodes",
-                                         "uint64", nodeShape,
-                                         nodeChunks, false,
-                                         compression);
+        auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape,
+                                         nodeChunks, compression);
 
         const std::size_t numberNodeChunks = dsNodes->numberOfChunks();
-        // std::cout << "Serialize nodes" << std::endl;
         parallel::parallel_foreach(tp, numberNodeChunks, [&](const int tId,
                                                              const std::size_t chunkId){
             const std::size_t nodeStart = chunkId * nodeChunks[0];
@@ -268,21 +330,14 @@ namespace distributed {
             z5::multiarray::writeSubarray<NodeType>(dsNodes, nodeSer,
                                                     nodeOffset.begin());
         });
-        // std::cout << "done" << std::endl;
 
         // serialize the graph (edges)
-        // std::cout << "Serialize edges" << std::endl;
         if(nEdges > 0) {
-            // std::cout << "Writing " << nEdges << " edges to " << pathToGraph << std::endl;
             std::vector<std::size_t> edgeShape = {nEdges, 2};
             std::vector<std::size_t> edgeChunks = {std::min(nEdges, 262144UL), 2};
-            // FIXME For some reason only raw compression works,
-            // because the precompiler flags for activating compression schemes
-            // are not properly set (although we can read datasets with compression,
-            // so this doesn't make much sense)
+
             auto dsEdges = z5::createDataset(group, "edges", "uint64",
-                                             edgeShape, edgeChunks, false,
-                                             compression);
+                                             edgeShape, edgeChunks, compression);
             const std::size_t numberEdgeChunks = dsEdges->numberOfChunks();
 
             parallel::parallel_foreach(tp, numberEdgeChunks, [&](const int tId,
@@ -307,17 +362,74 @@ namespace distributed {
                                                         edgeOffset.begin());
             });
         }
-        // std::cout << "done" << std::endl;
 
         // serialize metadata (number of edges and nodes and position of the block)
         nlohmann::json attrs;
         attrs["numberOfNodes"] = nNodes;
         attrs["numberOfEdges"] = nEdges;
+        attrs["nodeMaxId"] = *std::max_element(nodes.begin(), nodes.end());
         attrs["roiBegin"] = std::vector<std::size_t>(roiBegin.begin(), roiBegin.end());
         attrs["roiEnd"] = std::vector<std::size_t>(roiEnd.begin(), roiEnd.end());
-        attrs["ignoreLabel"] = ignoreLabel;
 
         z5::writeAttributes(group, attrs);
+    }
+
+
+    // Using templates for node and edge storages here,
+    // because we might use different datastructures at different graph levels
+    // (set or unordered_set)
+    template<class NODES, class EDGES, class COORD>
+    void serializeGraphToVarlen(const std::string & pathToGraph,
+                                const std::string & graphKey,
+                                const NODES & nodes,
+                                const EDGES & edges,
+                                const COORD & roiBegin) {
+
+        const std::size_t nNodes = nodes.size();
+        const std::size_t nEdges = edges.size();
+
+        // no nodes -> we do nothing
+        if(nNodes == 0) {
+            return;
+        }
+
+        z5::filesystem::handle::File graphFile(pathToGraph);
+
+        // get the node varlen dataset
+        const std::string nodeKey = graphKey + "/nodes";
+        const auto dsNodes = z5::openDataset(graphFile, nodeKey);
+
+        // get the current chunk id
+        const auto & chunks = dsNodes->defaultChunkShape();
+        const unsigned ndim = chunks.size();
+        std::vector<std::size_t> chunkId(roiBegin.begin(), roiBegin.end());
+        for(unsigned d = 0; d < ndim; ++d) {
+            chunkId[d] /= chunks[d];
+        }
+
+        // write the node chunk as varlen
+        std::vector<uint64_t> nodeSer(nodes.begin(), nodes.end());
+        dsNodes->writeChunk(chunkId, &nodeSer[0], true, nNodes);
+
+        // no edges -> return
+        if(nEdges == 0) {
+            return;
+        }
+
+        // get the edge varlen dataset
+        const std::string edgeKey = graphKey + "/edges";
+        const auto dsEdges = z5::openDataset(graphFile, edgeKey);
+
+        // write the flattened edge chunk as varlen
+        std::vector<uint64_t> edgeSer(2 * nEdges);
+        std::size_t flatId = 0;
+        for(const auto & edge : edges) {
+            edgeSer[flatId] = edge.first;
+            ++flatId;
+            edgeSer[flatId] = edge.second;
+            ++flatId;
+        }
+        dsEdges->writeChunk(chunkId, &edgeSer[0], true, 2 * nEdges);
     }
 
 
@@ -344,11 +456,6 @@ namespace distributed {
                              const bool ignoreLabel=false,
                              const bool increaseRoi=true) {
 
-        // open the n5 label dataset
-        auto path = fs::path(pathToLabels);
-        path /= keyToLabels;
-        auto ds = z5::openDataset(path.string());
-
         // if specified, we decrease roiBegin by 1.
         // this is necessary to capture edges that lie in between of block boundaries
         // However, we don't want to add the nodes to nodes in the sub-graph !
@@ -372,7 +479,14 @@ namespace distributed {
             blockShape[axis] = shape[axis];
         }
         Tensor3 labels(shape);
-        z5::multiarray::readSubarray<NodeType>(ds, labels, actualRoiBegin.begin());
+
+        // load the label block from n5
+        const bool hasLabels = loadLabels(pathToLabels, keyToLabels, labels, actualRoiBegin);
+
+        // don't write empty labels
+        if(!hasLabels) {
+            return;
+        }
 
         // iterate over the the roi and extract all graph nodes and edges
         // we want ordered iteration over nodes and edges in the end,
@@ -424,13 +538,14 @@ namespace distributed {
 
     template<class COORD>
     inline void computeMergeableRegionGraph(const std::string & pathToLabels,
-                                     const std::string & keyToLabels,
-                                     const COORD & roiBegin,
-                                     const COORD & roiEnd,
-                                     const std::string & pathToGraph,
-                                     const std::string & keyToRoi,
-                                     const bool ignoreLabel=false,
-                                     const bool increaseRoi=false) {
+                                            const std::string & keyToLabels,
+                                            const COORD & roiBegin,
+                                            const COORD & roiEnd,
+                                            const std::string & pathToGraph,
+                                            const std::string & keyToRoi,
+                                            const bool ignoreLabel=false,
+                                            const bool increaseRoi=false,
+                                            const bool serializeToVarlen=false) {
         // extract graph nodes and edges from roi
         NodeSet nodes;
         EdgeSet edges;
@@ -439,46 +554,44 @@ namespace distributed {
                             nodes, edges,
                             ignoreLabel, increaseRoi);
         // serialize the graph
-        serializeGraph(pathToGraph, keyToRoi,
-                       nodes, edges,
-                       roiBegin, roiEnd,
-                       ignoreLabel);
+        if(serializeToVarlen) {
+            serializeGraphToVarlen(pathToGraph, keyToRoi,
+                                   nodes, edges,
+                                   roiBegin);
+        } else {
+            serializeGraph(pathToGraph, keyToRoi,
+                           nodes, edges,
+                           roiBegin, roiEnd);
+        }
     }
 
 
-    inline void mergeSubgraphsSingleThreaded(const fs::path & graphPath,
-                                             const std::string & blockPrefix,
-                                             const std::vector<std::size_t> & blockIds,
+    inline void mergeSubgraphsSingleThreaded(const std::string & graphPath,
+                                             const std::string & subgraphKey,
+                                             const std::vector<std::size_t> & chunkIds,
                                              NodeSet & nodes,
                                              EdgeSet & edges,
                                              std::vector<std::size_t> & roiBegin,
-                                             std::vector<std::size_t> & roiEnd,
-                                             bool & ignoreLabel) {
-        const std::vector<std::string> keys({"roiBegin", "roiEnd", "ignoreLabel"});
+                                             std::vector<std::size_t> & roiEnd) {
+        // open the graph file
+        z5::filesystem::handle::File graph(graphPath);
 
-        fs::path blockPath;
-        std::string blockKey;
+        // open the node and edge varlen dataset
+        const std::string nodeKey = subgraphKey + "/nodes";
+        const auto dsNodes = z5::openDataset(graph, nodeKey);
+        const std::string edgeKey = subgraphKey + "/edges";
+        const auto dsEdges = z5::openDataset(graph, edgeKey);
 
-        for(std::size_t blockId : blockIds) {
+        // get blocking of the dataset
+        const auto & blocking = dsNodes->chunking();
 
-            nlohmann::json j;
-            // open the group associated with the sub-graph corresponding to this block
-            blockKey = blockPrefix + std::to_string(blockId);
-            blockPath = graphPath;
-            blockPath /= blockKey;
+        std::vector<std::size_t> chunkPos(3), blockBegin(3), blockEnd(3);
+        for(const std::size_t chunkId : chunkIds) {
 
-            // load nodes and edgees
-            loadNodes(blockPath.string(), nodes);
-            loadEdges(blockPath.string(), edges);
-
-            // read the rois from attributes
-            z5::handle::Group group(blockPath.string());
-            z5::readAttributes(group, keys, j);
-
-            // merge the rois
-            const auto & blockBegin = j[keys[0]];
-            const auto & blockEnd = j[keys[1]];
-
+            // find the bounding box of this chunk and merge
+            // with the full roi
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
+            blocking.getBlockBeginAndEnd(chunkPos, blockBegin, blockEnd);
             for(int axis = 0; axis < 3; ++axis) {
                 roiBegin[axis] = std::min(roiBegin[axis],
                                           static_cast<std::size_t>(blockBegin[axis]));
@@ -486,26 +599,56 @@ namespace distributed {
                                         static_cast<std::size_t>(blockEnd[axis]));
             }
 
-            // TODO we should make sure that the ignore label
-            // is consistent along blocks
-            ignoreLabel = j[keys[2]];
+            // load nodes from this chunk and insert into the node set
+            if(!dsNodes->chunkExists(chunkPos)) {
+                continue;
+            }
+            std::size_t nNodes;
+            dsNodes->checkVarlenChunk(chunkPos, nNodes);
+            std::vector<uint64_t> nodeSer(nNodes);
+            dsNodes->readChunk(chunkPos, &nodeSer[0]);
+            nodes.insert(nodeSer.begin(), nodeSer.end());
+
+            // load edges from this chunk and insert into the edge set
+            if(!dsEdges->chunkExists(chunkPos)) {
+                continue;
+            }
+            std::size_t nEdges;
+            dsEdges->checkVarlenChunk(chunkPos, nEdges);
+            std::vector<uint64_t> edgeSer(nEdges);
+            dsEdges->readChunk(chunkPos, &edgeSer[0]);
+            for(std::size_t edgeId = 0; edgeId < nEdges / 2; ++edgeId) {
+                edges.insert(std::make_pair(edgeSer[2 * edgeId], edgeSer[2 * edgeId + 1]));
+            }
+
         }
 
     }
 
 
-    inline void mergeSubgraphsMultiThreaded(const fs::path & graphPath,
-                                            const std::string & blockPrefix,
-                                            const std::vector<std::size_t> & blockIds,
+    inline void mergeSubgraphsMultiThreaded(const std::string & graphPath,
+                                            const std::string & subgraphKey,
+                                            const std::vector<std::size_t> & chunkIds,
                                             NodeSet & nodes,
                                             EdgeSet & edges,
                                             std::vector<std::size_t> & roiBegin,
                                             std::vector<std::size_t> & roiEnd,
-                                            bool & ignoreLabel,
                                             const int numberOfThreads) {
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
         auto nThreads = threadpool.nThreads();
+
+        // open the graph file
+        z5::filesystem::handle::File graph(graphPath);
+
+        // open the node and edge varlen dataset
+        const std::string nodeKey = subgraphKey + "/nodes";
+        const auto dsNodes = z5::openDataset(graph, nodeKey);
+        const std::string edgeKey = subgraphKey + "/edges";
+        const auto dsEdges = z5::openDataset(graph, edgeKey);
+
+        // get blocking from dataset
+        const auto & blocking = dsNodes->chunking();
 
         // initialize thread data
         struct PerThreadData {
@@ -513,24 +656,21 @@ namespace distributed {
             std::vector<std::size_t> roiEnd;
             NodeSet nodes;
             EdgeSet edges;
-            bool ignoreLabel;
         };
         std::vector<PerThreadData> threadData(nThreads);
+        std::size_t maxSizeT = std::numeric_limits<std::size_t>::max();
         for(int t = 0; t < nThreads; ++t) {
-            // FIXME should use some max uint value here
-            threadData[t].roiBegin = std::vector<std::size_t>({10000000, 10000000, 10000000});
+            threadData[t].roiBegin = std::vector<std::size_t>({maxSizeT, maxSizeT, maxSizeT});
             threadData[t].roiEnd = std::vector<std::size_t>({0, 0, 0});
         }
 
         // merge nodes and edges multi threaded
-        std::size_t nBlocks = blockIds.size();
-        const std::vector<std::string> keys({"roiBegin", "roiEnd", "ignoreLabel"});
-
-        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
-                                                                   const int blockIndex){
+        std::size_t nChunks = chunkIds.size();
+        nifty::parallel::parallel_foreach(threadpool, nChunks, [&](const int tid,
+                                                                   const int chunkIndex){
 
             // get the thread data
-            auto blockId = blockIds[blockIndex];
+            const auto chunkId = chunkIds[chunkIndex];
             // for thread 0, we use the input sets instead of our thread data
             // to avoid one sequential merge in the end
             auto & threadNodes = (tid == 0) ? nodes : threadData[tid].nodes;
@@ -538,31 +678,40 @@ namespace distributed {
             auto & threadBegin = threadData[tid].roiBegin;
             auto & threadEnd = threadData[tid].roiEnd;
 
-            // open the group associated with the sub-graph corresponding to this block
-            std::string blockKey = blockPrefix + std::to_string(blockId);
-            fs::path blockPath = graphPath;
-            blockPath /= blockKey;
-
-            // load nodes and edgees
-            loadNodes(blockPath.string(), threadNodes);
-            loadEdges(blockPath.string(), threadEdges);
-
-            // read the rois from attributes
-            nlohmann::json j;
-            z5::handle::Group group(blockPath.string());
-            z5::readAttributes(group, keys, j);
-
-            // merge the rois
-            const auto & blockBegin = j[keys[0]];
-            const auto & blockEnd = j[keys[1]];
-
+            // find the bounding box of this chunk and merge
+            // with the full roi
+            std::vector<std::size_t> chunkPos(3), blockBegin(3), blockEnd(3);
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
+            blocking.getBlockBeginAndEnd(chunkPos, blockBegin, blockEnd);
             for(int axis = 0; axis < 3; ++axis) {
                 threadBegin[axis] = std::min(threadBegin[axis],
                                              static_cast<std::size_t>(blockBegin[axis]));
                 threadEnd[axis] = std::max(threadEnd[axis],
                                            static_cast<std::size_t>(blockEnd[axis]));
             }
-            threadData[tid].ignoreLabel = j[keys[2]];
+
+            // load nodes from this chunk and insert into the node set
+            if(!dsNodes->chunkExists(chunkPos)) {
+                return;
+            }
+            std::size_t nNodes;
+            dsNodes->checkVarlenChunk(chunkPos, nNodes);
+            std::vector<uint64_t> nodeSer(nNodes);
+            dsNodes->readChunk(chunkPos, &nodeSer[0]);
+            threadNodes.insert(nodeSer.begin(), nodeSer.end());
+
+            // load edges from this chunk and insert into the edge set
+            if(!dsEdges->chunkExists(chunkPos)) {
+                return;
+            }
+            std::size_t nEdges;
+            dsEdges->checkVarlenChunk(chunkPos, nEdges);
+            std::vector<uint64_t> edgeSer(nEdges);
+            dsEdges->readChunk(chunkPos, &edgeSer[0]);
+            for(std::size_t edgeId = 0; edgeId < nEdges / 2; ++edgeId) {
+                threadEdges.insert(std::make_pair(edgeSer[2 * edgeId], edgeSer[2 * edgeId + 1]));
+            }
+
         });
 
         // merge into final nodes and edges
@@ -583,90 +732,103 @@ namespace distributed {
                                         static_cast<std::size_t>(threadEnd[axis]));
             }
         }
-
-        // TODO should check for ignore label consistency
-        ignoreLabel = threadData[0].ignoreLabel;
     }
 
 
-    inline void mergeSubgraphs(const std::string & pathToGraph,
-                               const std::string & blockPrefix,
-                               const std::vector<std::size_t> & blockIds,
+    inline void mergeSubgraphs(const std::string & graphPath,
+                               const std::string & subgraphKey,
+                               const std::vector<std::size_t> & chunkIds,
                                const std::string & outKey,
-                               const int numberOfThreads=1) {
-        // TODO we should try unordered sets again here
+                               const int numberOfThreads=1,
+                               const bool serializeToVarlen=false) {
+        // try unordered sets again here ?
         NodeSet nodes;
         EdgeSet edges;
 
-        // FIXME should use some max uint value here
-        std::vector<std::size_t> roiBegin({10000000, 10000000, 10000000});
+        std::size_t maxSizeT = std::numeric_limits<std::size_t>::max();
+        std::vector<std::size_t> roiBegin({maxSizeT, maxSizeT, maxSizeT});
         std::vector<std::size_t> roiEnd({0, 0, 0});
-        bool ignoreLabel;
 
         if(numberOfThreads == 1) {
-            mergeSubgraphsSingleThreaded(pathToGraph, blockPrefix, blockIds,
-                                         nodes, edges,
-                                         roiBegin, roiEnd,
-                                         ignoreLabel);
+            mergeSubgraphsSingleThreaded(graphPath, subgraphKey,
+                                         chunkIds, nodes, edges,
+                                         roiBegin, roiEnd);
         } else {
-            mergeSubgraphsMultiThreaded(pathToGraph, blockPrefix,
-                                        blockIds, nodes, edges,
+            mergeSubgraphsMultiThreaded(graphPath, subgraphKey,
+                                        chunkIds, nodes, edges,
                                         roiBegin, roiEnd,
-                                        ignoreLabel,
                                         numberOfThreads);
         }
 
-        // we can only use compression for
-        // big enough blocks (too small chunks will result in zlib error)
-        // as a proxy we use the number of threads to determine if we use compression
-        std::string compression = (numberOfThreads > 1) ? "gzip" : "raw";
         // serialize the merged graph
-        serializeGraph(pathToGraph, outKey,
-                       nodes, edges,
-                       roiBegin, roiEnd,
-                       ignoreLabel,
-                       numberOfThreads,
-                       compression);
+        if(serializeToVarlen) {
+            serializeGraphToVarlen(graphPath, outKey,
+                                   nodes, edges,
+                                   roiBegin);
+        } else {
+            // we can only use compression for
+            // big enough blocks (too small chunks will result in zlib error)
+            // as a proxy we use the number of threads to determine if we use compression
+            std::string compression = (numberOfThreads > 1) ? "gzip" : "raw";
+            serializeGraph(graphPath, outKey,
+                           nodes, edges,
+                           roiBegin, roiEnd,
+                           numberOfThreads,
+                           compression);
+        }
     }
 
 
     inline void mapEdgeIds(const std::string & pathToGraph,
                            const std::string & graphKey,
-                           const std::string & blockPrefix,
-                           const std::vector<std::size_t> & blockIds,
+                           const std::string & subgraphKey,
+                           const std::vector<std::size_t> & chunkIds,
                            const int numberOfThreads=1) {
 
-        const std::vector<std::size_t> zero1Coord({0});
         // we load the edges into a vector, because
         // it will be sorted by construction and we can take
         // advantage of O(logN) search with std::lower_bound
         std::vector<EdgeType> edges;
-        fs::path graphPath(pathToGraph);
-        graphPath /= graphKey;
-        loadEdges(graphPath.string(), edges, 0);
+        z5::filesystem::handle::File graphFile(pathToGraph);
+        loadEdges(pathToGraph, graphKey, edges, 0, numberOfThreads);
 
         // iterate over the blocks and insert the nodes and edges
         // construct threadpool
         nifty::parallel::ThreadPool threadpool(numberOfThreads);
-        auto nThreads = threadpool.nThreads();
-        std::size_t nBlocks = blockIds.size();
+        const auto nThreads = threadpool.nThreads();
+        const std::size_t nChunks = chunkIds.size();
 
-        // handle all the blocks in parallel
-        nifty::parallel::parallel_foreach(threadpool, nBlocks, [&](const int tid,
-                                                                   const int blockIndex){
+        // load the ege dataset and the edge id dataset
+        const std::string edgeKey = subgraphKey + "/edges";
+        const auto dsEdges = z5::openDataset(graphFile, edgeKey);
+        const std::string edgeIdKey = subgraphKey + "/edge_ids";
+        const auto dsEdgeIds = z5::openDataset(graphFile, edgeIdKey);
 
-            auto blockId = blockIds[blockIndex];
+        // get blocking of dataset
+        const auto & blocking = dsEdges->chunking();
 
-            // open the group associated with the sub-graph corresponding to this block
-            const std::string blockKey = blockPrefix + std::to_string(blockId);
-            fs::path blockPath(pathToGraph);
-            blockPath /= blockKey;
+        // handle all the chunks in parallel
+        nifty::parallel::parallel_foreach(threadpool, nChunks, [&](const int tid,
+                                                                   const int chunkIndex){
+            // determine the chunk grid position
+            const auto chunkId = chunkIds[chunkIndex];
+            std::vector<std::size_t> chunkPos(3);
+            blocking.blockIdToBlockCoordinate(chunkId, chunkPos);
 
-            // load the block edges
-            std::vector<EdgeType> blockEdges;
-            bool haveEdges = loadEdges(blockPath.string(), blockEdges, 0);
-            if(!haveEdges) {
+            // load the edges from this chunk
+            if(!dsEdges->chunkExists(chunkPos)) {
                 return;
+            }
+
+            std::size_t nEdges;
+            dsEdges->checkVarlenChunk(chunkPos, nEdges);
+            std::vector<uint64_t> edgeSer(nEdges);
+            dsEdges->readChunk(chunkPos, &edgeSer[0]);
+
+            std::vector<EdgeType> blockEdges(nEdges / 2);
+            for(std::size_t edgeId = 0; edgeId < nEdges / 2; ++edgeId) {
+                blockEdges[edgeId] = std::make_pair(edgeSer[2 * edgeId],
+                                                    edgeSer[2 * edgeId + 1]);
             }
 
             // label the local edges acccording to the global edge ids
@@ -690,23 +852,19 @@ namespace distributed {
             }
 
             // serialize the edge ids
-            std::vector<std::size_t> idShape = {edgeIds.size()};
-            auto idView = xt::adapt(edgeIds, idShape);
-            z5::handle::Group block(blockPath.string());
-            auto dsIds = z5::createDataset(block, "edgeIds", "int64", idShape, idShape, false);
-            z5::multiarray::writeSubarray<EdgeIndexType>(dsIds, idView, zero1Coord.begin());
+            dsEdgeIds->writeChunk(chunkPos, &edgeIds[0], true, edgeIds.size());
         });
     }
 
 
     inline void mapEdgeIds(const std::string & pathToGraph,
                     const std::string & graphKey,
-                    const std::string & blockPrefix,
+                    const std::string & subgraphKey,
                     const std::size_t numberOfBlocks,
                     const int numberOfThreads=1) {
-        std::vector<std::size_t> blockIds(numberOfBlocks);
-        std::iota(blockIds.begin(), blockIds.end(), 0);
-        mapEdgeIds(pathToGraph, graphKey, blockPrefix, blockIds, numberOfThreads);
+        std::vector<std::size_t> chunkIds(numberOfBlocks);
+        std::iota(chunkIds.begin(), chunkIds.end(), 0);
+        mapEdgeIds(pathToGraph, graphKey, subgraphKey, chunkIds, numberOfThreads);
     }
 
 }

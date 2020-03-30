@@ -13,6 +13,7 @@ addPythonModule(
         sleep.cxx
         map_dict.cxx
         merge_helper.cxx
+        label_multiset.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES}
         ${Z5_COMPRESSION_LIBRARIES}

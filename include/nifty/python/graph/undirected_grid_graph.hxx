@@ -16,13 +16,13 @@ namespace graph{
     >
     struct GraphName<UndirectedGridGraph<DIM, SIMPLE_NH>>{
         static std::string name(){
-            return std::string("UndirectedGridGraph") + 
+            return std::string("UndirectedGridGraph") +
                 std::to_string(DIM) +
-                std::string("D") + 
-                (SIMPLE_NH ? 
-                    std::string("SimpleNh") : 
+                std::string("D") +
+                (SIMPLE_NH ?
+                    std::string("SimpleNh") :
                     std::string("ExtendedNh"));
-                
+
         }
 
         static std::string moduleName(){
