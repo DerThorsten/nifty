@@ -152,28 +152,26 @@ cmake .. \
         -DCMAKE_C_COMPILER=${CC} \
         -DCMAKE_CXX_COMPILER=${CXX} \
         -DCMAKE_BUILD_TYPE=RELEASE \
-        -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9\
         -DCMAKE_INSTALL_PREFIX=${PREFIX} \
         -DCMAKE_PREFIX_PATH=${PREFIX} \
         -DPYTHON_NUMPY_INCLUDE_DIR=${NUMPY_INCLUDE_DIR} \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O3 -DNDEBUG -std=c++17" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS} -O2 -DNDEBUG -std=c++17" \
 \
-        -DBOOST_ROOT=${PREFIX} \
         -DWITH_HDF5=ON \
         -DWITH_Z5=ON \
         -DWITH_ZLIB=ON \
         -DWITH_BLOSC=ON \
         -DWITH_BZIP2=OFF \
+        -DWITH_BBOST_FS=OFF \
         ${CPLEX_ARGS} \
         ${GUROBI_ARGS} \
 \
         -DBUILD_NIFTY_PYTHON=ON \
         -DPYTHON_EXECUTABLE=${PYTHON} \
-        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython${PY_ABI}.${DYLIB} \
-        -DPYTHON_INCLUDE_DIR=${PREFIX}/include/python${PY_ABI} \
+        -DPYTHON_LIBRARY=${PREFIX}/lib/libpython${PY_ABI}.${DYLIB}
 ##
 
 ##
