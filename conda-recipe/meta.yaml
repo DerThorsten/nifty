@@ -8,17 +8,14 @@ source:
 
 
 build:
-  number: 100
+  number: 1000
 
 
 requirements:
   build:
-    # conda compilers cause issues ...
-    # - {{ compiler('cxx') }}
-    # - cmake
-    - xtensor
-    - xtensor-python
-    - nlohmann_json
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
 
   host:
     - python
@@ -30,16 +27,19 @@ requirements:
     - vigra
     - bzip2
     - zlib
+    - xtensor
+    - xtensor-python
+    - nlohmann_json
 
   run:
     - python
     - scikit-image
     - vigra
-    # - hdf5 >=1.10
-    # - numpy >=1.15
-    # - blosc
-    # - bzip2
-    # - zlib
+    - hdf5 >=1.10
+    - numpy >=1.15
+    - blosc
+    - bzip2
+    - zlib
 
 
 test:
