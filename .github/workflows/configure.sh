@@ -1,4 +1,5 @@
 # TODO how do we set the python version from the build matrix?
+# TODO use conda system compilers and fix runtime linkage
 conda create -q -n dev -c conda-forge python=3.7 cmake
 source activate dev
 conda install -c conda-forge xtensor-python boost-cpp scikit-image h5py vigra z5py nlohmann_json
