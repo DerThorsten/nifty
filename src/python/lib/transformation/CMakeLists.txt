@@ -5,6 +5,7 @@ addPythonModule(
     SOURCES
         transformation.cxx
         affine_transformation.cxx
+        coordinate_transformation.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES} 
         ${FASTFILTERS_LIBRARY}

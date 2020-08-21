@@ -1,7 +1,3 @@
-# export CC="${PREFIX}/bin/x86_64-conda_cos6-linux-gnu-gcc"
-# export CXX="${PREFIX}/bin/x86_64-conda_cos6-linux-gnu-g++"
-export CC=x86_64-conda_cos6-linux-gnu-gcc
-export CXX=x86_64-conda_cos6-linux-gnu-g++
 export PY_INSTALL_DIR="${PREFIX}/lib/python3.7/site-packages"
 
 ##
@@ -18,8 +14,6 @@ cmake . \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
         -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
         -DPYTHON_MODULE_INSTALL_DIR="${PY_INSTALL_DIR}" \
-        -DCMAKE_C_COMPILER="${CC}" \
-        -DCMAKE_CXX_COMPILER="${CXX}" \
 \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
 \
