@@ -1,8 +1,12 @@
 from . import _transformation as _trafo_impl
+from ._transformation import parseTransformixCoordinates
 
 
 def get_path_and_key_from_dataset(dataset):
     key = dataset.name
+    # z5 doesn't like leading slash
+    if key.startswith('/'):
+        key = key[1:]
     return dataset.file.filename, key
 
 

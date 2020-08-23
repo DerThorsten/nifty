@@ -1,5 +1,6 @@
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 #include "xtensor-python/pyarray.hpp"
 #include "xtensor-python/pytensor.hpp"
@@ -175,6 +176,15 @@ namespace transformation{
         exportCoordinateTransformationZ5T<int32_t, 3>(m, "3Dint32");
         exportCoordinateTransformationZ5T<uint64_t, 3>(m, "3Duint64");
         exportCoordinateTransformationZ5T<int64_t, 3>(m, "3Dint64");
+
+        m.def("parseTransformixCoordinates", [](const std::string & coordPath){
+            typedef nifty::array::StaticArray<int64_t, 3> CoordType;
+            std::vector<CoordType> inCoords;
+            std::vector<CoordType> outCoords;
+            parseTransformixCoordinates<3>(coordPath, inCoords, outCoords);
+
+            return std::make_pair(inCoords, outCoords);
+        });
     }
     #endif
 

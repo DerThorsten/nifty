@@ -144,7 +144,6 @@ namespace transformation {
         tools::Blocking<NDIM> blocking(bBegin, bShape, bBlockShape);
 
         // initialize the chunk cache
-        // would be nice to use LRU cache or simialr!
         typedef xt::xtensor<ValueType, NDIM> BlockArrayType;
         std::unordered_map<uint64_t, BlockArrayType> chunkCache;
 
@@ -154,10 +153,15 @@ namespace transformation {
 
             // range check the input coordinate and read the value
             const auto & inCoord = inputCoordinates[coordId];
+            bool outOfRange = false;
             for(unsigned d = 0; d < NDIM; ++d){
                 if(inCoord[d] >= maxRange[d] || inCoord[d] < 0) {
-                    return;
+                    outOfRange = true;
+                    break;
                 }
+            }
+            if(outOfRange) {
+                continue;
             }
             const ValueType val = readFromChunk<NDIM>(inCoord, input, blocking, chunkCache);
 
