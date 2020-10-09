@@ -182,14 +182,11 @@ public:
     }
 
 
-
-  
-
     template<class MERGE_TIMES, class EDGE_DENDROGRAM_HEIGHT>
     void runAndGetMergeTimesAndDendrogramHeight(
         MERGE_TIMES & mergeTimes,
         EDGE_DENDROGRAM_HEIGHT & dendrogramHeight,
-        const bool verbose=false  
+        const bool verbose=false
     ){
         const auto & cgraph = clusterPolicy_.edgeContractionGraph();
         const auto & graph = cgraph.graph();
@@ -216,12 +213,14 @@ public:
         this->ucmTransform(mergeTimes);
         this->ucmTransform(dendrogramHeight);
     }
-    
 
+
+    // for each edge, this returns the edge id which was the most recent merge for this
+    // node. This CANNOT be used for a merge hierarchy
     template<class MERGE_TIMES>
     void runAndGetMergeTimes(
         MERGE_TIMES & mergeTimes,
-        const bool verbose=false  
+        const bool verbose=false
     ){
         const auto & cgraph = clusterPolicy_.edgeContractionGraph();
         const auto & graph = cgraph.graph();
@@ -246,8 +245,9 @@ public:
         }
         this->ucmTransform(mergeTimes);
     }
-    
 
+
+    // for each n
     template<class EDGE_DENDROGRAM_HEIGHT>
     void runAndGetDendrogramHeight(EDGE_DENDROGRAM_HEIGHT & dendrogramHeight,const bool verbose=false){
 

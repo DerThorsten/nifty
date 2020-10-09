@@ -49,7 +49,6 @@ namespace agglo{
                 //.def_property_readonly("edgeIndicators", &ClusterPolicyType::edgeIndicators)
                 //.def_property_readonly("edgeSizes", &ClusterPolicyType::edgeSizes)
             ;
-        
 
             // factory
             aggloModule.def(clusterPolicyFacName.c_str(),

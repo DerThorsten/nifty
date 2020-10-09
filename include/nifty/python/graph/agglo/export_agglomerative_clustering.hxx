@@ -51,6 +51,7 @@ namespace agglo{
                         py::gil_scoped_release allowThreads;
                         self->runAndGetMergeTimes(mtimes, verbose);
                     }
+                    return mtimes;
                 }
                 ,
                     py::arg("verbose") = false
