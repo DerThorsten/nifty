@@ -103,7 +103,7 @@ private:
 //     typedef AGGLOMERATIVE_CLUSTERING AgglomerativeClusteringType;
 
 // private:
-    
+
 // };
 
 
@@ -141,7 +141,7 @@ public:
             }
             clusterPolicy_.edgeContractionGraph().contractEdge(edgeToContractNext);
         }
-    }   
+    }
 
     template<class VISITOR>
     void run(
@@ -163,7 +163,7 @@ public:
 
 
             if(verbose){
-                
+
                 const auto nNodes = cgraph.numberOfNodes();
                 if(  (nNodes + 1) % printNth  == 0){
                     std::cout<<"Nodes "<<cgraph.numberOfNodes()<<" p="<<priority<<"\n";
