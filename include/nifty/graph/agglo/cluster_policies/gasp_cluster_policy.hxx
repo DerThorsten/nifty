@@ -206,7 +206,6 @@ namespace nifty{
                 uint64_t edgeToContractNext_;
                 double   edgeToContractNextMergePrio_;
 
-                // TODO: get rid of these deprecated attributes
                 NodeSizesType nodeSizes_;
                 NodeSizesType maxNodeSize_per_iter_;
                 NodeSizesType meanNodeSize_per_iter_;

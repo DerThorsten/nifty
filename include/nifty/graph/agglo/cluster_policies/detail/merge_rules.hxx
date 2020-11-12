@@ -32,8 +32,8 @@ namespace merge_rules{
         }
 
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
 
         typedef ArithmeticMeanSettings SettingsType;
 
@@ -111,8 +111,8 @@ namespace merge_rules{
         }
 
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> SumEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SumEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
 
         typedef SumSettings SettingsType;
 
@@ -192,8 +192,8 @@ namespace merge_rules{
         }
 
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
 
         typedef GeneralizedMeanSettings SettingsType;
 
@@ -225,7 +225,6 @@ namespace merge_rules{
             const static auto eps = 0.0000001;
 
             if(std::isinf(p)){
-                // TODO: what about the weight?
                 if(p>0){
                     value = std::max(value, ovalue);
                 }
@@ -294,8 +293,8 @@ namespace merge_rules{
             return staticName() + std::string("[q=") + std::to_string(settings_.p) + std::string("]");
         }
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MeanEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MeanEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
 
         typedef SmoothMaxSettings SettingsType;
 
@@ -483,8 +482,7 @@ namespace merge_rules{
             return staticName();
         }
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MaxEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MaxEdgeMapType;
 
         typedef MaxSettings SettingsType;
 
@@ -516,9 +514,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
         }
         T weight(const uint64_t edge)const{
-//            NIFTY_CHECK(false,"Not implemented");
             return 1.0;
-//            return values_[edge];
         }
 
         T operator[](const uint64_t edge)const{
@@ -545,8 +541,7 @@ namespace merge_rules{
             return staticName();
         }
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MutexWatershedEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MutexWatershedEdgeMapType;
 
         typedef MutexWatershedSettings SettingsType;
 
@@ -579,9 +574,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
         }
         T weight(const uint64_t edge)const{
-//            NIFTY_CHECK(false,"Not implemented");
             return 1.0;
-//            return values_[edge];
         }
 
         T operator[](const uint64_t edge)const{
@@ -610,8 +603,7 @@ namespace merge_rules{
             return staticName();
         }
         typedef G GraphType;
-        typedef typename GraphType:: template EdgeMap<double> MinEdgeMapType;
-        typedef typename GraphType:: template EdgeMap<double> SizeEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> MinEdgeMapType;
 
         typedef MinSettings SettingsType;
 
@@ -644,9 +636,7 @@ namespace merge_rules{
         }
 
         T weight(const uint64_t edge)const{
-//            NIFTY_CHECK(false,"Not implemented");
             return 1.0;
-//            return values_[edge];
         }
         T operator[](const uint64_t edge)const{
             return values_[edge];

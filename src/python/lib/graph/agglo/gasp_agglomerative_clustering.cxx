@@ -95,17 +95,16 @@ namespace nifty{
 
             void exportGaspAgglomerativeClustering(py::module & aggloModule) {
                 {
-                    // TODO: export for other types of graphs like in aggl_clustering...?
                     typedef PyUndirectedGraph GraphType;
 
-                    typedef merge_rules::SumEdgeMap<GraphType, float >  SumAcc;
-                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
-                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
-                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
-                    typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
-                    typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
-                    typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
-                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, float >             MWSAcc;
+                    typedef merge_rules::SumEdgeMap<GraphType, double >  SumAcc;
+                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+                    typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+                    typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+                    typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, double >             MWSAcc;
 
 
                     exportGaspClusterPolicyTT<GraphType, SumAcc, false >(aggloModule);
@@ -122,14 +121,14 @@ namespace nifty{
                 {
                     typedef UndirectedGridGraph<2, true> GraphType;
 
-                    typedef merge_rules::SumEdgeMap<GraphType, float >  SumAcc;
-                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
-                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
-                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
-                    typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
-                    typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
-                    typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
-                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, float >             MWSAcc;
+                    typedef merge_rules::SumEdgeMap<GraphType, double >  SumAcc;
+                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+                    typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+                    typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+                    typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, double >             MWSAcc;
 
 
                     exportGaspClusterPolicyTT<GraphType, SumAcc, false >(aggloModule);
@@ -145,14 +144,14 @@ namespace nifty{
                 {
                     typedef UndirectedGridGraph<3,true> GraphType;
 
-                    typedef merge_rules::SumEdgeMap<GraphType, float >  SumAcc;
-                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, float >  ArithmeticMeanAcc;
-                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, float > GeneralizedMeanAcc;
-                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, float >       SmoothMaxAcc;
-                    typedef merge_rules::RankOrderEdgeMap<GraphType, float >       RankOrderAcc;
-                    typedef merge_rules::MaxEdgeMap<GraphType, float >             MaxAcc;
-                    typedef merge_rules::MinEdgeMap<GraphType, float >             MinAcc;
-                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, float >             MWSAcc;
+                    typedef merge_rules::SumEdgeMap<GraphType, double >  SumAcc;
+                    typedef merge_rules::ArithmeticMeanEdgeMap<GraphType, double >  ArithmeticMeanAcc;
+                    typedef merge_rules::GeneralizedMeanEdgeMap<GraphType, double > GeneralizedMeanAcc;
+                    typedef merge_rules::SmoothMaxEdgeMap<GraphType, double >       SmoothMaxAcc;
+                    typedef merge_rules::RankOrderEdgeMap<GraphType, double >       RankOrderAcc;
+                    typedef merge_rules::MaxEdgeMap<GraphType, double >             MaxAcc;
+                    typedef merge_rules::MinEdgeMap<GraphType, double >             MinAcc;
+                    typedef merge_rules::MutexWatershedEdgeMap<GraphType, double >             MWSAcc;
 
 
                     exportGaspClusterPolicyTT<GraphType, SumAcc, false >(aggloModule);
