@@ -56,7 +56,7 @@ class TestHdf5Serialization(unittest.TestCase):
         self.check_stacked(seg)
         n_labels = seg.max() + 1
 
-        with h5py.File(self.seg_path) as f:
+        with h5py.File(self.seg_path, 'a') as f:
             f.create_dataset('data', data=seg)
 
         label_f = nh5.openFile(self.seg_path)
