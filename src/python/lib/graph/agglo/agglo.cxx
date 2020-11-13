@@ -16,7 +16,7 @@ namespace agglo{
 
     void exportMergeRules(py::module &);
     void exportAgglomerativeClustering(py::module &);
-    void exportFixationAgglomerativeClustering(py::module &);
+    void exportGaspAgglomerativeClustering(py::module &);
     void exportDualAgglomerativeClustering(py::module &);
     void exportLiftedAgglomerativeClusteringPolicy(py::module &);
 }
@@ -36,7 +36,7 @@ PYBIND11_MODULE(_agglo, module) {
     using namespace nifty::graph::agglo;
     exportMergeRules(module);
     exportAgglomerativeClustering(module);
-    exportFixationAgglomerativeClustering(module);
+    exportGaspAgglomerativeClustering(module);
     exportDualAgglomerativeClustering(module);
     exportLiftedAgglomerativeClusteringPolicy(module);
 

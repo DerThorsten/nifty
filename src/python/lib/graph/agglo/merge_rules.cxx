@@ -25,6 +25,13 @@ namespace agglo{
             })
         ;
 
+        py::class_<merge_rules::SumSettings>(aggloModule, "SumSettings")
+                .def(py::init<>())
+                .def("__str__",[](const merge_rules::SumSettings & self){
+                    return self.name();
+                })
+                ;
+
         py::class_<merge_rules::GeneralizedMeanSettings>(aggloModule, "GeneralizedMeanSettings")
 
             // .def(
@@ -66,6 +73,13 @@ namespace agglo{
                 return self.name();
             })
         ;
+
+        py::class_<merge_rules::MutexWatershedSettings>(aggloModule, "MutexWatershedSettings")
+                .def(py::init<>())
+                .def("__str__",[](const merge_rules::MutexWatershedSettings & self){
+                    return self.name();
+                })
+                ;
 
         py::class_<merge_rules::MinSettings>(aggloModule, "MinSettings")
             .def(py::init<>())
