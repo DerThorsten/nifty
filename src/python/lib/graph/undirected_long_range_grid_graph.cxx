@@ -37,11 +37,12 @@ namespace graph{
 
 
 
-    template<std::size_t DIM, class LABELS>
+    template<std::size_t DIM, class EDGE_MASK>
     void exportUndirectedLongRangeGridGraphT(
         py::module & ragModule
     ){
         typedef UndirectedGraph<> BaseGraph;
+        typedef EDGE_MASK EdgeMaskType;
         typedef UndirectedLongRangeGridGraph<DIM> GraphType;
 
         const auto clsName = GraphName<GraphType>::name();
@@ -49,7 +50,9 @@ namespace graph{
 
         clsT.def(py::init([](
             std::array<int, DIM>    shape,
-            xt::pytensor<int64_t, 2> offsets   
+            xt::pytensor<int64_t, 2> offsets,
+            const EdgeMaskType & edgeMask,
+            const bool useEdgeMask
         ){
             typedef typename GraphType::OffsetVector OffsetVector;
             typedef typename GraphType::ShapeType ShapeType;
@@ -63,10 +66,14 @@ namespace graph{
                     offsetVector[i][d] = offsets(i, d);
                 }
             }
-            return new GraphType(s, offsetVector);
+
+            return new GraphType(s, offsetVector, edgeMask, useEdgeMask);
         }),
         py::arg("shape"),
-        py::arg("offsets"))
+        py::arg("offsets"),
+        py::arg("edgeMask").noconvert(),
+        py::arg("useEdgeMask")
+        )
         //
         .def("nodeFeatureDiffereces", [](
             const GraphType & g,
@@ -82,11 +89,26 @@ namespace graph{
         })
         .def("edgeValues", [](
             const GraphType & g,
-            xt::pytensor<float, DIM+1> nodeFeatures
+            xt::pytensor<float, DIM+1> edgeFeatures
         ){
-            return g.edgeValues(nodeFeatures);
+            return g.edgeValues(edgeFeatures);
         })
-
+        .def("nodeValues", [](
+                const GraphType & g,
+                xt::pytensor<float, DIM> nodeFeatures
+        ){
+            return g.nodeValues(nodeFeatures);
+        })
+        .def("projectEdgesIDToPixels", [](
+                const GraphType & g
+        ){
+            return g.projectEdgesIDToPixels();
+        })
+        .def("projectNodesIDToPixels", [](
+                const GraphType & g
+        ){
+            return g.projectNodesIDToPixels();
+        })
         .def("edgeOffsetIndex", [](const GraphType & g){
             return g.edgeOffsetIndex();
         })
@@ -102,9 +124,11 @@ namespace graph{
 
 
     void exportUndirectedLongRangeGridGraph(py::module & ragModule) {
+        typedef xt::pytensor<bool, 3> ExplicitPyEdgeMask2D;
+        typedef xt::pytensor<bool, 4> ExplicitPyEdgeMask3D;
 
-        exportUndirectedLongRangeGridGraphT<2, uint32_t>(ragModule);
-        exportUndirectedLongRangeGridGraphT<3, uint32_t>(ragModule);
+        exportUndirectedLongRangeGridGraphT<2, ExplicitPyEdgeMask2D>(ragModule);
+        exportUndirectedLongRangeGridGraphT<3, ExplicitPyEdgeMask3D>(ragModule);
 
   
     }
