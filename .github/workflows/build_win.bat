@@ -11,4 +11,4 @@ cmake . -G "NMake Makefiles" ^
     -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ^
     -DBUILD_NIFTY_PYTHON=ON
-cmake --build . --target INSTALL --config Release
+cmake --build . --target INSTALL --config Release -j 4
