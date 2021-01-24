@@ -268,7 +268,10 @@ endif()
 # find z5
 #-------------------------------------------------------------------------------------------------------------------
 if(WITH_Z5)
+    find_package(z5 REQUIRED)
+    include_directories(${z5_INCLUDE_DIRS})
     add_definitions(-DWITH_Z5)
+
     option(WITH_BLOSC "Build z5 with blosc compression" ON)
     option(WITH_BZIP2 "Build z5 with bzip2 compression" ON)
     option(WITH_ZLIB "Build z5 with zlib compression" ON)
