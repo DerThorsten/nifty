@@ -62,7 +62,8 @@ struct ComputeRag<GridRag<DIM, LABELS>> {
         // allocate / create data for each thread
         Coord blockShapeWithBorder;
         for(auto d=0; d<DIM; ++d){
-            blockShapeWithBorder[d] = std::min(settings.blockShape[d]+1, shape[d]);
+            // NOTE paranthesis are necessary to compile on MSVC
+            blockShapeWithBorder[d] = (std::min)(settings.blockShape[d]+1, shape[d]);
         }
 
         struct PerThreadData{
