@@ -1,6 +1,6 @@
 Github Workflow builds
 ---------------------------------
-Master: ![build](https://github.com/constantinpape/nifty/workflows/.github/workflows/ccpp.yml/badge.svg)
+[![Build Status](https://github.com/constantinpape/nifty/workflows/build/badge.svg)](https://github.com/constantinpape/nifty/actions)
 
 
 Nifty

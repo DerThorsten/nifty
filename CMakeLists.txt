@@ -58,6 +58,7 @@ find_package(Threads REQUIRED)
 if(MSVC)
     # Disable autolinking on MSVC.
     add_definitions(-DBOOST_ALL_NO_LIB)
+    add_definitions(-DNOMINMAX)
 endif()
 
 # from externals..

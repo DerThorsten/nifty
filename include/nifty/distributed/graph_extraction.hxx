@@ -305,7 +305,7 @@ namespace distributed {
 
         // serialize the graph (nodes)
         std::vector<std::size_t> nodeShape = {nNodes};
-        std::vector<std::size_t> nodeChunks = {std::min(nNodes, 2*262144UL)};
+        std::vector<std::size_t> nodeChunks = {std::min(nNodes, static_cast<std::size_t>(262144))};
         auto dsNodes = z5::createDataset(group, "nodes", "uint64", nodeShape,
                                          nodeChunks, compression);
 
@@ -334,7 +334,7 @@ namespace distributed {
         // serialize the graph (edges)
         if(nEdges > 0) {
             std::vector<std::size_t> edgeShape = {nEdges, 2};
-            std::vector<std::size_t> edgeChunks = {std::min(nEdges, 262144UL), 2};
+            std::vector<std::size_t> edgeChunks = {std::min(nEdges, static_cast<std::size_t>(262144)), 2};
 
             auto dsEdges = z5::createDataset(group, "edges", "uint64",
                                              edgeShape, edgeChunks, compression);

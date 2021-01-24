@@ -453,7 +453,7 @@ namespace nifty{
                 const auto fromEdge = this->pqMergePrio(edge); // This -inf if the edge was lifted
                 const auto sr = settings_.sizeRegularizer;
 
-                if (sr > 0.000001 and !isNegativeInf(fromEdge))
+                if (sr > 0.000001 && !isNegativeInf(fromEdge))
                 {
                     const auto uv = edgeContractionGraph_.uv(edge);
                     const auto sizeU = nodeSizes_[uv.first];
