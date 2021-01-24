@@ -378,9 +378,10 @@ namespace distributed {
     // compute and serialize label-to-block-mapping
     //
 
-    template<class OUT, class THREAD_DATA>
+    template<typename THREAD_DATA>
     inline void mergeBlockMapping(const THREAD_DATA & perThreadData,
-                                  OUT & mapping, const int numberOfThreads) {
+                                  std::vector<std::vector<std::size_t>> & mapping,
+                                  const int numberOfThreads) {
         // merge the label data into output vector
         const std::size_t numberOfLabels = mapping.size();
         nifty::parallel::parallel_foreach(numberOfThreads, numberOfLabels,
@@ -401,12 +402,10 @@ namespace distributed {
 
     }
 
-
-    template<class OUT>
     inline void getBlockMapping(const std::string & inputPath,
                                 const std::string & inputKey,
                                 const int numberOfThreads,
-                                OUT & mapping) {
+                                std::vector<std::vector<std::size_t>> & mapping) {
 
         const z5::filesystem::handle::File file(inputPath);
         auto inputDs = z5::openDataset(file, inputKey);
@@ -453,11 +452,10 @@ namespace distributed {
     }
 
 
-    template<class OUT>
     inline void getBlockMappingWithRoi(const std::string & inputPath,
                                        const std::string & inputKey,
                                        const int numberOfThreads,
-                                       OUT & mapping,
+                                       std::vector<std::vector<std::size_t>> & mapping,
                                        const std::vector<std::size_t> & roiBegin,
                                        const std::vector<std::size_t> & roiEnd) {
 
@@ -508,12 +506,11 @@ namespace distributed {
     }
 
 
-    template<class OUT>
     inline void serializeMappingChunks(const std::string & inputPath,
                                        const std::string & inputKey,
                                        const std::string & outputPath,
                                        const std::string & outputKey,
-                                       const OUT & mapping,
+                                       const std::vector<std::vector<std::size_t>> & mapping,
                                        const int numberOfThreads) {
         // open the input and output datasets
         const z5::filesystem::handle::File inFile(inputPath);

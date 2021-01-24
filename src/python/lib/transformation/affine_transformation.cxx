@@ -5,7 +5,7 @@
 
 #include "nifty/array/static_array.hxx"
 #include "nifty/python/converter.hxx"
-#include "nifty/transformation/affine_transformation.hxx"
+#include "nifty/transformation/transformation_functions.hxx"
 #include "nifty/transformation/coordinate_transformation.hxx"
 #include "nifty/transformation/coordinate_transformation_chunked.hxx"
 

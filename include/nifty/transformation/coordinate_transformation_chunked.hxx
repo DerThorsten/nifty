@@ -116,5 +116,63 @@ namespace transformation {
 
     }
 
+
+    template<unsigned NDIM, class DATASET, class ARRAY, class COORD_TYPE>
+    void coordinateListTransformationChunked(const DATASET & input, ARRAY & output,
+                                             const std::vector<COORD_TYPE> & inputCoordinates,
+                                             const std::vector<COORD_TYPE> & outputCoordinates,
+                                             const COORD_TYPE & offset){
+                                             //const array::StaticArray<int64_t, NDIM> & ){
+        typedef COORD_TYPE CoordType;
+        typedef typename ARRAY::value_type ValueType;
+
+        const auto & shape = input.shape();
+        array::StaticArray<int64_t, NDIM> maxRange;
+        for(unsigned d = 0; d < NDIM; ++d) {
+            maxRange[d] = shape[d] - 1;
+        }
+
+        // get the chunks
+        const auto & chunks = tools::getChunkShape(input);
+
+        // make the blocking
+        CoordType bBegin, bShape, bBlockShape;
+        for(unsigned d = 0; d < NDIM; ++d) {
+            bShape[d] = shape[d];
+            bBlockShape[d] = chunks[d];
+        }
+        tools::Blocking<NDIM> blocking(bBegin, bShape, bBlockShape);
+
+        // initialize the chunk cache
+        typedef xt::xtensor<ValueType, NDIM> BlockArrayType;
+        std::unordered_map<uint64_t, BlockArrayType> chunkCache;
+
+        CoordType normalizedOutCoord;
+        const std::size_t nCoordinates = inputCoordinates.size();
+        for(size_t coordId = 0; coordId < nCoordinates; ++coordId) {
+
+            // range check the input coordinate and read the value
+            const auto & inCoord = inputCoordinates[coordId];
+            bool outOfRange = false;
+            for(unsigned d = 0; d < NDIM; ++d){
+                if(inCoord[d] >= maxRange[d] || inCoord[d] < 0) {
+                    outOfRange = true;
+                    break;
+                }
+            }
+            if(outOfRange) {
+                continue;
+            }
+            const ValueType val = readFromChunk<NDIM>(inCoord, input, blocking, chunkCache);
+
+            // get the output coordinage, normalize to our output array and write to it
+            const auto & outCoord = outputCoordinates[coordId];
+            for(unsigned d = 0; d < NDIM; ++d){
+                normalizedOutCoord[d] = outCoord[d] - offset[d];
+            }
+            xtensor::write(output, normalizedOutCoord, val);
+        }
+    }
+
 }
 }

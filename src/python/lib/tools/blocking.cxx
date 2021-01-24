@@ -35,6 +35,29 @@ namespace tools{
             .def_property_readonly("begin",&BlockType::begin)
             .def_property_readonly("end",&BlockType::end)
             .def_property_readonly("shape",&BlockType::shape)
+
+			.def(py::pickle(
+                 [](const BlockType &b) { // __getstate__
+                     /* Return a tuple that fully encodes the state of the object */
+                     return py::make_tuple(b.begin().asStdArray(),
+                                           b.end().asStdArray());
+                 },
+                 [](py::tuple t) { // __setstate__
+                     if (t.size() != 2)
+                         throw std::runtime_error("Invalid state!");
+
+                     const auto & pBeg = t[0].cast<typename VectorType::BaseType>();
+                     const auto & pEnd = t[1].cast<typename VectorType::BaseType>();
+
+                     VectorType beg, end;
+                     for(unsigned d = 0; d < DIM; ++d) {
+                        beg[d] = pBeg[d];
+                        end[d] = pEnd[d];
+                     }
+                     BlockType b(beg, end);
+                     return b;
+                 }
+            ))
         ;
 
         const auto blockWithHaloClsStr = std::string("BlockWithHalo") + dimStr;
@@ -43,6 +66,22 @@ namespace tools{
             .def_property_readonly("outerBlock",&BlockWithHaloType::outerBlock ,py::return_value_policy::reference_internal)
             .def_property_readonly("innerBlock",&BlockWithHaloType::innerBlock ,py::return_value_policy::reference_internal)
             .def_property_readonly("innerBlockLocal",&BlockWithHaloType::innerBlockLocal ,py::return_value_policy::reference_internal)
+
+            .def(py::pickle(
+                 [](const BlockWithHaloType &b) { // __getstate__
+                     /* Return a tuple that fully encodes the state of the object */
+                     return py::make_tuple(b.outerBlock(), b.innerBlock());
+                 },
+                 [](py::tuple t) { // __setstate__
+                     if (t.size() != 2)
+                         throw std::runtime_error("Invalid state!");
+
+                     const auto & outer = t[0].cast<BlockType>();
+                     const auto & inner = t[1].cast<BlockType>();
+                     BlockWithHaloType b(outer, inner);
+                     return b;
+                 }
+            ))
         ;
 
         const auto blockingClsStr = std::string("Blocking") + dimStr;
@@ -62,6 +101,35 @@ namespace tools{
             .def_property_readonly("blockShift",&BlockingType::blockShift)
             .def_property_readonly("blocksPerAxis",&BlockingType::blocksPerAxis)
             .def_property_readonly("numberOfBlocks",&BlockingType::numberOfBlocks)
+
+            .def(py::pickle(
+                 [](const BlockingType &b) { // __getstate__
+                     /* Return a tuple that fully encodes the state of the object */
+                     return py::make_tuple(b.roiBegin().asStdArray(),
+                                           b.roiEnd().asStdArray(),
+                                           b.blockShape().asStdArray(),
+                                           b.blockShift().asStdArray());
+                 },
+                 [](py::tuple t) { // __setstate__
+                     if (t.size() != 4)
+                         throw std::runtime_error("Invalid state!");
+
+                     const auto & pBeg = t[0].cast<typename VectorType::BaseType>();
+                     const auto & pEnd = t[1].cast<typename VectorType::BaseType>();
+                     const auto & pShape = t[2].cast<typename VectorType::BaseType>();
+                     const auto & pShift = t[3].cast<typename VectorType::BaseType>();
+
+                     VectorType beg, end, shape, shift;
+                     for(unsigned d = 0; d < DIM; ++d) {
+                        beg[d] = pBeg[d];
+                        end[d] = pEnd[d];
+                        shape[d] = pShape[d];
+                        shift[d] = pShift[d];
+                     }
+                     BlockingType b(beg, end, shape, shift);
+                     return b;
+                 }
+            ))
 
             .def("getBlock", &BlockingType::getBlock)
 

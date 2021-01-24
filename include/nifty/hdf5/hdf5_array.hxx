@@ -414,7 +414,10 @@ namespace tools{
 
     template<class T>
     inline std::vector<std::size_t> getChunkShape(const hdf5::Hdf5Array<T> & array) {
-        return array.chunkShape();
+        const auto & chunkShape = array.chunkShape();
+        std::vector<std::size_t> ret(chunkShape.size());
+        std::copy(chunkShape.begin(), chunkShape.end(), ret.begin());
+        return ret;
     }
 
     template<class ARRAY>

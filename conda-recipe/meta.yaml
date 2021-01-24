@@ -1,92 +1,51 @@
-# WITH_CPLEX and WITH_GUROBI are exclusive options to be set with environment
-# variables. To be active, they should be set to a value of 1
-{% if not WITH_CPLEX is defined %}
-  {% set WITH_CPLEX = 0 %}
-{% endif %}
-{% set WITH_CPLEX = WITH_CPLEX|int %}
-
-{% if not WITH_GUROBI is defined %}
-  {% set WITH_GUROBI = 0 %}
-{% endif %}
-{% set WITH_GUROBI = WITH_GUROBI|int %}
-
 package:
-  {% if WITH_CPLEX == 1 %}
-    name: nifty-with-cplex
-  {% elif WITH_GUROBI == 1 %}
-    name: nifty-with-gurobi
-  {% else %}
-    name: nifty
-  {% endif %}
-    version: v1.0.7
+  name: nifty
+  version: v1.0.7
+
 
 source:
   path: ..
 
 
 build:
-  number: 0
+  number: 1000
 
-  script_env:
-     - WITH_CPLEX
-     - CPLEX_ROOT_DIR
-     - CPLEX_WIN_VERSION # [win]
-     - WITH_GUROBI
-     - GUROBI_ROOT_DIR
-     - GUROBI_LIB_WIN # [win]
 
 requirements:
   build:
-    - gxx_linux-64
-    - python {{PY_VER}}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+
+  host:
+    - python
     - boost-cpp >=1.63
     - hdf5 >=1.10
     - numpy >=1.15
-    - xtensor 0.19.3
-    - xtensor-python 0.22.1
-    - nlohmann_json
     - blosc
     - z5py >=2.0.5
     - vigra
-    # - bzip2
-
-    {% if WITH_CPLEX is defined and WITH_CPLEX %}
-    - cplex-shared # Need to make sure that cplex dylibs exist
-    {% endif %}
-
-    # Must provide symlinks so that the conda doesn't complain when it 'fixes' linking in _nifty.so
-    {% if WITH_GUROBI is defined and WITH_GUROBI %}
-    - gurobi-symlink
-    {% endif %}
+    - bzip2
+    - zlib
+    - xtensor
+    - xtensor-python
+    - nlohmann_json
 
   run:
-    - python {{PY_VER}}
+    - python
+    - scikit-image
+    - vigra
     - hdf5 >=1.10
     - numpy >=1.15
-    - scikit-image
     - blosc
-    - vigra
-    # - bzip2
+    - bzip2
+    - zlib
 
-    {% if WITH_CPLEX is defined and WITH_CPLEX %}
-    - cplex-shared # Need to make sure that cplex dylibs exist
-    {% endif %}
-
-    {% if WITH_GUROBI is defined and WITH_GUROBI %}
-    - gurobi-symlink
-    {% endif %}
 
 test:
-  {% if WITH_CPLEX %}
-    imports:
-      - nifty_with_cplex
-  {% elif WITH_GUROBI %}
-    imports:
-      - nifty_with_gurobi
-  {% else %}
-    imports:
-      - nifty
-  {% endif %}
+  imports:
+    - nifty
+
 
 about:
   home: https://github.com/DerThorsten/nifty
