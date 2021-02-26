@@ -97,10 +97,8 @@ Conda:
 
 The easiest way to install this version is via conda (right now it is not available with gurobi or cplex, you will need to build from source for this):
 ```
-conda install -c conda-forge -c cpape nifty
+conda install -c conda-forge nifty
 ```
-For now, the package is only available for linux and python 3.7. We are working to put the package on conda forge, see 
-https://github.com/conda-forge/staged-recipes/pull/7763. Any help on solving the build issues there would be highly appreciated.
 
 From Source:
 ============
