@@ -141,10 +141,10 @@ namespace distributed {
         // requre the output node dataset
         const std::string nodeOutKey = subgraphOutKey + "/nodes";
         std::unique_ptr<z5::Dataset> dsNodesOut;
-        if(graphFile.in(nodeInKey)) {
-            dsNodesOut = std::move(z5::openDataset(graphFile, nodeInKey));
+        if(graphFile.in(nodeOutKey)) {
+            dsNodesOut = std::move(z5::openDataset(graphFile, nodeOutKey));
         } else {
-            dsNodesOut = std::move(z5::createDataset(graphFile, nodeInKey, "uint64",
+            dsNodesOut = std::move(z5::createDataset(graphFile, nodeOutKey, "uint64",
                                                      std::vector<std::size_t>(shape.begin(), shape.end()),
                                                      std::vector<std::size_t>(newBlockShape.begin(), newBlockShape.end()),
                                                      "gzip"));
