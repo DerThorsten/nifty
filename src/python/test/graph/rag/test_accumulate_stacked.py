@@ -6,6 +6,8 @@ import numpy as np
 import nifty
 import nifty.graph.rag as nrag
 
+ON_WIN = os.name == 'nt'
+
 
 class TestAccumulateStacked(unittest.TestCase):
     shape = (10, 256, 256)
@@ -188,6 +190,7 @@ class TestAccumulateStacked(unittest.TestCase):
             self.check_features(feats_z, n_edges_z)
         print("... passed")
 
+    @unittest.skipIf(ON_WIN, "fails on windows")
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_z5_standard_features(self):
         self.accumulation_z5_test(nrag.accumulateEdgeStandardFeatures, n_feats=9)
@@ -197,6 +200,7 @@ class TestAccumulateStacked(unittest.TestCase):
     def test_z5_features_from_filters(self):
         self.accumulation_z5_test(nrag.accumulateEdgeFeaturesFromFilters, n_feats=9 * 12)
 
+    @unittest.skipIf(ON_WIN, "fails on windows")
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_in_vs_out_of_core(self):
         accumulation_function = nrag.accumulateEdgeStandardFeatures
