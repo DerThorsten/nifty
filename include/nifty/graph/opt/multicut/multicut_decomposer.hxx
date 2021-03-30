@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nifty/tools/runtime_check.hxx"
+#include "nifty/parallel/threadpool.hxx"
 #include "nifty/graph/components.hxx"
 
 #include "nifty/graph/opt/multicut/multicut_base.hxx"
@@ -139,7 +140,7 @@ namespace multicut{
         // build the connected components
         NodeLabelsType denseLabels(graph_);
         const auto nComponents = components_.build(SubgraphWithCut(weights_));
-        std::vector<std::size_t> componentsSize(nComponents,0);
+        std::vector<std::size_t> componentsSize(nComponents, 0);
         components_.denseRelabeling(denseLabels, componentsSize);
 
 
@@ -154,148 +155,111 @@ namespace multicut{
             visitorProxy.clearLogNames();
             visitorProxy.addLogNames({std::string("modelSize")});
 
-            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "alloc subgraphs");
-            // first pass :
-            // - allocate the sub graphs
-            // - sparse to dense
-            std::vector<SubmodelGraph *> subGraphVec(nComponents);
-            for(std::size_t i=0; i<nComponents; ++i){
-                NIFTY_CHECK_OP(componentsSize[i],>,0,"");
-                if(componentsSize[i]>1)
-                    subGraphVec[i] = new SubmodelGraph(componentsSize[i]);
-            }
-
-
+            // get list of global node ids for all components
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "global to local mappin");
-            // map from global variables to
-            // subproblem variables
-            std::vector< std::unordered_map<uint64_t, uint64_t>  > nodeToSubNodeVec(nComponents);
+            std::unordered_map<uint64_t, std::vector<uint64_t>> componentToGlobalNodes;
             for(const auto node : graph_.nodes()){
-                const auto subgraphId = denseLabels[node];
-                auto & nodeToSubNode = nodeToSubNodeVec[subgraphId];
-                const auto subVarId = nodeToSubNode.size();
-                nodeToSubNode[node] = subVarId;
-            }
-
-
-            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "add edges");
-            // add edges to subproblems
-            for(const auto edge : graph_.edges()){
-
-                const auto u = graph_.u(edge);
-                const auto v = graph_.v(edge);
-                const auto lu = denseLabels[u];
-
-                if(componentsSize[lu]>1){
-                    if(lu == denseLabels[v]){
-
-                        NIFTY_CHECK_OP(lu,<,nComponents,"");
-
-                        const auto & nodeToSubNode = nodeToSubNodeVec[lu];
-
-                        const auto findU = nodeToSubNode.find(u);
-                        const auto findV = nodeToSubNode.find(v);
-
-                        NIFTY_CHECK(findU != nodeToSubNode.end(),"");
-                        NIFTY_CHECK(findV != nodeToSubNode.end(),"");
-
-                        const auto su = findU->second;
-                        const auto sv = findV->second;
-
-                        NIFTY_CHECK_OP(su,<,subGraphVec[lu]->numberOfNodes(),"");
-                        NIFTY_CHECK_OP(sv,<,subGraphVec[lu]->numberOfNodes(),"");
-
-                        subGraphVec[lu]->insertEdge(su,sv);
-                    }
+                const auto componentId = denseLabels[node];
+                auto componentNodes = componentToGlobalNodes.find(componentId);
+                if(componentNodes == componentToGlobalNodes.end()) {
+                    componentToGlobalNodes[componentId] = std::vector<uint64_t>({static_cast<uint64_t>(node)});
+                } else {
+                    componentNodes->second.push_back(node);
                 }
             }
 
-            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "build sub-objectives");
-            // build the sub mc objectives
-            std::vector<SubmodelObjective *> subObjectiveVec(nComponents);
-            for(std::size_t i=0; i<nComponents; ++i){
-                if(componentsSize[i]>1)
-                    subObjectiveVec[i] = new SubmodelObjective(*subGraphVec[i]);
-            }
-
-            for(const auto edge : graph_.edges()){
-                const auto u = graph_.u(edge);
-                const auto v = graph_.v(edge);
-                const auto lu = denseLabels[u];
-                if(componentsSize[lu]>1){
-                    if(lu == denseLabels[v]){
-                        const auto & nodeToSubNode = nodeToSubNodeVec[lu];
-                        const auto su = nodeToSubNode.find(u)->second;
-                        const auto sv = nodeToSubNode.find(v)->second;
-                        const auto subEdge = subGraphVec[lu]->findEdge(su,sv);
-                        subObjectiveVec[lu]->weights()[subEdge] = weights_[edge];
-                    }
-                }
-            }
-
+            // create and solve the subproblems in parallel
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "optimize subproblems");
-            // optimize the subproblems
-            // and delete stuff we do not need anymore
-            std::vector<SubmodelNodeLabels *> subNodeLabelsVec(nComponents);
 
-            // //////////////////////////////////////////////
-            // solving and partial cleanup
-            // //////////////////////////////////////////////
-            for(std::size_t i=0; i<nComponents; ++i){
-                if(componentsSize[i]>1){
-                    const auto & subObj = *subObjectiveVec[i];
-                    const auto & subGraph = *subGraphVec[i];
-                    const auto nSubGraphNodes = subGraph.numberOfNodes();
-                    // TODO log with visitor
+            std::vector<SubmodelNodeLabels> subNodeLabelsVec(nComponents);
+            nifty::parallel::ParallelOptions pOpts(settings_.numberOfThreads);
+            nifty::parallel::ThreadPool threadPool(pOpts);
+
+            // sort the component ids by size in descending order, so that we start solving the larger problems first
+            // to work on the critical path first
+            std::vector<std::size_t> componentIdsSorted(nComponents);
+            std::iota(componentIdsSorted.begin(), componentIdsSorted.end(), 0);
+            std::sort(componentIdsSorted.begin(), componentIdsSorted.end(),
+                      [&componentsSize](std::size_t cA, std::size_t cB){return componentsSize[cA] > componentsSize[cB];});
+
+            nifty::parallel::parallel_foreach(threadPool, nComponents, [&](const std::size_t threadId, const std::size_t i){
+                const std::size_t componentId = componentIdsSorted[i];
+                if(componentsSize[componentId] > 1){
+                    const auto & subNodes = componentToGlobalNodes.at(componentId);
+
+                    // dense relabeling for the nodes in our subproblem
+                    std::unordered_map<uint64_t, uint64_t> subRelabeling;
+                    uint64_t localNodeId = 0;
+                    for(auto nodeId: subNodes) {
+                        subRelabeling[nodeId] = localNodeId;
+                        ++localNodeId;
+                    }
+
+                    std::vector<int64_t> subEdgeIds;
+                    graph_.edgesFromNodeList(subNodes, subEdgeIds);
+
+                    // NOTE this should be faster, but appears not to be in practice
+                    // copy to unordered set to find nodes faster
+                    // std::unordered_set<uint64_t> subNodeSet(subNodes.begin(), subNodes.end());
+                    // graph_.edgesFromNodeList(subNodeSet, subEdgeIds);
+
+                    const uint64_t nSubNodes = subNodes.size();
+                    SubmodelGraph subGraph(nSubNodes);
+                    for(auto edgeId: subEdgeIds) {
+                        const auto & uv = graph_.uv(edgeId);
+                        subGraph.insertEdge(subRelabeling[uv.first], subRelabeling[uv.second]);
+                    }
+
                     // std::cout<<"#Nodes "<<nSubGraphNodes<<" "<<float(nSubGraphNodes)/float(graph_.numberOfNodes())<<"\n";
 
-                    subNodeLabelsVec[i] = new SubmodelNodeLabels(subGraph);
+                    SubmodelObjective subObj(subGraph);
+                    auto & subWeights = subObj.weights();
+                    int64_t localEdgeId = 0;
+                    for(auto edgeId: subEdgeIds) {
+                        subWeights[localEdgeId] = weights_[edgeId];
+                        ++localEdgeId;
+                    }
 
                     // create solver and optimize
+                    SubmodelNodeLabels subLabels = SubmodelNodeLabels(subGraph);
                     auto subSolver = settings_.submodelFactory->create(subObj);
-                    subSolver->optimize(*subNodeLabelsVec[i], nullptr);
-                    delete subSolver;
-                    delete subObjectiveVec[i];
-                    delete subGraphVec[i];
-                }
-            }
+                    subSolver->optimize(subLabels, nullptr);
 
-            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "map sub to global");
-            // map from the sub solutions to global solution
-            {
-                nifty::ufd::Ufd< > ufd(graph_.nodeIdUpperBound()+1);
-                for(const auto edge : graph_.edges()){
-
-                    const auto u = graph_.u(edge);
-                    const auto v = graph_.v(edge);
-                    const auto lu = denseLabels[u];
-
-                    if(componentsSize[lu]>1){
-                        if(lu == denseLabels[v]){
-
-                            const auto & nodeToSubNode = nodeToSubNodeVec[lu];
-                            const auto & subNodeLabels = *subNodeLabelsVec[lu];
-                            const auto su = nodeToSubNode.find(u)->second;
-                            const auto sv = nodeToSubNode.find(v)->second;
-                            if(subNodeLabels[su] == subNodeLabels[sv]){
-                                ufd.merge(u, v);
-                            }
+                    // dense relabeling of the results
+                    uint64_t denseLabelId = 0;
+                    std::unordered_map<uint64_t, uint64_t> resRelabeling;
+                    for(std::size_t labelId = 0; labelId < subLabels.size(); ++labelId) {
+                        uint64_t & nodeLabel = subLabels[labelId];
+                        auto relabelIt = resRelabeling.find(nodeLabel);
+                        if(relabelIt == resRelabeling.end()) {
+                            resRelabeling[nodeLabel] = denseLabelId;
+                            nodeLabel = denseLabelId;
+                            ++denseLabelId;
+                        } else {
+                            nodeLabel = relabelIt->second;
                         }
                     }
+                    subNodeLabelsVec[componentId] = subLabels;
+                } else {
+                    SubmodelGraph subGraph(1);
+                    SubmodelNodeLabels subLabels(subGraph);
+                    subLabels[0] = 0;
+                    subNodeLabelsVec[componentId] = subLabels;
                 }
+            });
 
-                for(const auto node : graph_.nodes()){
-                    nodeLabels[node] = ufd.find(node);
+            // map from the sub solutions to global solution
+            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "map sub to global");
+            uint64_t labelOffset = 0;
+            for(std::size_t i = 0; i < nComponents; ++i) {
+                const auto & subNodes = componentToGlobalNodes.at(i);
+                const auto & subLabels = subNodeLabelsVec[i];
+                for(std::size_t j = 0; j < subNodes.size(); ++j) {
+                    nodeLabels[subNodes[j]] = subLabels[j] + labelOffset;
                 }
+                labelOffset += (*std::max_element(subLabels.begin(), subLabels.end()) + 1);
             }
 
-            //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "cleanup");
-            // final cleanup
-            for(std::size_t i=0; i<nComponents; ++i){
-                if(componentsSize[i]>1){
-                    delete subNodeLabelsVec[i];
-                }
-            }
             visitorProxy.clearLogNames();
         }
         else{

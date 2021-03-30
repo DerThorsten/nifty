@@ -71,11 +71,17 @@ namespace multicut{
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportMulticutDecomposerT<ObjectiveType>(multicutModule);
         }
+
+        // NOTE: this does not compile, because EdgeContractionGraphWithSets (a.ka. PyContractionGraph)
+        // doesn't have the member function "edgesFromNodeList". In order to support this, it would probably
+        // be best to move "edgesFromNodeList" from "UndirectedGraph" to "UndirectedGraphBase"
+        /*
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportMulticutDecomposerT<ObjectiveType>(multicutModule);
         }
+        */
 
     }
 } // namespace nifty::graph::opt::multicut

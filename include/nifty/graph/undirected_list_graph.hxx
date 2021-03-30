@@ -135,8 +135,9 @@ public:
         std::vector<EDGE_INTERNAL_TYPE> &) const;
 
     // extract all the edges that connect nodes in the node list
-    void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
-            std::vector<EDGE_INTERNAL_TYPE> & edges) {
+    template<class NODE_LIST>
+    void edgesFromNodeList(const NODE_LIST & nodeList,
+            std::vector<EDGE_INTERNAL_TYPE> & edges) const{
         std::unordered_set<EDGE_INTERNAL_TYPE> edgesTmp;
         NODE_INTERNAL_TYPE v;
         for(auto u : nodeList) {
