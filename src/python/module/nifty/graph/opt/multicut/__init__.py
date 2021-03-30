@@ -136,7 +136,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
-    def warmStartGreeedyDecorator(func):
+    def warmStartGreedyDecorator(func):
         def func_wrapper(*args, **kwargs):
             warmStartGreedy = kwargs.pop('warmStartGreedy', False)
             greedyVisitNth = kwargs.pop('greedyVisitNth', 100)
@@ -185,7 +185,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
-    @warmStartGreeedyDecorator
+    @warmStartGreedyDecorator
     def cgcFactory(doCutPhase=True, doGlueAndCutPhase=True, mincutFactory=None,
             multicutFactory=None,
             doBetterCutPhase=False, nodeNumStopCond=0.1, sizeRegularizer=1.0):
@@ -257,7 +257,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     """%(factoryClsName("MulticutGreedyAdditive"))
 
 
-    @warmStartGreeedyDecorator
+    @warmStartGreedyDecorator
     def kernighanLinFactory(
             numberOfInnerIterations = sys.maxsize,
             numberOfOuterIterations = 100,
@@ -286,7 +286,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     """%tuple([factoryClsName("KernighanLin")]*2)
 
 
-    def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None):
+    def multicutDecomposerFactory(submodelFactory=None, fallthroughFactory=None, numberOfThreads=1):
 
         if submodelFactory is None:
            submodelFactory = MulticutObjectiveUndirectedGraph.defaultMulticutFactory()
@@ -295,9 +295,10 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
             fallthroughFactory = O.defaultMulticutFactory()
 
 
-        s,F = getSettingsAndFactoryCls("MulticutDecomposer")
+        s, F = getSettingsAndFactoryCls("MulticutDecomposer")
         s.submodelFactory = submodelFactory
         s.fallthroughFactory = fallthroughFactory
+        s.numberOfThreads = numberOfThreads
         return F(s)
 
     O.multicutDecomposerFactory = staticmethod(multicutDecomposerFactory)
@@ -490,7 +491,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.randomNodeColorCcProposals = staticmethod(randomNodeColorCcProposals)
 
 
-    @warmStartGreeedyDecorator
+    @warmStartGreedyDecorator
     def ccFusionMoveBasedFactory(proposalGenerator=None,
         numberOfThreads=1, numberOfIterations=100,
         stopIfNoImprovement=10, fusionMove=None):

@@ -16,7 +16,7 @@ namespace multicut{
     template<class OBJECTIVE>
     class MulticutDecomposer : public MulticutBase<OBJECTIVE>
     {
-    public: 
+    public:
 
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
@@ -29,11 +29,11 @@ namespace multicut{
 
 
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> FactoryBase;
-       
+
     private:
         typedef ComponentsUfd<GraphType> Components;
-        
-        
+
+
     public:
         typedef UndirectedGraph<>                                                               SubmodelGraph;
         typedef MulticutObjective<SubmodelGraph, WeightType>                                    SubmodelObjective;
@@ -47,11 +47,12 @@ namespace multicut{
         struct SettingsType{
             std::shared_ptr<SubmodelFactoryBase> submodelFactory;
             std::shared_ptr<FactoryBase>         fallthroughFactory;
-            
+            int numberOfThreads;
+
         };
 
         virtual ~MulticutDecomposer(){
-            
+
         }
         MulticutDecomposer(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
@@ -67,9 +68,9 @@ namespace multicut{
         virtual std::string name()const{
             return std::string("MulticutDecomposer");
         }
-        virtual void weightsChanged(){ 
+        virtual void weightsChanged(){
         }
-        
+
     private:
 
         struct SubgraphWithCut {
@@ -100,11 +101,11 @@ namespace multicut{
         SettingsType settings_;
     };
 
-    
+
     template<class OBJECTIVE>
     MulticutDecomposer<OBJECTIVE>::
     MulticutDecomposer(
-        const ObjectiveType & objective, 
+        const ObjectiveType & objective,
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -125,13 +126,13 @@ namespace multicut{
     void MulticutDecomposer<OBJECTIVE>::
     optimize(
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
-    ){  
+    ){
 
-        
+
         VisitorProxyType visitorProxy(visitor);
         //visitorProxy.addLogNames({"violatedConstraints"});
         currentBest_ = &nodeLabels;
-        
+
         visitorProxy.begin(this);
 
 
@@ -142,19 +143,16 @@ namespace multicut{
         components_.denseRelabeling(denseLabels, componentsSize);
 
 
-        visitorProxy.printLog(nifty::logging::LogLevel::INFO, 
+        visitorProxy.printLog(nifty::logging::LogLevel::INFO,
             std::string("model decomposes in ")+std::to_string(nComponents));
 
 
-        // build the sub objectives in the case 
+        // build the sub objectives in the case
         // the thing decomposes
         if(nComponents >= 2){
-            
 
             visitorProxy.clearLogNames();
             visitorProxy.addLogNames({std::string("modelSize")});
-
-
 
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "alloc subgraphs");
             // first pass :
@@ -248,11 +246,12 @@ namespace multicut{
                     const auto & subObj = *subObjectiveVec[i];
                     const auto & subGraph = *subGraphVec[i];
                     const auto nSubGraphNodes = subGraph.numberOfNodes();
-                    std::cout<<"#Nodes "<<nSubGraphNodes<<" "<<float(nSubGraphNodes)/float(graph_.numberOfNodes())<<"\n";
-                  
+                    // TODO log with visitor
+                    // std::cout<<"#Nodes "<<nSubGraphNodes<<" "<<float(nSubGraphNodes)/float(graph_.numberOfNodes())<<"\n";
+
                     subNodeLabelsVec[i] = new SubmodelNodeLabels(subGraph);
 
-                    // create solver and optimize 
+                    // create solver and optimize
                     auto subSolver = settings_.submodelFactory->create(subObj);
                     subSolver->optimize(*subNodeLabelsVec[i], nullptr);
                     delete subSolver;
@@ -284,7 +283,7 @@ namespace multicut{
                         }
                     }
                 }
-                
+
                 for(const auto node : graph_.nodes()){
                     nodeLabels[node] = ufd.find(node);
                 }
