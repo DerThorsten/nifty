@@ -33,6 +33,13 @@ namespace graph{
             .def(py::init<const typename GraphType::ShapeType>(),
                py::arg("shape")
             )
+            .def_property_readonly("shape", [](const GraphType & g){
+                std::vector<uint64_t> shape_(DIM);
+                for(int d = 0; d < DIM; ++d) {
+                    shape_[d] = g.shape(d);
+                }
+                return shape_;
+            })
             .def("nodeToCoordinate",[](
                 const GraphType & g,
                 const uint64_t node
@@ -126,12 +133,28 @@ namespace graph{
                         } op;
                         g.imageToEdgeMap(image, op, out);
                     }
+                    else if(functorType == std::string("l1")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return std::abs(a - b);
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
+                    else if(functorType == std::string("l2")){
+                        struct {
+                            double operator()(const float a, const float b){
+                                return (a - b) * (a - b);
+                            }
+                        } op;
+                        g.imageToEdgeMap(image, op, out);
+                    }
                     else if(functorType == std::string("interpixel")){
                         g.imageToInterpixelEdgeMap(image, out);
                     }
                     else{
                         const auto s = boost::format("'%s' is an unknown mode. Must be in "
-                            "['min', 'max', 'sum', 'prod', 'interpixel']")%functorType;
+                            "['min', 'max', 'sum', 'prod', 'interpixel', 'l1', 'l2']")%functorType;
                         throw std::runtime_error(s.str());
                     }
                     return out;
@@ -146,6 +169,23 @@ namespace graph{
                 "       *   'max':  Maximum of the two image values at edges endpoints of coordinates.\n"
                 "       *   'sum':      Sum of the two image values at edges endpoints of coordinates.\n"
                 "       *   'prod': Product of the two image values at edges endpoints of coordinates.\n"
+            )
+
+            .def("imageWithChannelsToEdgeMap",
+                [](
+                    const GraphType & g,
+                    const xt::pytensor<float, DIM + 1> & image,
+                    const std::string & distance
+                ){
+
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType shape = {g.edgeIdUpperBound() + 1};
+                    xt::pytensor<float, 1> out(shape);
+                    g.imageWithChannelsToEdgeMap(image, distance, out);
+                    return out;
+                },
+                py::arg("image"),
+                py::arg("distance")
             )
 
             .def("affinitiesToEdgeMap",

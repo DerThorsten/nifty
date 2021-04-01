@@ -283,9 +283,142 @@ public:
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
             const auto uVal = xtensor::read(image, cU.asStdArray());
-            const auto vVal = xtensor::read(image, cU.asStdArray());
+            const auto vVal = xtensor::read(image, cV.asStdArray());
 
             edgeMap[edge] = binaryFunctor(uVal, vVal);
+        }
+    }
+
+
+    template<class IMAGE, class EDGE_MAP>
+    void l2Impl(
+        const IMAGE & image,
+        EDGE_MAP & edgeMap
+    ) const {
+        typedef typename EDGE_MAP::value_type edgeValType;
+        const int nChannels = image.shape()[0];
+        std::array<int64_t, DIM+1> coordU;
+        std::array<int64_t, DIM+1> coordV;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU, cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d + 1] = cU[d];
+                coordV[d + 1] = cV[d];
+            }
+
+            edgeValType val = 0;
+            for(unsigned c = 0; c < nChannels; ++c) {
+                coordU[0] = c;
+                coordV[0] = c;
+                const auto uVal = xtensor::read(image, coordU);
+                const auto vVal = xtensor::read(image, coordV);
+                val += (uVal - vVal) * (uVal - vVal);
+            }
+
+            edgeMap[edge] = std::sqrt(val);
+        }
+    }
+
+    template<class IMAGE, class EDGE_MAP>
+    void l1Impl(
+        const IMAGE & image,
+        EDGE_MAP & edgeMap
+    ) const {
+        typedef typename EDGE_MAP::value_type edgeValType;
+        const int nChannels = image.shape()[0];
+        std::array<int64_t, DIM+1> coordU;
+        std::array<int64_t, DIM+1> coordV;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU, cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d + 1] = cU[d];
+                coordV[d + 1] = cV[d];
+            }
+
+            edgeValType val = 0;
+            for(unsigned c = 0; c < nChannels; ++c) {
+                coordU[0] = c;
+                coordV[0] = c;
+                const auto uVal = xtensor::read(image, coordU);
+                const auto vVal = xtensor::read(image, coordV);
+                val += std::abs(uVal - vVal);
+            }
+
+            edgeMap[edge] = val;
+        }
+    }
+
+    template<class IMAGE, class EDGE_MAP>
+    void cosineImpl(
+        const IMAGE & image,
+        EDGE_MAP & edgeMap
+    ) const {
+        typedef typename EDGE_MAP::value_type edgeValType;
+        const int nChannels = image.shape()[0];
+        std::array<int64_t, DIM+1> coordU;
+        std::array<int64_t, DIM+1> coordV;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU, cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d + 1] = cU[d];
+                coordV[d + 1] = cV[d];
+            }
+
+            edgeValType normU = 0;
+            edgeValType normV = 0;
+            edgeValType val = 0;
+            for(unsigned c = 0; c < nChannels; ++c) {
+                coordU[0] = c;
+                coordV[0] = c;
+                const auto uVal = xtensor::read(image, coordU);
+                const auto vVal = xtensor::read(image, coordV);
+                val += uVal * vVal;
+                normU += uVal * uVal;
+                normV += vVal * vVal;
+            }
+
+            normU = std::sqrt(normU);
+            normV = std::sqrt(normV);
+            edgeMap[edge] = 1. - (val / normU / normV);
+        }
+    }
+
+
+    /**
+     * @brief convert an image with DIM + 1 dimension to an edge map
+     * @details convert an image with DIM + 1 dimension to an edge map
+     * by computing the distance between the values of a node map at
+     * the endpoints of an edge.
+     *
+     * @param       image the  input image
+     * @param       distance   the distance (l1, l2 or cosine)
+     * @param[out]  the result edge map
+     *
+     * @return [description]
+     */
+    template<class IMAGE, class EDGE_MAP>
+    void imageWithChannelsToEdgeMap(
+        const IMAGE & image,
+        const std::string & distance,
+        EDGE_MAP & edgeMap
+    ) const {
+        if(distance == "l1") {
+            l1Impl(image, edgeMap);
+        } else if(distance == "l2") {
+            l2Impl(image, edgeMap);
+        } else if(distance == "cosine") {
+            cosineImpl(image, edgeMap);
+        } else {
+            throw std::runtime_error("Invalid distance.");
         }
     }
 
