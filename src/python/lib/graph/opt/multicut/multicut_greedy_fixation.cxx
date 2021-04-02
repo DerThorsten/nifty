@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 
 #include "nifty/graph/opt/multicut/multicut_objective.hxx"
-#include "nifty/graph/opt/multicut/multicut_greedy_additive.hxx"
+#include "nifty/graph/opt/multicut/multicut_greedy_fixation.hxx"
 
 #include "nifty/python/graph/undirected_list_graph.hxx"
 #include "nifty/python/graph/edge_contraction_graph.hxx"
@@ -21,7 +21,7 @@ namespace opt{
 namespace multicut{
 
     template<class OBJECTIVE>
-    void exportMulticutGreedyAdditiveT(py::module & multicutModule) {
+    void exportMulticutGreedyFixationT(py::module & multicutModule) {
 
 
         ///////////////////////////////////////////////////////////////
@@ -33,24 +33,21 @@ namespace multicut{
         docHelper.objectiveClsName =
             MulticutObjectiveName<OBJECTIVE>::name();
         docHelper.name =
-            "greedy additive";
+            "greedy fixation";
         docHelper.mainText =
             "Find approximate solutions via\n"
-            "agglomerative clustering as in :cite:`beier_15_funsion`.\n";
-        docHelper.cites.emplace_back("beier_15_funsion");
+            "agglomerative clustering with cannot link constraints.\n";
         docHelper.note =
             "This solver should be used to\n"
             "warm start other solvers with.\n"
             "This solver is very fast but\n"
             "yields rather suboptimal results.\n";
 
-
-
         typedef OBJECTIVE ObjectiveType;
-        typedef MulticutGreedyAdditive<ObjectiveType> Solver;
+        typedef MulticutGreedyFixation<ObjectiveType> Solver;
         typedef typename Solver::SettingsType SettingsType;
 
-        exportMulticutSolver<Solver>(multicutModule,"MulticutGreedyAdditive",docHelper)
+        exportMulticutSolver<Solver>(multicutModule,"MulticutGreedyFixation",docHelper)
             .def(py::init<>())
             .def_readwrite("nodeNumStopCond", &SettingsType::nodeNumStopCond)
             .def_readwrite("weightStopCond", &SettingsType::weightStopCond)
@@ -60,16 +57,16 @@ namespace multicut{
 
     }
 
-    void exportMulticutGreedyAdditive(py::module & multicutModule) {
+    void exportMulticutGreedyFixation(py::module & multicutModule) {
         {
             typedef PyUndirectedGraph GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutGreedyAdditiveT<ObjectiveType>(multicutModule);
+            exportMulticutGreedyFixationT<ObjectiveType>(multicutModule);
         }
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
-            exportMulticutGreedyAdditiveT<ObjectiveType>(multicutModule);
+            exportMulticutGreedyFixationT<ObjectiveType>(multicutModule);
         }
     }
 

@@ -100,7 +100,7 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
     O.loggingVisitor = staticmethod(loggingVisitor)
 
 
-    def greedyAdditiveFactory( weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=1):
+    def greedyAdditiveFactory(weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=1):
         s,F = getSettingsAndFactoryCls("MulticutGreedyAdditive")
         s.weightStopCond = float(weightStopCond)
         s.nodeNumStopCond = float(nodeNumStopCond)
@@ -136,6 +136,40 @@ def __extendMulticutObj(objectiveCls, objectiveName, graphCls):
 
 
 
+    def greedyFixationFactory(weightStopCond=0.0, nodeNumStopCond=-1.0, visitNth=1):
+        s,F = getSettingsAndFactoryCls("MulticutGreedyFixation")
+        s.weightStopCond = float(weightStopCond)
+        s.nodeNumStopCond = float(nodeNumStopCond)
+        s.visitNth = int(visitNth)
+
+        return F(s)
+    O.greedyFixationFactory = staticmethod(greedyFixationFactory)
+    O.greedyFixationFactory.__doc__ = """ create an instance of :class:`%s`
+
+    Warning:
+        This solver should be used to
+        warm start other solvers with.
+        This solver is very fast but
+        yields rather suboptimal results.
+
+    Args:
+        weightStopCond (float): stop clustering when the highest
+            weight in cluster-graph is lower as this value (default: {0.0})
+        nodeNumStopCond (float): stop clustering when a cluster-graph
+            reached a certain number of nodes.
+            Numbers smaller 1 are interpreted as fraction
+            of the graphs number of nodes.
+            If nodeNumStopCond is smaller 0 this
+            stopping condition is ignored  (default: {-1})
+        visitNth (int) : only call the visitor each nth time.
+            This is useful to avoid to many couts (default: {1}).
+    Returns:
+        %s : multicut factory
+    """%(factoryClsName("MulticutGreedyFixation"),factoryClsName("MulticutGreedyFixation"))
+
+
+
+    # TODO add option for greedyFixation?
     def warmStartGreedyDecorator(func):
         def func_wrapper(*args, **kwargs):
             warmStartGreedy = kwargs.pop('warmStartGreedy', False)
