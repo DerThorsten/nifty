@@ -48,7 +48,7 @@ namespace graph{
         std::function<void(uint64_t,uint64_t) > mergeNodesCallback;
         std::function<void(uint64_t,uint64_t) > mergeEdgesCallback;
         std::function<void(uint64_t) >          contractEdgeDoneCallback;
-    };  
+    };
 
     // \cond SUPPRESS_DOXYGEN
     namespace detail_edge_contraction_graph{
@@ -130,7 +130,7 @@ namespace graph{
 
         typedef typename SetType::const_iterator EdgeIter;
         typedef typename SetType::const_iterator NodeIter;
-    }; 
+    };
 
 
 
@@ -165,7 +165,7 @@ namespace graph{
         typedef SortedTag NodeIdOrderTag;
 
 
-        
+
         EdgeContractionGraphWithSets(const GraphType & graph, OuterCallbackType & outerCallback)
         :   innerCallback_(graph, outerCallback),
             cgraph_(graph, innerCallback_){
@@ -203,7 +203,7 @@ namespace graph{
                 f(node);
             }
         }
- 
+
         AdjacencyIter adjacencyBegin(const int64_t node)const{
             NIFTY_ASSERT(innerCallback_.nodesSet_.find(node)!=innerCallback_.nodesSet_.end());
             return cgraph_.adjacencyBegin(node);
@@ -255,7 +255,7 @@ namespace graph{
             return cgraph_.findEdge(u, v);
         }
 
-        
+
         void contractEdge(const uint64_t edgeToContract){
             NIFTY_ASSERT(innerCallback_.edgesSet_.find(edgeToContract)!=innerCallback_.edgesSet_.end());
             cgraph_.contractEdge(edgeToContract);
@@ -264,7 +264,7 @@ namespace graph{
             cgraph_.reset();
             innerCallback_.initSets();
         }
-       
+
         const GraphType & baseGraph()const{
             return cgraph_.baseGraph();
         }
@@ -672,13 +672,8 @@ namespace graph{
                         //  pq_.deleteItem(adjToDeadNodeEdge);
                         //  pq_.changePriority(edgeInAlive, wEdgeInAlive + wEdgeInDead);
                 
-
                 if(!WITH_EDGE_UFD){
-
                         callback_.mergeEdges(edgeInAlive, adjToDeadNodeEdge);
-                       
-
-                        
                 }
                 else{
                     const auto ret = this->edgeUfdMerge(edgeInAlive, adjToDeadNodeEdge);

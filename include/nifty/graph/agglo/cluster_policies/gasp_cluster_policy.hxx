@@ -132,8 +132,6 @@ namespace nifty{
 
                 void addNonLinkConstraint(const uint64_t edge){
                     const auto uv = edgeContractionGraph_.uv(edge);
-                    const auto u = uv.first;
-                    const auto v = uv.second;
                     nonLinkConstraints_[uv.first].insert(uv.second);
                     nonLinkConstraints_[uv.second].insert(uv.first);
                 }
