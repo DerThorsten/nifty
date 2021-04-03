@@ -51,8 +51,8 @@ namespace graph{
             xt::pytensor<double, 2> outLifted({nLifted, int64_t(10)});
             {
                 py::gil_scoped_release allowThreads;
-                accumulateLongRangeAffinities(rag, lnh, affinities, 0., 1.,
-                                              outLocal, outLifted, numberOfThreads);
+                accumulateLongRangeAffinities<DIM>(rag, lnh, affinities, 0., 1.,
+                                                   outLocal, outLifted, numberOfThreads);
             }
             xt::pytensor<int64_t, 2> lnhOut({nLifted, int64_t(2)});
             if(haveLifted){
@@ -77,7 +77,7 @@ namespace graph{
         [](
             const RAG & rag,
             const xt::pytensor<float, DIM+1> & affinities,
-            const std::vector<std::array<int, 3>> & offsets,
+            const std::vector<std::array<int, DIM>> & offsets,
             const float min, const float max,
             const int numberOfThreads
         ){
@@ -87,7 +87,7 @@ namespace graph{
             xt::pytensor<double, 2> out(shape);
             {
                 py::gil_scoped_release allowThreads;
-                accumulateAffinities(rag, affinities, offsets, out, min, max, numberOfThreads);
+                accumulateAffinities<DIM>(rag, affinities, offsets, out, min, max, numberOfThreads);
             }
             return out;
         }, py::arg("rag"),
@@ -99,6 +99,12 @@ namespace graph{
     }
 
     void exportAccumulateAffinityFeatures(py::module & ragModule) {
+        // export for 2d rag
+        typedef xt::pytensor<uint32_t, 2> ExplicitPyLabels2D;
+        typedef GridRag<2, ExplicitPyLabels2D> Rag2d;
+        exportAccumulateAffinityFeaturesT<Rag2d, 2>(ragModule);
+
+        // export for 3d rag
         typedef xt::pytensor<uint32_t, 3> ExplicitPyLabels3D;
         typedef GridRag<3, ExplicitPyLabels3D> Rag3d;
         exportAccumulateAffinityFeaturesT<Rag3d, 3>(ragModule);

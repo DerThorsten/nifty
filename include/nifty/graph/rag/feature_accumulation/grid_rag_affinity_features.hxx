@@ -9,16 +9,16 @@ namespace nifty{
 namespace graph{
 
 
-template<class EDGE_ACC_CHAIN, class RAG, class AFFINITIES, class F>
+template<unsigned DIM, class EDGE_ACC_CHAIN, class RAG, class AFFINITIES, class F>
 void accumulateAffninitiesWithAccChain(const RAG & rag,
                                        const AFFINITIES & affinities,
-                                       const std::vector<std::array<int, 3>> & offsets,
+                                       const std::vector<std::array<int, DIM>> & offsets,
                                        parallel::ThreadPool & threadpool,
                                        F && f,
                                        const AccOptions & accOptions = AccOptions()){
-    typedef array::StaticArray<int64_t, 3> Coord3;
-    typedef array::StaticArray<int64_t, 4> Coord4;
-    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    typedef array::StaticArray<int64_t, DIM> Coord3;
+    typedef array::StaticArray<int64_t, DIM + 1> Coord4;
+    typedef typename vigra::MultiArrayShape<DIM>::type VigraCoord;
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType> AccChainVectorType;
@@ -29,7 +29,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
     Coord3 shape;
     Coord4 affShape;
     affShape[0] = affinities.shape()[0];
-    for(int d = 0; d < 3; ++d) {
+    for(int d = 0; d < DIM; ++d) {
         shape[d] = labels.shape()[d];
         affShape[d+1] = affinities.shape()[d+1];
     }
@@ -65,7 +65,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
         VigraCoord vc;
         const auto & offset = offsets[affCoord[0]];
 
-        for(int d = 0; d < 3; ++d) {
+        for(int d = 0; d < DIM; ++d) {
             cU[d] = affCoord[d+1];
             cV[d] = affCoord[d+1] + offset[d];
             // range check
@@ -82,7 +82,7 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
 
             auto & thisAccumulators = edgeAccumulators[tid];
             // we just update the vigra coord of label u
-            for(int d = 0; d < 3; ++d) {
+            for(int d = 0; d < DIM; ++d) {
                 vc = cU[d];
             }
 
@@ -109,11 +109,11 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
 
 
 // 10 features
-template<class RAG, class AFFINITIES, class FEATURE_ARRAY>
+template<unsigned DIM, class RAG, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateAffinities(
     const RAG & rag,
     const AFFINITIES & affinities,
-    const std::vector<std::array<int, 3>> & offsets,
+    const std::vector<std::array<int, DIM>> & offsets,
     xt::xexpression<FEATURE_ARRAY> & featuresExp,
     const double minVal = 0.,
     const double maxVal = 1.,
@@ -132,7 +132,7 @@ void accumulateAffinities(
         Quantiles,        //7
         acc::Count        //1
     > SelectType;
-    typedef acc::StandAloneAccumulatorChain<3, double, SelectType> AccChainType;
+    typedef acc::StandAloneAccumulatorChain<DIM, double, SelectType> AccChainType;
 
     auto & features = featuresExp.derived_cast();
 
@@ -160,17 +160,17 @@ void accumulateAffinities(
         });
     };
 
-    accumulateAffninitiesWithAccChain<AccChainType>(rag,
-                                                    affinities,
-                                                    offsets,
-                                                    threadpool,
-                                                    accumulate,
-                                                    AccOptions(minVal, maxVal));
+    accumulateAffninitiesWithAccChain<DIM, AccChainType>(rag,
+                                                         affinities,
+                                                         offsets,
+                                                         threadpool,
+                                                         accumulate,
+                                                         AccOptions(minVal, maxVal));
 }
 
 
 // lifted extraction is not supported for now
-template<class EDGE_ACC_CHAIN, class RAG, class LNH, class AFFINITIES, class F_LOCAL, class F_LIFTED>
+template<unsigned DIM, class EDGE_ACC_CHAIN, class RAG, class LNH, class AFFINITIES, class F_LOCAL, class F_LIFTED>
 void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
                                                 const LNH & lnh,
                                                 const AFFINITIES & affinities,
@@ -178,9 +178,9 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
                                                 F_LOCAL && f_local,
                                                 F_LIFTED && f_lifted,
                                                 const AccOptions & accOptions = AccOptions()){
-    typedef array::StaticArray<int64_t, 3> Coord3;
-    typedef array::StaticArray<int64_t, 4> Coord4;
-    typedef typename vigra::MultiArrayShape<3>::type VigraCoord;
+    typedef array::StaticArray<int64_t, DIM> Coord3;
+    typedef array::StaticArray<int64_t, DIM + 1> Coord4;
+    typedef typename vigra::MultiArrayShape<DIM>::type VigraCoord;
 
     typedef EDGE_ACC_CHAIN EdgeAccChainType;
     typedef std::vector<EdgeAccChainType>   AccChainVectorType;
@@ -191,7 +191,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
     Coord3 shape;
     Coord4 affShape;
     affShape[0] = affinities.shape()[0];
-    for(int d = 0; d < 3; ++d) {
+    for(int d = 0; d < DIM; ++d) {
         shape[d] = labels.shape()[d];
         affShape[d+1] = shape[d];
     }
@@ -240,7 +240,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         VigraCoord vc;
         const auto & offset = offsets[affCoord[0]];
 
-        for(int d = 0; d < 3; ++d) {
+        for(int d = 0; d < DIM; ++d) {
             cU[d] = affCoord[d+1];
             cV[d] = affCoord[d+1] + offset[d];
             // range check
@@ -256,7 +256,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
         if(u != v) {
 
             // we just update the vigra coord of label u
-            for(int d = 0; d < 3; ++d) {
+            for(int d = 0; d < DIM; ++d) {
                 vc = cU[d];
             }
 
@@ -296,7 +296,7 @@ void accumulateLongRangeAffninitiesWithAccChain(const RAG & rag,
 
 
 // 10 features
-template<class RAG, class LNH, class AFFINITIES, class FEATURE_ARRAY>
+template<unsigned DIM, class RAG, class LNH, class AFFINITIES, class FEATURE_ARRAY>
 void accumulateLongRangeAffinities(
     const RAG & rag,
     const LNH & lnh,
@@ -322,7 +322,7 @@ void accumulateLongRangeAffinities(
         Quantiles,        // 7
         acc::Count        // 1
     > SelectType;
-    typedef acc::StandAloneAccumulatorChain<3, double, SelectType> AccChainType;
+    typedef acc::StandAloneAccumulatorChain<DIM, double, SelectType> AccChainType;
     auto & localFeatures = localFeaturesExp.derived_cast();
     auto & liftedFeatures = liftedFeaturesExp.derived_cast();
 
@@ -369,7 +369,7 @@ void accumulateLongRangeAffinities(
         });
     };
 
-    accumulateLongRangeAffninitiesWithAccChain<AccChainType>(
+    accumulateLongRangeAffninitiesWithAccChain<DIM, AccChainType>(
         rag,
         lnh,
         affinities,
