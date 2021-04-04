@@ -230,8 +230,6 @@ namespace multicut{
     optimize(
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
     ){
-
-
         if(visitor!=nullptr){
             visitor->addLogNames({"#nodes","topWeight"});
             visitor->begin(this);
@@ -253,8 +251,9 @@ namespace multicut{
                        visitor->setLogValue(0, edgeContractionGraph_.numberOfNodes());
                        visitor->setLogValue(1, callback_.queue().topPriority());
                        if(!visitor->visit(this)){
+                            // TODO use logging instead
                             std::cout<<"end by visitor\n";
-                           break;
+                            break;
                        }
                     }
                 }

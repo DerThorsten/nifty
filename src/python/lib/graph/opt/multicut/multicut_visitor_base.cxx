@@ -71,9 +71,8 @@ namespace multicut{
             typedef nifty::graph::opt::common::LoggingVisitor<SolverBaseType> VisitorType;
 
             py::class_<VisitorType, std::unique_ptr<VisitorType> >(module, visitorName.c_str(),  visitorBase)
-                .def(py::init<const int, const bool, const double, const double,const nifty::logging::LogLevel>(),
+                .def(py::init<const int, const double, const double,const nifty::logging::LogLevel>(),
                     py::arg_t<int>("visitNth",1),
-                    py::arg_t<bool>("verbose",true),
                     py::arg_t<double>("timeLimitSolver",std::numeric_limits<double>::infinity()),
                     py::arg_t<double>("timeLimitTotal",std::numeric_limits<double>::infinity()),
                     py::arg("logLevel") = nifty::logging::LogLevel::WARN

@@ -11,16 +11,11 @@
 #include "nifty/tools/logging.hxx"
 #include "nifty/graph/opt/common/visitor_base.hxx"
 
+
 namespace nifty {
 namespace graph {
 namespace opt{
 namespace common{
-
-
-
-    //template<class SOLVER>
-    //class VisitorBaseType;
-
 
     template<class SOLVER>
     class LoggingVisitor : public VisitorBase<SOLVER>{
@@ -30,13 +25,11 @@ namespace common{
 
         LoggingVisitor(
             const int visitNth = 1,
-            const bool verbose = true,
             const double timeLimitSolver = std::numeric_limits<double>::infinity(),
             const double timeLimitTotal  = std::numeric_limits<double>::infinity(),
             const nifty::logging::LogLevel logLevel = nifty::logging::LogLevel::WARN
         )
         :   visitNth_(visitNth),
-            verbose_(verbose),
             runOpt_(true),
             iter_(1),
             timeLimitSolver_(timeLimitSolver),
@@ -54,7 +47,7 @@ namespace common{
         }
 
         virtual void begin(SolverType * ) {
-            if(verbose_){
+            if(int(logLevel_) >= 4){  // INFO
                 std::cout<<"begin inference\n";
             }
             timerSolver_.start();
@@ -67,8 +60,7 @@ namespace common{
             runtimeTotal_  += timerTotal_.elapsedSeconds();
             timerTotal_.reset().start();
             runtimeSolver_ +=  timerSolver_.elapsedSeconds();
-            if(iter_%visitNth_ == 0){
-
+            if(iter_ % visitNth_ == 0){
 
                 const auto e = solver->currentBestEnergy();
 
@@ -76,7 +68,7 @@ namespace common{
                 energies_.push_back(e);
                 runtimes_.push_back(runtimeSolver_);
 
-                if(verbose_){
+                if(int(logLevel_) >= 4){  // INFO
                     std::stringstream ss;
                     ss << "E: " << e << " ";
                     ss << "t[s]: " << runtimeSolver_ << " ";
@@ -93,9 +85,8 @@ namespace common{
             timerSolver_.reset().start();
             return runOpt_;
         }
-        
-        virtual void end(SolverType * solver)   {
 
+        virtual void end(SolverType * solver)   {
 
             timerSolver_.stop();
             timerTotal_.stop();
@@ -116,7 +107,7 @@ namespace common{
             ss<<"\n";
             std::cout<<ss.str();
 
-            if(verbose_){
+            if(int(logLevel_) >= 4){  // INFO
                 std::cout<<"end inference\n";
             }
             timerSolver_.stop();
@@ -173,7 +164,6 @@ namespace common{
     private:
 
         int visitNth_;
-        bool verbose_;
         bool runOpt_;
         int iter_;
 
@@ -194,14 +184,14 @@ namespace common{
 
         inline void checkRuntime() {
             if(runtimeSolver_ > timeLimitSolver_) {
-                if(verbose_){
+                if(int(logLevel_) >= 4){  // WARN
                     std::cout << runtimeSolver_ << " " << timeLimitSolver_ << std::endl;
                     std::cout << "Inference has exceeded solver time limit and is stopped \n";
                 }
                 runOpt_ = false;
             }
             if(runtimeTotal_ > timeLimitTotal_) {
-                if(verbose_){
+                if(int(logLevel_) >= 3){  // WARN
                     std::cout << runtimeTotal_ << " " << timeLimitTotal_ << std::endl;
                     std::cout << "Inference has exceeded total time limit and is stopped \n";
                 }
