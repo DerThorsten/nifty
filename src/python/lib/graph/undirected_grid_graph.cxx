@@ -188,100 +188,106 @@ namespace graph{
                 py::arg("distance")
             )
 
+            /*
+            // TODO
+            // TODO stride / probability
+            .def("imageWithChannelsAndOffsetsToEdgeMap",
+                [](
+                    const GraphType & g,
+                    const xt::pytensor<float, DIM + 1> & image,
+                    const std::vector<std::array<int, DIM>> & offsets,
+                    const std::string & distance
+                ){
+                    // TODO
+                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
+                    ShapeType shape = {g.edgeIdUpperBound() + 1};
+                    xt::pytensor<float, 1> edgeMap(shape);
+                    g.imageWithChannelsAndOffsetsToEdgeMap(image, offsets, distance, out);
+                    return std::make_tuple(uvIds, );
+                },
+                py::arg("image"),
+                py::arg("distance")
+            )
+            */
+
             .def("affinitiesToEdgeMap",
                 [](
                     const GraphType & g,
-                    xt::pytensor<float, DIM + 1> affinities
+                    xt::pytensor<float, DIM + 1> affinities,
+                    const bool toLower
                 ){
                     typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
                     ShapeType shape = {g.edgeIdUpperBound() + 1};
                     xt::pytensor<float, 1> out = xt::zeros<float>(shape);
-                    g.affinitiesToEdgeMap(affinities, out);
+                    g.affinitiesToEdgeMap(affinities, out, toLower);
                     return out;
                 },
-                py::arg("affinities")
+                py::arg("affinities"),
+                py::arg("toLower")=true
             )
 
-            .def("liftedProblemFromLongRangeAffinities",
-                [](const GraphType & g,
-                   xt::pytensor<float, DIM+1> affinities,
-                   const std::vector<std::vector<int>> & offsets) {
-
-                    // upper bound for the number of lifted edges
-                    // we assume that first DIM channels are direct nhood channels
+            .def("affinitiesToEdgeMapWithOffsets",
+                [](
+                    const GraphType & g,
+                    xt::pytensor<float, DIM + 1> affinities,
+                    const std::vector<std::vector<int>> & offsets,
+                    const std::optional<std::vector<int>> & strides,
+                    const bool randomize_strides
+                ){
+                    // upper bound for the number of edges
                     const auto & shape = affinities.shape();
-                    int64_t nLiftedTot = (shape[0] - DIM) * std::accumulate(shape.begin() + 1, shape.end(), 1, std::multiplies<int64_t>());
+                    int64_t nEdges = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<int64_t>());
 
-                    // initialize all the output
-                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
-                    ShapeType localShape = {static_cast<int64_t>(g.edgeIdUpperBound() + 1)};
-                    ShapeType liftedShape = {nLiftedTot};
-                    typedef typename xt::pytensor<uint64_t, 2>::shape_type UvShape;
-                    UvShape uvShape = {nLiftedTot, 2};
+                    typedef typename xt::pytensor<uint64_t, 2>::shape_type EdgeShape;
+                    EdgeShape edgeShape = {nEdges, 2};
+                    xt::pytensor<uint64_t, 2> edges(edgeShape);
 
-                    xt::pytensor<float, 1> localFeatures(localShape);
-                    xt::pytensor<float, 1> liftedFeatures(liftedShape);
-                    xt::pytensor<uint64_t, 2> liftedUvs(uvShape);
-                    int64_t nLifted;
+                    typedef typename xt::pytensor<float, 1>::shape_type EdgeMapShape;
+                    EdgeMapShape edgeMapShape = {nEdges};
+                    xt::pytensor<float, 1> edgeMap(edgeMapShape);
+
                     {
                         py::gil_scoped_release allowThreads;
-                        nLifted = g.longRangeAffinitiesToLiftedEdges(affinities,
-                                                                     localFeatures,
-                                                                     liftedUvs,
-                                                                     liftedFeatures,
-                                                                     offsets);
-                    }
-                    // FIXME resizing zeros out everything
-                    // ShapeType actualLiftedShape = {nLifted};
-                    // liftedFeatures.resize(actualLiftedShape);
-                    // UvShape actualUvShape = {nLifted, 2};
-                    // liftedUvs.resize(actualUvShape);
-                    return std::make_tuple(nLifted, localFeatures, liftedUvs, liftedFeatures);
-                },
-                py::arg("affinities"), py::arg("offsets")
-            )
+                        if(strides.has_value() && randomize_strides) {
+                            auto & strides_val = strides.value();
+                            const double p_sample = 1. / std::accumulate(strides_val.begin(), strides_val.end(), 1., std::multiplies<double>());
+                            nEdges = g.affinitiesToEdgeMapWithOffsets(affinities,
+                                                                      offsets,
+                                                                      p_sample,
+                                                                      edges,
+                                                                      edgeMap);
+                        } else if(strides.has_value()) {
+                            nEdges = g.affinitiesToEdgeMapWithOffsets(affinities,
+                                                                      offsets,
+                                                                      strides.value(),
+                                                                      edges,
+                                                                      edgeMap);
 
-            .def("liftedProblemFromLongRangeAffinitiesWithStrides",
-                [](const GraphType & g,
-                   xt::pytensor<float, DIM+1> affinities,
-                   const std::vector<std::vector<int>> & offsets,
-                   const std::vector<int> & strides) {
-
-                    // upper bound for the number of lifted edges
-                    // we assume that first DIM channels are direct nhood channels
-                    const auto & shape = affinities.shape();
-                    int64_t nLiftedTot = (shape[0] - DIM) * std::accumulate(shape.begin() + 1, shape.end(), 1, std::multiplies<int64_t>());
-
-                    // initialize all the output
-                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
-                    ShapeType localShape = {static_cast<int64_t>(g.edgeIdUpperBound() + 1)};
-                    ShapeType liftedShape = {nLiftedTot};
-                    typedef typename xt::pytensor<uint64_t, 2>::shape_type UvShape;
-                    UvShape uvShape = {nLiftedTot, 2};
-
-                    xt::pytensor<float, 1> localFeatures = xt::zeros<float>(localShape);
-                    xt::pytensor<float, 1> liftedFeatures = xt::zeros<float>(liftedShape);
-                    xt::pytensor<uint64_t, 2> liftedUvs(uvShape);
-                    int64_t nLifted;
-                    {
-                        py::gil_scoped_release allowThreads;
-                        nLifted = g.longRangeAffinitiesToLiftedEdges(affinities,
-                                                                     localFeatures,
-                                                                     liftedUvs,
-                                                                     liftedFeatures,
-                                                                     offsets,
-                                                                     strides);
+                        } else {
+                            nEdges = g.affinitiesToEdgeMapWithOffsets(affinities,
+                                                                      offsets,
+                                                                      edges,
+                                                                      edgeMap);
+                        }
                     }
 
-                    // FIXME resize zeros out everything
-                    // ShapeType actualLiftedShape = {nLifted};
-                    // liftedFeatures.resize(actualLiftedShape);
-                    // UvShape actualUvShape = {nLifted, 2};
-                    // liftedUvs.resize(actualUvShape);
+                    // NOTE xtensor::resize does not work as expected and changes the values here
+                    // return the number of actual edges instead and resize in python
+                    /*
+                    edgeShape = {nEdges, 2};
+                    edges.resize(edgeShape);
 
-                    return std::make_tuple(nLifted, localFeatures, liftedUvs, liftedFeatures);
+                    edgeMapShape = {nEdges};
+                    edgeMap.resize(edgeMapShape);
+                    */
+
+                    return std::make_tuple(nEdges, edges, edgeMap);
+
                 },
-                py::arg("affinities"), py::arg("offsets"), py::arg("strides")
+                py::arg("affinities"),
+                py::arg("offsets"),
+                py::arg("strides")=std::nullopt,
+                py::arg("randomize_strides")=false
             )
         ;
 

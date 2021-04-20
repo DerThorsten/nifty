@@ -130,7 +130,6 @@ namespace graph{
         exportUndirectedLongRangeGridGraphT<2, ExplicitPyEdgeMask2D>(ragModule);
         exportUndirectedLongRangeGridGraphT<3, ExplicitPyEdgeMask3D>(ragModule);
 
-  
     }
 
 
