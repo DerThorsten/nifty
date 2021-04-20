@@ -112,7 +112,7 @@ $ conda env create -f environment.yaml
 $ conda activate nifty-dev
 $ mkdir bld
 $ cd bld
-$ cmake -DCMAKE_PREFIX_PATH=/path/to/conda/envs/nifty-dev -DWITH_Z5=ON -DWITH_HDF5=ON -DWITH_ZLIB=ON ..
+$ cmake -DCMAKE_PREFIX_PATH=/path/to/conda/envs/nifty-dev -DWITH_Z5=ON -DWITH_HDF5=ON -DWITH_ZLIB=ON -DBUILD_NIFTY_PYTHON=ON ..
 $ make
 ```
 
