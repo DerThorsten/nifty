@@ -101,61 +101,64 @@ namespace graph{
                     ShapeType shape = {g.edgeIdUpperBound() + 1};
                     xt::pytensor<float, 1> out(shape);
 
-                    if(functorType == std::string("min")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return std::min(a,b);
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("max")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return std::max(a,b);
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("sum")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return a + b;
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("prod")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return a*b;
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("l1")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return std::abs(a - b);
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("l2")){
-                        struct {
-                            double operator()(const float a, const float b){
-                                return (a - b) * (a - b);
-                            }
-                        } op;
-                        g.imageToEdgeMap(image, op, out);
-                    }
-                    else if(functorType == std::string("interpixel")){
-                        g.imageToInterpixelEdgeMap(image, out);
-                    }
-                    else{
-                        const auto s = boost::format("'%s' is an unknown mode. Must be in "
-                            "['min', 'max', 'sum', 'prod', 'interpixel', 'l1', 'l2']")%functorType;
-                        throw std::runtime_error(s.str());
+                    {
+                        py::gil_scoped_release allowThreads;
+                        if(functorType == std::string("min")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return std::min(a,b);
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("max")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return std::max(a,b);
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("sum")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return a + b;
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("prod")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return a*b;
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("l1")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return std::abs(a - b);
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("l2")){
+                            struct {
+                                double operator()(const float a, const float b){
+                                    return (a - b) * (a - b);
+                                }
+                            } op;
+                            g.imageToEdgeMap(image, op, out);
+                        }
+                        else if(functorType == std::string("interpixel")){
+                            g.imageToInterpixelEdgeMap(image, out);
+                        }
+                        else{
+                            const auto s = boost::format("'%s' is an unknown mode. Must be in "
+                                "['min', 'max', 'sum', 'prod', 'interpixel', 'l1', 'l2']")%functorType;
+                            throw std::runtime_error(s.str());
+                        }
                     }
                     return out;
                 },
@@ -181,34 +184,46 @@ namespace graph{
                     typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
                     ShapeType shape = {g.edgeIdUpperBound() + 1};
                     xt::pytensor<float, 1> out(shape);
-                    g.imageWithChannelsToEdgeMap(image, distance, out);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        g.imageWithChannelsToEdgeMap(image, distance, out);
+                    }
                     return out;
                 },
                 py::arg("image"),
                 py::arg("distance")
             )
 
-            /*
-            // TODO
-            // TODO stride / probability
-            .def("imageWithChannelsAndOffsetsToEdgeMap",
+            // TODO stride / randomize
+            .def("imageWithChannelsToEdgeMapWithOffsets",
                 [](
                     const GraphType & g,
                     const xt::pytensor<float, DIM + 1> & image,
-                    const std::vector<std::array<int, DIM>> & offsets,
-                    const std::string & distance
+                    const std::string & distance,
+                    const std::vector<std::vector<int>> & offsets
                 ){
-                    // TODO
-                    typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
-                    ShapeType shape = {g.edgeIdUpperBound() + 1};
-                    xt::pytensor<float, 1> edgeMap(shape);
-                    g.imageWithChannelsAndOffsetsToEdgeMap(image, offsets, distance, out);
-                    return std::make_tuple(uvIds, );
+                    // upper bound for the number of edges
+                    const auto & shape = image.shape();
+                    int64_t nEdges = offsets.size() * std::accumulate(shape.begin() + 1, shape.end(), 1, std::multiplies<int64_t>());
+
+                    typedef typename xt::pytensor<uint64_t, 2>::shape_type EdgeShape;
+                    EdgeShape edgeShape = {nEdges, 2};
+                    xt::pytensor<uint64_t, 2> edges(edgeShape);
+
+                    typedef typename xt::pytensor<float, 1>::shape_type EdgeMapShape;
+                    EdgeMapShape edgeMapShape = {nEdges};
+                    xt::pytensor<float, 1> edgeMap(edgeMapShape);
+
+                    {
+                        py::gil_scoped_release allowThreads;
+                        nEdges = g.imageWithChannelsToEdgeMapWithOffsets(image, distance, offsets, edges, edgeMap);
+                    }
+                    return std::make_tuple(nEdges, edges, edgeMap);
                 },
                 py::arg("image"),
-                py::arg("distance")
+                py::arg("distance"),
+                py::arg("offsets")
             )
-            */
 
             .def("affinitiesToEdgeMap",
                 [](
@@ -219,7 +234,10 @@ namespace graph{
                     typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
                     ShapeType shape = {g.edgeIdUpperBound() + 1};
                     xt::pytensor<float, 1> out = xt::zeros<float>(shape);
-                    g.affinitiesToEdgeMap(affinities, out, toLower);
+                    {
+                        py::gil_scoped_release allowThreads;
+                        g.affinitiesToEdgeMap(affinities, out, toLower);
+                    }
                     return out;
                 },
                 py::arg("affinities"),

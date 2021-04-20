@@ -427,6 +427,20 @@ public:
     }
 
 
+    // TODO
+    template<class IMAGE, class EDGES, class EDGE_MAP>
+    std::size_t imageWithChannelsToEdgeMapWithOffsets(
+        const IMAGE & image,
+        const std::string & distance,
+        const std::vector<std::vector<int>> & offsets,
+        EDGES & edges,
+        EDGE_MAP & edgeMap
+    ) const {
+        std::size_t edgeId = 0;
+        return edgeId;
+    }
+
+
     //
     // implementations of affinitiesToEdgeMap
     //
