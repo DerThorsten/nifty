@@ -145,9 +145,12 @@ namespace detail_graph{
         std::array<int64_t, DIM+1> coordU,
         std::array<int64_t, DIM+1> coordV
     ) {
+        const double eps = 1e-7;
+
         double val = 0;
         double normU = 0;
         double normV = 0;
+
         for(unsigned c = 0; c < nChannels; ++c) {
             coordU[0] = c;
             coordV[0] = c;
@@ -157,8 +160,8 @@ namespace detail_graph{
             normU += uVal * uVal;
             normV += vVal * vVal;
         }
-        normU = std::sqrt(normU);
-        normV = std::sqrt(normV);
+        normU = std::sqrt(normU) + eps;
+        normV = std::sqrt(normV) + eps;
         val = 1. - (val / normU / normV);
         return val;
     }
