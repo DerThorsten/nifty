@@ -194,13 +194,14 @@ namespace graph{
                 py::arg("distance")
             )
 
-            // TODO stride / randomize
             .def("imageWithChannelsToEdgeMapWithOffsets",
                 [](
                     const GraphType & g,
                     const xt::pytensor<float, DIM + 1> & image,
                     const std::string & distance,
-                    const std::vector<std::vector<int>> & offsets
+                    const std::vector<std::vector<int>> & offsets,
+                    const std::optional<std::vector<int>> & strides,
+                    const bool randomize_strides
                 ){
                     // upper bound for the number of edges
                     const auto & shape = image.shape();
@@ -216,13 +217,23 @@ namespace graph{
 
                     {
                         py::gil_scoped_release allowThreads;
-                        nEdges = g.imageWithChannelsToEdgeMapWithOffsets(image, distance, offsets, edges, edgeMap);
+                        if(strides.has_value() && randomize_strides) {
+                            auto & strides_val = strides.value();
+                            const double p_sample = 1. / std::accumulate(strides_val.begin(), strides_val.end(), 1., std::multiplies<double>());
+                            nEdges = g.imageWithChannelsToEdgeMapWithOffsets(image, distance, offsets, p_sample, edges, edgeMap);
+                        } else if(strides.has_value()) {
+                            nEdges = g.imageWithChannelsToEdgeMapWithOffsets(image, distance, offsets, strides.value(), edges, edgeMap);
+                        } else {
+                            nEdges = g.imageWithChannelsToEdgeMapWithOffsets(image, distance, offsets, edges, edgeMap);
+                        }
                     }
                     return std::make_tuple(nEdges, edges, edgeMap);
                 },
                 py::arg("image"),
                 py::arg("distance"),
-                py::arg("offsets")
+                py::arg("offsets"),
+                py::arg("strides")=std::nullopt,
+                py::arg("randomize_strides")=false
             )
 
             .def("affinitiesToEdgeMap",
