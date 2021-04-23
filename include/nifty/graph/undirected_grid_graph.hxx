@@ -479,7 +479,7 @@ public:
         std::size_t edgeId = 0;
 
         std::default_random_engine gen;
-        std::uniform_real_distribution<double> distr(0., 1.);
+        std::uniform_real_distribution<double> distr;
         auto draw = std::bind(distr, gen);
 
         auto sampler = [&draw, sampleProbability](nifty::array::StaticArray<int64_t, DIM> & coord){
@@ -759,19 +759,24 @@ private:
                 const auto & offset = offsets[offsetId];
 
                 // initialise the coordinates w/o and w/ channel
+                bool isValid = true;
                 for(unsigned d = 0; d < DIM; ++d) {
                     coordU[d] = coord[d];
                     coordV[d] = coord[d] + offset[d];
                     // range check
                     if(coordV[d] >= shape(d) || coordV[d] < 0) {
-                        return;
+                        isValid = false;
+                        break;
                     }
                     coordUC[d+1] = coordU[d];
                     coordVC[d+1] = coordV[d];
                 }
+                if(!isValid) {
+                    continue;
+                }
 
                 if(!sampler(coordU)) {
-                    return;
+                    continue;
                 }
 
                 const std::size_t u = coordinateToNode(coordU);
@@ -782,7 +787,6 @@ private:
                 edges(edgeId, 1) = std::max(u, v);
                 ++edgeId;
             }
-
         });
         return edgeId;
     }
