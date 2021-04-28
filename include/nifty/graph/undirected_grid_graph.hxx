@@ -106,8 +106,8 @@ namespace detail_graph{
     double l2Distance(
         const IMAGE & image,
         const unsigned nChannels,
-        std::array<int64_t, DIM+1> coordU,
-        std::array<int64_t, DIM+1> coordV
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
     ) {
         double val = 0;
         for(unsigned c = 0; c < nChannels; ++c) {
@@ -124,8 +124,8 @@ namespace detail_graph{
     double l1Distance(
         const IMAGE & image,
         const unsigned nChannels,
-        std::array<int64_t, DIM+1> coordU,
-        std::array<int64_t, DIM+1> coordV
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
     ) {
         double val = 0;
         for(unsigned c = 0; c < nChannels; ++c) {
@@ -142,8 +142,8 @@ namespace detail_graph{
     double cosineDistance(
         const IMAGE & image,
         const unsigned nChannels,
-        std::array<int64_t, DIM+1> coordU,
-        std::array<int64_t, DIM+1> coordV
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
     ) {
         const double eps = 1e-7;
 
@@ -397,7 +397,7 @@ public:
     ) const {
 
         std::size_t edgeId = 0;
-        auto sampler = [](nifty::array::StaticArray<int64_t, DIM> & coord){return true;};
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
 
         if(distance == "l1") {
             edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
@@ -433,10 +433,10 @@ public:
 
         std::size_t edgeId = 0;
 
-        auto sampler = [&strides](nifty::array::StaticArray<int64_t, DIM> & coord){
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
             bool inStride = true;
             for(unsigned d = 0; d < DIM; ++d) {
-                if(coord[d] % strides[d] != 0) {
+                if(coord[d+1] % strides[d] != 0) {
                     inStride = false;
                     break;
                 }
@@ -482,7 +482,7 @@ public:
         std::uniform_real_distribution<double> distr;
         auto draw = std::bind(distr, gen);
 
-        auto sampler = [&draw, sampleProbability](nifty::array::StaticArray<int64_t, DIM> & coord){
+        auto sampler = [&draw, sampleProbability](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
             return draw() < sampleProbability;
         };
 
@@ -560,7 +560,7 @@ public:
                                                const std::vector<std::vector<int>> & offsets,
                                                EDGES & edges,
                                                EDGE_MAP & edgeMap) const {
-        auto sampler = [](nifty::array::StaticArray<int64_t, DIM> & coord){return true;};
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
         const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
             affinities, offsets,
             edges, edgeMap, sampler
@@ -576,10 +576,10 @@ public:
                                                EDGES & edges,
                                                EDGE_MAP & edgeMap) const {
 
-        auto sampler = [&strides](nifty::array::StaticArray<int64_t, DIM> & coord){
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
             bool inStride = true;
             for(unsigned d = 0; d < DIM; ++d) {
-                if(coord[d] % strides[d] != 0) {
+                if(coord[d+1] % strides[d] != 0) {
                     inStride = false;
                     break;
                 }
@@ -606,8 +606,31 @@ public:
         std::uniform_real_distribution<double> distr(0., 1.);
         auto draw = std::bind(distr, gen);
 
-        auto sampler = [&draw, sampleProbability](nifty::array::StaticArray<int64_t, DIM> & coord){
+        auto sampler = [&draw, sampleProbability](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
             return draw() < sampleProbability;
+        };
+
+        const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
+            affinities, offsets,
+            edges, edgeMap, sampler
+        );
+        return edgeId;
+    }
+
+
+    template<class AFFINITIES, class MASK, class EDGES, class EDGE_MAP>
+    std::size_t affinitiesToEdgeMapWithOffsets(const AFFINITIES & affinities,
+                                               const std::vector<std::vector<int>> & offsets,
+                                               const MASK & mask,
+                                               EDGES & edges,
+                                               EDGE_MAP & edgeMap) const {
+
+        std::default_random_engine gen;
+        std::uniform_real_distribution<double> distr(0., 1.);
+        auto draw = std::bind(distr, gen);
+
+        auto sampler = [&mask](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return xtensor::read(mask, coord);
         };
 
         const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
@@ -703,8 +726,8 @@ private:
         F & dist
     ) const {
         const int nChannels = image.shape()[0];
-        std::array<int64_t, DIM+1> coordU;
-        std::array<int64_t, DIM+1> coordV;
+        nifty::array::StaticArray<int64_t, DIM+1> coordU;
+        nifty::array::StaticArray<int64_t, DIM+1> coordV;
         for(const auto edge : this->edges()){
             const auto uv = this->uv(edge);
             CoordinateType cU, cV;
@@ -734,7 +757,7 @@ private:
     ) const {
         typedef typename EDGE_MAP::value_type edgeValType;
         typedef nifty::array::StaticArray<int64_t, DIM> CoordType;
-        typedef std::array<int64_t, DIM+1> CoordWithChannelType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> CoordWithChannelType;
 
         const unsigned nChannels = image.shape()[0];
         const std::size_t nOffsets = offsets.size();
@@ -775,7 +798,7 @@ private:
                     continue;
                 }
 
-                if(!sampler(coordU)) {
+                if(!sampler(coordUC)) {
                     continue;
                 }
 
@@ -828,7 +851,7 @@ private:
             }
 
             // check if we keep this edge
-            if(!sampler(cU)) {
+            if(!sampler(affCoord)) {
                 return;
             }
 

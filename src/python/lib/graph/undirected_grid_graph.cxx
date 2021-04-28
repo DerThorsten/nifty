@@ -239,7 +239,7 @@ namespace graph{
             .def("affinitiesToEdgeMap",
                 [](
                     const GraphType & g,
-                    xt::pytensor<float, DIM + 1> affinities,
+                    const xt::pytensor<float, DIM + 1> & affinities,
                     const bool toLower
                 ){
                     typedef typename xt::pytensor<float, 1>::shape_type ShapeType;
@@ -258,7 +258,7 @@ namespace graph{
             .def("affinitiesToEdgeMapWithOffsets",
                 [](
                     const GraphType & g,
-                    xt::pytensor<float, DIM + 1> affinities,
+                    const xt::pytensor<float, DIM + 1> & affinities,
                     const std::vector<std::vector<int>> & offsets,
                     const std::optional<std::vector<int>> & strides,
                     const bool randomize_strides
@@ -317,6 +317,42 @@ namespace graph{
                 py::arg("offsets"),
                 py::arg("strides")=std::nullopt,
                 py::arg("randomize_strides")=false
+            )
+
+            .def("affinitiesToEdgeMapWithMask",
+                [](
+                    const GraphType & g,
+                    const xt::pytensor<float, DIM + 1> & affinities,
+                    const std::vector<std::vector<int>> & offsets,
+                    const xt::pytensor<float, DIM + 1> & mask
+                ){
+                    // upper bound for the number of edges
+                    const auto & shape = affinities.shape();
+                    int64_t nEdges = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<int64_t>());
+
+                    typedef typename xt::pytensor<uint64_t, 2>::shape_type EdgeShape;
+                    EdgeShape edgeShape = {nEdges, 2};
+                    xt::pytensor<uint64_t, 2> edges(edgeShape);
+
+                    typedef typename xt::pytensor<float, 1>::shape_type EdgeMapShape;
+                    EdgeMapShape edgeMapShape = {nEdges};
+                    xt::pytensor<float, 1> edgeMap(edgeMapShape);
+
+                    {
+                        py::gil_scoped_release allowThreads;
+                        nEdges = g.affinitiesToEdgeMapWithOffsets(affinities,
+                                                                  offsets,
+                                                                  mask,
+                                                                  edges,
+                                                                  edgeMap);
+                    }
+
+                    return std::make_tuple(nEdges, edges, edgeMap);
+
+                },
+                py::arg("affinities"),
+                py::arg("offsets"),
+                py::arg("mask")
             )
         ;
 
