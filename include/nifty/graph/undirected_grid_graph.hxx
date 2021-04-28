@@ -780,6 +780,19 @@ public:
         projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
     }
 
+    template<class RET>
+    void projectNodeIdsToPixels(RET & ret) const {
+
+        CoordinateType shape_;
+        for(unsigned d = 0; d < DIM; ++d) {
+            shape_[d] = shape(d);
+        }
+
+        nifty::tools::forEachCoordinate(shape_, [&](const auto & coordP){
+            const auto u = coordinateToNode(coordP);
+            xtensor::write(ret, coordP, u);
+        });
+    }
 
 private:
 
@@ -824,14 +837,13 @@ private:
         EDGE_MAP & edgeMap
     ) const {
         typedef typename EDGE_MAP::value_type edgeValType;
-        typedef nifty::array::StaticArray<int64_t, DIM> CoordType;
         typedef nifty::array::StaticArray<int64_t, DIM+1> CoordWithChannelType;
 
         const unsigned nChannels = image.shape()[0];
         const std::size_t nOffsets = offsets.size();
 
-        CoordType coordU;
-        CoordType coordV;
+        CoordinateType coordU;
+        CoordinateType coordV;
         CoordWithChannelType coordUC;
         CoordWithChannelType coordVC;
 
@@ -839,13 +851,13 @@ private:
             NIFTY_CHECK_OP(shape(d-1), ==, image.shape()[d], "wrong shape")
         }
 
-        CoordType shape_;
+        CoordinateType shape_;
         for(unsigned d = 0; d < DIM; ++d) {
             shape_[d] = shape(d);
         }
 
         std::size_t edgeId = 0;
-        tools::forEachCoordinate(shape_, [&](const CoordType & coord) {
+        tools::forEachCoordinate(shape_, [&](const CoordinateType & coord) {
             for(int offsetId = 0; offsetId < nOffsets; ++offsetId) {
                 const auto & offset = offsets[offsetId];
 

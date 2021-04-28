@@ -407,6 +407,19 @@ namespace graph{
             py::arg("strides")=std::nullopt,
             py::arg("mask")=std::nullopt
         )
+
+        .def("projectNodeIdsToPixels", [](const GraphType & g){
+            typename xt::pytensor<uint64_t, DIM>::shape_type retshape;
+            for(auto d=0; d<DIM; ++d){
+                retshape[d] = g.shape(d);
+            }
+            xt::pytensor<uint64_t, DIM> ret(retshape);
+            {
+                py::gil_scoped_release allowThreads;
+                g.projectNodeIdsToPixels(ret);
+            }
+            return ret;
+        })
         ;
 
         // export the base graph API (others might derive)
