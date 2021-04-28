@@ -354,6 +354,59 @@ namespace graph{
                 py::arg("offsets"),
                 py::arg("mask")
             )
+
+        .def("projectEdgeIdsToPixels",
+            [](
+                const GraphType & g
+            ){
+                typename xt::pytensor<int64_t, DIM+1>::shape_type retshape;
+                retshape[0] = DIM;
+                for(auto d=0; d<DIM; ++d){
+                    retshape[d+1] = g.shape(d);
+                }
+                xt::pytensor<int64_t, DIM+1> ret(retshape);
+
+                {
+                    py::gil_scoped_release allowThreads;
+                    g.projectEdgeIdsToPixels(ret);
+                }
+                return ret;
+            }
+        )
+
+        .def("projectEdgeIdsToPixelsWithOffsets",
+            [](
+                const GraphType & g,
+                const std::vector<std::vector<int>> & offsets,
+                const std::optional<std::vector<int>> & strides,
+                const std::optional<xt::pytensor<bool, DIM+1>> & mask
+
+            ){
+                typename xt::pytensor<int64_t, DIM+1>::shape_type retshape;
+                retshape[0] = offsets.size();
+                for(auto d=0; d<DIM; ++d){
+                    retshape[d+1] = g.shape(d);
+                }
+                xt::pytensor<int64_t, DIM+1> ret(retshape);
+
+                {
+                    py::gil_scoped_release allowThreads;
+                    if(strides.has_value() && mask.has_value()) {
+                        throw std::runtime_error("Strides and mask together are not suported");
+                    } else if(strides.has_value()) {
+                        g.projectEdgeIdsToPixels(offsets, strides.value(), ret);
+                    } else if(mask.has_value()) {
+                        g.projectEdgeIdsToPixels(offsets, mask.value(), ret);
+                    } else {
+                        g.projectEdgeIdsToPixels(offsets, ret);
+                    }
+                }
+                return ret;
+            },
+            py::arg("offsets"),
+            py::arg("strides")=std::nullopt,
+            py::arg("mask")=std::nullopt
+        )
         ;
 
         // export the base graph API (others might derive)

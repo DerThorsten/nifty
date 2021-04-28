@@ -713,6 +713,74 @@ public:
     }
 
 
+    //
+    // edge id projection (with and w/o offsets)
+    //
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        RET & ret
+    ) const {
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+        CoordinateType cU, cV;
+        EdgeCoordType cEdge;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            nodeToCoordinate(uv.first, cU);
+            nodeToCoordinate(uv.second, cV);
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cEdge[d+1] = cU[d];
+                if(cU[d] != cV[d]) {
+                    cEdge[0] = d;
+                }
+            }
+
+            xtensor::write(ret, cEdge, edge);
+        }
+    }
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        RET & ret
+    ) const {
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        const std::vector<int> & strides,
+        RET & ret
+    ) const {
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            bool inStride = true;
+            for(unsigned d = 0; d < DIM; ++d) {
+                if(coord[d+1] % strides[d] != 0) {
+                    inStride = false;
+                    break;
+                }
+            }
+            return inStride;
+        };
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+    template<class MASK, class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        const MASK & mask,
+        RET & ret
+    ) const {
+        auto sampler = [&mask](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return xtensor::read(mask, coord);
+        };
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+
 private:
 
     //
@@ -836,10 +904,10 @@ private:
             affShape[d + 1] = shape(d);
         }
 
+        CoordinateType cU, cV;
         std::size_t edgeId = 0;
         tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
             const auto & offset = offsets[affCoord[0]];
-            CoordinateType cU, cV;
 
             for(unsigned d = 0; d < DIM; ++d) {
                 cU[d] = affCoord[d + 1];
@@ -865,6 +933,55 @@ private:
 
         });
         return edgeId;
+    }
+
+    //
+    // implementation of projectEdgeIdsToPixels (with offsets)
+    //
+
+    template<class RET, class SAMPLER>
+    void projectEdgeIdsToPixelsImpl(
+        const std::vector<std::vector<int>> & offsets,
+        SAMPLER & sampler,
+        RET & ret
+    ) const {
+        typedef typename RET::value_type retType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
+        for(unsigned d = 0; d < DIM; ++d) {
+            edgeShape[d + 1] = shape(d);
+        }
+
+        CoordinateType cU, cV;
+        retType edgeId = 0;
+        nifty::tools::forEachCoordinate(edgeShape, [&](const auto & edgeCoord){
+            const auto & offset = offsets[edgeCoord[0]];
+            bool isValid = true;
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cU[d] = edgeCoord[d + 1];
+                cV[d] = edgeCoord[d + 1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if(!isValid) {
+                xtensor::write(ret, edgeCoord, -1);
+                return;
+            }
+
+            if(!sampler(edgeCoord)) {
+                xtensor::write(ret, edgeCoord, -1);
+                return;
+            }
+            xtensor::write(ret, edgeCoord, edgeId);
+            ++edgeId;
+        });
     }
 
 
