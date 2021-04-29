@@ -7,6 +7,7 @@ cmake . -G "NMake Makefiles" ^
     -DBUILD_CPP_TEST=OFF ^
     -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ^
+    -DMAKE_CXX_FLAGS="/std:c++17" ^
     -DBUILD_NIFTY_PYTHON=ON ^
     -DWITH_HDF5=OFF ^
     -DWITH_Z5=ON ^
