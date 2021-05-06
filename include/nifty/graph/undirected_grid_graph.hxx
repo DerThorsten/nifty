@@ -838,6 +838,7 @@ private:
     ) const {
         typedef typename EDGE_MAP::value_type edgeValType;
         typedef nifty::array::StaticArray<int64_t, DIM+1> CoordWithChannelType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
 
         const unsigned nChannels = image.shape()[0];
         const std::size_t nOffsets = offsets.size();
@@ -851,45 +852,44 @@ private:
             NIFTY_CHECK_OP(shape(d-1), ==, image.shape()[d], "wrong shape")
         }
 
-        CoordinateType shape_;
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
         for(unsigned d = 0; d < DIM; ++d) {
-            shape_[d] = shape(d);
+            edgeShape[d + 1] = shape(d);
         }
 
         std::size_t edgeId = 0;
-        tools::forEachCoordinate(shape_, [&](const CoordinateType & coord) {
-            for(int offsetId = 0; offsetId < nOffsets; ++offsetId) {
-                const auto & offset = offsets[offsetId];
+        tools::forEachCoordinate(edgeShape, [&](const EdgeCoordType & edgeCoord) {
+            const auto & offset = offsets[edgeCoord[0]];
 
-                // initialise the coordinates w/o and w/ channel
-                bool isValid = true;
-                for(unsigned d = 0; d < DIM; ++d) {
-                    coordU[d] = coord[d];
-                    coordV[d] = coord[d] + offset[d];
-                    // range check
-                    if(coordV[d] >= shape(d) || coordV[d] < 0) {
-                        isValid = false;
-                        break;
-                    }
-                    coordUC[d+1] = coordU[d];
-                    coordVC[d+1] = coordV[d];
+            // initialise the coordinates w/o and w/ channel
+            bool isValid = true;
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d] = edgeCoord[d+1];
+                coordV[d] = edgeCoord[d+1] + offset[d];
+                // range check
+                if(coordV[d] >= shape(d) || coordV[d] < 0) {
+                    isValid = false;
+                    break;
                 }
-                if(!isValid) {
-                    continue;
-                }
-
-                if(!sampler(coordUC)) {
-                    continue;
-                }
-
-                const std::size_t u = coordinateToNode(coordU);
-                const std::size_t v = coordinateToNode(coordV);
-
-                edgeMap(edgeId) = dist(image, nChannels, coordUC, coordVC);
-                edges(edgeId, 0) = std::min(u, v);
-                edges(edgeId, 1) = std::max(u, v);
-                ++edgeId;
+                coordUC[d+1] = coordU[d];
+                coordVC[d+1] = coordV[d];
             }
+            if(!isValid) {
+                return;
+            }
+
+            if(!sampler(edgeCoord)) {
+                return;
+            }
+
+            const std::size_t u = coordinateToNode(coordU);
+            const std::size_t v = coordinateToNode(coordV);
+
+            edgeMap(edgeId) = dist(image, nChannels, coordUC, coordVC);
+            edges(edgeId, 0) = std::min(u, v);
+            edges(edgeId, 1) = std::max(u, v);
+            ++edgeId;
         });
         return edgeId;
     }
@@ -904,26 +904,26 @@ private:
                                                    EDGES & edges,
                                                    EDGE_MAP & edgeMap,
                                                    F & sampler) const {
-        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
+        NIFTY_CHECK_OP(affinities.shape()[0], ==, offsets.size(), "wrong shape")
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
         }
-        std::size_t affLen = affinities.shape()[0];
 
-        AffinityCoordType affShape;
-        affShape[0] = affLen;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
         for(unsigned d = 0; d < DIM; ++d) {
-            affShape[d + 1] = shape(d);
+            edgeShape[d + 1] = shape(d);
         }
 
         CoordinateType cU, cV;
         std::size_t edgeId = 0;
-        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
-            const auto & offset = offsets[affCoord[0]];
+        tools::forEachCoordinate(edgeShape, [&](const EdgeCoordType & edgeCoord) {
+            const auto & offset = offsets[edgeCoord[0]];
 
             for(unsigned d = 0; d < DIM; ++d) {
-                cU[d] = affCoord[d + 1];
-                cV[d] = affCoord[d + 1] + offset[d];
+                cU[d] = edgeCoord[d + 1];
+                cV[d] = edgeCoord[d + 1] + offset[d];
                 // range check
                 if(cV[d] >= shape(d) || cV[d] < 0) {
                     return;
@@ -931,14 +931,14 @@ private:
             }
 
             // check if we keep this edge
-            if(!sampler(affCoord)) {
+            if(!sampler(edgeCoord)) {
                 return;
             }
 
             const std::size_t u = coordinateToNode(cU);
             const std::size_t v = coordinateToNode(cV);
 
-            edgeMap(edgeId) = xtensor::read(affinities, affCoord.asStdArray());
+            edgeMap(edgeId) = xtensor::read(affinities, edgeCoord.asStdArray());
             edges(edgeId, 0) = std::min(u, v);
             edges(edgeId, 1) = std::max(u, v);
             ++edgeId;
@@ -966,14 +966,13 @@ private:
             edgeShape[d + 1] = shape(d);
         }
 
-        CoordinateType cU, cV;
+        CoordinateType cV;
         retType edgeId = 0;
         nifty::tools::forEachCoordinate(edgeShape, [&](const auto & edgeCoord){
             const auto & offset = offsets[edgeCoord[0]];
             bool isValid = true;
 
             for(unsigned d = 0; d < DIM; ++d) {
-                cU[d] = edgeCoord[d + 1];
                 cV[d] = edgeCoord[d + 1] + offset[d];
                 // range check
                 if(cV[d] >= shape(d) || cV[d] < 0) {

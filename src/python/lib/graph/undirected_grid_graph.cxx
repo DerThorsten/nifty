@@ -364,7 +364,7 @@ namespace graph{
                 for(auto d=0; d<DIM; ++d){
                     retshape[d+1] = g.shape(d);
                 }
-                xt::pytensor<int64_t, DIM+1> ret(retshape);
+                xt::pytensor<int64_t, DIM+1> ret = -1 * xt::ones<int64_t>(retshape);
 
                 {
                     py::gil_scoped_release allowThreads;
