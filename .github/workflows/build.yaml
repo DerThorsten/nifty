@@ -35,7 +35,6 @@ jobs:
           channels: conda-forge
           environment-file: .github/workflows/environment.yaml
           python-version: ${{ matrix.python-version }}
-          channels: conda-forge
           use-mamba: true
           mamba-version: "*"
           auto-activate-base: false
