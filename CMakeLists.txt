@@ -83,21 +83,10 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     add_definitions(-fext-numeric-literals)
 endif()
 
-# FIXME only use cpp 17
 #-------------------------------------------------------------------------------------------------------------------
-# check for c++ 14 / 17 support
+# check for c++ 17 support
 #-------------------------------------------------------------------------------------------------------------------
-
-message(STATUS "CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
-if (NOT "${CMAKE_CXX_FLAGS}" MATCHES "-std=c\\+\\+17")
-    message(STATUS "Using c++ 14")
-    set(CMAKE_CXX_STANDARD 14)
-    set(CPP17 FALSE)
-else()
-    message(STATUS "Using c++ 17")
-    set(CMAKE_CXX_STANDARD 17)
-    set(CPP17 TRUE)
-endif()
+set(CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -172,42 +161,24 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
+find_package(Boost 1.63.0 REQUIRED)
 
-# If WITH_BOOST_FS is set, we always use the boost filesystem library
-# otherwise, we check if we have c++17 support. If so, we use std::filesystem,
-# otherwise we fall back to boost filesystem.
-if(CPP17)
-    SET(WITH_BOOST_FS FALSE CACHE BOOL "")
-else()
-    SET(WITH_BOOST_FS TRUE CACHE BOOL "")
+# see this issue for discussions about the filesystem lib in CMake
+# https://gitlab.kitware.com/cmake/cmake/issues/17834
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    SET(FILESYSTEM_LIBRARIES "stdc++fs")
 endif()
 
-if(WITH_BOOST_FS)
-    message(STATUS "With boost filesystem")
-    find_package(Boost 1.63.0 COMPONENTS system filesystem REQUIRED)
-    add_definitions(-DWITH_BOOST_FS)
-    SET(FILESYSTEM_LIBRARIES "${Boost_FILESYSTEM_LIBRARY};${Boost_SYSTEM_LIBRARY}")
-else()
-    message(STATUS "With std filesystem")
-    find_package(Boost 1.63.0 REQUIRED)
-
-    # see this issue for discussions about the filesystem lib in CMake
-    # https://gitlab.kitware.com/cmake/cmake/issues/17834
-    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-        SET(FILESYSTEM_LIBRARIES "stdc++fs")
+# on clang, we need to enable libc++experimental, see
+# https://stackoverflow.com/a/45332844
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    # see https://libcxx.llvm.org/docs/UsingLibcxx.html#id3
+    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "7.0")
+        SET(FILESYSTEM_LIBRARIES "c++experimental")
+    elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "9.0")
+        SET(FILESYSTEM_LIBRARIES "c++fs")
     endif()
-
-    # on clang, we need to enable libc++experimental, see
-    # https://stackoverflow.com/a/45332844
-    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        # see https://libcxx.llvm.org/docs/UsingLibcxx.html#id3
-        if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "7.0")
-            SET(FILESYSTEM_LIBRARIES "c++experimental")
-        elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "9.0")
-            SET(FILESYSTEM_LIBRARIES "c++fs")
-        endif()
-        # nothing required for clang>=9.0
-    endif()
+    # nothing required for clang>=9.0
 endif()
 include_directories(${Boost_INCLUDE_DIR})
 
