@@ -27,12 +27,6 @@ include(CheckCXXCompilerFlag)
 
 include_directories(${${PROJECT_NAME}_INCLUDE_DIR})
 
-option(USE_OLD_ABI "Use old GLIBC ABI for backwards compatability" OFF)
-# Old ABI to be compatible with boost
-if(USE_OLD_ABI)
-    add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
-endif()
-
 option(WITH_GUROBI "Build with gurobi" OFF)
 option(WITH_CPLEX "Build with cplex" OFF)
 option(WITH_GLPK "Build with glpk" OFF)
@@ -161,7 +155,12 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost 1.63.0 REQUIRED)
+if(MSVC)
+    find_package(Boost 1.63.0 REQUIRED COMPONENTS system REQUIRED)
+    SET(FILESYSTEM_LIBRARIES "${Boost_SYSTEM_LIBRARY}")
+else()
+    find_package(Boost 1.63.0 REQUIRED)
+endif()
 
 # see this issue for discussions about the filesystem lib in CMake
 # https://gitlab.kitware.com/cmake/cmake/issues/17834
