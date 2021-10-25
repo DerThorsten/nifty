@@ -155,12 +155,13 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-if(MSVC)
-    find_package(Boost 1.63.0 REQUIRED COMPONENTS system REQUIRED)
-    SET(FILESYSTEM_LIBRARIES "${Boost_SYSTEM_LIBRARY}")
-else()
-    find_package(Boost 1.63.0 REQUIRED)
-endif()
+# if(MSVC)
+#     find_package(Boost 1.63.0 REQUIRED COMPONENTS system REQUIRED)
+#     SET(FILESYSTEM_LIBRARIES "${Boost_SYSTEM_LIBRARY}")
+# else()
+#     find_package(Boost 1.63.0 REQUIRED)
+# endif()
+find_package(Boost 1.63.0 REQUIRED)
 
 # see this issue for discussions about the filesystem lib in CMake
 # https://gitlab.kitware.com/cmake/cmake/issues/17834

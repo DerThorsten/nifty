@@ -1,3 +1,4 @@
+REM https://stackoverflow.com/questions/6832666/lnk2019-when-including-asio-headers-solution-generated-with-cmake
 cmake . -G "NMake Makefiles" ^
     -DWITH_QPBO=OFF ^
     -DWITH_HDF5=OFF ^
@@ -7,7 +8,7 @@ cmake . -G "NMake Makefiles" ^
     -DBUILD_CPP_TEST=OFF ^
     -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ^
-    -DCMAKE_CXX_FLAGS="/std:c++17" ^
+    -DCMAKE_CXX_FLAGS="/std:c++17 /EHsc" ^
     -DBUILD_NIFTY_PYTHON=ON ^
     -DWITH_HDF5=OFF ^
     -DWITH_Z5=ON ^
