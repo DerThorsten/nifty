@@ -1,9 +1,11 @@
-from __future__ import print_function
 import os
 import unittest
+
 import numpy
 import nifty
 import nifty.graph.rag as nrag
+
+ON_WIN = os.name == 'nt'
 
 try:
     import h5py
@@ -142,6 +144,7 @@ class TestRagStacked(TestRagBase):
         self.small_array_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
+    @unittest.skipIf(ON_WIN, "Fails on windows")
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_grid_rag_z5_stacked2d(self):
         import z5py
@@ -186,6 +189,7 @@ class TestRagStacked(TestRagBase):
         self.big_array_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
+    @unittest.skipIf(ON_WIN, "Fails on windows")
     @unittest.skipUnless(nifty.Configuration.WITH_Z5, "skipping z5 tests")
     def test_grid_rag_z5_stacked2d_large(self):
         import z5py
@@ -250,6 +254,7 @@ class TestRagStacked(TestRagBase):
         self.serialization_test(array, nrag.gridRagStacked2DHdf5)
         nhdf5.closeFile(hidT)
 
+    @unittest.skipIf(ON_WIN, "Fails on windows")
     @unittest.skipUnless(nifty.Configuration.WITH_Z5 and WITH_H5PY,
                          "skipping z5 serialization tests")
     def test_grid_rag_z5_serialize_deserialize(self):

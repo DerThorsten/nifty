@@ -29,7 +29,6 @@ namespace nifty{
 namespace graph{
 namespace opt{
 namespace multicut{
-    
 
     /// \cond HIDDEN_SYMBOLS
     namespace detail_cgc{
@@ -52,9 +51,9 @@ namespace multicut{
             typedef mincut::MincutObjective<SubGraph, double>         MincutSubObjective;
             typedef mincut::MincutBase<MincutSubObjective>            MincutSubBase;
             typedef nifty::graph::opt::common::SolverFactoryBase<MincutSubBase>   MincutSubMcFactoryBase;
-            
+
             typedef mincut::MincutVerboseVisitor<MincutSubObjective>  SubMcVerboseVisitor;
-     
+
             typedef typename  MincutSubBase::NodeLabelsType     MincutSubNodeLabels;
 
             struct Optimzie1ReturnType{
@@ -145,8 +144,7 @@ namespace multicut{
                     //SubMcVerboseVisitor visitor;
                     solverPtr->optimize(subgraphRes,nullptr);
                     const auto minCutValue  = subObjective.evalNodeLabels(subgraphRes);
-                    delete solverPtr;   
-
+                    delete solverPtr;
 
                     Optimzie1ReturnType res(false,minCutValue);
 
@@ -485,7 +483,7 @@ namespace multicut{
                 return p1 * sFac;
             }
             void contractEdgeDone(const uint64_t edgeToContract){
-                // HERE WE UPDATE 
+                // HERE WE UPDATE
                 const auto u = edgeContractionGraph_.nodeOfDeadEdge(edgeToContract);
                 for(auto adj : edgeContractionGraph_.adjacency(u)){
                     const auto edge = adj.edge();
@@ -554,9 +552,9 @@ namespace multicut{
     template<class OBJECTIVE>
     class Cgc : public MulticutBase<OBJECTIVE>
     {
-    
-    public: 
-   
+
+    public:
+
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
         typedef MulticutBase<ObjectiveType> BaseType;
@@ -571,21 +569,21 @@ namespace multicut{
         typedef mincut::MincutObjective<SubGraph, double>      MincutSubObjective;
         typedef mincut::MincutBase<MincutSubObjective>         MincutSubBase;
         typedef nifty::graph::opt::common::SolverFactoryBase<MincutSubBase>  MincutSubMcFactoryBase;
-        
+
         typedef typename  MincutSubBase::NodeLabelsType            MincutSubNodeLabels;
 
         typedef MulticutObjective<SubGraph, double>         MulticutSubObjective;
         typedef MulticutBase<MulticutSubObjective>          MulticutSubBase;
         typedef nifty::graph::opt::common::SolverFactoryBase<MulticutSubBase>   MulticutSubMcFactoryBase;
-       
+
         typedef typename  MulticutSubBase::NodeLabelsType       MulticutSubNodeLabels;
 
 
         typedef nifty::graph::opt::common::SolverFactoryBase<BaseType> FactoryBase;
-       
+
     private:
         typedef ComponentsUfd<GraphType> Components;
-    
+
     public:
 
         struct SettingsType {
@@ -603,7 +601,6 @@ namespace multicut{
         //typedef typename CallbackType::SettingsType      CallbackSettingsType;
     public:
         virtual ~Cgc(){
-            
         }
         Cgc(const ObjectiveType & objective, const SettingsType & settings = SettingsType());
 
@@ -619,7 +616,7 @@ namespace multicut{
         virtual std::string name()const{
             return std::string("Cgc");
         }
-        virtual void weightsChanged(){ 
+        virtual void weightsChanged(){
         }
         virtual double currentBestEnergy() {
            return currentBestEnergy_;
@@ -643,16 +640,12 @@ namespace multicut{
         NodeLabelsType * currentBest_;
         double currentBestEnergy_;
 
-        
-
-
     };
 
-    
     template<class OBJECTIVE>
     Cgc<OBJECTIVE>::
     Cgc(
-        const ObjectiveType & objective, 
+        const ObjectiveType & objective,
         const SettingsType & settings
     )
     :   objective_(objective),
@@ -675,17 +668,14 @@ namespace multicut{
         VisitorProxyType & visitorProxy
     ){
 
-       
-
         // the node labeling as reference
         auto & nodeLabels = *currentBest_;
 
-        
         // number of components
         const auto nComponents = components_.buildFromLabels(nodeLabels);
         components_.denseRelabeling(nodeLabels);
 
-        // get anchor for each component        
+        // get anchor for each component
         std::vector<uint64_t> componentsAnchors(nComponents);
 
         // anchors
@@ -711,7 +701,7 @@ namespace multicut{
             const auto anchorLabel = nodeLabels[anchorNode];
             //std::cout<<"b) "<<anchorQueue.size()<<"\n";
             //visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Optimzie1");
-            // optimize the submodel 
+            // optimize the submodel
             const auto ret = submodel_.optimize1(nodeLabels, anchorNode, anchorQueue);
             if(ret.improvment){
                 //std::cout<<"old current best "<<currentBestEnergy_<<"\n";
@@ -719,16 +709,14 @@ namespace multicut{
                 //std::cout<<"new current best "<<currentBestEnergy_<<"\n";
             }
             //std::cout<<"c) "<<anchorQueue.size()<<"\n";
-            visitorProxy.setLogValue(0, anchorQueue.size());        
-            visitorProxy.setLogValue(1, currentBestEnergy_);    
-            visitorProxy.setLogValue(2, objective_.evalNodeLabels(*currentBest_));   
-            visitorProxy.visit(this);
+            visitorProxy.setLogValue(0, anchorQueue.size());
+            visitorProxy.setLogValue(1, currentBestEnergy_);
+            visitorProxy.setLogValue(2, objective_.evalNodeLabels(*currentBest_));
+            if(!visitorProxy.visit(this)){
+                 break;
+            }
         }
-
         visitorProxy.visit(this);
-
-
-
         visitorProxy.clearLogNames();
     }
 
@@ -749,7 +737,7 @@ namespace multicut{
 
         // run the cluster algorithm
         CallbackType callback(objective_, settings_);
-        auto & edgeContractionGraph = callback.edgeContractionGraph(); 
+        auto & edgeContractionGraph = callback.edgeContractionGraph();
         while(!callback.done() ){
             edgeContractionGraph.contractEdge(callback.edgeToContract());
             visitorProxy.setLogValue(0, edgeContractionGraph.numberOfNodes());
@@ -757,8 +745,6 @@ namespace multicut{
             if(!visitorProxy.visit(this))
                 break;
         }
-        
-
 
         // build a dense remapping
         const auto & nodeUfd = callback.edgeContractionGraph().nodeUfd();
@@ -822,7 +808,7 @@ namespace multicut{
 
                 const auto dU = nodeToSubNode.find(u)->second;
                 const auto dV = nodeToSubNode.find(v)->second;
-        
+
                 //std::cout<<weights_.size()<<" ws\n";
                 const auto w = weights_[edge];
                 const auto edgeId = subGraphs[ccU]->insertEdge(dU, dV);
@@ -833,7 +819,7 @@ namespace multicut{
             else{
                 isDirtyEdge_[edge] = true;
             }
-        }   
+        }
         nifty::ufd::Ufd<uint64_t> ufd(graph_.nodeIdUpperBound()+1);
 
 
@@ -849,7 +835,7 @@ namespace multicut{
 
             auto solver = settings_.multicutFactory->create(*subObjectives[i]);
             solver->optimize(*subLabels[i],nullptr);
-            delete solver;  
+            delete solver;
         }
         //std::cout<<"merge\n";
         // merge
@@ -867,7 +853,7 @@ namespace multicut{
 
                 const auto dU = nodeToSubNode.find(u)->second;
                 const auto dV = nodeToSubNode.find(v)->second;
-        
+
                 if((*subLabels[ccU])[dU] == (*subLabels[ccU])[dU]){
                     ufd.merge(u, v);
                 }
@@ -918,10 +904,9 @@ namespace multicut{
 
         auto continueSeach = true;
         auto sweep = 0;
-        while(continueSeach){   
+        while(continueSeach){
 
             continueSeach = false;
-
 
             labelPairToAnchorEdge.clear();
             for(const auto  edge : graph_.edges()){
@@ -953,8 +938,11 @@ namespace multicut{
                             currentBestEnergy_ -= ret.improvedBy;
 
                             visitorProxy.setLogValue(0, sweep);
-                            visitorProxy.setLogValue(1, currentBestEnergy_);                   
-                            visitorProxy.visit(this);
+                            visitorProxy.setLogValue(1, currentBestEnergy_);
+                            if(!visitorProxy.visit(this)){
+                                continueSeach = false;
+                                 break;
+                            }
                         }
                     }
                 }
@@ -968,26 +956,24 @@ namespace multicut{
     void Cgc<OBJECTIVE>::
     optimize(
         NodeLabelsType & nodeLabels,  VisitorBaseType * visitor
-    ){  
+    ){
 
-        
         VisitorProxyType visitorProxy(visitor);
         //visitorProxy.addLogNames({"violatedConstraints"});
 
         currentBest_ = &nodeLabels;
         currentBestEnergy_ = objective_.evalNodeLabels(nodeLabels);
-        
         visitorProxy.begin(this);
 
         // the main workhorses
-        // cut phase 
+        // cut phase
         if(settings_.doCutPhase){
 
             visitorProxy.printLog(nifty::logging::LogLevel::INFO, "Start Cut Phase:");
             if(settings_.doBetterCutPhase)
                 this->betterCutPhase(visitorProxy);
             else
-                this->cutPhase(visitorProxy);        
+                this->cutPhase(visitorProxy);
         }
         // glue phase
         if(settings_.doGlueAndCutPhase){

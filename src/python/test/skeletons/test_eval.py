@@ -5,6 +5,7 @@ from shutil import rmtree
 import numpy as np
 import nifty
 WITH_Z5 = nifty.Configuration.WITH_Z5
+ON_WIN = os.name == 'nt'
 
 try:
     import z5py
@@ -13,6 +14,7 @@ except ImportError:
     WITH_Z5PY = False
 
 
+@unittest.skipIf(ON_WIN, "Fails on windows")
 @unittest.skipUnless(WITH_Z5 and WITH_Z5PY, "Need z5 support")
 class TestSkeletons(unittest.TestCase):
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <random>
 #include <boost/iterator/counting_iterator.hpp>
 #include <boost/iterator/transform_iterator.hpp>
 #include <boost/iterator/iterator_facade.hpp>
@@ -97,6 +98,73 @@ namespace detail_graph{
         };
     };
 
+    //
+    // distance functions along channel dimension
+    //
+
+    template<unsigned DIM, class IMAGE>
+    double l2Distance(
+        const IMAGE & image,
+        const unsigned nChannels,
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
+    ) {
+        double val = 0;
+        for(unsigned c = 0; c < nChannels; ++c) {
+            coordU[0] = c;
+            coordV[0] = c;
+            const auto uVal = xtensor::read(image, coordU);
+            const auto vVal = xtensor::read(image, coordV);
+            val += (uVal - vVal) * (uVal - vVal);
+        }
+        return std::sqrt(val);
+    }
+
+    template<unsigned DIM, class IMAGE>
+    double l1Distance(
+        const IMAGE & image,
+        const unsigned nChannels,
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
+    ) {
+        double val = 0;
+        for(unsigned c = 0; c < nChannels; ++c) {
+            coordU[0] = c;
+            coordV[0] = c;
+            const auto uVal = xtensor::read(image, coordU);
+            const auto vVal = xtensor::read(image, coordV);
+            val += std::abs(uVal - vVal);
+        }
+        return val;
+    }
+
+    template<unsigned DIM, class IMAGE>
+    double cosineDistance(
+        const IMAGE & image,
+        const unsigned nChannels,
+        nifty::array::StaticArray<int64_t, DIM+1> coordU,
+        nifty::array::StaticArray<int64_t, DIM+1> coordV
+    ) {
+        const double eps = 1e-7;
+
+        double val = 0;
+        double normU = 0;
+        double normV = 0;
+
+        for(unsigned c = 0; c < nChannels; ++c) {
+            coordU[0] = c;
+            coordV[0] = c;
+            const auto uVal = xtensor::read(image, coordU);
+            const auto vVal = xtensor::read(image, coordV);
+            val += uVal * vVal;
+            normU += uVal * uVal;
+            normV += vVal * vVal;
+        }
+        normU = std::sqrt(normU) + eps;
+        normV = std::sqrt(normV) + eps;
+        val = 1. - (val / normU / normV);
+        return val;
+    }
 
 
 };
@@ -283,27 +351,178 @@ public:
             nodeToCoordinate(uv.first,  cU);
             nodeToCoordinate(uv.second, cV);
             const auto uVal = xtensor::read(image, cU.asStdArray());
-            const auto vVal = xtensor::read(image, cU.asStdArray());
+            const auto vVal = xtensor::read(image, cV.asStdArray());
 
             edgeMap[edge] = binaryFunctor(uVal, vVal);
         }
     }
 
 
-    // TODO parallelize
+    /**
+     * @brief convert an image with DIM + 1 dimension to an edge map
+     * @details convert an image with DIM + 1 dimension to an edge map
+     * by computing the distance between the values of a node map at
+     * the endpoints of an edge.
+     *
+     * @param       image the  input image
+     * @param       distance   the distance (l1, l2 or cosine)
+     * @param[out]  the result edge map
+     *
+     * @return [description]
+     */
+    template<class IMAGE, class EDGE_MAP>
+    void imageWithChannelsToEdgeMap(
+        const IMAGE & image,
+        const std::string & distance,
+        EDGE_MAP & edgeMap
+    ) const {
+        if(distance == "l1") {
+            imageWithChannelsToEdgeMapImpl(image, edgeMap, detail_graph::l1Distance<DIM, IMAGE>);
+        } else if(distance == "l2") {
+            imageWithChannelsToEdgeMapImpl(image, edgeMap, detail_graph::l2Distance<DIM, IMAGE>);
+        } else if(distance == "cosine") {
+            imageWithChannelsToEdgeMapImpl(image, edgeMap, detail_graph::cosineDistance<DIM, IMAGE>);
+        } else {
+            throw std::runtime_error("Invalid distance.");
+        }
+    }
+
+    template<class IMAGE, class EDGES, class EDGE_MAP>
+    std::size_t imageWithChannelsToEdgeMapWithOffsets(
+        const IMAGE & image,
+        const std::string & distance,
+        const std::vector<std::vector<int>> & offsets,
+        EDGES & edges,
+        EDGE_MAP & edgeMap
+    ) const {
+
+        std::size_t edgeId = 0;
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
+
+        if(distance == "l1") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l1Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "l2") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l2Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "cosine") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::cosineDistance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else {
+            throw std::runtime_error("Invalid distance.");
+        }
+
+        return edgeId;
+    }
+
+    template<class IMAGE, class EDGES, class EDGE_MAP>
+    std::size_t imageWithChannelsToEdgeMapWithOffsets(
+        const IMAGE & image,
+        const std::string & distance,
+        const std::vector<std::vector<int>> & offsets,
+        const std::vector<int> & strides,
+        EDGES & edges,
+        EDGE_MAP & edgeMap
+    ) const {
+
+        std::size_t edgeId = 0;
+
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            bool inStride = true;
+            for(unsigned d = 0; d < DIM; ++d) {
+                if(coord[d+1] % strides[d] != 0) {
+                    inStride = false;
+                    break;
+                }
+            }
+            return inStride;
+        };
+
+        if(distance == "l1") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l1Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "l2") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l2Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "cosine") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::cosineDistance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else {
+            throw std::runtime_error("Invalid distance.");
+        }
+
+        return edgeId;
+    }
+
+    template<class IMAGE, class EDGES, class EDGE_MAP>
+    std::size_t imageWithChannelsToEdgeMapWithOffsets(
+        const IMAGE & image,
+        const std::string & distance,
+        const std::vector<std::vector<int>> & offsets,
+        const double sampleProbability,
+        EDGES & edges,
+        EDGE_MAP & edgeMap
+    ) const {
+
+        std::size_t edgeId = 0;
+
+        std::default_random_engine gen;
+        std::uniform_real_distribution<double> distr;
+        auto draw = std::bind(distr, gen);
+
+        auto sampler = [&draw, sampleProbability](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return draw() < sampleProbability;
+        };
+
+        if(distance == "l1") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l1Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "l2") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::l2Distance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else if(distance == "cosine") {
+            edgeId = imageWithChannelsToEdgeMapWithOffsetsImpl(image, offsets,
+                                                               detail_graph::cosineDistance<DIM, IMAGE>,
+                                                               sampler,
+                                                               edges, edgeMap);
+        } else {
+            throw std::runtime_error("Invalid distance.");
+        }
+
+        return edgeId;
+    }
+
     /**
      * @brief convert an affinity map with DIM+1 dimension to an edge map
      * @details convert an affinity map with DIM+1 dimension to an edge map
      * by assigning the affinity values to corresponding affinity values
      *
      * @param       image the input affinities
+     * @param       whether affinities encode connectivity yo lower or upper pixel
      * @param[out]  the result edge map
      *
      * @return [description]
      */
     template<class AFFINITIES, class EDGE_MAP>
     void affinitiesToEdgeMap(const AFFINITIES & affinities,
-                             EDGE_MAP & edgeMap) const {
+                             EDGE_MAP & edgeMap,
+                             const bool toLower=true) const {
         NIFTY_CHECK_OP(affinities.shape()[0], ==, DIM, "wrong number of affinity channels")
         for(auto d=1; d<DIM+1; ++d){
             NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
@@ -326,136 +545,99 @@ public:
                     affCoord[d + 1] = cU[d];
                 }
                 else {
-                    // TODO max for different direction convention
-                    affCoord[d + 1] = std::min(cU[d], cV[d]);
+                    affCoord[d + 1] = toLower ? (cU[d] < cV[d] ? cU[d] : cV[d]) : (cU[d] < cV[d] ? cV[d] : cU[d]);
                     affCoord[0] = d;
                 }
             }
 
-            edgeMap[edge] = xtensor::read(affinities, affCoord.asStdArray());
+            edgeMap(edge) = xtensor::read(affinities, affCoord.asStdArray());
         }
     }
 
 
-    template<class AFFINITIES, class LOCAL_FEATURES,
-             class LIFTED_UVS, class LIFTED_FEATURES>
-    std::size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
-                                            xt::xexpression<LOCAL_FEATURES> & localFeaturesExp,
-                                            xt::xexpression<LIFTED_UVS> & liftedUvsExp,
-                                            xt::xexpression<LIFTED_FEATURES> & liftedFeaturesExp,
-                                            const std::vector<std::vector<int>> & offsets) const {
-
-        auto & localFeatures = localFeaturesExp.derived_cast();
-        auto & liftedUvs = liftedUvsExp.derived_cast();
-        auto & liftedFeatures = liftedFeaturesExp.derived_cast();
-        //
-        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
-        for(auto d=1; d<DIM+1; ++d){
-            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
-        }
-        std::size_t affLen = affinities.shape()[0];
-
-        AffinityCoordType affShape;
-        affShape[0] = affLen;
-        for(unsigned d = 0; d < DIM; ++d) {
-            affShape[d + 1] = shape(d);
-        }
-
-        std::size_t liftedEdgeId = 0;
-        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
-            const auto & offset = offsets[affCoord[0]];
-            CoordinateType cU, cV;
-
-            for(unsigned d = 0; d < DIM; ++d) {
-                cU[d] = affCoord[d + 1];
-                cV[d] = affCoord[d + 1] + offset[d];
-                // range check
-                if(cV[d] >= shape(d) || cV[d] < 0) {
-                    return;
-                }
-            }
-
-            const std::size_t u = coordinateToNode(cU);
-            const std::size_t v = coordinateToNode(cV);
-
-            const std::size_t e = findEdge(u, v);
-            if(e == -1) {
-                liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
-                liftedUvs(liftedEdgeId, 0) = std::min(u, v);
-                liftedUvs(liftedEdgeId, 1) = std::max(u, v);
-                ++liftedEdgeId;
-            } else {
-                localFeatures(e) = xtensor::read(affinities, affCoord.asStdArray());
-            }
-
-        });
-        return liftedEdgeId;
+    template<class AFFINITIES, class EDGES, class EDGE_MAP>
+    std::size_t affinitiesToEdgeMapWithOffsets(const AFFINITIES & affinities,
+                                               const std::vector<std::vector<int>> & offsets,
+                                               EDGES & edges,
+                                               EDGE_MAP & edgeMap) const {
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
+        const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
+            affinities, offsets,
+            edges, edgeMap, sampler
+        );
+        return edgeId;
     }
 
-    template<class AFFINITIES, class LOCAL_FEATURES,
-             class LIFTED_UVS, class LIFTED_FEATURES>
-    std::size_t longRangeAffinitiesToLiftedEdges(const AFFINITIES & affinities,
-                                            LOCAL_FEATURES & localFeatures,
-                                            LIFTED_UVS & liftedUvs,
-                                            LIFTED_FEATURES & liftedFeatures,
-                                            const std::vector<std::vector<int>> & offsets,
-                                            const std::vector<int> & strides) const {
-        //
-        typedef nifty::array::StaticArray<int64_t, DIM+1> AffinityCoordType;
-        for(auto d=1; d<DIM+1; ++d){
-            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
-        }
-        std::size_t affLen = affinities.shape()[0];
 
-        AffinityCoordType affShape;
-        affShape[0] = affLen;
-        for(unsigned d = 0; d < DIM; ++d) {
-            affShape[d + 1] = shape(d);
-        }
+    template<class AFFINITIES, class EDGES, class EDGE_MAP>
+    std::size_t affinitiesToEdgeMapWithOffsets(const AFFINITIES & affinities,
+                                               const std::vector<std::vector<int>> & offsets,
+                                               const std::vector<int> & strides,
+                                               EDGES & edges,
+                                               EDGE_MAP & edgeMap) const {
 
-        std::size_t liftedEdgeId = 0;
-        tools::forEachCoordinate(affShape, [&](const AffinityCoordType & affCoord) {
-            const auto & offset = offsets[affCoord[0]];
-            CoordinateType cU, cV;
-
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            bool inStride = true;
             for(unsigned d = 0; d < DIM; ++d) {
-                cU[d] = affCoord[d + 1];
-                cV[d] = affCoord[d + 1] + offset[d];
-                // range check
-                if(cV[d] >= shape(d) || cV[d] < 0) {
-                    return;
+                if(coord[d+1] % strides[d] != 0) {
+                    inStride = false;
+                    break;
                 }
             }
+            return inStride;
+        };
 
-            // check if we are in the strides for channels > DIM
-            if(affCoord[0] > DIM) {
-                bool inStride = true;
-                for(unsigned d = 0; d < DIM; ++d) {
-                    if(cU[d] % strides[d] != 0) {
-                        inStride = false;
-                        break;
-                    }
-                }
-                if(!inStride) {
-                    return;
-                }
-            }
+        const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
+            affinities, offsets,
+            edges, edgeMap, sampler
+        );
+        return edgeId;
+    }
 
-            const std::size_t u = coordinateToNode(cU);
-            const std::size_t v = coordinateToNode(cV);
 
-            const std::size_t e = findEdge(u, v);
-            if(e == -1) {
-                liftedFeatures(liftedEdgeId) = xtensor::read(affinities, affCoord.asStdArray());
-                liftedUvs(liftedEdgeId, 0) = std::min(u, v);
-                liftedUvs(liftedEdgeId, 1) = std::max(u, v);
-                ++liftedEdgeId;
-            } else {
-                localFeatures(e) = xtensor::read(affinities, affCoord.asStdArray());
-            }
+    template<class AFFINITIES, class EDGES, class EDGE_MAP>
+    std::size_t affinitiesToEdgeMapWithOffsets(const AFFINITIES & affinities,
+                                               const std::vector<std::vector<int>> & offsets,
+                                               const double sampleProbability,
+                                               EDGES & edges,
+                                               EDGE_MAP & edgeMap) const {
 
-        });
-        return liftedEdgeId;
+        std::default_random_engine gen;
+        std::uniform_real_distribution<double> distr(0., 1.);
+        auto draw = std::bind(distr, gen);
+
+        auto sampler = [&draw, sampleProbability](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return draw() < sampleProbability;
+        };
+
+        const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
+            affinities, offsets,
+            edges, edgeMap, sampler
+        );
+        return edgeId;
+    }
+
+
+    template<class AFFINITIES, class MASK, class EDGES, class EDGE_MAP>
+    std::size_t affinitiesToEdgeMapWithOffsets(const AFFINITIES & affinities,
+                                               const std::vector<std::vector<int>> & offsets,
+                                               const MASK & mask,
+                                               EDGES & edges,
+                                               EDGE_MAP & edgeMap) const {
+
+        std::default_random_engine gen;
+        std::uniform_real_distribution<double> distr(0., 1.);
+        auto draw = std::bind(distr, gen);
+
+        auto sampler = [&mask](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return xtensor::read(mask, coord);
+        };
+
+        const std::size_t edgeId = affinitiesToEdgeMapWithOffsetsImpl(
+            affinities, offsets,
+            edges, edgeMap, sampler
+        );
+        return edgeId;
     }
 
 
@@ -531,10 +713,291 @@ public:
     }
 
 
+    //
+    // edge id projection (with and w/o offsets)
+    //
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        RET & ret
+    ) const {
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+        CoordinateType cU, cV;
+        EdgeCoordType cEdge;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            nodeToCoordinate(uv.first, cU);
+            nodeToCoordinate(uv.second, cV);
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cEdge[d+1] = cU[d];
+                if(cU[d] != cV[d]) {
+                    cEdge[0] = d;
+                }
+            }
+
+            xtensor::write(ret, cEdge, edge);
+        }
+    }
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        RET & ret
+    ) const {
+        auto sampler = [](const nifty::array::StaticArray<int64_t, DIM+1> & coord){return true;};
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+    template<class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        const std::vector<int> & strides,
+        RET & ret
+    ) const {
+        auto sampler = [&strides](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            bool inStride = true;
+            for(unsigned d = 0; d < DIM; ++d) {
+                if(coord[d+1] % strides[d] != 0) {
+                    inStride = false;
+                    break;
+                }
+            }
+            return inStride;
+        };
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+    template<class MASK, class RET>
+    void projectEdgeIdsToPixels(
+        const std::vector<std::vector<int>> & offsets,
+        const MASK & mask,
+        RET & ret
+    ) const {
+        auto sampler = [&mask](const nifty::array::StaticArray<int64_t, DIM+1> & coord){
+            return xtensor::read(mask, coord);
+        };
+        projectEdgeIdsToPixelsImpl(offsets, sampler, ret);
+    }
+
+    template<class RET>
+    void projectNodeIdsToPixels(RET & ret) const {
+
+        CoordinateType shape_;
+        for(unsigned d = 0; d < DIM; ++d) {
+            shape_[d] = shape(d);
+        }
+
+        nifty::tools::forEachCoordinate(shape_, [&](const auto & coordP){
+            const auto u = coordinateToNode(coordP);
+            xtensor::write(ret, coordP, u);
+        });
+    }
+
+private:
+
+    //
+    // implementation of imageWithChannelsToEdgeMap
+    //
+
+    template<class IMAGE, class EDGE_MAP, class F>
+    void imageWithChannelsToEdgeMapImpl(
+        const IMAGE & image,
+        EDGE_MAP & edgeMap,
+        F & dist
+    ) const {
+        const int nChannels = image.shape()[0];
+        nifty::array::StaticArray<int64_t, DIM+1> coordU;
+        nifty::array::StaticArray<int64_t, DIM+1> coordV;
+        for(const auto edge : this->edges()){
+            const auto uv = this->uv(edge);
+            CoordinateType cU, cV;
+            nodeToCoordinate(uv.first,  cU);
+            nodeToCoordinate(uv.second, cV);
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d + 1] = cU[d];
+                coordV[d + 1] = cV[d];
+            }
+            edgeMap(edge) = dist(image, nChannels, coordU, coordV);
+        }
+    }
+
+    //
+    // implementations of imageToEdgeMapWithChannelsWithOffsets
+    //
+
+    template<class IMAGE, class DIST, class SAMPLER,
+             class EDGES, class EDGE_MAP>
+    std::size_t imageWithChannelsToEdgeMapWithOffsetsImpl(
+        const IMAGE & image,
+        const std::vector<std::vector<int>> & offsets,
+        DIST & dist,
+        SAMPLER & sampler,
+        EDGES & edges,
+        EDGE_MAP & edgeMap
+    ) const {
+        typedef typename EDGE_MAP::value_type edgeValType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> CoordWithChannelType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+
+        const unsigned nChannels = image.shape()[0];
+        const std::size_t nOffsets = offsets.size();
+
+        CoordinateType coordU;
+        CoordinateType coordV;
+        CoordWithChannelType coordUC;
+        CoordWithChannelType coordVC;
+
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, image.shape()[d], "wrong shape")
+        }
+
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
+        for(unsigned d = 0; d < DIM; ++d) {
+            edgeShape[d + 1] = shape(d);
+        }
+
+        std::size_t edgeId = 0;
+        tools::forEachCoordinate(edgeShape, [&](const EdgeCoordType & edgeCoord) {
+            const auto & offset = offsets[edgeCoord[0]];
+
+            // initialise the coordinates w/o and w/ channel
+            bool isValid = true;
+            for(unsigned d = 0; d < DIM; ++d) {
+                coordU[d] = edgeCoord[d+1];
+                coordV[d] = edgeCoord[d+1] + offset[d];
+                // range check
+                if(coordV[d] >= shape(d) || coordV[d] < 0) {
+                    isValid = false;
+                    break;
+                }
+                coordUC[d+1] = coordU[d];
+                coordVC[d+1] = coordV[d];
+            }
+            if(!isValid) {
+                return;
+            }
+
+            if(!sampler(edgeCoord)) {
+                return;
+            }
+
+            const std::size_t u = coordinateToNode(coordU);
+            const std::size_t v = coordinateToNode(coordV);
+
+            edgeMap(edgeId) = dist(image, nChannels, coordUC, coordVC);
+            edges(edgeId, 0) = std::min(u, v);
+            edges(edgeId, 1) = std::max(u, v);
+            ++edgeId;
+        });
+        return edgeId;
+    }
+
+    //
+    // implementation of affinitiesToEdgeMapWithOffsets
+    //
+
+    template<class AFFINITIES, class EDGES, class EDGE_MAP, class F>
+    std::size_t affinitiesToEdgeMapWithOffsetsImpl(const AFFINITIES & affinities,
+                                                   const std::vector<std::vector<int>> & offsets,
+                                                   EDGES & edges,
+                                                   EDGE_MAP & edgeMap,
+                                                   F & sampler) const {
+        NIFTY_CHECK_OP(affinities.shape()[0], ==, offsets.size(), "wrong shape")
+        for(auto d=1; d<DIM+1; ++d){
+            NIFTY_CHECK_OP(shape(d-1), ==, affinities.shape()[d], "wrong shape")
+        }
+
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
+        for(unsigned d = 0; d < DIM; ++d) {
+            edgeShape[d + 1] = shape(d);
+        }
+
+        CoordinateType cU, cV;
+        std::size_t edgeId = 0;
+        tools::forEachCoordinate(edgeShape, [&](const EdgeCoordType & edgeCoord) {
+            const auto & offset = offsets[edgeCoord[0]];
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cU[d] = edgeCoord[d + 1];
+                cV[d] = edgeCoord[d + 1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    return;
+                }
+            }
+
+            // check if we keep this edge
+            if(!sampler(edgeCoord)) {
+                return;
+            }
+
+            const std::size_t u = coordinateToNode(cU);
+            const std::size_t v = coordinateToNode(cV);
+
+            edgeMap(edgeId) = xtensor::read(affinities, edgeCoord.asStdArray());
+            edges(edgeId, 0) = std::min(u, v);
+            edges(edgeId, 1) = std::max(u, v);
+            ++edgeId;
+
+        });
+        return edgeId;
+    }
+
+    //
+    // implementation of projectEdgeIdsToPixels (with offsets)
+    //
+
+    template<class RET, class SAMPLER>
+    void projectEdgeIdsToPixelsImpl(
+        const std::vector<std::vector<int>> & offsets,
+        SAMPLER & sampler,
+        RET & ret
+    ) const {
+        typedef typename RET::value_type retType;
+        typedef nifty::array::StaticArray<int64_t, DIM+1> EdgeCoordType;
+
+        EdgeCoordType edgeShape;
+        edgeShape[0] = offsets.size();
+        for(unsigned d = 0; d < DIM; ++d) {
+            edgeShape[d + 1] = shape(d);
+        }
+
+        CoordinateType cV;
+        retType edgeId = 0;
+        nifty::tools::forEachCoordinate(edgeShape, [&](const auto & edgeCoord){
+            const auto & offset = offsets[edgeCoord[0]];
+            bool isValid = true;
+
+            for(unsigned d = 0; d < DIM; ++d) {
+                cV[d] = edgeCoord[d + 1] + offset[d];
+                // range check
+                if(cV[d] >= shape(d) || cV[d] < 0) {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if(!isValid) {
+                xtensor::write(ret, edgeCoord, -1);
+                return;
+            }
+
+            if(!sampler(edgeCoord)) {
+                xtensor::write(ret, edgeCoord, -1);
+                return;
+            }
+            xtensor::write(ret, edgeCoord, edgeId);
+            ++edgeId;
+        });
+    }
+
+
 private:
     andres::graph::GridGraph<DIM> gridGraph_;
-
-
 };
 
 

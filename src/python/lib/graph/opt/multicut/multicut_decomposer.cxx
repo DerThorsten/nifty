@@ -21,7 +21,7 @@ namespace nifty{
 namespace graph{
 namespace opt{
 namespace multicut{
-    
+
     template<class OBJECTIVE>
     void exportMulticutDecomposerT(py::module & multicutModule){
 
@@ -34,14 +34,14 @@ namespace multicut{
             docHelper.objectiveName = "multicut objective";
             docHelper.objectiveClsName = MulticutObjectiveName<OBJECTIVE>::name();
             docHelper.name = "multicut decomposer";
-            docHelper.mainText =  
+            docHelper.mainText =
                 "This solver tries to decompose the model into\n"
                 "sub-models  as described in :cite:`alush_2013_simbad`.\n"
                 "If a model decomposes into components such that there are no\n"
                 "positive weighted edges between the components one can\n"
                 "optimize each model separately.\n";
 
-        
+
             docHelper.cites.emplace_back("alush_2013_simbad");
             docHelper.note = "This solver should be warm started,"
                             "otherwise  results are very poor."
@@ -59,10 +59,11 @@ namespace multicut{
             .def(py::init<>())
             .def_readwrite("submodelFactory",   &SettingsType::submodelFactory)
             .def_readwrite("fallthroughFactory",&SettingsType::fallthroughFactory)
-        ; 
+            .def_readwrite("numberOfThreads", &SettingsType::numberOfThreads)
+        ;
     }
 
-    
+
     void exportMulticutDecomposer(py::module & multicutModule){
 
         {
@@ -70,12 +71,18 @@ namespace multicut{
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportMulticutDecomposerT<ObjectiveType>(multicutModule);
         }
+
+        // NOTE: this does not compile, because EdgeContractionGraphWithSets (a.ka. PyContractionGraph)
+        // doesn't have the member function "edgesFromNodeList". In order to support this, it would probably
+        // be best to move "edgesFromNodeList" from "UndirectedGraph" to "UndirectedGraphBase"
+        /*
         {
             typedef PyContractionGraph<PyUndirectedGraph> GraphType;
             typedef MulticutObjective<GraphType, double> ObjectiveType;
             exportMulticutDecomposerT<ObjectiveType>(multicutModule);
-        }    
-         
+        }
+        */
+
     }
 } // namespace nifty::graph::opt::multicut
 } // namespace nifty::graph::opt

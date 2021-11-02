@@ -23,7 +23,7 @@ namespace multicut{
             const auto & g = _child().graph();
             for(const auto edge: g.edges()){
                 const auto uv = g.uv(edge);
-                
+
                 if(nodeLabels[uv.first] != nodeLabels[uv.second]){
                     sum += w[edge];
                 }
@@ -41,16 +41,16 @@ namespace multicut{
     };
 
 
-    template<class GRAPH, class WEIGHT_TYPE>   
+    template<class GRAPH, class WEIGHT_TYPE>
     class MulticutObjective :  public
         MulticutObjectiveBase<
             MulticutObjective<GRAPH, WEIGHT_TYPE>, GRAPH, WEIGHT_TYPE
         >
-    {   
+    {
     public:
         typedef GRAPH GraphType;
         typedef typename GraphType:: template NodeMap<uint64_t> NodeLabelsType;
-        
+
         typedef WEIGHT_TYPE WeightType;
         typedef graph_maps::EdgeMap<GraphType, WeightType> WeightsMap;
         MulticutObjective(const GraphType & g )
@@ -75,7 +75,7 @@ namespace multicut{
         WeightsMap weights_;
     };
 
-} // namespace nifty::graph::opt::multicut    
+} // namespace nifty::graph::opt::multicut
 } // namespace nifty::graph::opt
 } // namespace nifty::graph
 } // namespace nifty

@@ -130,25 +130,15 @@ public:
 
     template<class NODE_ARRAY>
     void extractSubgraphFromNodes(
-        const xt::xexpression<NODE_ARRAY> &,
+        const NODE_ARRAY &,
         std::vector<EDGE_INTERNAL_TYPE> &,
         std::vector<EDGE_INTERNAL_TYPE> &) const;
 
     // extract all the edges that connect nodes in the node list
-    void edgesFromNodeList(const std::vector<NODE_INTERNAL_TYPE> & nodeList,
-            std::vector<EDGE_INTERNAL_TYPE> & edges) {
-        std::unordered_set<EDGE_INTERNAL_TYPE> edgesTmp;
-        NODE_INTERNAL_TYPE v;
-        for(auto u : nodeList) {
-            for(auto adjacencyIt = this->adjacencyBegin(u); adjacencyIt != this->adjacencyEnd(u); ++adjacencyIt) {
-                v = adjacencyIt->node();
-                if( std::find(nodeList.begin(), nodeList.end(), v) != nodeList.end() ) {
-                    edgesTmp.insert(adjacencyIt->edge());
-                }
-            }
-        }
-        edges.resize(edgesTmp.size());
-        std::copy(edgesTmp.begin(), edgesTmp.end(), edges.begin());
+    template<class NODE_LIST>
+    void edgesFromNodeList(const NODE_LIST & nodeList, std::vector<EDGE_INTERNAL_TYPE> & edges) const{
+        std::vector<EDGE_INTERNAL_TYPE> throwAway;
+        extractSubgraphFromNodes(nodeList, edges, throwAway);
     }
 
     void shrinkToFit(){
@@ -467,11 +457,10 @@ insertEdgeOnlyInNodeAdj(const int64_t u, const int64_t v){
 template<class EDGE_INTERNAL_TYPE, class NODE_INTERNAL_TYPE>
 template<class NODE_ARRAY>
 void UndirectedGraph<EDGE_INTERNAL_TYPE, NODE_INTERNAL_TYPE>::
-extractSubgraphFromNodes(const xt::xexpression<NODE_ARRAY> & nodeListExp,
+extractSubgraphFromNodes(const NODE_ARRAY & nodeList,
                          std::vector<EDGE_INTERNAL_TYPE> & innerEdgesOut,
                          std::vector<EDGE_INTERNAL_TYPE> & outerEdgesOut) const {
 
-    const auto & nodeList = nodeListExp.derived_cast();
     std::unordered_set<NodeInteralType> nodeSet(nodeList.begin(), nodeList.end());
 
     for(auto u : nodeList) {

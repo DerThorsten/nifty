@@ -24,6 +24,7 @@ namespace multicut{
     void exportMulticutIlp(py::module &);
     void exportCgc(py::module &);
     void exportMulticutGreedyAdditive(py::module &);
+    void exportMulticutGreedyFixation(py::module &);
     void exportFusionMoveBased(py::module &);
     void exportPerturbAndMap(py::module &);
     void exportMulticutDecomposer(py::module &);
@@ -54,6 +55,7 @@ PYBIND11_MODULE(_multicut, multicutModule) {
     exportMulticutIlp(multicutModule);
     exportCgc(multicutModule);
     exportMulticutGreedyAdditive(multicutModule);
+    exportMulticutGreedyFixation(multicutModule);
     exportFusionMoveBased(multicutModule);
     exportPerturbAndMap(multicutModule);
     exportMulticutDecomposer(multicutModule);

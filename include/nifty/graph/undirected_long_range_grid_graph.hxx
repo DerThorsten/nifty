@@ -117,7 +117,7 @@ namespace graph{
         )const{
             typename xt::xtensor<int32_t, 1>::shape_type retshape;
             retshape[0] = this->numberOfEdges();
-            xt::xtensor<int32_t, 1> ret(retshape); 
+            xt::xtensor<int32_t, 1> ret(retshape);
             uint64_t u = 0;
             nifty::tools::forEachCoordinate( shape_,[&](const auto & coordP){
             auto offsetIndex = 0;

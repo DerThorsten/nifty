@@ -20,13 +20,11 @@ namespace nifty{
 namespace graph{
 namespace opt{
 namespace multicut{
-   
-
 
     template<class OBJECTIVE>
     class KernighanLin : public MulticutBase<OBJECTIVE>
     {
-    public: 
+    public:
 
         typedef OBJECTIVE ObjectiveType;
         typedef typename ObjectiveType::WeightType WeightType;
@@ -390,7 +388,7 @@ namespace multicut{
 
 
         }
-      
+
         visitorProxy.end(this);
     }
 

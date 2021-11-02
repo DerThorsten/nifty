@@ -1,4 +1,4 @@
-name: build
+name: build-and-test
 
 on:
   push:
@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # this will set the system compiler;
+      # I don't know how to set the conda compilers for windows
+      - name: Set windows env
+        if: matrix.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Setup miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -29,26 +35,22 @@ jobs:
           channels: conda-forge
           environment-file: .github/workflows/environment.yaml
           python-version: ${{ matrix.python-version }}
+          use-mamba: true
+          mamba-version: "*"
           auto-activate-base: false
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
-      # this will set the system compiler;
-      # I don't know how to set the conda compilers for windows
-      - name: Set windows env
-        if: matrix.os == 'windows-latest'
-        uses: ilammy/msvc-dev-cmd@v1
-
       - name: Build linux
         if: matrix.os == 'ubuntu-latest'
         shell: bash -l {0}
-        run: .github/workflows/build_linux.sh
-      
+        run: .github/workflows/build_unix.sh
+
       - name: Build mac
         if: matrix.os == 'macos-latest'
         shell: bash -l {0}
-        run: .github/workflows/build_mac.sh
-      
+        run: .github/workflows/build_unix.sh
+
       - name: Build win
         if: matrix.os == 'windows-latest'
         shell: bash -l {0}
