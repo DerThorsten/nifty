@@ -14,6 +14,7 @@ addPythonModule(
         accumulate_flat.cxx
         grid_rag_coordinates.cxx
         accumulate_affinities.cxx
+        get_lifted_edges_from_rag_and_offsets.cxx
     LIBRRARIES
         ${HDF5_LIBRARIES} 
         ${FASTFILTERS_LIBRARY}

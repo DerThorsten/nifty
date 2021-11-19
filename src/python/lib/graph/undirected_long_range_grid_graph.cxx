@@ -77,25 +77,25 @@ namespace graph{
         //
         .def("nodeFeatureDiffereces", [](
             const GraphType & g,
-            xt::pytensor<float, DIM+1> nodeFeatures
+            xt::pytensor<double, DIM+1> nodeFeatures
         ){
             return g.nodeFeatureDiffereces(nodeFeatures);
         })
         .def("nodeFeatureDiffereces2", [](
             const GraphType & g,
-            xt::pytensor<float, DIM+2> nodeFeatures
+            xt::pytensor<double, DIM+2> nodeFeatures
         ){
             return g.nodeFeatureDiffereces2(nodeFeatures);
         })
         .def("edgeValues", [](
             const GraphType & g,
-            xt::pytensor<float, DIM+1> edgeFeatures
+            xt::pytensor<double, DIM+1> edgeFeatures
         ){
             return g.edgeValues(edgeFeatures);
         })
         .def("nodeValues", [](
                 const GraphType & g,
-                xt::pytensor<float, DIM> nodeFeatures
+                xt::pytensor<double, DIM> nodeFeatures
         ){
             return g.nodeValues(nodeFeatures);
         })

@@ -23,6 +23,7 @@ namespace graph{
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
     void exportShortestPathDijkstra(py::module &);
     void exportConnectedComponents(py::module &);
+    void exportLabelPropagation(py::module &);
     void exportEdgeWeightedWatersheds(py::module &);
     void exportNodeWeightedWatersheds(py::module &);
 }
@@ -46,6 +47,7 @@ PYBIND11_MODULE(_graph, module) {
     exportEdgeContractionGraphUndirectedGraph(module);
     exportShortestPathDijkstra(module);
     exportConnectedComponents(module);
+    exportLabelPropagation(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
 }

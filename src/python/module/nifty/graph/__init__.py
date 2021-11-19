@@ -182,3 +182,26 @@ def drawGraph(graph, method='spring'):
         networkx.draw_spring(G, labels=nodeLabels)
     else:
         networkx.draw(G, lables=nodeLabels)
+
+
+def run_label_propagation(graph, edge_values, nb_iter=1, node_labels=None, local_edges=None, size_constr=-1,
+                          nb_threads=-1):
+    print("Start")
+    if local_edges is not None:
+        assert edge_values.shape == local_edges.shape
+        local_edges = numpy.require(local_edges, dtype='bool')
+    else:
+        local_edges = numpy.ones_like(edge_values).astype('bool')
+
+    nb_nodes = graph.numberOfNodes
+    if node_labels is None:
+        node_labels = numpy.arange(0, nb_nodes)
+    else:
+        raise NotImplementedError("Deduce size of initial clusters!")
+        assert edge_values.shape == node_labels.shape
+    node_labels = numpy.require(node_labels, dtype='uint64')
+    sizes = numpy.ones((nb_nodes,))
+
+    runLabelPropagation_impl(graph, node_labels, edge_values, local_edges, nb_iter, size_constr, nb_threads)
+
+    return node_labels

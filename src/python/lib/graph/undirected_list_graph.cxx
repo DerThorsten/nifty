@@ -36,6 +36,17 @@ namespace graph{
                     }
                 }, py::arg("array"), py::call_guard<py::gil_scoped_release>()
             )
+            .def("nodeLabelsToEdgeLabels",
+                 [](GraphType & g, const xt::pytensor<uint64_t, 1> & nodeLabels) {
+                     typename xt::pytensor<uint16_t, 1>::shape_type shape = {static_cast<int64_t>(g.numberOfEdges())};
+                     xt::pytensor<uint16_t, 1> edgeLabels = xt::zeros<uint16_t>(shape);
+                     {
+                         py::gil_scoped_release allowThreads;
+                         g.nodeLabelsToEdgeLabels(nodeLabels, edgeLabels);
+                     }
+                     return edgeLabels;
+                 }, py::arg("nodeLabels")
+            )
             .def("serialize",
                 [](const GraphType & g) {
                     typename xt::pytensor<uint64_t, 1>::shape_type shape = {static_cast<int64_t>(g.serializationSize())};

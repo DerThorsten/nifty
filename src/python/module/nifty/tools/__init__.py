@@ -62,6 +62,17 @@ def take(relabeling, toRelabel):
     return _tools._take(relabeling, toRelabelFlat).reshape(shape)
 
 
+def mapFeaturesToLabelArray(label_array, feature_array,
+                            ignore_label=-1,
+                            fill_value=0.,
+                            nb_threads=-1):
+    ignore_label = -1 if ignore_label is None else ignore_label
+    fill_value = 0. if fill_value is None else fill_value
+    nb_threads = -1 if nb_threads is None else nb_threads
+    shape = label_array.shape
+    label_array_flat = label_array.ravel()
+    return _tools._mapFeaturesToLabelArray(label_array_flat.astype(numpy.int64), feature_array.astype(numpy.float32), ignore_label, fill_value, nb_threads).reshape(shape + feature_array.shape[1:])
+
 
 def takeDict(relabeling, toRelabel):
     shape = toRelabel.shape

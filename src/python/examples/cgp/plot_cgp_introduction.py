@@ -12,6 +12,7 @@ import numpy
 import scipy
 
 # skimage
+import skimage.transform
 import skimage.filters       # filters
 import skimage.segmentation  # Superpixels
 import skimage.data          # Data
@@ -101,7 +102,7 @@ pixelImg[coords[:,0], coords[:,1]  ,:] = 255,0,0
 # interpixel-coordinates directly
 topologicalGridShape = tgrid.topologicalGridShape
 print("shape",tgrid.shape, "topologicalGridShape",topologicalGridShape)
-interPixelImg = scipy.misc.imresize(imgRGB, topologicalGridShape)
+interPixelImg = skimage.transform.resize(imgRGB, topologicalGridShape)
 interPixelImg[coordinates[:,0], coordinates[:,1],:] = 255,0,0
 
 f = pylab.figure()
