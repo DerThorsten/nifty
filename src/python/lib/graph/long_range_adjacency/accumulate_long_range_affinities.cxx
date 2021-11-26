@@ -60,7 +60,7 @@ namespace graph{
                           const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
                           // Create temporary arrays
-                          const auto nb_edges = uint64_t(graph.edgeIdUpperBound()+1);
+                          const std::size_t nb_edges = uint64_t(graph.edgeIdUpperBound()+1);
                           xt::pytensor<float, 2> accAff = xt::zeros<float>({actualNumberOfThreads, nb_edges});
                           xt::pytensor<float, 2> maxAff = xt::zeros<float>({actualNumberOfThreads, nb_edges});
                           xt::pytensor<float, 2> counter = xt::zeros<float>({actualNumberOfThreads, nb_edges});
@@ -163,7 +163,7 @@ namespace graph{
                           const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
 
                           // Create temporary arrays
-                          const auto outArray_size = uint64_t(maxLabel + 1);
+                          const std::size_t outArray_size = uint64_t(maxLabel + 1);
                           xt::pytensor<float, 2> accAff = xt::zeros<float>({actualNumberOfThreads, outArray_size});
                           xt::pytensor<float, 2> maxAff = xt::zeros<float>({actualNumberOfThreads, outArray_size});
                           xt::pytensor<float, 2> counter = xt::zeros<float>({actualNumberOfThreads, outArray_size});
