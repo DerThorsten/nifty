@@ -13,7 +13,7 @@ namespace graph{
 
     void exportLongRangeAdjacency(py::module &);
     void exportLongRangeFeatures(py::module &);
-    void exportAccumulateLongRangeAffinities(py::module &);
+
 }
 }
 
@@ -31,7 +31,6 @@ PYBIND11_PLUGIN(_long_range_adjacency) {
 
     exportLongRangeAdjacency(module);
     exportLongRangeFeatures(module);
-    exportAccumulateLongRangeAffinities(module);
 
     return module.ptr();
 }

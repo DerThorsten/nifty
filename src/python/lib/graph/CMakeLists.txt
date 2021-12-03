@@ -12,7 +12,8 @@ addPythonModule(
         export_shortest_path_dijkstra.cxx
         connected_components.cxx
         label_propagation.cxx
-    LIBRRARIES
+        accumulate_long_range_affinities.cxx
+        LIBRRARIES
         ${HDF5_LIBRARIES} 
 )
 

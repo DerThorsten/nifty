@@ -1,6 +1,6 @@
 import unittest
 
-from nifty.graph.long_range_adjacency import accumulate_affinities_mean_and_length
+from nifty.graph import accumulate_affinities_mean_and_length
 import numpy as np
 
 

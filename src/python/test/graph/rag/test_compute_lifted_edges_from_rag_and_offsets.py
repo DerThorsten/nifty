@@ -3,7 +3,7 @@ import unittest
 
 import numpy as np
 import nifty.graph.rag as nrag
-import nifty.graph.long_range_adjacency as nlra
+import nifty.graph as ngraph
 
 
 # Just a quick and dirty test to check that the functions can be called
@@ -40,8 +40,7 @@ class TestAccumulate(unittest.TestCase):
 
         affinities = np.random.random(size=(2,) + self.shape_3d)
 
-        edge_indicators_mean, edge_sizes = nlra.accumulate_affinities_mean_and_length(affinities, offsets, labels)
-        # TODO: actually test something
+        edge_indicators_mean, edge_sizes = ngraph.accumulate_affinities_mean_and_length(affinities, offsets, labels)
 
 
 

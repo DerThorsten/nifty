@@ -4,9 +4,6 @@
 #include <pybind11/stl.h>
 #include "xtensor-python/pytensor.hpp"
 
-// #include "nifty/graph/rag/grid_rag.hxx"
-// #include "nifty/graph/rag/feature_accumulation/grid_rag_affinity_features.hxx"
-// #include "nifty/graph/rag/feature_accumulation/lifted_nh.hxx"
 
 
 #include "nifty/python/graph/undirected_grid_graph.hxx"

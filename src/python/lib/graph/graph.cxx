@@ -26,6 +26,7 @@ namespace graph{
     void exportLabelPropagation(py::module &);
     void exportEdgeWeightedWatersheds(py::module &);
     void exportNodeWeightedWatersheds(py::module &);
+    void exportAccumulateLongRangeAffinities(py::module &);
 }
 }
 
@@ -50,4 +51,6 @@ PYBIND11_MODULE(_graph, module) {
     exportLabelPropagation(module);
     exportEdgeWeightedWatersheds(module);
     exportNodeWeightedWatersheds(module);
+    exportAccumulateLongRangeAffinities(module);
+
 }
