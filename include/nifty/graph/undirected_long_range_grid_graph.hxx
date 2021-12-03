@@ -10,9 +10,6 @@
 
 #include <cstdlib>
 
-#include <pybind11/pybind11.h>
-namespace py = pybind11;
-
 namespace nifty{
 namespace graph{
 
@@ -111,10 +108,7 @@ namespace graph{
             for(int d=int(DIM)-2; d>=0; --d){
                 strides_[d] = shape_[d+1] * strides_[d+1];
             }
-            {
-                py::gil_scoped_release allowThreads;
-                HelperType::assign(*this, edgeMaskExp, hasMaskedEdges);
-            }
+            HelperType::assign(*this, edgeMaskExp, hasMaskedEdges);
         }
 
 
@@ -276,7 +270,6 @@ namespace graph{
             return ret;
         }
 
-        // Maps an image tensor (3D) with float values to a 1D-float-array of shape (nb_nodes,).
         template<class D>
         auto nodeValues(
                 const xt::xexpression<D> & valuesExpression
@@ -304,7 +297,6 @@ namespace graph{
             return ret;
         }
 
-        // Maps an "affinity" tensor (4D) with float values to a 1D-float-array of shape (nb_edges,).
         template<class D>
         auto edgeValues(
             const xt::xexpression<D> & valuesExpression
