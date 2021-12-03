@@ -59,6 +59,7 @@ namespace nifty{
                                                const auto oldLabel = nodeLabels(node);
                                                uintSetType neighStats;
 
+                                               // Loop over the neighbors:
                                                for (auto adj : graph.adjacency(node)) {
                                                    const auto neighNode = adj.node();
                                                    const auto neighEdge = adj.edge();
@@ -74,6 +75,7 @@ namespace nifty{
                                                    }
                                                    // Update stats:
                                                    neighStats.insert(neighLabel);
+                                                   // Update interaction with the neighboring label, based on the edge weight:
                                                    neighValues(tid, neighLabel) = neighValues(tid, neighLabel) + signedWeights(neighEdge);
                                                    // neighSizes(neighLabel) = neighSizes(neighLabel) + 1;
                                                    auto edge_is_local = localEdges(neighEdge);
@@ -81,7 +83,7 @@ namespace nifty{
                                                }
                                                // Find max label:
                                                uintSetType maxLabels;
-                                               // TODO: update and add new label if all are repulsive!
+                                               // TODO: add new label if all are repulsive
                                                maxLabels.insert(oldLabel);
                                                double max = 0.;
                                                for (auto neighborCluster : neighStats) {
@@ -100,7 +102,7 @@ namespace nifty{
                                                    neighLocality(tid, neighborCluster) = false;
                                                }
 
-                                               // If more than one, extract one randomly:
+                                               // If more than one with the same highest interaction, extract one randomly:
                                                uint64_t selectedCluster;
                                                if (maxLabels.size() > 1) {
                                                    const uint64_t nb_labels = maxLabels.size();

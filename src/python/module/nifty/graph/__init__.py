@@ -184,23 +184,65 @@ def drawGraph(graph, method='spring'):
         networkx.draw(G, lables=nodeLabels)
 
 
-def run_label_propagation(graph, edge_values, nb_iter=1, node_labels=None, local_edges=None, size_constr=-1,
+def run_label_propagation(graph, edge_values=None, nb_iter=1, local_edges=None, size_constr=-1,
                           nb_threads=-1):
-    print("Start")
+    """
+    This function can be useful to obtain superpixels (alternative to WS superpixels for example).
+
+    The usual label propagation algorithm (https://en.wikipedia.org/wiki/Label_propagation_algorithm) iterates
+        over nodes of the graph in a random order: for every iteration and selected node u,
+        the algorithm assigns u to the label occurring with the highest frequency among its neighbours
+        (if there are multiple highest frequency labels, it selects a label at random).
+        This process can be repeated multiple times (`nb_iter`) until the algorithm converges to a set of labels.
+
+
+    This generalized implementation also supports signed edge values, so that node labels are not assigned to the neighboring
+        label with higher frequency, but to the neighboring label with the highest positive edge interaction.
+        By default, all edge values have weight +1 and the standard label propagation algorithm is performed.
+
+        For example, a node with the following five-nodes neighborhood:
+
+         - neighbor_1_label = 1, edge_weight = +2
+         - neighbor_2_label = 1, edge_weight = +5
+         - neighbor_3_label = 1, edge_weight = -2
+         - neighbor_4_label = 2, edge_weight = -5
+         - neighbor_5_label = 3, edge_weight = +5
+
+        will be randomly assigned to label 1 or 3 (given they have equal maximum attraction +5).
+
+    :param graph:       undirected graph
+    :param edge_values: Optional signed edge weights. By default, all edges have equal weight +1 and the standard
+                        label propagation algorithm is performed .
+    :param nb_iter:     How many label propagation iterations to perform
+                        (one iteration = one loop over all the nodes of the graph)
+    :param local_edges: Boolean array indicating which edges are local edges in the graph. If specified, then the
+                        algorithm proceeds as following: any given node can be assigned to the label of
+                        a neighboring cluster only if this cluster has at least one local edge connection to the node.
+    :param size_constr: Whether or not to set a maximum size for the final clusters.
+                        The default value is -1 and no size constraint is applied.
+    :param nb_threads:  When multiple threads are used, multiple nodes are processed in parallel.
+
+    :return: Newly assigned node labels
+    """
+    nb_edges = graph.numberOfEdges
+    edge_values = numpy.ones((nb_edges,), dtype="float32") if edge_values is None else edge_values
+    assert edge_values.shape[0] == nb_edges
+
     if local_edges is not None:
         assert edge_values.shape == local_edges.shape
         local_edges = numpy.require(local_edges, dtype='bool')
     else:
         local_edges = numpy.ones_like(edge_values).astype('bool')
 
+    # TODO: add support initial node_labels (need to specify initial cluster size)
     nb_nodes = graph.numberOfNodes
-    if node_labels is None:
-        node_labels = numpy.arange(0, nb_nodes)
-    else:
-        raise NotImplementedError("Deduce size of initial clusters!")
-        assert edge_values.shape == node_labels.shape
+    node_labels = numpy.arange(0, nb_nodes)
+    # if node_labels is None:
+    #     node_labels = numpy.arange(0, nb_nodes)
+    #     sizes = numpy.ones((nb_nodes,))
+    # else:
+    #     raise NotImplementedError()
     node_labels = numpy.require(node_labels, dtype='uint64')
-    sizes = numpy.ones((nb_nodes,))
 
     runLabelPropagation_impl(graph, node_labels, edge_values, local_edges, nb_iter, size_constr, nb_threads)
 
