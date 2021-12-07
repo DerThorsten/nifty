@@ -28,6 +28,7 @@ namespace nifty {
                                     // xt::pytensor<int64_t, 2> offsets,
                                     const int numberOfThreads
                             ){
+                                // Get the offset vector:
                                 typedef typename std::vector<array::StaticArray<int64_t, DIM>> OffsetVectorType;
                                 // OffsetVectorType offsetVector(offsets.shape()[0]);
                                 OffsetVectorType offsetVector(offsets.size());
@@ -38,7 +39,38 @@ namespace nifty {
                                     }
                                 }
 
-                                return computeLiftedEdgesFromRagAndOffsets(rag, offsetVector, numberOfThreads);
+                                // Initialize vector that will contain the longRange uvIds:
+                                nifty::parallel::ParallelOptions pOpts(numberOfThreads);
+                                nifty::parallel::ThreadPool threadpool(pOpts);
+                                const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+                                std::vector<std::vector<std::pair<uint64_t,uint64_t>>> longRangePairs(actualNumberOfThreads);
+
+                                // Look for lifted edges:
+                                {
+                                    py::gil_scoped_release allowThreads;
+                                    computeLiftedEdgesFromRagAndOffsets(rag, offsetVector, longRangePairs, numberOfThreads);
+                                }
+
+                                // Get the total number of found edges:
+                                int total_nb_edges = 0;
+                                std::vector<int> index_offset(actualNumberOfThreads);
+                                for (int i=0; i<actualNumberOfThreads; i++) {
+                                    index_offset[i] = total_nb_edges;
+                                    total_nb_edges += (int) longRangePairs[i].size();
+                                }
+
+                                // Create output tensor:
+                                xt::pytensor<uint64_t, 2> out_tensor = xt::zeros<float>({(std::size_t) total_nb_edges, (std::size_t) 2});
+
+                                // Collect results in output tensor:
+                                for (int i=0; i<actualNumberOfThreads; i++) {
+                                    for (int j=0; j<longRangePairs[i].size(); j++) {
+                                        out_tensor(index_offset[i]+j,0) = longRangePairs[i][j].first;
+                                        out_tensor(index_offset[i]+j,1) = longRangePairs[i][j].second;
+                                    }
+                                }
+
+                                return out_tensor;
 
                             },
                             py::arg("rag"),
