@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from . import _long_range_adjacency as __long_range_adjacency
 from ._long_range_adjacency import *
 from .. import Configuration
+from ..rag import gridRag
 
 __all__ = []
 for key in __long_range_adjacency.__dict__.keys():
@@ -32,3 +33,5 @@ if Configuration.WITH_HDF5:
         else:
             assert numberOfLabels is not None and longRange is not None
             return hdf5LabelsLongRangeAdjacency(labels, serialization)
+
+

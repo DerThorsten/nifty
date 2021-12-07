@@ -117,54 +117,6 @@ def undirectedGridGraph(shape, simpleNh=True):
 gridGraph = undirectedGridGraph
 
 
-def undirectedLongRangeGridGraph(shape, offsets, edge_mask=None,
-                                 offsets_probabilities=None):
-    """
-    :param edge_mask: Boolean array (4D) indicating which edge connections should be introduced in the graph.
-    :param offsets_probabilities: Probability that a type of neighboring connection is introduced as edge in the graph.
-                Cannot be used at the same time with edge_mask
-    """
-    offsets = numpy.require(offsets, dtype='int64')
-    shape = list(shape)
-    if len(shape) == 2:
-        G = UndirectedLongRangeGridGraph2D
-    elif len(shape) == 3:
-        G = UndirectedLongRangeGridGraph3D
-    else:
-        raise RuntimeError("wrong dimension: undirectedLongRangeGridGraph is only implemented for 2D and 3D")
-
-    if edge_mask is not None:
-        assert offsets_probabilities is None, "Edge mask and offsets probabilities cannot be used at the same time."
-        assert edge_mask.ndim == len(shape) + 1
-        assert edge_mask.dtype == numpy.dtype('bool')
-        assert edge_mask.shape[0] == offsets.shape[0]
-        edge_mask = numpy.rollaxis(edge_mask, axis=0, start=len(shape) + 1)
-
-        useEdgeMask = True
-    elif offsets_probabilities is not None:
-        offsets_probabilities = numpy.require(offsets_probabilities, dtype='float32')
-        assert offsets_probabilities.shape[0] == offsets.shape[0]
-        assert (offsets_probabilities.min() >= 0.0) and (offsets_probabilities.max() <= 1.0)
-
-        # Randomly sample some edges to add to the graph:
-        edge_mask = []
-        for off_prob in offsets_probabilities:
-            edge_mask.append(numpy.random.random(shape) <= off_prob)
-        edge_mask = numpy.stack(edge_mask, axis=-1)
-
-        useEdgeMask = True
-    else:
-        # Create an empty edge_mask (anyway it won't be used):
-        edge_mask = numpy.empty(tuple([1 for _ in range(len(shape) + 1)]), dtype='bool')
-        useEdgeMask = False
-
-
-    return G(shape=shape, offsets=offsets, edgeMask=edge_mask,
-             useEdgeMask=useEdgeMask)
-
-longRangeGridGraph = undirectedLongRangeGridGraph
-
-
 def drawGraph(graph, method='spring'):
     import networkx
 
@@ -182,3 +134,165 @@ def drawGraph(graph, method='spring'):
         networkx.draw_spring(G, labels=nodeLabels)
     else:
         networkx.draw(G, lables=nodeLabels)
+
+
+def run_label_propagation(graph, edge_values=None, nb_iter=1, local_edges=None, size_constr=-1,
+                          nb_threads=-1):
+    """
+    This function can be useful to obtain superpixels (alternative to WS superpixels for example).
+
+    The usual label propagation algorithm (https://en.wikipedia.org/wiki/Label_propagation_algorithm) iterates
+        over nodes of the graph in a random order: for every iteration and selected node u,
+        the algorithm assigns u to the label occurring with the highest frequency among its neighbours
+        (if there are multiple highest frequency labels, it selects a label at random).
+        This process can be repeated multiple times (`nb_iter`) until the algorithm converges to a set of labels.
+
+
+    This generalized implementation also supports signed edge values, so that node labels are not assigned to the neighboring
+        label with higher frequency, but to the neighboring label with the highest positive edge interaction.
+        By default, all edge values have weight +1 and the standard label propagation algorithm is performed.
+
+        For example, a node with the following five-nodes neighborhood:
+
+         - neighbor_1_label = 1, edge_weight = +2
+         - neighbor_2_label = 1, edge_weight = +5
+         - neighbor_3_label = 1, edge_weight = -2
+         - neighbor_4_label = 2, edge_weight = -5
+         - neighbor_5_label = 3, edge_weight = +5
+
+        will be randomly assigned to label 1 or 3 (given they have equal maximum attraction +5).
+
+    :param graph:       undirected graph
+    :param edge_values: Optional signed edge weights. By default, all edges have equal weight +1 and the standard
+                        label propagation algorithm is performed .
+    :param nb_iter:     How many label propagation iterations to perform
+                        (one iteration = one loop over all the nodes of the graph)
+    :param local_edges: Boolean array indicating which edges are local edges in the graph. If specified, then the
+                        algorithm proceeds as following: any given node can be assigned to the label of
+                        a neighboring cluster only if this cluster has at least one local edge connection to the node.
+    :param size_constr: Whether or not to set a maximum size for the final clusters.
+                        The default value is -1 and no size constraint is applied.
+    :param nb_threads:  When multiple threads are used, multiple nodes are processed in parallel.
+
+    :return: Newly assigned node labels
+    """
+    nb_edges = graph.numberOfEdges
+    edge_values = numpy.ones((nb_edges,), dtype="float32") if edge_values is None else edge_values
+    assert edge_values.shape[0] == nb_edges
+
+    if local_edges is not None:
+        assert edge_values.shape == local_edges.shape
+        local_edges = numpy.require(local_edges, dtype='bool')
+    else:
+        local_edges = numpy.ones_like(edge_values).astype('bool')
+
+    # TODO: add support initial node_labels (need to specify initial cluster size)
+    nb_nodes = graph.numberOfNodes
+    node_labels = numpy.arange(0, nb_nodes)
+    # if node_labels is None:
+    #     node_labels = numpy.arange(0, nb_nodes)
+    #     sizes = numpy.ones((nb_nodes,))
+    # else:
+    #     raise NotImplementedError()
+    node_labels = numpy.require(node_labels, dtype='uint64')
+
+    runLabelPropagation_impl(graph, node_labels, edge_values, local_edges, nb_iter, size_constr, nb_threads)
+
+    return node_labels
+
+
+import numpy as np
+import nifty.graph.rag as nrag
+
+def accumulate_affinities_mean_and_length(affinities, offsets, labels, graph=None,
+                                          affinities_weights=None,
+                                          offset_weights=None,
+                                          ignore_label=None, number_of_threads=-1):
+    """
+    Features of this function (additional ones compared to other accumulate functions):
+      - does not require a RAG but simply a graph and a label image (can include long-range edges)
+      - can perform weighted average of affinities depending on given affinitiesWeights
+      - ignore pixels with ignore label
+
+    Parameters
+    ----------
+    affinities: offset channels expected to be the first one
+    """
+    affinities = np.require(affinities, dtype='float32')
+
+    if affinities_weights is not None:
+        assert offset_weights is None, "Affinities weights and offset weights cannot be passed at the same time"
+        affinities_weights = np.require(affinities_weights, dtype='float32')
+
+    else:
+        affinities_weights = np.ones_like(affinities)
+        if offset_weights is not None:
+            offset_weights = np.require(offset_weights, dtype='float32')
+            for _ in range(affinities_weights.ndim-1):
+                offset_weights = np.expand_dims(offset_weights, axis=-1)
+            affinities_weights *= offset_weights
+
+    affinities = np.rollaxis(affinities, axis=0, start=len(affinities.shape))
+    affinities_weights = np.rollaxis(affinities_weights, axis=0, start=len(affinities_weights.shape))
+
+    offsets = np.require(offsets, dtype='int32')
+    assert len(offsets.shape) == 2
+
+    if graph is None:
+        graph = nrag.gridRag(labels)
+
+
+    hasIgnoreLabel = (ignore_label is not None)
+    ignore_label = 0 if ignore_label is None else int(ignore_label)
+
+    number_of_threads = -1 if number_of_threads is None else number_of_threads
+
+    edge_indicators_mean, edge_indicators_max, edge_sizes = \
+        accumulateAffinitiesMeanAndLength_impl_(
+            graph,
+            labels.astype('uint64'),
+            affinities,
+            affinities_weights,
+            offsets,
+            hasIgnoreLabel,
+            ignore_label,
+            number_of_threads
+        )
+    return edge_indicators_mean, edge_sizes
+
+
+def accumulate_affinities_mean_and_length_inside_clusters(affinities, offsets, labels,
+                                                          offset_weights=None,
+                                                          ignore_label=None, number_of_threads=-1):
+    """
+    Similar idea to `accumulate_affinities_mean_and_length`, but accumulates affinities/edge-values for all edges not on
+     cut (i.e. connecting nodes in the same cluster)
+    """
+    affinities = np.require(affinities, dtype='float32')
+    affinities = np.rollaxis(affinities, axis=0, start=len(affinities.shape))
+
+    offsets = np.require(offsets, dtype='int32')
+    assert len(offsets.shape) == 2
+
+    if offset_weights is None:
+        offset_weights = np.ones(offsets.shape[0], dtype='float32')
+    else:
+        offset_weights = np.require(offset_weights, dtype='float32')
+
+    hasIgnoreLabel = (ignore_label is not None)
+    ignore_label = 0 if ignore_label is None else int(ignore_label)
+
+    number_of_threads = -1 if number_of_threads is None else number_of_threads
+
+    edge_indicators_mean, edge_indicators_max, edge_sizes = \
+        accumulateAffinitiesMeanAndLengthInsideClusters_impl_(
+            labels.astype('uint64'),
+            labels.max(),
+            affinities,
+            offsets,
+            offset_weights,
+            hasIgnoreLabel,
+            ignore_label,
+            number_of_threads
+        )
+    return edge_indicators_mean, edge_sizes

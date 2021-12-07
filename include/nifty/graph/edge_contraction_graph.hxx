@@ -625,7 +625,9 @@ namespace graph{
         --currentNodeNum_;
 
         // check which of u and v is the new representative node
-        // also known as 'aliveNode' and which is the deadNode
+        // also known as 'aliveNode' and which is the deadNode.
+        // Note that the union find data structure (with path compression) already select
+        // the biggest cluster as a new root/parent:
         const auto aliveNode = nodeUfd_.find(u);
         NIFTY_ASSERT(aliveNode==u || aliveNode==v);
         const auto deadNode = aliveNode == u ? v : u;       

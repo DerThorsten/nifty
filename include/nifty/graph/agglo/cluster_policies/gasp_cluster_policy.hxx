@@ -11,6 +11,9 @@
 #include "nifty/graph/edge_contraction_graph.hxx"
 #include "nifty/graph/agglo/cluster_policies/cluster_policies_common.hxx"
 #include <iostream>
+#include <algorithm>    // std::max
+#include <xtensor/xview.hpp>
+using namespace xt::placeholders;
 
 
 namespace nifty{
@@ -54,6 +57,8 @@ namespace nifty{
                     uint64_t numberOfNodesStop{1};
                     double sizeRegularizer{0.};
                     bool addNonLinkConstraints{false};
+                    bool mergeConstrainedEdgesAtTheEnd{false};
+                    bool collectStats{false};
                 };
 
                 enum class EdgeStates : uint8_t {
@@ -105,11 +110,12 @@ namespace nifty{
                     const auto v = uv.second;
                     const auto & setU  = nonLinkConstraints_[u];
                     const auto & setV  = nonLinkConstraints_[v];
-                    NIFTY_CHECK((setU.find(v)!=setU.end()) == (setV.find(u)!=setV.end()),"");
-                    if(setU.find(v)!=setU.end()){// || setV.find(u)!=setV.end()){
-                        return true;
-                    } else{
-                        return false;
+                    // This find operation gets expensive (log(N)), so we look into the smaller set:
+                    // NIFTY_CHECK((setU.find(v)!=setU.end()) == (setV.find(u)!=setV.end()),"");
+                    if (setU.size() < setV.size()) {
+                        return setU.find(v)!=setU.end();
+                    } else {
+                        return setV.find(u)!=setV.end();
                     }
                 }
 
@@ -131,13 +137,19 @@ namespace nifty{
                 }
 
                 void addNonLinkConstraint(const uint64_t edge){
-                    const auto uv = edgeContractionGraph_.uv(edge);
+                    const auto reprEdge = edgeContractionGraph_.findRepresentativeEdge(edge);
+                    NIFTY_ASSERT(accumulated_weights_[reprEdge]<=0.);
+                    const auto uv = edgeContractionGraph_.uv(reprEdge);
+                    const auto u = uv.first;
+                    const auto v = uv.second;
+                    // This insert operation, first performs a search (logN) and then insert (if not found)accumulated_weights_[reprEdge]
                     nonLinkConstraints_[uv.first].insert(uv.second);
                     nonLinkConstraints_[uv.second].insert(uv.first);
                 }
 
                 auto exportFinalNodeDataOriginalGraph(){
                     // Export node data of the ORIGINAL graph:
+                    NIFTY_ASSERT(settings_.collectStats);
                     typename xt::xtensor<float, 2>::shape_type retshape;
                     retshape[0] = graph_.nodeIdUpperBound()+1;
                     retshape[1] = 4;
@@ -153,11 +165,13 @@ namespace nifty{
                 }
 
                 auto exportFinalEdgeDataContractedGraph(){
-                    // Export edge data of the contracted graph:
+                    NIFTY_ASSERT(settings_.collectStats);
+
+                    // Export edge data of the final contracted graph:
                     xt::xtensor<float, 2> out = xt::zeros<float>({uint64_t(edgeContractionGraph().numberOfEdges()), uint64_t(4)});
                     xt::xtensor<bool, 1> notVisitedEdges = xt::ones<bool>({graph_.edgeIdUpperBound()+1});
                     uint64_t edge_counter = 0;
-                    graph_.forEachEdge([&](const uint64_t edge){
+                    graph_.forEachEdge([&](const uint64_t edge) {
                         const auto cEdge = edgeContractionGraph_.findRepresentativeEdge(edge);
                         const auto uv = edgeContractionGraph_.uv(cEdge);
                         const auto u = edgeContractionGraph_.findRepresentativeNode(uv.first);
@@ -171,6 +185,75 @@ namespace nifty{
                             notVisitedEdges(cEdge) = false;
                         };
                     });
+
+                    // -------
+                    // Export data merges/constraints:
+                    // -------
+
+                    // First, we collect information/statistics about constraints:
+                    //  - sum of constrained edge sizes
+                    //  - sum of constrained edge weights
+                    //  - max constraint
+                    //  - min constraint
+                    //  - (collect more stats about size of the edges...?)
+                    xt::xtensor<float, 2> constraintStatistics = xt::zeros<float>({uint64_t(graph_.edgeIdUpperBound()+1), uint64_t(6)});
+                    graph_.forEachEdge([&](const uint64_t edge){
+                        if (constraintsStats_(edge, 0) == 1.) {
+                            // Find the ID of the final boundary (could be now merged or not):
+                            const auto cEdge = edgeContractionGraph_.findRepresentativeEdge(edge);
+                            constraintStatistics(cEdge, 0) += constraintsStats_(edge,2); // Add constraint size
+                            constraintStatistics(cEdge, 1) += constraintsStats_(edge,1)*constraintsStats_(edge,2); // Increase sum
+                            // The weight of the constrained edge will be always negative, so we keep it in mind while saving the min/max
+                            constraintStatistics(cEdge, 2) = std::max(constraintStatistics(cEdge, 2),-constraintsStats_(edge,1));
+                            constraintStatistics(cEdge, 3) = std::min(constraintStatistics(cEdge, 3),constraintsStats_(edge,1));
+                            // Export stats in case the onstrained edge became positive at some point:
+                            constraintStatistics(cEdge, 4) += constraintsStats_(edge,4); // Add constraint size
+                            constraintStatistics(cEdge, 5) += constraintsStats_(edge,3)*constraintsStats_(edge,4); // Increase sum
+                        }
+
+                    });
+
+                    // Then, we collect information about merged edges and remaining edges in the final graph:
+                    //  - was the edge merged or not (1 if yes, 0 if not)
+                    //  - edge weight (either before to be merged or in the final graph)
+                    //  - edge size (either before to be merged or in the final graph)
+                    xt::xtensor<float, 2> mergeStatistics = xt::zeros<float>({uint64_t(graph_.edgeIdUpperBound()+1), uint64_t(4)});
+                    graph_.forEachEdge([&](const uint64_t edge){
+                        const auto cEdge = edgeContractionGraph_.findRepresentativeEdge(edge);
+
+                        // First, we fill the remaining parts of the constraintStatistics array:
+                        constraintStatistics(edge, 0) = constraintStatistics(cEdge, 0);
+                        constraintStatistics(edge, 1) = constraintStatistics(cEdge, 1);
+                        constraintStatistics(edge, 2) = constraintStatistics(cEdge, 2);
+                        constraintStatistics(edge, 3) = constraintStatistics(cEdge, 3);
+                        constraintStatistics(edge, 4) = constraintStatistics(cEdge, 4);
+                        constraintStatistics(edge, 5) = constraintStatistics(cEdge, 5);
+
+                        // Find the ID of the final boundary (could be now merged or not):
+                        const auto uv = edgeContractionGraph_.uv(cEdge);
+                        const auto u = edgeContractionGraph_.findRepresentativeNode(uv.first);
+                        const auto v = edgeContractionGraph_.findRepresentativeNode(uv.second);
+                        if (u != v) {
+                            // In this case, the edge was not merged:
+                            mergeStatistics(edge, 0) = 0.;
+                        } else {
+                            // In this case, the edge was merged:
+                            mergeStatistics(edge, 0) = 1.;
+                        }
+                        // Now save the information about the boundary:
+                        mergeStatistics(edge, 1) = accumulated_weights_[cEdge];
+                        mergeStatistics(edge, 2) = accumulated_weights_.weight(cEdge);
+                        mergeStatistics(edge, 3) = mergeStats_(cEdge);
+                    });
+
+                    return std::make_tuple(out, constraintStatistics, mergeStatistics);
+                }
+
+                auto exportAction(){
+                    NIFTY_ASSERT(settings_.collectStats);
+                    // Exports actions done
+                    // xt::xtensor<float, 2> out = xt::zeros<float>({uint64_t(nb_performed_contractions_+100), uint64_t(5)});
+                    xt::xtensor<uint64_t , 2> out = xt::view(actionStats_, xt::all(), xt::all());
                     return out;
                 }
 
@@ -185,10 +268,16 @@ namespace nifty{
 
                 NonLinkConstraints nonLinkConstraints_;
 
-//    int phase_;
 
                 UPDATE_RULE accumulated_weights_;
                 uint64_t nb_performed_contractions_;
+
+                // Stats:
+                uint64_t nb_edges_popped_;
+                xt::xtensor<uint64_t , 2> actionStats_;
+                xt::xtensor<float , 2> constraintsStats_;
+                xt::xtensor<float , 1> mergeStats_;
+
 
                 // State of the edges (LOCAL or LIFTED)
                 typename GRAPH:: template EdgeMap<EdgeStates>  edgeState_;
@@ -240,9 +329,15 @@ namespace nifty{
                         max_node_size_(0),
                         sum_node_size_(0),
                         quadratic_sum_node_size_(0),
-                        nb_performed_contractions_(0)
+                        nb_performed_contractions_(0),
+                        nb_edges_popped_(0)
             {
-
+                if (settings_.collectStats) {
+                    // TODO: update shape actionStats
+                    actionStats_ = xt::zeros<uint64_t>({uint64_t(graph_.numberOfNodes()), uint64_t(5)});
+                    constraintsStats_ = xt::zeros<float>({uint64_t(graph_.numberOfEdges()), uint64_t(5)});
+                    mergeStats_ = xt::zeros<float>({uint64_t(graph_.numberOfEdges())});
+                }
                 graph_.forEachNode([&](const uint64_t node) {
                     nodeSizes_[node] = nodeSizes[node];
                     sum_node_size_ += nodeSizes[node];
@@ -275,9 +370,29 @@ namespace nifty{
                         // (Otherwise we would have inf cost in PQ)
                         const auto nextActioneEdge = pq_.top();
 
+                        if (settings_.collectStats) {
+                            // TODO: we can have more than nb_graph_edges popped from PQ, so old code could give seg fault
+                            // nb_edges_popped_++;
+                            // actionStats_(nb_edges_popped, 0) = graph_.uv(nextActioneEdge).first;
+                            // actionStats_(nb_edges_popped, 1) = graph_.uv(nextActioneEdge).second;
+                            // actionStats_(nb_edges_popped, 2) = nextActioneEdge;
+                            // actionStats_(nb_edges_popped, 3) = pq_.topPriority();
+                        }
+
                         // Check if some early constraints were enforced:
                         if (settings_.addNonLinkConstraints) {
                             if(this->isEdgeConstrained(nextActioneEdge)) {
+                                if (settings_.collectStats) {
+                                    // Check if the constrained edge is now positive and in case remember about it:
+                                    if (this->isMergeAllowed(nextActioneEdge)) {
+                                        const auto reprEdge = edgeContractionGraph_.findRepresentativeEdge(
+                                                nextActioneEdge);
+                                        constraintsStats_(reprEdge, 3) = accumulated_weights_[reprEdge];
+                                        constraintsStats_(reprEdge, 4) = accumulated_weights_.weight(reprEdge);
+                                    }
+                                    // Remember that an edge was constrained at this iteration:
+                                    // actionStats_(nb_edges_popped_, 4) = 1;
+                                }
                                 pq_.push(nextActioneEdge, -1.0*std::numeric_limits<double>::infinity());
                                 continue;
                             }
@@ -287,6 +402,13 @@ namespace nifty{
                         if(this->isMergeAllowed(nextActioneEdge)){
                             edgeToContractNext_ = nextActioneEdge;
                             edgeToContractNextMergePrio_ = pq_.topPriority();
+                            if (settings_.collectStats) {
+                                // actionStats_(nb_performed_contractions_, 0) = graph_.uv(nextActioneEdge).first;
+                                // actionStats_(nb_performed_contractions_, 1) = graph_.uv(nextActioneEdge).second;
+                                // actionStats_(nb_performed_contractions_, 2) = nextActioneEdge;
+                                // actionStats_(nb_performed_contractions_, 3) = pq_.topPriority();
+                                // actionStats_(nb_performed_contractions_, 4) = 1;
+                            }
                             return false;
                         }
                         else{
@@ -296,7 +418,32 @@ namespace nifty{
                             }
                             this->addNonLinkConstraint(nextActioneEdge);
                             pq_.push(nextActioneEdge, -1.0*std::numeric_limits<double>::infinity());
+                            if (settings_.collectStats) {
+                                // actionStats_(nb_edges_popped_, 4) = 2;
+                            }
+
+                            // Remember about weight and size of the constrained edge:
+                            if (settings_.collectStats) {
+                                const auto reprEdge = edgeContractionGraph_.findRepresentativeEdge(nextActioneEdge);
+                                constraintsStats_(reprEdge, 0) = 1.;
+                                constraintsStats_(reprEdge, 1) = accumulated_weights_[reprEdge]; // Remember the edge weight
+                                constraintsStats_(reprEdge, 2) = accumulated_weights_.weight(reprEdge); // Remember the edge size
+                            }
                         }
+                    }
+                    if (settings_.addNonLinkConstraints && settings_.mergeConstrainedEdgesAtTheEnd) {
+                        // We push again all values to PQ and merge what is left and positive:
+                        settings_.addNonLinkConstraints = false;
+                        graph_.forEachEdge([&](const uint64_t e){
+                            const auto cEdge = edgeContractionGraph_.findRepresentativeEdge(e);
+                            const auto uv = edgeContractionGraph_.uv(cEdge);
+                            const auto u = edgeContractionGraph_.findRepresentativeNode(uv.first);
+                            const auto v = edgeContractionGraph_.findRepresentativeNode(uv.second);
+                            if (u != v) {
+                                pq_.push(cEdge, this->computeWeight(cEdge));
+                            }
+                        });
+                        continue;
                     }
                     return true;
                 }
@@ -334,7 +481,16 @@ namespace nifty{
                     const uint64_t edgeToContract
             ){
                 // Remember about the highest cost in PQ:
-                maxCostInPQ_per_iter_[nb_performed_contractions_] = edgeContractionGraph_.numberOfEdges();
+                if (settings_.collectStats) {
+                    mergeStats_(edgeToContract) = nb_performed_contractions_;
+                    actionStats_(nb_performed_contractions_, 0) = edgeContractionGraph_.uv(edgeToContract).first;
+                    actionStats_(nb_performed_contractions_, 1) = edgeContractionGraph_.uv(edgeToContract).second;
+                    actionStats_(nb_performed_contractions_, 2) = edgeToContract;
+                    actionStats_(nb_performed_contractions_, 3) = 1;
+                    // actionStats_(nb_performed_contractions_, 3) = pq_.topPriority();
+
+                }
+                maxCostInPQ_per_iter_[nb_performed_contractions_] = this->edgeCostInPQ(edgeToContract);
                 pq_.deleteItem(edgeToContract);
             }
 
@@ -403,6 +559,7 @@ namespace nifty{
 
 
                 // update state
+                // const auto oldStateAlive = edgeState_[aliveEdge];
                 auto & sa = edgeState_[aliveEdge];
                 const auto  sd = edgeState_[deadEdge];
                 if(
@@ -416,7 +573,16 @@ namespace nifty{
                 }
 
                 const auto sr = settings_.sizeRegularizer;
-                if (sr < 0.000001)
+                bool add_to_PQ = true;
+                if (settings_.addNonLinkConstraints) {
+                    if (this->isEdgeConstrained(aliveEdge)) {
+                        // If the edge was already constrained, it does not make sense to add it again to PQ
+                        add_to_PQ = false;
+                    }
+                }
+                if (sr > 0.00001)
+                    add_to_PQ = false;
+                if (add_to_PQ)
                     pq_.push(aliveEdge, this->computeWeight(aliveEdge));
 
             }
