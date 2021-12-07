@@ -24,13 +24,14 @@ except ImportError:
 
 
 def gridRag(labels,
-            numberOfLabels,
+            numberOfLabels=None,
             blockShape=None,
             numberOfThreads=-1,
             serialization=None,
             dtype='uint32'):
     labels = numpy.require(labels, dtype=dtype)
     dim = labels.ndim
+    numberOfLabels = labels.max() + 1 if numberOfLabels is None else numberOfLabels
     blockShape_ = [100] * dim if blockShape is None else blockShape
 
     if dim == 2:
@@ -281,3 +282,13 @@ if WITH_H5PY:
                        numberOfLabels=numberOfLabels,
                        ignoreLabel=ignoreLabel,
                        serialization=serialization.squeeze())
+
+
+def compute_lifted_edges_from_rag_and_offsets(rag, offsets, numberOfThreads=-1):
+    if isinstance(offsets, numpy.ndarray):
+        offsets = offsets.tolist()
+    else:
+        assert isinstance(offsets, (list, tuple))
+        assert isinstance(offsets, (list, tuple))
+    return computeLiftedEdgesFromRagAndOffsets_impl(rag, offsets, numberOfThreads)
+

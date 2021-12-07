@@ -25,6 +25,7 @@ namespace nifty{
                 typedef GRAPH GraphType;
                 const auto graphName = GraphName<GraphType>::name();
                 typedef xt::pytensor<float, 1>   PyViewFloat1;
+                typedef xt::pytensor<double, 1>   PyViewDouble1;
                 typedef xt::pytensor<uint8_t, 1> PyViewUInt8_1;
                 const std::string withUcmStr =  WITH_UCM ? std::string("WithUcm") :  std::string() ;
 
@@ -47,7 +48,8 @@ namespace nifty{
 //                        auto edgeContractionGraph = self->edgeContractionGraph();
                                      auto out1 = self->exportFinalNodeDataOriginalGraph();
                                      auto out2 = self->exportFinalEdgeDataContractedGraph();
-                                     return std::make_tuple(out1, out2);
+                                     auto out3 = self->exportAction();
+                                     return std::make_tuple(out1, out2, out3);
                                  }
                             );
 
@@ -57,20 +59,24 @@ namespace nifty{
                     aggloModule.def(clusterPolicyFacName.c_str(),
                                     [](
                                             const GraphType & graph,
-                                            const PyViewFloat1 & signedWeights,
+                                            const PyViewDouble1 & signedWeights,
                                             const PyViewUInt8_1 & isLocalEdge,
-                                            const PyViewFloat1 & edgeSizes,
-                                            const PyViewFloat1 & nodeSizes,
+                                            const PyViewDouble1 & edgeSizes,
+                                            const PyViewDouble1 & nodeSizes,
                                             const typename ClusterPolicyType::UpdateRuleSettingsType updateRule,
                                             const uint64_t numberOfNodesStop,
                                             const double sizeRegularizer,
-                                            const bool addNonLinkConstraints
+                                            const bool addNonLinkConstraints,
+                                            const bool mergeConstrainedEdgesAtTheEnd,
+                                            const bool collectStats
                                     ){
                                         typename ClusterPolicyType::SettingsType s;
                                         s.numberOfNodesStop = numberOfNodesStop;
                                         s.sizeRegularizer = sizeRegularizer;
                                         s.updateRule = updateRule;
                                         s.addNonLinkConstraints = addNonLinkConstraints;
+                                        s.mergeConstrainedEdgesAtTheEnd = mergeConstrainedEdgesAtTheEnd;
+                                        s.collectStats = collectStats;
                                         auto ptr = new ClusterPolicyType(graph, signedWeights, isLocalEdge, edgeSizes, nodeSizes, s);
                                         return ptr;
                                     },
@@ -84,7 +90,9 @@ namespace nifty{
                                     py::arg("updateRule0"),
                                     py::arg("numberOfNodesStop") = 1,
                                     py::arg("sizeRegularizer") = 0.,
-                                    py::arg("addNonLinkConstraints") = false
+                                    py::arg("addNonLinkConstraints") = false,
+                                    py::arg("mergeConstrainedEdgesAtTheEnd") = false,
+                                    py::arg("collectStats") = false
                     );
 
                     // export the agglomerative clustering functionality for this cluster operator

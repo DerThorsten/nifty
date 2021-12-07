@@ -4,7 +4,7 @@ from .. import filters
 
 from skimage.feature import peak_local_max as __peak_local_max
 import skimage.segmentation
-from scipy.misc import imresize as __imresize
+from skimage.transform import resize as __imresize
 from scipy.ndimage import zoom as __zoom
 import scipy.ndimage
 from matplotlib.colors import ListedColormap as __ListedColormap

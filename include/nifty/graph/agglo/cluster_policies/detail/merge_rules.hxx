@@ -127,7 +127,7 @@ namespace merge_rules{
         {
             for(auto edge : g.edges()){
 
-                values_[edge] = values[edge];
+                values_[edge] = values[edge]*weights[edge];
                 weights_[edge] = weights[edge];
             }
         }
@@ -542,6 +542,7 @@ namespace merge_rules{
         }
         typedef G GraphType;
         typedef typename GraphType:: template EdgeMap<T> MutexWatershedEdgeMapType;
+        typedef typename GraphType:: template EdgeMap<T> SizeEdgeMapType;
 
         typedef MutexWatershedSettings SettingsType;
 
@@ -551,17 +552,32 @@ namespace merge_rules{
                 const VALUES & values,
                 const WEIGHTS & weights,
                 const SettingsType & settings = SettingsType()
-        ):  values_(g)
+        ):  values_(g),
+            weights_(g)
         {
             for(auto edge : g.edges()){
                 values_[edge] = values[edge];
+                weights_[edge] = weights[edge];
             }
         }
 
         void merge(const uint64_t aliveEdge, const uint64_t deadEdge){
             auto & aliveValue = values_[aliveEdge];
             auto const deadValue = values_[deadEdge];
-            aliveValue = (std::abs(aliveValue) > std::abs(deadValue)) ? aliveValue : deadValue;
+            if ((std::abs(aliveValue) == std::abs(deadValue)) && (aliveValue != deadValue) ) {
+                // In case the two values have exactly opposite costs, which is unlikely but possible sometimes with
+                // the outputs of a sigmoid function.
+                // This case should be handled carefully, because the negative edge could be already constrained, and in that
+                // case then we cannot pick the positive value, because this would create an partial "inconsistency".
+                aliveValue = - std::abs(aliveValue);
+                std::cout<<"Warning: Merging of equally opposite edge weights found! Suggestion: add tiny random noise to weights.";
+            } else {
+                aliveValue = (std::abs(aliveValue) > std::abs(deadValue)) ? aliveValue : deadValue;
+            }
+
+
+            auto & aliveWeight = weights_[aliveEdge];
+            aliveWeight = aliveWeight + weights_[deadEdge];
         }
 
         void setValueFrom(const uint64_t targetEdge, const uint64_t sourceEdge){
@@ -574,7 +590,7 @@ namespace merge_rules{
             values_[targetEdge] = value;
         }
         T weight(const uint64_t edge)const{
-            return 1.0;
+            return weights_[edge];
         }
 
         T operator[](const uint64_t edge)const{
@@ -582,6 +598,7 @@ namespace merge_rules{
         }
     private:
         MutexWatershedEdgeMapType values_;
+        SizeEdgeMapType weights_;
     };
 
 

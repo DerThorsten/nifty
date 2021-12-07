@@ -13,6 +13,7 @@ namespace graph{
 
     void exportLongRangeAdjacency(py::module &);
     void exportLongRangeFeatures(py::module &);
+
 }
 }
 

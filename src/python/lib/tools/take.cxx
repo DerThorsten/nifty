@@ -6,6 +6,9 @@
 
 #include "xtensor-python/pytensor.hpp"
 
+#include "nifty/tools/for_each_coordinate.hxx"
+#include "nifty/parallel/threadpool.hxx"
+
 
 namespace py = pybind11;
 
@@ -33,6 +36,45 @@ namespace tools{
             }
             return out;
         }, py::arg("relabeling"), py::arg("toRelabel"));
+
+        // Multi-threaded version for multiple features:
+        toolsModule.def("_mapFeaturesToLabelArray",
+                          [](
+                                  xt::pytensor<T, 1> labelArray,
+                                  xt::pytensor<float, 2> featureArray,
+                                  int64_t ignoreLabel,
+                                  float fillValue,
+                                  const int numberOfThreads
+                          ){
+                              const size_t N = labelArray.shape()[0];
+                              const size_t nb_features = featureArray.shape()[1];
+                              xt::pytensor<float, 2> outArray = xt::ones<float>({N, nb_features}) * fillValue;
+                              {
+                                  py::gil_scoped_release allowThreads;
+                                  // Create thread pool:
+                                  nifty::parallel::ParallelOptions pOpts(numberOfThreads);
+                                  nifty::parallel::ThreadPool threadpool(pOpts);
+                                  const std::size_t actualNumberOfThreads = pOpts.getActualNumThreads();
+
+                                  parallel::parallel_foreach(threadpool, N, [&](const int tid, const int64_t nId){
+                                      const auto label = labelArray(nId);
+                                      if (label!=ignoreLabel && label<featureArray.shape()[0]) {
+                                          for(auto f=0; f<nb_features; ++f){
+                                              outArray(nId,f) = featureArray(label,f);
+                                          }
+                                      }
+                                  });
+                              }
+
+                              return outArray;
+
+                          },
+                          py::arg("labelArray"),
+                          py::arg("featureArray"),
+                          py::arg("ignoreLabel") = -1,
+                          py::arg("fillValue") = 0.,
+                          py::arg("numberOfThreads") = -1
+        );
 
 
         toolsModule.def("_takeDict",
