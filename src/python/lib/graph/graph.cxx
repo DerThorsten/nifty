@@ -19,7 +19,6 @@ namespace graph{
 
     void exportUndirectedListGraph(py::module &);
     void exportUndirectedGridGraph(py::module &);
-    void exportUndirectedLongRangeGridGraph(py::module &);
     void exportEdgeContractionGraphUndirectedGraph(py::module & );
     void exportShortestPathDijkstra(py::module &);
     void exportConnectedComponents(py::module &);
@@ -44,7 +43,6 @@ PYBIND11_MODULE(_graph, module) {
 
     exportUndirectedListGraph(module);
     exportUndirectedGridGraph(module);
-    exportUndirectedLongRangeGridGraph(module);
     exportEdgeContractionGraphUndirectedGraph(module);
     exportShortestPathDijkstra(module);
     exportConnectedComponents(module);
