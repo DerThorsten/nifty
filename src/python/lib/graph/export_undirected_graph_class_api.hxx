@@ -243,16 +243,20 @@ namespace graph{
                 "   tuple : pair of node indexes / enpoints of the edge."
             )
 
-            .def("bfsEdges",[](G & g, const std::size_t maxDistance){
+            .def("bfsEdges",[](G & g, const std::size_t maxDistance, const bool exactDistance){
 
                 BreadthFirstSearch<G> bfs(g);
                 std::vector<std::pair<uint64_t, uint64_t>> pairs;
                 g.forEachNode([&](const uint64_t sourceNode){
                     bfs.graphNeighbourhood(sourceNode, maxDistance,
-                        [&](const uint64_t targetNode, const uint64_t){
+                        [&](const uint64_t targetNode, const uint64_t distance){
                             if(targetNode < sourceNode){
-                                pairs.emplace_back(sourceNode, targetNode);
+                                return;
                             }
+                            if(exactDistance && (distance != maxDistance)){
+                                return;
+                            }
+                            pairs.emplace_back(sourceNode, targetNode);
                         }
                     );
                 });
@@ -268,7 +272,7 @@ namespace graph{
                 return out;
 
             },
-                py::arg("maxDistance")
+                py::arg("maxDistance"), py::arg("exactDistance")=false
             )
             .def("uvIds",
                 [](G & g) {
