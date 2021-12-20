@@ -32,7 +32,7 @@ namespace detail_graph{
 
     public:
         typedef GRAPH GraphType;
-        typedef typename GraphType:: template NodeMap<int64_t>     PredecessorsMap;
+        typedef typename GraphType:: template NodeMap<int64_t>  PredecessorsMap;
         typedef typename GraphType:: template NodeMap<int64_t>  DistanceMap;
     private:
         typedef QUEUE Queue;
@@ -165,7 +165,7 @@ namespace detail_graph{
             VISITOR && visitor
         ){
             this->initializeMaps(sourceBegin, sourceEnd);
-            this->runImpl(subgraphMask,visitor);
+            this->runImpl(subgraphMask, visitor);
         }
 
         const DistanceMap & distances()const{
@@ -181,7 +181,7 @@ namespace detail_graph{
             class VISITOR
         >
         void runImpl(
-            const SUBGRAPH_MASK &  subgraphMask,
+            const SUBGRAPH_MASK & subgraphMask,
             VISITOR && visitor
         ){
             auto continueSeach = true;

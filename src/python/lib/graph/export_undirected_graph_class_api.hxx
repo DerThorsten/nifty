@@ -249,19 +249,21 @@ namespace graph{
                 std::vector<std::pair<uint64_t, uint64_t>> pairs;
                 g.forEachNode([&](const uint64_t sourceNode){
                     bfs.graphNeighbourhood(sourceNode, maxDistance,
-
-                        [&](const uint64_t targetNode, const uint64_t ){
-                            pairs.emplace_back(sourceNode, targetNode);
+                        [&](const uint64_t targetNode, const uint64_t){
+                            if(targetNode < sourceNode){
+                                pairs.emplace_back(sourceNode, targetNode);
+                            }
                         }
                     );
                 });
 
                 xt::pytensor<uint64_t, 2> out({int64_t(pairs.size()), int64_t(2)});
 
-                auto c=0;
+                auto c = 0;
                 for(const auto & uv : pairs){
-                    out(c,0) = uv.first;
-                    out(c,1) = uv.second;
+                    out(c, 0) = uv.first;
+                    out(c, 1) = uv.second;
+                    ++c;
                 }
                 return out;
 
