@@ -53,45 +53,47 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
         });
     }
 
-    int pass = 1;
+    const auto passesRequired = edgeAccumulators.front().front().passesRequired();
 
-    // iterate over all affinity links and accumulate the associated
-    // affinity edges
-    tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
+    for(int pass = 1; pass <= passesRequired; ++pass) {
+        // iterate over all affinity links and accumulate the associated
+        // affinity edges
+        tools::parallelForEachCoordinate(threadpool, affShape, [&](int tid, const Coord4 & affCoord) {
 
-        Coord3 cU, cV;
-        VigraCoord vc;
-        const auto & offset = offsets[affCoord[0]];
+            Coord3 cU, cV;
+            VigraCoord vc;
+            const auto & offset = offsets[affCoord[0]];
 
-        for(int d = 0; d < DIM; ++d) {
-            cU[d] = affCoord[d+1];
-            cV[d] = affCoord[d+1] + offset[d];
-            // range check
-            if(cV[d] < 0 || cV[d] >= shape[d]) {
-                return;
-            }
-        }
-
-        const auto u = xtensor::read(labels, cU.asStdArray());
-        const auto v = xtensor::read(labels, cV.asStdArray());
-
-        // only do stuff if the labels are different
-        if(u != v) {
-
-            auto & thisAccumulators = edgeAccumulators[tid];
-            // we just update the vigra coord of label u
             for(int d = 0; d < DIM; ++d) {
-                vc = cU[d];
+                cU[d] = affCoord[d+1];
+                cV[d] = affCoord[d+1] + offset[d];
+                // range check
+                if(cV[d] < 0 || cV[d] >= shape[d]) {
+                    return;
+                }
             }
 
-            const double val = xtensor::read(affinities, affCoord.asStdArray());
-            const int64_t e = rag.findEdge(u, v);
-            // For long range affinities, edge might not be in the rag
-            if(e != -1) {
-                thisAccumulators[e].updatePassN(val, vc, pass);
+            const auto u = xtensor::read(labels, cU.asStdArray());
+            const auto v = xtensor::read(labels, cV.asStdArray());
+
+            // only do stuff if the labels are different
+            if(u != v) {
+
+                auto & thisAccumulators = edgeAccumulators[tid];
+                // we just update the vigra coord of label u
+                for(int d = 0; d < DIM; ++d) {
+                    vc = cU[d];
+                }
+
+                const double val = xtensor::read(affinities, affCoord.asStdArray());
+                const int64_t e = rag.findEdge(u, v);
+                // For long range affinities, edge might not be in the rag
+                if(e != -1) {
+                    thisAccumulators[e].updatePassN(val, vc, pass);
+                }
             }
-        }
-    });
+        });
+    }
 
     // merge accumulators
     auto & resultAccVec = edgeAccumulators.front();
