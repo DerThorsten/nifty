@@ -94,7 +94,7 @@ namespace graph{
 
         if(accOptions.setMinMax){
             vigra::HistogramOptions histogram_opt;
-            histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal); 
+            histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
             parallel::parallel_foreach(threadpool, actualNumberOfThreads,
             [&](int tid, int i){
 

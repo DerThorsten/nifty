@@ -40,20 +40,18 @@ void accumulateAffninitiesWithAccChain(const RAG & rag,
     auto nThreads = threadpool.nThreads();
     ThreadAccChainVectorType edgeAccumulators(nThreads);
 
-    vigra::HistogramOptions histogram_opt;
-    histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
-
-    parallel::parallel_foreach(threadpool, nThreads,
-    [&](int tid, int threadId){
-        auto & thisAccumulators = edgeAccumulators[threadId];
-        thisAccumulators = AccChainVectorType(nEdges);
-        // set the histogram options
-        if(accOptions.setMinMax){
+    // set the histogram options
+    if(accOptions.setMinMax){
+        vigra::HistogramOptions histogram_opt;
+        histogram_opt = histogram_opt.setMinMax(accOptions.minVal, accOptions.maxVal);
+        parallel::parallel_foreach(threadpool, nThreads, [&](int tid, int threadId){
+            auto & thisAccumulators = edgeAccumulators[threadId];
+            thisAccumulators = AccChainVectorType(nEdges);
             for(std::size_t edgeId; edgeId < nEdges; ++edgeId) {
                 thisAccumulators[edgeId].setHistogramOptions(histogram_opt);
             }
-        }
-    });
+        });
+    }
 
     int pass = 1;
 
