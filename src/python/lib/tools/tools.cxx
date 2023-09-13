@@ -24,6 +24,8 @@ namespace tools{
     void exportMapDictionaryToArray(py::module &);
     void exportMergeHelper(py::module &);
     void exportLabelMultiset(py::module &);
+    void exportComputeRLE(py::module &);
+
 }
 }
 
@@ -49,4 +51,6 @@ PYBIND11_MODULE(_tools, toolsModule) {
     exportMapDictionaryToArray(toolsModule);
     exportMergeHelper(toolsModule);
     exportLabelMultiset(toolsModule);
+    exportComputeRLE(toolsModule);
+
 }
