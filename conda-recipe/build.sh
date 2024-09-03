@@ -1,5 +1,3 @@
-export PY_INSTALL_DIR="${PREFIX}/lib/python3.7/site-packages"
-
 ##
 ## START THE BUILD
 ##
