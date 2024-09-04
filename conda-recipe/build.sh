@@ -1,5 +1,3 @@
-export PY_INSTALL_DIR="${PREFIX}/lib/python3.7/site-packages"
-
 ##
 ## START THE BUILD
 ##
@@ -13,7 +11,6 @@ cmake . \
         -DCMAKE_BUILD_TYPE=RELEASE \
         -DCMAKE_PREFIX_PATH="${PREFIX}" \
         -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
-        -DPYTHON_MODULE_INSTALL_DIR="${PY_INSTALL_DIR}" \
 \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
 \
@@ -25,7 +22,7 @@ cmake . \
         -DWITH_BOOST_FS=OFF \
 \
         -DBUILD_NIFTY_PYTHON=ON \
-        -DPYTHON_EXECUTABLE="${PYTHON}" \
+        -DPython_EXECUTABLE="${PYTHON}" \
 ##
 
 ##
