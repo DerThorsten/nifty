@@ -1,6 +1,6 @@
 Github Workflow builds
 ---------------------------------
-[![Build Status](https://github.com/constantinpape/nifty/workflows/build/badge.svg)](https://github.com/constantinpape/nifty/actions)
+[![Build Status](https://github.com/DerThorsten/nifty/workflows/build/badge.svg)](https://github.com/DerThorsten/nifty/actions)
 
 
 Nifty
