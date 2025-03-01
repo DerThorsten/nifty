@@ -11,7 +11,7 @@ else()
 endif()
 message(STATUS "Using c++ 17 for pybind")
 
-find_package(Python 3 REQUIRED COMPONENTS NumPy)
+find_package(Python REQUIRED COMPONENTS NumPy)
 include_directories(${Python_NumPy_INCLUDE_DIRS})
 
 add_subdirectory(test)

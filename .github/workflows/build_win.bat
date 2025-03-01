@@ -8,6 +8,7 @@ cmake . -G "NMake Makefiles" ^
     -DBUILD_CPP_TEST=OFF ^
     -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ^
+    -DPython_NumPy_INCLUDE_DIRS=$(python -c "import numpy; print(numpy.get_include())") ^
     -DCMAKE_CXX_FLAGS="/std:c++17 /EHsc" ^
     -DBUILD_NIFTY_PYTHON=ON ^
     -DWITH_HDF5=OFF ^
