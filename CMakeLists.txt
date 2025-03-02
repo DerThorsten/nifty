@@ -53,6 +53,8 @@ if(MSVC)
     # Disable autolinking on MSVC.
     add_definitions(-DBOOST_ALL_NO_LIB)
     add_definitions(-DNOMINMAX)
+    # Make sure we don't use debug libraries.
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 endif()
 
 # from externals..
