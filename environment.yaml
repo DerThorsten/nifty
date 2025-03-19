@@ -1,13 +1,18 @@
-name:
-    nifty-dev
+name: nifty-dev
 channels:
-    - conda-forge
+  - conda-forge
 dependencies:
-  - boost-cpp>=1.63
-  - h5py
-  - nlohmann_json
-  - scikit-image
-  - xtensor>=0.21,<0.22
-  - xtensor-python>=0.24,<0.25
+  - python 3.12
+  - numpy
+  - xtensor >=0.25,<0.26
+  - xtensor-python >=0.27,<0.28
+  - libboost-devel
+  - libvigra
+  # Vigra Numpy is used at link time too
   - vigra
-  - z5py
+  - z5py >=2.0.11
+  # build dependencies needed for z5
+  - nlohmann_json
+  - blosc
+  - bzip2
+  - zlib
