@@ -51,11 +51,9 @@ find_package(Threads REQUIRED)
 
 
 if(MSVC)
-    # Disable autolinking on MSVC.
-    add_definitions(-DBOOST_ALL_NO_LIB)
+    # Needed for xtensor compatibility, they seem to
+    # define these macros
     add_definitions(-DNOMINMAX)
-    # Make sure we don't use debug libraries.
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 endif()
 
 # from externals..
