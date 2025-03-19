@@ -1,7 +1,10 @@
+find_package(Python REQUIRED COMPONENTS NumPy Interpreter Development)
+include_directories(${Python_NumPy_INCLUDE_DIRS})
+
 find_package(xtensor-python REQUIRED)
 include_directories(${xtensor-python_INCLUDE_DIRS})
 
-find_package(pybind11 REQUIRED)
+find_package(pybind11 CONFIG REQUIRED)
 include_directories(${pybind11_INCLUDE_DIRS})
 
 if(MSVC)
@@ -10,9 +13,6 @@ else()
     set(PYBIND11_CPP_STANDARD -std=c++17)
 endif()
 message(STATUS "Using c++ 17 for pybind")
-
-find_package(Python REQUIRED COMPONENTS NumPy)
-include_directories(${Python_NumPy_INCLUDE_DIRS})
 
 add_subdirectory(test)
 add_subdirectory(lib)

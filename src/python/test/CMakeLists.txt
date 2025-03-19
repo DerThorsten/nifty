@@ -1,19 +1,19 @@
 if(BUILD_PYTHON_TEST)
 
-    if(PYTHON_VERSION_MAJOR STREQUAL "2")
+    if(Python_VERSION_MAJOR STREQUAL "2")
         #message(STATUS "222222")
         find_program(NOSETESTS_PATH NAMES
-                #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-                #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-                #"nosetests${PYTHON_VERSION_MAJOR}"
-                #"nosetests-${PYTHON_VERSION_MAJOR}"
+                #"nosetests${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
+                #"nosetests-${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
+                #"nosetests${Python_VERSION_MAJOR}"
+                #"nosetests-${Python_VERSION_MAJOR}"
                 "nosetests")
     else()
         find_program(NOSETESTS_PATH NAMES
-            #"nosetests${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-            #"nosetests-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
-            #"nosetests${PYTHON_VERSION_MAJOR}"
-            #"nosetests-${PYTHON_VERSION_MAJOR}"
+            #"nosetests${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
+            #"nosetests-${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}"
+            #"nosetests${Python_VERSION_MAJOR}"
+            #"nosetests-${Python_VERSION_MAJOR}"
             "nosetests3")
     endif()
 
