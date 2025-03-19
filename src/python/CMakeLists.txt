@@ -7,13 +7,6 @@ include_directories(${xtensor-python_INCLUDE_DIRS})
 find_package(pybind11 CONFIG REQUIRED)
 include_directories(${pybind11_INCLUDE_DIRS})
 
-if(MSVC)
-    set(PYBIND11_CPP_STANDARD /std:c++17)
-else()
-    set(PYBIND11_CPP_STANDARD -std=c++17)
-endif()
-message(STATUS "Using c++ 17 for pybind")
-
 add_subdirectory(test)
 add_subdirectory(lib)
 
