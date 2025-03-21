@@ -50,11 +50,12 @@ find_package(Threads REQUIRED)
 
 
 if(MSVC)
+    cmake_policy(SET CMP0091 NEW)
     # Disable autolinking on MSVC.
     add_definitions(-DBOOST_ALL_NO_LIB)
     add_definitions(-DNOMINMAX)
     # Make sure we don't use debug libraries.
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
 # from externals..
