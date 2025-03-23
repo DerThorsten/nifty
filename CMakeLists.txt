@@ -3,6 +3,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 project(NIFTY)
 set(${PROJECT_NAME}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+cmake_policy(SET CMP0057 NEW)
 
 
 
@@ -158,7 +159,7 @@ endif()
 #-------------------------------------------------------------------------------------------------------------------
 # find boost
 #-------------------------------------------------------------------------------------------------------------------
-find_package(Boost 1.63.0 REQUIRED)
+find_package(Boost 1.63.0 CONFIG REQUIRED)
 
 # see this issue for discussions about the filesystem lib in CMake
 # https://gitlab.kitware.com/cmake/cmake/issues/17834

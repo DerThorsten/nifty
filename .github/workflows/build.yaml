@@ -8,14 +8,13 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.os }} ${{ matrix.python-version }}
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-        python-version: [3.11]
 
     steps:
       - name: Checkout
@@ -25,7 +24,6 @@ jobs:
         uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: .github/workflows/environment.yaml
-          python-version: ${{ matrix.python-version }}
 
       # this will set the system compiler;
       # I don't know how to set the conda compilers for windows

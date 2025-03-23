@@ -67,10 +67,18 @@ macro(addPythonModule)
     # and if we do, this causes seg-faults on mac, so don't do it!
     # link additional libraries
     target_link_libraries(_${MODULE_NAME}
-        PUBLIC
-        # ${PYTHON_LIBRARIES}
+        PRIVATE
         ${ADD_PY_MOD_LIBRRARIES}
     )
+    if(MSVC)
+        # Doing this linking for all platforms causes segfaults on mac
+        # and is not necessary on linux
+        # But it avoids linking to the debug libraries in windows....
+        target_link_libraries(_${MODULE_NAME}
+            PRIVATE
+            ${Python_LIBRARIES}
+        )
+    endif()
 
     # create module dir
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME})
